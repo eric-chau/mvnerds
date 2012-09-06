@@ -1,0 +1,14 @@
+mv_nerds_admin:
+    resource: "@MVNerdsAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mv_nerds_core:
+    resource: "@MVNerdsCoreBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+# Internal routing configuration to handle ESI
+#_internal:
+#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
+#    prefix:   /_internal
