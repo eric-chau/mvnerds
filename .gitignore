@@ -7,4 +7,5 @@ vendor
 bin
 composer.phar
 
-src/Acme
+src/MVNerds/CoreBundle/Model/om/*
+src/MVNerds/CoreBundle/Model/map/*

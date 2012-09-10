@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database defaultIdMethod="native" name="default" namespace="MVNerds\CoreBundle\Model">
+  <table name="champion">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="name" required="true" size="45" type="VARCHAR" />
+    <column name="main_role" primaryString="true" required="true" type="ENUM" valueSet="CARRY_AD, CARRY_AP, BRUISER, JUNGLER, SUPPORT" />
+    <column name="base_damage" required="true" scale="3" type="FLOAT" />
+    <column name="bonus_damage_per_level" required="true" scale="3" type="FLOAT" />
+    <column name="base_health" required="true" type="SMALLINT" />
+    <column name="bonus_health_per_level" required="true" type="SMALLINT" />
+    <column name="base_health_regen" required="true" scale="3" type="FLOAT" />
+    <column name="bonus_health_regen_per_level" required="true" scale="3" type="FLOAT" />
+    <column name="base_mana" required="true" type="SMALLINT" />
+    <column name="bonus_mana_per_level" required="true" type="SMALLINT" />
+    <column name="base_mana_regen" required="true" scale="3" type="FLOAT" />
+    <column name="bonus_mana_regen_per_level" required="true" scale="3" type="FLOAT" />
+    <column name="base_armor" required="true" scale="3" type="FLOAT" />
+    <column name="bonus_armor_per_level" required="true" scale="3" type="FLOAT" />
+    <column name="base_magic_resist" required="true" scale="3" type="FLOAT" />
+    <column name="bonus_magic_resist_per_level" required="true" scale="3" type="FLOAT" />
+    <column name="move_speed" required="true" type="SMALLINT" />
+    <column name="mana_type" required="true" type="ENUM" valueSet="MANA, ENERGY, RAGE" />
+  </table>
+  <table name="user">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="email" required="true" size="255" type="VARCHAR" />
+  </table>
+  <table name="item">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="label" required="true" size="255" type="VARCHAR" />
+    <column defaultValue="0" name="bonus_damage" required="true" type="SMALLINT" />
+    <column defaultValue="0" name="bonus_ability_power" required="true" type="SMALLINT" />
+    <column defaultValue="0" name="bonus_health" required="true" type="SMALLINT" />
+    <column defaultValue="0" name="bonus_health_regen" required="true" type="SMALLINT" />
+    <column defaultValue="0" name="bonus_mana" required="true" type="SMALLINT" />
+    <column defaultValue="0" name="bonus_mana_regen" required="true" type="SMALLINT" />
+    <column defaultValue="0" name="bonus_armor" required="true" type="SMALLINT" />
+    <column defaultValue="0" name="bonus_magic_resist" required="true" type="SMALLINT" />
+    <column defaultValue="0" name="bonus_armor_penetration" required="true" type="SMALLINT" />
+    <column defaultValue="0" name="bonus_armor_penetration_percent" required="true" type="TINYINT" />
+    <column defaultValue="0" name="bonus_magic_penetration" required="true" type="SMALLINT" />
+    <column defaultValue="0" name="bonus_magic_penetration_percent" required="true" type="TINYINT" />
+    <column defaultValue="0" name="price" required="true" type="SMALLINT" />
+    <column defaultValue="0" name="bonus_move_speed" required="true" type="TINYINT" />
+    <column defaultValue="0" name="bonus_move_speed_percent" required="true" type="TINYINT" />
+    <column defaultValue="0" name="bonus_attack_speed_percent" required="true" type="TINYINT" />
+    <column defaultValue="0" name="bonus_critical_chance_percent" required="true" type="TINYINT" />
+    <column defaultValue="0" name="bonus_critical_damage_percent" required="true" type="TINYINT" />
+  </table>
+  <table name="item_extra_property">
+    <column name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="item_id" required="true" type="INTEGER" />
+    <column defaultValue="0" name="is_passive_property" required="true" type="BOOLEAN" />
+    <foreign-key foreignTable="item">
+      <reference foreign="id" local="item_id" />
+    </foreign-key>
+  </table>
+  <table name="tournament">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="name" required="true" size="100" type="VARCHAR" />
+    <column name="date_start" required="true" type="TIMESTAMP" />
+    <column name="date_end" required="true" type="TIMESTAMP" />
+    <column name="description" required="true" type="LONGVARCHAR" />
+    <column name="localisation" size="255" type="VARCHAR" />
+    <column name="tournament_format_id" required="true" type="INTEGER" />
+    <column description="permet de definir le tournoi parent" name="tournament_id" type="INTEGER" />
+    <column description="Nombre de rounds max du tournoi" name="round_count" required="true" type="TINYINT" />
+    <column name="cash_prize" type="FLOAT" />
+    <foreign-key foreignTable="tournament_format">
+      <reference foreign="id" local="tournament_format_id" />
+    </foreign-key>
+  </table>
+  <table name="player">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="first_name" size="45" type="VARCHAR" />
+    <column name="last_name" size="45" type="VARCHAR" />
+    <column name="nickname" required="true" size="45" type="VARCHAR" />
+    <column name="main_role_id" type="INTEGER" />
+    <column name="birthday" type="TIMESTAMP" />
+    <foreign-key foreignTable="player_role">
+      <reference foreign="id" local="main_role_id" />
+    </foreign-key>
+  </table>
+  <table name="team">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="name" required="true" size="100" type="VARCHAR" />
+    <column name="region" size="100" type="VARCHAR" />
+    <column name="tag" size="10" type="VARCHAR" />
+    <column name="description" type="LONGVARCHAR" />
+  </table>
+  <table name="player_role">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="label" required="true" size="45" type="VARCHAR" />
+    <column name="description" type="LONGVARCHAR" />
+  </table>
+  <table name="tournament_participation">
+    <column name="tournament_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="team_id" primaryKey="true" required="true" type="INTEGER" />
+    <column description="Les ids des joueurs de l'equipe ayant participe au tournoi serialise en json" name="players_id" required="true" size="255" type="VARCHAR" />
+    <column description="Classement de l'equipe pour ce tournoi" name="position" type="SMALLINT" />
+    <foreign-key foreignTable="tournament">
+      <reference foreign="id" local="tournament_id" />
+    </foreign-key>
+    <foreign-key foreignTable="team">
+      <reference foreign="id" local="team_id" />
+    </foreign-key>
+  </table>
+  <table name="confrontation">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="team_1_id" required="true" type="INTEGER" />
+    <column name="team_2_id" required="true" type="INTEGER" />
+    <column name="tournament_id" required="true" type="INTEGER" />
+    <column name="confrontation_type_id" required="true" type="INTEGER" />
+    <column name="date" required="true" type="TIMESTAMP" />
+    <column name="round_number" required="true" type="TINYINT" />
+    <foreign-key foreignTable="team">
+      <reference foreign="id" local="team_1_id" />
+    </foreign-key>
+    <foreign-key foreignTable="team">
+      <reference foreign="id" local="team_2_id" />
+    </foreign-key>
+    <foreign-key foreignTable="tournament">
+      <reference foreign="id" local="tournament_id" />
+    </foreign-key>
+    <foreign-key foreignTable="confrontation_type">
+      <reference foreign="id" local="confrontation_type_id" />
+    </foreign-key>
+  </table>
+  <table name="confrontation_game">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="confrontation_id" required="true" type="INTEGER" />
+    <column name="game_number" required="true" type="INTEGER" />
+    <column description="Duree du match en secondes" name="duration" type="SMALLINT" />
+    <foreign-key foreignTable="confrontation">
+      <reference foreign="id" local="confrontation_id" />
+    </foreign-key>
+  </table>
+  <table name="game_ban">
+    <column name="confrontation_game_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="champion_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="team_id" required="true" type="INTEGER" />
+    <column name="order" required="true" type="TINYINT" />
+    <foreign-key foreignTable="confrontation_game">
+      <reference foreign="id" local="confrontation_game_id" />
+    </foreign-key>
+    <foreign-key foreignTable="team">
+      <reference foreign="id" local="team_id" />
+    </foreign-key>
+    <foreign-key foreignTable="champion">
+      <reference foreign="id" local="champion_id" />
+    </foreign-key>
+  </table>
+  <table name="game_pick">
+    <column name="confrontation_game_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="champion_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="player_id" type="INTEGER" />
+    <column name="team_id" required="true" type="INTEGER" />
+    <column name="order" required="true" type="TINYINT" />
+    <column name="kills" type="SMALLINT" />
+    <column name="deaths" type="SMALLINT" />
+    <column name="assists" type="SMALLINT" />
+    <column name="creeps" type="SMALLINT" />
+    <column name="gold" type="INTEGER" />
+    <foreign-key foreignTable="player">
+      <reference foreign="id" local="player_id" />
+    </foreign-key>
+    <foreign-key foreignTable="team">
+      <reference foreign="id" local="team_id" />
+    </foreign-key>
+    <foreign-key foreignTable="confrontation_game">
+      <reference foreign="id" local="confrontation_game_id" />
+    </foreign-key>
+    <foreign-key foreignTable="champion">
+      <reference foreign="id" local="champion_id" />
+    </foreign-key>
+  </table>
+  <table name="confrontation_type">
+    <column autoIncrement="true" description="Dire pour chaque match si c'est du Bo3 ou autre" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="label" required="true" size="100" type="VARCHAR" />
+    <column name="description" type="INTEGER" />
+  </table>
+  <table name="tournament_format">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="label" required="true" size="100" type="VARCHAR" />
+    <column name="description" type="LONGVARCHAR" />
+  </table>
+  <table name="game_feed">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="label" required="true" size="255" type="VARCHAR" />
+    <column description="Le moment ou s'est deroule l'evenement en minutes" name="time" required="true" type="TINYINT" />
+    <column name="confrontation_game_id" required="true" type="INTEGER" />
+    <column defaultValue="0" description="Permet d'identifier si l'evenement est un moment fort ou non" name="is_highlight" required="true" type="BOOLEAN" />
+    <foreign-key foreignTable="confrontation_game">
+      <reference foreign="id" local="confrontation_game_id" />
+    </foreign-key>
+  </table>
+  <table name="mvp">
+    <column name="object_id" primaryKey="true" required="true" type="INTEGER" />
+    <column description="Namespace de la classe PHP associee" name="object_type" primaryKey="true" required="true" size="255" type="VARCHAR" />
+    <column name="player_id" required="true" type="INTEGER" />
+    <foreign-key foreignTable="player">
+      <reference foreign="id" local="player_id" />
+    </foreign-key>
+  </table>
+  <table name="user_preference">
+    <column autoIncrement="true" name="preference_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="user_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="value" required="true" size="255" type="VARCHAR" />
+    <foreign-key foreignTable="user">
+      <reference foreign="id" local="user_id" />
+    </foreign-key>
+    <foreign-key foreignTable="preference">
+      <reference foreign="id" local="preference_id" />
+    </foreign-key>
+  </table>
+  <table name="preference">
+    <column name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="label" required="true" size="255" type="VARCHAR" />
+  </table>
+  <table name="tournament_prize">
+    <column name="tournament_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="position" required="true" type="TINYINT" />
+    <column name="prize" required="true" size="255" type="VARCHAR" />
+    <column name="currency" size="45" type="VARCHAR" />
+    <foreign-key foreignTable="tournament">
+      <reference foreign="id" local="tournament_id" />
+    </foreign-key>
+  </table>
+  <table name="team_affectation">
+    <column name="team_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="player_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="date_start" required="true" type="TIMESTAMP" />
+    <column name="date_end" type="TIMESTAMP" />
+    <column defaultValue="0" name="is_manager" required="true" type="BOOLEAN" />
+    <column defaultValue="0" name="is_captain" required="true" type="BOOLEAN" />
+    <foreign-key foreignTable="team">
+      <reference foreign="id" local="team_id" />
+    </foreign-key>
+    <foreign-key foreignTable="player">
+      <reference foreign="id" local="player_id" />
+    </foreign-key>
+  </table>
+</database>
