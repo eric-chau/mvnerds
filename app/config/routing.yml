@@ -1,7 +1,12 @@
-mv_nerds_admin:
-    resource: "@MVNerdsAdminBundle/Controller/"
+mv_nerds_did_you_know:
+    resource: "@MVNerdsDidYouKnowBundle/Controller/"
     type:     annotation
     prefix:   /
+
+MVNerdsAdminBundle_homepage:
+    resource: "@MVNerdsAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /administration
 
 mv_nerds_core:
     resource: "@MVNerdsCoreBundle/Controller/"

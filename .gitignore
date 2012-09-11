@@ -7,5 +7,7 @@ vendor
 bin
 composer.phar
 
+app/propel/*
+
 src/MVNerds/CoreBundle/Model/om/*
 src/MVNerds/CoreBundle/Model/map/*
