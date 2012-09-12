@@ -1,0 +1,11 @@
+{# #}
+<div class="row-fluid title-line">
+	<div class="span2">Identifiant</div>
+	<div class="span6">Adresse électronique</div>
+	<div class="span4">Actions</div>
+</div>
+{% for user in users %}
+	{% include 'MVNerdsAdminBundle:User:user_row.html.twig' with {'user': user }%}
+{% else %}
+	<i>Aucun utilisateur enregistré pour le moment, et si vous en ajoutiez un en cliquant sur le bouton "Ajouter un utilisateur" ?</i>
+{% endfor %}

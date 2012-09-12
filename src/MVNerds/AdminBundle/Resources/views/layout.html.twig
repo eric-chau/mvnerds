@@ -1,7 +1,22 @@
 {% extends '::base.html.twig' %}
 
-{% block content %}
-	<div class="container-fluid">
-		
+{% block css %}
+	{{ parent() }}
+
+	<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	<script type="text/javascript" src="{{ asset('js/admin/users.js') }}"></script>
+{% endblock %}
+
+{% block body %}
+	{% block topbar %}
+		{% include 'MVNerdsAdminBundle::top_bar.html.twig' with {'section': ''} %}
+	{% endblock %}
+	<div class="container main-container">
+		{% block content %}{% endblock %}
 	</div>
 {% endblock %}

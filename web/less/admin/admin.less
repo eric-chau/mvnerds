@@ -1,0 +1,66 @@
+@import "../bootstrap/mixins.less";
+
+body {
+	background: #6baeff url('/images/admin/master_yi.png') no-repeat center;
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 16px;
+	min-height: 1080px;
+	line-height: 1.5em;
+}
+
+div.main-container {
+	background-color: rgba(255, 255, 255, 0.3);
+	padding: 40px 10px;
+}
+
+div.action-buttons {
+	margin-bottom: 24px;
+}
+
+div.content-container {
+	background-color: white;
+	border: 5px solid #ebf0f8;
+	.border-radius(5px);
+	padding: 10px;
+
+	div.row-fluid {
+		margin: 12px 0;
+		text-align: center;
+
+		&.title-line {
+			background-color: #272822;
+			color: white;
+			font-weight: bold;
+		}
+
+		&.normal-line {
+			background-color: #ebf0f8;
+		}
+
+		div {
+			padding: 5px;
+		}
+
+		div.span2, div.span6 {	
+			border-right: 1px solid white;
+		}
+	}
+
+	form {
+		margin: 20px 0;
+
+		input[type="text"] {
+			height: 100px;
+		}
+
+		label {
+			display: inline-block;
+			font-weight: bold;
+			font-size: 16px;
+			line-height: 1.5em;
+			margin-right: 20px;
+			text-align: right;
+			width: 20%;
+		}
+	}
+}
