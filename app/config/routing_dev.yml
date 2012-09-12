@@ -12,3 +12,8 @@ _configurator:
 
 _main:
     resource: routing.yml
+
+mv_nerds_data_grabber:
+    resource: "@MVNerdsDataGrabberBundle/Controller/"
+    type:     annotation
+    prefix:   /data-grabber

@@ -1,0 +1,28 @@
+{% extends 'MVNerdsAdminBundle:Champion:layout.html.twig' %}
+
+{% block title %}Administration des champions - MVNerds{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-alert.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+	<h1>Les champions</h1>
+
+	<div class="action-buttons right">
+		<a href="{{ path('admin_champions_add') }}" class="btn btn-success btn-large"><i class="icon-plus-sign icon-white"></i> <strong>Ajouter un champion</strong></a>
+	</div>
+
+	{% if app.session.hasFlash('success') %}
+		<div class="alert alert-success">
+			<button type="button" class="close">×</button>
+			{{ app.session.getFlash('success') }}
+		</div>
+	{% endif %}
+
+	<div class="content-container">
+		{% include 'MVNerdsAdminBundle:Champion:champion_list.html.twig' with {'champions': champions } %}
+	</div>
+{% endblock %}

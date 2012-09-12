@@ -1,0 +1,14 @@
+{# #}
+<div class="row-fluid title-line">
+	<div class="span2">Identifiant</div>
+	<div class="span2">Nom</div>
+	<div class="span2">Dommages</div>
+	<div class="span2">Santé</div>
+	<div class="span2">Mana</div>
+	<div class="span2">Actions</div>
+</div>
+{% for champion in champions %}
+	{% include 'MVNerdsAdminBundle:Champion:champion_row.html.twig' with {'champion': champion}%}
+{% else %}
+	<i>Aucun champion enregistré pour le moment, et si vous en ajoutiez un en cliquant sur le bouton "Ajouter un champion" ?</i>
+{% endfor %}

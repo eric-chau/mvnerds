@@ -1,0 +1,18 @@
+
+	{% for champion,stats in champions %}
+		{{ champion }} <br /><br />
+		
+		{% for statName,statVals in stats %}
+			<br />{{ statName }}<br />
+			{% for valType, val in statVals %}
+				{{ valType }} : {{ val }}<br />
+			{% else %}
+				<i>Aucune valeur trouvée !</i>
+			{% endfor %}
+		{% else %}
+			<i>Aucune statitstique trouvée !</i>
+		{% endfor %}
+		<hr/>
+	{% else %}
+		<i>Aucun champion trouvé !</i>
+	{% endfor %}
