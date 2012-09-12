@@ -4,6 +4,7 @@ namespace MVNerds\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+
 use MVNerds\CoreBundle\Model\ChampionQuery;
 use MVNerds\CoreBundle\Form\Type\ChampionType;
 
@@ -15,13 +16,14 @@ class ChampionController extends Controller
 
 	/**
 	 * Liste tous les champions de la base
+	 *
 	 * @Route("/", name="admin_champions_index")
 	 */
 	public function indexAction()
 	{
 		return $this->render('MVNerdsAdminBundle:Champion:index.html.twig', array(
-					'champions' => ChampionQuery::create()->find()
-				));
+			'champions' => ChampionQuery::create()->find()
+		));
 	}
 
 	/**
@@ -51,6 +53,7 @@ class ChampionController extends Controller
 				return $this->redirect($this->generateUrl('admin_champions_index'));
 			}
 		}
+
 		return $this->render('MVNerdsAdminBundle:Champion:add_champion_form.html.twig', array(
 			'form' => $form->createView()
 		));
