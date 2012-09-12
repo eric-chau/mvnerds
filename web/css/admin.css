@@ -51,6 +51,9 @@ div.content-container div.row-fluid {
   margin: 12px 0;
   text-align: center;
 }
+div.content-container div.row-fluid div.modal {
+  text-align: left;
+}
 div.content-container div.row-fluid.title-line {
   background-color: #272822;
   color: white;
@@ -58,6 +61,9 @@ div.content-container div.row-fluid.title-line {
 }
 div.content-container div.row-fluid.normal-line {
   background-color: #ebf0f8;
+}
+div.content-container div.row-fluid.normal-line:hover {
+  background-color: #ccc;
 }
 div.content-container div.row-fluid div {
   padding: 5px;
