@@ -3,7 +3,7 @@
     	<a class="brand" href="#">Most Valuable Nerds</a>
     	<ul class="nav">
       		<li{% if section == 'users' %} class="active"{% endif %}><a href="{{ path('admin_users_index') }}">Utilisateurs</a></li>
-      		<li{% if section == 'champions' %} class="active"{% endif %}><a href="#">Champions</a></li>
+      		<li{% if section == 'champions' %} class="active"{% endif %}><a href="{{ path('admin_champions_index') }}">Champions</a></li>
     	</ul>
   	</div>
 </div>
