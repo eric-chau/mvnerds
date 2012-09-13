@@ -1,4 +1,4 @@
-<div class="row-fluid normal-line">
+<div class="row-fluid normal-line champion">
 	<div class="span2">
 		{{ champion.getId() }}
 	</div>
@@ -15,8 +15,32 @@
 		{{ champion.getBaseMana() }}
 	</div>
 	<div class="span2">
-		<i class="icon-eye-open"></i>
-		<i class="icon-edit"></i>
-		<i class="icon-remove"></i>
+		{# Voir la fiche du champion #}
+		<a href="#" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Voir la fiche de {{ champion.getName() }} (bientôt)">
+			<i class="icon-eye-open"></i>
+		</a>
+		{# Editer le champion #}
+		<a href="{{ path('admin_champions_edit', {'id': champion.getId()}) }}" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Éditer">
+			<i class="icon-edit"></i>
+		</a>
+		{# Supprimer le champion #}
+		<a href="#" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Supprimer le champion" data-toggle="modal" data-target="#delete-champion-{{ champion.getId() }}-modal">
+			<i class="icon-remove"></i>
+		</a>
+	</div>
+
+	<div id="delete-champion-{{ champion.getId() }}-modal" class="modal hide fade">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>Supprimer le champion {{ champion.getName() }}</h3>
+		</div>
+		<div class="modal-body">
+			<p>Êtes-vous sûr de vouloir supprimer le champion ayant pour nom <strong>{{ champion.getName() }}</strong> ?</p>
+		</div>
+		<div class="modal-footer">
+			<img src="{{ asset('images/commons/loader16.gif') }}" class="hide"/>
+			<a href="#" class="btn" data-dismiss="modal">Annuler</a>
+			<a href="{{ path('admin_champions_delete', {'id': champion.getId()}) }}" class="btn btn-danger btn-confirm-delete">Confirmer</a>
+		</div>
 	</div>
 </div>

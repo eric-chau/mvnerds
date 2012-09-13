@@ -18,6 +18,14 @@
             <argument>%parameter_name%</argument>
 			-->
         </service>
+
+	<service id="mvnerds.champion_manager" class="MVNerds\CoreBundle\Champion\ChampionManager">
+            <!-- *Aucun argument pour le moment*
+			<argument type="service" id="service_id" />
+            <argument>plain_value</argument>
+            <argument>%parameter_name%</argument>
+			-->
+        </service>
     </services>
     
 </container>

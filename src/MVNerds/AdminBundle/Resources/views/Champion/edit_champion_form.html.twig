@@ -1,0 +1,24 @@
+{% extends 'MVNerdsAdminBundle:Champion:layout.html.twig' %}
+
+{% block title %}Administration des champions - MVNerds{% endblock %}
+
+{% block content %}
+	<h1>Editer un champion</h1>
+
+	<div class="action-buttons">
+		<a href="{{ path('admin_champions_index') }}" class="btn"><i class="icon-arrow-left"></i> <strong>Retourner à la liste</strong></a>
+		<a href="#" class="btn btn-success btn-large pull-right btn-submit-form"><i class="icon-ok icon-white"></i> <strong>J'ai terminé</strong></a>
+		<a href="{{ path('admin_champions_index') }}" class="btn pull-right btn-danger"><strong>Annuler</strong></a>
+	</div>
+
+	<div class="content-container">
+		<form action="{{ path('admin_champions_edit', {'id': champion.getId()}) }}" method="POST" {{ form_enctype(form) }}>
+			<div>
+				<label>Idenfiant</label> {{ champion.getId() }}
+			</div>
+			{{ form_widget(form) }}
+
+			<input type="submit" class="submit-form hide" />
+		</form>
+	</div>
+{% endblock %}
