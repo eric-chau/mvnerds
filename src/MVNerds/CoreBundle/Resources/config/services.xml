@@ -8,13 +8,16 @@
     <parameters>
         <parameter key="mv_nerds_core.example.class">MVNerds\CoreBundle\Example</parameter>
     </parameters>
+	-->
 
     <services>
-        <service id="mv_nerds_core.example" class="%mv_nerds_core.example.class%">
-            <argument type="service" id="service_id" />
+        <service id="mvnerds.user_manager" class="MVNerds\CoreBundle\User\UserManager">
+            <!-- *Aucun argument pour le moment*
+			<argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>
+			-->
         </service>
     </services>
-    -->
+    
 </container>

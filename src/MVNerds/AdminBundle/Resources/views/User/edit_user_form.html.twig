@@ -12,7 +12,10 @@
 	</div>
 
 	<div class="content-container">
-		<form action="{{ path('admin_users_add') }}" method="POST" {{ form_enctype(form) }}>
+		<form action="{{ path('admin_users_edit', {'id': user.getId()}) }}" method="POST" {{ form_enctype(form) }}>
+			<div>
+				<label>Idenfiant</label> {{ user.getId() }}
+			</div>
 			{{ form_widget(form) }}
 
 			<input type="submit" class="submit-form hide" />

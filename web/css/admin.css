@@ -37,7 +37,16 @@ div.main-container {
   padding: 40px 10px;
 }
 div.action-buttons {
+  line-height: 38px;
   margin-bottom: 24px;
+}
+div.action-buttons a.pull-right {
+  margin-left: 10px;
+  margin-top: 4px;
+  vertical-align: middle;
+}
+div.action-buttons a.pull-right.btn-large {
+  margin-top: 0;
 }
 div.content-container {
   background-color: white;
@@ -75,9 +84,9 @@ div.content-container div.row-fluid div.span6 {
 div.content-container form {
   margin: 20px 0;
 }
-/*div.content-container form input[type="text"] {
-  height: 50px;
-}*/
+div.content-container form input[type="text"] {
+  height: 100px;
+}
 div.content-container form label {
   display: inline-block;
   font-weight: bold;
@@ -85,5 +94,5 @@ div.content-container form label {
   line-height: 1.5em;
   margin-right: 20px;
   text-align: right;
-  width: 35%;
+  width: 20%;
 }
