@@ -8,8 +8,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 
 use MVNerds\CoreBundle\Form\Type\UserType;
-use MVNerds\CoreBundle\Model\UserQuery;
-use MVNerds\CoreBundle\Model\UserPeer;
 
 /**
  * @Route("/utilisateurs")
@@ -24,7 +22,7 @@ class UserController extends Controller
     public function indexAction()
     {
         return $this->render('MVNerdsAdminBundle:User:index.html.twig', array(
-        	'users'	=> UserQuery::create()->find()
+        	'users'	=> $this->get('mvnerds.user_manager')->findAll()
     	));
     }
 
@@ -41,12 +39,11 @@ class UserController extends Controller
         if ($request->isMethod('POST')) 
         {
             $form->bind($request);
-
             if ($form->isValid()) 
             {
                 $user = $form->getData();
-                // Persistance de l'objet en base de données
-                $user->save();
+                // On créé l'utilisateur s'il contient des données valides
+				$this->get('mvnerds.user_manager')->createUserIfValid($user);
 
                 // Ajout d'un message de flash pour notifier que l'utilisateur a bien été créé
                 $this->get('session')->setFlash('success', 'L\'utilisateur '.$user->getEmail().' a bien été ajouté.');
@@ -69,17 +66,7 @@ class UserController extends Controller
      */
     public function deleteUserAction($id)
     {
-        $user = UserQuery::create()
-            ->add(UserPeer::ID, $id)
-        ->findOne();
-
-        if (null === $user)
-        {
-            throw new InvalidArgumentException('User with id:'.$id.' does not exist!');
-        }
-
-        // Finally
-        $user->delete();
+        $this->get('mvnerds.user_manager')->deleteById($id);
 
         return new Response(json_encode(true));
     }

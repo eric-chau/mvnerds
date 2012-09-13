@@ -1,6 +1,4 @@
 jQuery(function($) {
-	$('.tooltip-anchor').tooltip();
-
 	$(document).ready(function() {
 		$('a.btn-submit-form').click(function(event) {
 			event.preventDefault();
