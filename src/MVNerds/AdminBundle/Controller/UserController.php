@@ -25,11 +25,12 @@ class UserController extends Controller
         	'users'	=> $this->get('mvnerds.user_manager')->findAll()
     	));
     }
+	
 
     /**
      * Formulaire d'ajout d'un nouvel utilisateur
      *
-     *@Route("/ajouter", name="admin_users_add")
+     * @Route("/ajouter", name="admin_users_add")
      */
     public function addUserAction()
     {
@@ -57,6 +58,43 @@ class UserController extends Controller
             'form' => $form->createView()
         ));
     }
+	
+	
+	/**
+     * Formulaire d'édition utilisateur
+	 * TODO: changer la diffusion de l'id dans l'url dès que possible
+     *
+	 * @Route("/editer/{id}", name="admin_users_edit")
+     */
+    public function editUserAction($id)
+    {
+		$user = $this->get('mvnerds.user_manager')->findById($id);
+        $form = $this->createForm(new UserType(), $user);
+
+        $request = $this->getRequest();
+        if ($request->isMethod('POST')) 
+        {
+            $form->bind($request);
+            if ($form->isValid()) 
+            {
+                $user = $form->getData();
+                // On créé l'utilisateur s'il contient des données valides
+				$this->get('mvnerds.user_manager')->save($user);
+
+                // Ajout d'un message de flash pour notifier que les informations de l'utilisateur ont bien été modifié
+                $this->get('session')->setFlash('success', 'Les informations de l\'utilisateur '.$user->getEmail().' ont bien été mise à jour.');
+                
+                // On redirige l'utilisateur vers la liste des utilisateurs
+                return $this->redirect($this->generateUrl('admin_users_index'));
+            }
+        }
+
+        return $this->render('MVNerdsAdminBundle:User:edit_user_form.html.twig', array(
+            'form' => $form->createView(),
+			'user' => $user
+        ));
+    }
+	
 
     /**
      * Supprimer l'utilisateur $id de la base de données;

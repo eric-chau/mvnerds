@@ -1,17 +1,23 @@
 <div class="row-fluid normal-line">
+	{# Id de l'utilisateur #}
 	<div class="span2">
 		{{ user.getId() }}
 	</div>
+	{# Email de l'utilisateur #}
 	<div class="span6">
 		{{ user.getEmail() }}
 	</div>
+	{# Actions sur l'utilisateur #}
 	<div class="span4">
-		<a href="#" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Voir la fiche de {{ user.getEmail() }}">
+		{# Voir la fiche de l'utilisateur de l'utilisateur #}
+		<a href="#" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Voir la fiche de {{ user.getEmail() }} (bientôt)">
 			<i class="icon-eye-open"></i>
 		</a>
-		<a href="#" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Éditer">
+		{# Editer l'utilisateur #}
+		<a href="{{ path('admin_users_edit', {'id': user.getId()}) }}" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Éditer">
 			<i class="icon-edit"></i>
 		</a>
+		{# Supprimer l'utilisateur #}
 		<a href="#" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Supprimer l'utilisateur" data-toggle="modal" data-target="#delete-user-{{ user.getId() }}-modal">
 			<i class="icon-remove"></i>
 		</a>
