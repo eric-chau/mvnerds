@@ -1,0 +1,10 @@
+div#champion_grabber div label
+{
+	width: 400px;
+	vertical-align: middle;
+}
+
+div#champion_grabber div input
+{
+	height: 30px;
+}
