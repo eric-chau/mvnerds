@@ -20,6 +20,9 @@
     <column name="bonus_magic_resist_per_level" required="true" scale="3" type="FLOAT" />
     <column name="move_speed" required="true" type="SMALLINT" />
     <column name="mana_type" required="true" type="ENUM" valueSet="MANA, ENERGY, RAGE" />
+    <column name="base_attack_speed" required="true" scale="4" type="FLOAT" />
+    <column name="bonus_attack_speed_per_level" required="true" scale="4" type="FLOAT" />
+    <column name="attack_range" required="true" type="INTEGER" />
   </table>
   <table name="user">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />

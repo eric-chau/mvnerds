@@ -23,12 +23,12 @@ class ChampionType extends AbstractType
 		));
 		
 		$builder->add('base_damage', 'number', array(
-			'label'		=> 'Dommages de base',
+			'label'		=> 'Dégâts de base',
 			'required'	=> true
 		));
 		
 		$builder->add('bonus_damage_per_level', 'number', array(
-			'label'		=> 'Dommages bonus par niveau',
+			'label'		=> 'Dégâts bonus par niveau',
 			'required'	=> true
 		));
 		
