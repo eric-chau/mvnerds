@@ -1,0 +1,21 @@
+{% extends 'MVNerdsAdminBundle:Champion:layout.html.twig' %}
+
+{% block title %}Administration des champions - MVNerds{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	<link rel="stylesheet" href="{{ asset('css/admin/comparison.css') }}">
+{% endblock %}
+
+{% block content %}
+	<h1>Comparer des champions</h1>
+
+	<div class="action-buttons">
+		<a href="{{ path('admin_champions_index') }}" class="btn btn-large"><i class="icon-arrow-left"></i> <strong>Retourner à la liste</strong></a>
+	</div>
+	
+	<div class="well">
+		{% include 'MVNerdsAdminBundle:Champion:compare_champions_row.html.twig' with {'field_names':  field_names}%}
+	</div>
+{% endblock %}

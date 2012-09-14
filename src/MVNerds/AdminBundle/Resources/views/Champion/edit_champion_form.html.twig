@@ -12,7 +12,7 @@
 	</div>
 
 	<div class="content-container">
-		<form action="{{ path('admin_champions_edit', {'id': champion.getId()}) }}" method="POST" {{ form_enctype(form) }}>
+		<form action="{{ path('admin_champions_edit', {'slug': champion.getSlug()}) }}" method="POST" {{ form_enctype(form) }}>
 			<div>
 				<label>Idenfiant</label> {{ champion.getId() }}
 			</div>

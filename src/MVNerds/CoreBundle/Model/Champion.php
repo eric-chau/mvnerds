@@ -18,4 +18,16 @@ use MVNerds\CoreBundle\Model\om\BaseChampion;
  */
 class Champion extends BaseChampion {
 
+	public function getProperty($name)
+	{
+		$classMethods = get_class_methods($this);
+		
+		$method = 'get'.$name;
+		
+		if(in_array($method, $classMethods))
+		{
+			return $this->$method();
+		}
+		return null;
+	}
 } // Champion

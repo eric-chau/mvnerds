@@ -37,6 +37,12 @@ class ChampionManager
 		$this->save($champion);
 	}
 
+	/**
+	 * Supprime un champion en fonction de son id $id
+	 * 
+	 * @param integer $id l'id du champion à supprimer
+	 * @throws InvalidArgumentException exception levé si aucun champion n'est associé à l'id $id
+	 */
 	public function deleteById($id)
 	{
 		$champion = ChampionQuery::create()
@@ -51,12 +57,33 @@ class ChampionManager
 		// Finally
 		$champion->delete();
 	}
+	
+	/**
+	 * Supprime un champion en fonction de son slug $id
+	 * 
+	 * @param strin $slug le slug du champion à supprimer
+	 * @throws InvalidArgumentException exception levé si aucun champion n'est associé au slug $slug
+	 */
+	public function deleteBySlug($slug)
+	{
+		$champion = ChampionQuery::create()
+			->add(ChampionPeer::SLUG, $slug)
+		->findOne();
+
+		if (null === $champion)
+		{
+			throw new InvalidArgumentException('Champion with slug:' . $slug . ' does not exist!');
+		}
+
+		// Finally
+		$champion->delete();
+	}
 
 	/**
 	 * Récupère un objet Champion à partir de son identifiant $id 
 	 * 
 	 * @param integer $id l'id du champion dont on souhaite récupérer l'objet Champion associé 
-	 * @return MVNerds\CoreBundle\Model\Championlobjet Champion qui correspond à l'id $id 
+	 * @return MVNerds\CoreBundle\Model\Champion l'objet Champion qui correspond à l'id $id 
 	 * @throws InvalidArgumentException exception levé si aucun champion n'est associé à l'id $id
 	 */
 	public function findById($id)
@@ -68,6 +95,27 @@ class ChampionManager
 		if (null === $champion)
 		{
 			throw new InvalidArgumentException('No champion with id:' . $id . '!');
+		}
+
+		return $champion;
+	}
+	
+	/**
+	 * Récupère un objet Champion à partir de son slug $slug
+	 * 
+	 * @param string $slug le nom du champion dont on souhaite récupérer l'objet Champion associé 
+	 * @return MVNerds\CoreBundle\Model\Champion l'objet Champion qui correspond au slug $slug 
+	 * @throws InvalidArgumentException exception levé si aucun champion n'est associé à l'id $id
+	 */
+	public function findBySlug($slug)
+	{
+		$champion = ChampionQuery::create()
+			->add(ChampionPeer::SLUG, $slug)
+		->findOne();
+
+		if (null === $champion)
+		{
+			throw new InvalidArgumentException('No champion with slug:' . $slug . '!');
 		}
 
 		return $champion;
