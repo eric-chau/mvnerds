@@ -68,18 +68,44 @@ div.content-container {
 	form {
 		margin: 20px 0;
 
-		input[type="text"] {
-			height: 100px;
+		ul {
+			list-style-type: square;
+		}
+
+		div.row-fluid {
+			margin: 0;
+			text-align: left;
+		}
+
+		input {
+			font-family: Trebuchet MS;
+			font-size: 16px;
+			margin: 0;
+		}
+
+		input[type="email"], input[type="text"], textarea {
+			width: 277px;
 		}
 
 		label {
-			display: inline-block;
-			font-weight: bold;
 			font-size: 16px;
-			line-height: 1.5em;
-			margin-right: 20px;
+			font-weight: bold;
+			line-height: 30px;
 			text-align: right;
-			width: 20%;
+		}
+
+		div.span-errors {
+			color: #B94A48;
+
+			ul {
+				margin: 0;
+				padding: 0;
+			}
+
+			li {
+				line-height: 1.4em;
+				margin-bottom: 10px;
+			}
 		}
 	}
 }

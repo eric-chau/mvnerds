@@ -2,9 +2,20 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="file.ext">
         <body>
-            <trans-unit id="1">
-                <source>Symfony2 is great</source>
-                <target>J'aime Symfony2</target>
+			<!-- 
+				VALIDATION
+			-->
+            <trans-unit id="1000">
+                <source>Validation.User.email.not_blank</source>
+                <target>L'adresse mail ne doit pas être vide</target>
+            </trans-unit>
+			<trans-unit id="1001">
+                <source>Validation.User.email.invalid</source>
+                <target>L'adresse mail renseignée n'est pas valide</target>
+            </trans-unit>
+			<trans-unit id="1002">
+                <source>Validation.User.email.already_in_use</source>
+                <target>L'adresse mail renseignée est déjà utilisée par un autre utilisateur</target>
             </trans-unit>
         </body>
     </file>

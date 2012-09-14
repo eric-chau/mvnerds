@@ -84,15 +84,37 @@ div.content-container div.row-fluid div.span6 {
 div.content-container form {
   margin: 20px 0;
 }
-div.content-container form input[type="text"] {
-  height: 100px;
+div.content-container form ul {
+  list-style-type: square;
+}
+div.content-container form div.row-fluid {
+  margin: 0;
+  text-align: left;
+}
+div.content-container form input {
+  font-family: Trebuchet MS;
+  font-size: 16px;
+  margin: 0;
+}
+div.content-container form input[type="email"],
+div.content-container form input[type="text"],
+div.content-container form textarea {
+  width: 277px;
 }
 div.content-container form label {
-  display: inline-block;
-  font-weight: bold;
   font-size: 16px;
-  line-height: 1.5em;
-  margin-right: 20px;
+  font-weight: bold;
+  line-height: 30px;
   text-align: right;
-  width: 20%;
+}
+div.content-container form div.span-errors {
+  color: #B94A48;
+}
+div.content-container form div.span-errors ul {
+  margin: 0;
+  padding: 0;
+}
+div.content-container form div.span-errors li {
+  line-height: 1.4em;
+  margin-bottom: 10px;
 }
