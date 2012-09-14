@@ -1,0 +1,7 @@
+{% if item.vars.errors|length > 0 %}
+	<ul>
+	{% for error in item.vars.errors %}
+		<li>{{ error.getMessageTemplate()|trans }}</li>
+	{% endfor %}
+	</ul>
+{% endif %}

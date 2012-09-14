@@ -16,6 +16,16 @@ use MVNerds\CoreBundle\Model\om\BaseUser;
  *
  * @package    propel.generator.src.MVNerds.CoreBundle.Model
  */
-class User extends BaseUser {
-
+class User extends BaseUser 
+{
+	/**
+	 * Permet de vérifier si l'utilisateur courant possède une adresse mail unique ou non
+	 * 
+	 * @return boolean renvoie true si l'email est déjà utilisé, false sinon; renvoie également false
+	 * si l'utilisateur a entré la même adresse mail que celui qu'il a actuellement
+	 */
+	public function isEmailAlreadyInUse()
+	{
+		return UserPeer::isEmailAlreadyInUse($this->getEmail(), ($this->getId() == null? null : $this));
+	}
 } // User

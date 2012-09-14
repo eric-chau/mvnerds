@@ -13,10 +13,34 @@
 
 	<div class="content-container">
 		<form action="{{ path('admin_users_edit', {'id': user.getId()}) }}" method="POST" {{ form_enctype(form) }}>
-			<div>
-				<label>Idenfiant</label> {{ user.getId() }}
+			{% if form.vars.errors|length > 0 %}
+				<div class="alert alert-error">
+					{% include '::render_form_errors.html.twig' with {'item': form} %}
+				</div>
+			{% endif %}
+			
+			<div class="row-fluid">
+				<div class="span3">
+					<label>Idenfiant</label>
+				</div>
+				<div class="span9">
+					{{ user.getId() }}
+				</div>
 			</div>
-			{{ form_widget(form) }}
+				
+			<div class="row-fluid">
+				<div class="span3">
+					{{ form_label(form.email) }}
+				</div>
+				<div class="span4">
+					{{ form_widget(form.email) }}
+				</div>
+				<div class="span5 span-errors">
+					{% include '::render_form_errors.html.twig' with {'item': form.email} %}
+				</div>
+			</div>
+				
+			{{ form_rest(form) }}
 
 			<input type="submit" class="submit-form hide" />
 		</form>

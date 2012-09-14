@@ -20,7 +20,7 @@ class UserController extends Controller
      * @Route("/", name="admin_users_index")
      */
     public function indexAction()
-    {
+    {		
         return $this->render('MVNerdsAdminBundle:User:index.html.twig', array(
         	'users'	=> $this->get('mvnerds.user_manager')->findAll()
     	));
@@ -44,7 +44,7 @@ class UserController extends Controller
             {
                 $user = $form->getData();
                 // On créé l'utilisateur s'il contient des données valides
-				$this->get('mvnerds.user_manager')->createUserIfValid($user);
+				$this->get('mvnerds.user_manager')->save($user);
 
                 // Ajout d'un message de flash pour notifier que l'utilisateur a bien été créé
                 $this->get('session')->setFlash('success', 'L\'utilisateur '.$user->getEmail().' a bien été ajouté.');
