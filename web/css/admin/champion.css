@@ -1,3 +1,8 @@
+div.content-container div.champion div img
+{
+	height: 24px;
+}
+
 a.tooltip-anchor:hover
 {
 	text-decoration: none;

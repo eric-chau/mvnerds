@@ -1,1 +1,41 @@
-{{ message}}
+{% extends 'MVNerdsDataGrabberBundle::layout.html.twig' %}
+
+{% block title %}Grabber des champions - MVNerds{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	<link rel="stylesheet" href="{{ asset('css/data-grabber/champion.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-alert.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+	<h1>Grabber des champions</h1>
+
+	<div class="action-buttons right">
+		<a href="{{ path('admin_champions_index') }}" class="btn btn-large"><i class="icon-arrow-right"></i> <strong>Aller à la liste des champions</strong></a>
+		<a href="{{ path('DataGrabber_champions_index') }}" class="btn btn-success btn-large btn-submit-form pull-right"><i class="icon-download-alt icon-white"></i> <strong>Grab !</strong></a>
+	</div>
+	
+	{% if app.session.hasFlash('success') %}
+		<div class="alert alert-success">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			{{ app.session.getFlash('success') }}
+		</div>
+	{% endif %}
+	
+	<div class="content-container">
+		<div class="div12">
+			<form  action="{{ path('DataGrabber_champions_index') }}" method="POST" {{ form_enctype(form) }}>
+				{{ form_widget(form) }}
+
+				<input type="submit" class="submit-form hidden" />
+			</form>
+		</div>
+	</div>
+{% endblock %}
