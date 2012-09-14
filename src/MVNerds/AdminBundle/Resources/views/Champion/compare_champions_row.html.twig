@@ -1,0 +1,24 @@
+<table class="table table-striped" id="comparison-table">
+			
+	{% set comparisonList = app.session.get('comparison_list') %}
+
+	{% set nbFields = field_names | length%}
+	{% set nbChamps = comparisonList | length%}
+
+	{# On affiche d'abord l'image des champions #}
+	<th>Champion</th>
+	{% for championName, champion in comparisonList %}
+		<td>
+			<img src="{{ asset('images/champions/square/' ~ champion.getSlug() ~ '.png') }}" alt="image du champion {{ champion.getName() }}" title = "{{ champion.getName() }}"/>
+		</td>
+	{% endfor %}
+	{# on parcours tous les champs de champions #}
+	{% for i in 0.. nbFields - 1 %}
+		<tr>
+			<th>{{field_names[i] }}</th>
+			{% for championName, champion in comparisonList %}
+				<td>{{champion.getProperty(field_names[i])}}</td>
+			{% endfor %}
+		</tr>
+	{% endfor %}
+</table>

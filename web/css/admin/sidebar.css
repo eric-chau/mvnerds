@@ -1,0 +1,19 @@
+div#sidebar{
+	margin: 60px 10px;
+	position: fixed;
+}
+
+div#comparison-list{
+	text-align: center;
+}
+div#comparison-list ul li{
+	text-align: center;
+	height: 30px;
+}
+div#comparison-list ul li img{
+	height: 25px;
+}
+
+div#comparison-list a#btn-compare{
+	margin-top: 20px;
+}

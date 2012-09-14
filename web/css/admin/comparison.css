@@ -1,0 +1,6 @@
+table#comparison-table{
+	font-size: 10px;
+}
+table#comparison-table tbody tr td img{
+	height: 25px;
+}
