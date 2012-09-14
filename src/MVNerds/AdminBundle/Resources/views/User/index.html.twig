@@ -22,14 +22,11 @@
 	<div class="action-buttons right">
 		<a href="{{ path('admin_users_add') }}" class="btn btn-success btn-large"><i class="icon-plus-sign icon-white"></i> <strong>Ajouter un utilisateur</strong></a>
 	</div>
-
-	{% if app.session.hasFlash('success') %}
-		<div class="alert alert-success">
-			<button type="button" class="close" data-dismiss="alert">×</button>
-			{{ app.session.getFlash('success') }}
-		</div>
-	{% endif %}
-
+	
+	{% autoescape false %}
+		{{ render_flash_success() }}
+	{% endautoescape %}
+	
 	<div class="content-container">
 		{% include 'MVNerdsAdminBundle:User:user_list.html.twig' with {'users': users } %}
 	</div>

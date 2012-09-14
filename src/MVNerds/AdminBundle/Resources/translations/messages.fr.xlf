@@ -17,6 +17,22 @@
                 <source>Validation.User.email.already_in_use</source>
                 <target>L'adresse mail renseignée est déjà utilisée par un autre utilisateur</target>
             </trans-unit>
+
+			<!-- 
+				FLASH MESSAGES
+			-->
+            <trans-unit id="2000">
+                <source>Flash.success.add.user</source>
+                <target>Vos modifications sur l'utilisateur ont bien été prises en comptes</target>
+            </trans-unit>
+			<trans-unit id="2001">
+                <source>Validation.User.email.invalid</source>
+                <target>L'adresse mail renseignée n'est pas valide</target>
+            </trans-unit>
+			<trans-unit id="2002">
+                <source>Validation.User.email.already_in_use</source>
+                <target>L'adresse mail renseignée est déjà utilisée par un autre utilisateur</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

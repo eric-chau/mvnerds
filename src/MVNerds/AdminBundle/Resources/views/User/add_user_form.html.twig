@@ -15,7 +15,7 @@
 		<form action="{{ path('admin_users_add') }}" method="POST" {{ form_enctype(form) }}>
 			{% if form.vars.errors|length > 0 %}
 				<div class="alert alert-error">
-					{% include '::render_form_errors.html.twig' with {'item': form} %}
+					{% include ':Form:render_form_errors.html.twig' with {'item': form} %}
 				</div>
 			{% endif %}
 			
@@ -27,7 +27,7 @@
 					{{ form_widget(form.email) }}
 				</div>
 				<div class="span5 span-errors">
-					{% include '::render_form_errors.html.twig' with {'item': form.email} %}
+					{% include ':Form:render_form_errors.html.twig' with {'item': form.email} %}
 				</div>
 			</div>
 				

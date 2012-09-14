@@ -46,8 +46,8 @@ class UserController extends Controller
                 // On créé l'utilisateur s'il contient des données valides
 				$this->get('mvnerds.user_manager')->save($user);
 
-                // Ajout d'un message de flash pour notifier que l'utilisateur a bien été créé
-                $this->get('session')->setFlash('success', 'L\'utilisateur '.$user->getEmail().' a bien été ajouté.');
+                // Ajout d'un message de flash de succès
+                $this->get('mvnerds.flash_manager')->setSuccessMessage('Flash.success.add.user');
                 
                 // On redirige l'utilisateur vers la liste des utilisateurs
                 return $this->redirect($this->generateUrl('admin_users_index'));
