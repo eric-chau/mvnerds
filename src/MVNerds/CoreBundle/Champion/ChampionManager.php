@@ -14,7 +14,7 @@ class ChampionManager
 	 * Vérifies les informations contenu dans l'objet $champion passé en paramètre; si tout se passe bien,
 	 * le champion est créé en base de données
 	 * 
-	 * @param \MVNerds\CoreBundle\Model\Champion $chapion le champion à créer s'il contient des données valides
+	 * @param \MVNerds\CoreBundle\Model\Champion $champion le champion à créer s'il contient des données valides
 	 * @throws InvalidArgumentException exception levée lorsque :
 	 * - Ce n'est pas un nouveau champion
 	 * - Le nom est déjà utilisé
