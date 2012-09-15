@@ -5,7 +5,6 @@ namespace MVNerds\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 
 use MVNerds\CoreBundle\Form\Type\UserType;
 
