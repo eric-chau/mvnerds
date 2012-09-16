@@ -43,6 +43,11 @@
 		<service id="mvnerds.champion_tag_manager" class="MVNerds\CoreBundle\ChampionTag\ChampionTagManager"></service>
 
 		<!-- 
+			CHAMPION_COMPARISON MANAGER SERVICES
+		-->
+		<service id="mvnerds.champion_comparison_manager" class="MVNerds\CoreBundle\ChampionComparison\ChampionComparisonManager"></service>
+
+		<!-- 
 			TWIG - FLASH EXTENSION
 		-->
 		<service id="mvnerds.twig.flash_extension" class="MVNerds\CoreBundle\Twig\MVNerdsFlashExtension">

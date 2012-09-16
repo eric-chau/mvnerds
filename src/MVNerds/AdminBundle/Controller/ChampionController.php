@@ -120,7 +120,7 @@ class ChampionController extends Controller
 	public function viewChampionAction($slug)
 	{
 		// FIXME: action obselète pour le moment ?
-		$champion = $this->get('mvnerds.champion_manager')->deleteBySlug($slug);
+		$this->get('mvnerds.champion_manager')->deleteBySlug($slug);
 	}
 	
 	/**
