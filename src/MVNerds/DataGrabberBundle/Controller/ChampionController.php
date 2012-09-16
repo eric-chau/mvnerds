@@ -9,6 +9,10 @@ use MVNerds\CoreBundle\Model\Champion;
 use MVNerds\CoreBundle\Model\ChampionQuery;
 use MVNerds\CoreBundle\Model\ChampionPeer;
 use MVNerds\DataGrabberBundle\Form\Type\ChampionGrabberType;
+use MVNerds\CoreBundle\Model\ChampionTag;
+use MVNerds\CoreBundle\Model\TagQuery;
+use MVNerds\CoreBundle\Model\TagPeer;
+
 /**
  * @Route("/champions")
  */
@@ -22,9 +26,7 @@ class ChampionController extends Controller
 	public function indexAction()
 	{
 		$form = $this->createForm(new ChampionGrabberType());
-		
-		$message = 'R.A.S';
-		
+				
 		$request = $this->getRequest();
 		if ($request->isMethod('POST'))
 		{
@@ -69,7 +71,31 @@ class ChampionController extends Controller
 						'Régénération santé'		=> 'setBonusHealthRegenPerLevel',
 						'Régénération mana'		=> 'setBonusManaRegenPerLevel'
 					);
+					
+					//Tableau de conversion des tags
+					$tagConversion = array(
+						'attaquant'	=> 'pusher',
+						'jungler'	=> 'jungler',
+						'soutien'	=> 'support',
+						'assassin'	=> 'assassin',
+						'à distance'	=> 'ranged',
+						'furtif'		=> 'stealth',
+						'conseillé'	=> 'recommended',
+						'mage'	=> 'mage',
+						'carry'		=> 'carry',
+						'tank'		=> 'tank',
+						'combattant'	=> 'fighter',
+						'mêlée'	=> 'melee',
+					);
+					
+					//Création du champion tag manager
+					/* @var $championTagManager \MVNerds\CoreBundle\ChampionTag\ChampionTagManager */
+					$championTagManager = $this->get('mvnerds.champion_tag_manager');
 
+					//Création du flash manager
+					/* @var $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
+					$flashManager = $this->get('mvnerds.flash_manager');
+					
 					//Méthodes de la classe Champion
 					$championMethods = get_class_methods(new Champion);
 
@@ -104,7 +130,9 @@ class ChampionController extends Controller
 								$champion->setName($name);
 							}
 
-							//Recherche des stats du champion
+							/**
+							 * Recherche des stats du champion
+							 */
 							$stats = $championHtml->find('div#champion-stats table tr');
 							$statsSize = count($stats);
 
@@ -158,25 +186,47 @@ class ChampionController extends Controller
 									}
 								}
 							}
-
+							/**
+							 * Fin de la récupération des stats du champion
+							 */
+														
 							//On fait persister le champion
 							$champion->save();
-						}
-						else
-						{
-							$message = 'Le champion n\'a pas été trouvé';
+							
+							/**
+							 * Récupération des tags du champion
+							 */
+							foreach ($championHtml->find('div#champion-stats p a') as $tagHtml)
+							{
+								$tagLabelRaw = $tagHtml->plaintext;
+								
+								//Si le tag est trouvé dans le tableau de conversion
+								if(key_exists($tagLabelRaw, $tagConversion))
+								{
+									//On récupère le tag au format de la base de données
+									$tagLabel = $tagConversion[$tagLabelRaw];
+									
+									//Si le tag est trouvé en base
+									if (( $tag = TagQuery::create()->add(TagPeer::LABEL, $tagLabel)->findOne() ))
+									{
+										//On enregistre l'association
+										$championTagManager->addTagToChampion($tag, $champion);
+									}
+								}							
+							}
 						}
 					}
-					$message = 'Les champions ont bien été enregistrés';
 				}
 				else
 				{
-					$message = 'La liste des champions n\'a pas été trouvée';
+					// Ajout d'un message de flash pour notifier que les informations de l'utilisateur ont bien été modifié
+					$flashManager->setErrorMessage('Flash.error.grab.champions');
+					// On redirige l'utilisateur vers la liste des utilisateurs
+					return $this->redirect($this->generateUrl('DataGrabber_champions_index'));
 				}
 				
 				// Ajout d'un message de flash pour notifier que les informations de l'utilisateur ont bien été modifié
-				$this->get('session')->setFlash('success', 'Les champions ont bien été récupérés.');
-
+				$flashManager->setSuccessMessage('Flash.success.grab.champions');
 				// On redirige l'utilisateur vers la liste des utilisateurs
 				return $this->redirect($this->generateUrl('DataGrabber_champions_index'));
 			}

@@ -7,3 +7,111 @@ a.tooltip-anchor:hover
 {
 	text-decoration: none;
 }
+
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  background: #6baeff url('/images/admin/master_yi.png') no-repeat center;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 16px;
+  min-height: 1080px;
+  line-height: 1.5em;
+}
+div.main-container {
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 40px 10px;
+}
+div.action-buttons {
+  line-height: 38px;
+  margin-bottom: 24px;
+}
+div.action-buttons a.pull-right {
+  margin-left: 10px;
+  margin-top: 4px;
+  vertical-align: middle;
+}
+div.action-buttons a.pull-right.btn-large {
+  margin-top: 0;
+}
+div.content-container {
+  background-color: white;
+  border: 5px solid #ebf0f8;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  padding: 10px;
+}
+div.content-container div.row-fluid {
+  margin: 12px 0;
+  text-align: center;
+}
+div.content-container div.row-fluid div.modal {
+  text-align: left;
+}
+div.content-container div.row-fluid.title-line {
+  background-color: #272822;
+  color: white;
+  font-weight: bold;
+}
+div.content-container div.row-fluid.normal-line {
+  background-color: #ebf0f8;
+}
+div.content-container div.row-fluid.normal-line:hover {
+  background-color: #ccc;
+}
+div.content-container div.row-fluid div {
+  padding: 5px;
+}
+div.content-container div.row-fluid div.span2,
+div.content-container div.row-fluid div.span6 {
+  border-right: 1px solid white;
+}
+div.content-container form {
+  margin: 20px 0;
+}
+div.content-container form input[type="text"] {
+  height: 25px;
+}
+div.content-container form label {
+  display: inline-block;
+  font-weight: bold;
+  font-size: 16px;
+  line-height: 1.5em;
+  margin-right: 20px;
+  text-align: right;
+  width: 35%;
+}
+
+#champion div{
+	margin: 10px;
+	vertical-align: bottom;
+}
+div.content-container form select{
+  height: 30px;
+  width: 290px;
+}

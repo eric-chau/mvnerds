@@ -15,7 +15,10 @@ use MVNerds\CoreBundle\Model\ChampionPeer;
 class ChampionController extends Controller
 {
 
-	protected $_maxChampionComparison = 10;
+	/**
+	 * @var int permet d'indiquer le nombre max de comparaisons de champions simultanées
+	 */
+	protected $_maxChampionComparison = 2;
 	
 	/**
 	 * Liste tous les champions de la base
@@ -50,7 +53,7 @@ class ChampionController extends Controller
 				$this->get('mvnerds.champion_manager')->createChampionIfValid($champion);
 
 				// Ajout d'un message de flash pour notifier que le champion a bien été ajouté
-				$this->get('session')->setFlash('success', 'Le champion ' . $champion->getName() . ' a bien été ajouté.');
+				$this->get('mvnerds.flash_manager')->setSuccessMessage('Le champion ' . $champion->getName() . ' a bien été ajouté.');
 
 				// On redirige l'utilisateur vers la liste des champions
 				return $this->redirect($this->generateUrl('admin_champions_index'));
@@ -83,7 +86,7 @@ class ChampionController extends Controller
 				$this->get('mvnerds.champion_manager')->save($champion);
 
 				// Ajout d'un message de flash pour notifier que les informations de l'utilisateur ont bien été modifié
-				$this->get('session')->setFlash('success', 'Les informations du champion ' . $champion->getName() . ' ont bien été mises à jour.');
+				$this->get('mvnerds.flash_manager')->setSuccessMessage('Les informations du champion ' . $champion->getName() . ' ont bien été mises à jour.');
 
 				// On redirige l'utilisateur vers la liste des utilisateurs
 				return $this->redirect($this->generateUrl('admin_champions_index'));
@@ -113,10 +116,12 @@ class ChampionController extends Controller
 	 * 
 	 * @param string $slug slug du champion dont on veut consulter la fiche
 	 * 
-	 * @Route("/view/{slug}", name="admin_champions_view")
+	 * @Route("/voir/{slug}", name="admin_champions_view")
 	 */
 	public function viewChampionAction($slug)
 	{
+		//TODO
+		
 		$champion = $this->get('mvnerds.champion_manager')->deleteBySlug($slug);
 	}
 	
@@ -125,7 +130,7 @@ class ChampionController extends Controller
 	 * 
 	 * @param string $slug le slug du champion à ajouter à la comparaison
 	 * 
-	 * @Route("/add-to-compare/{slug}", name="admin_champions_add_to_compare")
+	 * @Route("/ajouter-cmp/{slug}", name="admin_champions_add_to_compare")
 	 */
 	public function addToCompareAction($slug)
 	{
@@ -143,6 +148,10 @@ class ChampionController extends Controller
 			$session->set('comparison_list', array());
 		}
 		
+		//Création du FlashManager
+		/* @var $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
+		$flashManager = $this->get('mvnerds.flash_manager');
+		
 		$comparisonList = $session->get('comparison_list');
 		
 		//On vérifie que la taille maximum du tableau ne soit pas dépassée
@@ -152,16 +161,16 @@ class ChampionController extends Controller
 			{
 				$comparisonList[$champion->getSlug()] = $champion;
 				$session->set('comparison_list', $comparisonList);
-				$this->get('session')->setFlash('success', 'Le champion a bien été ajouté à la liste de comparaison.');
+				$flashManager->setSuccessMessage('Flash.success.add_to_compare.champions');
 			}
 			else
 			{
-				$this->get('session')->setFlash('error', 'Le champion est déjà présent dans la liste de comparaison.');
+				$flashManager->setErrorMessage('Flash.error.already_in_list.add_to_compare.champions');
 			}
 		}
 		else
 		{
-			$this->get('session')->setFlash('error', 'Le nombre de champion maximum à comparer est atteint, veuillez en supprimer un de la liste d\'abord.');
+			$flashManager->setErrorMessage('Flash.error.max_reached.add_to_compare.champions');
 		}
 		
 		// On redirige l'utilisateur vers la liste des utilisateurs
@@ -173,7 +182,7 @@ class ChampionController extends Controller
 	 * 
 	 * @param string $slug le slug du champion à retirer de la comparaison
 	 * 
-	 * @Route("/remove-from-compare/{slug}", name="admin_champions_remove_from_compare")
+	 * @Route("/retirer-cmp/{slug}", name="admin_champions_remove_from_compare")
 	 */
 	public function removeFromCompareAction($slug)
 	{		
@@ -192,7 +201,7 @@ class ChampionController extends Controller
 			unset($comparisonList[$champion->getSlug()]);
 			$session->set('comparison_list', $comparisonList);
 			
-			$this->get('session')->setFlash('success', 'Le champion a bien été retiré de la liste.');
+			$this->get('mvnerds.flash_manager')->setSuccessMessage('Flash.success.remove_from_compare.champions');
 		}
 		
 		// On redirige l'utilisateur vers la liste des utilisateurs
@@ -202,17 +211,19 @@ class ChampionController extends Controller
 	/**
 	 * Envoie vers la page de comparaison des champions
 	 * 
-	 * @Route("/compare", name="admin_champions_compare")
+	 * @Route("/comparer", name="admin_champions_compare")
 	 */
 	public function compareAction()
 	{
 		
 		$session = $this->getRequest()->getSession();
 		
-		if ($session->has('comparison_list'))
+		//Création du FlashManager
+		/* @var $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
+		$flashManager = $this->get('mvnerds.flash_manager');
+		
+		if ($session->has('comparison_list') && count(($comparisonList = $session->get('comparison_list'))) > 0)
 		{
-			$comparisonList = $session->get('comparison_list');
-
 			if (count($comparisonList) >= 2)
 			{
 				$fieldNames = ChampionPeer::getFieldNames();
@@ -224,12 +235,12 @@ class ChampionController extends Controller
 			}
 			else
 			{
-				$this->get('session')->setFlash('error', 'il n\'y a pas assez de champions à comparer');
+				$flashManager->setErrorMessage('Flash.error.not_enough.compare.champions');
 			}
 		}
 		else
 		{
-			$this->get('session')->setFlash('error', 'Aucun champion à comparer');
+			$flashManager->setErrorMessage('Flash.error.empty.compare.champions');
 		}
 		
 		return $this->redirect($this->generateUrl('admin_champions_index'));
@@ -238,7 +249,7 @@ class ChampionController extends Controller
 	/**
 	 * Permet de vide la liste de comparaison de champions
 	 * 
-	 * @Route("/clean-comparison", name="admin_champions_clean_comparison")
+	 * @Route("/vider-comparaison", name="admin_champions_clean_comparison")
 	 */
 	public function cleanComparisonAction()
 	{		
@@ -250,7 +261,7 @@ class ChampionController extends Controller
 		{
 			$session->set('comparison_list', null);
 			
-			$this->get('session')->setFlash('success', 'La liste de comparaison a bien été vidée.');
+			$this->get('mvnerds.flash_manager')->setSuccessMessage('Flash.success.clean_comparison.champions');
 		}
 		
 		// On redirige l'utilisateur vers la liste des utilisateurs

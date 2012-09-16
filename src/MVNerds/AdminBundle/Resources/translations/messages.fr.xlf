@@ -1,38 +1,86 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="file.ext">
-        <body>
+	<file source-language="en" datatype="plaintext" original="file.ext">
+		<body>
 			<!-- 
 				VALIDATION
 			-->
-            <trans-unit id="1000">
-                <source>Validation.User.email.not_blank</source>
-                <target>L'adresse mail ne doit pas être vide</target>
-            </trans-unit>
+			<trans-unit id="1000">
+				<source>Validation.User.email.not_blank</source>
+				<target>L'adresse mail ne doit pas être vide</target>
+			</trans-unit>
 			<trans-unit id="1001">
-                <source>Validation.User.email.invalid</source>
-                <target>L'adresse mail renseignée n'est pas valide</target>
-            </trans-unit>
+				<source>Validation.User.email.invalid</source>
+				<target>L'adresse mail renseignée n'est pas valide</target>
+			</trans-unit>
 			<trans-unit id="1002">
-                <source>Validation.User.email.already_in_use</source>
-                <target>L'adresse mail renseignée est déjà utilisée par un autre utilisateur</target>
-            </trans-unit>
+				<source>Validation.User.email.already_in_use</source>
+				<target>L'adresse mail renseignée est déjà utilisée par un autre utilisateur</target>
+			</trans-unit>
 
 			<!-- 
 				FLASH MESSAGES
 			-->
-            <trans-unit id="2000">
-                <source>Flash.success.add.user</source>
-                <target>Vos modifications sur l'utilisateur ont bien été prises en comptes</target>
-            </trans-unit>
+			<trans-unit id="2000">
+				<source>Flash.success.add.user</source>
+				<target>Vos modifications sur l'utilisateur ont bien été prises en comptes</target>
+			</trans-unit>
 			<trans-unit id="2001">
-                <source>Validation.User.email.invalid</source>
-                <target>L'adresse mail renseignée n'est pas valide</target>
-            </trans-unit>
+				<source>Validation.User.email.invalid</source>
+				<target>L'adresse mail renseignée n'est pas valide</target>
+			</trans-unit>
 			<trans-unit id="2002">
-                <source>Validation.User.email.already_in_use</source>
-                <target>L'adresse mail renseignée est déjà utilisée par un autre utilisateur</target>
-            </trans-unit>
-        </body>
-    </file>
+				<source>Validation.User.email.already_in_use</source>
+				<target>L'adresse mail renseignée est déjà utilisée par un autre utilisateur</target>
+			</trans-unit>
+
+			<!-- 
+				DATA GRABBER MESSAGES
+			-->
+			<trans-unit id="3000">
+				<source>Flash.success.grab.champions</source>
+				<target>Les champions ont bien été récupérés</target>
+			</trans-unit>
+			<trans-unit id="3001">
+				<source>Flash.error.grab.champions</source>
+				<target>Les champions n'ont pas pu être récupérés correctement</target>
+			</trans-unit>
+
+			<!-- 
+				ADMIN CHAMPION MESSAGES
+			-->
+			<trans-unit id="4000">
+				<source>Flash.success.add_to_compare.champions</source>
+				<target>Le champion a bien été ajouté à la liste de comparaison</target>
+			</trans-unit>
+			<trans-unit id="4001">
+				<source>Flash.error.already_in_list.add_to_compare.champions</source>
+				<target>Le champion est déjà présent dans la liste de comparaison</target>
+			</trans-unit>
+			<trans-unit id="4002">
+				<source>Flash.error.max_reached.add_to_compare.champions</source>
+				<target>Le nombre de champion maximum à comparer est atteint, veuillez en supprimer un de la liste d'abord</target>
+			</trans-unit>
+			<trans-unit id="4003">
+				<source>Flash.success.remove_from_compare.champions</source>
+				<target>Le champion a bien été retiré de la liste</target>
+			</trans-unit>
+			<trans-unit id="4004">
+				<source>Flash.error.not_enough.compare.champions</source>
+				<target>il n'y a pas assez de champions à comparer</target>
+			</trans-unit>
+			<trans-unit id="4005">
+				<source>Flash.error.empty.compare.champions</source>
+				<target>Aucun champion à comparer</target>
+			</trans-unit>
+			<trans-unit id="4006">
+				<source>Flash.error.not_enough.compare.champions</source>
+				<target>il n'y a pas assez de champions à comparer</target>
+			</trans-unit>
+			<trans-unit id="4007">
+				<source>Flash.success.clean_comparison.champions</source>
+				<target>La liste de comparaison a bien été vidée</target>
+			</trans-unit>
+		</body>
+	</file>
 </xliff>
