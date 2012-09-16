@@ -63,7 +63,7 @@ class UserController extends Controller
      * Formulaire d'édition utilisateur
 	 * TODO: changer la diffusion de l'id dans l'url dès que possible
      *
-	 * @Route("/editer/{id}", name="admin_users_edit")
+	 * @Route("/{id}/editer", name="admin_users_edit")
      */
     public function editUserAction($id)
     {
@@ -77,7 +77,7 @@ class UserController extends Controller
             if ($form->isValid()) 
             {
                 $user = $form->getData();
-                // On créé l'utilisateur s'il contient des données valides
+                // L'utilisateur a passé la validation, on peut donc le sauvegarder
 				$this->get('mvnerds.user_manager')->save($user);
 
                 // Ajout d'un message de flash pour notifier que les informations de l'utilisateur ont bien été modifié
