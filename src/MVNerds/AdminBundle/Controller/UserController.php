@@ -67,7 +67,7 @@ class UserController extends Controller
      */
     public function editUserAction($id)
     {
-		$user = $this->get('mvnerds.user_manager')->findById($id);
+		$user = $this->get('mvnerds.user_manager')->findOneById($id);
         $form = $this->createForm(new UserType(), $user);
 
         $request = $this->getRequest();

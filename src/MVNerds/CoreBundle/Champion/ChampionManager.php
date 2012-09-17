@@ -86,7 +86,7 @@ class ChampionManager
 	 * @return MVNerds\CoreBundle\Model\Champion l'objet Champion qui correspond à l'id $id 
 	 * @throws InvalidArgumentException exception levé si aucun champion n'est associé à l'id $id
 	 */
-	public function findById($id)
+	public function findOneById($id)
 	{
 		$champion = ChampionQuery::create()
 			->add(ChampionPeer::ID, $id)

@@ -60,7 +60,7 @@ class UserManager
 	 * @return MVNerds\CoreBundle\Model\User lobjet User qui correspond à l'id $id 
 	 * @throws InvalidArgumentException exception levé si aucun utilisateur est associé à l'id $id
 	 */
-	public function findById($id)
+	public function findOneById($id)
 	{
 		$user = UserQuery::create()
 			->add(UserPeer::ID, $id)
