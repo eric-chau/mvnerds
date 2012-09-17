@@ -45,7 +45,14 @@
 		<!-- 
 			CHAMPION_COMPARISON MANAGER SERVICES
 		-->
-		<service id="mvnerds.champion_comparison_manager" class="MVNerds\CoreBundle\ChampionComparison\ChampionComparisonManager"></service>
+		<service id="mvnerds.champion_comparison_manager" class="MVNerds\CoreBundle\ChampionComparison\ChampionComparisonManager">
+			<call method="setSession">
+				<argument type="service" id="session" />
+			</call>
+			<call method="setFlashManager">
+				<argument type="service" id="mvnerds.flash_manager" />
+			</call>
+		</service>
 
 		<!-- 
 			TWIG - FLASH EXTENSION

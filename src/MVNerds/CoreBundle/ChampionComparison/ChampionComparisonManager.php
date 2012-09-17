@@ -3,11 +3,8 @@
 namespace MVNerds\CoreBundle\ChampionComparison;
 
 use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\Config\Definition\Exception\Exception;
 
-use \ComparisonListHasChampionException;
-use \ComparisonListFullException;
-
+use MVNerds\CoreBundle\Flash\FlashManager;
 use MVNerds\CoreBundle\Model\Champion;
 
 class ChampionComparisonManager
@@ -18,6 +15,13 @@ class ChampionComparisonManager
 	 * @var \Symfony\Component\HttpFoundation\Session\Session la session courante 
 	 */
 	private $session;
+	
+	/**
+	 *Variable permettant d'afficher des messages flashs
+	 * 
+	 * @var \MVNerds\CoreBundle\Flash\FlashManager
+	 */
+	private $flashManager;
 	
 	/**
 	 * Constante contenant le nombre de comparaisons simultanées de champions
@@ -40,27 +44,14 @@ class ChampionComparisonManager
 	}
 	
 	/**
-	 * Permet d'initialiser la liste des champions
-	 */
-	public function initComparisonList()
-	{
-		$this->setList(array());
-	}
-	
-	public function setList($list)
-	{
-		$this->session->set(self::TAG, $list);
-	}
-	
-	/**
-	 * Permet de savoir si la liste de comparaison a été settée ou non et si c'est bien un tableau
+	 * Méthode appelée lors de l'instanciation du service pour setter le flash manager
 	 * 
-	 * @return true si la liste a été sétée dans la session en tant que array et false sinon
+	 * @param \MVNerds\CoreBundle\Flash\FlashManager $flashManager
 	 */
-	public function isListSet()
+	public function setFlashManager(FlashManager $flashManager)
 	{
-		return $this->session->has(self::TAG) && is_array($this->getList());
-	}
+		$this->flashManager = $flashManager;
+	}	
 	
 	/**
 	 * Permet de récupérer la liste de comparaison des champions stockée en session
@@ -74,6 +65,34 @@ class ChampionComparisonManager
 			$this->initComparisonList();
 		}
 		return $this->session->get(self::TAG);
+	}
+	
+	/**
+	 * Permet d'enregistrer une liste de champions en session
+	 * 
+	 * @param array $list la liste de champions à enregistrer en session
+	 */
+	public function setList($list)
+	{
+		$this->session->set(self::TAG, $list);
+	}
+	
+	/**
+	 * Permet d'initialiser la liste des champions
+	 */
+	private function initComparisonList()
+	{
+		$this->setList(array());
+	}
+	
+	/**
+	 * Permet de savoir si la liste de comparaison a été settée ou non et si c'est bien un tableau
+	 * 
+	 * @return true si la liste a été sétée dans la session en tant que array et false sinon
+	 */
+	private function isListSet()
+	{
+		return $this->session->has(self::TAG) && is_array($this->session->get(self::TAG));
 	}
 	
 	/**
@@ -134,7 +153,7 @@ class ChampionComparisonManager
 	 * @param \MVNerds\CoreBundle\Model\Champion $champion le champion à ajouter à la liste de comparaison
 	 */
 	public function addChampion(Champion $champion)
-	{
+	{		
 		//On vérifie que la taille du tableau ne soit pas dépassée
 		if (! $this->isFull())
 		{
@@ -147,15 +166,17 @@ class ChampionComparisonManager
 				$comparisonList[$champion->getSlug()] = $champion;
 				//On enregistre la nouvelle liste dans la session
 				$this->setList($comparisonList);
+				
+				$this->flashManager->setSuccessMessage('Flash.success.add_to_compare.champions');
 			}
 			else
 			{
-				throw new ComparisonListHasChampionException('Champion with slug ' . $champion->getSlug() . ' is already in the comparison list');
+				$this->flashManager->setErrorMessage('Flash.error.already_in_list.add_to_compare.champions');
 			}
 		}
 		else
 		{
-			throw new ComparisonListFullException('Champion comparison list is full');
+			$this->flashManager->setErrorMessage('Flash.error.max_reached.add_to_compare.champions');
 		}
 	}
 	
@@ -176,10 +197,11 @@ class ChampionComparisonManager
 			unset($comparisonList[$champion->getSlug()]);
 			//Et on sauvegarde la nouvelle liste en session
 			$this->setList($comparisonList);
+			$this->flashManager->setSuccessMessage('Flash.success.remove_from_compare.champions');
 		}
 		else
 		{
-			throw new ComparisonListHasNotChampionException('Champion with slug ' . $champion->getSlug() . ' is not in the comparison list');
+			$this->flashManager->setErrorMessage('Le champion ' . $champion->getSlug() . ' n\'est pas dans la liste de comparaison');
 		}
 	}
 	
@@ -188,7 +210,10 @@ class ChampionComparisonManager
 	 */
 	public function cleanList()
 	{
+		//On vide la liste
 		$this->setList(null);
+		
+		$this->flashManager->setSuccessMessage('Flash.success.clean_comparison.champions');
 	}
 }
 

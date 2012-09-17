@@ -5,7 +5,6 @@ namespace MVNerds\AdminBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 
 use MVNerds\CoreBundle\Form\Type\ChampionType;
 use MVNerds\CoreBundle\Model\ChampionPeer;
@@ -128,45 +127,18 @@ class ChampionController extends Controller
 	 * 
 	 * @param string $slug le slug du champion à ajouter à la comparaison
 	 * 
-	 * @Route("/ajouter-comparaison/{slug}", name="admin_champions_add_to_compare")
+	 * @Route("/{slug}/ajouter-comparaison", name="admin_champions_add_to_compare")
 	 */
 	public function addToCompareAction($slug)
 	{		
 		$champion = $this->get('mvnerds.champion_manager')->findBySlug($slug);
 		
-		$session = $this->getRequest()->getSession();
+		//récupération du champion_comparison_manager
+		/* @var $comparisonManager \MVNerds\CoreBundle\ChampionComparison\ChampionComparisonManager */
+		$comparisonManager = $this->get('mvnerds.champion_comparison_manager');
 		
-		//Si la liste des champions à comparer n'existe pas encore
-		if ( (! $session->has('comparison_list')) || (!is_array($session->get('comparison_list'))))
-		{
-			//on crée la liste
-			$session->set('comparison_list', array());
-		}
-		
-		//Création du FlashManager
-		/* @var $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
-		$flashManager = $this->get('mvnerds.flash_manager');
-		
-		$comparisonList = $session->get('comparison_list');
-		
-		//On vérifie que la taille maximum du tableau ne soit pas dépassée
-		if (count($comparisonList) < $this->_maxChampionComparison)
-		{
-			if( ! array_key_exists($champion->getSlug(), $comparisonList) )
-			{
-				$comparisonList[$champion->getSlug()] = $champion;
-				$session->set('comparison_list', $comparisonList);
-				$flashManager->setSuccessMessage('Flash.success.add_to_compare.champions');
-			}
-			else
-			{
-				$flashManager->setErrorMessage('Flash.error.already_in_list.add_to_compare.champions');
-			}
-		}
-		else
-		{
-			$flashManager->setErrorMessage('Flash.error.max_reached.add_to_compare.champions');
-		}
+		//On ajoute le champion à la liste
+		$comparisonManager->addChampion($champion);
 		
 		// On redirige l'utilisateur vers la liste des utilisateurs
 		return $this->redirect($this->generateUrl('admin_champions_index'));
@@ -177,33 +149,19 @@ class ChampionController extends Controller
 	 * 
 	 * @param string $slug le slug du champion à retirer de la comparaison
 	 * 
-	 * @Route("/retirer-comparaison/{slug}", name="admin_champions_remove_from_compare")
+	 * @Route("/{slug}/retirer-comparaison", name="admin_champions_remove_from_compare")
 	 */
 	public function removeFromCompareAction($slug)
 	{		
 		//récupération du champion grâce à son slug
 		$champion = $this->get('mvnerds.champion_manager')->findBySlug($slug);
 		
-		//récupération de la session
-		$session = $this->getRequest()->getSession();
+		//récupération du champion_comparison_manager
+		/* @var $comparisonManager \MVNerds\CoreBundle\ChampionComparison\ChampionComparisonManager */
+		$comparisonManager = $this->get('mvnerds.champion_comparison_manager');
 		
-		//Si la liste des champions à comparer n'existe pas encore
-		if ( $session->has('comparison_list') )
-		{
-			//Récupération de la liste
-			$comparisonList = $session->get('comparison_list');
-			
-			/*
-			 * TODO: un peu de la même manière que la personne qui souhaite ajouter un champion qui
-			 * est déjà dans la liste, tu lui signifies; Pourquoi ne pas signifier si un champion
-			 * n'est pas dans la liste ? (il peut très bien taper directement l'url et dans ce cas là
-			 * ça peut te péter une erreur
-			 */
-			unset($comparisonList[$champion->getSlug()]);
-			$session->set('comparison_list', $comparisonList);
-			
-			$this->get('mvnerds.flash_manager')->setSuccessMessage('Flash.success.remove_from_compare.champions');
-		}
+		//On retire le champion de la liste
+		$comparisonManager->removeChampion($champion);
 		
 		// On redirige l'utilisateur vers la liste des utilisateurs
 		return $this->redirect($this->generateUrl('admin_champions_index'));
@@ -215,54 +173,48 @@ class ChampionController extends Controller
 	 * @Route("/comparer", name="admin_champions_compare")
 	 */
 	public function compareAction()
-	{
-		$session = $this->getRequest()->getSession();
-		
+	{		
 		//Création du FlashManager
 		/* @var $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
 		$flashManager = $this->get('mvnerds.flash_manager');
 		
-		if ($session->has('comparison_list') && count(($comparisonList = $session->get('comparison_list'))) > 0)
+		//récupération du champion_comparison_manager
+		/* @var $comparisonManager \MVNerds\CoreBundle\ChampionComparison\ChampionComparisonManager */
+		$comparisonManager = $this->get('mvnerds.champion_comparison_manager');
+		
+		//Si la liste peut être comparée
+		if ($comparisonManager->isComparable())
 		{
-			if (count($comparisonList) >= 2)
-			{
-				$fieldNames = ChampionPeer::getFieldNames();
-				
-				return $this->render('MVNerdsAdminBundle:Champion:compare_champions.html.twig', array(
-					'comparison_list'	=> $comparisonList,
-					'field_names'		=> $fieldNames
-				));
-			}
-			else
-			{
-				$flashManager->setErrorMessage('Flash.error.not_enough.compare.champions');
-			}
+			//on récupère les champs à comparer
+			$fieldNames = ChampionPeer::getFieldNames();
+
+			//On affiche la page de comparaison
+			return $this->render('MVNerdsAdminBundle:Champion:compare_champions.html.twig', array(
+				'comparison_list'	=> $comparisonManager->getList(),
+				'field_names'	=> $fieldNames
+			));
 		}
 		else
 		{
-			$flashManager->setErrorMessage('Flash.error.empty.compare.champions');
+			$flashManager->setErrorMessage('Flash.error.not_enough.compare.champions');
 		}
 		
 		return $this->redirect($this->generateUrl('admin_champions_index'));
 	}
 	
 	/**
-	 * Permet de vide la liste de comparaison de champions
+	 * Permet de vider la liste de comparaison de champions
 	 * 
 	 * @Route("/vider-comparaison", name="admin_champions_clean_comparison")
 	 */
 	public function cleanComparisonAction()
 	{		
-		//récupération de la session
-		$session = $this->getRequest()->getSession();
-		
-		//Si la liste des champions à comparer n'existe pas encore
-		if ( $session->has('comparison_list') )
-		{
-			$session->set('comparison_list', null);
+		//récupération du champion_comparison_manager
+		/* @var $comparisonManager \MVNerds\CoreBundle\ChampionComparison\ChampionComparisonManager */
+		$comparisonManager = $this->get('mvnerds.champion_comparison_manager');
 			
-			$this->get('mvnerds.flash_manager')->setSuccessMessage('Flash.success.clean_comparison.champions');
-		}
+		//On vide la liste
+		$comparisonManager->cleanList();
 		
 		// On redirige l'utilisateur vers la liste des utilisateurs
 		return $this->redirect($this->generateUrl('admin_champions_index'));
