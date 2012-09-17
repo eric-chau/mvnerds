@@ -1,0 +1,19 @@
+<h2>Statistiques du champion (à modifier)</h2>
+
+<table class="table table-striped" id="comparison-table">
+
+	{% set nbFields = field_names | length%}
+
+	{# On affiche d'abord l'image du champion #}
+	<th>Aperçu</th>
+	<td>
+		<img src="{{ asset('images/champions/square/' ~ champion.getSlug() ~ '.png') }}" alt="image du champion {{ champion.getName() }}" title = "{{ champion.getName() }}"/>
+	</td>
+	{# on parcours tous les champs du champion #}
+	{% for i in 0.. nbFields - 1 %}
+		<tr>
+			<th>{{field_names[i] }}</th>
+			<td>{{champion.getProperty(field_names[i])}}</td>
+		</tr>
+	{% endfor %}
+</table>

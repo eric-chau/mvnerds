@@ -20,7 +20,7 @@
 			<i class="icon-resize-small"></i>
 		</a>
 		{# Voir la fiche du champion #}
-		<a href="#" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Voir la fiche de {{ champion.getName() }} (bientôt)">
+		<a href="{{ path('admin_champions_view', {'slug': champion.getSlug()}) }}" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Voir la fiche de {{ champion.getName() }}">
 			<i class="icon-eye-open"></i>
 		</a>
 		{# Editer le champion #}

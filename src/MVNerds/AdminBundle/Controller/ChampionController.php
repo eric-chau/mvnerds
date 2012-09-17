@@ -12,13 +12,7 @@ use MVNerds\CoreBundle\Model\ChampionPeer;
  * @Route("/champions")
  */
 class ChampionController extends Controller
-{
-
-	/**
-	 * @var int permet d'indiquer le nombre max de comparaisons de champions simultanées
-	 */
-	protected $_maxChampionComparison = 2;
-	
+{	
 	/**
 	 * Liste tous les champions de la base
 	 *
@@ -118,8 +112,21 @@ class ChampionController extends Controller
 	 */
 	public function viewChampionAction($slug)
 	{
-		// FIXME: action obselète pour le moment ?
-		$this->get('mvnerds.champion_manager')->deleteBySlug($slug);
+		//Création du championManager
+		/* @var $champion \MVNerds\CoreBundle\Model\Champion */
+		$champion = $this->get('mvnerds.champion_manager')->findBySlug($slug);
+		
+		//On récupère les tags du champion
+		$tags =$this->get('mvnerds.champion_tag_manager')->findTagsByChampion($champion);
+		
+		//On récupère les champs à afficher pour les stats
+		$fieldNames = ChampionPeer::getFieldNames();
+
+		return $this->render('MVNerdsAdminBundle:Champion:view_champion.html.twig', array(
+			'champion'		=> $champion,
+			'tags'	=> $tags,
+			'field_names'	=> $fieldNames
+		));
 	}
 	
 	/**
@@ -190,7 +197,6 @@ class ChampionController extends Controller
 
 			//On affiche la page de comparaison
 			return $this->render('MVNerdsAdminBundle:Champion:compare_champions.html.twig', array(
-				'comparison_list'	=> $comparisonManager->getList(),
 				'field_names'	=> $fieldNames
 			));
 		}

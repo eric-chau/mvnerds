@@ -1,0 +1,7 @@
+<h2>Tags du champion</h2>
+
+<ul>
+{% for tag in tags %}
+	<li>{{tag.getLabel()}}</li>
+{% endfor %}
+</ul>

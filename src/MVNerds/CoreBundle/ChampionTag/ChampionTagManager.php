@@ -200,4 +200,29 @@ class ChampionTagManager
 		$championTag->save();
 	}
 
+	
+	/**
+	 * Permet de récupérer tous les tags d'un champion dans un tableau
+	 * 
+	 * @param \MVNerds\CoreBundle\Model\Champion $champion le champion pour lequel on veut récupérer les tags
+	 * 
+	 * @return un tableau d'objets Tag
+	 */
+	public function findTagsByChampion(Champion $champion)
+	{
+		$championTags = ChampionTagQuery::create()
+			->joinWith('Tag')
+			->add(ChampionTagPeer::CHAMPION_ID, $champion->getId())
+		->find();
+		
+		$tags = array();
+		
+		/* @var $championTag ChampionTag */
+		foreach ($championTags as $championTag)
+		{			
+			$tags[] = $championTag->getTag();
+		}
+		
+		return $tags;
+	}
 }
