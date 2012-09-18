@@ -8,11 +8,156 @@
 	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-alert.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-modal.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-tooltip.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-affix.js') }}"></script>
 	
 	<script type="text/javascript">
+		//TODO extraire ce script dans un fichier à part
+		
+		//Fonction appelée lorsqu'on commence à faire glisser un champion
+		function dragStart(event) {
+			//On récupère le slug du champion en cours de déplacement
+			var slug = event.target.getAttribute('id');
+			
+			//On crée une image qui va être déplacée graphiquement
+			var dragImg = new Image(); 
+			dragImg.src = $('img#image-champion-' + slug).attr('src');
+			
+			event.dataTransfer.effectAllowed = 'copy';
+			event.dataTransfer.setData("Text", slug);
+			event.dataTransfer.setDragImage(dragImg, 50, 50);
+		}
+
+		//Lorsqu'on est au dessus de la zone de dépot
+		function dragOver(event) {
+			event.preventDefault();
+			$('#comparison-list').css('border', '1px dashed black')
+		}
+		//lorsqu'on entre dans la zone de dépot
+		function dragEnter(event) {
+			event.preventDefault();
+			$('#comparison-list').css('border', '1px dashed black')
+		}
+		//lorsqu'on sort de la zone de dépot
+		function dragLeave(event) {
+			event.preventDefault();
+			$('#comparison-list').css('border', 'none')
+		}
+		
+		//lorsqu'on dépose le champion dans la zone de dépot
+		function drop(event){
+			event.preventDefault();
+			//On retire le message s'il y en a un
+			//S'il existe deja un message on l'enleve
+			$('div.container div.alert').remove();
+			
+			//On affiche l'icone de chargement
+			$('li#comparison-list-loading').show();
+			
+			//On récupère le slug du champion concerné
+			var slug = event.dataTransfer.getData('Text');
+			//TODO Remplacer l'url en dur par du twig
+			//On fait un appel ajax pour demander à ajouter le champion
+			$.ajax({
+				type: 'GET',
+				url: 'http://mvnerds.dev/administration/champions/'+ slug + '/ajouter-comparaison',
+				dataType: 'html'
+			}).done(function(data){
+				//Si data est vide ça veut dire qu'on est confrontés à une erreur
+				if(data == undefined || data == '')
+				{
+					//Il ne faut donc pas afficher de nouveau champion dans la liste mais afficher un message d erreur
+					getErrorMessage();
+				}
+				else
+				{
+					//Sinon on ajoute le champion à la liste
+					appendChampion(data);
+					//Et on affiche le message de succes
+					getSuccessMessage();
+							
+					if ($('li.champion-comparable').length >0)
+					{
+						//On active le bouton de vidage
+						activateCleanButton();
+						//On retire le message d'information
+						$('li.indication').hide();
+					}
+							
+					//Si les champions peuvent etre comparés
+					if ($('li.champion-comparable').length >= 2)
+					{
+						//On active le bouton de comparaison
+						activateCompareButton();
+					}
+				}
+				$('#comparison-list-loading').hide();
+			}).fail(function(data){
+				console.log(data);
+				$('#comparison-list-loading').hide();
+			});
+		}
+		
+		//Permet d'ajouter un champion au format html à la liste de comparaison
+		function appendChampion(data)
+		{		
+			$('#comparison-list ul.nav').append(data);
+		}
+		
+		//Permet de récupérer les messages d erreur du serveur
+		function getErrorMessage()
+		{
+			$.ajax({
+				type: 'GET',
+				url: "{{path('admin_champions_get_error_message')}}",
+				dataType: 'text'
+			}).done(function(message){
+				if(message != undefined && message != '')
+				{
+					displayMessage(message, 'error');
+				}
+			});
+		}
+		
+		//Permet de récupérer les messages de succes du serveur
+		function getSuccessMessage()
+		{
+			$.ajax({
+				type: 'GET',
+				url: "{{path('admin_champions_get_success_message')}}",
+				dataType: 'text'
+			}).done(function(message){
+				if(message != undefined && message != '')
+				{
+					displayMessage(message, 'success');
+				}
+			});
+		}
+		
+		//Permet d afficher les messages d erreur et de succes
+		function displayMessage(message, type)
+		{			
+			//On crée le nouveau message
+			$('div.container div.action-buttons').after('<div class="alert alert-'+type+'"><button type="button" class="close" data-dismiss="alert">×</button>'+message+'</div>');
+		}
+		
+		//permet d activer le bouton de comparaison de champions
+		function activateCompareButton()
+		{
+			$('a#btn-compare').removeClass('disabled');
+			$('a#btn-compare').unbind('click').click();
+		}
+		
+		//Permet d activer le bouton de vidage de la liste des champions
+		function activateCleanButton()
+		{
+			$('a#btn-clean').removeClass('disabled');
+			$('a#btn-clean').unbind('click').click();
+		}
+
 		jQuery(function($) {
 			$('.tooltip-anchor').tooltip();	
+			
+			//Désactivation des liens désactivés
+			$('a.disabled').click(function(e){e.preventDefault();});
 		});
 	</script>
 {% endblock %}

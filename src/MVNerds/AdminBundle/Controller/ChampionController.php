@@ -124,7 +124,7 @@ class ChampionController extends Controller
 
 		return $this->render('MVNerdsAdminBundle:Champion:view_champion.html.twig', array(
 			'champion'		=> $champion,
-			'tags'	=> $tags,
+			'tags'			=> $tags,
 			'field_names'	=> $fieldNames
 		));
 	}
@@ -138,17 +138,53 @@ class ChampionController extends Controller
 	 */
 	public function addToCompareAction($slug)
 	{		
+		//Récupération du champion
 		$champion = $this->get('mvnerds.champion_manager')->findBySlug($slug);
-		
 		//récupération du champion_comparison_manager
 		/* @var $comparisonManager \MVNerds\CoreBundle\ChampionComparison\ChampionComparisonManager */
 		$comparisonManager = $this->get('mvnerds.champion_comparison_manager');
+		//Récupération du flashManager
+		/* @var $flahManager MVNerds\CoreBundle\Flash\FlashManager */
+		$flashManager = $this->get('mvnerds.flash_manager');
+		//On vérifie di la requete est une requete AJAX
+		$isXHR = $this->getRequest()->isXmlHttpRequest();
 		
-		//On ajoute le champion à la liste
-		$comparisonManager->addChampion($champion);
+		//On essaie d'ajouter le champion à la liste
+		try{
+			$comparisonManager->addChampion($champion);
+		}catch(\Exception $e)
+		{
+			//on affiche le message d'erreur
+			$flashManager->setErrorMessage($e->getMessage());
+			//Si c'est une requete ajax
+			 if ($isXHR)
+			 {
+				 //On renvoie une réponse nulle
+				 return new Response(null);
+			 }
+			 else
+			 {
+				// Sinon on redirige l'utilisateur vers la liste des champions
+				return $this->redirect($this->generateUrl('admin_champions_index'));
+			 }
+		}
 		
-		// On redirige l'utilisateur vers la liste des utilisateurs
-		return $this->redirect($this->generateUrl('admin_champions_index'));
+		//On affiche un message de succes
+		$flashManager->setSuccessMessage('Flash.success.add_to_compare.champions');	
+		//Si c'est une requete ajax
+		 if ($isXHR)
+		{
+			 //On renvoie le champion comparison row
+			return $this->render('MVNerdsAdminBundle:Champion:champion_comparison_row.html.twig', array(
+				'champion'		=> $champion,
+			));
+		}
+		else
+		{		
+			// On redirige l'utilisateur vers la liste des champions
+			return $this->redirect($this->generateUrl('admin_champions_index'));
+		}
+		
 	}
 	
 	/**
@@ -224,5 +260,45 @@ class ChampionController extends Controller
 		
 		// On redirige l'utilisateur vers la liste des utilisateurs
 		return $this->redirect($this->generateUrl('admin_champions_index'));
+	}
+	
+	/**
+	 * Permet de réupérer les messages d'erreur du flash manager de manière asynchrone
+	 * 
+	 * @Route("/recup-message-erreur", name="admin_champions_get_error_message")
+	 */
+	public function getErrorMessage()
+	{
+		//Si c'est bien un requete AJAX
+		if ($this->getRequest()->isXmlHttpRequest())
+		{
+			//On renvoie une reponse contenant le message d erreur traduit
+			return new Response( $this->get('translator')->trans($this->get('mvnerds.flash_manager')->getErrorMessage()));
+		}
+		else
+		{
+			//Sinon on redirige vers l index des champions
+			return $this->redirect($this->generateUrl('admin_champions_index'));
+		}
+	}
+	
+	/**
+	 * Permet de réupérer les messages de succes du flash manager de manière asynchrone
+	 * 
+	 * @Route("/recup-message-succes", name="admin_champions_get_success_message")
+	 */
+	public function getSuccessMessage()
+	{
+		//Si c'est bien un requete AJAX
+		if ($this->getRequest()->isXmlHttpRequest())
+		{
+			//On renvoie une reponse contenant le message d erreur traduit
+			return new Response( $this->get('translator')->trans($this->get('mvnerds.flash_manager')->getSuccessMessage()));
+		}
+		else
+		{
+			//Sinon on redirige vers l index des champions
+			return $this->redirect($this->generateUrl('admin_champions_index'));
+		}
 	}
 }

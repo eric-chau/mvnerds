@@ -3,6 +3,8 @@
 namespace MVNerds\CoreBundle\ChampionComparison;
 
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
+use Symfony\Component\Config\Definition\Exception\Exception;
 
 use MVNerds\CoreBundle\Flash\FlashManager;
 use MVNerds\CoreBundle\Model\Champion;
@@ -26,7 +28,7 @@ class ChampionComparisonManager
 	/**
 	 * Constante contenant le nombre de comparaisons simultanées de champions
 	 */
-	const MAX_CHAMPION_COMPARISON = 10;
+	const MAX_CHAMPION_COMPARISON = 2;
 	
 	/**
 	 * Constante contenant le nom du tag associé à la liste de comparaison dans la session
@@ -151,6 +153,8 @@ class ChampionComparisonManager
 	 * Permet d'ajouter un champion a la liste de comparaison des champions
 	 * 
 	 * @param \MVNerds\CoreBundle\Model\Champion $champion le champion à ajouter à la liste de comparaison
+	 * 
+	 * @retrun true si le champion a bien été ajouté et false sinon
 	 */
 	public function addChampion(Champion $champion)
 	{		
@@ -167,17 +171,18 @@ class ChampionComparisonManager
 				//On enregistre la nouvelle liste dans la session
 				$this->setList($comparisonList);
 				
-				$this->flashManager->setSuccessMessage('Flash.success.add_to_compare.champions');
+				return true;
 			}
 			else
 			{
-				$this->flashManager->setErrorMessage('Flash.error.already_in_list.add_to_compare.champions');
+				throw new InvalidArgumentException('Flash.error.already_in_list.add_to_compare.champions');
 			}
 		}
 		else
 		{
-			$this->flashManager->setErrorMessage('Flash.error.max_reached.add_to_compare.champions');
+			throw new Exception('Flash.error.max_reached.add_to_compare.champions');
 		}
+		return false;
 	}
 	
 	/**

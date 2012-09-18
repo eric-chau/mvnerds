@@ -1,6 +1,6 @@
-<div class="row-fluid normal-line champion">
+<div class="row-fluid normal-line champion" draggable="true" ondragstart="dragStart(event)" id="{{ champion.getSlug() }}">
 	<div class="span2">
-		<img src="{{ asset('images/champions/square/' ~ champion.getSlug() ~ '.png') }}" alt="image du champion {{ champion.getName() }}" title = "{{ champion.getName() }}"/>
+		<img id="image-champion-{{champion.getSlug()}}" src="{{ asset('images/champions/square/' ~ champion.getSlug() ~ '.png') }}" alt="image du champion {{ champion.getName() }}" title = "{{ champion.getName() }}"/>
 	</div>
 	<div class="span2">
 		{{ champion.getName() }}
