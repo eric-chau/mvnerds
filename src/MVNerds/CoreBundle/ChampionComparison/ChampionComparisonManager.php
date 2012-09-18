@@ -28,7 +28,7 @@ class ChampionComparisonManager
 	/**
 	 * Constante contenant le nombre de comparaisons simultanées de champions
 	 */
-	const MAX_CHAMPION_COMPARISON = 2;
+	const MAX_CHAMPION_COMPARISON = 10;
 	
 	/**
 	 * Constante contenant le nom du tag associé à la liste de comparaison dans la session

@@ -16,7 +16,7 @@
 		function dragStart(event) {
 			//On récupère le slug du champion en cours de déplacement
 			var slug = event.target.getAttribute('id');
-			
+			console.log('slug  :'+slug);
 			//On crée une image qui va être déplacée graphiquement
 			var dragImg = new Image(); 
 			dragImg.src = $('img#image-champion-' + slug).attr('src');

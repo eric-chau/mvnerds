@@ -1,6 +1,6 @@
 <div class="row-fluid normal-line champion" draggable="true" ondragstart="dragStart(event)" id="{{ champion.getSlug() }}">
 	<div class="span2">
-		<img id="image-champion-{{champion.getSlug()}}" src="{{ asset('images/champions/square/' ~ champion.getSlug() ~ '.png') }}" alt="image du champion {{ champion.getName() }}" title = "{{ champion.getName() }}"/>
+		<img draggable="false" id="image-champion-{{champion.getSlug()}}" src="{{ asset('images/champions/square/' ~ champion.getSlug() ~ '.png') }}" alt="image du champion {{ champion.getName() }}" title = "{{ champion.getName() }}"/>
 	</div>
 	<div class="span2">
 		{{ champion.getName() }}
@@ -16,19 +16,19 @@
 	</div>
 	<div class="span2">
 		{# Ajouter à la liste de comparaison #}
-		<a href="{{ path('admin_champions_add_to_compare', {'slug': champion.getSlug()}) }}" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Ajouter {{ champion.getName() }} à la liste de comparaison des champions">
+		<a  draggable="false" href="{{ path('admin_champions_add_to_compare', {'slug': champion.getSlug()}) }}" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Ajouter {{ champion.getName() }} à la liste de comparaison des champions">
 			<i class="icon-resize-small"></i>
 		</a>
 		{# Voir la fiche du champion #}
-		<a href="{{ path('admin_champions_view', {'slug': champion.getSlug()}) }}" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Voir la fiche de {{ champion.getName() }}">
+		<a  draggable="false" href="{{ path('admin_champions_view', {'slug': champion.getSlug()}) }}" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Voir la fiche de {{ champion.getName() }}">
 			<i class="icon-eye-open"></i>
 		</a>
 		{# Editer le champion #}
-		<a href="{{ path('admin_champions_edit', {'slug': champion.getSlug()}) }}" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Éditer">
+		<a  draggable="false" href="{{ path('admin_champions_edit', {'slug': champion.getSlug()}) }}" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Éditer">
 			<i class="icon-edit"></i>
 		</a>
 		{# Supprimer le champion #}
-		<a href="#" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Supprimer le champion" data-toggle="modal" data-target="#delete-champion-{{ champion.getSlug() }}-modal">
+		<a  draggable="false" href="#" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Supprimer le champion" data-toggle="modal" data-target="#delete-champion-{{ champion.getSlug() }}-modal">
 			<i class="icon-remove"></i>
 		</a>
 	</div>
