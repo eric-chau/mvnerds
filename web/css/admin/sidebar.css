@@ -5,6 +5,7 @@ div#sidebar{
 
 div#comparison-list{
 	text-align: center;
+	margin-bottom: 0px;
 }
 div#comparison-list ul li{
 	text-align: center;
@@ -16,4 +17,15 @@ div#comparison-list ul li img{
 
 div#comparison-list a#btn-compare{
 	margin-top: 20px;
+}
+
+#resize-comparison-list{
+	margin-right: 10px;
+	-webkit-border-radius: 0 0 4px 4px;
+	-moz-border-radius: 0 0 4px 4px;
+	border-radius: 0 0 4px 4px;
+}
+
+.popover{
+	z-index:1050;
 }

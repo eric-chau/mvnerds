@@ -1,6 +1,8 @@
-<div class="row-fluid normal-line champion" draggable="true" ondragstart="dragStart(event)" id="{{ champion.getSlug() }}">
+<div class="row-fluid normal-line champion" draggable="true" ondragstart="dragStart(event)" ondragend="dragEnd(event)" id="{{ champion.getSlug() }}">
 	<div class="span2">
-		<img draggable="false" id="image-champion-{{champion.getSlug()}}" src="{{ asset('images/champions/square/' ~ champion.getSlug() ~ '.png') }}" alt="image du champion {{ champion.getName() }}" title = "{{ champion.getName() }}"/>
+		{# draggable a false pour empecher de drag l img sous chrome et firefox mais cette propriété n est pas détectée sous IE #}
+		{#c'est pourquoi seulement l'image pourra être glissée et pas toute la div il faut donc quand meme affecter les events dragStart etc..#}
+		<img draggable="false" ondragstart="dragStart(event)" ondragend="dragEnd(event)" id="{{champion.getSlug()}}" class="champion-image" src="{{ asset('images/champions/square/' ~ champion.getSlug() ~ '.png') }}" alt="image du champion {{ champion.getName() }}" title = "{{ champion.getName() }}"/>
 	</div>
 	<div class="span2">
 		{{ champion.getName() }}
