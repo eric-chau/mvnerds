@@ -261,7 +261,7 @@
 			if ($(window).width() <= 1550)
 			{
 				//On retire l'évenement de clic affecté
-				$('#resize-comparison-list.minimize').off('click');
+				$('#resize-comparison-list').off('click');
 				//On minimise la liste de comparaison
 				minimize();
 			}
@@ -271,6 +271,8 @@
 				//Et que sa largeur devient inférieure ou égale à 1550
 				if ($(window).width() <= 1550)
 				{
+					//On retire l'évenement de clic affecté
+					$('#resize-comparison-list').off('click');
 					//On minimise la liste de comparaison
 					minimize();
 				}
