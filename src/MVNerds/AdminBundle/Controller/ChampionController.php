@@ -337,7 +337,7 @@ class ChampionController extends Controller
 		/* @var $comparisonManager \MVNerds\CoreBundle\ChampionComparison\ChampionComparisonManager */
 		$comparisonManager = $this->get('mvnerds.champion_comparison_manager');
 		
-		$comparisonManager->setReferenceChampion(null);
+		$comparisonManager->cleanReferenceChampion();
 		
 		//On redirige vers la comparaison des champions
 		return $this->redirect($this->generateUrl('admin_champions_compare'));

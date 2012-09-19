@@ -102,14 +102,14 @@ class ChampionComparisonManager
 	/**
 	 * Permet d enregistrer en session le champion de référence pour la comparaison
 	 * 
-	 * @param type $champion
+	 * @param Champion $champion le champion dont on veut faire la référence
 	 * 
 	 * @throws InvalidArgumentException si le paramètre fourni n'est pas un champion ou qu'il n'apparaisse pas dans la liste de comparaison
 	 */
-	public function setReferenceChampion($champion)
+	public function setReferenceChampion(Champion $champion)
 	{
 		//Si le champion existe dans la liste de comparaison
-		if( $champion == null || $this->championExists($champion))
+		if($this->championExists($champion))
 		{
 			//On l'indique comme champion de référence
 			$this->session->set(self::REFERENCE_CHAMPION_KEY, $champion);
@@ -120,6 +120,14 @@ class ChampionComparisonManager
 		{
 			throw new InvalidArgumentException('The given parameter is not a Champion item or does not appear in the champion comparison list');
 		}
+	}
+	
+	/**
+	 * Permet de réinitialiser le champion de référence
+	 */
+	public function cleanReferenceChampion()
+	{
+		$this->session->set(self::REFERENCE_CHAMPION_KEY, null);
 	}
 	
 	/**
@@ -292,8 +300,8 @@ class ChampionComparisonManager
 		//On vide la liste
 		$this->setList(null);
 		
-		//On remet le champion de référence à null
-		$this->setReferenceChampion(null);
+		//On remet le champion de référence à zéro
+		$this->cleanReferenceChampion();
 		
 		$this->flashManager->setSuccessMessage('Flash.success.clean_comparison.champions');
 	}
