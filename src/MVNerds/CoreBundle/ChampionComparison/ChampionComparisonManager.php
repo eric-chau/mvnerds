@@ -281,7 +281,7 @@ class ChampionComparisonManager
 			//Si le champion retiré était la référence de comparaison
 			if ( $this->isReferenceChampion($champion) )
 			{
-				$this->setReferenceChampion(null);
+				$this->cleanReferenceChampion();
 			}
 			
 			$this->flashManager->setSuccessMessage('Flash.success.remove_from_compare.champions');
