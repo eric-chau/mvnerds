@@ -17,13 +17,13 @@
 		{% set listSize = app.session.get('comparison_list') | length%}
 			
 		{% if listSize >= 2 %}
-			<a href="{{path('admin_champions_compare') }}" id="btn-compare" class="btn btn-success btn-block comparison-list-btn"><i class="icon-resize-small icon-white"></i> <span class="btn-text"> Comparer !</span></a>
+			<a href="{{path('admin_champions_compare') }}" id="btn-compare" class="btn btn-success btn-block comparison-list-btn"><i class="icon-random icon-white"></i> <span class="btn-text"> Comparer !</span></a>
 			<a href="{{path('admin_champions_clean_comparison') }}" id="btn-clean" class="btn btn-info btn-block comparison-list-btn"><i class="icon-trash icon-white"></i> <span class="btn-text"> Vider !</span></a>
 		{% elseif listSize >= 1 %}
-			<a href="{{path('admin_champions_compare') }}" id="btn-compare" class="btn btn-success btn-block disabled comparison-list-btn"><i class="icon-resize-small icon-white"></i> <span class="btn-text"> Comparer !</span></a>
+			<a href="{{path('admin_champions_compare') }}" id="btn-compare" class="btn btn-success btn-block disabled comparison-list-btn"><i class="icon-random icon-white"></i> <span class="btn-text"> Comparer !</span></a>
 			<a href="{{path('admin_champions_clean_comparison') }}" id="btn-clean" class="btn btn-info btn-block comparison-list-btn"><i class="icon-trash icon-white"></i> <span class="btn-text"> Vider !</span></a>
 		{% else %}
-			<a href="{{path('admin_champions_compare') }}" id="btn-compare" class="btn btn-success btn-block disabled comparison-list-btn"><i class="icon-resize-small icon-white"></i> <span class="btn-text"> Comparer !</span></a>
+			<a href="{{path('admin_champions_compare') }}" id="btn-compare" class="btn btn-success btn-block disabled comparison-list-btn"><i class="icon-random icon-white"></i> <span class="btn-text"> Comparer !</span></a>
 			<a href="{{path('admin_champions_clean_comparison') }}" id="btn-clean" class="btn btn-info btn-block disabled comparison-list-btn"><i class="icon-trash icon-white"></i> <span class="btn-text"> Vider !</span></a>
 		{% endif %}
 	</div>

@@ -1,23 +1,75 @@
-<table class="table table-striped" id="comparison-table">
+<table class="table table-striped table-bordered" id="comparison-table">
 			
 	{% set comparisonList = app.session.get('comparison_list') %}
-
+	{% set referenceChampion = app.session.get('reference_champion') %}
 	{% set nbFields = field_names | length%}
-	{% set nbChamps = comparisonList | length%}
 
-	{# On affiche d'abord l'image des champions #}
-	<th>Champion</th>
-	{% for championName, champion in comparisonList %}
-		<td>
-			<img src="{{ asset('images/champions/square/' ~ champion.getSlug() ~ '.png') }}" alt="image du champion {{ champion.getName() }}" title = "{{ champion.getName() }}"/>
-		</td>
-	{% endfor %}
+	{# On affiche l'action permettant de sélectionner un champion de référence pour la comparaison #}
+	<tr>
+		<th>Référence</th>
+		{% for championName, champion in comparisonList %}		
+			<td class="champion-reference">
+			{# Si un champion a été désigné comme champion de référence pour la comparaison #}
+			{% if   referenceChampion != null and referenceChampion.getSlug() == championName%}
+				<a href="{{ path('admin_champions_remove_reference_champion') }}" rel="tooltip" title="Ne plus faire de ce champion une référence" class="btn btn-danger tooltip-anchor"><i class="icon-remove icon-white"></i></a>
+			{% else %}
+				<a href="{{ path('admin_champions_set_reference_champion', {'slug' : championName} ) }}" rel="tooltip" title="Faire de ce champion la nouvelle référence" class="btn btn-success tooltip-anchor"><i class="icon-ok icon-white"></i></a>
+			{% endif %}
+			</td>
+		{% endfor %}
+	</tr>
+	
+	{# On affiche l'image des champions #}
+	<tr>
+		<th>Champion</th>
+		{% for championName, champion in comparisonList %}		
+			<td class="champion-image">
+				{# On attribue une classe à l'image du champion en focntion de si c'est la référence, un champion de comparaison, ou un champion par défaut #}
+				{% if  referenceChampion != null %}
+					{% if  referenceChampion.getSlug() == championName%}
+						{% set championClass = 'reference-champion' %}
+					{% else %}
+						{% set championClass = 'comparison-champion' %}
+					{% endif %}
+				{% else %}
+					{% set championClass = 'base-champion' %}
+				{% endif %}
+					
+				<img class="{{championClass}}" src="{{ asset('images/champions/square/' ~ champion.getSlug() ~ '.png') }}" alt="image du champion {{ champion.getName() }}" title = "{{ champion.getName() }}"/>
+			</td>
+		{% endfor %}
+	</tr>
 	{# on parcours tous les champs de champions #}
 	{% for i in 0.. nbFields - 1 %}
 		<tr>
 			<th>{{field_names[i] }}</th>
 			{% for championName, champion in comparisonList %}
-				<td>{{champion.getProperty(field_names[i])}}</td>
+				<td>
+				{# Si un champion a été désigné comme champion de référence pour la comparaison #}
+				{% if  referenceChampion != null %}
+					{# Si c'est le champion courannt #}
+					{% if  referenceChampion.getSlug() == championName%}
+						{# on ne fait qu'afficher sa statistique simplement #}
+						{{champion.getProperty(field_names[i])}}
+					{% else %}
+						{# Sinon on affiche la statistique du champion en indiquant la différence de points avec le champion de référence #}
+						{% set differenceStatValue =  (champion.getProperty(field_names[i]) - referenceChampion.getProperty(field_names[i]))  | number_format(4)%}
+						
+						{% if differenceStatValue < 0 %}
+							{% set labelType = 'label-important'%}
+						{% elseif  differenceStatValue > 0%}
+							{% set labelType = 'label-success'%}
+							{% set differenceStatValue = '+' ~ differenceStatValue %}
+						{% else %}
+							{% set labelType = ''%}
+						{% endif %}
+						
+						{{champion.getProperty(field_names[i])}}<span class="label {{ labelType }} pull-right">{{ differenceStatValue }}</span>
+					{% endif %}
+				{% else %}
+					{{champion.getProperty(field_names[i])}}
+				{% endif %}
+				</td>
 			{% endfor %}
 		</tr>
 	{% endfor %}

@@ -31,9 +31,14 @@ class ChampionComparisonManager
 	const MAX_CHAMPION_COMPARISON = 10;
 	
 	/**
-	 * Constante contenant le nom du tag associé à la liste de comparaison dans la session
+	 * Constante contenant le nom de la clé associée à la liste de comparaison dans la session
 	 */
-	const TAG = 'comparison_list';
+	const COMPARISON_LIST_KEY = 'comparison_list';
+	
+	/**
+	 * Constante contenant le nom de la clé associée au slug du champion de référence à comparer dans la session
+	 */
+	const REFERENCE_CHAMPION_KEY = 'reference_champion';
 	
 	/**
 	 * Méthode appelée lors de l'instanciation du service pour setter la session courante
@@ -66,7 +71,7 @@ class ChampionComparisonManager
 		{
 			$this->initComparisonList();
 		}
-		return $this->session->get(self::TAG);
+		return $this->session->get(self::COMPARISON_LIST_KEY);
 	}
 	
 	/**
@@ -76,7 +81,45 @@ class ChampionComparisonManager
 	 */
 	public function setList($list)
 	{
-		$this->session->set(self::TAG, $list);
+		$this->session->set(self::COMPARISON_LIST_KEY, $list);
+	}
+	
+	/**
+	 * Permet de récupérer le champion de référence pour le champion
+	 * 
+	 * @return Champion le champion de référence pour la comparaison s il existe et null sinon
+	 */
+	public function getReferenceChampion()
+	{
+		//Si la clé n existe pas en session on renvoie null
+		if ( ! $this->isReferenceChampionSet() )
+		{
+			return null;
+		}
+		return $this->session->get(self::REFERENCE_CHAMPION_KEY);
+	}
+	
+	/**
+	 * Permet d enregistrer en session le champion de référence pour la comparaison
+	 * 
+	 * @param type $champion
+	 * 
+	 * @throws InvalidArgumentException si le paramètre fourni n'est pas un champion ou qu'il n'apparaisse pas dans la liste de comparaison
+	 */
+	public function setReferenceChampion($champion)
+	{
+		//Si le champion existe dans la liste de comparaison
+		if( $champion == null || $this->championExists($champion))
+		{
+			//On l'indique comme champion de référence
+			$this->session->set(self::REFERENCE_CHAMPION_KEY, $champion);
+			//On fait passer le champion en premier dans la liste
+			$this->sortListByChampion($champion);
+		}
+		else
+		{
+			throw new InvalidArgumentException('The given parameter is not a Champion item or does not appear in the champion comparison list');
+		}
 	}
 	
 	/**
@@ -94,7 +137,17 @@ class ChampionComparisonManager
 	 */
 	private function isListSet()
 	{
-		return $this->session->has(self::TAG) && is_array($this->session->get(self::TAG));
+		return $this->session->has(self::COMPARISON_LIST_KEY) && is_array($this->session->get(self::COMPARISON_LIST_KEY));
+	}
+	
+	/**
+	 * Permet de vérifier si un champion de référence a été sélectionné
+	 * 
+	 * @return boolean renvoie true si un champion de référence est sétté et false sinon
+	 */
+	public function isReferenceChampionSet()
+	{
+		return $this->session->has(self::REFERENCE_CHAMPION_KEY) && $this->session->get(self::REFERENCE_CHAMPION_KEY) != null;
 	}
 	
 	/**
@@ -136,7 +189,20 @@ class ChampionComparisonManager
 	 */
 	public function championExists($champion)
 	{
-		return array_key_exists($champion->getSlug(), $this->getList());
+		return $champion && array_key_exists($champion->getSlug(), $this->getList());
+	}
+	
+	/**
+	 * Permet de déterminer si un champion est la référence de comparaison
+	 * 
+	 * @param Champion $champion le champion pour lequel on veut vérifier la référence
+	 * 
+	 * @return boolean renvoie true si le champion fourni en paramètre est le champion de référence et false sinon
+	 */
+	public function isReferenceChampion(Champion $champion)
+	{
+		$referenceChampion = $this->getReferenceChampion();
+		return ( $referenceChampion != null ) && ( $referenceChampion->getSlug() == $champion->getSlug());
 	}
 	
 	/**
@@ -153,8 +219,6 @@ class ChampionComparisonManager
 	 * Permet d'ajouter un champion a la liste de comparaison des champions
 	 * 
 	 * @param \MVNerds\CoreBundle\Model\Champion $champion le champion à ajouter à la liste de comparaison
-	 * 
-	 * @retrun true si le champion a bien été ajouté et false sinon
 	 */
 	public function addChampion(Champion $champion)
 	{		
@@ -167,11 +231,15 @@ class ChampionComparisonManager
 				//On récupère la liste
 				$comparisonList = $this->getList();
 				//On ajoute le nouveau champion
-				$comparisonList[$champion->getSlug()] = $champion;
+				$comparisonList[$champion->getSlug()] = $champion;				
 				//On enregistre la nouvelle liste dans la session
 				$this->setList($comparisonList);
 				
-				return true;
+				//Si aucun champion de référence n'existe on déclare ce champion comme étant la référence
+				if (! $this->isReferenceChampionSet())
+				{
+					$this->setReferenceChampion($champion);
+				}
 			}
 			else
 			{
@@ -182,7 +250,6 @@ class ChampionComparisonManager
 		{
 			throw new Exception('Flash.error.max_reached.add_to_compare.champions');
 		}
-		return false;
 	}
 	
 	/**
@@ -202,6 +269,13 @@ class ChampionComparisonManager
 			unset($comparisonList[$champion->getSlug()]);
 			//Et on sauvegarde la nouvelle liste en session
 			$this->setList($comparisonList);
+			
+			//Si le champion retiré était la référence de comparaison
+			if ( $this->isReferenceChampion($champion) )
+			{
+				$this->setReferenceChampion(null);
+			}
+			
 			$this->flashManager->setSuccessMessage('Flash.success.remove_from_compare.champions');
 		}
 		else
@@ -218,7 +292,45 @@ class ChampionComparisonManager
 		//On vide la liste
 		$this->setList(null);
 		
+		//On remet le champion de référence à null
+		$this->setReferenceChampion(null);
+		
 		$this->flashManager->setSuccessMessage('Flash.success.clean_comparison.champions');
+	}
+	
+	/**
+	 * Permet de faire passer un champion présent dans la liste en tête de liste
+	 * 
+	 * @param Champion $champion le champion à faire passer en premier
+	 * 
+	 * @throw InvalidArgumentException si le champion fourni n'existe pas dans la liste de comparaison
+	 */
+	public function sortListByChampion(Champion $champion)
+	{
+		//Si le champion existe dans la liste
+		if ($this->championExists($champion))
+		{
+			//On récupère la liste de comparaison courante
+			$oldList = $this->getList();
+			//On crée une nouvelle liste
+			$newList = array();
+			//On ajoute le champion à mettre en premier
+			$newList[$champion->getSlug()] = $champion;
+			//On parcourt tous les autres champions afin de les ajouter à la nouvelle liste
+			foreach ($oldList as $champ)
+			{
+				if ($champ->getSlug() != $champion->getSlug())
+				{
+					$newList[$champ->getSlug()] = $champ;
+				}
+			}
+			//On enregistre la nouvelle liste
+			$this->setList($newList);
+		}
+		else
+		{
+			throw new InvalidArgumentException('Champion given does not exists in the comparison list');
+		}
 	}
 }
 

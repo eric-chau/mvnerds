@@ -1,6 +1,24 @@
 table#comparison-table{
 	font-size: 10px;
 }
+
+/* Images des champions */
+
+table#comparison-table tbody tr td.champion-image,
+table#comparison-table tbody tr td.champion-reference
+{
+	text-align: center;
+}
 table#comparison-table tbody tr td img{
 	height: 25px;
+}
+
+table#comparison-table tbody tr td img.reference-champion{
+	border: 3px solid green;
+}
+table#comparison-table tbody tr td img.comparison-champion{
+	border: 3px solid red;
+}
+table#comparison-table tbody tr td img.base-champion{
+	border: 3px solid black;
 }

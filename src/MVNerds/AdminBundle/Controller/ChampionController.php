@@ -233,7 +233,8 @@ class ChampionController extends Controller
 
 			//On affiche la page de comparaison
 			return $this->render('MVNerdsAdminBundle:Champion:compare_champions.html.twig', array(
-				'field_names'	=> $fieldNames
+				'field_names'		=> $fieldNames,
+				'reference_champion'	=> $comparisonManager->getReferenceChampion()
 			));
 		}
 		else
@@ -267,7 +268,7 @@ class ChampionController extends Controller
 	 * 
 	 * @Route("/recup-message-erreur", name="admin_champions_get_error_message")
 	 */
-	public function getErrorMessage()
+	public function getErrorMessageAction()
 	{
 		//Si c'est bien un requete AJAX
 		if ($this->getRequest()->isXmlHttpRequest())
@@ -287,7 +288,7 @@ class ChampionController extends Controller
 	 * 
 	 * @Route("/recup-message-succes", name="admin_champions_get_success_message")
 	 */
-	public function getSuccessMessage()
+	public function getSuccessMessageAction()
 	{
 		//Si c'est bien un requete AJAX
 		if ($this->getRequest()->isXmlHttpRequest())
@@ -300,5 +301,45 @@ class ChampionController extends Controller
 			//Sinon on redirige vers l index des champions
 			return $this->redirect($this->generateUrl('admin_champions_index'));
 		}
+	}
+	
+	/**
+	 * Permet de sélectionner un champion de référence pour la comparaison de champions
+	 * 
+	 * @param string le slug du champion à déclarer comme champion de référence
+	 * 
+	 * @Route("/{slug}/selectionner-champion-de-reference", name="admin_champions_set_reference_champion")
+	 */
+	public function setReferenceChampionAction($slug)
+	{
+		//récupération du champion_comparison_manager
+		/* @var $comparisonManager \MVNerds\CoreBundle\ChampionComparison\ChampionComparisonManager */
+		$comparisonManager = $this->get('mvnerds.champion_comparison_manager');
+		
+		//récupération du champion grâce à son slug
+		/* @var $champion \MVNerds\CoreBundle\Model\Champion */
+		$champion = $this->get('mvnerds.champion_manager')->findBySlug($slug);
+		
+		$comparisonManager->setReferenceChampion($champion);
+		
+		//On redirige vers la comparaison des champions
+		return $this->redirect($this->generateUrl('admin_champions_compare'));
+	}
+	
+	/**
+	 * Permet de retirer le champion de référence pour la comparaison de champions
+	 * 
+	 * @Route("/retirer-champion-de-reference", name="admin_champions_remove_reference_champion")
+	 */
+	public function removeReferencechampionAction()
+	{
+		//récupération du champion_comparison_manager
+		/* @var $comparisonManager \MVNerds\CoreBundle\ChampionComparison\ChampionComparisonManager */
+		$comparisonManager = $this->get('mvnerds.champion_comparison_manager');
+		
+		$comparisonManager->setReferenceChampion(null);
+		
+		//On redirige vers la comparaison des champions
+		return $this->redirect($this->generateUrl('admin_champions_compare'));
 	}
 }

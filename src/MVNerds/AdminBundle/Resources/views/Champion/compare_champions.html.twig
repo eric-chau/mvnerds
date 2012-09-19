@@ -2,6 +2,18 @@
 
 {% block title %}Administration des champions - MVNerds{% endblock %}
 
+{% block javascripts %}
+	{{ parent() }}
+	
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-tooltip.js') }}"></script>
+
+	<script type="text/javascript">
+		jQuery(function($) {
+			$('.tooltip-anchor').tooltip();
+		});
+	</script>
+{% endblock %}
+
 {% block css %}
 	{{ parent() }}
 
