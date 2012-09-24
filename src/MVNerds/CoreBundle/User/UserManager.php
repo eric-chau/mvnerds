@@ -37,6 +37,19 @@ class UserManager
 		$this->save($user);
 	}
 	
+	public function isEmailAvailable($email)
+	{
+		$isAvailable = true;
+		try {
+			$isAvailable = $this->findOneByEmail($email) != null;
+		}
+		catch (InvalidArgumentException $e) {
+			$isAvailable = false;
+		}
+		
+		return $isAvailable;
+	}
+	
 	public function deleteById($id)
 	{
 		$user = UserQuery::create()
@@ -69,6 +82,20 @@ class UserManager
 		if (null === $user)
 		{
 			throw new InvalidArgumentException('No user with id:'.$id.'!');
+		}
+		
+		return $user;
+	}
+	
+	public function findOneByEmail($email)
+	{
+		$user = UserQuery::create()
+			->add(UserPeer::EMAIL, $email)
+		->findOne();
+		
+		if (null === $user)
+		{
+			throw new InvalidArgumentException('No user with email:'.$email.'!');
 		}
 		
 		return $user;

@@ -1,4 +1,7 @@
-mv_nerds_launch_site:
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
+MVNerdsLaunchSite_homepage:
     resource: "@MVNerdsLaunchSiteBundle/Controller/"
     type:     annotation
     prefix:   /

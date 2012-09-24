@@ -255,12 +255,13 @@
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
     <column name="type_id" required="true" type="INTEGER" />
     <column name="label" required="true" size="100" type="VARCHAR" />
-    <column name="descrption" type="LONGVARCHAR" />
+    <column name="description" type="LONGVARCHAR" />
     <foreign-key foreignTable="tag_type">
       <reference foreign="id" local="type_id" />
     </foreign-key>
     <behavior name="i18n">
       <parameter name="i18n_columns" value="label, description" />
+      <parameter name="default_locale" value="en" />
       <parameter name="locale_column" value="lang" />
       <parameter name="i18n_table" value="tag_i18n" />
       <parameter name="i18n_phpname" value="TagI18n" />
