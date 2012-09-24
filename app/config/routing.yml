@@ -1,3 +1,8 @@
+mv_nerds_launch_site:
+    resource: "@MVNerdsLaunchSiteBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 mv_nerds_champion_handler:
     resource: "@MVNerdsChampionHandlerBundle/Controller/"
     type:     annotation
