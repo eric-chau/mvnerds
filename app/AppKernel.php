@@ -22,7 +22,8 @@ class AppKernel extends Kernel
 			new Propel\PropelBundle\PropelBundle(),
 			new MVNerds\CoreBundle\MVNerdsCoreBundle(),
 			new MVNerds\AdminBundle\MVNerdsAdminBundle(),
-			new MVNerds\DidYouKnowBundle\MVNerdsDidYouKnowBundle()
+			new MVNerds\DidYouKnowBundle\MVNerdsDidYouKnowBundle(),
+            new MVNerds\ChampionHandlerBundle\MVNerdsChampionHandlerBundle(),
 		);
 
 		if (in_array($this->getEnvironment(), array('dev', 'test')))

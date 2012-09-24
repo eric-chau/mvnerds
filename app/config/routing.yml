@@ -1,3 +1,8 @@
+mv_nerds_champion_handler:
+    resource: "@MVNerdsChampionHandlerBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 mv_nerds_did_you_know:
     resource: "@MVNerdsDidYouKnowBundle/Controller/"
     type:     annotation
