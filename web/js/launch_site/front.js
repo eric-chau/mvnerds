@@ -46,6 +46,7 @@ $(document).ready(function()
 		setTimeout(updateCountDown, 1000);
 	}
 
+
 	/**
 	 * LISTENER D'EVENEMENT
 	 */
@@ -79,8 +80,7 @@ $(document).ready(function()
 
 		$(this).parent().parent().find('p, form').slideToggle('slow');
 		$(this).parent().toggleClass('no-margin');
-
-		console.log('display-' + $h2.data('content-name'));
+		
 		$.cookie('display-' + $h2.data('content-name'), $h2.hasClass('no-margin'), { expires: 30});
 	});
 
@@ -166,14 +166,4 @@ $(document).ready(function()
 			}
 		} 
 	});
-
-	function validateEmail(email) {
-	    var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-	    if( !emailReg.test( email ) ) {
-	        return false;
-	    } else {
-	        return true;
-	    }
-	}
-
 });
