@@ -5,29 +5,24 @@
 {% block javascripts %}
 	{{ parent() }}
 	
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-alert.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-tooltip.js') }}"></script>
-
-	<script type="text/javascript">
-		jQuery(function($) {
-			$('.tooltip-anchor').tooltip();
-		});
-	</script>
 {% endblock %}
 
 {% block css %}
 	{{ parent() }}
 
-	<link rel="stylesheet" href="{{ asset('css/admin/comparison.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/champion_handler/comparison.css') }}">
 {% endblock %}
 
 {% block content %}
 	<h1>Comparer des champions</h1>
 
 	<div class="action-buttons">
-		<a href="{{ path('admin_champions_index') }}" class="btn btn-large"><i class="icon-arrow-left"></i> <strong>Retourner à la liste</strong></a>
+		<a href="{{ path('champion_handler_front_index') }}" class="btn btn-large"><i class="icon-arrow-left"></i> <strong>Retourner à la liste</strong></a>
 	</div>
 	
 	<div class="well">
-		{% include 'MVNerdsAdminBundle:Champion:compare_champions_row.html.twig' with {'field_names':  field_names}%}
+		{% include 'MVNerdsChampionHandlerBundle:Comparison:compare_row.html.twig' with {'field_names':  field_names}%}
 	</div>
 {% endblock %}

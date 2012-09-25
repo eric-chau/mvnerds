@@ -281,5 +281,9 @@
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
     <column name="unique_name" required="true" size="255" type="VARCHAR" />
     <column name="description" type="LONGVARCHAR" />
+    <column name="parent_id" type="INTEGER" />
+    <foreign-key foreignTable="tag_type">
+      <reference foreign="id" local="parent_id" />
+    </foreign-key>
   </table>
 </database>

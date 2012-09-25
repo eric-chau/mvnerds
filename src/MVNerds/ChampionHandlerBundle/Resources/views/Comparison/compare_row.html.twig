@@ -11,9 +11,9 @@
 			<td class="champion-reference">
 			{# Si un champion a été désigné comme champion de référence pour la comparaison #}
 			{% if   referenceChampion != null and referenceChampion.getSlug() == championName%}
-				<a href="{{ path('admin_champions_remove_reference_champion') }}" rel="tooltip" title="Ne plus faire de ce champion une référence" class="btn btn-danger tooltip-anchor"><i class="icon-remove icon-white"></i></a>
+				<a href="{{ path('champion_handler_comparison_remove_reference_champion') }}" rel="tooltip" title="Ne plus faire de ce champion une référence" class="btn btn-danger tooltip-anchor"><i class="icon-remove icon-white"></i></a>
 			{% else %}
-				<a href="{{ path('admin_champions_set_reference_champion', {'slug' : championName} ) }}" rel="tooltip" title="Faire de ce champion la nouvelle référence" class="btn btn-success tooltip-anchor"><i class="icon-ok icon-white"></i></a>
+				<a href="{{ path('champion_handler_comparison_set_reference_champion', {'slug' : championName} ) }}" rel="tooltip" title="Faire de ce champion la nouvelle référence" class="btn btn-success tooltip-anchor"><i class="icon-ok icon-white"></i></a>
 			{% endif %}
 			</td>
 		{% endfor %}

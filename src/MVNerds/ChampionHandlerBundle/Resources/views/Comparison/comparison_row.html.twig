@@ -2,7 +2,7 @@
 	<img src="{{ asset('images/champions/square/' ~ champion.getSlug() ~ '.png') }}" alt="image du champion {{ champion.getName() }}" title = "{{ champion.getName() }}" class="pull-left"/> 
 	<span class="champion-comparable-name">{{champion.getName()}}</span>
 	{# Retirer le champion de la  liste#}
-	<a href="{{ path('admin_champions_remove_from_compare', {'slug': champion.getSlug()}) }}" class="champion-comparable-remove tooltip-anchor pull-right" rel="tooltip" data-placement="top" data-original-title="Retirer le champion de la liste">
+	<a href="{{ path('champion_handler_comparison_remove_from_compare', {'slug': champion.getSlug()}) }}" class="champion-comparable-remove tooltip-anchor pull-right" rel="tooltip" data-placement="top" data-original-title="Retirer le champion de la liste">
 		<i class="icon-remove"></i>
 	</a>
 </li>

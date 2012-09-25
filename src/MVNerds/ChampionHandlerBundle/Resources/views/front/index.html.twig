@@ -1,0 +1,30 @@
+{% extends 'MVNerdsChampionHandlerBundle::layout.html.twig' %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-alert.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-modal.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-tooltip.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
+	
+	<script type="text/javascript" src="{{ asset('js/champion_handler/comparison.js') }}"></script>
+{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	<link rel="stylesheet" href="{{ asset('css/champion_handler/sidebar.css') }}">
+{% endblock %}
+
+{% block content %}
+	
+	{% autoescape false %}
+		{{ render_success_flash() }}
+	{% endautoescape %}
+	{% autoescape false %}
+		{{ render_error_flash() }}
+	{% endautoescape %}
+	
+	{% include  'MVNerdsChampionHandlerBundle:Front:champion_comparison.html.twig' %}
+{% endblock %}
