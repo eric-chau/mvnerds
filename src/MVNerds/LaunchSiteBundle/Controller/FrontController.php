@@ -29,6 +29,7 @@ class FrontController extends Controller
 				$this->get('mvnerds.user_manager')->save($user);
 
                 $form = $this->createForm(new UserType());
+				$params['registration_success'] = true;
             }
         }
 		

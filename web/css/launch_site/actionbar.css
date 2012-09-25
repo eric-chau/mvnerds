@@ -1,0 +1,32 @@
+ul#comparison-list{
+	min-height: 100px;
+	width: 250px;
+}
+ul#comparison-list li.indication{
+	padding: 15px;
+}
+ul#comparison-list li{
+	text-align: center;
+	min-height: 30px;
+}
+ul#comparison-list li.champion-comparable a.champion-comparable-remove{
+	height: 25px;
+}
+ul#comparison-list li.champion-comparable a.champion-comparable-remove img{
+	width: 25px;
+}
+
+#comparison-list-help:hover{
+	cursor: help;
+}
+.popover{
+	z-index:1050;
+}
+
+.champion-comparable-remove span.icone{
+	text-align: right;
+}
+
+span.champion-comparable-name{
+	margin-right: 15px;
+}

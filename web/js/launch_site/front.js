@@ -5,16 +5,6 @@
 $(document).ready(function()
 {
 	/**
-	 * GESTION DES COOKIES POUR AFFICHER/MASQUER DU CONTENU
-	 */	
-	$('div.presentation-container').find('h2').each(function()
-	{
-		if ($.cookie('display-' + $(this).data('content-name')) == 'true') {
-			$(this).parent().find('div.content').hide();
-		}
-	});
-
-	/**
 	 * GESTION DU COMPTE A REBOUR AVANT LA DATE DE SORTIE
 	 */
 
@@ -79,7 +69,17 @@ $(document).ready(function()
 		$this.parent().find('div.content').slideToggle('slow');
 		$this.toggleClass('no-margin');
 
-		$.cookie('display-' + $this.data('content-name'), $this.hasClass('no-margin'), { expires: 30});
+		$.cookie('display-' + $this.data('content-name'), $this.hasClass('no-margin'));
+	});
+
+	/**
+	 * GESTION DES COOKIES POUR AFFICHER/MASQUER DU CONTENU
+	 */	
+	$('div.presentation-container').find('h2').each(function()
+	{
+		if ($.cookie('display-' + $(this).data('content-name')) == 'true') {
+			$(this).trigger('click');
+		}
 	});
 
 	/**

@@ -6,12 +6,32 @@
 	{{ parent() }}
 
 	 <link rel="stylesheet" href="{{ asset('/css/launch_site/front.css') }}">
+	 <link rel="stylesheet" href="{{ asset('/css/launch_site/actionbar.css') }}">
+	 <link rel="stylesheet" href="{{ asset('/css/champion_handler/grid.css') }}">
 {% endblock %}
 
 {% block javascripts %}
 	 {{ parent() }}
 	 
+	 <script type="text/javascript" src="{{ asset('/js/jquery-ui-1.8.23.custom.min.js') }}"></script>
+	 
+	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-tooltip.js') }}"></script>
+	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-popover.js') }}"></script>
+	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-transition.js') }}"></script>
+	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-alert.js') }}"></script>
+	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-modal.js') }}"></script>
+	 
+	 <script type="text/javascript" src="{{ asset('/js/champion_handler/comparison.js') }}"></script>
 	 <script type="text/javascript" src="{{ asset('/js/launch_site/front.js') }}"></script>
+	 <script type="text/javascript">
+		$(function()
+		{
+			$('.dropdown-toggle').dropdown();
+			
+			$('div#leave-email-success-modal').modal('show');
+		});
+		
+	</script>
 {% endblock %}
 	 
 {% block body %}
@@ -44,7 +64,7 @@
 						</span>
 					</h2>
 					
-					<div class="content">
+					<div class="content hide">
 						<p>The sleepy, non-descript village of Kalamanda, located near the northern entrance to Mogron Pass, now finds itself wide awake 
 						as the leading lady on the world stage. The village's mayor, Anson Ridley, reported this week that a local survey team has 
 						uncovered a massive deposit of gold and precious gems within the village's sphere of influence. Furthermore, two nexuses of 
@@ -65,7 +85,7 @@
 						</span>
 					</h2>
 						
-					<div class="content">
+					<div class="content hide">
 						<p>Laisser votre e-mail vous offre plusieurs avatanges et <strong>zéro inconvénient</strong> ! Nous n'allons pas nous amuser à vous spammer
 						ni à communiquer votre e-mail. Notre but est de pouvoir vous tenir informer de l'évolution du site et notamment de son ouverture officielle !
 						</p>
@@ -97,21 +117,26 @@
 				</div>
 			</div>
 				
-			{% render 'MVNerdsChampionHandlerBundle:Front:index' %}
+			{% render 'MVNerdsChampionHandlerBundle:Front:championComparison' %}
 		</div>
+			
+		<div class="navbar navbar-fixed-bottom" id="actionbar">
+			{% include 'MVNerdsLaunchSiteBundle:Front:actionbar.html.twig'  %}
+		</div>
+			
 	</div>
 	 
-	{% if registration_success is defined and registration_success %}
-		<div class="modal hide fade">
+	{% if registration_success is defined %}
+		<div class="modal hide fade" id="leave-email-success-modal">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h3>Modal header</h3>
+				<h3>Votre e-mail a été enregistré avec succès</h3>
 			</div>
 			<div class="modal-body">
-				<p>One fine body…</p>
+				<p>Toute l'équipe Most Valuable Nerds vous remercie pour votre confiance, revenez nous voir quand vous le voulez !</p>
 			</div>
 			<div class="modal-footer">
-				<a href="#" class="btn">Close</a>
+				<a href="#" data-dismiss="modal" class="btn">Fermer</a>
 			</div>
 		</div>
 	{% endif %}
