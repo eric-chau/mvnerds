@@ -12,7 +12,7 @@ use MVNerds\CoreBundle\Form\Type\UserType;
 class FrontController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="launch_site_front")
      */
     public function indexAction()
     {

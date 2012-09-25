@@ -6,12 +6,25 @@
 	{{ parent() }}
 
 	 <link rel="stylesheet" href="{{ asset('/css/launch_site/front.css') }}">
+	 <link rel="stylesheet" href="{{ asset('/css/launch_site/actionbar.css') }}">
+	 <link rel="stylesheet" href="{{ asset('/css/champion_handler/grid.css') }}">
 {% endblock %}
 
 {% block javascripts %}
 	 {{ parent() }}
 	 
+	 <script type="text/javascript" src="{{ asset('/js/jquery-ui-1.8.23.custom.min.js') }}"></script>
+	 
+	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-tooltip.js') }}"></script>
+	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-popover.js') }}"></script>
+	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-transition.js') }}"></script>
+	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-alert.js') }}"></script>
+	 
+	 <script type="text/javascript" src="{{ asset('/js/champion_handler/comparison.js') }}"></script>
 	 <script type="text/javascript" src="{{ asset('/js/launch_site/front.js') }}"></script>
+	 <script type="text/javascript">
+		$(function(){$('.dropdown-toggle').dropdown();});
+	</script>
 {% endblock %}
 	 
 {% block body %}
@@ -98,7 +111,12 @@
 				</div>
 			</div>
 				
-			{% render 'MVNerdsChampionHandlerBundle:Front:index' %}
+			{% render 'MVNerdsChampionHandlerBundle:Front:championComparison' %}
 		</div>
+			
+		<div class="navbar navbar-fixed-bottom" id="actionbar">
+			{% include 'MVNerdsLaunchSiteBundle:Front:actionbar.html.twig'  %}
+		</div>
+			
 	</div>
 {% endblock %}

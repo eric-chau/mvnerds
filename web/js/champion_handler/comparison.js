@@ -1,121 +1,82 @@
-//Fonction appelée lorsqu'on commence à faire glisser un champion
-function dragStart(event) {
-	//On récupère le slug du champion en cours de déplacement
-	var slug = event.target.getAttribute('id');
-	console.log('slug  :'+slug);
-	//On crée une image qui va être déplacée graphiquement
-	var dragImg = new Image(); 
-	dragImg.src = $('img#' + slug).attr('src');
-
-	event.dataTransfer.effectAllowed = 'copy';
-	event.dataTransfer.setData("Text", slug);
-	event.dataTransfer.setDragImage(dragImg, 50, 50);
-
-	$('#comparison-list').css('border', '1px dashed black')
-
-	$('div.main-container').fadeTo('fast', 0.2);
-	$('div.navbar-fixed-top').fadeTo('fast', 0.2);
-}
-
-//Lorsque l'utilisateur arrete de faire glisser l'objet ou qu'il appuye sur echap
-function dragEnd(event){
-	$('#comparison-list').css('border', 'none');
-
-	$('div.main-container').fadeTo('fast', 1);
-	$('div.navbar-fixed-top').fadeTo('fast', 1);
-}
-
-//Lorsqu'on est au dessus de la zone de dépot
-function dragOver(event) {
-	event.preventDefault();
-	$('#comparison-list').css('border', '1px solid black')
-}
-//lorsqu'on entre dans la zone de dépot
-function dragEnter(event) {
-	event.preventDefault();
-	$('#comparison-list').css('border', '1px solid black')
-}
-//lorsqu'on sort de la zone de dépot
-function dragLeave(event) {
-	event.preventDefault();
-	$('#comparison-list').css('border', '1px dashed black')
-}
-
-//lorsqu'on dépose le champion dans la zone de dépot
-function drop(event){
-	event.preventDefault();
-
-	//On remet la bordure à son état normal
-	$('#comparison-list').css('border', 'none')
-
-	//On retire le message s'il y en a un
-	//S'il existe deja un message on l'enleve
-	$('div.container div.alert').remove();
-
-	//On affiche l'icone de chargement
-	$('li#comparison-list-loading').show();
-
-	//On récupère le slug du champion concerné
-	var slug = event.dataTransfer.getData('Text');
-	
-	//On fait un appel ajax pour demander à ajouter le champion
-	$.ajax({
-		type: 'GET',
-		url:  Routing.generate('champion_handler_comparison_add_to_compare', {'slug': slug}),
-		dataType: 'html'
-	}).done(function(data){
-		//Si data est vide ça veut dire qu'on est confrontés à une erreur
-		if(data == undefined || data == '')
-		{console.log('error');
-			//Il ne faut donc pas afficher de nouveau champion dans la liste mais afficher un message d erreur
-			getErrorMessage();
-		}
-		else
-		{
-			//Sinon on ajoute le champion à la liste
-			appendChampion(data);
-			//Et on affiche le message de succes
-			getSuccessMessage();
-
-			if ($('li.champion-comparable').length >0)
-			{
-				//On active le bouton de vidage
-				activateCleanButton();
-				//On retire le message d'information
-				$('li.indication').hide();
-			}
-
-			//Si les champions peuvent etre comparés
-			if ($('li.champion-comparable').length >= 2)
-			{
-				//On active le bouton de comparaison
-				activateCompareButton();
-			}
-		}
-		$('#comparison-list-loading').hide();
-	}).fail(function(data){
-		console.log(data);
-		$('#comparison-list-loading').hide();
-	});
-
-	$('div.main-container').fadeTo('fast', 1);
-	$('div.navbar-fixed-top').fadeTo('fast', 1);
-}
 
 //Permet d'ajouter un champion au format html à la liste de comparaison
 function appendChampion(data)
 {		
 	//On ajoute le champion à la liste
-	var newChamp = $(data).appendTo('#comparison-list ul.nav');
-	console.log(newChamp);
-	//Si la taille de la liste est minimisée
-	if ( ! isMaximized())
-	{
-		//On cache les champs texte et l'icone de suppression
-		newChamp.find('span.champion-comparable-name').hide();
-		newChamp.find('a.champion-comparable-remove').hide();
-		console.log('minified');
-	}
+	$(data).appendTo('ul#comparison-list');
+	var id = $(data).attr('id');
+	
+	$('#'+id).on('click', function(){
+		return removeChampionFromList($(this).find('span.slug').html());		
+	});
+	$('.tooltip-anchor').tooltip('destroy');
+	$('.tooltip-anchor').tooltip();
+}
+
+//Permet de retirer un champion de la liste en ajax
+function removeChampionFromList(slug)
+{
+	$('#comparison-list-loading').show();
+	//On fait un appel ajax pour demander à ajouter le champion
+	$.ajax({
+		type: 'GET',
+		url:  Routing.generate('champion_handler_comparison_remove_from_compare', {'slug': slug}),
+		dataType: 'json'
+	}).done(function(data){
+		//Si data vaut true
+		if(data[0]){
+			//On retire le champion et son tooltip
+			$('ul#comparison-list li#comparable-'+slug+' a').tooltip('destroy')
+			$('ul#comparison-list li#comparable-'+slug).remove();
+			//On vérifie la taille de la liste
+			var listSize = $('ul#comparison-list li.champion-comparable').size();
+			if( listSize < 1){
+				//On désactive les deux boutons
+				deactivateCleanButton();
+				deactivateCompareButton();
+				//On affiche l indication
+				$('ul#comparison-list li.indication').show();
+			}
+			else if(listSize < 2){
+				deactivateCompareButton();
+			}
+		}
+		$('#comparison-list-loading').hide();
+	}).fail(function(data){console.log('remove fail');
+		console.log(data);
+		$('#comparison-list-loading').hide();
+	});
+	return false;
+}
+
+//Permet de vider la liste de comparaison en ajax
+function cleanList()
+{
+	$('#comparison-list-dropdown').addClass('open');
+	$('#comparison-list-loading').show();
+	//On fait un appel ajax pour demander à ajouter le champion
+	$.ajax({
+		type: 'GET',
+		url:  Routing.generate('champion_handler_comparison_clean_comparison'),
+		dataType: 'json'
+	}).done(function(data){
+		//Si data vaut true
+		if(data[0]){
+			//On retire tous les champions
+			$('ul#comparison-list li.champion-comparable').each(function(){
+				$(this).remove();
+			});
+			//On affiche l indication
+			$('ul#comparison-list li.indication').show();
+			//On désactive les deux boutons
+			deactivateCleanButton();
+			deactivateCompareButton();
+		}
+		$('#comparison-list-loading').hide();
+	}).fail(function(data){console.log('remove fail');
+		$('#comparison-list-loading').hide();
+	});
+	return false;
 }
 
 //Permet de récupérer les messages d erreur du serveur
@@ -152,116 +113,133 @@ function getSuccessMessage()
 function displayMessage(message, type)
 {			
 	//On crée le nouveau message
-	$('#comparison-list-sidebar').after('<div class="alert alert-'+type+'"><button type="button" class="close" data-dismiss="alert">×</button>'+message+'</div>');
+	$('#champion-comparison').before('<div class="alert alert-'+type+'"><button type="button" class="close" data-dismiss="alert">×</button>'+message+'</div>');
 }
 
 //permet d activer le bouton de comparaison de champions
 function activateCompareButton()
 {
 	$('a#btn-compare').removeClass('disabled');
-	$('a#btn-compare').unbind('click').click();
+	$('a#btn-compare').unbind('click');
 }
 
 //Permet d activer le bouton de vidage de la liste des champions
 function activateCleanButton()
 {
 	$('a#btn-clean').removeClass('disabled');
-	$('a#btn-clean').unbind('click').click();
-}
-
-function minimize()
-{
-	var championsComparables = $('#comparison-list ul.nav-list li.champion-comparable');
-	championsComparables.find('span.champion-comparable-name').hide(300);
-	championsComparables.find('a.champion-comparable-remove').hide(300);
-
-	$('#comparison-list ul.nav-list li.indication').hide();
-
-	$('#comparison-list ul.nav-list li.nav-header').hide(300);
-
-	$('#comparison-list a.btn span.btn-text').hide(300);
-
-	$('#comparison-list-sidebar').animate({
-		width: '100px'
-	}, 1000);
-
-	$('#resize-comparison-list').removeClass('minimize');
-	$('#resize-comparison-list').addClass('maximize');
-
-	$('#resize-comparison-list i').removeClass('icon-resize-small');
-	$('#resize-comparison-list i').addClass('icon-resize-full');
-
-	//Maximisation de la liste de comparaison lors du clic sur le bouton de redimentionnement
-	$('#resize-comparison-list').one('click', function(){
-		maximize();
+	$('#btn-clean').on('click', function(){
+		return cleanList();
 	});
 }
-
-function maximize()
+//Permet de désactiver le bouton de vidage de la liste des champions
+function deactivateCleanButton()
 {
-	var championsComparables = $('#comparison-list ul.nav-list li.champion-comparable');
-
-
-	$('#comparison-list-sidebar').animate({
-		width: '241px'
-	}, 1000, function(){
-		championsComparables.find('span.champion-comparable-name').show(300);
-		championsComparables.find('a.champion-comparable-remove').show(300);
-
-		$('#comparison-list ul.nav-list li.nav-header').show(300);
-
-		$('#comparison-list a.btn span.btn-text').show(300);
-	});			
-
-	$('#resize-comparison-list').removeClass('maximize');
-	$('#resize-comparison-list').addClass('minimize');
-
-	$('#resize-comparison-list i').removeClass('icon-resize-full');
-	$('#resize-comparison-list i').addClass('icon-resize-small');
-
-	//Minimisation de la liste de comparaison lors du clic sur le bouton de minimisation
-	$('#resize-comparison-list').one('click', function(){
-		minimize();
-	});
+	var $cleanButton = $('a#btn-clean');
+	$cleanButton.addClass('disabled');
+	$cleanButton.off('click');
+	$cleanButton.on('click', function(){return false;});
 }
-
-function isMaximized()
+//Permet de désactiver le bouton de comparaison
+function deactivateCompareButton()
 {
-	return $('#resize-comparison-list').hasClass('minimize');
+	var $compareBtn = $('a#btn-compare');
+	$compareBtn.addClass('disabled');
+	$compareBtn.off('click');
+	$compareBtn.on('click', function(){return false;});
 }
 
 jQuery(function($) {
 	$('.tooltip-anchor').tooltip();	
-
+	$('#comparison-list-help').popover();
+	
+	$('#btn-clean').click(function(){return cleanList();});
+	
 	//Désactivation des liens désactivés
 	$('a.disabled').click(function(e){e.preventDefault();});
-
-	//Minimisation de la liste de comparaison lors du clic sur le bouton de redimentionnement
-	$('#resize-comparison-list.minimize').one('click', function(){
-		minimize();
-	});
-
-	//Si lors du chargement de la page la fenetre n'est pas assez grande pour contenir la 
-	//version maximisée de la  liste de comparaison
-	if ($(window).width() <= 1550)
-	{
-		//On retire l'évenement de clic affecté
-		$('#resize-comparison-list').off('click');
-		//On minimise la liste de comparaison
-		minimize();
-	}
-
-	//Si on redimentionne la fenetre
-	$(window).resize(function(){
-		//Et que sa largeur devient inférieure ou égale à 1550
-		if ($(window).width() <= 1550)
-		{
-			//On retire l'évenement de clic affecté
-			$('#resize-comparison-list').off('click');
-			//On minimise la liste de comparaison
-			minimize();
+		
+	//Récupération de la liste des champions et de la comparison list
+	var $champions = $('#champion-list'),
+		$comparisonList = $('#comparison-list');
+	
+	//On rends chaque champion draggable
+	$('li.champion', $champions).draggable({
+		helper: 'clone',
+		revert: 'invalid',
+		revertduration: 300,
+		zIndex: 1100,
+		opacity: 1,
+		start: function(){
+			//$('div.main-container').fadeTo('fast', 0.2);
+			$('#comparison-list').css('border', '1px dashed black')
+			$('#comparison-list-dropdown').addClass('open');
+		},
+		stop: function(){
+			$('#comparison-list').css('border', 'none');
+			//$('div.main-container').fadeTo('fast', 1);
 		}
 	});
+	
+	//On rends la comparison list capable d accepter les champions
+	$comparisonList.droppable({
+		accept: '#champion-list li.champion',
+		over: function(){
+			$('#comparison-list').css('border', '1px solid black');
+		},
+		out: function(){
+			$('#comparison-list').css('border', '1px dashed black');
+		},
+		drop: function( event, ui ) {
+			//S'il existe deja un message on l'enleve
+			$('div.container div.alert').remove();
 
-	$('#comparison-list-help').popover();
+			//On affiche l'icone de chargement
+			$('li#comparison-list-loading').show();
+
+			//On récupère le slug du champion concerné
+			var slug = ui.draggable.context.id;
+			
+			//On fait un appel ajax pour demander à ajouter le champion
+			$.ajax({
+				type: 'GET',
+				url:  Routing.generate('champion_handler_comparison_add_to_compare', {'slug': slug}),
+				dataType: 'html'
+			}).done(function(data){
+				//Si data est vide ça veut dire qu'on est confrontés à une erreur
+				if(data == undefined || data == '')
+				{
+					//Il ne faut donc pas afficher de nouveau champion dans la liste mais afficher un message d erreur
+					getErrorMessage();
+				}
+				else
+				{
+					//Sinon on ajoute le champion à la liste
+					appendChampion(data);
+					//Et on affiche le message de succes
+					getSuccessMessage();
+
+					if ($('li.champion-comparable').length >0)
+					{
+						//On active le bouton de vidage
+						activateCleanButton();
+						//On retire le message d'information
+						$('li.indication').hide();
+					}
+					//Si les champions peuvent etre comparés
+					if ($('li.champion-comparable').length >= 2)
+					{
+						//On active le bouton de comparaison
+						activateCompareButton();
+					}
+				}
+				$('#comparison-list-loading').hide();
+			}).fail(function(data){
+				console.log(data);
+				$('#comparison-list-loading').hide();
+			});
+		}
+	});
+	
+	$('a.champion-comparable-remove').on('click', function(){
+		return removeChampionFromList($(this).find('span.slug').html());
+	});
 });

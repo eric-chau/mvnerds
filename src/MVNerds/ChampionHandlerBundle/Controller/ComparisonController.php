@@ -76,7 +76,7 @@ class ComparisonController extends Controller
 		else
 		{
 			// On redirige l'utilisateur vers la liste des champions
-			return $this->redirect($this->generateUrl('champion_handler_comparison_index'));
+			return $this->redirect($this->generateUrl('launch_site_front'));
 		}
 	}
 
@@ -85,7 +85,7 @@ class ComparisonController extends Controller
 	 * 
 	 * @param string $slug le slug du champion à retirer de la comparaison
 	 * 
-	 * @Route("/{slug}/retirer-comparaison", name="champion_handler_comparison_remove_from_compare")
+	 * @Route("/{slug}/retirer-comparaison", name="champion_handler_comparison_remove_from_compare", options={"expose"=true})
 	 */
 	public function removeFromCompareAction($slug)
 	{
@@ -98,9 +98,20 @@ class ComparisonController extends Controller
 
 		//On retire le champion de la liste
 		$comparisonManager->removeChampion($champion);
-
-		// On redirige l'utilisateur vers la liste des utilisateurs
-		return $this->redirect($this->generateUrl('champion_handler_comparison_index'));
+		//TODO try catch pour le remove
+		//On vérifie di la requete est une requete AJAX
+		$isXHR = $this->getRequest()->isXmlHttpRequest();
+		//Si c'est une requete ajax
+		if ($isXHR)
+		{
+			//On renvoie true
+			return new Response(json_encode(array(true)));
+		}
+		else
+		{
+			// On redirige l'utilisateur vers la liste des utilisateurs
+			return $this->redirect($this->generateUrl('launch_site_front'));
+		}
 	}
 
 	/**
@@ -135,13 +146,13 @@ class ComparisonController extends Controller
 			$flashManager->setErrorMessage('Flash.error.not_enough.compare.champions');
 		}
 
-		return $this->redirect($this->generateUrl('champion_handler_comparison_index'));
+		return $this->redirect($this->generateUrl('launch_site_front'));
 	}
 
 	/**
 	 * Permet de vider la liste de comparaison de champions
 	 * 
-	 * @Route("/vider-comparaison", name="champion_handler_comparison_clean_comparison")
+	 * @Route("/vider-comparaison", name="champion_handler_comparison_clean_comparison", options={"expose"=true})
 	 */
 	public function cleanComparisonAction()
 	{
@@ -151,9 +162,20 @@ class ComparisonController extends Controller
 
 		//On vide la liste
 		$comparisonManager->cleanList();
-
-		// On redirige l'utilisateur vers la liste des utilisateurs
-		return $this->redirect($this->generateUrl('champion_handler_front_index'));
+		//TODO try catch pour le clean
+		//On vérifie di la requete est une requete AJAX
+		$isXHR = $this->getRequest()->isXmlHttpRequest();
+		//Si c'est une requete ajax
+		if ($isXHR)
+		{
+			//On renvoie true
+			return new Response(json_encode(array(true)));
+		}
+		else
+		{
+			// On redirige l'utilisateur vers la liste des utilisateurs
+			return $this->redirect($this->generateUrl('launch_site_front'));
+		}
 	}
 
 	/**
@@ -212,7 +234,7 @@ class ComparisonController extends Controller
 		else
 		{
 			//Sinon on redirige vers l index des champions
-			return $this->redirect($this->generateUrl('champion_handler_comparison_index'));
+			return $this->redirect($this->generateUrl('launch_site_front'));
 		}
 	}
 
@@ -232,7 +254,7 @@ class ComparisonController extends Controller
 		else
 		{
 			//Sinon on redirige vers l index des champions
-			return $this->redirect($this->generateUrl('champion_handler_comparison_index'));
+			return $this->redirect($this->generateUrl('launch_site_front'));
 		}
 	}
 

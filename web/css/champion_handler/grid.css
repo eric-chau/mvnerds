@@ -1,0 +1,16 @@
+ul.thumbnails{
+}
+ul.thumbnails li.span1{
+	width: 90px;
+}
+
+a.thumbnail {
+	text-align: center;
+	background-color: white;
+}
+a.thumbnail img{
+	width: 144px;
+}
+a.thumbnail span.champion-name{
+	font-size: 12px;
+}
