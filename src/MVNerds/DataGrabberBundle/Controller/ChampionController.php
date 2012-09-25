@@ -9,9 +9,8 @@ use MVNerds\CoreBundle\Model\Champion;
 use MVNerds\CoreBundle\Model\ChampionQuery;
 use MVNerds\CoreBundle\Model\ChampionPeer;
 use MVNerds\DataGrabberBundle\Form\Type\ChampionGrabberType;
-use MVNerds\CoreBundle\Model\ChampionTag;
 use MVNerds\CoreBundle\Model\TagQuery;
-use MVNerds\CoreBundle\Model\TagPeer;
+use MVNerds\CoreBundle\Model\TagI18nPeer;
 
 /**
  * @Route("/champions")
@@ -105,7 +104,7 @@ class ChampionController extends Controller
 					//Si l'utilisateur demande à récupérer tous les champions qui suivent l'index de départ
 					if ($nbChamp <= 0)
 					{
-						$nbChamp = count($championsLinks);
+						$nbChamp = count($championsLinks) - $startChamp;
 					}
 					
 					//On boucle sur chaque champion pour récupérer le lien associé
@@ -207,7 +206,11 @@ class ChampionController extends Controller
 									$tagLabel = $tagConversion[$tagLabelRaw];
 									
 									//Si le tag est trouvé en base
-									if (( $tag = TagQuery::create()->add(TagPeer::LABEL, $tagLabel)->findOne() ))
+									$tag = TagQuery::create()
+										->joinWith('TagI18n')
+										->add(TagI18nPeer::LABEL, $tagLabel)
+									->findOne();
+									if ($tag)
 									{
 										//On enregistre l'association
 										$championTagManager->addTagToChampion($tag, $champion);

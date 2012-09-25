@@ -17,6 +17,10 @@
 		{{ champion.getBaseMana() }}
 	</div>
 	<div class="span2">
+		{# Ajouter à la liste de comparaison #}
+		<a  draggable="false" href="{{ path('admin_champions_add_to_compare', {'slug': champion.getSlug()}) }}" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Ajouter {{ champion.getName() }} à la liste de comparaison des champions">
+			<i class="icon-resize-small"></i>
+		</a>
 		{# Voir la fiche du champion #}
 		<a  draggable="false" href="{{ path('admin_champions_view', {'slug': champion.getSlug()}) }}" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Voir la fiche de {{ champion.getName() }}">
 			<i class="icon-eye-open"></i>
