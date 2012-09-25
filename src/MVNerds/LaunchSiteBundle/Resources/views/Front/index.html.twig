@@ -22,7 +22,7 @@
 
 		<div class="container main-container">
 			<div class="presentation-container">
-				<h1>Most Valuable Nerds</h1>
+				<img src="{{ asset('/images/launch_site/logo.png') }}" class="logo" />
 
 				<div class="countdown">
 					<span class="launch-date-message">Lancement prévu dans</span> 
@@ -39,8 +39,8 @@
 				<div class="overview-content">
 					<h2 data-content-name="about-us">
 						Qui sommes-nous ? 
-						<span class="show-hide-label" data-toggle-label="Afficher" data-toggle-icon="icon-eye-open">
-							<i class="icon-eye-close"></i> <span class="msg">Masquer</span>
+						<span class="show-hide-label" data-toggle-label="Afficher" data-toggle-icon="icon-eye-open icon-14px">
+							<i class="icon-eye-close icon-14px"></i> <span class="msg">Masquer</span>
 						</span>
 					</h2>
 					
@@ -60,8 +60,8 @@
 				<div class="registration-container">
 					<h2 data-content-name="registration">
 						Je laisse mon e-mail
-						<span class="show-hide-label" data-toggle-label="Afficher" data-toggle-icon="icon-eye-open">
-							<i class="icon-eye-close"></i> <span class="msg">Masquer</span>
+						<span class="show-hide-label" data-toggle-label="Afficher" data-toggle-icon="icon-eye-open icon-14px">
+							<i class="icon-eye-close icon-14px"></i> <span class="msg">Masquer</span>
 						</span>
 					</h2>
 						
@@ -70,17 +70,16 @@
 						ni à communiquer votre e-mail. Notre but est de pouvoir vous tenir informer de l'évolution du site et notamment de son ouverture officielle !
 						</p>
 
-						<form id="leave-email-form" action="{{ path('launch_site_leave_email') }}" method="POST" {{ form_enctype(form) }}>
+						<form id="leave-email-form" action="{{ path('launch_site_front') }}" method="POST" {{ form_enctype(form) }}>
 							<div>
 								{{ form_widget(form.email, { 'attr' : {'placeholder': 'adresse mail', 'autocomplete': 'off'} }) }}
-								<a href="" class="btn btn-inverse disabled submit-btn">
-									<strong>
-										<img src="{{ asset('images/commons/loader16.gif') }}" class="loader hide" /> 
-										<span class="submit-btn-label" 
-												  data-submit-label="C'est parti !" 
-												  data-checking-label="Vérification en cours"
-												  data-check-label="Vérifier la disponibilité">Vérifier la disponibilité</span>
-									</strong>
+								<a href="" class="btn submit-btn">
+									<img src="{{ asset('images/commons/loader16.gif') }}" class="loader hide" /> 
+									<span class="submit-btn-label" 
+										data-submit-label="C'est parti !" 
+										data-checking-label="Vérification en cours"
+										data-used-email-label="L'email renseigné est déjà utilisé"
+										data-check-label="En attente d'un e-mail valide">En attente d'un e-mail valide</span>
 								</a>
 								{{ form_errors(form.email) }}
 								<div class="registration-errors">
@@ -101,4 +100,19 @@
 			{% render 'MVNerdsChampionHandlerBundle:Front:index' %}
 		</div>
 	</div>
+	 
+	{% if registration_success is defined and registration_success %}
+		<div class="modal hide fade">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h3>Modal header</h3>
+			</div>
+			<div class="modal-body">
+				<p>One fine body…</p>
+			</div>
+			<div class="modal-footer">
+				<a href="#" class="btn">Close</a>
+			</div>
+		</div>
+	{% endif %}
 {% endblock %}

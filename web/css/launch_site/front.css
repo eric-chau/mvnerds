@@ -25,6 +25,26 @@ h5.no-margin,
 h6.no-margin {
   margin: 0;
 }
+i {
+  color: black;
+  font-size: 16px;
+  line-height: 1.5em;
+}
+i.icon-white {
+  color: white;
+}
+i.icon-14px {
+  font-size: 14px;
+}
+i.icon-24px {
+  font-size: 24px;
+}
+i.icon-36px {
+  font-size: 36px;
+}
+body {
+  background-image: url('/images/launch_site/background.png');
+}
 div.countdown {
   margin: 50px 0 20px 0;
   padding: 0 20px;
@@ -55,30 +75,25 @@ div.countdown strong {
 }
 div.social-container {
   font-weight: bold;
-  margin: 0 330px 100px 0;
+  margin: 0 324px 70px 0;
   text-align: right;
 }
 div.presentation-container {
   background: rgba(255, 255, 255, 0.9) url('/images/launch_site/zilean_bg.png') no-repeat top right;
+  border: 5px solid #333;
+  border-top: 0;
+  border-bottom: 0;
   margin: 0;
-  padding: 0;
-  padding-top: 50px;
+  padding: 30px 0 0 0;
+}
+div.presentation-container img.logo {
+  padding: 0 20px;
 }
 div.overview-content {
-  background-color: #0096db;
-  padding: 20px;
-}
-div.overview-content h2,
-div.overview-content p {
-  color: white;
+  background-color: rgba(0, 150, 219, 0.9);
 }
 div.registration-container {
-  background-color: #D14836;
-  padding: 20px;
-}
-div.registration-container h2,
-div.registration-container p {
-  color: white;
+  background-color: rgba(209, 72, 54, 0.9);
 }
 div.registration-container form {
   color: white;
@@ -105,25 +120,48 @@ div.registration-container form label {
   line-height: 40px;
   margin-right: 20px;
 }
+div.registration-container form span.submit-btn-label {
+  font-weight: bold;
+}
 div.overview-content,
 div.registration-container {
   margin-bottom: 10px;
+  padding: 20px;
 }
-div.overview-content p:last-child,
-div.registration-container p:last-child {
-  margin: 0px;
+div.overview-content h2,
+div.registration-container h2,
+div.overview-content p,
+div.registration-container p {
+  color: white;
+  margin: 0;
 }
-span.show-hide-label {
+div.overview-content p,
+div.registration-container p {
+  margin-bottom: 1.5em;
+}
+div.overview-content div.content,
+div.registration-container div.content {
+  padding: 21px 0 0 0;
+}
+div.overview-content h2,
+div.registration-container h2 {
   cursor: pointer;
-  color: #333;
+}
+div.overview-content h2:hover span,
+div.registration-container h2:hover span,
+div.overview-content h2:hover i,
+div.registration-container h2:hover i {
+  color: white;
+}
+div.overview-content span.show-hide-label,
+div.registration-container span.show-hide-label {
+  cursor: pointer;
+  color: black;
   display: inline-block;
   float: right;
   font-size: 12px;
   line-height: 40px;
   vertical-align: middle;
-}
-span.show-hide-label:hover {
-  color: white;
 }
 div.registration-errors {
   font-size: 14px;

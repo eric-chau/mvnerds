@@ -12,15 +12,29 @@ use MVNerds\CoreBundle\Form\Type\UserType;
 class FrontController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="launch_site_front")
      */
     public function indexAction()
     {
 		$form = $this->createForm(new UserType());
+		$params = array();		
+		$request = $this->getRequest();
+        if ($request->isMethod('POST')) 
+        {
+            $form->bind($request);
+            if ($form->isValid()) 
+            {
+                $user = $form->getData();
+                // On créé l'utilisateur s'il contient des données valides
+				$this->get('mvnerds.user_manager')->save($user);
+
+                $form = $this->createForm(new UserType());
+            }
+        }
 		
-        return $this->render('MVNerdsLaunchSiteBundle:Front:index.html.twig', array(
-			'form' => $form->createView()
-		));
+		$params['form'] = $form->createView();
+		
+        return $this->render('MVNerdsLaunchSiteBundle:Front:index.html.twig', $params);
     }
 	
 	/**
@@ -33,11 +47,12 @@ class FrontController extends Controller
 			throw new HttpException(500, 'Request must be XmlHttp and POST method!');
 		}
 		
-		if (null == !$request->get('email_to_check', null)) {
+		$email = $request->get('email_to_check', null);
+		if (null == $email) {
 			throw new HttpException(500, 'Missing parameters: `email_to_check`');
 		}
 		
-		return new Response(json_encode($this->get('mvnerds.user_manager')->isEmailAvailable($request)));
+		return new Response(json_encode($this->get('mvnerds.user_manager')->isEmailAvailable($email)));
 	}
 	
 	/**

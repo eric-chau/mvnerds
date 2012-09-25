@@ -5,6 +5,16 @@
 $(document).ready(function()
 {
 	/**
+	 * GESTION DES COOKIES POUR AFFICHER/MASQUER DU CONTENU
+	 */	
+	$('div.presentation-container').find('h2').each(function()
+	{
+		if ($.cookie('display-' + $(this).data('content-name')) == 'true') {
+			$(this).parent().find('div.content').hide();
+		}
+	});
+
+	/**
 	 * GESTION DU COMPTE A REBOUR AVANT LA DATE DE SORTIE
 	 */
 
@@ -51,48 +61,25 @@ $(document).ready(function()
 	 * LISTENER D'EVENEMENT
 	 */
 
-	// Objet jQuery sur tous les liens permettant de masquer un contenu
-	var $showHideLabel = $('span.show-hide-label');
-
-	$showHideLabel.mouseover(function() 
+	$('div.presentation-container h2').click(function()
 	{
-		$(this).find('i').addClass('icon-white');
-	});
-
-	$showHideLabel.mouseout(function() 
-	{
-		$(this).find('i').removeClass('icon-white');
-	});
-
-	$showHideLabel.click(function()
-	{
-		var $icon = $(this).find('i'),
-			$label = $(this).find('span.msg'), 
+		var $this = $(this),
+			$icon = $this.find('i'),
+			$label = $this.find('span.msg'),
+			$span = $this.find('span.show-hide-label'), 
 			tmpIconClass = $icon.attr('class'), 
-			tmpLabel = $label.html(),
-			$h2 = $(this).parent();
+			tmpLabel = $label.html();
 
-		$icon.attr('class', $(this).data('toggle-icon'));
-		$label.html($(this).data('toggle-label'));
+		$icon.attr('class', $span.data('toggle-icon'));
+		$label.html($span.data('toggle-label'));
 
-		$(this).data('toggle-icon', tmpIconClass);
-		$(this).data('toggle-label', tmpLabel);
+		$span.data('toggle-icon', tmpIconClass);
+		$span.data('toggle-label', tmpLabel);
 
-		$(this).parent().parent().find('div.content').slideToggle('slow');
-		$(this).parent().toggleClass('no-margin');
+		$this.parent().find('div.content').slideToggle('slow');
+		$this.toggleClass('no-margin');
 
-		$.cookie('display-' + $h2.data('content-name'), $h2.hasClass('no-margin'), { expires: 30});
-	});
-
-	/**
-	 * GESTION DES COOKIES
-	 */
-
-	$('div.presentation-container').find('h2').each(function()
-	{
-		if ($.cookie('display-' + $(this).data('content-name')) == 'true') {
-			$(this).find('span.show-hide-label').trigger('click');
-		}
+		$.cookie('display-' + $this.data('content-name'), $this.hasClass('no-margin'), { expires: 30});
 	});
 
 	/**
@@ -100,9 +87,14 @@ $(document).ready(function()
 	 */
 
 	var isValidEmail = false,
-		$submitFormButton = $('input[type="email"]#user_email').parent().find('a.btn.submit-btn'),
+		$submitFormButton = $('form a.btn.submit-btn'),
 		$loaderImg = $('img.loader'),
-		$submitBtnLabel = $('span.submit-btn-label');
+		$submitBtnLabel = $('span.submit-btn-label'),
+		$form = $('form#leave-email-form');
+
+	if ($.trim($submitBtnLabel.val()) == '') {
+		$submitFormButton.addClass('disabled');
+	}
 
 	$('a.submit-btn').click(function(event)
 	{
@@ -110,17 +102,8 @@ $(document).ready(function()
 		if ($(this).hasClass('disabled')) {
 			return false;
 		}
-		else {
-			switch ($submitBtnLabel.html()) {
-				case $submitBtnLabel.data('checking-label'):
-					break;
-				case $submitBtnLabel.data('submit-label'):
-					$('form#leave-email-form').submit();
-					break;
-				case $submitBtnLabel.data('check-label'):
-					console.log('Il faut vérifier !');
-					break;
-			}
+		else if ($submitBtnLabel.html() == $submitBtnLabel.data('submit-label')) {
+			$form.submit();
 		}
 	});
 
@@ -129,27 +112,8 @@ $(document).ready(function()
 		var $this = $(this);
 		if (event.which == 13) {
 			event.preventDefault();
-			if (validateEmail($(this).val())) {
-				$loaderImg.show();
-				$submitBtnLabel.html($submitBtnLabel.data('checking-label'));
-				$.ajax({
-					url: Routing.generate('launch_site_check_email'),
-					type: 'POST',
-					dataType: 'json',
-					success: function(response)
-					{
-						$loaderImg.hide();
-						if (response) {
-							$('li.email-already-used').slideToggle();
-							$this.focus();
-						}
-						else {
-							$submitFormButton.toggleClass('btn-inverse');
-							$submitBtnLabel.html($submitBtnLabel.data('submit-label'));
-
-						}
-					}
-				});
+			if ($submitBtnLabel.html() == $submitBtnLabel.data('submit-label')) {
+				$form.submit();
 			}
 		}
 	});
@@ -157,11 +121,40 @@ $(document).ready(function()
 	$('input[type="email"]#user_email').keyup(function(event)
 	{
 		event.preventDefault();
-		if($.trim($(this).val()) != '') {
-			if (validateEmail($(this).val())) {
-				$submitFormButton.removeClass('disabled');
+		if (event.which == 13 || (event.which >= 37 && event.which <= 40)) {
+			return false;
+		}
+
+		var $this = $(this);
+		if($.trim($this.val()) != '') {
+			if (validateEmail($this.val())) {
+				$loaderImg.show();
+				$submitBtnLabel.html($submitBtnLabel.data('checking-label'));
+				$.ajax({
+					url: Routing.generate('launch_site_check_email'),
+					data: {
+						email_to_check: $this.val()
+					},
+					type: 'POST',
+					dataType: 'json',
+					success: function(response)
+					{
+						console.log(response);
+						$loaderImg.hide();
+						if (response) {
+							$submitFormButton.addClass('disabled');
+							$submitBtnLabel.html($submitBtnLabel.data('used-email-label'));
+							$this.focus();
+						}
+						else {
+							$submitBtnLabel.html($submitBtnLabel.data('submit-label'));
+							$submitFormButton.removeClass('disabled');
+						}
+					}
+				});
 			}
 			else {
+				$submitBtnLabel.html($submitBtnLabel.data('check-label'));
 				$submitFormButton.addClass('disabled');
 			}
 		} 
