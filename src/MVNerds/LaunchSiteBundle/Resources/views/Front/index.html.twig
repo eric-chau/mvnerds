@@ -1,0 +1,96 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Bienvenue sur Most Valuable Nerds !{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	 <link rel="stylesheet" href="{{ asset('/css/launch_site/front.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+	 {{ parent() }}
+	 
+	 <script type="text/javascript" src="{{ asset('/js/launch_site/front.js') }}"></script>
+{% endblock %}
+	 
+{% block body %}
+	<div id="wrapper">
+		<div class="span3" id="sidebar">
+			{% block sidebar %}{% endblock %}
+		</div>
+
+		<div class="container main-container">
+			<div class="presentation-container">
+				<h1>Most Valuable Nerds</h1>
+
+				<div class="countdown">
+					<span class="launch-date-message">Lancement prévu dans</span> 
+					<div class="days"></div>
+					<div class="hours"></div>
+					<div class="minutes"></div>
+					<div class="seconds"></div>
+				</div>
+				
+				<div class="social-container">
+					<p> Suivez-nous sur : Twitter - Facebook</p>
+				</div>
+				
+				<div class="overview-content">
+					<h2 data-content-name="about-us">
+						Qui sommes-nous ? 
+						<span class="show-hide-label" data-toggle-label="Afficher" data-toggle-icon="icon-eye-open">
+							<i class="icon-eye-close"></i> <span class="msg">Masquer</span>
+						</span>
+					</h2>
+					<p>The sleepy, non-descript village of Kalamanda, located near the northern entrance to Mogron Pass, now finds itself wide awake 
+					as the leading lady on the world stage. The village's mayor, Anson Ridley, reported this week that a local survey team has 
+					uncovered a massive deposit of gold and precious gems within the village's sphere of influence. Furthermore, two nexuses of 
+					considerable magic potency have been discovered alongside the resource deposits.</p>
+							
+					<p>Before the discovery, Kalamanda was only moderately known as a decent place to fish for Valoran trout and not much else. 
+					The village now finds itself as the destination point for adventurers and prospectors seeking fame and riches beyond their 
+					wildest dreams. The town council has already set up a temporary camp located near the foothills that lead to Mogron Pass and the 
+					Great Barrier in anticipation of the great influx of individuals hoping to trade a hard day's work for handsome rewards.</p>
+				</div>
+				
+				<div class="registration-container">
+					<h2 data-content-name="registration">
+						Je laisse mon e-mail
+						<span class="show-hide-label" data-toggle-label="Afficher" data-toggle-icon="icon-eye-open">
+							<i class="icon-eye-close"></i> <span class="msg">Masquer</span>
+						</span>
+					</h2>
+					<p>Laisser votre e-mail vous offre plusieurs avatanges et <strong>zéro inconvénient</strong> ! Nous n'allons pas nous amuser à vous spammer
+					ni à communiquer votre e-mail. Notre but est de pouvoir vous tenir informer de l'évolution du site et notamment de son ouverture officielle !
+					</p>
+					
+					<form id="leave-email-form" action="{{ path('launch_site_leave_email') }}" method="POST" {{ form_enctype(form) }}>
+						<div>
+							{{ form_widget(form.email, { 'attr' : {'placeholder': 'adresse mail', 'autocomplete': 'off'} }) }}
+							<a href="" class="btn btn-inverse disabled submit-btn">
+								<strong>
+									<img src="{{ asset('images/commons/loader16.gif') }}" class="loader hide" /> 
+									<span class="submit-btn-label" 
+											  data-submit-label="C'est parti !" 
+											  data-checking-label="Vérification en cours"
+											  data-check-label="Vérifier la disponibilité">Vérifier la disponibilité</span>
+								</strong>
+							</a>
+							{{ form_errors(form.email) }}
+							<div class="registration-errors">
+								<ul>
+									<li class="email-already-used hide">L'email que vous avez renseigné est déjà utilisé, c'est embêtant !</li>
+								</ul>
+							</div>
+						</div>
+						{{ form_rest(form) }}
+					</form>
+					
+					<blockquote>Il se murmure qu'il y aura une (ou des, qui sait ?) surprise(s) pour tous ceux qui ont laissé leur e-mail... mais chut hein, je ne vous 
+					ai rien dit :P</blockquote>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

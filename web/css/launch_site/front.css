@@ -1,0 +1,142 @@
+p {
+  color: #222;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 14px;
+  line-height: 1.5em;
+  margin: 0;
+  margin-bottom: 24px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #222;
+  font-family: 'Trebuchet MS', sans-serif;
+  margin: 0;
+  margin-bottom: 21px;
+}
+h1.no-margin,
+h2.no-margin,
+h3.no-margin,
+h4.no-margin,
+h5.no-margin,
+h6.no-margin {
+  margin: 0;
+}
+div.countdown {
+  margin: 50px 0 20px 0;
+  padding: 0 20px;
+}
+div.countdown div {
+  border: 1px solid #ccc;
+  color: #222;
+  display: inline-block;
+  font-size: 18px;
+  line-height: 1.4em;
+  padding: 10px 0 5px 0;
+  text-align: center;
+  width: 110px;
+  margin: 0 5px;
+}
+div.countdown span.launch-date-message {
+  display: inline-block;
+  float: left;
+  font-weight: bold;
+  line-height: 72px;
+  margin-right: 10px;
+}
+div.countdown strong {
+  color: #d14836;
+  display: block;
+  font-size: 36px !important;
+  margin-bottom: 5px;
+}
+div.social-container {
+  font-weight: bold;
+  margin: 0 330px 100px 0;
+  text-align: right;
+}
+div.presentation-container {
+  background: rgba(255, 255, 255, 0.9) url('/images/launch_site/zilean_bg.png') no-repeat top right;
+  margin: 0;
+  padding: 0;
+  padding-top: 50px;
+}
+div.overview-content {
+  background-color: #0096db;
+  padding: 20px;
+}
+div.overview-content h2,
+div.overview-content p {
+  color: white;
+}
+div.registration-container {
+  background-color: #D14836;
+  padding: 20px;
+}
+div.registration-container h2,
+div.registration-container p {
+  color: white;
+}
+div.registration-container form {
+  color: white;
+  margin: 0;
+  margin-bottom: 24px;
+  text-align: center;
+}
+div.registration-container form input[type="email"],
+div.registration-container form label {
+  margin: 0;
+  margin-right: 20px;
+}
+div.registration-container form input[type="email"] {
+  font-family: 'Trebuchet MS';
+  font-size: 16px;
+  height: 30px;
+  line-height: 1.4em;
+  padding: 0 5px;
+  width: 30%;
+}
+div.registration-container form label {
+  display: inline-block;
+  font-weight: bold;
+  line-height: 40px;
+  margin-right: 20px;
+}
+div.overview-content,
+div.registration-container {
+  margin-bottom: 10px;
+}
+div.overview-content p:last-child,
+div.registration-container p:last-child {
+  margin: 0px;
+}
+span.show-hide-label {
+  cursor: pointer;
+  color: #333;
+  display: inline-block;
+  float: right;
+  font-size: 12px;
+  line-height: 40px;
+  vertical-align: middle;
+}
+span.show-hide-label:hover {
+  color: white;
+}
+div.registration-errors {
+  font-size: 14px;
+  line-height: 1.5em;
+}
+div.registration-errors ul {
+  font-family: 'Ubuntu';
+  margin: auto;
+  margin-top: 15px;
+  width: 60%;
+}
+div.registration-errors ul li {
+  line-height: 1.5em;
+  list-style-position: inside;
+  list-style-type: square;
+}
