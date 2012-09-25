@@ -22,3 +22,10 @@ table#comparison-table tbody tr td img.comparison-champion{
 table#comparison-table tbody tr td img.base-champion{
 	border: 3px solid black;
 }
+
+div.action-buttons{
+	margin-bottom: 15px;
+}
+div.data-scrollable{
+	position:relative;
+}

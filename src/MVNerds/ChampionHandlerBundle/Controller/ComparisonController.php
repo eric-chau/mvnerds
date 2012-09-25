@@ -117,7 +117,7 @@ class ComparisonController extends Controller
 	/**
 	 * Envoie vers la page de comparaison des champions
 	 * 
-	 * @Route("/comparer", name="champion_handler_comparison_compare")
+	 * @Route("/comparer", name="champion_handler_comparison_compare", options={"expose"=true})
 	 */
 	public function compareAction()
 	{
