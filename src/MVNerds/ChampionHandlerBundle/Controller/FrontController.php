@@ -25,7 +25,7 @@ class FrontController extends Controller
 	 * Permet d'afficher le module de comparaison à savoir la liste des champions avec le filtre 
 	 * ainsi que la liste des champions à comparer via le front controller du launch site bundle
 	 *
-	 * @Route("/comparaison-champion", name="champion_handler_front_champion_comparison")
+	 * @Route("/comparaison-champion", name="champion_handler_front_champion_comparison", options={"expose"=true})
 	 */
 	public function championComparisonAction()
 	{		
