@@ -78,9 +78,9 @@ $(document).ready(function()
 		$(this).data('toggle-icon', tmpIconClass);
 		$(this).data('toggle-label', tmpLabel);
 
-		$(this).parent().parent().find('p, form').slideToggle('slow');
+		$(this).parent().parent().find('div.content').slideToggle('slow');
 		$(this).parent().toggleClass('no-margin');
-		
+
 		$.cookie('display-' + $h2.data('content-name'), $h2.hasClass('no-margin'), { expires: 30});
 	});
 
