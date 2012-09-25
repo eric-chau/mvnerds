@@ -26,7 +26,7 @@ class ComparisonController extends Controller
 	 * 
 	 * @param string $slug le slug du champion à ajouter à la comparaison
 	 * 
-	 * @Route("/{slug}/ajouter-comparaison", name="champion_handler_comparison_add_to_compare")
+	 * @Route("/{slug}/ajouter-comparaison", name="champion_handler_comparison_add_to_compare", options={"expose"=true})
 	 */
 	public function addToCompareAction($slug)
 	{
@@ -153,7 +153,7 @@ class ComparisonController extends Controller
 		$comparisonManager->cleanList();
 
 		// On redirige l'utilisateur vers la liste des utilisateurs
-		return $this->redirect($this->generateUrl('champion_handler_comparison_index'));
+		return $this->redirect($this->generateUrl('champion_handler_front_index'));
 	}
 
 	/**
@@ -199,7 +199,7 @@ class ComparisonController extends Controller
 	/**
 	 * Permet de réupérer les messages d'erreur du flash manager de manière asynchrone
 	 * 
-	 * @Route("/recup-message-erreur", name="champion_handler_comparison_get_error_message")
+	 * @Route("/recup-message-erreur", name="champion_handler_comparison_get_error_message", options={"expose"=true})
 	 */
 	public function getErrorMessageAction()
 	{
@@ -219,7 +219,7 @@ class ComparisonController extends Controller
 	/**
 	 * Permet de réupérer les messages de succes du flash manager de manière asynchrone
 	 * 
-	 * @Route("/recup-message-succes", name="champion_handler_comparison_get_success_message")
+	 * @Route("/recup-message-succes", name="champion_handler_comparison_get_success_message", options={"expose"=true})
 	 */
 	public function getSuccessMessageAction()
 	{
