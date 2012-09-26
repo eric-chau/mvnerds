@@ -51,7 +51,8 @@ div.countdown {
 	padding: 0 20px;
 
 	div {
-		border: 1px solid #ccc;
+		background-color: rgba(255,255,255, 0.4);
+		border: 1px solid black;
 		color: #222;
 		display: inline-block;
 		font-size: 18px;
@@ -86,10 +87,9 @@ div.social-container {
 
 div.presentation-container {
 	background: rgba(255,255,255,0.9) url('/images/launch_site/zilean_bg.png') no-repeat top right;
-	border: 5px solid #333;
-	border-top: 0;
-	border-bottom: 0;
-	margin: 0;
+	border: 4px solid rgba(0,0,0,1);
+	.border-radius(5px);
+	margin: 10px 0 0 0;
 	padding: 0;
 
 	img.logo {
@@ -97,7 +97,7 @@ div.presentation-container {
 	}
 }
 
-div.overview-content {
+div.overview-container {
 	background-color: rgba(0,150,219,1);
 }
 
@@ -141,7 +141,27 @@ div.registration-container {
 	}
 }
 
-div.overview-content, div.registration-container {
+div.help-container {
+	background-color: #759e1a;
+}
+
+div.champions-handler-container {
+	background-color: black;
+
+	h2 {
+		span, i {
+			color: #666;
+		}
+
+		&:hover {
+			span, i {
+				color: white;
+			}
+		}
+	}
+}
+
+div.overview-container, div.registration-container, div.help-container, div.champions-handler-container {
 	margin-bottom: 10px;
 	padding: 20px;
 
@@ -230,4 +250,9 @@ div#leave-email-success-modal {
 		background-color: #eee;
 		.border-bottom-radius(3px);
 	}
+}
+
+div.footer-container {
+	background-color: black;
+	min-height: 200px;
 }

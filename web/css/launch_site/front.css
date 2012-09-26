@@ -77,7 +77,8 @@ div.countdown {
   padding: 0 20px;
 }
 div.countdown div {
-  border: 1px solid #ccc;
+  background-color: rgba(255, 255, 255, 0.4);
+  border: 1px solid black;
   color: #222;
   display: inline-block;
   font-size: 18px;
@@ -107,16 +108,17 @@ div.social-container {
 }
 div.presentation-container {
   background: rgba(255, 255, 255, 0.9) url('/images/launch_site/zilean_bg.png') no-repeat top right;
-  border: 5px solid #333;
-  border-top: 0;
-  border-bottom: 0;
-  margin: 0;
+  border: 4px solid #000000;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin: 10px 0 0 0;
   padding: 0;
 }
 div.presentation-container img.logo {
   padding: 0 20px;
 }
-div.overview-content {
+div.overview-container {
   background-color: #0096db;
 }
 div.registration-container {
@@ -153,42 +155,76 @@ div.registration-container form span.submit-btn-label {
 div.registration-container p.secret-msg {
   font-style: italic;
 }
-div.overview-content,
-div.registration-container {
+div.help-container {
+  background-color: #759e1a;
+}
+div.champions-handler-container {
+  background-color: black;
+}
+div.champions-handler-container h2 span,
+div.champions-handler-container h2 i {
+  color: #666;
+}
+div.champions-handler-container h2:hover span,
+div.champions-handler-container h2:hover i {
+  color: white;
+}
+div.overview-container,
+div.registration-container,
+div.help-container,
+div.champions-handler-container {
   margin-bottom: 10px;
   padding: 20px;
 }
-div.overview-content h2,
+div.overview-container h2,
 div.registration-container h2,
-div.overview-content p,
-div.registration-container p {
+div.help-container h2,
+div.champions-handler-container h2,
+div.overview-container p,
+div.registration-container p,
+div.help-container p,
+div.champions-handler-container p {
   color: white;
   margin: 0;
 }
-div.overview-content p,
-div.registration-container p {
+div.overview-container p,
+div.registration-container p,
+div.help-container p,
+div.champions-handler-container p {
   margin-bottom: 1.5em;
 }
-div.overview-content p:last-child,
-div.registration-container p:last-child {
+div.overview-container p:last-child,
+div.registration-container p:last-child,
+div.help-container p:last-child,
+div.champions-handler-container p:last-child {
   margin-bottom: 0.5em;
 }
-div.overview-content div.content,
-div.registration-container div.content {
+div.overview-container div.content,
+div.registration-container div.content,
+div.help-container div.content,
+div.champions-handler-container div.content {
   padding: 21px 0 0 0;
 }
-div.overview-content h2,
-div.registration-container h2 {
+div.overview-container h2,
+div.registration-container h2,
+div.help-container h2,
+div.champions-handler-container h2 {
   cursor: pointer;
 }
-div.overview-content h2:hover span,
+div.overview-container h2:hover span,
 div.registration-container h2:hover span,
-div.overview-content h2:hover i,
-div.registration-container h2:hover i {
+div.help-container h2:hover span,
+div.champions-handler-container h2:hover span,
+div.overview-container h2:hover i,
+div.registration-container h2:hover i,
+div.help-container h2:hover i,
+div.champions-handler-container h2:hover i {
   color: white;
 }
-div.overview-content span.show-hide-label,
-div.registration-container span.show-hide-label {
+div.overview-container span.show-hide-label,
+div.registration-container span.show-hide-label,
+div.help-container span.show-hide-label,
+div.champions-handler-container span.show-hide-label {
   cursor: pointer;
   color: black;
   display: inline-block;
@@ -244,4 +280,8 @@ div#leave-email-success-modal div.modal-footer {
   -webkit-border-bottom-left-radius: 3px;
   -moz-border-radius-bottomleft: 3px;
   border-bottom-left-radius: 3px;
+}
+div.footer-container {
+  background-color: black;
+  min-height: 200px;
 }

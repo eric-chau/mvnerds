@@ -58,7 +58,7 @@
 					<p> Suivez-nous sur : Twitter - Facebook</p>
 				</div>
 				
-				<div class="overview-content">
+				<div class="overview-container">
 					<h2 data-content-name="about-us">
 						Qui sommes-nous ? 
 						<span class="show-hide-label" data-toggle-label="Masquer" data-toggle-icon="icon-eye-open icon-14px">
@@ -100,9 +100,56 @@
 						ai rien dit :P</p>
 					</div>
 				</div>
-			</div>
 				
-			{% render 'MVNerdsChampionHandlerBundle:Front:championComparison' %}
+				<div class="help-container">
+					<h2 data-content-name="help">
+						Visite guidée
+						<span class="show-hide-label" data-toggle-label="Masquer" data-toggle-icon="icon-eye-open icon-14px">
+							<i class="icon-eye-close icon-14px"></i> <span class="msg">Afficher</span>
+						</span>
+					</h2>
+						
+					<div class="content hide">
+						<p>
+							Pour être sûr que vous ne ratiez rien, nous vous avons concoté une visite guidée sur notre page de présentation ! Vous pourrez ainsi profiter au mieux
+							des fonctionnalités déjà présentes sur le site. N'hésitez plus, faisons le tour ensemble !
+							
+						</p>
+						
+						<div>
+							<button class="btn btn-large"><strong>Commencer la visite</strong></button>
+						</div>
+					</div>
+				</div>
+				
+				<div class="champions-handler-container">
+					<h2 data-content-name="champion-handler">
+						Module des champions (Bêta)
+						<span class="show-hide-label" data-toggle-label="Masquer" data-toggle-icon="icon-eye-open icon-14px">
+							<i class="icon-eye-close icon-14px"></i> <span class="msg">Afficher</span>
+						</span>
+					</h2>
+						
+					<div class="content hide">
+						<p>
+							Le premier module que nous avons décidé de vous présenter est le module des champions. Vous pouvez vous amusez à les trier selon un large choix de 
+							filtre à votre disposition. Vous pouvez les combinez comme bon vous semble. A consommer sans modération donc !<br />
+							Ce n'est pas tout ! Vous pouvez également les comparer entre eux de manière simple et intuitive. Il vous faudra maintenant quelques clics seulement
+							pour connaître le <em>Carry AD</em> qui a la plus grande portée de tir ou encore quel est le <em>Jungler</em> qui a le plus de point de vie au niveau 6
+							(pourquoi pas ? ^^)
+						</p>
+						
+						<p>
+							Nous ne manquerons pas de venir étoffer un peu plus les fonctionnalités du module.
+						</p>
+					</div>
+				</div>
+				
+				{% render 'MVNerdsChampionHandlerBundle:Front:championComparison' %}
+				
+				<div class="footer-container">
+				</div>
+			</div>
 		</div>
 			
 		<div class="navbar navbar-fixed-bottom" id="actionbar">
