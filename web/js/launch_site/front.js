@@ -46,57 +46,45 @@ $(document).ready(function()
 		setTimeout(updateCountDown, 1000);
 	}
 
+	/**
+	 * GESTION DES PRÉFÉRENCES UTILISATEURS POUR AFFICHER/MASQUER DU CONTENU
+	 */	
+	$('div.presentation-container').find('h2').each(function()
+	{
+		var value = getItemFromLS('display-' + $(this).data('content-name'));
+		if (value == 'true' || value == undefined) {
+			toggleContentDisplay($(this));
+		}
+	});
+
+	/**
+	 * ON CHANGE LE LABEL 'LAISSER MON E-MAIL' EN MESSAGE DE REMERCIEMENT SI L'UTILISATEUR A DÉJA LAISSÉ LE SIEN
+	 */
+	$registrationH2 = $('div.registration-container h2');
+	if (getItemFromLS('already-leave-email') == 'true') 
+	{
+		$registrationH2.find('span.h2-msg').html($registrationH2.data('success-label'));
+	}
 
 	/**
 	 * LISTENER D'EVENEMENT
 	 */
 
-	$('div.presentation-container h2').click(function()
+	// Écoute sur le clic d'un titre h2 pour masquer ou afficher le contenu (seulement les h2 contenu dans la div.presentation-container)
+	$('div.presentation-container h2').on('click', function()
 	{
-		var $this = $(this),
-			$icon = $this.find('i'),
-			$label = $this.find('span.msg'),
-			$span = $this.find('span.show-hide-label'), 
-			tmpIconClass = $icon.attr('class'), 
-			tmpLabel = $label.html();
-
-		$icon.attr('class', $span.data('toggle-icon'));
-		$label.html($span.data('toggle-label'));
-
-		$span.data('toggle-icon', tmpIconClass);
-		$span.data('toggle-label', tmpLabel);
-
-		$this.parent().find('div.content').slideToggle('slow');
-		$this.toggleClass('no-margin');
-
-		$.cookie('display-' + $this.data('content-name'), $this.hasClass('no-margin'));
-	});
-
-	/**
-	 * GESTION DES COOKIES POUR AFFICHER/MASQUER DU CONTENU
-	 */	
-	$('div.presentation-container').find('h2').each(function()
-	{
-		if ($.cookie('display-' + $(this).data('content-name')) == 'true') {
-			$(this).trigger('click');
-		}
+		toggleContentDisplay($(this));
 	});
 
 	/**
 	 * GESTION DU DÉPOT D'EMAIL
 	 */
 
-	var isValidEmail = false,
-		$submitFormButton = $('form a.btn.submit-btn'),
-		$loaderImg = $('img.loader'),
-		$submitBtnLabel = $('span.submit-btn-label'),
-		$form = $('form#leave-email-form');
+	// variable qui contient l'objet jQuery pour sélectionner le container du formulaire qui permet à l'utilisateur de laisser son e-mail
+	var $leaveEmailFormContainer = $('div#leave-email-form-container');
 
-	if ($.trim($submitBtnLabel.val()) == '') {
-		$submitFormButton.addClass('disabled');
-	}
-
-	$('a.submit-btn').click(function(event)
+	// Écoute du clic sur le bouton de soumission du formulaire
+	$leaveEmailFormContainer.on('click', 'a.submit-btn', function(event)
 	{
 		event.preventDefault();
 		if ($(this).hasClass('disabled')) {
@@ -107,7 +95,8 @@ $(document).ready(function()
 		}
 	});
 
-	$('input[type="email"]#user_email').keypress(function(event)
+	// Écoute de chaque pression sur le clavier lorsque le focus est sur le champ de texte d'ajout d'e-mail
+	$leaveEmailFormContainer.on('keypress', 'input[type="email"]#user_email', function(event)
 	{
 		var $this = $(this);
 		if (event.which == 13) {
@@ -118,9 +107,12 @@ $(document).ready(function()
 		}
 	});
 
-	$('input[type="email"]#user_email').keyup(function(event)
+	// Écoute de chaque pression sur le clavier lorsque le focus est sur le champ de texte d'ajout d'e-mail
+	$leaveEmailFormContainer.on('keyup', 'input[type="email"]#user_email', function(event)
 	{
 		event.preventDefault();
+		// Si l'utilisateur appuie sur les touches directionnelles, cela ne doit pas engendré de vérification, ni pour la touche entrée qui
+		// bénéficie d'un traitement spécial
 		if (event.which == 13 || (event.which >= 37 && event.which <= 40)) {
 			return false;
 		}
@@ -139,7 +131,6 @@ $(document).ready(function()
 					dataType: 'json',
 					success: function(response)
 					{
-						console.log(response);
 						$loaderImg.hide();
 						if (response) {
 							$submitFormButton.addClass('disabled');
@@ -159,4 +150,48 @@ $(document).ready(function()
 			}
 		} 
 	});
+
+	// Écoute de la soumission du formulaire de dépôt d'e-mail pour soumettre le formulaire en AJAX
+	$leaveEmailFormContainer.on('submit', 'form#leave-email-form', function(event) {
+		event.preventDefault();
+		$(this).ajaxSubmit({
+			target: 'div#leave-email-form-container',
+			success: function(response)
+			{
+				$('div#leave-email-form-container').on('hide', 'div#leave-email-success-modal', function()
+				{
+					toggleContentDisplay($registrationH2);
+					$registrationH2.find('span.h2-msg').html($registrationH2.data('success-label'));
+				});
+
+				saveItemInLS('already-leave-email', true);
+			}
+		});
+	});
+
+	/**
+	 * Permet d'afficher ou de masquer le contenu d'une div XXX-container de la div.presentation-container; toggle également le label
+	 * et l'icône des spans 
+	 *
+	 * @param jQuery<Object> $this correspond à un objet jQuery qui représente un h2 de la div.presentation-container
+	 */
+	function toggleContentDisplay($this)
+	{
+		var $icon = $this.find('i'),
+			$label = $this.find('span.msg'),
+			$span = $this.find('span.show-hide-label'), 
+			tmpIconClass = $icon.attr('class'), 
+			tmpLabel = $label.html();
+
+		$icon.attr('class', $span.data('toggle-icon'));
+		$label.html($span.data('toggle-label'));
+
+		$span.data('toggle-icon', tmpIconClass);
+		$span.data('toggle-label', tmpLabel);
+
+		$this.parent().find('div.content').slideToggle('slow');
+		$this.toggleClass('no-margin');
+
+		saveItemInLS('display-' + $this.data('content-name'), $this.hasClass('no-margin'));
+	}
 });

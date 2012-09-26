@@ -1,3 +1,30 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 p {
   color: #222;
   font-family: 'Ubuntu', sans-serif;
@@ -123,6 +150,9 @@ div.registration-container form label {
 div.registration-container form span.submit-btn-label {
   font-weight: bold;
 }
+div.registration-container p.secret-msg {
+  font-style: italic;
+}
 div.overview-content,
 div.registration-container {
   margin-bottom: 10px;
@@ -138,6 +168,10 @@ div.registration-container p {
 div.overview-content p,
 div.registration-container p {
   margin-bottom: 1.5em;
+}
+div.overview-content p:last-child,
+div.registration-container p:last-child {
+  margin-bottom: 0.5em;
 }
 div.overview-content div.content,
 div.registration-container div.content {
@@ -177,4 +211,37 @@ div.registration-errors ul li {
   line-height: 1.5em;
   list-style-position: inside;
   list-style-type: square;
+}
+div#leave-email-success-modal.modal {
+  left: 43%;
+  width: 800px;
+}
+div#leave-email-success-modal div.modal-header {
+  background-color: #759e1a;
+  -webkit-border-top-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  border-top-right-radius: 3px;
+  -webkit-border-top-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  border-top-left-radius: 3px;
+}
+div#leave-email-success-modal div.modal-body {
+  background-color: #eee;
+  max-height: 600px;
+}
+div#leave-email-success-modal div.modal-body p {
+  color: #333;
+}
+div#leave-email-success-modal div.modal-body img {
+  float: right;
+  margin-left: 20px;
+}
+div#leave-email-success-modal div.modal-footer {
+  background-color: #eee;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-bottom-left-radius: 3px;
 }

@@ -12,34 +12,30 @@ use MVNerds\CoreBundle\Form\Type\UserType;
 class FrontController extends Controller
 {
     /**
+	 * Affiche la page d'accueil du site de présentation
+	 * 
      * @Route("/", name="launch_site_front")
      */
     public function indexAction()
     {
-		$form = $this->createForm(new UserType());
-		$params = array();		
+		$form = $this->createForm(new UserType());	
 		$request = $this->getRequest();
         if ($request->isMethod('POST')) 
         {
             $form->bind($request);
-            if ($form->isValid()) 
-            {
-                $user = $form->getData();
-                // On créé l'utilisateur s'il contient des données valides
-				$this->get('mvnerds.user_manager')->save($user);
-
-                $form = $this->createForm(new UserType());
-				$params['registration_success'] = true;
-            }
         }
 		
-		$params['form'] = $form->createView();
-		
-        return $this->render('MVNerdsLaunchSiteBundle:Front:index.html.twig', $params);
+        return $this->render('MVNerdsLaunchSiteBundle:Front:index.html.twig', array(
+			'form' => $form->createView()
+		));
     }
 	
 	/**
+	 * Action qui permet de vérifier si un e-mail est déjà utilisé ou non
+	 * 
 	 * @Route("/verifier-adresse-mail", name="launch_site_check_email", options={"expose"=true})
+	 * 
+	 * @return json retourne true si l'e-mail est libre, false sinon (réponse au format JSON)
 	 */
 	public function checkEmailAvailabilityAction()
 	{
@@ -57,32 +53,44 @@ class FrontController extends Controller
 	}
 	
 	/**
+	 * Action accessible seulement par AJAX !
+	 * Action qui permet d'enregistrer un dépôt de mail si ce dernier satisfait au contrainte de validation
+	 * 
 	 * @Route("/laisser-mon-email", name="launch_site_leave_email")
 	 */
-	public function createUserAction()
+	public function leaveMyEmailAction()
 	{
+		$request = $this->getRequest();
+		if (!$request->isXmlHttpRequest()) {
+			throw new HttpException(500, 'Cette méthode n\'est accessible qu\'en AJAX !');
+		} 
+		
+		$isSuccessAction = false;
+		$email = '';
 		$form = $this->createForm(new UserType());
 
-        $request = $this->getRequest();
         if ($request->isMethod('POST')) 
         {
             $form->bind($request);
             if ($form->isValid()) 
             {
                 $user = $form->getData();
-                // On créé l'utilisateur s'il contient des données valides
+                // On sauvegarde l'utilisateur
 				$this->get('mvnerds.user_manager')->save($user);
-
-                // Ajout d'un message de flash de succès
-                $this->get('mvnerds.flash_manager')->setSuccessMessage('Flash.success.add.user');
+				
+				$isSuccessAction = true;
+				$email = $user->getEmail();
+				$form = $this->createForm(new UserType());
             }
         }
 		else {
 			throw new HttpException(500, 'La méthode de la requête doit être en POST !');
 		}
 
-        return $this->render('MVNerdsLaunchSiteBundle:Front:index.html.twig', array(
-            'form' => $form->createView()
+        return $this->render('MVNerdsLaunchSiteBundle:Front:leave_email_form.html.twig', array(
+            'form'					=> $form->createView(),
+			'is_success_action'		=> $isSuccessAction,
+			'email'					=> $email
         ));
 	}
 }

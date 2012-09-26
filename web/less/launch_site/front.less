@@ -1,3 +1,5 @@
+@import '../bootstrap/mixins.less';
+
 p {
 	color: #222;
 	font-family: 'Ubuntu', sans-serif;
@@ -133,6 +135,10 @@ div.registration-container {
 			font-weight: bold;
 		}
 	}
+
+	p.secret-msg {
+		font-style: italic;
+	}
 }
 
 div.overview-content, div.registration-container {
@@ -146,6 +152,10 @@ div.overview-content, div.registration-container {
 
 	p {
 		margin-bottom: 1.5em;
+	}
+
+	p:last-child {
+		margin-bottom: 0.5em;
 	} 
 
 	div.content {
@@ -188,5 +198,36 @@ div.registration-errors {
 			list-style-position: inside;
 			list-style-type: square;
 		}
+	}
+}
+
+div#leave-email-success-modal {
+	&.modal {
+		left: 43%;
+		width: 800px;
+	}
+
+	div.modal-header {
+		background-color: #759e1a;
+		.border-top-radius(3px);
+	}
+
+	div.modal-body {
+		background-color: #eee;
+		max-height: 600px;
+
+		p {
+			color: #333;
+		}
+
+		img {
+			float: right;
+			margin-left: 20px;
+		}
+	}
+
+	div.modal-footer {
+		background-color: #eee;
+		.border-bottom-radius(3px);
 	}
 }
