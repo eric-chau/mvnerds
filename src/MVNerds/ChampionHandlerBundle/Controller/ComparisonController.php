@@ -96,11 +96,32 @@ class ComparisonController extends Controller
 		/* @var $comparisonManager \MVNerds\CoreBundle\ChampionComparison\ChampionComparisonManager */
 		$comparisonManager = $this->get('mvnerds.champion_comparison_manager');
 
-		//On retire le champion de la liste
-		$comparisonManager->removeChampion($champion);
-		//TODO try catch pour le remove
+		//Récupération du flashManager
+		/* @var $flahManager MVNerds\CoreBundle\Flash\FlashManager */
+		$flashManager = $this->get('mvnerds.flash_manager');
+		
 		//On vérifie di la requete est une requete AJAX
 		$isXHR = $this->getRequest()->isXmlHttpRequest();
+		
+		//On essaue de retirer le champion de la liste
+		try{
+			$comparisonManager->removeChampion($champion);
+		}
+		catch(\Exception $e){
+			$flashManager->setErrorMessage($e->getMessage());
+			if ($isXHR)
+			{
+				//On renvoie false
+				return new Response(json_encode(array(false)));
+			}
+			else
+			{
+				// On redirige l'utilisateur vers la liste des utilisateurs
+				return $this->redirect($this->generateUrl('launch_site_front'));
+			}
+		}
+		$flashManager->setSuccessMessage('Flash.success.remove_from_compare.champions');
+		
 		//Si c'est une requete ajax
 		if ($isXHR)
 		{
@@ -162,7 +183,7 @@ class ComparisonController extends Controller
 
 		//On vide la liste
 		$comparisonManager->cleanList();
-		//TODO try catch pour le clean
+		
 		//On vérifie di la requete est une requete AJAX
 		$isXHR = $this->getRequest()->isXmlHttpRequest();
 		//Si c'est une requete ajax

@@ -264,6 +264,8 @@ class ChampionComparisonManager
 	 * Permet de retirer un champion de la liste de comparaison
 	 * 
 	 * @param \MVNerds\CoreBundle\Model\Champion $champion le champion à retirer de la liste
+	 * 
+	 * @throws InvalidArgumentException si la champion n'est pas dans la liste de comparaison
 	 */
 	public function removeChampion(Champion $champion)
 	{
@@ -283,12 +285,10 @@ class ChampionComparisonManager
 			{
 				$this->cleanReferenceChampion();
 			}
-			
-			$this->flashManager->setSuccessMessage('Flash.success.remove_from_compare.champions');
 		}
 		else
 		{
-			$this->flashManager->setErrorMessage('Le champion ' . $champion->getSlug() . ' n\'est pas dans la liste de comparaison');
+			throw new InvalidArgumentException('Le champion ' . $champion->getSlug() . ' n\'est pas dans la liste de comparaison');
 		}
 	}
 	

@@ -1,34 +1,37 @@
-function paginateContent(link){
-	var container = $('#champion-comparison');	
-
-	var href = link.href;
-	
-	var pos = link.rel == 'next' ? '-150%' : '150%';
-	
-	container.find('div.data-scrollable').animate({
-		left: pos,
-		opacity: 0
-	}, 'slow', function(){
-		$.get(
-			href,
-			{format: 'html' },
-			function(data){
-				container.html(data);
-				 $('.data-pagination').off('click');
-				 $('.data-pagination').on('click', function(){
-					paginateContent(this);
-					return false;
-				});
-			},
-			'html'
-		);
-	});
-	return false;
-}
-
+/**
+* Permet de faire coulisser le contenu actuel du container #champion-comparison
+* pour faire apparaitre à sa place le contenu ciblé par le lien fourni en paramètre
+*/
 jQuery(function(){
-	 $('.data-pagination').on('click', function(){
-		paginateContent(this);
+	//On affecte aux liens qui n'ont pas la classe disabled la fonction de scroll lors du clic
+	 $('#wrapper').on('click', '.data-pagination:not(.disabled)', function(){
+		var container = $('#champion-comparison');	
+		//On récupère le lien
+		var href = this.href;
+		//Si le lien a l attribut rel et que c est next on coulisse vers la gauche sinon a droite
+		var pos = this.rel == 'next' ? '-150%' : '150%';
+		//On récupère le contenu a faire glisser
+		container.find('div.data-scrollable').animate({
+			left: pos,
+			opacity: 0
+		}, 'slow', function(){
+			//On affiche le chargement
+			container.addClass('loading');
+			
+			//Une fois que le précédent contenu a disparu on fait une requete ajax pour récupérer
+			//le contenu ciblé par le lien
+			$.get(
+				href,
+				{format: 'html' },
+				function(data){
+					//On stop le chargement
+					container.removeClass('loading');
+					//On remplace le contenu
+					container.html(data);
+				},
+				'html'
+			);
+		});
 		return false;
 	});
 });

@@ -1,0 +1,10 @@
+#wrapper{
+	overflow: hidden;
+}
+
+.loading {
+	background-image: url('/images/commons/ajax-loader.gif');
+	background-repeat: no-repeat;
+	background-position: top center;
+	margin-top: 200px;
+}

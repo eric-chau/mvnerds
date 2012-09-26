@@ -6,7 +6,7 @@
 				
 			{% set listSize = app.session.get('comparison_list') | length%}
 			<li>
-				<a id="btn-compare" class="data-pagination" rel="next" href="{{path('champion_handler_comparison_compare') }}" {% if listSize < 2 %}class="disabled"{%endif%}>
+				<a id="btn-compare" class="data-pagination {% if listSize < 2 %}disabled{%endif%}" rel="next" href="{{path('champion_handler_comparison_compare') }}">
 					<i class="icon-random"></i> 
 					Comparer
 				</a>

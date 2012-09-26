@@ -30,3 +30,13 @@ ul#comparison-list li.champion-comparable a.champion-comparable-remove img{
 span.champion-comparable-name{
 	margin-right: 15px;
 }
+div.alert-fixed{
+	position: fixed;
+	bottom: 40px;
+	right: 10px;
+	width: 200px;
+}
+
+span.champion-comparable-name:hover{
+	cursor: pointer;
+}
