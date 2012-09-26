@@ -1,3 +1,5 @@
+@import '../bootstrap/mixins.less';
+
 p {
 	color: #222;
 	font-family: 'Ubuntu', sans-serif;
@@ -18,8 +20,34 @@ h1, h2, h3, h4, h5, h6 {
 	}
 }
 
+i {
+	color: black;
+	font-size: 16px;
+	line-height: 1.5em;
+
+	&.icon-white {
+		color: white;
+	}
+
+	&.icon-14px {
+		font-size: 14px;
+	}
+
+	&.icon-24px {
+		font-size: 24px;
+	}
+
+	&.icon-36px {
+		font-size: 36px;
+	}
+}
+
+body {
+	background-image: url('/images/launch_site/background.png');
+}
+
 div.countdown {
-	margin: 50px 0 20px 0;
+	margin: 15px 0 20px 0;
 	padding: 0 20px;
 
 	div {
@@ -52,33 +80,29 @@ div.countdown {
 
 div.social-container {
 	font-weight: bold;
-	margin: 0 330px 100px 0;
+	margin: 0 324px 40px 0;
 	text-align: right;
 }
 
 div.presentation-container {
 	background: rgba(255,255,255,0.9) url('/images/launch_site/zilean_bg.png') no-repeat top right;
+	border: 5px solid #333;
+	border-top: 0;
+	border-bottom: 0;
 	margin: 0;
 	padding: 0;
-	padding-top: 50px;
+
+	img.logo {
+		padding: 0 20px;
+	}
 }
 
 div.overview-content {
 	background-color: rgba(0,150,219,1);
-	padding: 20px;
-
-	h2, p {
-		color: white;
-	}
 }
 
 div.registration-container {
-	background-color: #D14836;
-	padding: 20px;
-
-	h2, p {
-		color: white;
-	}
+	background-color: rgba(209,72,54,1);
 
 	form {
 		color: white;
@@ -106,28 +130,56 @@ div.registration-container {
 			line-height: 40px;
 			margin-right: 20px;
 		}
+
+		span.submit-btn-label {
+			font-weight: bold;
+		}
+	}
+
+	p.secret-msg {
+		font-style: italic;
 	}
 }
 
 div.overview-content, div.registration-container {
 	margin-bottom: 10px;
+	padding: 20px;
+
+	h2, p {
+		color: white;
+		margin: 0;
+	}
+
+	p {
+		margin-bottom: 1.5em;
+	}
 
 	p:last-child {
-		margin: 0px;
+		margin-bottom: 0.5em;
+	} 
+
+	div.content {
+		padding: 21px 0 0 0;
 	}
-}
 
-span.show-hide-label {
-	cursor: pointer;
-	color: #333;
-	display: inline-block;
-	float: right;
-	font-size: 12px;
-	line-height: 40px;
-	vertical-align: middle;
+	h2 {
+		cursor: pointer;
 
-	&:hover {
-		color: white;
+		&:hover {
+			span, i {
+				color: white;
+			}
+		}
+	}
+
+	span.show-hide-label {
+		cursor: pointer;
+		color: black;
+		display: inline-block;
+		float: right;
+		font-size: 12px;
+		line-height: 40px;
+		vertical-align: middle;
 	}
 }
 
@@ -146,5 +198,36 @@ div.registration-errors {
 			list-style-position: inside;
 			list-style-type: square;
 		}
+	}
+}
+
+div#leave-email-success-modal {
+	&.modal {
+		left: 43%;
+		width: 800px;
+	}
+
+	div.modal-header {
+		background-color: #759e1a;
+		.border-top-radius(3px);
+	}
+
+	div.modal-body {
+		background-color: #eee;
+		max-height: 600px;
+
+		p {
+			color: #333;
+		}
+
+		img {
+			float: right;
+			margin-left: 20px;
+		}
+	}
+
+	div.modal-footer {
+		background-color: #eee;
+		.border-bottom-radius(3px);
 	}
 }

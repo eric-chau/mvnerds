@@ -1,0 +1,55 @@
+<form id="leave-email-form" action="{{ path('launch_site_leave_email') }}" method="POST" {{ form_enctype(form) }}>
+	<div>
+		{{ form_widget(form.email, { 'attr' : {'placeholder': 'adresse mail', 'autocomplete': 'off'} }) }}
+		<a href="" class="btn submit-btn disabled">
+			<img src="{{ asset('images/commons/loader16.gif') }}" class="loader hide" /> 
+			<span class="submit-btn-label" 
+				data-submit-label="C'est parti !" 
+				data-checking-label="Vérification en cours"
+				data-used-email-label="L'email renseigné est déjà utilisé"
+				data-check-label="En attente d'un e-mail valide">En attente d'un e-mail valide</span>
+		</a>
+		<div class="registration-errors">
+			{% include ':Form:render_form_errors.html.twig' with {'item': form.email} %}
+		</div>
+	</div>
+	{{ form_rest(form) }}
+</form>
+
+{% if is_success_action is defined and is_success_action %}
+	<div class="modal hide fade" id="leave-email-success-modal">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>Merci {{ email }} !</h3>
+		</div>
+		<div class="modal-body">
+			<img src="{{ asset('/images/launch_site/teemo.png') }}" alt="Image de Teemo">
+			<p>
+				Nous avons bien enregistré votre e-mail. Toute l'équipe Most Valuable Nerds vous remercie pour votre confiance, 
+				nous ne manquerons pas de vous tenir informer de la sortie officielle du site. D'ici là, revenez autant que vous le souhaitez ! 
+				Des mises à jours arriveront régulièrement.
+			</p>
+			<p>
+				A bientôt !
+			</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#" data-dismiss="modal" class="btn btn-small">Fermer</a>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			$('div#leave-email-success-modal').modal('show');
+		});
+	</script>
+{% endif %}
+	
+<script type="text/javascript">
+	{# Déclaration de variable faites ici mais utiliser dans le fichier front.js [Launch Site Bundle] pour avoir les bonnes variables #}
+	var $submitFormButton = $('form a.btn.submit-btn'),
+		$loaderImg = $('img.loader'),
+		$submitBtnLabel = $('span.submit-btn-label'),
+		$form = $('form#leave-email-form');
+</script>

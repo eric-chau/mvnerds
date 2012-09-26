@@ -1,3 +1,30 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
 p {
   color: #222;
   font-family: 'Ubuntu', sans-serif;
@@ -25,8 +52,28 @@ h5.no-margin,
 h6.no-margin {
   margin: 0;
 }
+i {
+  color: black;
+  font-size: 16px;
+  line-height: 1.5em;
+}
+i.icon-white {
+  color: white;
+}
+i.icon-14px {
+  font-size: 14px;
+}
+i.icon-24px {
+  font-size: 24px;
+}
+i.icon-36px {
+  font-size: 36px;
+}
+body {
+  background-image: url('/images/launch_site/background.png');
+}
 div.countdown {
-  margin: 50px 0 20px 0;
+  margin: 15px 0 20px 0;
   padding: 0 20px;
 }
 div.countdown div {
@@ -55,30 +102,25 @@ div.countdown strong {
 }
 div.social-container {
   font-weight: bold;
-  margin: 0 330px 100px 0;
+  margin: 0 324px 40px 0;
   text-align: right;
 }
 div.presentation-container {
   background: rgba(255, 255, 255, 0.9) url('/images/launch_site/zilean_bg.png') no-repeat top right;
+  border: 5px solid #333;
+  border-top: 0;
+  border-bottom: 0;
   margin: 0;
   padding: 0;
-  padding-top: 50px;
+}
+div.presentation-container img.logo {
+  padding: 0 20px;
 }
 div.overview-content {
   background-color: #0096db;
-  padding: 20px;
-}
-div.overview-content h2,
-div.overview-content p {
-  color: white;
 }
 div.registration-container {
-  background-color: #D14836;
-  padding: 20px;
-}
-div.registration-container h2,
-div.registration-container p {
-  color: white;
+  background-color: #d14836;
 }
 div.registration-container form {
   color: white;
@@ -105,25 +147,55 @@ div.registration-container form label {
   line-height: 40px;
   margin-right: 20px;
 }
+div.registration-container form span.submit-btn-label {
+  font-weight: bold;
+}
+div.registration-container p.secret-msg {
+  font-style: italic;
+}
 div.overview-content,
 div.registration-container {
   margin-bottom: 10px;
+  padding: 20px;
+}
+div.overview-content h2,
+div.registration-container h2,
+div.overview-content p,
+div.registration-container p {
+  color: white;
+  margin: 0;
+}
+div.overview-content p,
+div.registration-container p {
+  margin-bottom: 1.5em;
 }
 div.overview-content p:last-child,
 div.registration-container p:last-child {
-  margin: 0px;
+  margin-bottom: 0.5em;
 }
-span.show-hide-label {
+div.overview-content div.content,
+div.registration-container div.content {
+  padding: 21px 0 0 0;
+}
+div.overview-content h2,
+div.registration-container h2 {
   cursor: pointer;
-  color: #333;
+}
+div.overview-content h2:hover span,
+div.registration-container h2:hover span,
+div.overview-content h2:hover i,
+div.registration-container h2:hover i {
+  color: white;
+}
+div.overview-content span.show-hide-label,
+div.registration-container span.show-hide-label {
+  cursor: pointer;
+  color: black;
   display: inline-block;
   float: right;
   font-size: 12px;
   line-height: 40px;
   vertical-align: middle;
-}
-span.show-hide-label:hover {
-  color: white;
 }
 div.registration-errors {
   font-size: 14px;
@@ -139,4 +211,37 @@ div.registration-errors ul li {
   line-height: 1.5em;
   list-style-position: inside;
   list-style-type: square;
+}
+div#leave-email-success-modal.modal {
+  left: 43%;
+  width: 800px;
+}
+div#leave-email-success-modal div.modal-header {
+  background-color: #759e1a;
+  -webkit-border-top-right-radius: 3px;
+  -moz-border-radius-topright: 3px;
+  border-top-right-radius: 3px;
+  -webkit-border-top-left-radius: 3px;
+  -moz-border-radius-topleft: 3px;
+  border-top-left-radius: 3px;
+}
+div#leave-email-success-modal div.modal-body {
+  background-color: #eee;
+  max-height: 600px;
+}
+div#leave-email-success-modal div.modal-body p {
+  color: #333;
+}
+div#leave-email-success-modal div.modal-body img {
+  float: right;
+  margin-left: 20px;
+}
+div#leave-email-success-modal div.modal-footer {
+  background-color: #eee;
+  -webkit-border-bottom-right-radius: 3px;
+  -moz-border-radius-bottomright: 3px;
+  border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 3px;
+  -moz-border-radius-bottomleft: 3px;
+  border-bottom-left-radius: 3px;
 }

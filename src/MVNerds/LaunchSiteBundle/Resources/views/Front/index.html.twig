@@ -21,6 +21,7 @@
 	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-popover.js') }}"></script>
 	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-transition.js') }}"></script>
 	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-alert.js') }}"></script>
+	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-modal.js') }}"></script>
 	 
 	 <script type="text/javascript" src="{{ asset('/js/launch_site/alerts-ajax-handler.js') }}"></script>
 	 <script type="text/javascript" src="{{ asset('/js/champion_handler/comparison.js') }}"></script>
@@ -28,7 +29,10 @@
 	 <script type="text/javascript" src="{{ asset('/js/launch_site/data-scroll.js') }}"></script>
 	 
 	 <script type="text/javascript">
-		$(function(){$('.dropdown-toggle').dropdown();});
+		$(document).ready(function()
+		{
+			$('.dropdown-toggle').dropdown();
+		});
 	</script>
 {% endblock %}
 	 
@@ -40,7 +44,7 @@
 
 		<div class="container main-container">
 			<div class="presentation-container">
-				<h1>Most Valuable Nerds</h1>
+				<img src="{{ asset('/images/launch_site/logo.png') }}" class="logo" />
 
 				<div class="countdown">
 					<span class="launch-date-message">Lancement prévu dans</span> 
@@ -57,12 +61,12 @@
 				<div class="overview-content">
 					<h2 data-content-name="about-us">
 						Qui sommes-nous ? 
-						<span class="show-hide-label" data-toggle-label="Afficher" data-toggle-icon="icon-eye-open">
-							<i class="icon-eye-close"></i> <span class="msg">Masquer</span>
+						<span class="show-hide-label" data-toggle-label="Masquer" data-toggle-icon="icon-eye-open icon-14px">
+							<i class="icon-eye-close icon-14px"></i> <span class="msg">Afficher</span>
 						</span>
 					</h2>
 					
-					<div class="content">
+					<div class="content hide">
 						<p>The sleepy, non-descript village of Kalamanda, located near the northern entrance to Mogron Pass, now finds itself wide awake 
 						as the leading lady on the world stage. The village's mayor, Anson Ridley, reported this week that a local survey team has 
 						uncovered a massive deposit of gold and precious gems within the village's sphere of influence. Furthermore, two nexuses of 
@@ -76,42 +80,24 @@
 				</div>
 				
 				<div class="registration-container">
-					<h2 data-content-name="registration">
-						Je laisse mon e-mail
-						<span class="show-hide-label" data-toggle-label="Afficher" data-toggle-icon="icon-eye-open">
-							<i class="icon-eye-close"></i> <span class="msg">Masquer</span>
+					<h2 data-content-name="registration" data-success-label="Nous avons votre e-mail, merci !">
+						<span class="h2-msg">Je laisse mon e-mail</span>
+						<span class="show-hide-label" data-toggle-label="Masquer" data-toggle-icon="icon-eye-open icon-14px">
+							<i class="icon-eye-close icon-14px"></i> <span class="msg">Afficher</span>
 						</span>
 					</h2>
 						
-					<div class="content">
+					<div class="content hide">
 						<p>Laisser votre e-mail vous offre plusieurs avatanges et <strong>zéro inconvénient</strong> ! Nous n'allons pas nous amuser à vous spammer
 						ni à communiquer votre e-mail. Notre but est de pouvoir vous tenir informer de l'évolution du site et notamment de son ouverture officielle !
 						</p>
-
-						<form id="leave-email-form" action="{{ path('launch_site_leave_email') }}" method="POST" {{ form_enctype(form) }}>
-							<div>
-								{{ form_widget(form.email, { 'attr' : {'placeholder': 'adresse mail', 'autocomplete': 'off'} }) }}
-								<a href="" class="btn btn-inverse disabled submit-btn">
-									<strong>
-										<img src="{{ asset('images/commons/loader16.gif') }}" class="loader hide" /> 
-										<span class="submit-btn-label" 
-												  data-submit-label="C'est parti !" 
-												  data-checking-label="Vérification en cours"
-												  data-check-label="Vérifier la disponibilité">Vérifier la disponibilité</span>
-									</strong>
-								</a>
-								{{ form_errors(form.email) }}
-								<div class="registration-errors">
-									<ul>
-										<li class="email-already-used hide">L'email que vous avez renseigné est déjà utilisé, c'est embêtant !</li>
-									</ul>
-								</div>
-							</div>
-							{{ form_rest(form) }}
-						</form>
-
-						<blockquote>Il se murmure qu'il y aura une (ou des, qui sait ?) surprise(s) pour tous ceux qui ont laissé leur e-mail... mais chut hein, je ne vous 
-						ai rien dit :P</blockquote>
+						
+						<div id="leave-email-form-container">
+							{% include 'MVNerdsLaunchSiteBundle:Front:leave_email_form.html.twig' with {'form': form} %}
+						</div>
+						
+						<p class="secret-msg">Il se murmure qu'il y aura une (ou des, qui sait ?) surprise(s) pour tous ceux qui ont laissé leur e-mail... mais chut hein, je ne vous 
+						ai rien dit :P</p>
 					</div>
 				</div>
 			</div>
