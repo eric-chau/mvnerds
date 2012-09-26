@@ -108,7 +108,7 @@ div.social-container {
 }
 div.presentation-container {
   background: rgba(255, 255, 255, 0.9) url('/images/launch_site/zilean_bg.png') no-repeat top right;
-  border: 4px solid #000000;
+  border: 4px solid rgba(255, 255, 255, 0);
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
