@@ -77,29 +77,14 @@ jQuery(function($) {
 		
 	//Récupération de la liste des champions et de la comparison list
 	var $comparisonList = $('#comparison-list');
-		
 	
 	//On rends chaque champion draggable
 	$('#champion-comparison').on('mouseover', 'li.champion-mini', function(){
-		var position = $(this).data('isotope-item-position');
-		if (position != undefined)
-		{
-			var posX = position.x;
-			var posY = position.y;
-		}
-
 		$(this).draggable({
 			helper: 'clone',
 			revertduration: 300,
 			zIndex: 1100,
 			opacity: 1,
-			cursorAt: { 
-				left:  posX,
-				top: posY
-			},
-			create: function(){
-				
-			},
 			start: function(){
 				$('#comparison-list').css('border', '1px dashed black')
 				$('#comparison-list-dropdown').addClass('open');

@@ -16,9 +16,7 @@
 {% block javascripts %}
 	 {{ parent() }}
 	 
-	 <script type="text/javascript" src="{{ asset('/js/jquery-ui-1.8.23.core.min.js') }}"></script>
-	 <script type="text/javascript" src="{{ asset('/js/jquery.ui.draggable.js') }}"></script>
-	 <script type="text/javascript" src="{{ asset('/js/jquery.ui.droppable.js') }}"></script>
+	 <script type="text/javascript" src="{{ asset('/js/jquery-ui-1.8.23.custom.min.js') }}"></script>
 	 <script type="text/javascript" src="{{ asset('/js/jquery.isotope.min.js') }}"></script>
 	 
 	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-tooltip.js') }}"></script>
@@ -193,10 +191,11 @@
 			
 
 		</div>
-			
+			#}
 		<div class="navbar navbar-fixed-bottom" id="actionbar">
 			{% include 'MVNerdsLaunchSiteBundle:Front:actionbar.html.twig'  %}
 		</div>
-		#}
+		
 	</div>
+			
 {% endblock %}
