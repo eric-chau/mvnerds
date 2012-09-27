@@ -3,10 +3,10 @@
 p {
 	color: #222;
 	font-family: 'Ubuntu', sans-serif;
-	font-size: 14px;
-	line-height: 1.5em;
+	font-size: 16px;
+	line-height: 1.4em;
 	margin: 0;
-	margin-bottom: 24px;	
+	margin-bottom: 1.4em;	
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -23,7 +23,7 @@ h1, h2, h3, h4, h5, h6 {
 i {
 	color: black;
 	font-size: 16px;
-	line-height: 1.5em;
+	line-height: 1.4em;
 
 	&.icon-white {
 		color: white;
@@ -42,13 +42,294 @@ i {
 	}
 }
 
+// Déclaration de variable de couleur
+@MVNerdsRed:			#db4a38;
+@MVNerdsGreen:			#759e1a;
+@MVNerdsBlue: 			#19a0df;
+
 body {
-	background-image: url('/images/launch_site/background.png');
+	background: #303030 url('/images/launch_site/layout_bg.png') no-repeat center center fixed;
 }
 
+div.main-container {
+	background: #eee url('/images/launch_site/url_bg.png') no-repeat top right;
+	border: 0;
+	.box-shadow(0px 0px 55px rgba(0,0,0,1));
+	min-height: 1080px;
+	padding: 20px;
+}
+
+div.header-container {
+	margin: 0 0 20px 0;
+
+	div.logo {
+		background: url('/images/launch_site/mvnerds_logo.png') no-repeat center center;
+		margin: 0 auto;
+		margin-right: 0px;
+		height: 167px;
+		width: 351px;
+	}
+
+	div.launch-date-msg {
+		color: #999;
+		display: inline-block;
+		font-family: 'Trebuchet MS', sans-serif;
+		font-size: 28px;
+		font-weight: bold;
+		margin: 20px 0 5px 0;
+		text-transform: uppercase;
+	}
+
+	div.countdown {
+		div {
+			border: 1px solid rgba(0,0,0,0.2);
+			.border-radius(10px);
+			display: inline-block;
+			font-size: 22px;
+			line-height: 1em;
+			padding: 8px 0;
+			margin-right: 6px;
+			text-align: center;
+			width: 120px;
+
+			strong {
+				color: @MVNerdsRed;
+				display: block;
+				font-size: 28px;
+				font-weight: bold;
+				line-height: 1em;
+				margin-bottom: 5px;
+			}
+		}
+	}
+
+	div.social-container {
+		background: black url('/images/launch_site/social_bg.png') no-repeat;
+		border: 1px solid black;
+		margin: 20px 0 0 0;
+		padding: 2px 20px;
+
+		p {
+			color: #999;
+			margin: 0;
+			padding: 0;
+			text-align: right;
+		}
+
+		em {
+			color: @MVNerdsGreen;
+			font-style: normal;
+			font-weight: bold;
+
+			i {
+				color: @MVNerdsGreen;
+				font-size: 16px;
+			}
+		}
+	} // fin social-container
+
+	div.presentation-container {
+		div.content {
+			background: black url('/images/launch_site/content_bg.png') no-repeat top left;
+			
+			div.overview, div.registration {
+				padding: 20px;
+
+				p:last-child {
+					margin: 0;
+				}
+
+				h2 {
+					line-height: 1em;
+					margin-bottom: 24px;
+				}
+
+				p {
+					color: #ddd;
+				}
+			}
+
+			div.overview {
+				h2 {
+					color: @MVNerdsBlue;
+				}
+			}
+
+			div.registration {
+				h2 {
+					color: @MVNerdsRed;
+				}
+
+				form {
+					margin-bottom: 1.4em;
+					text-align: center;
+
+					input, a.btn {
+						margin: 0;
+					}
+
+					input[type="email"] {
+						background-color: #eee;
+						.border-radius(0px);
+						font-family: 'Ubuntu', sans-serif;
+						font-size: 16px;
+						line-height: 1.4em;
+						margin-right: 10px;
+						padding: 5px 10px;
+						width: 250px;
+					}
+
+					a.btn {
+						font-weight: bold;
+						position: relative;
+						top: -2px;
+					}
+				}
+			}
+		}
+
+		div.link {
+			background-color: black;
+			.border-bottom-radius(3px);
+			cursor: pointer;
+			display: inline-block;
+			float: right;
+			font-family: 'Ubuntu', sans-serif;
+			font-size: 14px;
+			font-weight: bold;
+			margin-right: 20px;
+			padding: 3px 8px;
+
+			&.overview {
+				color: @MVNerdsBlue;
+			}
+
+			&.registration {
+				color: @MVNerdsRed;
+			}
+
+			&:hover {
+				color: white;
+				.transition(color .25s linear);
+			}
+		}
+	}
+} // Fin header-container
+
+div.body-container {
+	div.overview-container {
+		background-color: @MVNerdsBlue;
+	}
+
+	div.registration-container {
+		background-color: @MVNerdsRed;
+	}
+
+	div.overview-container, div.registration-container {
+		height: 16px;
+		margin-bottom: 10px;
+
+		h2 {
+			cursor: pointer;
+			font-size: 16px;
+			line-height: 1em;
+
+			span.h2-label {
+				display: inline-block;
+				background-color: #eee;
+				width: 17%;
+				
+			}
+
+			span.show-hide-label {
+				float: right;
+			}
+
+			span.msg {
+				color: black;
+				font-size: 12px;
+			}
+
+			&:hover {
+				span.msg, i {
+					color: white;
+					.transition(all 0.15s linear);
+				}
+			}
+		}
+
+		&.active {
+			margin-bottom: 10px;
+			padding: 5px 10px;
+
+			h2, p {
+				color: white;
+			}
+
+			h2 {
+				cursor: pointer;
+				font-size: 16px;
+				line-height: 1.4em;
+				margin: 0;
+				padding: 0;
+			}
+		}
+	}
+
+	div.champions-handler-container {
+		background-color: black;
+		.border-radius(10px);
+		margin: 10px 0;
+		padding: 10px;
+
+		h2 {
+			color: white;
+
+			div.action-buttons {
+				display: inline-block;
+				float: right;
+
+				div.action {
+					background-color: rgba(255,255,255,0.2);
+					cursor: pointer;
+					display: inline-block;
+					line-height: 22px;
+					padding: 4px 7px;
+
+					i {
+						font-size: 22px;
+						line-height: 22px;
+					}
+
+					span.action-label {
+						width: 0px;
+						font-size: 16px;
+						font-weight: normal;
+						position: relative;
+						top: -3px;
+					}
+
+					&:hover {
+						background-color: rgba(255,255,255,0.5);
+						.transition(all .25s linear);
+						
+						span.action-label {
+							width: 100%;
+							.transition(all .25s linear);
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+
+/*
 div.countdown {
-	margin: 15px 0 20px 0;
+	margin: 20px auto;
 	padding: 0 20px;
+	width: 70%;
 
 	div {
 		background-color: rgba(255,255,255, 0.4);
@@ -64,6 +345,7 @@ div.countdown {
 	}
 
 	span.launch-date-message {
+		color: rgba(255,255,255,0.8);
 		display: inline-block;
 		float: left;
 		font-weight: bold;
@@ -81,19 +363,22 @@ div.countdown {
 
 div.social-container {
 	font-weight: bold;
-	margin: 0 324px 40px 0;
-	text-align: right;
+	margin: 0 0 45px 0;
+	text-align: center;
+
+	p {
+		color: rgba(255,255,255,0.8);
+	}
 }
 
 div.presentation-container {
-	background: rgba(255,255,255,0.9) url('/images/launch_site/zilean_bg.png') no-repeat top right;
+	background: rgba(255,255,255,0.9) url('/images/launch_site/zilean_bg.png') no-repeat top center;
 	border: 4px solid rgba(255,255,255,0);
-	.border-radius(5px);
-	margin: 10px 0 0 0;
+	margin: 0;
 	padding: 0;
 
-	img.logo {
-		padding: 0 20px;
+	div.logo {
+		text-align: center;
 	}
 }
 
@@ -255,4 +540,4 @@ div#leave-email-success-modal {
 div.footer-container {
 	background-color: black;
 	min-height: 200px;
-}
+}*/

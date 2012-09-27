@@ -46,6 +46,69 @@ $(document).ready(function()
 		setTimeout(updateCountDown, 1000);
 	}
 
+	$('div.presentation-container div.link').on('click', function()
+	{
+		var $this = $(this);
+
+		$('div.presentation-container div.content div.' + $this.data('content-name')).slideToggle();
+	});
+
+	/*$('div.body-container div.resizable-block h2').on('click', function()
+	{
+		var $this = $(this),
+			$h2Container = $this.parent();
+
+		// On vérifie si l'utilisateur veut masquer le bloc actuel ou non
+		if ($h2Container.hasClass('active')) {
+			// On sait que $this est la div active
+
+
+
+
+			$h2Container.toggleClass('active');
+			$h2Container.find('div.content').slideToggle('slow');
+			$h2Container.animate({
+				width: 6 * gridColumnWidth + 5 * gridGutterWidth
+			}, 
+			500, 
+			function() {
+				$h2Container.removeClass('span9').addClass('span6');
+			});
+
+			return false;
+		}
+
+		// On vire la classe active sur l'autre div
+		$('div.body-container div.resizable-block.active').animate({
+			width: 3 * gridColumnWidth + 2 * gridGutterWidth
+		},
+		500).toggleClass('active');
+		
+		$h2Container.toggleClass('active');
+		
+		$inactiveContainer = $('div.body-container div.resizable-block:not(.active)');
+		// On redimensionne d'abord la div inactive
+		$inactiveContainer.animate({
+			width: 3 * gridColumnWidth + 2 * gridGutterWidth
+		},
+		500);
+				
+		$h2Container.find('div.content').slideToggle(500);
+		$h2Container.animate({
+			width: 9 * gridColumnWidth + 8 * gridGutterWidth
+		}, 
+		500, 
+		function() {
+			$h2Container.removeClass('span6 span3').addClass('span9');
+			$inactiveContainer.animate({
+				height: $h2Container.css('height')
+			},
+			500);
+		});
+
+		console.log('click!');
+	});*/
+
 	/**
 	 * GESTION DES PRÉFÉRENCES UTILISATEURS POUR AFFICHER/MASQUER DU CONTENU
 	 */	

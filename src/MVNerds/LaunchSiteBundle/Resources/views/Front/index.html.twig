@@ -50,29 +50,74 @@
 		</div>
 
 		<div class="container main-container">
-			<div class="presentation-container">
-				<img src="{{ asset('/images/launch_site/logo.png') }}" class="logo" />
+			<div class="header-container">
 
-				<div class="countdown">
-					<span class="launch-date-message">Lancement prévu dans</span> 
-					<div class="days"></div>
-					<div class="hours"></div>
-					<div class="minutes"></div>
-					<div class="seconds"></div>
-				</div>
-				
+				<div class="row-fluid">
+					<div class="span5">
+						<div class="logo"></div>
+					</div>
+					
+					<div class="span7">
+						<div class="launch-date-msg">Lancement officiel prévu dans</div> 
+						
+						<div class="countdown">
+							<div class="days"></div>
+							<div class="hours"></div>
+							<div class="minutes"></div>
+							<div class="seconds"></div>
+						</div>
+					</div>
+				</div>	
+
 				<div class="social-container">
-					<p> Suivez-nous sur : Twitter - Facebook</p>
+					<p> Suivez-nous sur <em>Twitter <i class="icon-twitter"></i></em> et <em>Facebook <i class="icon-facebook-sign"></i></em>.</p>
 				</div>
-				
-				<div class="overview-container">
+				<div class="presentation-container">
+					<div class="content">
+						<div class="overview">
+							<h2>Qui sommes-nous ?</h2>
+
+							<p>The sleepy, non-descript village of Kalamanda, located near the northern entrance to Mogron Pass, now finds itself wide awake 
+							as the leading lady on the world stage. The village's mayor, Anson Ridley, reported this week that a local survey team has 
+							uncovered a massive deposit of gold and precious gems within the village's sphere of influence. Furthermore, two nexuses of 
+							considerable magic potency have been discovered alongside the resource deposits.</p>
+
+							<p>Before the discovery, Kalamanda was only moderately known as a decent place to fish for Valoran trout and not much else. 
+							The village now finds itself as the destination point for adventurers and prospectors seeking fame and riches beyond their 
+							wildest dreams. The town council has already set up a temporary camp located near the foothills that lead to Mogron Pass and the 
+							Great Barrier in anticipation of the great influx of individuals hoping to trade a hard day's work for handsome rewards.</p>
+						</div>
+						<div class="registration">
+							<h2>Je laisse mon e-mail</h2>
+
+							<p>
+								Laisser votre e-mail vous offre plusieurs avatanges et <strong>zéro inconvénient</strong> ! Nous n'allons pas nous amuser à vous spammer ni à communiquer votre e-mail. Notre but est de pouvoir vous tenir informer de l'évolution du site et notamment de son ouverture officielle !
+							</p>
+
+							<div id="leave-email-form-container">
+								{% include 'MVNerdsLaunchSiteBundle:Front:leave_email_form.html.twig' with {'form': form} %}
+							</div>
+
+							<p class="secret-msg">Il se murmure qu'il y aura une (ou des, qui sait ?) surprise(s) pour tous ceux qui ont laissé leur e-mail... mais chut hein, je ne vous 
+							ai rien dit :P</p>
+						</div>
+					</div>
+					<div class="link registration" data-content-name="registration">Je laisse mon e-mail</div>
+					<div class="link overview" data-content-name="overview">Qui sommes-nous ?</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+
+			<div class="body-container">
+			
+				{#<div class="overview-container">
 					<h2 data-content-name="about-us">
-						Qui sommes-nous ? 
+						<span class="h2-label">Qui sommes-nous ? </span>
 						<span class="show-hide-label" data-toggle-label="Masquer" data-toggle-icon="icon-eye-open icon-14px">
 							<i class="icon-eye-close icon-14px"></i> <span class="msg">Afficher</span>
 						</span>
 					</h2>
-					
+
 					<div class="content hide">
 						<p>The sleepy, non-descript village of Kalamanda, located near the northern entrance to Mogron Pass, now finds itself wide awake 
 						as the leading lady on the world stage. The village's mayor, Anson Ridley, reported this week that a local survey team has 
@@ -85,83 +130,73 @@
 						Great Barrier in anticipation of the great influx of individuals hoping to trade a hard day's work for handsome rewards.</p>
 					</div>
 				</div>
-				
+
 				<div class="registration-container">
 					<h2 data-content-name="registration" data-success-label="Nous avons votre e-mail, merci !">
-						<span class="h2-msg">Je laisse mon e-mail</span>
+						<span class="h2-label">Je laisse mon e-mail</span>
 						<span class="show-hide-label" data-toggle-label="Masquer" data-toggle-icon="icon-eye-open icon-14px">
 							<i class="icon-eye-close icon-14px"></i> <span class="msg">Afficher</span>
 						</span>
 					</h2>
-						
+
 					<div class="content hide">
 						<p>Laisser votre e-mail vous offre plusieurs avatanges et <strong>zéro inconvénient</strong> ! Nous n'allons pas nous amuser à vous spammer
 						ni à communiquer votre e-mail. Notre but est de pouvoir vous tenir informer de l'évolution du site et notamment de son ouverture officielle !
 						</p>
-						
+
 						<div id="leave-email-form-container">
 							{% include 'MVNerdsLaunchSiteBundle:Front:leave_email_form.html.twig' with {'form': form} %}
 						</div>
-						
+
 						<p class="secret-msg">Il se murmure qu'il y aura une (ou des, qui sait ?) surprise(s) pour tous ceux qui ont laissé leur e-mail... mais chut hein, je ne vous 
 						ai rien dit :P</p>
 					</div>
-				</div>
-				
-				<div class="help-container">
-					<h2 data-content-name="help">
-						Visite guidée
-						<span class="show-hide-label" data-toggle-label="Masquer" data-toggle-icon="icon-eye-open icon-14px">
-							<i class="icon-eye-close icon-14px"></i> <span class="msg">Afficher</span>
-						</span>
-					</h2>
-						
-					<div class="content hide">
-						<p>
-							Pour être sûr que vous ne ratiez rien, nous vous avons concoté une visite guidée sur notre page de présentation ! Vous pourrez ainsi profiter au mieux
-							des fonctionnalités déjà présentes sur le site. N'hésitez plus, faisons le tour ensemble !
-							
-						</p>
-						
-						<div>
-							<button class="btn btn-large"><strong>Commencer la visite</strong></button>
-						</div>
-					</div>
-				</div>
-				
+				</div>#}
+
 				<div class="champions-handler-container">
 					<h2 data-content-name="champion-handler">
 						Module des champions (Bêta)
-						<span class="show-hide-label" data-toggle-label="Masquer" data-toggle-icon="icon-eye-open icon-14px">
+						<div class="action-buttons">
+							<div class="action">
+								<i class="icon-cogs icon-white"></i> <span class="action-label">Affiner le filtrage</span>
+							</div>
+							<div class="action">
+								<i class="icon-search icon-white"></i> <span class="action-label">Rechercher</span>
+							</div>
+							<div class="action">
+								<i class="icon-question-sign icon-white"></i> <span class="action-label">Démarrer la visite guidée</span>
+							</div>
+						</div>
+						{#<span class="show-hide-label" data-toggle-label="Masquer" data-toggle-icon="icon-eye-open icon-14px">
 							<i class="icon-eye-close icon-14px"></i> <span class="msg">Afficher</span>
-						</span>
+						</span>#}
 					</h2>
-						
-					<div class="content hide">
-						<p>
+
+					<div class="content">
+						{% render 'MVNerdsChampionHandlerBundle:Front:championComparison' %}
+						{#<p>
 							Le premier module que nous avons décidé de vous présenter est le module des champions. Vous pouvez vous amusez à les trier selon un large choix de 
 							filtre à votre disposition. Vous pouvez les combinez comme bon vous semble. A consommer sans modération donc !<br />
 							Ce n'est pas tout ! Vous pouvez également les comparer entre eux de manière simple et intuitive. Il vous faudra maintenant quelques clics seulement
 							pour connaître le <em>Carry AD</em> qui a la plus grande portée de tir ou encore quel est le <em>Jungler</em> qui a le plus de point de vie au niveau 6
 							(pourquoi pas ? ^^)
 						</p>
-						
+
 						<p>
 							Nous ne manquerons pas de venir étoffer un peu plus les fonctionnalités du module.
-						</p>
+						</p>#}
 					</div>
 				</div>
-				
-				{% render 'MVNerdsChampionHandlerBundle:Front:championComparison' %}
-				
-				<div class="footer-container">
-				</div>
 			</div>
+			{#
+				
+			
+
 		</div>
 			
 		<div class="navbar navbar-fixed-bottom" id="actionbar">
 			{% include 'MVNerdsLaunchSiteBundle:Front:actionbar.html.twig'  %}
 		</div>
-			
+		#}
 	</div>
 {% endblock %}
