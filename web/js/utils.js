@@ -45,3 +45,6 @@ function getItemFromLS(key)
 
 	return localStorage[key];
 }
+
+var gridColumnWidth = 67,
+	gridGutterWidth = 20;

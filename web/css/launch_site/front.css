@@ -28,10 +28,10 @@
 p {
   color: #222;
   font-family: 'Ubuntu', sans-serif;
-  font-size: 14px;
-  line-height: 1.5em;
+  font-size: 16px;
+  line-height: 1.4em;
   margin: 0;
-  margin-bottom: 24px;
+  margin-bottom: 1.4em;
 }
 h1,
 h2,
@@ -55,7 +55,7 @@ h6.no-margin {
 i {
   color: black;
   font-size: 16px;
-  line-height: 1.5em;
+  line-height: 1.4em;
 }
 i.icon-white {
   color: white;
@@ -70,218 +70,480 @@ i.icon-36px {
   font-size: 36px;
 }
 body {
-  background-image: url('/images/launch_site/background.png');
+  background: #303030 url('/images/launch_site/layout_bg.png') no-repeat center center fixed;
 }
-div.countdown {
-  margin: 15px 0 20px 0;
-  padding: 0 20px;
-}
-div.countdown div {
-  background-color: rgba(255, 255, 255, 0.4);
-  border: 1px solid black;
-  color: #222;
-  display: inline-block;
-  font-size: 18px;
-  line-height: 1.4em;
-  padding: 10px 0 5px 0;
-  text-align: center;
-  width: 110px;
-  margin: 0 5px;
-}
-div.countdown span.launch-date-message {
-  display: inline-block;
-  float: left;
-  font-weight: bold;
-  line-height: 72px;
-  margin-right: 10px;
-}
-div.countdown strong {
-  color: #d14836;
-  display: block;
-  font-size: 36px !important;
-  margin-bottom: 5px;
-}
-div.social-container {
-  font-weight: bold;
-  margin: 0 324px 40px 0;
-  text-align: right;
-}
-div.presentation-container {
-  background: rgba(255, 255, 255, 0.9) url('/images/launch_site/zilean_bg.png') no-repeat top right;
-  border: 4px solid rgba(255, 255, 255, 0);
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
-  margin: 10px 0 0 0;
-  padding: 0;
-}
-div.presentation-container img.logo {
-  padding: 0 20px;
-}
-div.overview-container {
-  background-color: #0096db;
-}
-div.registration-container {
-  background-color: #d14836;
-}
-div.registration-container form {
-  color: white;
-  margin: 0;
-  margin-bottom: 24px;
-  text-align: center;
-}
-div.registration-container form input[type="email"],
-div.registration-container form label {
-  margin: 0;
-  margin-right: 20px;
-}
-div.registration-container form input[type="email"] {
-  font-family: 'Trebuchet MS';
-  font-size: 16px;
-  height: 30px;
-  line-height: 1.4em;
-  padding: 0 5px;
-  width: 30%;
-}
-div.registration-container form label {
-  display: inline-block;
-  font-weight: bold;
-  line-height: 40px;
-  margin-right: 20px;
-}
-div.registration-container form span.submit-btn-label {
-  font-weight: bold;
-}
-div.registration-container p.secret-msg {
-  font-style: italic;
-}
-div.help-container {
-  background-color: #759e1a;
-}
-div.champions-handler-container {
-  background-color: black;
-}
-div.champions-handler-container h2 span,
-div.champions-handler-container h2 i {
-  color: #666;
-}
-div.champions-handler-container h2:hover span,
-div.champions-handler-container h2:hover i {
-  color: white;
-}
-div.overview-container,
-div.registration-container,
-div.help-container,
-div.champions-handler-container {
-  margin-bottom: 10px;
+div.main-container {
+  background: #eeeeee url('/images/launch_site/url_bg.png') no-repeat top right;
+  border: 0;
+  -webkit-box-shadow: 0px 0px 55px #000000;
+  -moz-box-shadow: 0px 0px 55px #000000;
+  box-shadow: 0px 0px 55px #000000;
+  min-height: 1080px;
   padding: 20px;
 }
-div.overview-container h2,
-div.registration-container h2,
-div.help-container h2,
-div.champions-handler-container h2,
-div.overview-container p,
-div.registration-container p,
-div.help-container p,
-div.champions-handler-container p {
-  color: white;
+div.header-container {
+  margin: 0 0 20px 0;
+}
+div.header-container div.logo {
+  background: url('/images/launch_site/mvnerds_logo.png') no-repeat center center;
+  margin: 0 auto;
+  margin-right: 0px;
+  height: 167px;
+  width: 351px;
+}
+div.header-container div.launch-date-msg {
+  color: #999;
+  display: inline-block;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 28px;
+  font-weight: bold;
+  margin: 20px 0 5px 0;
+  text-transform: uppercase;
+}
+div.header-container div.countdown div {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  display: inline-block;
+  font-size: 22px;
+  line-height: 1em;
+  padding: 8px 0;
+  margin-right: 6px;
+  text-align: center;
+  width: 120px;
+}
+div.header-container div.countdown div strong {
+  color: #db4a38;
+  display: block;
+  font-size: 28px;
+  font-weight: bold;
+  line-height: 1em;
+  margin-bottom: 5px;
+}
+div.header-container div.social-container {
+  background: #000000 url('/images/launch_site/social_bg.png') no-repeat;
+  border: 1px solid black;
+  margin: 20px 0 0 0;
+  padding: 2px 20px;
+}
+div.header-container div.social-container p {
+  color: #999;
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+div.header-container div.social-container em {
+  color: #759e1a;
+  font-style: normal;
+  font-weight: bold;
+}
+div.header-container div.social-container em i {
+  color: #759e1a;
+  font-size: 16px;
+}
+div.header-container div.presentation-container div.content {
+  background: #000000 url('/images/launch_site/content_bg.png') no-repeat top left;
+}
+div.header-container div.presentation-container div.content div.overview,
+div.header-container div.presentation-container div.content div.registration {
+  padding: 20px;
+}
+div.header-container div.presentation-container div.content div.overview p:last-child,
+div.header-container div.presentation-container div.content div.registration p:last-child {
   margin: 0;
 }
-div.overview-container p,
-div.registration-container p,
-div.help-container p,
-div.champions-handler-container p {
-  margin-bottom: 1.5em;
+div.header-container div.presentation-container div.content div.overview h2,
+div.header-container div.presentation-container div.content div.registration h2 {
+  line-height: 1em;
+  margin-bottom: 24px;
 }
-div.overview-container p:last-child,
-div.registration-container p:last-child,
-div.help-container p:last-child,
-div.champions-handler-container p:last-child {
-  margin-bottom: 0.5em;
+div.header-container div.presentation-container div.content div.overview p,
+div.header-container div.presentation-container div.content div.registration p {
+  color: #ddd;
 }
-div.overview-container div.content,
-div.registration-container div.content,
-div.help-container div.content,
-div.champions-handler-container div.content {
-  padding: 21px 0 0 0;
+div.header-container div.presentation-container div.content div.overview h2 {
+  color: #19a0df;
 }
-div.overview-container h2,
-div.registration-container h2,
-div.help-container h2,
-div.champions-handler-container h2 {
-  cursor: pointer;
+div.header-container div.presentation-container div.content div.registration h2 {
+  color: #db4a38;
 }
-div.overview-container h2:hover span,
-div.registration-container h2:hover span,
-div.help-container h2:hover span,
-div.champions-handler-container h2:hover span,
-div.overview-container h2:hover i,
-div.registration-container h2:hover i,
-div.help-container h2:hover i,
-div.champions-handler-container h2:hover i {
-  color: white;
+div.header-container div.presentation-container div.content div.registration form {
+  margin-bottom: 1.4em;
+  text-align: center;
 }
-div.overview-container span.show-hide-label,
-div.registration-container span.show-hide-label,
-div.help-container span.show-hide-label,
-div.champions-handler-container span.show-hide-label {
-  cursor: pointer;
-  color: black;
-  display: inline-block;
-  float: right;
-  font-size: 12px;
-  line-height: 40px;
-  vertical-align: middle;
+div.header-container div.presentation-container div.content div.registration form input,
+div.header-container div.presentation-container div.content div.registration form a.btn {
+  margin: 0;
 }
-div.registration-errors {
-  font-size: 14px;
-  line-height: 1.5em;
-}
-div.registration-errors ul {
-  font-family: 'Ubuntu';
-  margin: auto;
-  margin-top: 15px;
-  width: 60%;
-}
-div.registration-errors ul li {
-  line-height: 1.5em;
-  list-style-position: inside;
-  list-style-type: square;
-}
-div#leave-email-success-modal.modal {
-  left: 43%;
-  width: 800px;
-}
-div#leave-email-success-modal div.modal-header {
-  background-color: #759e1a;
-  -webkit-border-top-right-radius: 3px;
-  -moz-border-radius-topright: 3px;
-  border-top-right-radius: 3px;
-  -webkit-border-top-left-radius: 3px;
-  -moz-border-radius-topleft: 3px;
-  border-top-left-radius: 3px;
-}
-div#leave-email-success-modal div.modal-body {
+div.header-container div.presentation-container div.content div.registration form input[type="email"] {
   background-color: #eee;
-  max-height: 600px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 16px;
+  line-height: 1.4em;
+  margin-right: 10px;
+  padding: 5px 10px;
+  width: 250px;
 }
-div#leave-email-success-modal div.modal-body p {
-  color: #333;
+div.header-container div.presentation-container div.content div.registration form a.btn {
+  font-weight: bold;
+  position: relative;
+  top: -2px;
 }
-div#leave-email-success-modal div.modal-body img {
-  float: right;
-  margin-left: 20px;
-}
-div#leave-email-success-modal div.modal-footer {
-  background-color: #eee;
+div.header-container div.presentation-container div.link {
+  background-color: black;
   -webkit-border-bottom-right-radius: 3px;
   -moz-border-radius-bottomright: 3px;
   border-bottom-right-radius: 3px;
   -webkit-border-bottom-left-radius: 3px;
   -moz-border-radius-bottomleft: 3px;
   border-bottom-left-radius: 3px;
+  cursor: pointer;
+  display: inline-block;
+  float: right;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  margin-right: 20px;
+  padding: 3px 8px;
 }
-div.footer-container {
+div.header-container div.presentation-container div.link.overview {
+  color: #19a0df;
+}
+div.header-container div.presentation-container div.link.registration {
+  color: #db4a38;
+}
+div.header-container div.presentation-container div.link:hover {
+  color: white;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div.body-container div.overview-container {
+  background-color: #19a0df;
+}
+div.body-container div.registration-container {
+  background-color: #db4a38;
+}
+div.body-container div.overview-container,
+div.body-container div.registration-container {
+  height: 16px;
+  margin-bottom: 10px;
+}
+div.body-container div.overview-container h2,
+div.body-container div.registration-container h2 {
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1em;
+}
+div.body-container div.overview-container h2 span.h2-label,
+div.body-container div.registration-container h2 span.h2-label {
+  display: inline-block;
+  background-color: #eee;
+  width: 17%;
+}
+div.body-container div.overview-container h2 span.show-hide-label,
+div.body-container div.registration-container h2 span.show-hide-label {
+  float: right;
+}
+div.body-container div.overview-container h2 span.msg,
+div.body-container div.registration-container h2 span.msg {
+  color: black;
+  font-size: 12px;
+}
+div.body-container div.overview-container h2:hover span.msg,
+div.body-container div.registration-container h2:hover span.msg,
+div.body-container div.overview-container h2:hover i,
+div.body-container div.registration-container h2:hover i {
+  color: white;
+  -webkit-transition: all 0.15s linear;
+  -moz-transition: all 0.15s linear;
+  -o-transition: all 0.15s linear;
+  transition: all 0.15s linear;
+}
+div.body-container div.overview-container.active,
+div.body-container div.registration-container.active {
+  margin-bottom: 10px;
+  padding: 5px 10px;
+}
+div.body-container div.overview-container.active h2,
+div.body-container div.registration-container.active h2,
+div.body-container div.overview-container.active p,
+div.body-container div.registration-container.active p {
+  color: white;
+}
+div.body-container div.overview-container.active h2,
+div.body-container div.registration-container.active h2 {
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 1.4em;
+  margin: 0;
+  padding: 0;
+}
+div.body-container div.champions-handler-container {
   background-color: black;
-  min-height: 200px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  margin: 10px 0;
+  padding: 10px;
 }
+div.body-container div.champions-handler-container h2 {
+  color: white;
+}
+div.body-container div.champions-handler-container h2 div.action-buttons {
+  display: inline-block;
+  float: right;
+}
+div.body-container div.champions-handler-container h2 div.action-buttons div.action {
+  background-color: rgba(255, 255, 255, 0.2);
+  cursor: pointer;
+  display: inline-block;
+  line-height: 22px;
+  padding: 4px 7px;
+}
+div.body-container div.champions-handler-container h2 div.action-buttons div.action i {
+  font-size: 22px;
+  line-height: 22px;
+}
+div.body-container div.champions-handler-container h2 div.action-buttons div.action span.action-label {
+  width: 0px;
+  font-size: 16px;
+  font-weight: normal;
+  position: relative;
+  top: -3px;
+}
+div.body-container div.champions-handler-container h2 div.action-buttons div.action:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+div.body-container div.champions-handler-container h2 div.action-buttons div.action:hover span.action-label {
+  width: 100%;
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+/*
+div.countdown {
+	margin: 20px auto;
+	padding: 0 20px;
+	width: 70%;
+
+	div {
+		background-color: rgba(255,255,255, 0.4);
+		border: 1px solid black;
+		color: #222;
+		display: inline-block;
+		font-size: 18px;
+		line-height: 1.4em;
+		padding: 10px 0 5px 0;
+		text-align: center;
+		width: 110px;
+		margin: 0 5px;
+	}
+
+	span.launch-date-message {
+		color: rgba(255,255,255,0.8);
+		display: inline-block;
+		float: left;
+		font-weight: bold;
+		line-height: 72px;
+		margin-right: 10px;
+	}
+
+	strong {
+		color: #d14836;
+		display: block;
+		font-size: 36px !important;
+		margin-bottom: 5px;
+	}
+}
+
+div.social-container {
+	font-weight: bold;
+	margin: 0 0 45px 0;
+	text-align: center;
+
+	p {
+		color: rgba(255,255,255,0.8);
+	}
+}
+
+div.presentation-container {
+	background: rgba(255,255,255,0.9) url('/images/launch_site/zilean_bg.png') no-repeat top center;
+	border: 4px solid rgba(255,255,255,0);
+	margin: 0;
+	padding: 0;
+
+	div.logo {
+		text-align: center;
+	}
+}
+
+div.overview-container {
+	background-color: rgba(0,150,219,1);
+}
+
+div.registration-container {
+	background-color: rgba(209,72,54,1);
+
+	form {
+		color: white;
+		margin: 0;
+		margin-bottom: 24px;
+		text-align: center;
+
+		input[type="email"], label {
+			margin: 0;
+			margin-right: 20px;
+		}
+
+		input[type="email"] {
+			font-family: 'Trebuchet MS';
+			font-size: 16px;
+			height: 30px;
+			line-height: 1.4em;
+			padding: 0 5px;
+			width: 30%;
+		}
+
+		label {
+			display: inline-block;
+			font-weight: bold;
+			line-height: 40px;
+			margin-right: 20px;
+		}
+
+		span.submit-btn-label {
+			font-weight: bold;
+		}
+	}
+
+	p.secret-msg {
+		font-style: italic;
+	}
+}
+
+div.help-container {
+	background-color: #759e1a;
+}
+
+div.champions-handler-container {
+	background-color: black;
+
+	h2 {
+		span, i {
+			color: #666;
+		}
+
+		&:hover {
+			span, i {
+				color: white;
+			}
+		}
+	}
+}
+
+div.overview-container, div.registration-container, div.help-container, div.champions-handler-container {
+	margin-bottom: 10px;
+	padding: 20px;
+
+	h2, p {
+		color: white;
+		margin: 0;
+	}
+
+	p {
+		margin-bottom: 1.5em;
+	}
+
+	p:last-child {
+		margin-bottom: 0.5em;
+	} 
+
+	div.content {
+		padding: 21px 0 0 0;
+	}
+
+	h2 {
+		cursor: pointer;
+
+		&:hover {
+			span, i {
+				color: white;
+			}
+		}
+	}
+
+	span.show-hide-label {
+		cursor: pointer;
+		color: black;
+		display: inline-block;
+		float: right;
+		font-size: 12px;
+		line-height: 40px;
+		vertical-align: middle;
+	}
+}
+
+div.registration-errors {
+	font-size: 14px;
+	line-height: 1.5em;
+	
+	ul {
+		font-family: 'Ubuntu';
+		margin: auto;
+		margin-top: 15px;
+		width: 60%;
+
+		li {
+			line-height: 1.5em;
+			list-style-position: inside;
+			list-style-type: square;
+		}
+	}
+}
+
+div#leave-email-success-modal {
+	&.modal {
+		left: 43%;
+		width: 800px;
+	}
+
+	div.modal-header {
+		background-color: #759e1a;
+		.border-top-radius(3px);
+	}
+
+	div.modal-body {
+		background-color: #eee;
+		max-height: 600px;
+
+		p {
+			color: #333;
+		}
+
+		img {
+			float: right;
+			margin-left: 20px;
+		}
+	}
+
+	div.modal-footer {
+		background-color: #eee;
+		.border-bottom-radius(3px);
+	}
+}
+
+div.footer-container {
+	background-color: black;
+	min-height: 200px;
+}*/
