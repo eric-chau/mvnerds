@@ -17,3 +17,13 @@ a.thumbnail img{
 a.thumbnail span.champion-name{
 	font-size: 12px;
 }
+
+
+li.champion-maxi{
+	width: 640px !important;
+	height: 640px;
+}
+li.champion-maxi a{
+	width: 630px;
+	height: 630px;
+}

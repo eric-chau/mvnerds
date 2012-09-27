@@ -1,6 +1,8 @@
 const SUCCESS_ALERT = 'success';
 const ERROR_ALERT = 'error';
-const HIDE_SPEED = 800;
+
+var timeoutID;
+
 //Permet de récupérer les messages d'alerte du serveur
 function getAlertMessage(type)
 {
@@ -17,17 +19,24 @@ function getAlertMessage(type)
 }
 //Permet d afficher les messages d erreur et de succes
 function displayMessage(message, type)
-{			
+{
+	var alert = '<div style="display:none" class="fade in alert alert-fixed alert-'+type+'"><button type="button" class="close" data-dismiss="alert">×</button>'+message+'</div>';
 	//On crée le nouveau message
-	$('#champion-comparison').before('<div class="fade in alert alert-fixed alert-'+type+'"><button type="button" class="close" data-dismiss="alert">×</button>'+message+'</div>');
+	$('#champion-comparison').before(alert);
+	$('.alert-fixed').show(400);
+	timeoutID = setTimeout(function(){
+		hideMessages();
+	},
+	1500);
 }
 //Permet de retirer les messages d'alerte actuellement affichés
 function hideMessages(){
-	$('div.container div.alert').animate({
+	clearTimeout(timeoutID);
+	$('div.container div.alert-fixed').animate({
 		opacity: 0.25,
 		bottom: '+=100'
 	},
-	HIDE_SPEED,
+	800,
 	function(){
 		$(this).remove();
 	});

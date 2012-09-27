@@ -77,15 +77,29 @@ jQuery(function($) {
 		
 	//Récupération de la liste des champions et de la comparison list
 	var $comparisonList = $('#comparison-list');
+		
 	
 	//On rends chaque champion draggable
-	$('#champion-comparison').on('mouseover', 'li.champion', function(){
+	$('#champion-comparison').on('mouseover', 'li.champion-mini', function(){
+		var position = $(this).data('isotope-item-position');
+		if (position != undefined)
+		{
+			var posX = position.x;
+			var posY = position.y;
+		}
+
 		$(this).draggable({
 			helper: 'clone',
-			revert: 'invalid',
 			revertduration: 300,
 			zIndex: 1100,
 			opacity: 1,
+			cursorAt: { 
+				left:  posX,
+				top: posY
+			},
+			create: function(){
+				
+			},
 			start: function(){
 				$('#comparison-list').css('border', '1px dashed black')
 				$('#comparison-list-dropdown').addClass('open');
@@ -98,7 +112,7 @@ jQuery(function($) {
 	
 	//On rends la comparison list capable d accepter les champions
 	$comparisonList.droppable({
-		accept: '#champion-list li.champion',
+		accept: '#champion-list li.champion-mini',
 		over: function(){
 			$('#comparison-list').css('border', '1px solid black');
 		},
@@ -156,7 +170,7 @@ jQuery(function($) {
 	
 	$('#comparison-list').on('click', 'a.champion-comparable-remove', function(){
 		var slug = $(this).find('span.slug').html();
-		
+		$(this).tooltip('destroy');
 		$comparisonListLoading.show();
 		
 		hideMessages();

@@ -10,12 +10,16 @@
 	 <link rel="stylesheet" href="{{ asset('/css/launch_site/data-scroll.css') }}">
 	 <link rel="stylesheet" href="{{ asset('/css/champion_handler/grid.css') }}">
 	 <link rel="stylesheet" href="{{ asset('css/champion_handler/comparison.css') }}">
+	 <link rel="stylesheet" href="{{ asset('css/isotope.css') }}">
 {% endblock %}
 
 {% block javascripts %}
 	 {{ parent() }}
 	 
-	 <script type="text/javascript" src="{{ asset('/js/jquery-ui-1.8.23.custom.min.js') }}"></script>
+	 <script type="text/javascript" src="{{ asset('/js/jquery-ui-1.8.23.core.min.js') }}"></script>
+	 <script type="text/javascript" src="{{ asset('/js/jquery.ui.draggable.js') }}"></script>
+	 <script type="text/javascript" src="{{ asset('/js/jquery.ui.droppable.js') }}"></script>
+	 <script type="text/javascript" src="{{ asset('/js/jquery.isotope.min.js') }}"></script>
 	 
 	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-tooltip.js') }}"></script>
 	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-popover.js') }}"></script>
@@ -24,9 +28,12 @@
 	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-modal.js') }}"></script>
 	 
 	 <script type="text/javascript" src="{{ asset('/js/launch_site/alerts-ajax-handler.js') }}"></script>
+	 
 	 <script type="text/javascript" src="{{ asset('/js/champion_handler/comparison.js') }}"></script>
 	 <script type="text/javascript" src="{{ asset('/js/launch_site/front.js') }}"></script>
 	 <script type="text/javascript" src="{{ asset('/js/launch_site/data-scroll.js') }}"></script>
+	 
+	 <script type="text/javascript" src="{{ asset('/js/champion_handler/resize.js') }}"></script>
 	 
 	 <script type="text/javascript">
 		$(document).ready(function()
