@@ -79,9 +79,11 @@ jQuery(function($) {
 	var $comparisonList = $('#comparison-list');
 	
 	//On rends chaque champion draggable
-	$('#champion-comparison').on('mouseover', 'li.champion-mini', function(){
+	$('#champion-comparison').on('mouseover', 'li.champion:not(.champion-maxi)', function(){
 		$(this).draggable({
+			diabled: false,
 			helper: 'clone',
+			revert: 'invalid',
 			revertduration: 300,
 			zIndex: 1100,
 			opacity: 1,
@@ -97,7 +99,7 @@ jQuery(function($) {
 	
 	//On rends la comparison list capable d accepter les champions
 	$comparisonList.droppable({
-		accept: '#champion-list li.champion-mini',
+		accept: '#champion-list li.champion',
 		over: function(){
 			$('#comparison-list').css('border', '1px solid black');
 		},
