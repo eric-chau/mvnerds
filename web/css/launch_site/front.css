@@ -85,14 +85,20 @@ div.header-container {
   margin: 0 0 20px 0;
 }
 div.header-container div.logo {
-  background: url('/images/launch_site/mvnerds_logo.png') no-repeat center center;
-  margin: 0 auto;
-  margin-right: 0;
+  background: url('/images/launch_site/mvnerds_logo.png') no-repeat top center;
   height: 167px;
-  width: 351px;
+  width: 100%;
 }
 div.header-container div.logo h1 {
+  color: #db4a38;
   font-family: 'Quantico', sans-serif;
+  font-size: 2.2em;
+  padding-top: 119px;
+  text-shadow: 1px 1px 1px rgba(80, 80, 80, 0.3);
+}
+div.header-container div.logo h1 em {
+  color: #19a0df;
+  font-style: normal;
 }
 div.header-container div.launch-date-msg {
   color: #999;
@@ -104,7 +110,7 @@ div.header-container div.launch-date-msg {
   text-transform: uppercase;
 }
 div.header-container div.countdown div {
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
@@ -117,7 +123,7 @@ div.header-container div.countdown div {
   width: 120px;
 }
 div.header-container div.countdown div strong {
-  color: #db4a38;
+  color: #19a0df;
   display: block;
   font-size: 28px;
   font-weight: bold;
