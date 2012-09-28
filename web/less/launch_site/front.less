@@ -65,9 +65,13 @@ div.header-container {
 	div.logo {
 		background: url('/images/launch_site/mvnerds_logo.png') no-repeat center center;
 		margin: 0 auto;
-		margin-right: 0px;
+		margin-right: 0;
 		height: 167px;
 		width: 351px;
+
+		h1 {
+			font-family: 'Quantico', sans-serif;
+		}
 	}
 
 	div.launch-date-msg {
@@ -131,7 +135,10 @@ div.header-container {
 	div.presentation-container {
 		div.content {
 			background: black url('/images/launch_site/content_bg.png') no-repeat top left;
-			
+			border: 1px solid black;
+			border-bottom: 0;
+			border-top: 0;
+
 			div.overview, div.registration {
 				padding: 20px;
 
@@ -278,7 +285,7 @@ div.body-container {
 
 	div.champions-handler-container {
 		background-color: black;
-		.border-radius(10px);
+		.border-radius(4px);
 		margin: 10px 0;
 		padding: 10px;
 
@@ -317,6 +324,53 @@ div.body-container {
 							width: 100%;
 							.transition(all .25s linear);
 						}
+					}
+				}
+			}
+		}
+
+		div#champion-list {
+			ul {
+				margin: 20px 0;
+				padding: 0;
+			}
+
+			li.champion {
+				border: 1px solid rgba(255,255,255,0.2);
+				.border-radius(5px);
+				display: inline-block;
+				height: 103px;
+				margin: 0 2px 20px 2px;
+				padding: 8px;
+
+				a, a:hover, a:visited {
+					text-decoration: none;
+				}
+
+				img.champion-image {
+					width: 100px;
+				}
+
+				div.champion-name {
+					background-color: rgba(0,0,0,.3);
+					color: #aaa;
+					font-family: 'Ubuntu', sans-serif;
+					font-size: 14px;
+					font-weight: bold;
+					line-height: 1.8em;
+					position: relative;
+					text-align:	center;
+					top: -27px;
+				}
+
+				&:hover {
+					border: 1px solid rgba(247,148,29,1);
+					.transition(border .25s linear);
+
+					div.champion-name {
+						background-color: rgba(0,0,0,.6);
+						color: #eee;
+						.transition(all .25s linear);
 					}
 				}
 			}

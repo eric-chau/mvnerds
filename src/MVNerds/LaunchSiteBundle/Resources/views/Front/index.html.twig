@@ -8,7 +8,7 @@
 	 <link rel="stylesheet" href="{{ asset('/css/launch_site/front.css') }}">
 	 <link rel="stylesheet" href="{{ asset('/css/launch_site/actionbar.css') }}">
 	 <link rel="stylesheet" href="{{ asset('/css/launch_site/data-scroll.css') }}">
-	 <link rel="stylesheet" href="{{ asset('/css/champion_handler/grid.css') }}">
+	 {#<link rel="stylesheet" href="{{ asset('/css/champion_handler/grid.css') }}">#}
 	 <link rel="stylesheet" href="{{ asset('css/champion_handler/comparison.css') }}">
 	 <link rel="stylesheet" href="{{ asset('css/isotope.css') }}">
 {% endblock %}
@@ -52,7 +52,9 @@
 
 				<div class="row-fluid">
 					<div class="span5">
-						<div class="logo"></div>
+						<div class="logo">
+							{#<h1>MOST VALUABLE NERDS</h1>#}
+						</div>
 					</div>
 					
 					<div class="span7">
@@ -107,50 +109,6 @@
 			</div>
 
 			<div class="body-container">
-			
-				{#<div class="overview-container">
-					<h2 data-content-name="about-us">
-						<span class="h2-label">Qui sommes-nous ? </span>
-						<span class="show-hide-label" data-toggle-label="Masquer" data-toggle-icon="icon-eye-open icon-14px">
-							<i class="icon-eye-close icon-14px"></i> <span class="msg">Afficher</span>
-						</span>
-					</h2>
-
-					<div class="content hide">
-						<p>The sleepy, non-descript village of Kalamanda, located near the northern entrance to Mogron Pass, now finds itself wide awake 
-						as the leading lady on the world stage. The village's mayor, Anson Ridley, reported this week that a local survey team has 
-						uncovered a massive deposit of gold and precious gems within the village's sphere of influence. Furthermore, two nexuses of 
-						considerable magic potency have been discovered alongside the resource deposits.</p>
-
-						<p>Before the discovery, Kalamanda was only moderately known as a decent place to fish for Valoran trout and not much else. 
-						The village now finds itself as the destination point for adventurers and prospectors seeking fame and riches beyond their 
-						wildest dreams. The town council has already set up a temporary camp located near the foothills that lead to Mogron Pass and the 
-						Great Barrier in anticipation of the great influx of individuals hoping to trade a hard day's work for handsome rewards.</p>
-					</div>
-				</div>
-
-				<div class="registration-container">
-					<h2 data-content-name="registration" data-success-label="Nous avons votre e-mail, merci !">
-						<span class="h2-label">Je laisse mon e-mail</span>
-						<span class="show-hide-label" data-toggle-label="Masquer" data-toggle-icon="icon-eye-open icon-14px">
-							<i class="icon-eye-close icon-14px"></i> <span class="msg">Afficher</span>
-						</span>
-					</h2>
-
-					<div class="content hide">
-						<p>Laisser votre e-mail vous offre plusieurs avatanges et <strong>zéro inconvénient</strong> ! Nous n'allons pas nous amuser à vous spammer
-						ni à communiquer votre e-mail. Notre but est de pouvoir vous tenir informer de l'évolution du site et notamment de son ouverture officielle !
-						</p>
-
-						<div id="leave-email-form-container">
-							{% include 'MVNerdsLaunchSiteBundle:Front:leave_email_form.html.twig' with {'form': form} %}
-						</div>
-
-						<p class="secret-msg">Il se murmure qu'il y aura une (ou des, qui sait ?) surprise(s) pour tous ceux qui ont laissé leur e-mail... mais chut hein, je ne vous 
-						ai rien dit :P</p>
-					</div>
-				</div>#}
-
 				<div class="champions-handler-container">
 					<h2 data-content-name="champion-handler">
 						Module des champions (Bêta)
@@ -165,9 +123,6 @@
 								<i class="icon-question-sign icon-white"></i> <span class="action-label">Démarrer la visite guidée</span>
 							</div>
 						</div>
-						{#<span class="show-hide-label" data-toggle-label="Masquer" data-toggle-icon="icon-eye-open icon-14px">
-							<i class="icon-eye-close icon-14px"></i> <span class="msg">Afficher</span>
-						</span>#}
 					</h2>
 
 					<div class="content">
