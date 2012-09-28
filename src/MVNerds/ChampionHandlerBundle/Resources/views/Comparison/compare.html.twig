@@ -1,11 +1,11 @@
-<div class="data-scrollable">
+<div class="data-scrollable" id="champion-comparator">
 	<h1>Comparer des champions</h1>
 
-<div class="action-buttons">
-	<a rel="previous" href="{{ path('champion_handler_front_champion_comparison') }}" class=" data-pagination btn btn-large"><i class="icon-arrow-left"></i> <strong>Retourner à la liste</strong></a>
-</div>
+	<div class="action-buttons">
+		<a rel="previous" href="{{ path('champion_handler_front_champion_comparison') }}" class=" data-pagination btn btn-large"><i class="icon-arrow-left"></i> <strong>Retourner à la liste</strong></a>
+	</div>
 
-<div class="well">
-	{% include 'MVNerdsChampionHandlerBundle:Comparison:compare_row.html.twig' with {'field_names':  field_names}%}
-</div>
+	<div class="well">
+		{% include 'MVNerdsChampionHandlerBundle:Comparison:compare_row.html.twig' with {'field_names':  field_names}%}
+	</div>
 </div>
