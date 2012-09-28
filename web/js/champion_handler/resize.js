@@ -4,67 +4,42 @@
 jQuery(function($) {
 		
 	var options = {
-		itemSelector: '.champion-isotope',
-		layoutMode: 'masonry',
+		itemSelector: '.champion',
 		transformsEnabled: false,
+		animationEngine: 'jquery',
 		masonry: {
-			columnWidth: 10
+			columnWidth: 124
 		}
 	};
-	var options2 = {
-		itemSelector: '.champion-isotope',
-		layoutMode: 'masonry',
-		transformsEnabled: true,
-		masonry: {
-			columnWidth: 10
-		}
-	};
-	$container = $('#champion-comparison');
+	$isotope = $('#isotope-list');
 	
-	$container.imagesLoaded( function(){
-		$container.isotope(options);
+	$isotope.imagesLoaded( function(){
+		$isotope.isotope(options);
 	});
+	
+	//Bloquage du drag sur les champions agrandis
+	$isotope.on('mouseover', 'li.champion-maxi', function(){
+		$(this).draggable('disable');
+	});
+	
 	//Lors du clic sur un champion miniature
-	$container.on('click', 'li.champion-mini', function(){
-		//$container.isotope('option', options2);
-		$(this).animate({
-			width: 'hide',
-			height: 'hide',
-			opacity: 0
-		},500, function(){
-			$(this).addClass('champion-maxi');
-			$(this).removeClass('champion-mini');
-
-			$container.isotope( 'reLayout');
-
-			$(this).animate({
-				height: 'show',
-				opacity: 1}, 500
-			);
-			//$container.isotope('option', options);
-		});
-		return false;
+	$isotope.on('click', 'li.champion:not(.champion-maxi)', function(){
+		return maximizeChampion($(this), $isotope);
 	});
 	//Lors du clic sur un champion maximisé
-	$container.on('click', 'li.champion-maxi', function(){
-		
-		$(this).animate({
-			width: 'hide',
-			height: 'hide',
-			opacity: 0
-		},500, function(){
-			$(this).addClass('champion-mini');
-			$(this).removeClass('champion-maxi');
-
-			$container.isotope( 'reLayout');
-
-			$(this).animate({
-				height: 'show',
-				width: 'show',
-				opacity: 1}, 500
-			);
-			//$container.isotope('option', options);
-		});
-		return false;
+	$isotope.on('click', 'li.champion-maxi', function(){
+		return minimizeChampion($(this), $isotope);
 	});
+	
+	function maximizeChampion($champ, $isotope){
+		$champ.toggleClass('champion-maxi');
+		$isotope.isotope( 'reLayout');
+		return false;
+	}
+	function minimizeChampion($champ, $isotope){
+		$champ.removeClass('champion-maxi');
+		$isotope.isotope( 'reLayout');
+		$champ.draggable('enable');
+		return false;
+	}
 });
