@@ -13,3 +13,5 @@ src/MVNerds/CoreBundle/Model/om/*
 src/MVNerds/CoreBundle/Model/map/*
 /app/sf.bat
 /nbproject/*
+
+*.orig
