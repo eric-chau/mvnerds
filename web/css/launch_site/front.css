@@ -378,13 +378,14 @@ div.body-container div.champions-handler-container div#champion-list li.champion
   transition: all 0.25s linear;
 }
 div.body-container div.champions-handler-container div#champion-list li.champion.champion-maxi {
-  height: 500px;
+  height: 498px;
   -webkit-transition: all 0.3s linear;
   -moz-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
   transition: all 0.3s linear;
   width: 490px;
   z-index: 900;
+  margin-bottom: 4px;
 }
 div.body-container div.champions-handler-container div#champion-list li.champion.champion-portrait {
   height: 120px;
