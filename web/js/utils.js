@@ -48,3 +48,22 @@ function getItemFromLS(key)
 
 var gridColumnWidth = 67,
 	gridGutterWidth = 20;
+
+/************** ISOTOPE ****************/
+var isotopeOptions = {
+	itemSelector: '.champion',
+	animationEngine: 'jquery',
+	masonry: {
+		columnWidth: 124
+	},
+	animationOptions: {
+		duration: 400,
+		queue: false,
+		opacity: 1
+	}
+};
+
+function getIsotopeOptions(){
+	return isotopeOptions;
+}
+/************** /ISOTOPE ****************/

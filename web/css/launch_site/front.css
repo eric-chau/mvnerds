@@ -78,7 +78,7 @@ div.main-container {
   -webkit-box-shadow: 0px 0px 55px #000000;
   -moz-box-shadow: 0px 0px 55px #000000;
   box-shadow: 0px 0px 55px #000000;
-  min-height: 980px;
+  min-height: 1080px;
   padding: 20px;
 }
 div.header-container {
@@ -206,16 +206,13 @@ div.header-container div.presentation-container div.content div.registration for
   top: -2px;
 }
 div.header-container div.presentation-container div.link {
-  background-color: #333;
+  background-color: black;
   -webkit-border-bottom-right-radius: 4px;
   -moz-border-radius-bottomright: 4px;
   border-bottom-right-radius: 4px;
   -webkit-border-bottom-left-radius: 4px;
   -moz-border-radius-bottomleft: 4px;
   border-bottom-left-radius: 4px;
-  -webkit-box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.4);
-  -moz-box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.4);
-  box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.4);
   cursor: pointer;
   display: inline-block;
   float: right;
@@ -301,65 +298,50 @@ div.body-container div.registration-container.active h2 {
 }
 div.body-container div.champions-handler-container {
   background-color: black;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
   margin: 10px 0;
-  min-height: 500px;
   padding: 10px;
 }
-div.body-container div.champions-handler-container div.actions-bar h2 {
+div.body-container div.champions-handler-container h2 {
   color: white;
-  display: inline-block;
 }
-div.body-container div.champions-handler-container div.actions-bar div.action-buttons {
-  color: white;
+div.body-container div.champions-handler-container h2 div.action-buttons {
   display: inline-block;
   float: right;
 }
-div.body-container div.champions-handler-container div.actions-bar div.action-buttons div.action {
+div.body-container div.champions-handler-container h2 div.action-buttons div.action {
   background-color: rgba(255, 255, 255, 0.2);
   cursor: pointer;
   display: inline-block;
   line-height: 22px;
   padding: 4px 7px;
 }
-div.body-container div.champions-handler-container div.actions-bar div.action-buttons div.action i {
+div.body-container div.champions-handler-container h2 div.action-buttons div.action i {
   font-size: 22px;
   line-height: 22px;
 }
-div.body-container div.champions-handler-container div.actions-bar div.action-buttons div.action span.action-label {
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 14px;
+div.body-container div.champions-handler-container h2 div.action-buttons div.action span.action-label {
+  width: 0px;
+  font-size: 16px;
   font-weight: normal;
   position: relative;
   top: -3px;
 }
-div.body-container div.champions-handler-container div.actions-bar div.action-buttons div.action:hover {
+div.body-container div.champions-handler-container h2 div.action-buttons div.action:hover {
   background-color: rgba(255, 255, 255, 0.5);
   -webkit-transition: all 0.25s linear;
   -moz-transition: all 0.25s linear;
   -o-transition: all 0.25s linear;
   transition: all 0.25s linear;
 }
-div.body-container div.champions-handler-container div.actions-bar div.action-buttons div.action:hover span.action-label {
+div.body-container div.champions-handler-container h2 div.action-buttons div.action:hover span.action-label {
+  width: 100%;
   -webkit-transition: all 0.25s linear;
   -moz-transition: all 0.25s linear;
   -o-transition: all 0.25s linear;
   transition: all 0.25s linear;
-}
-div.body-container div.champions-handler-container div.actions-bar div.action-buttons div.action input[type="text"] {
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 12px;
-  line-height: 1.5em;
-  margin: 0;
-  padding: 0 5px;
-  width: 100px;
-}
-div.body-container div.champions-handler-container div.actions-bar.active {
-  background-color: rgba(0, 0, 0, 0.8);
-  left: 0;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 1000;
 }
 div.body-container div.champions-handler-container div#champion-comparison {
   padding-left: 6px;
@@ -381,7 +363,7 @@ div.body-container div.champions-handler-container div#champion-list li.champion
   width: 118px;
 }
 div.body-container div.champions-handler-container div#champion-list li.champion:hover {
-  border: 1px solid #fb9701;
+  border: 1px solid #f7941d;
   -webkit-transition: border 0.25s linear;
   -moz-transition: border 0.25s linear;
   -o-transition: border 0.25s linear;
@@ -396,14 +378,14 @@ div.body-container div.champions-handler-container div#champion-list li.champion
   transition: all 0.25s linear;
 }
 div.body-container div.champions-handler-container div#champion-list li.champion.champion-maxi {
-  border: 1px solid #fb9701;
-  height: 500px;
+  height: 498px;
   -webkit-transition: all 0.3s linear;
   -moz-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
   transition: all 0.3s linear;
   width: 490px;
   z-index: 900;
+  margin-bottom: 4px;
 }
 div.body-container div.champions-handler-container div#champion-list li.champion.champion-portrait {
   height: 120px;
@@ -450,7 +432,7 @@ div.body-container div.champions-handler-container div#champion-list li.champion
   padding: 10px 10px;
 }
 div.body-container div.champions-handler-container div#champion-list li.champion div.preview h3 {
-  color: #fb9701;
+  color: #19a0df;
   font-size: 16px;
 }
 div.body-container div.champions-handler-container div#champion-list li.champion div.preview .ad-color {

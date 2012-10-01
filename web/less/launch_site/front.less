@@ -401,10 +401,11 @@ div.body-container {
 
 				&.champion-maxi {
 					border: 1px solid @LoLOrangeAD;
-					height: (4 * @PortraitHeight) + (4 * @PortraitGutter);
+					height: (4 * @PortraitHeight) + (4 * @PortraitGutter) - 2;
 					.transition(all .3s linear);
 					width: (4 * @PortraitWidth) + (3 * @PortraitGutterWidth);
-					z-index: 900;					
+					z-index: 900;	
+					margin-bottom: 4px;				
 				}
 
 				&.champion-portrait {
