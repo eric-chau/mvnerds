@@ -63,7 +63,7 @@ div.main-container {
 	background: #eee url('/images/launch_site/url_bg.png') no-repeat top right;
 	border: 0;
 	.box-shadow(0px 0px 55px rgba(0,0,0,1));
-	min-height: 1080px;
+	min-height: 980px;
 	padding: 20px;
 }
 
@@ -213,8 +213,9 @@ div.header-container {
 		}
 
 		div.link {
-			background-color: black;
+			background-color: #333;
 			.border-bottom-radius(4px);
+			.box-shadow(inset 0px 1px 2px rgba(0,0,0,.4);
 			cursor: pointer;
 			display: inline-block;
 			float: right;
@@ -302,14 +303,18 @@ div.body-container {
 
 	div.champions-handler-container {
 		background-color: black;
-		.border-radius(4px);
+		//.border-radius(4px);
 		margin: 10px 0;
+		min-height: 500px;
 		padding: 10px;
 
-		h2 {
-			color: white;
-
+		div.actions-bar {
+			h2 {
+				color: white;
+				display: inline-block;
+			}
 			div.action-buttons {
+				color: white;
 				display: inline-block;
 				float: right;
 
@@ -326,8 +331,8 @@ div.body-container {
 					}
 
 					span.action-label {
-						width: 0px;
-						font-size: 16px;
+						font-family: 'Ubuntu', sans-serif;
+						font-size: 14px;
 						font-weight: normal;
 						position: relative;
 						top: -3px;
@@ -338,11 +343,28 @@ div.body-container {
 						.transition(all .25s linear);
 						
 						span.action-label {
-							width: 100%;
 							.transition(all .25s linear);
 						}
 					}
-				}
+
+					input[type="text"] {
+						font-family: 'Ubuntu', sans-serif;
+						font-size: 12px;
+						line-height: 1.5em;
+						margin: 0;
+						padding: 0 5px;
+						width: 100px;
+					}
+				}	
+			}
+
+			&.active {
+				background-color: rgba(0,0,0,.8);
+				left: 0;
+				position: fixed;
+				right: 0;
+				top: 0;
+				z-index: 1000;
 			}
 		}
 
@@ -367,7 +389,7 @@ div.body-container {
 				width: @PortraitWidth;
 
 				&:hover {
-					border: 1px solid rgba(247,148,29,1);
+					border: 1px solid @LoLOrangeAD;
 					.transition(border .25s linear);
 
 					div.champion-name {
@@ -378,6 +400,7 @@ div.body-container {
 				}
 
 				&.champion-maxi {
+					border: 1px solid @LoLOrangeAD;
 					height: (4 * @PortraitHeight) + (4 * @PortraitGutter);
 					.transition(all .3s linear);
 					width: (4 * @PortraitWidth) + (3 * @PortraitGutterWidth);
@@ -430,7 +453,7 @@ div.body-container {
 					padding: 10px 10px;
 
 					h3 {
-						color: @MVNerdsBlue;
+						color: @LoLOrangeAD;
 						font-size: 16px;
 					}
 

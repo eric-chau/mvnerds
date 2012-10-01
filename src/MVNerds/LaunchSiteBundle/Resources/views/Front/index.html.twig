@@ -12,13 +12,6 @@
 	 <link rel="stylesheet" href="{{ asset('css/isotope.css') }}">
 	 <link href='http://fonts.googleapis.com/css?family=Quantico:700' rel='stylesheet' type='text/css'>
 
-	 <style>
-			{# A INTEGRER #}
-			
-			div.body-container div.champions-handler-container h2 div.action-buttons div.action{
-				height: 31px;
-			}
-	</style>
 {% endblock %}
 
 {% block javascripts %}
@@ -119,21 +112,23 @@
 				
 			<div class="body-container">
 				<div class="champions-handler-container">
-					<h2 data-content-name="champion-handler">
-						Module des champions (Bêta)
+					<div class="actions-bar active">
+						<h2 data-content-name="champion-handler">
+							Module des champions (Bêta)
+						</h2>
 						<div class="action-buttons">
 							<div class="action">
 								<i class="icon-cogs icon-white"></i> <span class="action-label">Affiner le filtrage</span>
 							</div>
 							<div class="action">
-								<i class="icon-search icon-white"></i> <input id="filter-value" type="text" class="span2 input-mini search-query" placeholder="Recherche" data-provide="typeahead"/>
+								<i class="icon-search icon-white"></i> <input id="filter-value" type="text" class="input-mini" placeholder="Recherche" data-provide="typeahead"/>
 							</div>
 							<div class="action">
 								<i class="icon-question-sign icon-white"></i> <span class="action-label">Démarrer la visite guidée</span>
 							</div>
 						</div>
-					</h2>
-
+					</div>
+						
 					<div class="content">
 						<div id="champion-comparison">
 							{% render 'MVNerdsChampionHandlerBundle:Front:championComparison' %}
