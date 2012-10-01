@@ -1,0 +1,35 @@
+<div class="row-fluid">
+	<div class="span6">
+		<h3>{{ champion.getName() }}</h3>
+
+		<dl>
+			<dt>Points de vie</dt>
+		      <dd>{{ champion.getBaseHealth() }}</dd>	
+		    <dt>Régén. de point de vie/5 sec</dt>
+		      <dd>{{ champion.getBaseHealthRegen() * 5 }}</dd>
+		     <dt>Points de mana</dt>
+		      <dd>{{ champion.getBaseMana() }}</dd>	
+		    <dt>Régén. de mana/5 sec</dt>
+		      <dd>{{ champion.getBaseManaRegen() * 5 }}</dd>
+		    <dt>Armure</dt>
+		      <dd>{{ champion.getBaseArmor() }}</dd>
+		    <dt>Résistance magique</dt>
+		      <dd>{{ champion.getBaseMagicResist() }}</dd>
+		  	<dt>Dégâts d'attaque</dt>
+		      <dd>{{ champion.getBaseDamage() }}</dd>
+	      	<dt>Vitesse d'attaque</dt>
+		      <dd>{{ champion.getBaseAttackSpeed() }}</dd>
+	      	<dt>Portée d'attaque</dt>
+		      <dd>{{ champion.getAttackRange() }}</dd>
+	      	<dt>Vitesse de déplacement</dt>
+		      <dd>{{ champion.getMoveSpeed() }}</dd>
+		   
+		</dl>
+	</div>
+	<div class="span6 right-side">
+		<p>
+			<img src="{{ asset('/images/commons/ip_logo.png') }}" /> 6300 ou <img src="{{ asset('/images/commons/rp_logo.png') }}" /> 975
+		</p>
+		<img src="{{ asset('/images/champions/portrait/' ~ champion.getSlug() ~ '.jpg') }}" class="portrait" />
+	</div>
+</div>

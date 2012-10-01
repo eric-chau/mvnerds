@@ -43,20 +43,50 @@ jQuery(function($) {
 	});
 	
 	function maximizeChampion($champ, $isotope){
-		$champ.toggleClass('champion-maxi');
-		$isotope.isotope( 'reLayout', function(){
-			setTimeout(function(){
-				scrollToChampion($('#'+$champ.attr('id')))
-				},
-				100
-			);
-		});
+//		$champ.toggleClass('champion-maxi');
+//		$isotope.isotope( 'reLayout', function(){
+//			setTimeout(function(){
+//				scrollToChampion($('#'+$champ.attr('id')))
+//				},
+//				100
+//			);
+//		});
+
+		$champ.find('div.portrait').fadeOut(250);
+		$champ.addClass('champion-maxi');
+		setTimeout(function() 
+		{
+			$champ.find('div.preview').fadeIn(250);
+			$isotope.isotope( 'reLayout', function(){
+				setTimeout(function(){
+					scrollToChampion($('#'+$champ.attr('id')))
+					},
+					100
+				);
+			});
+		},
+		320);
+		
 		return false;
 	}
+	
 	function minimizeChampion($champ, $isotope){
-		$champ.removeClass('champion-maxi');
-		$isotope.isotope( 'reLayout');
+		$champ.find('div.preview').fadeOut(150);
+		setTimeout(function() 
+		{
+			$champ.find('div.portrait').fadeIn(300);
+			$champ.toggleClass('champion-portrait champion-maxi');
+			setTimeout(function() 
+			{
+				$isotope.isotope( 'reLayout');
+				$champ.removeClass('champion-portrait');
+			},
+			320);
+		},
+		150);
+		
 		$champ.draggable('enable');
+
 		return false;
 	}
 		

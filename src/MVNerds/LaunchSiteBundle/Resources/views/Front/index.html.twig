@@ -8,40 +8,15 @@
 	 <link rel="stylesheet" href="{{ asset('/css/launch_site/front.css') }}">
 	 <link rel="stylesheet" href="{{ asset('/css/launch_site/actionbar.css') }}">
 	 <link rel="stylesheet" href="{{ asset('/css/launch_site/data-scroll.css') }}">
-	 {#<link rel="stylesheet" href="{{ asset('/css/champion_handler/grid.css') }}">#}
 	 <link rel="stylesheet" href="{{ asset('css/champion_handler/comparison.css') }}">
 	 <link rel="stylesheet" href="{{ asset('css/isotope.css') }}">
 	 <link href='http://fonts.googleapis.com/css?family=Quantico:700' rel='stylesheet' type='text/css'>
-	 
+
 	 <style>
 			{# A INTEGRER #}
-			li.champion{
-				padding: 0 !important;
-				height: 118px !important;
-			}
-			li.champion a{
-				 display: block;
-				 margin: 9px;
-			}
-			 li.champion-maxi{
-				width: 490px !important;
-				height: 538px !important;
-				background-color: black;
-				z-index: 900;
-			}
 			
 			div.body-container div.champions-handler-container h2 div.action-buttons div.action{
 				height: 31px;
-			}
-			
-			/**** Isotope filtering ****/
-			.isotope-item {
-			  z-index: 2;
-			}
-
-			.isotope-hidden.isotope-item {
-			  pointer-events: none;
-			  z-index: 1;
 			}
 	</style>
 {% endblock %}
@@ -51,7 +26,6 @@
 	 
 	 <script type="text/javascript" src="{{ asset('/js/jquery-ui-1.8.23.custom.min.js') }}"></script>
 	 <script type="text/javascript" src="{{ asset('/js/jquery.isotope.min.js') }}"></script>
-	 <script type="text/javascript" src="{{ asset('/js/jquery.single_double_click.js') }}"></script>
 	 
 	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-tooltip.js') }}"></script>
 	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-popover.js') }}"></script>
