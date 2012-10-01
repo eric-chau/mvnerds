@@ -112,23 +112,30 @@
 				
 			<div class="body-container">
 				<div class="champions-handler-container">
-					<div class="actions-bar active">
+					<div class="actions-bar">
 						<h2 data-content-name="champion-handler">
 							Module des champions (Bêta)
 						</h2>
-						<div class="action-buttons">
+						{% include 'MVNerdsLaunchSiteBundle:Front:champion_handler_actionbar.html.twig' %}
+						{#<div class="action-buttons">
 							<div class="action">
+								<i class="icon-th-large icon-white"></i> <span class="action-label">Liste de comparaison</span>
+							</div>
+							<div class="action">
+								<i class="icon-random icon-white"></i> <span class="action-label">Comparer</span>
+							</div>
+							<div class="action filter-action">
 								<i class="icon-cogs icon-white"></i> <span class="action-label">Affiner le filtrage</span>
 							</div>
-							<div class="action">
-								<i class="icon-search icon-white"></i> <input id="filter-value" type="text" class="input-mini" placeholder="Recherche" data-provide="typeahead"/>
+							<div class="action filter-action search-action">
+								<i class="icon-search icon-white"></i> <input id="filter-value" type="text" class="input-mini" placeholder="Rechercher" data-provide="typeahead"/>
 							</div>
-							<div class="action">
-								<i class="icon-question-sign icon-white"></i> <span class="action-label">Démarrer la visite guidée</span>
+							<div class="action help-action">
+								<i class="icon-question-sign icon-white"></i> <span class="action-label">Visite guidée</span>
 							</div>
-						</div>
+						</div>#}
 					</div>
-						
+					<div class="clearfix"></div>
 					<div class="content">
 						<div id="champion-comparison">
 							{% render 'MVNerdsChampionHandlerBundle:Front:championComparison' %}
@@ -153,9 +160,9 @@
 
 		</div>
 			#}
-		<div class="navbar navbar-fixed-bottom" id="actionbar">
+		{#<div class="navbar navbar-fixed-bottom" id="actionbar">
 			{% include 'MVNerdsLaunchSiteBundle:Front:actionbar.html.twig'  %}
-		</div>
+		</div>#}
 		
 	</div>
 			

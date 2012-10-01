@@ -213,9 +213,9 @@ div.header-container {
 		}
 
 		div.link {
-			background-color: #333;
+			background-color: black;
 			.border-bottom-radius(4px);
-			.box-shadow(inset 0px 1px 2px rgba(0,0,0,.4);
+			//.box-shadow(inset 0px 1px 2px rgba(0,0,0,.4);
 			cursor: pointer;
 			display: inline-block;
 			float: right;
@@ -311,23 +311,73 @@ div.body-container {
 		div.actions-bar {
 			h2 {
 				color: white;
-				display: inline-block;
+				float: left;
+				font-size: 1.1em;
+				line-height: 32px;
+				margin: 0;
 			}
-			div.action-buttons {
-				color: white;
-				display: inline-block;
-				float: right;
 
-				div.action {
-					background-color: rgba(255,255,255,0.2);
+			ul.action-buttons {
+				color: white;
+				margin: 0;
+				padding: 0;
+				text-align: right;
+
+				li.action:last-child {
+					margin-right: 8px;
+				}
+
+				li.action {
+					background-color: rgba(25,160,223,.7);
 					cursor: pointer;
 					display: inline-block;
-					line-height: 22px;
-					padding: 4px 7px;
+					line-height: 26px;
+					margin: 0;
+					margin-right: 1px;
+					padding: 3px 6px 0 4px;
+
+					&.disabled {
+						cursor: not-allowed;
+						opacity: .65;
+
+						a:hover {
+							cursor: not-allowed;
+						}
+					}
+
+					&.link {
+						padding: 0;
+
+						a.action-button-link {
+							display: block;
+							padding: 3px 6px 0 2px;
+						}						
+					}
+
+					&.help-action {
+						background-color: rgba(117,158,26,.7);
+
+						&:hover {
+							background-color: rgba(117,158,26,1);
+						}
+					}
+
+					a, a:visited, a:hover {
+						color: white;
+						text-decoration: none;
+					}
+
+					img.loader {
+						display: none;
+					}
 
 					i {
+						display: inline-block;
 						font-size: 22px;
 						line-height: 22px;
+						margin: 0 0 0 0;
+						position: relative;
+						top: 1px;
 					}
 
 					span.action-label {
@@ -339,32 +389,119 @@ div.body-container {
 					}
 
 					&:hover {
-						background-color: rgba(255,255,255,0.5);
+						background-color: rgba(25,160,223,1);
 						.transition(all .25s linear);
 						
 						span.action-label {
 							.transition(all .25s linear);
 						}
+
+						input[type="text"] {
+							background-color: @MVNerdsBlue;
+							.placeholder(#ccc);
+							.transition(background-color .25s linear);
+						}
 					}
 
 					input[type="text"] {
+						border: 0;
+						.border-radius(0);
+						background-color: #11709c;
+						color: white;
 						font-family: 'Ubuntu', sans-serif;
-						font-size: 12px;
+						font-size: 14px;
 						line-height: 1.5em;
-						margin: 0;
-						padding: 0 5px;
+						margin: 0 0 2px 0;
+						padding: 1px 5px;
+						.placeholder(#ccc);
+						position: relative;
+						top: -3px;
 						width: 100px;
+					}
+
+					ul#comparison-list {
+						background-color: rgba(238,238,238,.7);
+						border: 1px solid black;
+						left: -1px;
+						min-height: 100px;
+						width: 250px;
+
+
+						&.dropdown-menu {
+							.border-radius(0);
+						}
+
+						li {
+							text-align: center;
+							min-height: 30px;
+						}
+
+						li.list-header {
+							color: black;
+							font-family: 'Ubuntu', sans-serif;
+							font-size: 11px;
+							font-weight: bold;
+							line-height: 20px;
+							text-transform: uppercase;
+						}
+
+						li.indication, span.champion-comparable-name {
+							font-size: 12px;
+							line-height: 1.4em;
+
+						}
+
+						li.indication {
+							border: 1px dashed black;
+							.border-radius(5px);
+							color: black;
+							font-style: italic;
+							margin: 0 10px;
+							padding: 15px;
+						}
+
+						li.champion-comparable {
+
+							a.champion-comparable-remove {
+								height: 25px;
+							
+								&:hover {
+								}
+
+								img {
+									width: 25px;
+								}
+							}
+
+							span.champion-comparable-name {
+								color: black;
+								display: inline-block;
+								font-weight: bold;
+								margin: 0;
+								padding: 0;
+								width: 167px;
+							}
+
+							i {
+								font-size: 14px;
+							}
+						}
 					}
 				}	
 			}
 
 			&.active {
-				background-color: rgba(0,0,0,.8);
-				left: 0;
+				background-color: black;
+				.box-shadow(0 15px 8px 0 rgba(0,0,0,.7));
+				left: 50%;
+				margin-left: -512px;
+				padding: 10px;
 				position: fixed;
-				right: 0;
 				top: 0;
+				width: 1004px;
 				z-index: 1000;
+
+				
 			}
 		}
 
@@ -495,7 +632,7 @@ div.body-container {
 						img.portrait {
 							display: block;
 							margin-top: 15px;
-							opacity: .5;
+							opacity: .7;
 						}
 					}
 				}

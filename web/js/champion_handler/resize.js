@@ -71,8 +71,8 @@ jQuery(function($) {
 	}
 		
 	function scrollToChampion($champ){
-		var position = $champ.position().top + $('#champion-comparison-center').position().top - 20;
-		console.log($champ.position());
+		var position = $champ.position().top + $('#champion-comparison-center').position().top - 70;
+		
 		$('body,html').animate({scrollTop:position},500);
 	}
 });

@@ -53,66 +53,10 @@ $(document).ready(function()
 		$('div.presentation-container div.content div.' + $this.data('content-name')).slideToggle();
 	});
 
-	/*$('div.body-container div.resizable-block h2').on('click', function()
-	{
-		var $this = $(this),
-			$h2Container = $this.parent();
-
-		// On vérifie si l'utilisateur veut masquer le bloc actuel ou non
-		if ($h2Container.hasClass('active')) {
-			// On sait que $this est la div active
-
-
-
-
-			$h2Container.toggleClass('active');
-			$h2Container.find('div.content').slideToggle('slow');
-			$h2Container.animate({
-				width: 6 * gridColumnWidth + 5 * gridGutterWidth
-			}, 
-			500, 
-			function() {
-				$h2Container.removeClass('span9').addClass('span6');
-			});
-
-			return false;
-		}
-
-		// On vire la classe active sur l'autre div
-		$('div.body-container div.resizable-block.active').animate({
-			width: 3 * gridColumnWidth + 2 * gridGutterWidth
-		},
-		500).toggleClass('active');
-		
-		$h2Container.toggleClass('active');
-		
-		$inactiveContainer = $('div.body-container div.resizable-block:not(.active)');
-		// On redimensionne d'abord la div inactive
-		$inactiveContainer.animate({
-			width: 3 * gridColumnWidth + 2 * gridGutterWidth
-		},
-		500);
-				
-		$h2Container.find('div.content').slideToggle(500);
-		$h2Container.animate({
-			width: 9 * gridColumnWidth + 8 * gridGutterWidth
-		}, 
-		500, 
-		function() {
-			$h2Container.removeClass('span6 span3').addClass('span9');
-			$inactiveContainer.animate({
-				height: $h2Container.css('height')
-			},
-			500);
-		});
-
-		console.log('click!');
-	});*/
-
 	/**
 	 * GESTION DES PRÉFÉRENCES UTILISATEURS POUR AFFICHER/MASQUER DU CONTENU
 	 */	
-	$('div.presentation-container').find('h2').each(function()
+	/*$('div.presentation-container').find('h2').each(function()
 	{
 		var value = getItemFromLS('display-' + $(this).data('content-name'));
 		if (value == 'true' || value == undefined) {
@@ -123,11 +67,11 @@ $(document).ready(function()
 	/**
 	 * ON CHANGE LE LABEL 'LAISSER MON E-MAIL' EN MESSAGE DE REMERCIEMENT SI L'UTILISATEUR A DÉJA LAISSÉ LE SIEN
 	 */
-	$registrationH2 = $('div.registration-container h2');
+	/*$registrationH2 = $('div.registration-container h2');
 	if (getItemFromLS('already-leave-email') == 'true') 
 	{
 		$registrationH2.find('span.h2-msg').html($registrationH2.data('success-label'));
-	}
+	}*/
 
 	/**
 	 * LISTENER D'EVENEMENT
@@ -214,6 +158,11 @@ $(document).ready(function()
 		} 
 	});
 
+	$('li.search-action').on('click', function()
+	{
+		$(this).find('input[type="text"]').focus();
+	});
+
 	// Écoute de la soumission du formulaire de dépôt d'e-mail pour soumettre le formulaire en AJAX
 	$leaveEmailFormContainer.on('submit', 'form#leave-email-form', function(event) {
 		event.preventDefault();
@@ -256,5 +205,29 @@ $(document).ready(function()
 		$this.toggleClass('no-margin');
 
 		saveItemInLS('display-' + $this.data('content-name'), $this.hasClass('no-margin'));
+	}
+
+	var $win = $(window), 
+		$nav = $('div.actions-bar'),
+		navTop = $nav.length && $nav.offset().top,
+		isFixed = 0;
+ 
+	processScroll();
+ 
+	 $win.on('scroll', processScroll);
+	 
+	 //Fixation du subnav en fonction du scroll
+	 function processScroll()
+	 {
+	  	var scrollTop = $win.scrollTop();
+	  
+	  	if (scrollTop >= navTop && !isFixed) {
+	    	isFixed = 1;
+	    	$nav.addClass('active');
+	  	} 
+	  	else if (scrollTop <= navTop && isFixed) {
+	    	isFixed = 0;
+	    	$nav.removeClass('active');
+	 	}
 	}
 });
