@@ -144,6 +144,21 @@ class ChampionManager
 			->OrderBy(ChampionPeer::ID)
 		->find();
 	}
+	
+	/**
+	 * Récupère tous les champions de la base de données avec leurs tags
+	 * 
+	 * @return PropelCollection<MVNerds\CoreBundle\Model\Champion> retourne un objet PropelCollection qui contient
+	 * tous les champions de la base de données
+	 */
+	public function findAllWithTags()
+	{
+		return  ChampionQuery::create()
+			->joinWith('ChampionTag')
+			->joinWith('ChampionTag.Tag')
+			->joinWith('Tag.TagI18n')
+		   ->find();
+	}
 
 	/**
 	 * Permet de persister en base de données le champion $champion

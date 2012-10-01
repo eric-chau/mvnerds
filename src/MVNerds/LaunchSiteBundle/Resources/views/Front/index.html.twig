@@ -118,13 +118,12 @@
 			</div>
 				
 			<div class="body-container">
+				
 				<div class="champions-handler-container">
 					<h2 data-content-name="champion-handler">
 						Module des champions (Bêta)
 						<div class="action-buttons">
-							<div class="action">
-								<i class="icon-cogs icon-white"></i> <span class="action-label">Affiner le filtrage</span>
-							</div>
+							{% include 'MVNerdsChampionHandlerBundle:Comparison:filter_list.html.twig'  %}
 							<div class="action">
 								<i class="icon-search icon-white"></i> <input id="filter-value" type="text" class="span2 input-mini search-query" placeholder="Recherche" data-provide="typeahead"/>
 							</div>

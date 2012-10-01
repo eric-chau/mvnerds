@@ -38,6 +38,7 @@ jQuery(function(){
 					if($isotope.size() > 0){						
 						initIsotope($isotope);
 						initTypeahead($isotope);
+						initFilterList($isotope, 'glu');
 					}
 				},
 				'html'

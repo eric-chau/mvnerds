@@ -1,4 +1,4 @@
-<li class="champion" id="{{ champion.getSlug() }}" data-name="{{ champion.getName() | lower }}">
+<li class="champion {{champion.getTagsToString()}}" id="{{ champion.getSlug() }}" data-name="{{ champion.getName() | lower }}" >
 	
 	<div class="portrait">
 		<a href="#" draggable="false">

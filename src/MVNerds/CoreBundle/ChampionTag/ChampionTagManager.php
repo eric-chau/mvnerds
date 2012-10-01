@@ -190,6 +190,14 @@ class ChampionTagManager
 	}
 	
 	/**
+	 * Permet de récupérer tous les tags de base des champions
+	 */
+	public function getBaseChampionTags()
+	{
+		//TODO
+	}
+	
+	/**
 	 * Permet de faire persister en base de données le championTag $championTag
 	 * 
 	 * @param \MVNerds\CoreBundle\Model\Champion $champion l'objet Champion à associer avec le tag $tag
