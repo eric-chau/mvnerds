@@ -1,4 +1,4 @@
-<li class="champion" id="{{ champion.getSlug() }}">
+<li class="champion" id="{{ champion.getSlug() }}" data-name="{{ champion.getName() | lower }}">
 	<a href="#" draggable="false">
 		<img class="champion-image" src="{{ asset('images/champions/square/' ~ champion.getSlug() ~ '.png') }}" alt="image du champion {{ champion.getName() }}" />
 	

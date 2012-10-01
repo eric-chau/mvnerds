@@ -87,6 +87,7 @@ jQuery(function($) {
 			revertduration: 300,
 			zIndex: 1100,
 			opacity: 1,
+			distance: 20,
 			start: function(){
 				$('#comparison-list').css('border', '1px dashed black')
 				$('#comparison-list-dropdown').addClass('open');
@@ -95,7 +96,7 @@ jQuery(function($) {
 				$('#comparison-list').css('border', 'none');
 			}
 		});
-	})
+	});
 	
 	//On rends la comparison list capable d accepter les champions
 	$comparisonList.droppable({
@@ -107,13 +108,15 @@ jQuery(function($) {
 			$('#comparison-list').css('border', '1px dashed black');
 		},
 		drop: function( event, ui ) {
+			addChampionToList(ui.draggable.context.id);
+		}
+	});
+	
+	function addChampionToList(slug){
 			hideMessages();
-
+			
 			//On affiche l'icone de chargement
 			$comparisonListLoading.show();
-
-			//On récupère le slug du champion concerné
-			var slug = ui.draggable.context.id;
 			
 			//On fait un appel ajax pour demander à ajouter le champion
 			$.ajax({
@@ -152,8 +155,7 @@ jQuery(function($) {
 			}).fail(function(){
 				$comparisonListLoading.hide();
 			});
-		}
-	});
+	}
 	
 	$('#comparison-list').on('click', 'a.champion-comparable-remove', function(){
 		var slug = $(this).find('span.slug').html();

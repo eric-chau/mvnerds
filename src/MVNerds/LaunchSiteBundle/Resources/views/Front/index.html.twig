@@ -25,9 +25,23 @@
 			}
 			 li.champion-maxi{
 				width: 490px !important;
-				height: 678px !important;
+				height: 538px !important;
 				background-color: black;
 				z-index: 900;
+			}
+			
+			div.body-container div.champions-handler-container h2 div.action-buttons div.action{
+				height: 31px;
+			}
+			
+			/**** Isotope filtering ****/
+			.isotope-item {
+			  z-index: 2;
+			}
+
+			.isotope-hidden.isotope-item {
+			  pointer-events: none;
+			  z-index: 1;
 			}
 	</style>
 {% endblock %}
@@ -37,12 +51,14 @@
 	 
 	 <script type="text/javascript" src="{{ asset('/js/jquery-ui-1.8.23.custom.min.js') }}"></script>
 	 <script type="text/javascript" src="{{ asset('/js/jquery.isotope.min.js') }}"></script>
+	 <script type="text/javascript" src="{{ asset('/js/jquery.single_double_click.js') }}"></script>
 	 
 	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-tooltip.js') }}"></script>
 	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-popover.js') }}"></script>
 	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-transition.js') }}"></script>
 	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-alert.js') }}"></script>
 	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-modal.js') }}"></script>
+	 <script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-typeahead.js') }}"></script>
 	 
 	 <script type="text/javascript" src="{{ asset('/js/launch_site/alerts-ajax-handler.js') }}"></script>
 	 
@@ -126,7 +142,7 @@
 				</div>
 				<div class="clearfix"></div>
 			</div>
-
+				
 			<div class="body-container">
 				<div class="champions-handler-container">
 					<h2 data-content-name="champion-handler">
@@ -136,7 +152,7 @@
 								<i class="icon-cogs icon-white"></i> <span class="action-label">Affiner le filtrage</span>
 							</div>
 							<div class="action">
-								<i class="icon-search icon-white"></i> <span class="action-label">Rechercher</span>
+								<i class="icon-search icon-white"></i> <input id="filter-value" type="text" class="span2 input-mini search-query" placeholder="Recherche" data-provide="typeahead"/>
 							</div>
 							<div class="action">
 								<i class="icon-question-sign icon-white"></i> <span class="action-label">Démarrer la visite guidée</span>

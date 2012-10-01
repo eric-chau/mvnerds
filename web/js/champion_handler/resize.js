@@ -5,10 +5,16 @@ jQuery(function($) {
 		
 	var options = {
 		itemSelector: '.champion',
-		transformsEnabled: false,
 		animationEngine: 'jquery',
 		masonry: {
 			columnWidth: 124
+		},
+		animationOptions: {
+			duration: 400,
+			height: 'hide',
+			width: 'hide',
+			queue: false,
+			opacity: 1
 		}
 	};
 	$isotope = $('#isotope-list');
@@ -24,6 +30,11 @@ jQuery(function($) {
 	
 	//Lors du clic sur un champion miniature
 	$isotope.on('click', 'li.champion:not(.champion-maxi)', function(){
+		//Si on trouve un autre champion déjà maximisé on le referme
+		var $maxiChampion = $isotope.find('li.champion-maxi');
+		if($maxiChampion != undefined){
+			minimizeChampion($maxiChampion , $isotope);
+		}
 		return maximizeChampion($(this), $isotope);
 	});
 	//Lors du clic sur un champion maximisé
@@ -33,7 +44,13 @@ jQuery(function($) {
 	
 	function maximizeChampion($champ, $isotope){
 		$champ.toggleClass('champion-maxi');
-		$isotope.isotope( 'reLayout');
+		$isotope.isotope( 'reLayout', function(){
+			setTimeout(function(){
+				scrollToChampion($('#'+$champ.attr('id')))
+				},
+				100
+			);
+		});
 		return false;
 	}
 	function minimizeChampion($champ, $isotope){
@@ -41,5 +58,41 @@ jQuery(function($) {
 		$isotope.isotope( 'reLayout');
 		$champ.draggable('enable');
 		return false;
+	}
+		
+	function scrollToChampion($champ){
+		var position = $champ.position().top + $('#champion-comparison-center').position().top - 20;
+		console.log($champ.position());
+		$('body,html').animate({scrollTop:position},500);
+	}
+	
+	/*********** FILTER *************/	
+	$.ajax({
+		type: 'GET',
+		url:  Routing.generate('champion_handler_front_get_champions_name'),
+		dataType: 'html'
+	}).done(function(data){
+		$('#filter-value').attr('data-source', data);
+	});
+
+	$('#filter-value').keyup(function(){
+		filter();
+	});
+	$('#filter-value').change(function(){
+		filter();
+	});
+	
+	function filter(){
+		var filterValue = $('#filter-value').val();
+		if(filterValue != '')
+		{
+			options['filter']="[data-name*='" + filterValue.toLowerCase()+"']";
+			$isotope.isotope(options);
+		}
+		else
+		{
+			options['filter']="*";
+			$isotope.isotope(options);
+		}
 	}
 });

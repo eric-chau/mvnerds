@@ -36,6 +36,17 @@ class ChampionManager
 		// Finally
 		$this->save($champion);
 	}
+	
+	/**
+	 * Permet de récupérer le noms des champions de la base dans un tableau
+	 */
+	public function getChampionsName()
+	{
+		return ChampionQuery::create()
+			->select(array(ChampionPeer::NAME))
+			->OrderBy(ChampionPeer::NAME)
+		->find();
+	}
 
 	/**
 	 * Supprime un champion en fonction de son id $id

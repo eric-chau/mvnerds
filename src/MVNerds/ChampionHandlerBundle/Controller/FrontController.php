@@ -4,6 +4,7 @@ namespace MVNerds\ChampionHandlerBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 class FrontController extends Controller
 {
@@ -32,6 +33,14 @@ class FrontController extends Controller
 		return $this->render('MVNerdsChampionHandlerBundle:Front:champion_comparison.html.twig', array(
 			'champions' => $this->get('mvnerds.champion_manager')->findAll()
 		));
+	}
+	
+	/**
+	 * @Route("/recuperer-nom-champions", name="champion_handler_front_get_champions_name", options={"expose"=true})
+	 */
+	public function getChampionsNameAction()
+	{
+		return new Response(json_encode($this->get('mvnerds.champion_manager')->getChampionsName()->toArray()));
 	}
 
 }
