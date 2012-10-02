@@ -419,16 +419,14 @@ div.body-container {
 						width: 100px;
 					}
 
+					ul.dropdown-menu {
+						.border-radius(0);
+					}
+
 					ul#comparison-list {
-						background-color: rgba(238,238,238,.8);
-						border: 1px solid black;
-						//left: -1px;
+						background-color: rgba(0,0,0,0.8);
+						border: 1px solid @MVNerdsBlue !important;
 						width: 250px;
-
-
-						&.dropdown-menu {
-							.border-radius(0);
-						}
 
 						li {
 							text-align: center;
@@ -436,7 +434,7 @@ div.body-container {
 						}
 
 						li.list-header {
-							color: black;
+							color: @MVNerdsBlue;
 							font-family: 'Ubuntu', sans-serif;
 							font-size: 11px;
 							font-weight: bold;
@@ -451,16 +449,16 @@ div.body-container {
 						}
 
 						li.indication {
-							border: 1px dashed black;
+							border: 1px dashed #999;
 							.border-radius(5px);
-							color: black;
+							color: #999;
 							font-style: italic;
-							margin: 0 10px;
+							margin: 0 10px 11px 10px;
 							padding: 15px;
 						}
 
 						li.clean {
-							border-top: 1px dashed rgba(0,0,0,0.5);
+							border-top: 1px dashed rgba(255,255,255,0.3);
 							font-family: 'Ubuntu', sans-serif;
 							font-size: 12px;
 							position: relative;
@@ -468,7 +466,7 @@ div.body-container {
 							top: 6px;
 
 							i, a {
-								color: black;	
+								color: #666;	
 							}
 
 							i {
@@ -491,11 +489,16 @@ div.body-container {
 						}
 
 						li.champion-comparable {
+							color: white;
 
 							a.champion-comparable-remove {
 								height: 25px;
 							
 								&:hover {
+									span.champion-comparable-name, i {
+										color: white;
+										.transition(all .25s linear);
+									}
 								}
 
 								img {
@@ -504,17 +507,80 @@ div.body-container {
 							}
 
 							span.champion-comparable-name {
-								color: black;
+								color: #999;
 								display: inline-block;
 								font-weight: bold;
 								margin: 0;
 								padding: 0;
 								width: 167px;
+
+								&:hover {
+
+								}
 							}
 
 							i {
+								color: #999;
 								font-size: 14px;
 							}
+						}
+					} // Fin ul#comparison-list
+
+					ul#filters-list {
+						background-color: rgba(0,0,0,0.8);
+						border: 1px solid @MVNerdsBlue;
+						margin-left: -571px;
+						padding: 20px;
+						text-align: left;
+						width: 974px;
+
+						h4 {
+							color: @MVNerdsBlue;
+							//margin-bottom: 10px;
+						}
+
+						ul.tags-group {
+							float: left;
+							list-style: none;
+							margin: 0 20px 0 0;
+							padding: 0;
+							width: 200px;
+
+							li.nav-header {
+								color: @LoLOrangeAD;
+								text-shadow: none;
+							}
+
+							a {
+								font-family: 'Ubuntu', sans-serif;
+								padding: 3px 10px 3px 20px;
+
+								i {
+									color: black;
+									display: inline-block;
+									font-size: 18px;
+									margin: 0 10px 0 0;
+								}
+
+								&.selected {
+									color: @LoLOrangeAD;
+									font-weight: bold;
+
+									i {
+										color: @LoLOrangeAD;
+									}
+								}
+
+								&:hover {
+									color: white;
+
+									i {
+										color: white;
+									}
+								}
+							}
+
+							
 						}
 					}
 				}	
@@ -623,7 +689,17 @@ div.body-container {
 
 					h3 {
 						color: @LoLOrangeAD;
-						font-size: 16px;
+						font-size: 18px;
+						line-height: 1.2em;
+						margin: 8px 0 0 10px;
+					}
+
+					h5 {
+						color: #999;
+						font-family: 'Trebuchet MS';
+						font-size: 12px;
+						margin-left: 10px;
+						text-transform: uppercase;
 					}
 
 					.ad-color {
@@ -632,8 +708,7 @@ div.body-container {
 
 					dt {
 						float: left;
-						//font-weight: normal;
-						margin: 0 20px 0 10px;
+						margin: 0 10px 0 5px;
 						text-align: right;
 						width: 160px;
 					}

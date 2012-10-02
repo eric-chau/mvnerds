@@ -1,7 +1,7 @@
 <div class="row-fluid">
 	<div class="span6">
 		<h3>{{ champion.getName() }}</h3>
-
+		<h5>{{ champion.getTitle() }}</h5>
 		<dl>
 			<dt>Points de vie</dt>
 		      <dd>{{ champion.getBaseHealth() }}</dd>	
@@ -28,7 +28,7 @@
 	</div>
 	<div class="span6 right-side">
 		<p>
-			<img src="{{ asset('/images/commons/ip_logo.png') }}" /> 6300 ou <img src="{{ asset('/images/commons/rp_logo.png') }}" /> 975
+			<img src="{{ asset('/images/commons/ip_logo.png') }}" /> {{ champion.getIpCost() }} ou <img src="{{ asset('/images/commons/rp_logo.png') }}" /> {{ champion.getRpCost() }}
 		</p>
 		<img src="{{ asset('/images/champions/portrait/' ~ champion.getSlug() ~ '.jpg') }}" class="portrait" />
 	</div>

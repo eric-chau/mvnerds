@@ -425,22 +425,22 @@ div.body-container div.champions-handler-container div.actions-bar ul.action-but
 div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action input[type="text"]::-webkit-input-placeholder {
   color: #cccccc;
 }
-div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list {
-  background-color: rgba(238, 238, 238, 0.8);
-  border: 1px solid black;
-  width: 250px;
-}
-div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list.dropdown-menu {
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul.dropdown-menu {
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
   border-radius: 0;
+}
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list {
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid #19a0df !important;
+  width: 250px;
 }
 div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li {
   text-align: center;
   min-height: 30px;
 }
 div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.list-header {
-  color: black;
+  color: #19a0df;
   font-family: 'Ubuntu', sans-serif;
   font-size: 11px;
   font-weight: bold;
@@ -453,17 +453,17 @@ div.body-container div.champions-handler-container div.actions-bar ul.action-but
   line-height: 1.4em;
 }
 div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.indication {
-  border: 1px dashed black;
+  border: 1px dashed #999;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
-  color: black;
+  color: #999;
   font-style: italic;
-  margin: 0 10px;
+  margin: 0 10px 11px 10px;
   padding: 15px;
 }
 div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.clean {
-  border-top: 1px dashed rgba(0, 0, 0, 0.5);
+  border-top: 1px dashed rgba(255, 255, 255, 0.3);
   font-family: 'Ubuntu', sans-serif;
   font-size: 12px;
   position: relative;
@@ -472,7 +472,7 @@ div.body-container div.champions-handler-container div.actions-bar ul.action-but
 }
 div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.clean i,
 div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.clean a {
-  color: black;
+  color: #666;
 }
 div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.clean i {
   display: inline-block;
@@ -491,14 +491,25 @@ div.body-container div.champions-handler-container div.actions-bar ul.action-but
   -o-transition: all 0.25s linear;
   transition: all 0.25s linear;
 }
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.champion-comparable {
+  color: white;
+}
 div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.champion-comparable a.champion-comparable-remove {
   height: 25px;
+}
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.champion-comparable a.champion-comparable-remove:hover span.champion-comparable-name,
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.champion-comparable a.champion-comparable-remove:hover i {
+  color: white;
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
+  transition: all 0.25s linear;
 }
 div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.champion-comparable a.champion-comparable-remove img {
   width: 25px;
 }
 div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.champion-comparable span.champion-comparable-name {
-  color: black;
+  color: #999;
   display: inline-block;
   font-weight: bold;
   margin: 0;
@@ -506,7 +517,53 @@ div.body-container div.champions-handler-container div.actions-bar ul.action-but
   width: 167px;
 }
 div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.champion-comparable i {
+  color: #999;
   font-size: 14px;
+}
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#filters-list {
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid #19a0df;
+  margin-left: -571px;
+  padding: 20px;
+  text-align: left;
+  width: 974px;
+}
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#filters-list h4 {
+  color: #19a0df;
+}
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#filters-list ul.tags-group {
+  float: left;
+  list-style: none;
+  margin: 0 20px 0 0;
+  padding: 0;
+  width: 200px;
+}
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#filters-list ul.tags-group li.nav-header {
+  color: #fb9701;
+  text-shadow: none;
+}
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#filters-list ul.tags-group a {
+  font-family: 'Ubuntu', sans-serif;
+  padding: 3px 10px 3px 20px;
+}
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#filters-list ul.tags-group a i {
+  color: black;
+  display: inline-block;
+  font-size: 18px;
+  margin: 0 10px 0 0;
+}
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#filters-list ul.tags-group a.selected {
+  color: #fb9701;
+  font-weight: bold;
+}
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#filters-list ul.tags-group a.selected i {
+  color: #fb9701;
+}
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#filters-list ul.tags-group a:hover {
+  color: white;
+}
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#filters-list ul.tags-group a:hover i {
+  color: white;
 }
 div.body-container div.champions-handler-container div.actions-bar.active {
   background-color: black;
@@ -613,14 +670,23 @@ div.body-container div.champions-handler-container div#champion-list li.champion
 }
 div.body-container div.champions-handler-container div#champion-list li.champion div.preview h3 {
   color: #fb9701;
-  font-size: 16px;
+  font-size: 18px;
+  line-height: 1.2em;
+  margin: 8px 0 0 10px;
+}
+div.body-container div.champions-handler-container div#champion-list li.champion div.preview h5 {
+  color: #999;
+  font-family: 'Trebuchet MS';
+  font-size: 12px;
+  margin-left: 10px;
+  text-transform: uppercase;
 }
 div.body-container div.champions-handler-container div#champion-list li.champion div.preview .ad-color {
   color: #fb9701;
 }
 div.body-container div.champions-handler-container div#champion-list li.champion div.preview dt {
   float: left;
-  margin: 0 20px 0 10px;
+  margin: 0 10px 0 5px;
   text-align: right;
   width: 160px;
 }
