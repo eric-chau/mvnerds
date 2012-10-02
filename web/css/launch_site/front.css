@@ -619,3 +619,107 @@ div.body-container div.champions-handler-container div#champion-list li.champion
   margin-top: 15px;
   opacity: .7;
 }
+div.body-container ul#filters-list {
+  text-align: center;
+}
+div.body-container ul#filters-list li a.filter-link {
+  font-size: 13px;
+}
+div.body-container ul#filters-list li[data-option-value=mage] span.filter-color {
+  background-color: #e10c02;
+}
+div.body-container ul#filters-list li[data-option-value=mage] a.selected span.filter-name {
+  background-color: #e10c02;
+  color: white;
+}
+div.body-container ul#filters-list li[data-option-value=support] span.filter-color {
+  background-color: #0b02e1;
+}
+div.body-container ul#filters-list li[data-option-value=support] a.selected span.filter-name {
+  background-color: #0b02e1;
+  color: white;
+}
+div.body-container ul#filters-list li[data-option-value=fighter] span.filter-color {
+  background-color: #02d7e1;
+}
+div.body-container ul#filters-list li[data-option-value=fighter] a.selected span.filter-name {
+  background-color: #02d7e1;
+  color: white;
+}
+div.body-container ul#filters-list li[data-option-value=assassin] span.filter-color {
+  background-color: #ff9900;
+}
+div.body-container ul#filters-list li[data-option-value=assassin] a.selected span.filter-name {
+  background-color: #ff9900;
+  color: white;
+}
+div.body-container ul#filters-list li[data-option-value=tank] span.filter-color {
+  background-color: #d7e102;
+}
+div.body-container ul#filters-list li[data-option-value=tank] a.selected span.filter-name {
+  background-color: #d7e102;
+  color: white;
+}
+div.body-container ul#filters-list li[data-option-value=top] span.filter-color {
+  background-color: #e102d8;
+}
+div.body-container ul#filters-list li[data-option-value=top] a.selected span.filter-name {
+  background-color: #e102d8;
+  color: white;
+}
+div.body-container ul#filters-list li[data-option-value=jungle] span.filter-color {
+  background-color: #02e10c;
+}
+div.body-container ul#filters-list li[data-option-value=jungle] a.selected span.filter-name {
+  background-color: #02e10c;
+  color: white;
+}
+div.body-container ul#filters-list li[data-option-value=mid] span.filter-color {
+  background-color: #444444;
+}
+div.body-container ul#filters-list li[data-option-value=mid] a.selected span.filter-name {
+  background-color: #444444;
+  color: white;
+}
+div.body-container ul#filters-list li[data-option-value=bottom] span.filter-color {
+  background-color: #0b02e1;
+}
+div.body-container ul#filters-list li[data-option-value=bottom] a.selected span.filter-name {
+  background-color: #0b02e1;
+  color: white;
+}
+div.body-container ul#filters-list li[data-option-value=physical] span.filter-color {
+  background-color: #dddddd;
+}
+div.body-container ul#filters-list li[data-option-value=physical] a.selected span.filter-name {
+  background-color: #dddddd;
+  color: white;
+}
+div.body-container ul#filters-list li[data-option-value=magical] span.filter-color {
+  background-color: #84b6eb;
+}
+div.body-container ul#filters-list li[data-option-value=magical] a.selected span.filter-name {
+  background-color: #84b6eb;
+  color: white;
+}
+div.body-container ul#filters-list li[data-option-value=hybrid-damage] span.filter-color {
+  background-color: #fc2929;
+}
+div.body-container ul#filters-list li[data-option-value=hybrid-damage] a.selected span.filter-name {
+  background-color: #fc2929;
+  color: white;
+}
+div.body-container ul#filters-list li[data-option-value=melee] span.filter-color {
+  background-color: #e10c02;
+}
+div.body-container ul#filters-list li[data-option-value=melee] a.selected span.filter-name {
+  background-color: #e10c02;
+  color: white;
+}
+div.body-container ul#filters-list li[data-option-value=ranged] span.filter-color {
+  background-color: #0b02e1;
+}
+div.body-container ul#filters-list li[data-option-value=ranged] a.selected span.filter-name {
+  background-color: #0b02e1;
+  color: white;
+}

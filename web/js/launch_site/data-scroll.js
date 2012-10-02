@@ -35,35 +35,10 @@ jQuery(function(){
 					
 					var $isotope = $('#isotope-list');
 					
-					if($isotope.size() > 0){
-						$isotope.imagesLoaded( function(){
-							$isotope.isotope({
-								itemSelector: '.champion',
-								transformsEnabled: false,
-								animationEngine: 'jquery',
-								masonry: {
-									columnWidth: 124
-								}
-							});
-						});
-						
-						//Bloquage du drag sur les champions agrandis
-						$isotope.on('mouseover', 'li.champion-maxi', function(){
-							$(this).draggable('disable');
-						});
-						
-						$isotope.on('click', 'li.champion:not(.champion-maxi)', function(){
-							$(this).toggleClass('champion-maxi');
-							$isotope.isotope( 'reLayout');
-							return false;
-						});
-						//Lors du clic sur un champion maximisé
-						$isotope.on('click', 'li.champion-maxi', function(){
-							$(this).removeClass('champion-maxi');
-							$isotope.isotope( 'reLayout');
-							$(this).draggable('enable');
-							return false;
-						});
+					if($isotope.size() > 0){						
+						initIsotope($isotope);
+						initTypeahead($isotope);
+						initFilterList($isotope, 'glu');
 					}
 				},
 				'html'

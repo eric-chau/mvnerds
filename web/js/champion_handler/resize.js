@@ -2,12 +2,11 @@
  * Permet de gérer l'affichage du détail des champions lors du clic sur leurs miniatures
  */
 
-jQuery(function($) {
-		
-	var options = getIsotopeOptions();
+var options = getIsotopeOptions();
 	
-	$isotope = $('#isotope-list');
+$isotope = $('#isotope-list');
 	
+function initIsotope($isotope){
 	$isotope.imagesLoaded( function(){
 		$isotope.isotope(options);
 	});
@@ -19,60 +18,65 @@ jQuery(function($) {
 	
 	//Lors du clic sur un champion miniature
 	$isotope.on('click', 'li.champion:not(.champion-maxi)', function(){
-		//Si on trouve un autre champion déjà maximisé on le referme
-		var $maxiChampion = $isotope.find('li.champion-maxi');
-		if($maxiChampion != undefined){
-			minimizeChampion($maxiChampion , $isotope);
-		}
 		return maximizeChampion($(this), $isotope);
 	});
 	//Lors du clic sur un champion maximisé
 	$isotope.on('click', 'li.champion-maxi', function(){
 		return minimizeChampion($(this), $isotope);
 	});
+}
 	
-	function maximizeChampion($champ, $isotope){
-		$champ.find('div.portrait').fadeOut(250);
-		$champ.addClass('champion-maxi');
+function maximizeChampion($champ, $isotope){
+	
+	//Si on trouve un autre champion déjà maximisé on le referme
+	var $maxiChampion = $isotope.find('li.champion-maxi');
+	if($maxiChampion != undefined){
+		minimizeChampion($maxiChampion , $isotope);
+	}
+	
+	$champ.find('div.portrait').fadeOut(250);
+	$champ.addClass('champion-maxi');
+	setTimeout(function() 
+	{
+		$champ.find('div.preview').fadeIn(250);
+		$isotope.isotope( 'reLayout', function(){
+			setTimeout(function(){
+				scrollToChampion($('#'+$champ.attr('id')))
+				},
+				100
+			);
+		});
+	},
+	320);
+
+	return false;
+}
+
+function minimizeChampion($champ, $isotope){
+	$champ.find('div.preview').fadeOut(150);
+	setTimeout(function() 
+	{
+		$champ.find('div.portrait').fadeIn(300);
+		$champ.toggleClass('champion-portrait champion-maxi');
 		setTimeout(function() 
 		{
-			$champ.find('div.preview').fadeIn(250);
-			$isotope.isotope( 'reLayout', function(){
-				setTimeout(function(){
-					scrollToChampion($('#'+$champ.attr('id')))
-					},
-					100
-				);
-			});
+			$isotope.isotope( 'reLayout');
+			$champ.removeClass('champion-portrait');
 		},
 		320);
-		
-		return false;
-	}
-	
-	function minimizeChampion($champ, $isotope){
-		$champ.find('div.preview').fadeOut(150);
-		setTimeout(function() 
-		{
-			$champ.find('div.portrait').fadeIn(300);
-			$champ.toggleClass('champion-portrait champion-maxi');
-			setTimeout(function() 
-			{
-				$isotope.isotope( 'reLayout');
-				$champ.removeClass('champion-portrait');
-			},
-			320);
-		},
-		150);
-		
-		$champ.draggable('enable');
+	},
+	150);
 
-		return false;
-	}
-		
-	function scrollToChampion($champ){
-		var position = $champ.position().top + $('#champion-comparison-center').position().top - 70;
-		
-		$('body,html').animate({scrollTop:position},500);
-	}
+	$champ.draggable('enable');
+
+	return false;
+}
+
+function scrollToChampion($champ){
+	var position = $champ.position().top + $('#champion-comparison-center').position().top - 20;
+	$('body,html').animate({scrollTop:position},500);
+}
+
+jQuery(function($) {
+	initIsotope($isotope);
 });

@@ -60,7 +60,8 @@ var isotopeOptions = {
 		duration: 400,
 		queue: false,
 		opacity: 1
-	}
+	},
+	filter: ''
 };
 
 function getIsotopeOptions(){
