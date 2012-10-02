@@ -6,6 +6,19 @@ jQuery(function(){
 	
 	var container = $('#champion-comparison');	
 	
+	function loadData(data){
+		//On remplace le contenu
+		container.html(data);
+
+		var $isotope = $('#isotope-list');
+
+		if($isotope.size() > 0){						
+			initIsotope($isotope);
+			initTypeahead($isotope);
+			initFilterList($isotope);
+		}
+	}
+	
 	//On affecte aux liens qui n'ont pas la classe disabled la fonction de scroll lors du clic
 	 $('#wrapper').on('click', '.data-pagination:not(.disabled)', function(){
 		
@@ -32,16 +45,7 @@ jQuery(function(){
 				function(data){
 					//On stop le chargement
 					container.removeClass('loading');
-					//On remplace le contenu
-					container.html(data);
-					
-					var $isotope = $('#isotope-list');
-					
-					if($isotope.size() > 0){						
-						initIsotope($isotope);
-						initTypeahead($isotope);
-						initFilterList($isotope);
-					}
+					loadData(data);
 				},
 				'html'
 			);
@@ -56,10 +60,15 @@ jQuery(function(){
 			initialPath = null;
 			return;
 		}
+		container.find('div.data-scrollable').hide();
+		//On affiche le chargement
+		container.addClass('loading');
 		$.get(location.pathname, {
 			format: 'html'
 		}, function(data){
-			container.html(data);
+			//On stop le chargement
+			container.removeClass('loading');
+			loadData(data);
 		}, 'html');
 	});
 });
