@@ -422,8 +422,7 @@ div.body-container {
 					ul#comparison-list {
 						background-color: rgba(238,238,238,.8);
 						border: 1px solid black;
-						left: -1px;
-						min-height: 100px;
+						//left: -1px;
 						width: 250px;
 
 
@@ -458,6 +457,37 @@ div.body-container {
 							font-style: italic;
 							margin: 0 10px;
 							padding: 15px;
+						}
+
+						li.clean {
+							border-top: 1px dashed rgba(0,0,0,0.5);
+							font-family: 'Ubuntu', sans-serif;
+							font-size: 12px;
+							position: relative;
+							text-align: right;
+							top: 6px;
+
+							i, a {
+								color: black;	
+							}
+
+							i {
+								display: inline-block;
+								font-size: 14px;
+								left: 3px;
+								position: relative;
+							}
+
+							&.disabled {
+								display: none;
+							}
+
+							&:hover {
+								a, i {
+									color: white;
+									.transition(all .25s linear);
+								}
+							}
 						}
 
 						li.champion-comparable {

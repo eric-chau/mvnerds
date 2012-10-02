@@ -428,8 +428,6 @@ div.body-container div.champions-handler-container div.actions-bar ul.action-but
 div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list {
   background-color: rgba(238, 238, 238, 0.8);
   border: 1px solid black;
-  left: -1px;
-  min-height: 100px;
   width: 250px;
 }
 div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list.dropdown-menu {
@@ -463,6 +461,35 @@ div.body-container div.champions-handler-container div.actions-bar ul.action-but
   font-style: italic;
   margin: 0 10px;
   padding: 15px;
+}
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.clean {
+  border-top: 1px dashed rgba(0, 0, 0, 0.5);
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 12px;
+  position: relative;
+  text-align: right;
+  top: 6px;
+}
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.clean i,
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.clean a {
+  color: black;
+}
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.clean i {
+  display: inline-block;
+  font-size: 14px;
+  left: 3px;
+  position: relative;
+}
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.clean.disabled {
+  display: none;
+}
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.clean:hover a,
+div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.clean:hover i {
+  color: white;
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
+  transition: all 0.25s linear;
 }
 div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#comparison-list li.champion-comparable a.champion-comparable-remove {
   height: 25px;
