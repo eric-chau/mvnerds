@@ -154,13 +154,12 @@ class ComparisonController extends Controller
 		if ($comparisonManager->isComparable())
 		{
 			//on récupère les champs à comparer
-			$fieldNames = ChampionPeer::getFieldNames();
+			//$fieldNames = ChampionPeer::getFieldNames();
 
 			//On affiche la page de comparaison
 			return $this->render('MVNerdsChampionHandlerBundle:Comparison:compare.html.twig', array(
-						'field_names' => $fieldNames,
-						'reference_champion' => $comparisonManager->getReferenceChampion()
-					));
+				'reference_champion' => $comparisonManager->getReferenceChampion()
+			));
 		}
 		else
 		{

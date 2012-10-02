@@ -1,11 +1,39 @@
 <div class="data-scrollable" id="champion-comparator">
-	<h1>Comparer des champions</h1>
-
 	<div class="action-buttons">
 		<a rel="previous" href="#" data-target="{{ path('champion_handler_front_champion_comparison') }}" class=" data-pagination btn btn-large"><i class="icon-arrow-left"></i> <strong>Retourner à la liste</strong></a>
 	</div>
-
-	<div class="well">
+	
+	<table class="compare-champion-table">
+		<thead>
+			<tr>
+				<th>Points de vie</th>
+				<th>Régén. de PV</th>
+				<th>Points de mana</th>
+				<th>Régén. de mana</th>
+				<th>Armure</th>
+				<th>Résistance magique</th>
+				<th>Dégâts d'attaque</th>
+				<th>Vit. d'attaque</th>
+				<th>Portée d'attaque</th>
+				<th>Vit. de déplacement</th>
+			</tr>
+			<tr>
+				<td>{{ reference_champion.getBaseHealth() }}</td>
+				<td>{{ reference_champion.getBaseHealthRegen() }}</td>
+				<td>{{ reference_champion.getBaseMana() }}</td>
+				<td>{{ reference_champion.getBaseManaRegen() }}</td>
+				<td>{{ reference_champion.getBaseArmor() }}</td>
+				<td>{{ reference_champion.getBaseMagicResist() }}</td>
+				<td>{{ reference_champion.getBaseDamage() }}</td>
+				<td>{{ reference_champion.getBaseAttackSpeed() }}</td>
+				<td>{{ reference_champion.getAttackRange() }}</td>
+				<td>{{ reference_champion.getMoveSpeed() }}</td>
+			</tr>
+		</thead>
+	</table>	
+		
+	{#	
+	<div>
 		{% include 'MVNerdsChampionHandlerBundle:Comparison:compare_row.html.twig' with {'field_names':  field_names}%}
-	</div>
+	</div>#}
 </div>
