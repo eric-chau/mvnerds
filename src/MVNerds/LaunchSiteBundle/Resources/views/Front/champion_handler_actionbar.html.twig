@@ -25,14 +25,14 @@
 				
 				<li id="li-clean" class="clean {% if list_size < 1 %} disabled{% endif %}">
 					<a id="btn-clean" href="{{path('champion_handler_comparison_clean_comparison') }}" {% if list_size < 1 %}class="disabled"{%endif%}>
-						<i class="icon-trash"></i>Vider la liste
+						Vider la liste<i class="icon-trash"></i>
 					</a>
 				</li>
 			</ul>
 		</li>
 		
 		{# Bouton d'action qui permet de comparer la liste des champions sélectionnés #}
-		<li class="action {% if list_size < 2 %} disabled{% endif %}">
+		<li class="action red-button {% if list_size < 2 %} disabled{% endif %}">
 			<a id="btn-compare" class="data-pagination{% if list_size < 2 %} disabled{%endif%}" rel="next" href="#" data-target="{{path('champion_handler_comparison_compare') }}">
 				<i class="icon-random icon-white"></i> <span class="action-label">Comparer</span>
 			</a>

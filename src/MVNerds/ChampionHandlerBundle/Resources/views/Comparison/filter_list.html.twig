@@ -1,57 +1,73 @@
 <li id="filters-block" class="dropdown action link">	
 	<a href="#" class="dropdown-toggle action-button-link" data-toggle="dropdown" id="drop-filter-list" role="button">
 		<i class="icon-cogs icon-white"></i>
-		<span class="action-label">Filtrer</span>
+		<span class="action-label">Affiner le filtrage</span>
 	</a>
 	<ul id="filters-list" class="dropdown-menu" role="menu" aria-labelledby="drop-filters-list">
-		<li class="nav-header">Rôle</li>
-		<li data-option-value="mage">
-			<a href="#" class="filter-link" data-option-value="mage"><span class="filter-color label pull-left">&nbsp;</span><span class="filter-name label">Mage</span></a>
-		</li>
-		<li data-option-value="support">
-			<a href="#" class="filter-link" data-option-value="support"><span class="filter-color label pull-left">&nbsp;</span><span class="filter-name label">Support</span></a>
-		</li>
-		<li data-option-value="fighter">
-			<a href="#" class="filter-link" data-option-value="fighter"><span class="filter-color label pull-left">&nbsp;</span><span class="filter-name label">Fighter</span></a>
-		</li>
-		<li data-option-value="assassin">
-			<a href="#" class="filter-link" data-option-value="assassin"><span class="filter-color label pull-left">&nbsp;</span><span class="filter-name label">Assassin</span></a>
-		</li>
-		<li data-option-value="tank">
-			<a href="#" class="filter-link" data-option-value="tank"><span class="filter-color label pull-left">&nbsp;</span><span class="filter-name label">Tank</span></a>
-		</li>
-		
-		<li class="nav-header">Portée d'attaque</li>
-		<li data-option-value="melee">
-			<a href="#" class="filter-link" data-option-value="melee"><span class="filter-color label pull-left">&nbsp;</span><span class="filter-name label">Melee</span></a>
-		</li>
-		<li data-option-value="ranged">
-			<a href="#" class="filter-link" data-option-value="ranged"><span class="filter-color label pull-left">&nbsp;</span><span class="filter-name label">Ranged</span></a>
-		</li>		
-		
-		<li class="nav-header">Position</li>
-		<li  data-option-value="top">
-			<a href="#" class="filter-link" data-option-value="top"><span class="filter-color label pull-left">&nbsp;</span><span class="filter-name label">Top</span></a>
-		</li>
-		<li data-option-value="jungle">
-			<a href="#" class="filter-link" data-option-value="jungle"><span class="filter-color label pull-left">&nbsp;</span><span class="filter-name label">Jungle</span></a>
-		</li>
-		<li data-option-value="mid">
-			<a href="#" class="filter-link" data-option-value="mid"><span class="filter-color label pull-left">&nbsp;</span><span class="filter-name label">Mid</span></a>
-		</li>
-		<li data-option-value="bottom">
-			<a href="#" class="filter-link" data-option-value="bottom"><span class="filter-color label pull-left">&nbsp;</span><span class="filter-name label">Bottom</span></a>
-		</li>
-		
-		<li class="nav-header">Dégâts</li>
-		<li data-option-value="physical">
-			<a href="#" class="filter-link" data-option-value="physical"><span class="filter-color label pull-left">&nbsp;</span><span class="filter-name label">Physical</span></a>
-		</li>
-		<li data-option-value="magical">
-			<a href="#" class="filter-link" data-option-value="magical"><span class="filter-color label pull-left">&nbsp;</span><span class="filter-name label">Magical</span></a>
-		</li>
-		<li data-option-value="hybrid-damage">
-			<a href="#" class="filter-link" data-option-value="hybrid damage"><span class="filter-color label pull-left">&nbsp;</span><span class="filter-name label">Hybrid Damage</span></a>
-		</li>
+		<li class="list-header">FILTRER LES CHAMPIONS PAR LEURS TAGS</li>
+		<div class="row-fluid">
+			<div class="span6">
+				<h4>Tags originaux définis par Riot Games</h4>
+				<ul class="tags-group">
+					<li class="nav-header">Rôle</li>
+					<li>
+						<a href="#" class="filter-link" data-option-value="mage"><i class=" icon-ok-sign"></i>Mage</a>
+					</li>
+					<li>
+						<a href="#" class="filter-link" data-option-value="support"><i class=" icon-ok-sign"></i>Support</a>
+					</li>
+					<li>
+						<a href="#" class="filter-link" data-option-value="fighter"><i class=" icon-ok-sign"></i>Fighter</a>
+					</li>
+					<li>
+						<a href="#" class="filter-link" data-option-value="assassin"><i class=" icon-ok-sign"></i>Assassin</a>
+					</li>
+					<li>
+						<a href="#" class="filter-link" data-option-value="tank"><i class=" icon-ok-sign"></i>Tank</a>
+					</li>
+				</ul>
+				<ul class="tags-group">
+					<li class="nav-header">Portée d'attaque</li>
+					<li>
+						<a href="#" class="filter-link" data-option-value="melee"><i class=" icon-ok-sign"></i>Melee</a>
+					</li>
+					<li>
+						<a href="#" class="filter-link" data-option-value="ranged"><i class=" icon-ok-sign"></i>Ranged</a>
+					</li>
+				</ul>
+					
+			</div>
+				
+			<div class="span6">
+				<h4>Tags personnalisés par MVNerds</h4>
+				<ul class="tags-group">
+					<li class="nav-header">Position</li>
+					<li>
+						<a href="#" class="filter-link" data-option-value="top"><i class=" icon-ok-sign"></i>Top</a>
+					</li>
+					<li>
+						<a href="#" class="filter-link" data-option-value="jungle"><i class=" icon-ok-sign"></i>Jungle</a>
+					</li>
+					<li>
+						<a href="#" class="filter-link" data-option-value="mid"><i class=" icon-ok-sign"></i>Mid</a>
+					</li>
+					<li data-option-value="bottom">
+						<a href="#" class="filter-link" data-option-value="bottom"><i class=" icon-ok-sign"></i>Bottom</a>
+					</li>
+				</ul>
+				<ul class="tags-group">
+					<li class="nav-header">Dégâts</li>
+					<li>
+						<a href="#" class="filter-link" data-option-value="physical"><i class=" icon-ok-sign"></i>Physical</a>
+					</li>
+					<li>
+						<a href="#" class="filter-link" data-option-value="magical"><i class=" icon-ok-sign"></i>Magical</a>
+					</li>
+					<li>
+						<a href="#" class="filter-link" data-option-value="hybrid damage"><i class=" icon-ok-sign"></i>Hybrid Damage</a>
+					</li>
+				</ul>
+			</div>
+		</div>
 	</ul>
 </li>

@@ -60,7 +60,7 @@ body {
 }
 
 div.main-container {
-	background: #eee url('/images/launch_site/url_bg.png') no-repeat top right;
+	background: #333 url('/images/launch_site/main_container_bg.png') no-repeat top left;
 	border: 0;
 	.box-shadow(0px 0px 55px rgba(0,0,0,1));
 	min-height: 980px;
@@ -302,10 +302,10 @@ div.body-container {
 	}
 
 	div.champions-handler-container {
-		background-color: black;
+		background: black url('/images/launch_site/champion_handler_bg.png') no-repeat bottom center;
 		//.border-radius(4px);
 		margin: 10px 0;
-		min-height: 500px;
+		min-height: 700px;
 		padding: 10px;
 
 		div.actions-bar {
@@ -351,7 +351,23 @@ div.body-container {
 						a.action-button-link {
 							display: block;
 							padding: 3px 6px 0 2px;
-						}						
+						}					
+					}
+
+					&.red-button {
+						background-color: rgba(219,74,56,.7);
+
+						&.disabled {
+							background-color: rgba(25,160,223,.7);
+
+							&:hover {
+								background-color: rgba(25,160,223,1);
+							}
+						}
+
+						&:hover {
+							background-color: @MVNerdsRed;
+						}
 					}
 
 					&.help-action {
@@ -364,6 +380,7 @@ div.body-container {
 
 					a, a:visited, a:hover {
 						color: white;
+						display: block;
 						text-decoration: none;
 					}
 
@@ -419,30 +436,30 @@ div.body-container {
 						width: 100px;
 					}
 
-					ul#comparison-list {
-						background-color: rgba(238,238,238,.8);
-						border: 1px solid black;
-						left: -1px;
-						min-height: 100px;
-						width: 250px;
+					ul.dropdown-menu {
+						.border-radius(0);
+					}
 
-
-						&.dropdown-menu {
-							.border-radius(0);
-						}
-
-						li {
-							text-align: center;
-							min-height: 30px;
-						}
-
+					ul#comparison-list, ul#filter-list {
 						li.list-header {
-							color: black;
+							color: @MVNerdsBlue;
 							font-family: 'Ubuntu', sans-serif;
 							font-size: 11px;
 							font-weight: bold;
 							line-height: 20px;
 							text-transform: uppercase;
+						}
+
+					}
+
+					ul#comparison-list {
+						background-color: rgba(0,0,0,0.8);
+						border: 1px solid @MVNerdsBlue !important;
+						width: 250px;
+
+						li {
+							text-align: center;
+							min-height: 30px;
 						}
 
 						li.indication, span.champion-comparable-name {
@@ -452,20 +469,56 @@ div.body-container {
 						}
 
 						li.indication {
-							border: 1px dashed black;
+							border: 1px dashed #999;
 							.border-radius(5px);
-							color: black;
+							color: #999;
 							font-style: italic;
-							margin: 0 10px;
+							margin: 0 10px 11px 10px;
 							padding: 15px;
 						}
 
+						li.clean {
+							border-top: 1px dashed rgba(255,255,255,0.3);
+							font-family: 'Ubuntu', sans-serif;
+							font-size: 12px;
+							position: relative;
+							text-align: right;
+							top: 6px;
+
+							i, a {
+								color: #666;	
+							}
+
+							i {
+								display: inline-block;
+								font-size: 14px;
+								left: 3px;
+								position: relative;
+							}
+
+							&.disabled {
+								display: none;
+							}
+
+							&:hover {
+								a, i {
+									color: white;
+									.transition(all .25s linear);
+								}
+							}
+						}
+
 						li.champion-comparable {
+							color: white;
 
 							a.champion-comparable-remove {
 								height: 25px;
 							
 								&:hover {
+									span.champion-comparable-name, i {
+										color: white;
+										.transition(all .25s linear);
+									}
 								}
 
 								img {
@@ -474,16 +527,87 @@ div.body-container {
 							}
 
 							span.champion-comparable-name {
-								color: black;
+								color: #999;
 								display: inline-block;
 								font-weight: bold;
 								margin: 0;
 								padding: 0;
 								width: 167px;
+
+								&:hover {
+
+								}
 							}
 
 							i {
+								color: #999;
 								font-size: 14px;
+							}
+						}
+					} // Fin ul#comparison-list
+
+					ul#filters-list {
+						background-color: rgba(0,0,0,0.8);
+						border: 1px solid @MVNerdsBlue;
+						margin-left: -571px;
+						padding: 5px 20px;
+						text-align: left;
+						width: 974px;
+
+						li.list-header {
+							color: @MVNerdsBlue;
+							font-family: 'Ubuntu', sans-serif;
+							font-size: 11px;
+							font-weight: bold;
+							line-height: 20px;
+							margin-bottom: 20px;
+							text-align: center;
+							text-transform: uppercase;
+						}
+
+						h4 {
+							color: #666;
+						}
+
+						ul.tags-group {
+							float: left;
+							list-style: none;
+							margin: 0 20px 0 0;
+							padding: 0;
+							width: 200px;
+
+							li.nav-header {
+								color: @LoLOrangeAD;
+								text-shadow: none;
+							}
+
+							a {
+								font-family: 'Ubuntu', sans-serif;
+								padding: 3px 10px 3px 20px;
+
+								i {
+									color: black;
+									display: inline-block;
+									font-size: 18px;
+									margin: 0 10px 0 0;
+								}
+
+								&.selected {
+									color: @LoLOrangeAD;
+									font-weight: bold;
+
+									i {
+										color: @LoLOrangeAD;
+									}
+								}
+
+								&:hover {
+									color: white;
+
+									i {
+										color: white;
+									}
+								}
 							}
 						}
 					}
@@ -593,19 +717,37 @@ div.body-container {
 
 					h3 {
 						color: @LoLOrangeAD;
-						font-size: 16px;
+						font-size: 18px;
+						line-height: 1.2em;
+						margin: 8px 0 0 10px;
+					}
+
+					h5 {
+						color: #999;
+						font-family: 'Trebuchet MS';
+						font-size: 12px;
+						margin-left: 10px;
+						text-transform: uppercase;
 					}
 
 					.ad-color {
 						color: @LoLOrangeAD;
 					}
 
+					dd, dt {
+						font-family: 'Trebuchet MS', sans-serif;
+					}
+
 					dt {
 						float: left;
-						//font-weight: normal;
-						margin: 0 20px 0 10px;
+						margin: 0 10px 0 5px;
 						text-align: right;
-						width: 160px;
+						width: 150px;
+
+						&.bonus {
+							color: #666;
+							text-transform: uppercase;
+						}
 					}
 
 					dd {
@@ -613,6 +755,29 @@ div.body-container {
 						color: @LoLOrangeAD;
 						font-size: 14px;
 						font-weight: bold;
+
+						&.bonus {
+							color: @MVNerdsBlue;
+						}
+					}
+
+					dd.bonus, dt.bonus {
+						font-size: 10px;
+						line-height: 1.1em;
+						margin-bottom: 5px;
+					}
+
+					dl {
+						dt.last-child, dd:last-child {
+							margin-top: 5px;
+						}
+					}
+
+					p.indication {
+						color: #444;
+						font-size: 12px;
+						text-align: center;
+						margin: 24px 0 0 0;
 					}
 
 					div.right-side {

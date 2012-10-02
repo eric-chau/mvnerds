@@ -1,34 +1,60 @@
 <div class="row-fluid">
 	<div class="span6">
 		<h3>{{ champion.getName() }}</h3>
-
+		<h5>{{ champion.getTitle() }}</h5>
 		<dl>
-			<dt>Points de vie</dt>
-		      <dd>{{ champion.getBaseHealth() }}</dd>	
-		    <dt>Régén. de point de vie/5 sec</dt>
+			<dt>Points de vie (PV)</dt>
+			  <dd>{{ champion.getBaseHealth() }}</dd>
+			<dt class="bonus">Bonus par niveau</dt>
+			  <dd class="bonus">{{ champion.getBonusHealthPerLevel() }}</dd>
+			  
+		    <dt>Régén. de PV/5 sec</dt>
 		      <dd>{{ champion.getBaseHealthRegen() * 5 }}</dd>
+			<dt class="bonus">Bonus par niveau</dt>
+			  <dd class="bonus">{{ champion.getBonusHealthRegenPerLevel() }}</dd>  
+			  
 		     <dt>Points de mana</dt>
 		      <dd>{{ champion.getBaseMana() }}</dd>	
+			<dt class="bonus">Bonus par niveau</dt>
+			  <dd class="bonus">{{ champion.getBonusManaPerLevel() }}</dd>  
+			
 		    <dt>Régén. de mana/5 sec</dt>
 		      <dd>{{ champion.getBaseManaRegen() * 5 }}</dd>
+			<dt class="bonus">Bonus par niveau</dt>
+			  <dd class="bonus">{{ champion.getBonusManaRegenPerLevel() }}</dd>
+			  
 		    <dt>Armure</dt>
 		      <dd>{{ champion.getBaseArmor() }}</dd>
+			<dt class="bonus">Bonus par niveau</dt>
+			  <dd class="bonus">{{ champion.getBonusArmorPerLevel() }}</dd>
+			  
 		    <dt>Résistance magique</dt>
 		      <dd>{{ champion.getBaseMagicResist() }}</dd>
+			<dt class="bonus">Bonus par niveau</dt>
+			  <dd class="bonus">{{ champion.getBonusMagicResistPerLevel() }}</dd>
+			  
 		  	<dt>Dégâts d'attaque</dt>
 		      <dd>{{ champion.getBaseDamage() }}</dd>
+			<dt class="bonus">Bonus par niveau</dt>
+			  <dd class="bonus">{{ champion.getBonusDamagePerLevel() }}</dd>
+			  
 	      	<dt>Vitesse d'attaque</dt>
 		      <dd>{{ champion.getBaseAttackSpeed() }}</dd>
+			<dt class="bonus">Bonus par niveau</dt>
+			  <dd class="bonus">{{ champion.getBonusAttackSpeedPerLevel() }}</dd>
+			  
 	      	<dt>Portée d'attaque</dt>
 		      <dd>{{ champion.getAttackRange() }}</dd>
-	      	<dt>Vitesse de déplacement</dt>
+			  
+	      	<dt class="last-child">Vitesse de déplacement</dt>
 		      <dd>{{ champion.getMoveSpeed() }}</dd>
-		   
 		</dl>
+		
+		<p class="indication">Les caractéristiques ci-dessus sont celle de {{ champion.getName() }} au niveau 1</p>
 	</div>
 	<div class="span6 right-side">
 		<p>
-			<img src="{{ asset('/images/commons/ip_logo.png') }}" /> 6300 ou <img src="{{ asset('/images/commons/rp_logo.png') }}" /> 975
+			<img src="{{ asset('/images/commons/ip_logo.png') }}" /> {{ champion.getIpCost() }} ou <img src="{{ asset('/images/commons/rp_logo.png') }}" /> {{ champion.getRpCost() }}
 		</p>
 		<img src="{{ asset('/images/champions/portrait/' ~ champion.getSlug() ~ '.jpg') }}" class="portrait" />
 	</div>
