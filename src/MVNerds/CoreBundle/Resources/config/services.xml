@@ -55,6 +55,12 @@
 		</service>
 
 		<!-- 
+			TAG MANAGER SERVICES
+		-->
+		<service id="mvnerds.tag_manager" class="MVNerds\CoreBundle\Tag\TagManager">
+		</service>
+
+		<!-- 
 			TWIG - FLASH EXTENSION
 		-->
 		<service id="mvnerds.twig.flash_extension" class="MVNerds\CoreBundle\Twig\MVNerdsFlashExtension">

@@ -80,7 +80,6 @@ class ChampionTagManager
 		{
 			throw new InvalidArgumentException('ChampionTag with championId:' . $champion->getId() . ' and tagId: ' . $tag->getId() . 'does not exist!');
 		}
-		
 		$championTag->delete();
 	}
 	

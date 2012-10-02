@@ -10,7 +10,7 @@ jQuery(function(){
 	 $('#wrapper').on('click', '.data-pagination:not(.disabled)', function(){
 		
 		//On récupère le lien
-		var href = this.href;
+		var href = $(this).attr('data-target');
 		//Si le lien a l attribut rel et que c est next on coulisse vers la gauche sinon a droite
 		var pos = this.rel == 'next' ? '-150%' : '150%';
 		

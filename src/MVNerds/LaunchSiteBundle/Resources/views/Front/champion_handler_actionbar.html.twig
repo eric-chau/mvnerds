@@ -33,7 +33,7 @@
 		
 		{# Bouton d'action qui permet de comparer la liste des champions sélectionnés #}
 		<li class="action {% if list_size < 2 %} disabled{% endif %}">
-			<a id="btn-compare" class="data-pagination{% if list_size < 2 %} disabled{%endif%}" rel="next" href="{{path('champion_handler_comparison_compare') }}">
+			<a id="btn-compare" class="data-pagination{% if list_size < 2 %} disabled{%endif%}" rel="next" href="#" data-target="{{path('champion_handler_comparison_compare') }}">
 				<i class="icon-random icon-white"></i> <span class="action-label">Comparer</span>
 			</a>
 		</li>

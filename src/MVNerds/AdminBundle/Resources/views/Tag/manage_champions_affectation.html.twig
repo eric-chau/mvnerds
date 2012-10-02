@@ -1,0 +1,41 @@
+{% extends 'MVNerdsAdminBundle:Tag:layout.html.twig' %}
+
+{% block title %}Administration des tags - MVNerds{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-typeahead.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+	<h1>Affecter des champions au tag {{tag.getLabel()}}</h1>
+
+	<div class="action-buttons">
+		<a href="{{ path('admin_tags_index') }}" class="btn"><i class="icon-arrow-left"></i> <strong>Retourner à la liste</strong></a>
+		<a href="#" class="btn btn-success btn-large pull-right btn-submit-form"><i class="icon-ok icon-white"></i> <strong>J'ai terminé</strong></a>
+		<a href="{{ path('admin_tags_index') }}" class="btn pull-right btn-danger"><strong>Annuler</strong></a>
+	</div>
+
+	<div class="content-container">
+		<form action="{{ path('admin_tags_manage_champions_affectation', {'label': tag.getLabel()}) }}" method="POST">
+			<label>Nom du champion</label>
+			<input type="text" name="champion-name" id="champion-name" placeholder="Nom du champion" data-provide="typeahead" data-source="{{championsNames}}"/>
+
+			<input type="submit" class="submit-form hide" />
+		</form>
+			
+		<div id="affected-champions">
+			<ul>
+				{% for championTag in championsTagsAffected %}
+					<li>
+						{{championTag.getChampion().getName()}} 
+						<a href="{{ path('admin_tags_remove_champions_affectation', {'label': tag.getLabel(), 'name':championTag.getChampion().getName()}) }}">
+							<i class="icon-remove"></i>
+						</a>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+			
+	</div>
+{% endblock %}
