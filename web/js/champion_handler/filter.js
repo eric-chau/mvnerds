@@ -2,7 +2,6 @@ var options, $isotope = $('#isotope-list'), $filterValue = $('#filter-value');
 
 function initTypeahead($isotope){
 	options =  getIsotopeOptions();
-	setTypeaheadChampionsName();
 	$filterValue.off('keyup change');
 	$filterValue.keyup(function(){
 		filter($isotope);
@@ -66,6 +65,7 @@ function removeFilterValue($isotope, value){
 }
 
 $(function(){	
+	setTypeaheadChampionsName();
 	initTypeahead($isotope);
 	initFilterList($isotope);
 });

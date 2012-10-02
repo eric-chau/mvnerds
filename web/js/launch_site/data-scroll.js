@@ -13,7 +13,9 @@ jQuery(function(){
 		var href = $(this).attr('data-target');
 		//Si le lien a l attribut rel et que c est next on coulisse vers la gauche sinon a droite
 		var pos = this.rel == 'next' ? '-150%' : '150%';
-		
+		if (Modernizr.history) {
+			history.pushState(location.pathname, '', href);
+		}
 		//On récupère le contenu a faire glisser
 		container.find('div.data-scrollable').animate({
 			left: pos,
@@ -38,12 +40,27 @@ jQuery(function(){
 					if($isotope.size() > 0){						
 						initIsotope($isotope);
 						initTypeahead($isotope);
-						initFilterList($isotope, 'glu');
+						initFilterList($isotope);
 					}
 				},
 				'html'
 			);
 		});
 		return false;
+	});
+	
+	var initialPath = location.pathname;
+    	
+	$(window).bind('popstate', function(){
+		console.log(location.pathname);
+		if (location.pathname == initialPath) {
+			initialPath = null;
+			return;
+		}
+		$.get(location.pathname, {
+			format: 'html'
+		}, function(data){
+			container.html(data);
+		}, 'html');
 	});
 });
