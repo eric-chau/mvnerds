@@ -223,7 +223,6 @@ $(document).ready(function()
 	 function processScroll()
 	 {
 	  	var scrollTop = $win.scrollTop();
-		console.log('scroll Top : '+scrollTop+' | navTop : '+navTop);
 	  	if (scrollTop >= navTop - 9.85 && !isFixed) {
 	    	isFixed = 1;
 	    	$nav.addClass('active');

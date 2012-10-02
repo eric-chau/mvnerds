@@ -52,7 +52,6 @@ jQuery(function(){
 	var initialPath = location.pathname;
     	
 	$(window).bind('popstate', function(){
-		console.log(location.pathname);
 		if (location.pathname == initialPath) {
 			initialPath = null;
 			return;

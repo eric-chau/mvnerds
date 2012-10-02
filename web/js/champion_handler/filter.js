@@ -1,4 +1,4 @@
-var options, $isotope = $('#isotope-list'), $filterValue = $('#filter-value');
+var options, typeaheadValue, $isotope = $('#isotope-list'), $filterValue = $('#filter-value');
 
 function initTypeahead($isotope){
 	options =  getIsotopeOptions();
@@ -25,12 +25,11 @@ function filter($isotope){
 	var filterValue = $filterValue.val();
 	if(filterValue != '')
 	{
-		options['filter']="[data-name*='" + filterValue.toLowerCase()+"']";
-		$isotope.isotope(options);
+		setTypeaheadValue($isotope, "[data-name*='" + filterValue.toLowerCase()+"']");
 	}
 	else
 	{
-		options['filter']="";
+		removeFilterValue($isotope, typeaheadValue);
 		$isotope.isotope(options);
 	}
 }
@@ -42,25 +41,39 @@ function initFilterList($isotope){
 	
 	$('#filters-list  li').on('click', ' a.filter-link:not(.selected)', function(){
 		$(this).addClass('selected');
-		addFilterValue($isotope, $(this).attr('data-option-value'));
+		addFilterValue($isotope, '.'+$(this).attr('data-option-value'));
 		return false;
 	});
 	$('#filters-list li').on('click', 'a.selected',function(){
 		$(this).removeClass('selected');
-		removeFilterValue($isotope, $(this).attr('data-option-value'));
+		removeFilterValue($isotope, '.'+$(this).attr('data-option-value'));
 		return false;
 	});
 }
 function addFilterValue($isotope, value){
-	options['filter'] = options['filter'] + '.' + value;
+	options['filter'] = options['filter'] + value;
 	$isotope.isotope(options);
 }
 function removeFilterValue($isotope, value){
 	var oldOptions = options['filter'];
-	var splitedOptions = oldOptions.split('.'+value);
-	var newOption = splitedOptions[0].concat(splitedOptions[1]);
-	
-	options['filter'] = newOption;
+	var newOptions;
+	if(value != undefined && value != '')
+	{
+		var splitedOptions = oldOptions.split(value);
+		newOptions = splitedOptions[0].concat(splitedOptions[1]);
+	}
+	else
+	{
+		newOptions = oldOptions;
+	}
+	typeaheadValue = undefined;
+	options['filter'] = newOptions;
+	$isotope.isotope(options);
+}
+function setTypeaheadValue($isotope, value){
+	removeFilterValue($isotope, typeaheadValue);
+	typeaheadValue = value;
+	addFilterValue($isotope,typeaheadValue);
 	$isotope.isotope(options);
 }
 
