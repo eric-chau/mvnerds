@@ -4,6 +4,10 @@
 	</h2>
 
 	<ul class="action-buttons">
+		
+		{# Récupération de la taille de la liste #}
+		{% set list_size = app.session.get('comparison_list')|length %}
+		
 		{# Bouton dropdown de la liste des champions sélectionnés pour la comparaison #}
 		<li class="action link dropdown" id="comparison-list-dropdown">
 			<a href="#" class="dropdown-toggle action-button-link" data-toggle="dropdown" id="drop-comparison-list" role="button">
@@ -18,21 +22,24 @@
 				{% for championSlug, champion in app.session.get('comparison_list') %}
 					{% include 'MVNerdsChampionHandlerBundle:Comparison:comparison_row.html.twig' with {'champion': champion}%}
 				{% endfor %}
+				
+				<li id="li-clean" class="clean {% if list_size < 1 %} disabled{% endif %}">
+					<a id="btn-clean" href="{{path('champion_handler_comparison_clean_comparison') }}" {% if list_size < 1 %}class="disabled"{%endif%}>
+						<i class="icon-trash"></i>Vider la liste
+					</a>
+				</li>
 			</ul>
 		</li>
-
+		
 		{# Bouton d'action qui permet de comparer la liste des champions sélectionnés #}
-		{% set list_size = app.session.get('compare_list')|length %}
-		<li class="action{% if list_size < 2 %} disabled{% endif %}">
+		<li class="action {% if list_size < 2 %} disabled{% endif %}">
 			<a id="btn-compare" class="data-pagination{% if list_size < 2 %} disabled{%endif%}" rel="next" href="{{path('champion_handler_comparison_compare') }}">
 				<i class="icon-random icon-white"></i> <span class="action-label">Comparer</span>
 			</a>
 		</li>
 
 		{# Bouton d'action qui permet de filtrer les champions #}
-		<li class="action filter-action">
-			<i class="icon-cogs icon-white"></i> <span class="action-label">Affiner le filtrage</span>
-		</li>
+		{% include 'MVNerdsChampionHandlerBundle:Comparison:filter_list.html.twig' %}
 
 		{# Champ input qui permet de filtrer / rechercher un champion selon son nom #}
 		<li class="action filter-action search-action">

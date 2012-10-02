@@ -5,28 +5,32 @@ jQuery(function($) {
 	function appendChampion(data)
 	{		
 		//On ajoute le champion à la liste
-		$(data).appendTo('ul#comparison-list');
+		$(data).insertBefore('li#li-clean');
 	}
 
 	//permet d activer le bouton de comparaison de champions
 	function activateCompareButton()
 	{
 		$('a#btn-compare').removeClass('disabled');
+		$('a#btn-compare').parent('li').removeClass('disabled');
 	}
 	//Permet d activer le bouton de vidage de la liste des champions
 	function activateCleanButton()
 	{
 		$('a#btn-clean').removeClass('disabled');
+		$('a#btn-clean').parent('li').removeClass('disabled');
 	}
 	//Permet de désactiver le bouton de vidage de la liste des champions
 	function deactivateCleanButton()
 	{
 		$('a#btn-clean').addClass('disabled');
+		$('a#btn-clean').parent('li').addClass('disabled');
 	}
 	//Permet de désactiver le bouton de comparaison
 	function deactivateCompareButton()
 	{
 		$('a#btn-compare').addClass('disabled');
+		$('a#btn-compare').parent('li').addClass('disabled');
 	}
 	
 	//On active les tooltips
@@ -43,7 +47,7 @@ jQuery(function($) {
 	});
 	
 	//Lors du clic sur le bouton de vidage de la liste s'il n'a pas la classe disabled'
-	$('#actionbar').on('click', 'a#btn-clean:not(.disabled)', function(){
+	$('div.actions-bar').on('click', 'a#btn-clean:not(.disabled)', function(){
 		hideMessages();
 		$('#comparison-list-dropdown').addClass('open');
 		$comparisonListLoading.show();
