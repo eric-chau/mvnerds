@@ -1,5 +1,5 @@
-const SUCCESS_ALERT = 'success';
-const ERROR_ALERT = 'error';
+var SUCCESS_ALERT = 'success';
+var ERROR_ALERT = 'error';
 
 var timeoutID;
 

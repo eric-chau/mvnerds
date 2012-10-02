@@ -116,7 +116,7 @@ class ChampionManager
 	 * 
 	 * @param string $slug le nom du champion dont on souhaite récupérer l'objet Champion associé 
 	 * @return MVNerds\CoreBundle\Model\Champion l'objet Champion qui correspond au slug $slug 
-	 * @throws InvalidArgumentException exception levé si aucun champion n'est associé à l'id $id
+	 * @throws InvalidArgumentException exception levé si aucun champion n'est associé au slug $slug
 	 */
 	public function findBySlug($slug)
 	{
@@ -127,6 +127,27 @@ class ChampionManager
 		if (null === $champion)
 		{
 			throw new InvalidArgumentException('No champion with slug:' . $slug . '!');
+		}
+
+		return $champion;
+	}
+	
+	/**
+	 * Récupère un objet Champion à partir de son nom $name
+	 * 
+	 * @param string $name le nom du champion dont on souhaite récupérer l'objet Champion associé 
+	 * @return MVNerds\CoreBundle\Model\Champion l'objet Champion qui correspond au nom $name
+	 * @throws InvalidArgumentException exception levé si aucun champion n'est associé au nom  $name
+	 */
+	public function findByName($name)
+	{
+		$champion = ChampionQuery::create()
+			->add(ChampionPeer::NAME, $name)
+		->findOne();
+
+		if (null === $champion)
+		{
+			throw new InvalidArgumentException('No champion with name:' . $name . '!');
 		}
 
 		return $champion;

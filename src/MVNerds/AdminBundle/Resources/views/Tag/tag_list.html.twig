@@ -1,0 +1,12 @@
+{# #}
+<div class="row-fluid title-line">
+	<div class="span2">Identifiant</div>
+	<div class="span4">Label</div>
+	<div class="span4">Description</div>
+	<div class="span2">Actions</div>
+</div>
+{% for tag in tags %}
+	{% include 'MVNerdsAdminBundle:Tag:tag_row.html.twig' %}
+{% else %}
+	<i>Aucun tag enregistré pour le moment, et si vous en ajoutiez un en cliquant sur le bouton "Ajouter un tag" ?</i>
+{% endfor %}

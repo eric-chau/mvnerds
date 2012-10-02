@@ -118,7 +118,6 @@ jQuery(function($) {
 	
 	function addChampionToList(slug){
 			hideMessages();
-			
 			//On affiche l'icone de chargement
 			$comparisonListLoading.show();
 			

@@ -1,0 +1,45 @@
+<div class="row-fluid normal-line">
+	{# Id du tag  #}
+	<div class="span2">
+		{{ tag.getId() }}
+	</div>
+	{# Label du tag #}
+	<div class="span4">
+		{{ tag.getLabel() }}
+	</div>
+	{# Description du tag #}
+	<div class="span4">
+		{{ tag.getDescription() }}
+	</div>
+	{# Actions sur le tag #}
+	<div class="span2">
+		{# Gérer l affectation des tags #}
+		<a href="{{ path('admin_tags_manage_champions_affectation', {'label': tag.getLabel()}) }}" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Gérer les champions affectés">
+			<i class="icon-eye-open"></i>
+		</a>
+		{# Editer le tag #}
+		<a href="{{ path('admin_tags_edit', {'label': tag.getLabel()}) }}" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Éditer">
+			<i class="icon-edit"></i>
+		</a>
+		{# Supprimer le tag #}
+		<a href="#" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Supprimer l'utilisateur" data-toggle="modal" data-target="#delete-tag-{{ tag.getLabel() }}-modal">
+			<i class="icon-remove"></i>
+		</a>
+	</div>
+
+	<div id="delete-tag-{{ tag.getLabel() }}-modal" class="modal hide fade">
+		<div class="modal-header">
+	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	    	<h3>Supprimer le tag {{ tag.getLabel() }}</h3>
+	  	</div>
+	  	<div class="modal-body">
+	    	<p>Êtes-vous sûr de vouloir supprimer le tag ayant pour label<strong>{{ tag.getLabel() }}</strong> ?</p>
+	  	</div>
+	  	<div class="modal-footer">
+	  		<img src="{{ asset('images/commons/loader16.gif') }}" class="hide"/>
+	    	<a href="#" class="btn" data-dismiss="modal">Annuler</a>
+	    	<a href="{{ path('admin_tags_delete', {'label': tag.getLabel()}) }}" class="btn btn-danger btn-confirm-delete">Confirmer</a>
+	  	</div>
+	</div>
+</div>
+
