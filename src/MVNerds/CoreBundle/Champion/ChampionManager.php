@@ -141,6 +141,7 @@ class ChampionManager
 	public function findAll()
 	{
 		return ChampionQuery::create()
+			->joinWithI18n()
 			->OrderBy(ChampionPeer::ID)
 		->find();
 	}

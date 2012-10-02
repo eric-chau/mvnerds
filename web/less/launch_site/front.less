@@ -420,7 +420,7 @@ div.body-container {
 					}
 
 					ul#comparison-list {
-						background-color: rgba(238,238,238,.7);
+						background-color: rgba(238,238,238,.8);
 						border: 1px solid black;
 						left: -1px;
 						min-height: 100px;
@@ -537,6 +537,7 @@ div.body-container {
 				}
 
 				&.champion-maxi {
+					background: black url('/images/launch_site/champion_preview_bg.png') no-repeat top left;
 					border: 1px solid @LoLOrangeAD;
 					height: (4 * @PortraitHeight) + (4 * @PortraitGutter) - 2;
 					.transition(all .3s linear);
@@ -637,66 +638,6 @@ div.body-container {
 					}
 				}
 			}
-		}
-	}
-
-	ul#filters-list{
-		text-align: center;
-
-		.filters-tag-color(@bg-color, @font-color : red){
-			span.filter-color{
-				background-color: @color;
-			}
-			a.selected span.filter-name{
-				background-color: @color;
-				color: @font-color !important;
-			}
-		}
-
-		li a.filter-link{
-			font-size: 13px;
-		}
-		li[data-option-value = mage]{
-			.filters-tag-color(#e10c02);
-		}
-		li[data-option-value = support]{
-			.filters-tag-color(#0b02e1);
-		}
-		li[data-option-value = fighter]{
-			.filters-tag-color(#02d7e1);
-		}
-		li[data-option-value = assassin]{
-			.filters-tag-color(#FF9900);
-		}
-		li[data-option-value = tank]{
-			.filters-tag-color(#d7e102);
-		}
-		li[data-option-value = top]{
-			.filters-tag-color(#e102d8);
-		}
-		li[data-option-value = jungle]{
-			.filters-tag-color(#02e10c);
-		}
-		li[data-option-value = mid]{
-			.filters-tag-color(#444444);
-		}
-		li[data-option-value = bottom]{
-			.filters-tag-color(#0b02e1);
-		}
-		li[data-option-value = physical]{
-			.filters-tag-color(#DDDDDD, #000);
-		}
-		li[data-option-value = magical]{
-			.filters-tag-color(#84b6eb);
-		}
-		li[data-option-value = hybrid-damage]{
-			.filters-tag-color(#fc2929);
-		}
-		li[data-option-value = melee]{
-			.filters-tag-color(#f1e333);
-		}
-		li[data-option-value = ranged]{
-			.filters-tag-color(#a7501f);
 		}
 	}
 }
