@@ -50,7 +50,10 @@ $(document).ready(function()
 	{
 		var $this = $(this);
 
-		$('div.presentation-container div.content div.' + $this.data('content-name')).slideToggle();
+		$('div.presentation-container div.content div.' + $this.data('content-name')).slideToggle(300, function(){
+			navTop = $nav.length && $nav.offset().top;
+			processScroll();
+		});
 	});
 
 	/**
@@ -181,6 +184,11 @@ $(document).ready(function()
 		});
 	});
 
+	var $win = $(window), 
+		$nav = $('div.actions-bar'),
+		navTop = $nav.length && $nav.offset().top,
+		isFixed = 0;
+
 	/**
 	 * Permet d'afficher ou de masquer le contenu d'une div XXX-container de la div.presentation-container; toggle également le label
 	 * et l'icône des spans 
@@ -188,7 +196,7 @@ $(document).ready(function()
 	 * @param jQuery<Object> $this correspond à un objet jQuery qui représente un h2 de la div.presentation-container
 	 */
 	function toggleContentDisplay($this)
-	{
+	{console.log('toggle');
 		var $icon = $this.find('i'),
 			$label = $this.find('span.msg'),
 			$span = $this.find('span.show-hide-label'), 
@@ -205,12 +213,7 @@ $(document).ready(function()
 		$this.toggleClass('no-margin');
 
 		saveItemInLS('display-' + $this.data('content-name'), $this.hasClass('no-margin'));
-	}
-
-	var $win = $(window), 
-		$nav = $('div.actions-bar'),
-		navTop = $nav.length && $nav.offset().top,
-		isFixed = 0;
+	}	
  
 	processScroll();
  
@@ -220,12 +223,11 @@ $(document).ready(function()
 	 function processScroll()
 	 {
 	  	var scrollTop = $win.scrollTop();
-	  
-	  	if (scrollTop >= navTop && !isFixed) {
+	  	if (scrollTop >= navTop - 9.85 && !isFixed) {
 	    	isFixed = 1;
 	    	$nav.addClass('active');
 	  	} 
-	  	else if (scrollTop <= navTop && isFixed) {
+	  	else if (scrollTop <= navTop - 9.85 && isFixed) {
 	    	isFixed = 0;
 	    	$nav.removeClass('active');
 	 	}

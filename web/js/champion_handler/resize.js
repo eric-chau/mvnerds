@@ -73,7 +73,7 @@ function minimizeChampion($champ, $isotope){
 }
 
 function scrollToChampion($champ){
-	var position = $champ.position().top + $('#champion-comparison-center').position().top - 20;
+	var position = $champ.position().top + $('#champion-comparison-center').position().top - 200;
 	$('body,html').animate({scrollTop:position},500);
 }
 

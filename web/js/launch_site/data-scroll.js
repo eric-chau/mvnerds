@@ -6,6 +6,19 @@ jQuery(function(){
 	
 	var container = $('#champion-comparison');	
 	
+	function loadData(data){
+		//On remplace le contenu
+		container.html(data);
+
+		var $isotope = $('#isotope-list');
+
+		if($isotope.size() > 0){						
+			initIsotope($isotope);
+			initTypeahead($isotope);
+			initFilterList($isotope);
+		}
+	}
+	
 	//On affecte aux liens qui n'ont pas la classe disabled la fonction de scroll lors du clic
 	 $('#wrapper').on('click', '.data-pagination:not(.disabled)', function(){
 		
@@ -13,7 +26,9 @@ jQuery(function(){
 		var href = $(this).attr('data-target');
 		//Si le lien a l attribut rel et que c est next on coulisse vers la gauche sinon a droite
 		var pos = this.rel == 'next' ? '-150%' : '150%';
-		
+		if (Modernizr.history) {
+			history.pushState(location.pathname, '', href);
+		}
 		//On récupère le contenu a faire glisser
 		container.find('div.data-scrollable').animate({
 			left: pos,
@@ -30,20 +45,30 @@ jQuery(function(){
 				function(data){
 					//On stop le chargement
 					container.removeClass('loading');
-					//On remplace le contenu
-					container.html(data);
-					
-					var $isotope = $('#isotope-list');
-					
-					if($isotope.size() > 0){						
-						initIsotope($isotope);
-						initTypeahead($isotope);
-						initFilterList($isotope, 'glu');
-					}
+					loadData(data);
 				},
 				'html'
 			);
 		});
 		return false;
+	});
+	
+	var initialPath = location.pathname;
+    	
+	$(window).bind('popstate', function(){
+		if (location.pathname == initialPath) {
+			initialPath = null;
+			return;
+		}
+		container.find('div.data-scrollable').hide();
+		//On affiche le chargement
+		container.addClass('loading');
+		$.get(location.pathname, {
+			format: 'html'
+		}, function(data){
+			//On stop le chargement
+			container.removeClass('loading');
+			loadData(data);
+		}, 'html');
 	});
 });
