@@ -116,11 +116,9 @@ class ChampionController extends Controller
 						$championHtml = file_get_html('http://lol-fr.com' . $championLink->href);
 
 						if ($championHtml)
-						{
+						{	
 							//Récupération du nom du champion
-							$nameHtml = $championHtml->find('ul#champion-skin-switcher li');
-							$name = $nameHtml[1]->plaintext;
-
+							$name= $championHtml->find('ul#champion-skin-switcher li', 1)->plaintext;
 							//On vérifie si le champion éxiste déjà
 							if (!($champion = ChampionQuery::create()->add(ChampionPeer::NAME, $name)->findOne()))
 							{
@@ -128,7 +126,18 @@ class ChampionController extends Controller
 								$champion = new Champion();
 								$champion->setName($name);
 							}
+							$championTitleTmp = $championHtml->find('#content h2', 0)->plaintext;
+							$championTitle = substr(stristr($championTitleTmp, ', '), 2);
+							$championLore = $championHtml->find('#champion-lore', 0)->plaintext;
+							$championRPCost = $championHtml->find('#champion-price #champion-rpcost', 0)->plaintext;
+							$championIPCost = $championHtml->find('#champion-price #champion-ipcost', 0)->plaintext;
+							
+							$champion->setTitle($championTitle);
+							$champion->setLore($championLore);
+							$champion->setRpCost($championRPCost);
+							$champion->setIpCost($championIPCost);
 
+							
 							/**
 							 * Recherche des stats du champion
 							 */
