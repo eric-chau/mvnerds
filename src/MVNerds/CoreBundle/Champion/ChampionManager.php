@@ -154,11 +154,13 @@ class ChampionManager
 	 */
 	public function findAllWithTags()
 	{
-		return  ChampionQuery::create()
-			->joinWith('ChampionTag')
-			->joinWith('ChampionTag.Tag')
-			->joinWith('Tag.TagI18n')
-		   ->find();
+		return ChampionQuery::create()
+			->joinWithI18n()
+			->joinWith('ChampionTag', \Criteria::LEFT_JOIN)
+			->joinWith('ChampionTag.Tag', \Criteria::LEFT_JOIN)
+			->joinWith('Tag.TagI18n', \Criteria::LEFT_JOIN)
+			->OrderBy(ChampionPeer::ID)
+		->find();
 	}
 
 	/**
