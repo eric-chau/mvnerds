@@ -1,32 +1,48 @@
-<ul class="action-buttons">
-	<li class="action link dropdown" id="comparison-list-dropdown">
-		<a href="#" class="dropdown-toggle action-button-link" data-toggle="dropdown" id="drop-comparison-list" role="button">
-			<i class="icon-th-large icon-white"></i> 
-			<span class="action-label">Liste de comparaison</span>
-		</a>
-		<ul class="dropdown-menu" role="menu" aria-labelledby="drop-comparison-list" id="comparison-list">
-			<li class="list-header"><img class="loader"  id="comparison-list-loading" src="{{ asset('images/commons/loader16.gif') }}"/> Champions sélectionnés</li>
+<div class="actions-bar">
+	<h2 data-content-name="champion-handler">
+		Module des champions (Bêta)
+	</h2>
 
-			<li class="indication {% if app.session.get('comparison_list') | length > 0 %}hide{% endif %}">Faites glisser et déposez des champions ici</li>
+	<ul class="action-buttons">
+		{# Bouton dropdown de la liste des champions sélectionnés pour la comparaison #}
+		<li class="action link dropdown" id="comparison-list-dropdown">
+			<a href="#" class="dropdown-toggle action-button-link" data-toggle="dropdown" id="drop-comparison-list" role="button">
+				<i class="icon-th-large icon-white"></i> 
+				<span class="action-label">Liste de comparaison</span>
+			</a>
+			<ul class="dropdown-menu" role="menu" aria-labelledby="drop-comparison-list" id="comparison-list">
+				<li class="list-header"><img class="loader"  id="comparison-list-loading" src="{{ asset('images/commons/loader16.gif') }}"/> Champions sélectionnés</li>
 
-			{% for championSlug, champion in app.session.get('comparison_list') %}
-				{% include 'MVNerdsChampionHandlerBundle:Comparison:comparison_row.html.twig' with {'champion': champion}%}
-			{% endfor %}
-		</ul>
-	</li>
-	{% set list_size = app.session.get('compare_list')|length %}
-	<li class="action{% if list_size < 2 %} disabled{% endif %}">
-		<a id="btn-compare" class="data-pagination{% if list_size < 2 %} disabled{%endif%}" rel="next" href="{{path('champion_handler_comparison_compare') }}">
-			<i class="icon-random icon-white"></i> <span class="action-label">Comparer</span>
-		</a>
-	</li>
-	<li class="action filter-action">
-		<i class="icon-cogs icon-white"></i> <span class="action-label">Affiner le filtrage</span>
-	</li>
-	<li class="action filter-action search-action">
-		<i class="icon-search icon-white"></i> <input id="filter-value" type="text" class="input-mini" placeholder="Rechercher" data-provide="typeahead"/>
-	</li>
-	<li class="action help-action">
-		<i class="icon-question-sign icon-white"></i> <span class="action-label">Visite guidée</span>
-	</li>
-</ul>
+				<li class="indication {% if app.session.get('comparison_list') | length > 0 %}hide{% endif %}">Faites glisser et déposez des champions ici</li>
+
+				{% for championSlug, champion in app.session.get('comparison_list') %}
+					{% include 'MVNerdsChampionHandlerBundle:Comparison:comparison_row.html.twig' with {'champion': champion}%}
+				{% endfor %}
+			</ul>
+		</li>
+
+		{# Bouton d'action qui permet de comparer la liste des champions sélectionnés #}
+		{% set list_size = app.session.get('compare_list')|length %}
+		<li class="action{% if list_size < 2 %} disabled{% endif %}">
+			<a id="btn-compare" class="data-pagination{% if list_size < 2 %} disabled{%endif%}" rel="next" href="{{path('champion_handler_comparison_compare') }}">
+				<i class="icon-random icon-white"></i> <span class="action-label">Comparer</span>
+			</a>
+		</li>
+
+		{# Bouton d'action qui permet de filtrer les champions #}
+		<li class="action filter-action">
+			<i class="icon-cogs icon-white"></i> <span class="action-label">Affiner le filtrage</span>
+		</li>
+
+		{# Champ input qui permet de filtrer / rechercher un champion selon son nom #}
+		<li class="action filter-action search-action">
+			<i class="icon-search icon-white"></i> <input id="filter-value" type="text" class="input-mini" placeholder="Rechercher" data-provide="typeahead"/>
+		</li>
+
+		{# Bouton d'action qui permet de démarrer une visite guidée #}
+		<li class="action help-action">
+			<i class="icon-question-sign icon-white"></i> <span class="action-label">Visite guidée</span>
+		</li>
+	</ul>
+</div>
+<div class="clearfix"></div>

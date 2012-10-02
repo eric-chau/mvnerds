@@ -111,33 +111,10 @@
 			</div>
 				
 			<div class="body-container">
-				
 				<div class="champions-handler-container">
-					<div class="actions-bar">
-						<h2 data-content-name="champion-handler">
-							Module des champions (Bêta)
-						</h2>
-						{% include 'MVNerdsLaunchSiteBundle:Front:champion_handler_actionbar.html.twig' %}
-						{#<div class="action-buttons">
-							{% include 'MVNerdsChampionHandlerBundle:Comparison:filter_list.html.twig'  %}
-							<div class="action">
-								<i class="icon-th-large icon-white"></i> <span class="action-label">Liste de comparaison</span>
-							</div>
-							<div class="action">
-								<i class="icon-random icon-white"></i> <span class="action-label">Comparer</span>
-							</div>
-							<div class="action filter-action">
-								<i class="icon-cogs icon-white"></i> <span class="action-label">Affiner le filtrage</span>
-							</div>
-							<div class="action filter-action search-action">
-								<i class="icon-search icon-white"></i> <input id="filter-value" type="text" class="input-mini" placeholder="Rechercher" data-provide="typeahead"/>
-							</div>
-							<div class="action help-action">
-								<i class="icon-question-sign icon-white"></i> <span class="action-label">Visite guidée</span>
-							</div>
-						</div>#}
-					</div>
-					<div class="clearfix"></div>
+					{# Barre d'action du module des champions #}
+					{% include 'MVNerdsLaunchSiteBundle:Front:champion_handler_actionbar.html.twig' %}
+					
 					<div class="content">
 						<div id="champion-comparison">
 							{% render 'MVNerdsChampionHandlerBundle:Front:championComparison' %}
@@ -155,17 +132,7 @@
 						</p>#}
 					</div>
 				</div>
-			</div>
-			{#
-				
-			
-
-		</div>
-			#}
-		{#<div class="navbar navbar-fixed-bottom" id="actionbar">
-			{% include 'MVNerdsLaunchSiteBundle:Front:actionbar.html.twig'  %}
-		</div>#}
-		
+			</div>		
 	</div>
 			
 {% endblock %}
