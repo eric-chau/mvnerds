@@ -232,12 +232,14 @@ $(document).ready(function()
 	  	if (scrollTop >= actionBarTop - 9.85 && !isFixed) {
 				isFixed = 1;
 				$actionBar.addClass('active');
+				$actionBar.parent('.champions-handler-container').addClass('active');
 				$benchmarkChampion.addClass('active');
 				$benchmarkChampion.parent('#champion-comparator').addClass('active');
 	  	} 
 	  	else if (scrollTop <= actionBarTop - 9.85 && isFixed) {
 				isFixed = 0;
 				$actionBar.removeClass('active');
+				$actionBar.parent('.champions-handler-container').removeClass('active');
 				$benchmarkChampion.removeClass('active');
 				$benchmarkChampion.parent('#champion-comparator').removeClass('active');
 	 	}

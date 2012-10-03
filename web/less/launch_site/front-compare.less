@@ -5,7 +5,7 @@
 
 	&.active{
 		table.compare-champion-table.body{
-			margin-top: 130px;
+			margin-top: 120px;
 		}
 	}
 
@@ -13,15 +13,21 @@
 
 		&.active {
 			position: fixed;
-			top: 50px;
-			left: 0px;
-			right: 0px;
+			top: 45px;
+			left: 0;
+			right: 0;
 			min-width: 1064px;
 
-			table.compare-champion-table.header thead{
-				background-color: rgba(0,0,0,0.7);
-				th {
-					background-color: black;
+			table.compare-champion-table.header{
+				position: relative;
+				left: 3px;
+				margin: 0 auto;
+				
+				thead{
+					background-color: rgba(0,0,0,0.7);
+					th {
+						background-color: black;
+					}
 				}
 			}
 		}

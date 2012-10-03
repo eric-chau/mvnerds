@@ -344,6 +344,12 @@ div.body-container {
 		min-height: 700px;
 		padding: 10px;
 
+		&.active{
+			#champion-comparison{
+				margin-top: 45px;
+			}
+		}
+
 		div.alert {
 			border: 1px solid rgba(255,255,255,0.5);
 			.border-radius(0);
@@ -388,9 +394,10 @@ div.body-container {
 				top: 0;
 				z-index: 1000;
 				min-width: 1064px;
+				margin-top: 0;
 				div#actions-bar-content{
 					height: 40px;
-					padding-top: 10px;
+					padding-top: 13px;
 				}
 			}
 			div#actions-bar-content{
@@ -411,7 +418,6 @@ div.body-container {
 					margin: 0;
 					padding: 0;
 					text-align: right;
-					text-align: left;
 
 					li.action:last-child {
 						margin-right: 8px;
