@@ -3,7 +3,7 @@
 		<td>
 			<img src="{{ asset('/images/champions/square/' ~ champion.getSlug() ~ '.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="{{ champion.getName() }}" />
 		</td>
-		{% set diff = reference_champion.getBaseHealth() - champion.getBaseHealth() %}
+		{% set diff = champion.getBaseHealth() - reference_champion.getBaseHealth() %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
@@ -12,7 +12,7 @@
 			<span class="own">{{ champion.getBaseHealth() }}</span>
 		</td>
 
-		{% set diff = reference_champion.getBaseHealthRegen() * 5 - champion.getBaseHealthRegen() * 5 %}
+		{% set diff = champion.getBaseHealthRegen() * 5 - reference_champion.getBaseHealthRegen() * 5 %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
@@ -21,7 +21,7 @@
 			<span class="own">{{ champion.getBaseHealthRegen() * 5 }}</span>
 		</td>
 
-		{% set diff = reference_champion.getBaseMana() - champion.getBaseMana() %}
+		{% set diff = champion.getBaseMana() - reference_champion.getBaseMana() %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
@@ -30,7 +30,7 @@
 			<span class="own">{{ champion.getBaseMana() }}</span>
 		</td>
 
-		{% set diff = reference_champion.getBaseManaRegen() * 5 - champion.getBaseManaRegen() * 5 %}
+		{% set diff = champion.getBaseManaRegen() * 5 - reference_champion.getBaseManaRegen() * 5 %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
@@ -39,7 +39,7 @@
 			<span class="own">{{ champion.getBaseManaRegen() * 5 }}</span>
 		</td>
 
-		{% set diff = reference_champion.getBaseArmor() - champion.getBaseArmor() %}
+		{% set diff = champion.getBaseArmor() - reference_champion.getBaseArmor() %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
@@ -48,7 +48,7 @@
 			<span class="own">{{ champion.getBaseArmor() }}</span>
 		</td>
 
-		{% set diff = reference_champion.getBaseMagicResist() - champion.getBaseMagicResist() %}
+		{% set diff = champion.getBaseMagicResist() - reference_champion.getBaseMagicResist() %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
@@ -57,7 +57,7 @@
 			<span class="own">{{ champion.getBaseMagicResist() }}</span>
 		</td>
 
-		{% set diff = reference_champion.getBaseDamage() - champion.getBaseDamage() %}
+		{% set diff = champion.getBaseDamage() - reference_champion.getBaseDamage() %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
@@ -66,7 +66,7 @@
 			<span class="own">{{ champion.getBaseDamage() }}</span>
 		</td>
 
-		{% set diff = reference_champion.getBaseAttackSpeed() - champion.getBaseAttackSpeed() %}
+		{% set diff = champion.getBaseAttackSpeed() - reference_champion.getBaseAttackSpeed() %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
@@ -75,7 +75,7 @@
 			<span class="own">{{ champion.getBaseAttackSpeed() }}</span>
 		</td>
 
-		{% set diff = reference_champion.getAttackRange() - champion.getAttackRange() %}
+		{% set diff = champion.getAttackRange() - reference_champion.getAttackRange() %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
@@ -84,7 +84,7 @@
 			<span class="own">{{ champion.getAttackRange() }}</span>
 		</td>
 
-		{% set diff = reference_champion.getMoveSpeed() - champion.getMoveSpeed() %}
+		{% set diff = champion.getMoveSpeed() - reference_champion.getMoveSpeed() %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
