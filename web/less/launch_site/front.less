@@ -164,6 +164,7 @@ div.header-container {
 	div.social-container {
 		background: black url('/images/launch_site/social_bg.png') no-repeat;
 		border: 1px solid black;
+		border-bottom: 0;
 		margin: 5px 0 0 0;
 		padding: 2px 20px;
 
@@ -187,11 +188,14 @@ div.header-container {
 	} // fin social-container
 
 	div.presentation-container {
+		border: 1px solid black;
+		border-top: 0;
+
 		div.content {
 			background: black url('/images/launch_site/content_bg.png') no-repeat top left;
-			border: 1px solid black;
+			/*border: 1px solid black;
 			border-bottom: 0;
-			border-top: 0;
+			border-top: 0;*/
 
 			div.overview, div.registration {
 				padding: 20px;
@@ -221,7 +225,7 @@ div.header-container {
 					color: @MVNerdsRed;
 				}
 
-				form {
+				form#leave-email-form {
 					margin-bottom: 1.4em;
 					text-align: center;
 
@@ -244,6 +248,17 @@ div.header-container {
 						font-weight: bold;
 						position: relative;
 						top: -2px;
+					}
+
+					div.registration-errors {
+						ul {
+							li {
+								color: @MVNerdsRed;
+								font-family: 'Ubuntu', sans-serif;
+								font-size: 14px;
+								list-style: none;
+							}
+						}
 					}
 				}
 			}
@@ -870,4 +885,37 @@ div.body-container {
 			} // Fin li.champion
 		} // Fin div#champion-list
 	} // Fin div.champions-handler-container
+}
+
+div.modal {
+	background: black url('/images/launch_site/modal_bg.png') no-repeat top left;
+	border: 1px solid rgba(255,255,255,.4);
+	.border-radius(0);
+	height: 350px;
+	width: 650px;
+	
+	div.modal-header, div.modal-body, div.modal-footer {
+		border: 0;
+	}
+
+	div.modal-header {
+		h3 {
+			margin-top: 35px;
+			color: @MVNerdsGreen;
+		}
+
+		button.close {
+			color: white;
+			opacity: .4;
+
+			&:hover {
+				opacity: 1;
+				.transition(opacity .25s linear);
+			}
+		}
+	}
+
+	div.modal-body {
+		width: 315px;
+	}
 }

@@ -55,11 +55,13 @@ $(document).ready(function()
 		benchmarkChampionTop = $benchmarkChampion.length && $benchmarkChampion.offset().top,
 		isBenchmarkChampionFixed = 0;
 
+
+	// Détection du clic sur les boutons "Qui sommes-nous" et "Je laisse mon e-mail"
 	$('div.presentation-container div.link').on('click', function()
 	{
 		var $this = $(this);
 
-		$('div.presentation-container div.content div.' + $this.data('content-name')).slideToggle(300, function(){
+		$('div.presentation-container div.content div.' + $this.data('content-name')).slideToggle(300, function() {
 			actionBarTop = $actionBar.length && $actionBar.offset().top;
 			benchmarkChampionTop = $benchmarkChampion.length && $benchmarkChampion.offset().top;
 			processScroll();
@@ -69,32 +71,10 @@ $(document).ready(function()
 	/**
 	 * GESTION DES PRÉFÉRENCES UTILISATEURS POUR AFFICHER/MASQUER DU CONTENU
 	 */	
-	/*$('div.presentation-container').find('h2').each(function()
-	{
-		var value = getItemFromLS('display-' + $(this).data('content-name'));
-		if (value == 'true' || value == undefined) {
-			toggleContentDisplay($(this));
-		}
-	});
 
-	/**
-	 * ON CHANGE LE LABEL 'LAISSER MON E-MAIL' EN MESSAGE DE REMERCIEMENT SI L'UTILISATEUR A DÉJA LAISSÉ LE SIEN
-	 */
-	/*$registrationH2 = $('div.registration-container h2');
-	if (getItemFromLS('already-leave-email') == 'true') 
-	{
-		$registrationH2.find('span.h2-msg').html($registrationH2.data('success-label'));
-	}*/
-
-	/**
-	 * LISTENER D'EVENEMENT
-	 */
-
-	// Écoute sur le clic d'un titre h2 pour masquer ou afficher le contenu (seulement les h2 contenu dans la div.presentation-container)
-	$('div.presentation-container h2').on('click', function()
-	{
-		toggleContentDisplay($(this));
-	});
+	if (getItemFromLS('already-leave-email') == 'true') {
+		$('div.presentation-container div.content div.registration').hide();
+	}
 
 	/**
 	 * GESTION DU DÉPOT D'EMAIL
@@ -171,11 +151,6 @@ $(document).ready(function()
 		} 
 	});
 
-	$('li.search-action').on('click', function()
-	{
-		$(this).find('input[type="text"]').focus();
-	});
-
 	// Écoute de la soumission du formulaire de dépôt d'e-mail pour soumettre le formulaire en AJAX
 	$leaveEmailFormContainer.on('submit', 'form#leave-email-form', function(event) {
 		event.preventDefault();
@@ -185,40 +160,13 @@ $(document).ready(function()
 			{
 				$('div#leave-email-form-container').on('hide', 'div#leave-email-success-modal', function()
 				{
-					toggleContentDisplay($registrationH2);
-					$registrationH2.find('span.h2-msg').html($registrationH2.data('success-label'));
+					$('div.presentation-container div.content div.registration').slideToggle();
 				});
 
 				saveItemInLS('already-leave-email', true);
 			}
 		});
 	});
-
-	/**
-	 * Permet d'afficher ou de masquer le contenu d'une div XXX-container de la div.presentation-container; toggle également le label
-	 * et l'icône des spans 
-	 *
-	 * @param jQuery<Object> $this correspond à un objet jQuery qui représente un h2 de la div.presentation-container
-	 */
-	function toggleContentDisplay($this)
-	{
-		var $icon = $this.find('i'),
-			$label = $this.find('span.msg'),
-			$span = $this.find('span.show-hide-label'), 
-			tmpIconClass = $icon.attr('class'), 
-			tmpLabel = $label.html();
-
-		$icon.attr('class', $span.data('toggle-icon'));
-		$label.html($span.data('toggle-label'));
-
-		$span.data('toggle-icon', tmpIconClass);
-		$span.data('toggle-label', tmpLabel);
-
-		$this.parent().find('div.content').slideToggle('slow');
-		$this.toggleClass('no-margin');
-
-		saveItemInLS('display-' + $this.data('content-name'), $this.hasClass('no-margin'));
-	}	
  
 	processScroll();
  
