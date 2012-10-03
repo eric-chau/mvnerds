@@ -201,7 +201,7 @@ $(document).ready(function()
 	 * @param jQuery<Object> $this correspond à un objet jQuery qui représente un h2 de la div.presentation-container
 	 */
 	function toggleContentDisplay($this)
-	{console.log('toggle');
+	{
 		var $icon = $this.find('i'),
 			$label = $this.find('span.msg'),
 			$span = $this.find('span.show-hide-label'), 
