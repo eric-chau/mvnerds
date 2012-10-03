@@ -46,12 +46,22 @@ $(document).ready(function()
 		setTimeout(updateCountDown, 1000);
 	}
 
+	// Déclaration de variable pour gérer la fixation de la barre en haut de page ou non
+	var $win = $(window), 
+		$actionBar = $('div.actions-bar'),
+		actionBarTop = $actionBar.length && $actionBar.offset().top,
+		isFixed = 0,
+		$benchmarkChampion = $('table.compare-champion-table.header'),
+		benchmarkChampionTop = $benchmarkChampion.length && $benchmarkChampion.offset().top,
+		isBenchmarkChampionFixed = 0;
+
 	$('div.presentation-container div.link').on('click', function()
 	{
 		var $this = $(this);
 
 		$('div.presentation-container div.content div.' + $this.data('content-name')).slideToggle(300, function(){
-			navTop = $nav.length && $nav.offset().top;
+			actionBarTop = $actionBar.length && $actionBar.offset().top;
+			benchmarkChampionTop = $benchmarkChampion.length && $benchmarkChampion.offset().top;
 			processScroll();
 		});
 	});
@@ -184,11 +194,6 @@ $(document).ready(function()
 		});
 	});
 
-	var $win = $(window), 
-		$nav = $('div.actions-bar'),
-		navTop = $nav.length && $nav.offset().top,
-		isFixed = 0;
-
 	/**
 	 * Permet d'afficher ou de masquer le contenu d'une div XXX-container de la div.presentation-container; toggle également le label
 	 * et l'icône des spans 
@@ -223,13 +228,22 @@ $(document).ready(function()
 	 function processScroll()
 	 {
 	  	var scrollTop = $win.scrollTop();
-	  	if (scrollTop >= navTop - 9.85 && !isFixed) {
+	  	if (scrollTop >= actionBarTop - 9.85 && !isFixed) {
 	    	isFixed = 1;
-	    	$nav.addClass('active');
+	    	$actionBar.addClass('active');
 	  	} 
-	  	else if (scrollTop <= navTop - 9.85 && isFixed) {
+	  	else if (scrollTop <= actionBarTop - 9.85 && isFixed) {
 	    	isFixed = 0;
-	    	$nav.removeClass('active');
+	    	$actionBar.removeClass('active');
+	 	}
+
+	 	if (scrollTop >= benchmarkChampionTop - 9.85 && !isBenchmarkChampionFixed) {
+	    	isBenchmarkChampionFixed = 1;
+	    	$benchmarkChampion.addClass('active');
+	  	} 
+	  	else if (scrollTop <= benchmarkChampionTop - 9.85 && isBenchmarkChampionFixed) {
+	    	isBenchmarkChampionFixed = 0;
+	    	$benchmarkChampion.removeClass('active');
 	 	}
 	}
 });

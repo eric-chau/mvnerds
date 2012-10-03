@@ -1,0 +1,15 @@
+<tr class="benchmark">
+	<td class="first-col">
+		<img src="{{ asset('/images/champions/square/' ~ reference_champion.getSlug() ~ '.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="{{ reference_champion.getName() }}" />
+	</td>
+	<td>{{ reference_champion.getBaseHealth() }}</td>
+	<td>{{ reference_champion.getBaseHealthRegen() * 5 }}</td>
+	<td>{{ reference_champion.getBaseMana() }}</td>
+	<td>{{ reference_champion.getBaseManaRegen() * 5 }}</td>
+	<td>{{ reference_champion.getBaseArmor() }}</td>
+	<td>{{ reference_champion.getBaseMagicResist() }}</td>
+	<td>{{ reference_champion.getBaseDamage() }}</td>
+	<td>{{ reference_champion.getBaseAttackSpeed() }}</td>
+	<td>{{ reference_champion.getAttackRange() }}</td>
+	<td>{{ reference_champion.getMoveSpeed() }}</td>
+</tr>

@@ -6,6 +6,7 @@
 	{{ parent() }}
 
 	 <link rel="stylesheet" href="{{ asset('/css/launch_site/front.css') }}">
+	 <link rel="stylesheet" href="{{ asset('/css/launch_site/front-compare.css') }}">
 	 <link rel="stylesheet" href="{{ asset('/css/launch_site/actionbar.css') }}">
 	 <link rel="stylesheet" href="{{ asset('/css/launch_site/data-scroll.css') }}">
 	 <link rel="stylesheet" href="{{ asset('css/champion_handler/comparison.css') }}">
@@ -103,7 +104,7 @@
 			<div class="body-container">
 				<div class="champions-handler-container">
 					{# Barre d'action du module des champions #}
-					{% include 'MVNerdsLaunchSiteBundle:Front:champion_handler_actionbar.html.twig' %}
+					{% include 'MVNerdsLaunchSiteBundle:Front:champion_handler_actionbar.html.twig' with {'page': page} %}
 					
 					<div class="content">
 						<div id="champion-comparison">

@@ -1,4 +1,4 @@
-<li id="filters-block" class="dropdown action link">	
+<li id="filters-block" class="dropdown action link {% if page != 'champions' %}force-hide{% endif %}" data-page-display="champions">	
 	<a href="#" class="dropdown-toggle action-button-link" data-toggle="dropdown" id="drop-filter-list" role="button">
 		<i class="icon-cogs icon-white"></i>
 		<span class="action-label">{{'Actionsbar.Filter.title'|trans}}</span>
