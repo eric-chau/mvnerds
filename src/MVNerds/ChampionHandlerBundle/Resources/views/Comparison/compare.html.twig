@@ -36,8 +36,11 @@
 					<th>
 						<img src="{{ asset('/images/champion_handler/attribute_icon/move_speed.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="{{'Champion_preview.stat.movement_speed'|trans}}" />
 					</th>
+					<th>
+						{{'Champion_comparison.actions.title'|trans}}
+					</th>
 				</tr>
-
+					
 				{% include 'MVNerdsChampionHandlerBundle:Comparison:benchmark_champion_row.html.twig' with {'reference_champion': reference_champion} %}
 			</thead>
 		</table>

@@ -273,7 +273,7 @@ class ChampionComparisonManager
 		$comparisonList = $this->getList();
 		
 		//Si le champion existe dans la liste
-		if ($this->championExists($champion))
+		if ($this->championExists($champion) && !$this->isReferenceChampion($champion))
 		{
 			//On le retire
 			unset($comparisonList[$champion->getSlug()]);
@@ -288,7 +288,7 @@ class ChampionComparisonManager
 		}
 		else
 		{
-			throw new InvalidArgumentException('Le champion ' . $champion->getSlug() . ' n\'est pas dans la liste de comparaison');
+			throw new InvalidArgumentException('Le champion ' . $champion->getSlug() . ' ne peut pas être retiré de la liste de comparaison');
 		}
 	}
 	

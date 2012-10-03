@@ -41,7 +41,8 @@ function addChampionToList(slug){
 		$comparisonListLoading.hide();
 	}).fail(function(){
 		$comparisonListLoading.hide();
-});
+	});
+};
 	
 //Permet d'ajouter un champion au format html à la liste de comparaison
 function appendChampion(data)
@@ -74,7 +75,7 @@ function deactivateCompareButton()
 	$('a#btn-compare').addClass('disabled');
 	$('a#btn-compare').parent('li').addClass('disabled');
 }
-}
+
 
 jQuery(function($) {
 	//On active les tooltips

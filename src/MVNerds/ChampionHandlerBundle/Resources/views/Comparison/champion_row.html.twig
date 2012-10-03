@@ -92,5 +92,9 @@
 			<span class="diff {% if diff > 0 %}plus{% else %}minus{% endif %}">{{ diff }}</span>
 			<span class="own">{{ champion.getMoveSpeed() }}</span>
 		</td>
+		<td>
+			<a href="{{path('champion_handler_comparison_set_reference_champion', {'slug': champion.getSlug()})}}" class="champion-comparison-action set-champion-reference-link" title="{{'Champion_comparison.actions.set_reference'|trans}}"><i class="icon-star-empty icon-white"></i></a>
+			<a href="{{path('champion_handler_comparison_remove_from_compare', {'slug': champion.getSlug()})}}" class="champion-comparison-action remove-champion-from-list" title="{{'Actionsbar.Comparison_list.Dropdown.Champion.tooltip'|trans}}"><i class="icon-remove icon-white"></i></a>
+		</td>
 	</tr>
 {% endif %}

@@ -75,6 +75,14 @@
 #champion-comparator table.compare-champion-table td {
   font-family: 'Trebuchet MS', sans-serif;
 }
+#champion-comparator table.compare-champion-table th a.champion-comparison-action,
+#champion-comparator table.compare-champion-table td a.champion-comparison-action {
+  margin-right: 10px;
+}
+#champion-comparator table.compare-champion-table th a.champion-comparison-action:hover,
+#champion-comparator table.compare-champion-table td a.champion-comparison-action:hover {
+  text-decoration: none;
+}
 #champion-comparator table.compare-champion-table.body tbody tr td:first-child {
   width: 100px;
 }
