@@ -42,7 +42,7 @@ function initIsotope($isotope){
 		}
 	});
 	//Lors du clic sur le bouton close d un champion maximisé
-	$isotope.on('click', 'li.champion-maxi button.close', function(){
+	$isotope.on('click', 'li.champion-maxi div.preview-header', function(){
 		return minimizeChampion($('#'+$(this).attr('data-dissmiss')), $isotope);
 	});
 }

@@ -1,7 +1,18 @@
-<div class="row-fluid">
+<div class="row-fluid preview-header {{ app.request.getLocale() }}" data-dissmiss="{{ champion.getSlug() }}">
 	<div class="span6">
 		<h3>{{ champion.getName() }}</h3>
 		<h5>{{ champion.getTitle() }}</h5>
+	</div>
+	<div class="span6">
+		<p>
+			<img src="{{ asset('/images/commons/ip_logo.png') }}" /> {{ champion.getIpCost() }} {{'General.or'|trans}} <img src="{{ asset('/images/commons/rp_logo.png') }}" /> {{ champion.getRpCost() }}
+		</p>
+	</div>
+</div>
+
+<div class="row-fluid">
+	<div class="span6">
+		
 		<dl>
 			<dt>{{'Champion_preview.stat.health'|trans}}</dt>
 			<dd>{{ champion.getBaseHealth() }}</dd>
@@ -53,10 +64,7 @@
 		<p class="indication">{{'Champion_preview.stat.indication.part1'|trans}} {{ champion.getName() }} {{'Champion_preview.stat.indication.part2'|trans}}</p>
 	</div>
 	<div class="span6 right-side">
-		<button class="close" data-dissmiss="{{ champion.getSlug() }}">×</button>
-		<p>
-			<img src="{{ asset('/images/commons/ip_logo.png') }}" /> {{ champion.getIpCost() }} {{'General.or'|trans}} <img src="{{ asset('/images/commons/rp_logo.png') }}" /> {{ champion.getRpCost() }}
-		</p>
+		
 		<img src="{{ asset('/images/champions/portrait/' ~ champion.getSlug() ~ '.jpg') }}" class="portrait" />
 	</div>
 </div>

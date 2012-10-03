@@ -101,7 +101,12 @@ $(document).ready(function()
 
 	if (getItemFromLS('already-leave-email') == 'true') {
 		$('div.presentation-container div.content div.registration').hide();
-	}
+		actionBarTop = $actionBar.length && $actionBar.offset().top;
+		if ($benchmarkChampion != undefined) {
+			benchmarkChampionTop = $benchmarkChampion.length && $benchmarkChampion.offset().top;
+		}
+		processScroll();
+}
 
 	/**
 	 * GESTION DU DÉPOT D'EMAIL

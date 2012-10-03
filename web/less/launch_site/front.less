@@ -809,19 +809,53 @@ div.body-container {
 					font-size: 12px;
 					padding: 10px 10px;
 
-					h3 {
-						color: @LoLOrangeAD;
-						font-size: 18px;
-						line-height: 1.2em;
-						margin: 8px 0 0 10px;
-					}
+					div.preview-header {
+						background-image: url('/images/launch_site/preview_header_fr.png');
+						background-repeat: no-repeat;
+						cursor: pointer;
 
-					h5 {
-						color: #999;
-						font-family: 'Trebuchet MS';
-						font-size: 12px;
-						margin-left: 10px;
-						text-transform: uppercase;
+						h3 {
+							color: @LoLOrangeAD;
+							font-size: 18px;
+							line-height: 1.2em;
+							margin: 5px 0 0 10px;
+						}
+
+						h5 {
+							color: #999;
+							font-family: 'Trebuchet MS';
+							font-size: 12px;
+							margin: 0;
+							margin-left: 10px;
+							text-transform: uppercase;
+						}
+
+						p {
+							color: #eee;
+							font-size: 14px;
+							margin: 15px 10px 15px 0;
+							text-align: right;
+
+							img {
+								display: inline-block;
+								position: relative;
+								top: -2px;
+								width: 16px;
+							}
+						}
+
+						&:hover {
+							background-image: url('/images/launch_site/preview_header_fr_hover.png');
+							.transition(background-image .25s linear);
+						}
+
+						&.en {
+							background-image: url('/images/launch_site/preview_header_en.png');
+
+							&:hover {
+								background-image: url('/images/launch_site/preview_header_en_hover.png');
+							}
+						}
 					}
 
 					.ad-color {
@@ -862,6 +896,8 @@ div.body-container {
 					}
 
 					dl {
+						margin: 29px 0 0 0;
+
 						dt.last-child, dd:last-child {
 							margin-top: 5px;
 						}
@@ -871,35 +907,13 @@ div.body-container {
 						color: #444;
 						font-size: 12px;
 						text-align: center;
-						margin: 24px 0 0 0;
+						margin: 29px 0 0 0;
 					}
 
 					div.right-side {
-						button.close{
-							color: white;
-							opacity: 0.5;
-							&:hover{
-								color: white;
-								opacity: 1;
-							}
-						}
-						p {
-							color: #eee;
-							font-size: 14px;
-							margin: 10px;
-							text-align: center;
-
-							img {
-								display: inline-block;
-								position: relative;
-								top: -2px;
-								width: 16px;
-							}
-						}
-
 						img.portrait {
 							display: block;
-							margin-top: 15px;
+							margin-top: 7px;
 							opacity: .7;
 						}
 					} // Fin div.right-side

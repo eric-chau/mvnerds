@@ -795,18 +795,49 @@ div.body-container div.champions-handler-container div#champion-list li.champion
   font-size: 12px;
   padding: 10px 10px;
 }
-div.body-container div.champions-handler-container div#champion-list li.champion div.preview h3 {
+div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.preview-header {
+  background-image: url('/images/launch_site/preview_header_fr.png');
+  background-repeat: no-repeat;
+  cursor: pointer;
+}
+div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.preview-header h3 {
   color: #fb9701;
   font-size: 18px;
   line-height: 1.2em;
-  margin: 8px 0 0 10px;
+  margin: 5px 0 0 10px;
 }
-div.body-container div.champions-handler-container div#champion-list li.champion div.preview h5 {
+div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.preview-header h5 {
   color: #999;
   font-family: 'Trebuchet MS';
   font-size: 12px;
+  margin: 0;
   margin-left: 10px;
   text-transform: uppercase;
+}
+div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.preview-header p {
+  color: #eee;
+  font-size: 14px;
+  margin: 15px 10px 15px 0;
+  text-align: right;
+}
+div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.preview-header p img {
+  display: inline-block;
+  position: relative;
+  top: -2px;
+  width: 16px;
+}
+div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.preview-header:hover {
+  background-image: url('/images/launch_site/preview_header_fr_hover.png');
+  -webkit-transition: background-image 0.25s linear;
+  -moz-transition: background-image 0.25s linear;
+  -o-transition: background-image 0.25s linear;
+  transition: background-image 0.25s linear;
+}
+div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.preview-header.en {
+  background-image: url('/images/launch_site/preview_header_en.png');
+}
+div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.preview-header.en:hover {
+  background-image: url('/images/launch_site/preview_header_en_hover.png');
 }
 div.body-container div.champions-handler-container div#champion-list li.champion div.preview .ad-color {
   color: #fb9701;
@@ -840,6 +871,9 @@ div.body-container div.champions-handler-container div#champion-list li.champion
   line-height: 1.1em;
   margin-bottom: 5px;
 }
+div.body-container div.champions-handler-container div#champion-list li.champion div.preview dl {
+  margin: 29px 0 0 0;
+}
 div.body-container div.champions-handler-container div#champion-list li.champion div.preview dl dt.last-child,
 div.body-container div.champions-handler-container div#champion-list li.champion div.preview dl dd:last-child {
   margin-top: 5px;
@@ -848,31 +882,11 @@ div.body-container div.champions-handler-container div#champion-list li.champion
   color: #444;
   font-size: 12px;
   text-align: center;
-  margin: 24px 0 0 0;
-}
-div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.right-side button.close {
-  color: white;
-  opacity: 0.5;
-}
-div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.right-side button.close:hover {
-  color: white;
-  opacity: 1;
-}
-div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.right-side p {
-  color: #eee;
-  font-size: 14px;
-  margin: 10px;
-  text-align: center;
-}
-div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.right-side p img {
-  display: inline-block;
-  position: relative;
-  top: -2px;
-  width: 16px;
+  margin: 29px 0 0 0;
 }
 div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.right-side img.portrait {
   display: block;
-  margin-top: 15px;
+  margin-top: 7px;
   opacity: .7;
 }
 div.modal {
