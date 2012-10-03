@@ -14,10 +14,11 @@ class FrontController extends Controller
 	/**
 	 * Affiche la page d'accueil du site de présentation
 	 * 
+	 * @Route("/{_locale}/", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"})
 	 * @Route("/", name="launch_site_front")
 	 */
 	public function indexAction()
-	{
+	{		
 		$form = $this->createForm(new UserType());
 		$request = $this->getRequest();	
 		if ($request->isXmlHttpRequest())
