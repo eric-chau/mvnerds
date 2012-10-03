@@ -359,6 +359,12 @@ div.body-container {
 		min-height: 700px;
 		padding: 10px;
 
+		&.active{
+			#champion-comparison{
+				margin-top: 45px;
+			}
+		}
+
 		div.alert {
 			border: 1px solid rgba(255,255,255,0.5);
 			.border-radius(0);
@@ -395,318 +401,326 @@ div.body-container {
 				line-height: 32px;
 				margin: 0;
 			}
+			&.active {
+				//.box-shadow(0 15px 8px 0 rgba(0,0,0,.7)); FIXME
+				left: 0;
+				right: 0;
+				position: fixed;
+				top: 0;
+				z-index: 1000;
+				min-width: 1064px;
+				margin-top: 0;
+				div#actions-bar-content{
+					height: 40px;
+					padding-top: 13px;
+				}
+			}
+			div#actions-bar-content{
+				width: 1004px;
+				margin: 0 auto;
+				background-color: black;
 
-			ul.action-buttons {
-				color: white;
-				margin: 0;
-				padding: 0;
-				text-align: right;
-
-				li.action:last-child {
-					margin-right: 8px;
+				h2 {
+					color: white;
+					float: left;
+					font-size: 1.1em;
+					line-height: 32px;
+					margin: 0;
 				}
 
-				li.action {
-					background-color: rgba(25,160,223,.7);
-					cursor: pointer;
-					display: inline-block;
-					line-height: 26px;
+				ul.action-buttons {
+					color: white;
 					margin: 0;
-					margin-right: 1px;
-					padding: 3px 6px 0 4px;
-					text-align: left;
+					padding: 0;
+					text-align: right;
 
-					&.disabled {
-						cursor: not-allowed;
-						opacity: .65;
-
-						a:hover {
-							cursor: not-allowed;
-						}
+					li.action:last-child {
+						margin-right: 8px;
 					}
 
-					&.link {
-						padding: 0;
-
-						a.action-button-link {
-							display: block;
-							padding: 3px 6px 0 2px;
-						}					
-					}
-
-					&.red-button {
-						background-color: rgba(219,74,56,.7);
+					li.action {
+						background-color: rgba(25,160,223,.7);
+						cursor: pointer;
+						display: inline-block;
+						line-height: 26px;
+						margin: 0;
+						margin-right: 1px;
+						padding: 3px 6px 0 4px;
 
 						&.disabled {
-							background-color: rgba(25,160,223,.7);
+							cursor: not-allowed;
+							opacity: .65;
 
-							&:hover {
-								background-color: rgba(25,160,223,1);
+							a:hover {
+								cursor: not-allowed;
 							}
 						}
 
-						&:hover {
-							background-color: @MVNerdsRed;
+						&.link {
+							padding: 0;
+
+							a.action-button-link {
+								display: block;
+								padding: 3px 6px 0 2px;
+							}					
 						}
-					}
 
-					&.help-action {
-						background-color: rgba(117,158,26,.7);
+						&.red-button {
+							background-color: rgba(219,74,56,.7);
 
-						&:hover {
-							background-color: rgba(117,158,26,1);
+							&.disabled {
+								background-color: rgba(25,160,223,.7);
+
+								&:hover {
+									background-color: rgba(25,160,223,1);
+								}
+							}
+
+							&:hover {
+								background-color: @MVNerdsRed;
+							}
 						}
-					}
 
-					a, a:visited, a:hover {
-						color: white;
-						display: block;
-						text-decoration: none;
-					}
+						&.help-action {
+							background-color: rgba(117,158,26,.7);
 
-					img.loader {
-						display: none;
-					}
+							&:hover {
+								background-color: rgba(117,158,26,1);
+							}
+						}
 
-					i {
-						display: inline-block;
-						font-size: 22px;
-						line-height: 22px;
-						margin: 0 0 0 0;
-						position: relative;
-						top: 1px;
-					}
+						a, a:visited, a:hover {
+							color: white;
+							display: block;
+							text-decoration: none;
+						}
 
-					span.action-label {
-						font-family: 'Ubuntu', sans-serif;
-						font-size: 14px;
-						font-weight: normal;
-						position: relative;
-						top: -3px;
-					}
+						img.loader {
+							display: none;
+						}
 
-					&:hover {
-						background-color: rgba(25,160,223,1);
-						.transition(all .25s linear);
-						
+						i {
+							display: inline-block;
+							font-size: 22px;
+							line-height: 22px;
+							margin: 0 0 0 0;
+							position: relative;
+							top: 1px;
+						}
+
 						span.action-label {
+							font-family: 'Ubuntu', sans-serif;
+							font-size: 14px;
+							font-weight: normal;
+							position: relative;
+							top: -3px;
+						}
+
+						&:hover {
+							background-color: rgba(25,160,223,1);
 							.transition(all .25s linear);
+
+							span.action-label {
+								.transition(all .25s linear);
+							}
+
+							input[type="text"] {
+								background-color: @MVNerdsBlue;
+								.placeholder(#ccc);
+								.transition(background-color .25s linear);
+							}
 						}
 
 						input[type="text"] {
-							background-color: @MVNerdsBlue;
-							.placeholder(#ccc);
-							.transition(background-color .25s linear);
-						}
-					}
-
-					input[type="text"] {
-						border: 0;
-						.border-radius(0);
-						background-color: #11709c;
-						color: white;
-						font-family: 'Ubuntu', sans-serif;
-						font-size: 14px;
-						line-height: 1.5em;
-						margin: 0 0 2px 0;
-						padding: 1px 5px;
-						.placeholder(#ccc);
-						position: relative;
-						top: -3px;
-						width: 100px;
-					}
-
-					ul.dropdown-menu {
-						.border-radius(0);
-					}
-
-					ul#comparison-list, ul#filter-list {
-						li.list-header {
-							color: @MVNerdsBlue;
-							font-family: 'Ubuntu', sans-serif;
-							font-size: 11px;
-							font-weight: bold;
-							line-height: 20px;
-							text-transform: uppercase;
-						}
-
-					}
-
-					ul#comparison-list {
-						background-color: rgba(0,0,0,0.8);
-						border: 1px solid @MVNerdsBlue !important;
-						width: 250px;
-
-						li {
-							text-align: center;
-							min-height: 30px;
-						}
-
-						li.indication, span.champion-comparable-name {
-							font-size: 12px;
-							line-height: 1.4em;
-
-						}
-
-						li.indication {
-							border: 1px dashed #999;
-							.border-radius(5px);
-							color: #999;
-							font-style: italic;
-							margin: 0 10px 11px 10px;
-							padding: 15px;
-						}
-
-						li.clean {
-							border-top: 1px dashed rgba(255,255,255,0.3);
-							font-family: 'Ubuntu', sans-serif;
-							font-size: 12px;
-							position: relative;
-							text-align: right;
-							top: 6px;
-
-							i, a {
-								color: #666;	
-							}
-
-							i {
-								display: inline-block;
-								font-size: 14px;
-								left: 3px;
-								position: relative;
-							}
-
-							&.disabled {
-								display: none;
-							}
-
-							&:hover {
-								a, i {
-									color: white;
-									.transition(all .25s linear);
-								}
-							}
-						}
-
-						li.champion-comparable {
+							border: 0;
+							.border-radius(0);
+							background-color: #11709c;
 							color: white;
+							font-family: 'Ubuntu', sans-serif;
+							font-size: 14px;
+							line-height: 1.5em;
+							margin: 0 0 2px 0;
+							padding: 1px 5px;
+							.placeholder(#ccc);
+							position: relative;
+							top: -3px;
+							width: 100px;
+						}
 
-							a.champion-comparable-remove {
-								height: 25px;
-							
+						ul.dropdown-menu {
+							.border-radius(0);
+						}
+
+						ul#comparison-list, ul#filter-list {
+							li.list-header {
+								color: @MVNerdsBlue;
+								font-family: 'Ubuntu', sans-serif;
+								font-size: 11px;
+								font-weight: bold;
+								line-height: 20px;
+								text-transform: uppercase;
+							}
+
+						}
+
+						ul#comparison-list {
+							background-color: rgba(0,0,0,0.8);
+							border: 1px solid @MVNerdsBlue !important;
+							width: 250px;
+
+							li {
+								text-align: center;
+								min-height: 30px;
+							}
+
+							li.indication, span.champion-comparable-name {
+								font-size: 12px;
+								line-height: 1.4em;
+
+							}
+
+							li.indication {
+								border: 1px dashed #999;
+								.border-radius(5px);
+								color: #999;
+								font-style: italic;
+								margin: 0 10px 11px 10px;
+								padding: 15px;
+							}
+
+							li.clean {
+								border-top: 1px dashed rgba(255,255,255,0.3);
+								font-family: 'Ubuntu', sans-serif;
+								font-size: 12px;
+								position: relative;
+								text-align: right;
+								top: 6px;
+
+								i, a {
+									color: #666;	
+								}
+
+								i {
+									display: inline-block;
+									font-size: 14px;
+									left: 3px;
+									position: relative;
+								}
+
+								&.disabled {
+									display: none;
+								}
+
 								&:hover {
-									span.champion-comparable-name, i {
+									a, i {
 										color: white;
 										.transition(all .25s linear);
 									}
 								}
+							}
 
-								img {
-									width: 25px;
+							li.champion-comparable {
+								color: white;
+
+								a.champion-comparable-remove {
+									height: 25px;
+
+									&:hover {
+										span.champion-comparable-name, i {
+											color: white;
+											.transition(all .25s linear);
+										}
+									}
+
+									img {
+										width: 25px;
+									}
 								}
-							}
 
-							span.champion-comparable-name {
-								color: #999;
-								display: inline-block;
-								font-weight: bold;
-								margin: 0;
-								padding: 0;
-								width: 167px;
-
-								&:hover {
-
+								span.champion-comparable-name {
+									color: #999;
+									display: inline-block;
+									font-weight: bold;
+									margin: 0;
+									padding: 0;
+									width: 167px;
 								}
-							}
-
-							i {
-								color: #999;
-								font-size: 14px;
-							}
-						}
-					} // Fin ul#comparison-list
-
-					ul#filters-list {
-						background-color: rgba(0,0,0,0.8);
-						border: 1px solid @MVNerdsBlue;
-						left: -390%;
-						padding: 5px 20px;
-						text-align: left;
-						width: 974px;
-
-						li.list-header {
-							color: @MVNerdsBlue;
-							font-family: 'Ubuntu', sans-serif;
-							font-size: 11px;
-							font-weight: bold;
-							line-height: 20px;
-							margin-bottom: 20px;
-							text-align: center;
-							text-transform: uppercase;
-						}
-
-						h4 {
-							color: #666;
-						}
-
-						ul.tags-group {
-							float: left;
-							list-style: none;
-							margin: 0 20px 0 0;
-							padding: 0;
-							width: 200px;
-
-							li.nav-header {
-								color: @LoLOrangeAD;
-								text-shadow: none;
-							}
-
-							a {
-								font-family: 'Ubuntu', sans-serif;
-								padding: 3px 10px 3px 20px;
 
 								i {
-									color: black;
-									display: inline-block;
-									font-size: 18px;
-									margin: 0 10px 0 0;
+									color: #999;
+									font-size: 14px;
 								}
+							}
+						} // Fin ul#comparison-list
 
-								&.selected {
+						ul#filters-list {
+							background-color: rgba(0,0,0,0.8);
+							border: 1px solid @MVNerdsBlue;
+							margin-left: -571px;
+							padding: 5px 20px;
+							text-align: left;
+							width: 974px;
+
+							li.list-header {
+								color: @MVNerdsBlue;
+								font-family: 'Ubuntu', sans-serif;
+								font-size: 11px;
+								font-weight: bold;
+								line-height: 20px;
+								margin-bottom: 20px;
+								text-align: center;
+								text-transform: uppercase;
+							}
+
+							h4 {
+								color: #666;
+							}
+
+							ul.tags-group {
+								float: left;
+								list-style: none;
+								margin: 0 20px 0 0;
+								padding: 0;
+								width: 200px;
+
+								li.nav-header {
 									color: @LoLOrangeAD;
-									font-weight: bold;
-
-									i {
-										color: @LoLOrangeAD;
-									}
+									text-shadow: none;
 								}
 
-								&:hover {
-									color: white;
+								a {
+									font-family: 'Ubuntu', sans-serif;
+									padding: 3px 10px 3px 20px;
 
 									i {
+										color: black;
+										display: inline-block;
+										font-size: 18px;
+										margin: 0 10px 0 0;
+									}
+
+									&.selected {
+										color: @LoLOrangeAD;
+										font-weight: bold;
+
+										i {
+											color: @LoLOrangeAD;
+										}
+									}
+
+									&:hover {
 										color: white;
+
+										i {
+											color: white;
+										}
 									}
 								}
 							}
 						}
-					}
-				}	
-			}
-
-			&.active {
-				background-color: black;
-				//.box-shadow(0 15px 8px 0 rgba(0,0,0,.7)); FIXME
-				left: 50%;
-				margin-left: -512px;
-				padding: 10px;
-				position: fixed;
-				top: -10px;
-				width: 1004px;
-				z-index: 1000;
-
-				
-			}
+					}	
+				}
+			}//End div#actions-bar-content
 		}
 
 		div#champion-comparison {
@@ -861,6 +875,14 @@ div.body-container {
 					}
 
 					div.right-side {
+						button.close{
+							color: white;
+							opacity: 0.5;
+							&:hover{
+								color: white;
+								opacity: 1;
+							}
+						}
 						p {
 							color: #eee;
 							font-size: 14px;

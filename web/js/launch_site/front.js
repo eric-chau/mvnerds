@@ -1,6 +1,42 @@
 /**
  * @Author Eric Chau
  */
+// Déclaration de variable pour gérer la fixation de la barre en haut de page ou non
+var $win = $(window), 
+	$actionBar = $('div.actions-bar'),
+	actionBarTop = $actionBar.length && $actionBar.offset().top,
+	isFixed = 0,
+	$benchmarkChampion,
+	benchmarkChampionTop,
+	isBenchmarkChampionFixed;
+		
+function initBenchmark(){
+	$benchmarkChampion = $('div#compare-champion-div-header'),
+	benchmarkChampionTop = $benchmarkChampion.length && $benchmarkChampion.offset().top,
+	isBenchmarkChampionFixed = 0;
+	processScroll();
+}
+
+ //Fixation du subnav en fonction du scroll
+function processScroll()
+{
+	var scrollTop = $win.scrollTop();
+
+	if (scrollTop >= actionBarTop - 9.85 && !isFixed) {
+		isFixed = 1;
+		$actionBar.addClass('active');
+		$actionBar.parent('.champions-handler-container').addClass('active');
+		$benchmarkChampion.addClass('active');
+		$benchmarkChampion.parent('#champion-comparator').addClass('active');
+	} 
+	else if (scrollTop <= actionBarTop - 9.85 && isFixed) {
+		isFixed = 0;
+		$actionBar.removeClass('active');
+		$actionBar.parent('.champions-handler-container').removeClass('active');
+		$benchmarkChampion.removeClass('active');
+		$benchmarkChampion.parent('#champion-comparator').removeClass('active');
+	}
+}
 
 $(document).ready(function()
 {
@@ -44,16 +80,7 @@ $(document).ready(function()
 		$secondsDiv.html('<strong>' + seconds + '</strong> seconde' + (seconds >1? 's' : ''));
 
 		setTimeout(updateCountDown, 1000);
-	}
-
-	// Déclaration de variable pour gérer la fixation de la barre en haut de page ou non
-	var $win = $(window), 
-		$actionBar = $('div.actions-bar'),
-		actionBarTop = $actionBar.length && $actionBar.offset().top,
-		isFixed = 0,
-		$benchmarkChampion = $('table.compare-champion-table.header'),
-		benchmarkChampionTop = $benchmarkChampion.length && $benchmarkChampion.offset().top,
-		isBenchmarkChampionFixed = 0;
+	}	
 
 
 	// Détection du clic sur les boutons "Qui sommes-nous" et "Je laisse mon e-mail"
@@ -168,30 +195,9 @@ $(document).ready(function()
 		});
 	});
  
+	initBenchmark();
+ 
 	processScroll();
  
 	 $win.on('scroll', processScroll);
-	 
-	 //Fixation du subnav en fonction du scroll
-	 function processScroll()
-	 {
-	  	var scrollTop = $win.scrollTop();
-	  	if (scrollTop >= actionBarTop - 9.85 && !isFixed) {
-	    	isFixed = 1;
-	    	$actionBar.addClass('active');
-	  	} 
-	  	else if (scrollTop <= actionBarTop - 9.85 && isFixed) {
-	    	isFixed = 0;
-	    	$actionBar.removeClass('active');
-	 	}
-
-	 	if (scrollTop >= benchmarkChampionTop - 9.85 && !isBenchmarkChampionFixed) {
-	    	isBenchmarkChampionFixed = 1;
-	    	$benchmarkChampion.addClass('active');
-	  	} 
-	  	else if (scrollTop <= benchmarkChampionTop - 9.85 && isBenchmarkChampionFixed) {
-	    	isBenchmarkChampionFixed = 0;
-	    	$benchmarkChampion.removeClass('active');
-	 	}
-	}
 });

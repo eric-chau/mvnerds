@@ -1,94 +1,116 @@
 @import '../bootstrap/mixins.less';
 @import '../mvnerds-variables.less';
 
-table.compare-champion-table {
-	margin: auto;
+#champion-comparator{
 
-	&.header {
+	&.active{
+		table.compare-champion-table.body{
+			margin-top: 120px;
+		}
+	}
+
+	div#compare-champion-div-header{
+
 		&.active {
-			background-color: rgba(0,0,0,0.7);
 			position: fixed;
-			top: 52px;
-			left: 503px;
+			top: 45px;
+			left: 0;
+			right: 0;
+			min-width: 1064px;
 
-			th {
-				background-color: black;
+			table.compare-champion-table.header{
+				position: relative;
+				left: 3px;
+				margin: 0 auto;
+				
+				thead{
+					background-color: rgba(0,0,0,0.7);
+					th {
+						background-color: black;
+					}
+				}
 			}
 		}
 
-		thead {
+		table.compare-champion-table.header {
+			thead {
 
-			th.first-col {
-				width: 100px;
-			}
-
-			td.first-col {
-				img {
-					width: 64px;
-				}
-			} 
-
-			th {
-				width: 72px;
-
-				img {
-					display: block;
-					margin: 5px auto;
-					opacity: .65;
-					width: 32px;
-				}
-			}
-
-			td {
-				color: @LoLOrangeAD;
-				font-size: 16px;
-				font-weight: bold;
-				padding: 5px 0;
-				text-align: center;
-			}
-		}
-	}
-
-	th, td {
-		font-family: 'Trebuchet MS', sans-serif;
-	}
-
-	&.body {
-		tbody {
-			tr {
-				td:first-child {
+				th.first-col {
 					width: 100px;
 				}
-			}
 
-			td {
-				font-family: 'Trebuchez MS', sans-serif;
-				color: white;
-				padding: 20px 0;
-				text-align: center;
-				width: 74px;
+				td.first-col {
+					img {
+						width: 64px;
+					}
+				} 
 
-				img {
-					width: 48px;
+				th {
+					width: 72px;
+
+					img {
+						display: block;
+						margin: 5px auto;
+						opacity: .65;
+						width: 32px;
+					}
 				}
 
-				span.diff {
-					display: block;
+				td {
+					color: @LoLOrangeAD;
 					font-size: 16px;
 					font-weight: bold;
+					padding: 5px 0;
+					text-align: center;
+				}
+			}
+		}
+	}
+	table.compare-champion-table{
 
-					&.plus {
-					color: @MVNerdsGreen;
-					}
+		margin: auto;
 
-					&.minus {
-						color: @MVNerdsRed;
+		th, td {
+			font-family: 'Trebuchet MS', sans-serif;
+		}
+
+		&.body {
+			tbody {
+				tr {
+					td:first-child {
+						width: 100px;
 					}
 				}
 
-				span.own {
-					color: #999;
-					font-size: 12px;
+				td {
+					font-family: 'Trebuchez MS', sans-serif;
+					color: white;
+					padding: 20px 0;
+					text-align: center;
+					width: 74px;
+
+					img {
+						width: 48px;
+					}
+
+					span.diff {
+						display: block;
+						font-size: 16px;
+						font-weight: bold;
+
+						&.plus {
+						color: @MVNerdsGreen;
+						}
+
+						&.minus {
+							color: @MVNerdsRed;
+						}
+					}
+
+					span.own {
+						color: #999;
+						font-size: 12px;
+					}
 				}
 			}
 		}

@@ -21,11 +21,13 @@ jQuery(function(){
 
 		var $isotope = $('#isotope-list');
 
-		if($isotope.size() > 0){						
+		if($isotope.size() > 0){			
 			initIsotope($isotope);
 			initTypeahead($isotope);
 			initFilterList($isotope);
 		}
+		
+		initBenchmark();
 	}
 	
 	//On affecte aux liens qui n'ont pas la classe disabled la fonction de scroll lors du clic
@@ -43,7 +45,7 @@ jQuery(function(){
 		});
 
 		//On récupère le lien
-		var href = $(this).attr('data-target');
+		var href = this.href;
 		//Si le lien a l attribut rel et que c est next on coulisse vers la gauche sinon a droite
 		var pos = this.rel == 'next' ? '-150%' : '150%';
 		if (Modernizr.history) {
