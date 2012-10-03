@@ -1,15 +1,15 @@
 <li id="filters-block" class="dropdown action link {% if page != 'champions' %}force-hide{% endif %}" data-page-display="champions">	
 	<a href="#" class="dropdown-toggle action-button-link" data-toggle="dropdown" id="drop-filter-list" role="button">
 		<i class="icon-cogs icon-white"></i>
-		<span class="action-label">Affiner le filtrage</span>
+		<span class="action-label">{{'Actionsbar.Filter.title'|trans}}</span>
 	</a>
 	<ul id="filters-list" class="dropdown-menu" role="menu" aria-labelledby="drop-filters-list">
-		<li class="list-header">FILTRER LES CHAMPIONS PAR LEURS TAGS</li>
+		<li class="list-header">{{'Actionsbar.Filter.Dropdown.title'|trans}}</li>
 		<div class="row-fluid">
 			<div class="span6">
-				<h4>Tags originaux définis par Riot Games</h4>
+				<h4>{{'Actionsbar.Filter.Dropdown.subtitle1'|trans}}</h4>
 				<ul class="tags-group">
-					<li class="nav-header">Rôle</li>
+					<li class="nav-header">{{'Actionsbar.Filter.Dropdown.category.role'|trans}}</li>
 					<li>
 						<a href="#" class="filter-link" data-option-value="mage"><i class=" icon-ok-sign"></i>Mage</a>
 					</li>
@@ -27,7 +27,7 @@
 					</li>
 				</ul>
 				<ul class="tags-group">
-					<li class="nav-header">Portée d'attaque</li>
+					<li class="nav-header">{{'Actionsbar.Filter.Dropdown.category.range'|trans}}</li>
 					<li>
 						<a href="#" class="filter-link" data-option-value="melee"><i class=" icon-ok-sign"></i>Melee</a>
 					</li>
@@ -39,9 +39,9 @@
 			</div>
 				
 			<div class="span6">
-				<h4>Tags personnalisés par MVNerds</h4>
+				<h4>{{'Actionsbar.Filter.Dropdown.subtitle2'|trans}}</h4>
 				<ul class="tags-group">
-					<li class="nav-header">Position</li>
+					<li class="nav-header">{{'Actionsbar.Filter.Dropdown.category.position'|trans}}</li>
 					<li>
 						<a href="#" class="filter-link" data-option-value="top"><i class=" icon-ok-sign"></i>Top</a>
 					</li>
@@ -56,7 +56,7 @@
 					</li>
 				</ul>
 				<ul class="tags-group">
-					<li class="nav-header">Dégâts</li>
+					<li class="nav-header">{{'Actionsbar.Filter.Dropdown.category.damage'|trans}}</li>
 					<li>
 						<a href="#" class="filter-link" data-option-value="physical"><i class=" icon-ok-sign"></i>Physical</a>
 					</li>

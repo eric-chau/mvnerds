@@ -6,17 +6,17 @@
 			<!--  GENERAL -->
 			<trans-unit id="1">
 				<source>General.and</source>
-				<target>et</target>
+				<target>and</target>
 			</trans-unit>
 			<trans-unit id="2">
 				<source>General.or</source>
-				<target>ou</target>
+				<target>or</target>
 			</trans-unit>
 
 			<!--  COUNTDOWN -->
 			<trans-unit id="1000">
 				<source>Countdown.message</source>
-				<target>Lancement officiel prévu dans</target>
+				<target>Official expected launch in</target>
 			</trans-unit>
 			<trans-unit id="1001">
 				<source>Countdown.days</source>
@@ -38,13 +38,13 @@
 			<!--  SOCIAL -->
 			<trans-unit id="2000">
 				<source>Social.follow_us_on</source>
-				<target>Suivez nous sur</target>
+				<target>Follow us on</target>
 			</trans-unit>
 
 			<!--  OVERVIEW -->
 			<trans-unit id="3000">
 				<source>Overview.title</source>
-				<target>Qui sommes nous ?</target>
+				<target>Who are we ?</target>
 			</trans-unit>
 			<trans-unit id="3001">
 				<source>Overview.content.p1</source>
@@ -68,74 +68,74 @@
 			<!--  REGISTRATION -->
 			<trans-unit id="4000">
 				<source>Registration.title</source>
-				<target>Je laisse mon e-mail</target>
+				<target>I leave my e-mail</target>
 			</trans-unit>
 			<trans-unit id="4001">
 				<source>Registration.content.p1</source>
 				<target>
-					Laisser votre e-mail vous offre plusieurs avatanges et zéro inconvénient ! Nous n'allons pas nous amuser à vous spammer 
-					ni à communiquer votre e-mail. Notre but est de pouvoir vous tenir informer de l'évolution du site et notamment de son ouverture officielle !
+					Leaving your e-mail offers many advantages et zero inconvenience ! We won't bother you with spams and we won't communicate
+					your e-mail. Our goal is to keep you informed about the website development and especially to announce you it's official opening !
 				</target>
 			</trans-unit>
 			<trans-unit id="4002">
 				<source>Registration.content.p2</source>
 				<target>
-					Il se murmure qu'il y aura une (ou des, qui sait ?) surprise(s) pour tous ceux qui ont laissé leur e-mail... mais chut hein, je ne vous ai rien dit :P
+					We say that there will be a (or many, who knows ?) surprise(s) for all of the people who left their e-mail...
 				</target>
 			</trans-unit>
 
 			<!--  ACTIONS BAR -->
 			<trans-unit id="5000">
 				<source>Actionsbar.title</source>
-				<target>Module des champions (Bêta)</target>
+				<target>Champion benchmark (Bêta)</target>
 			</trans-unit>
 			<trans-unit id="5001">
 				<source>Actionsbar.Comparison_list.title</source>
-				<target>Liste de comparaison</target>
+				<target>Comparison list</target>
 			</trans-unit>
 			<trans-unit id="5002">
 				<source>Actionsbar.Comparison_list.Dropdown.title</source>
-				<target>Champions sélectionnés</target>
+				<target>Selected champions</target>
 			</trans-unit>
 			<trans-unit id="5003">
 				<source>Actionsbar.Comparison_list.Dropdown.indication</source>
-				<target>Faites glisser et déposez des champions ici</target>
+				<target>Drag and drop champions here</target>
 			</trans-unit>
 			<trans-unit id="5004">
 				<source>Actionsbar.Comparison_list.Dropdown.clean</source>
-				<target>Vider la liste</target>
+				<target>Clean the list</target>
 			</trans-unit>
 			<trans-unit id="5005">
 				<source>Actionsbar.Comparison_list.Dropdown.Champion.tooltip</source>
-				<target>Cliquez pour retirer le champion de la liste</target>
+				<target>Click to remove the champion from the list</target>
 			</trans-unit>
 			<trans-unit id="5006">
 				<source>Actionsbar.Compare.title</source>
-				<target>Comparer</target>
+				<target>Compare</target>
 			</trans-unit>
 			<trans-unit id="5007">
 				<source>Actionsbar.Filter.title</source>
-				<target>Affiner le filtrage</target>
+				<target>Filter</target>
 			</trans-unit>
 			<trans-unit id="5008">
 				<source>Actionsbar.Filter.Dropdown.title</source>
-				<target>FILTRER LES CHAMPIONS PAR LEURS TAGS</target>
+				<target>Filter champions by tags</target>
 			</trans-unit>
 			<trans-unit id="5009">
 				<source>Actionsbar.Filter.Dropdown.subtitle1</source>
-				<target>Tags originaux définis par Riot Games</target>
+				<target>Original tags defined by Riot Games</target>
 			</trans-unit>
 			<trans-unit id="5010">
 				<source>Actionsbar.Filter.Dropdown.subtitle2</source>
-				<target>Tags personnalisés par MVNerds</target>
+				<target>Custom tags defined by MVNerds</target>
 			</trans-unit>
 			<trans-unit id="5011">
 				<source>Actionsbar.Filter.Dropdown.category.role</source>
-				<target>Rôle</target>
+				<target>Role</target>
 			</trans-unit>
 			<trans-unit id="5012">
 				<source>Actionsbar.Filter.Dropdown.category.range</source>
-				<target>Portée d'attaque</target>
+				<target>Attack range</target>
 			</trans-unit>
 			<trans-unit id="5013">
 				<source>Actionsbar.Filter.Dropdown.category.position</source>
@@ -143,69 +143,69 @@
 			</trans-unit>
 			<trans-unit id="5014">
 				<source>Actionsbar.Filter.Dropdown.category.damage</source>
-				<target>Dégâts</target>
+				<target>Damage</target>
 			</trans-unit>
 			<trans-unit id="5015">
 				<source>Actionsbar.Search.placeholder</source>
-				<target>Rechercher</target>
+				<target>Search</target>
 			</trans-unit>
 			<trans-unit id="5016">
 				<source>Actionsbar.Guide_tour.title</source>
-				<target>Visite guidée</target>
+				<target>Guide tour</target>
 			</trans-unit>
 			
 			<!--  CHAMPION PREVIEW -->
 			<trans-unit id="6000">
 				<source>Champion_preview.stat.bonus_per_level.label</source>
-				<target>Bonus par niveau</target>
+				<target>Bonus per level</target>
 			</trans-unit>
 			<trans-unit id="6001">
 				<source>Champion_preview.stat.health</source>
-				<target>Points de vie (PV)</target>
+				<target>Health points (HP)</target>
 			</trans-unit>
 			<trans-unit id="6002">
 				<source>Champion_preview.stat.health_regen</source>
-				<target>Régen. de PV/5 sec</target>
+				<target>HP regen/5 sec</target>
 			</trans-unit>
 			<trans-unit id="6003">
 				<source>Champion_preview.stat.mana</source>
-				<target>Points de mana</target>
+				<target>Mana</target>
 			</trans-unit>
 			<trans-unit id="6004">
 				<source>Champion_preview.stat.mana_regen</source>
-				<target>Régen. de mana/5 sec</target>
+				<target>mana regen/5 sec</target>
 			</trans-unit>
 			<trans-unit id="6005">
 				<source>Champion_preview.stat.armor</source>
-				<target>Armure</target>
+				<target>Armor</target>
 			</trans-unit>
 			<trans-unit id="6006">
 				<source>Champion_preview.stat.magic_resist</source>
-				<target>Résistance magique</target>
+				<target>Magic resistance</target>
 			</trans-unit>
 			<trans-unit id="6007">
 				<source>Champion_preview.stat.damage</source>
-				<target>Dégâts d'attaque</target>
+				<target>Attack damage</target>
 			</trans-unit>
 			<trans-unit id="6008">
 				<source>Champion_preview.stat.attack_speed</source>
-				<target>Vitesse d'attaque</target>
+				<target>Attack speed</target>
 			</trans-unit>
 			<trans-unit id="6009">
 				<source>Champion_preview.stat.range</source>
-				<target>Portée d'attaque</target>
+				<target>Attack range</target>
 			</trans-unit>
 			<trans-unit id="6010">
 				<source>Champion_preview.stat.movement_speed</source>
-				<target>Vitesse de déplacement</target>
+				<target>Movement speed</target>
 			</trans-unit>
 			<trans-unit id="6011">
 				<source>Champion_preview.stat.indication.part1</source>
-				<target>Les caractéristiques ci-dessus sont celle de</target>
+				<target>The above caracteristics are</target>
 			</trans-unit>
 			<trans-unit id="6012">
 				<source>Champion_preview.stat.indication.part2</source>
-				<target>au niveau 1</target>
+				<target>'s at level 1</target>
 			</trans-unit>
 		</body>
 	</file>

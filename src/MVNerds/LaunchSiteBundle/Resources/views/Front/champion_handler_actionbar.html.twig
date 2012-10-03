@@ -1,7 +1,5 @@
 <div class="actions-bar">
-	<h2 data-content-name="champion-handler">
-		Module des champions (Bêta)
-	</h2>
+	<h2 data-content-name="champion-handler">{{'Actionsbar.title'|trans}}</h2>
 
 	<ul class="action-buttons">
 		<li class="action {% if page != 'compare' %}force-hide{% endif %}" data-page-display="compare">
@@ -17,12 +15,12 @@
 		<li class="action link dropdown {% if page != 'champions' %}force-hide{% endif %}" id="comparison-list-dropdown" data-page-display="champions">
 			<a href="#" class="dropdown-toggle action-button-link" data-toggle="dropdown" id="drop-comparison-list" role="button">
 				<i class="icon-th-large icon-white"></i> 
-				<span class="action-label">Liste de comparaison</span>
+				<span class="action-label">{{'Actionsbar.Comparison_list.title'|trans}}</span>
 			</a>
 			<ul class="dropdown-menu" role="menu" aria-labelledby="drop-comparison-list" id="comparison-list">
-				<li class="list-header"><img class="loader"  id="comparison-list-loading" src="{{ asset('images/commons/loader16.gif') }}"/> Champions sélectionnés</li>
+				<li class="list-header"><img class="loader"  id="comparison-list-loading" src="{{ asset('images/commons/loader2.gif') }}"/> {{'Actionsbar.Comparison_list.Dropdown.title'|trans}}</li>
 
-				<li class="indication {% if app.session.get('comparison_list') | length > 0 %}hide{% endif %}">Faites glisser et déposez des champions ici</li>
+				<li class="indication {% if app.session.get('comparison_list') | length > 0 %}hide{% endif %}">{{'Actionsbar.Comparison_list.Dropdown.indication'|trans}}</li>
 
 				{% for championSlug, champion in app.session.get('comparison_list') %}
 					{% include 'MVNerdsChampionHandlerBundle:Comparison:comparison_row.html.twig' with {'champion': champion}%}
@@ -30,7 +28,8 @@
 
 				<li id="li-clean" class="clean {% if list_size < 1 %} disabled{% endif %}">
 					<a id="btn-clean" href="{{path('champion_handler_comparison_clean_comparison') }}" {% if list_size < 1 %}class="disabled"{%endif%}>
-						Vider la liste<i class="icon-trash"></i>
+						{{'Actionsbar.Comparison_list.Dropdown.clean'|trans}}
+						<i class="icon-trash"></i>
 					</a>
 				</li>
 			</ul>
@@ -39,7 +38,7 @@
 		{# Bouton d'action qui permet de comparer la liste des champions sélectionnés #}
 		<li class="action red-button {% if list_size < 2 %} disabled{% endif %} {% if page != 'champions' %}force-hide{% endif %}" data-page-display="champions">
 			<a id="btn-compare" class="data-pagination{% if list_size < 2 %} disabled{%endif%}" rel="next" href="#" data-target="{{path('launch_site_front_compare_champions') }}" data-page-display="compare">
-				<i class="icon-random icon-white"></i> <span class="action-label">Comparer</span>
+				<i class="icon-random icon-white"></i> <span class="action-label">{{'Actionsbar.Compare.title'|trans}}</span>
 			</a>
 		</li>
 
@@ -48,12 +47,12 @@
 
 		{# Champ input qui permet de filtrer / rechercher un champion selon son nom #}
 		<li class="action filter-action search-action {% if page != 'champions' %}force-hide{% endif %}" data-page-display="champions">
-			<i class="icon-search icon-white"></i> <input id="filter-value" type="text" class="input-mini" placeholder="Rechercher" data-provide="typeahead"/>
+			<i class="icon-search icon-white"></i> <input id="filter-value" type="text" class="input-mini" placeholder="{{'Actionsbar.Search.placeholder'|trans}}" data-provide="typeahead"/>
 		</li>
 
 		{# Bouton d'action qui permet de démarrer une visite guidée #}
 		<li class="action help-action {% if page != 'champions' %}force-hide{% endif %}" data-page-display="champions">
-			<i class="icon-question-sign icon-white"></i> <span class="action-label">Visite guidée</span>
+			<i class="icon-question-sign icon-white"></i> <span class="action-label">{{'Actionsbar.Guide_tour.title'|trans}}</span>
 		</li>
 	</ul>
 </div>

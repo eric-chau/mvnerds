@@ -60,7 +60,7 @@
 					</div>
 					
 					<div class="span7">
-						<div class="launch-date-msg">Lancement officiel prévu dans</div> 
+						<div class="launch-date-msg">{{'Countdown.message'|trans}}</div> 
 						
 						<div class="countdown">
 							<div class="days"></div>
@@ -72,40 +72,31 @@
 				</div>	
 
 				<div class="social-container">
-					<p> Suivez-nous sur <em>Twitter <i class="icon-twitter"></i></em> et <em>Facebook <i class="icon-facebook-sign"></i></em>.</p>
+					<p> {{'Social.follow_us_on'|trans}} <em>Twitter <i class="icon-twitter"></i></em> {{'General.and'|trans}} <em>Facebook <i class="icon-facebook-sign"></i></em>.</p>
 				</div>
 				<div class="presentation-container">
 					<div class="content">
 						<div class="overview">
-							<h2>Qui sommes-nous ?</h2>
-
-							<p>The sleepy, non-descript village of Kalamanda, located near the northern entrance to Mogron Pass, now finds itself wide awake 
-							as the leading lady on the world stage. The village's mayor, Anson Ridley, reported this week that a local survey team has 
-							uncovered a massive deposit of gold and precious gems within the village's sphere of influence. Furthermore, two nexuses of 
-							considerable magic potency have been discovered alongside the resource deposits.</p>
-
-							<p>Before the discovery, Kalamanda was only moderately known as a decent place to fish for Valoran trout and not much else. 
-							The village now finds itself as the destination point for adventurers and prospectors seeking fame and riches beyond their 
-							wildest dreams. The town council has already set up a temporary camp located near the foothills that lead to Mogron Pass and the 
-							Great Barrier in anticipation of the great influx of individuals hoping to trade a hard day's work for handsome rewards.</p>
+							<h2>{{'Overview.title'|trans}}</h2>
+							
+							<p>{{'Overview.content.p1'|trans}}</p>
+							
+							<p>{{'Overview.content.p2'|trans}}</p>
 						</div>
 						<div class="registration">
-							<h2>Je laisse mon e-mail</h2>
+							<h2>{{'Registration.title'|trans}}</h2>
 
-							<p>
-								Laisser votre e-mail vous offre plusieurs avatanges et <strong>zéro inconvénient</strong> ! Nous n'allons pas nous amuser à vous spammer ni à communiquer votre e-mail. Notre but est de pouvoir vous tenir informer de l'évolution du site et notamment de son ouverture officielle !
-							</p>
+							<p>{{'Registration.content.p1'|trans}}</p>
 
 							<div id="leave-email-form-container">
 								{% include 'MVNerdsLaunchSiteBundle:Front:leave_email_form.html.twig' with {'form': form} %}
 							</div>
 
-							<p class="secret-msg">Il se murmure qu'il y aura une (ou des, qui sait ?) surprise(s) pour tous ceux qui ont laissé leur e-mail... mais chut hein, je ne vous 
-							ai rien dit :P</p>
+							<p class="secret-msg">{{'Registration.content.p2'|trans}}</p>
 						</div>
 					</div>
-					<div class="link registration" data-content-name="registration">Je laisse mon e-mail</div>
-					<div class="link overview" data-content-name="overview">Qui sommes-nous ?</div>
+					<div class="link registration" data-content-name="registration">{{'Registration.title'|trans}}</div>
+					<div class="link overview" data-content-name="overview">{{'Overview.title'|trans}}</div>
 				</div>
 				<div class="clearfix"></div>
 			</div>

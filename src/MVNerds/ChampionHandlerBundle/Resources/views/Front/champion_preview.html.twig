@@ -3,58 +3,58 @@
 		<h3>{{ champion.getName() }}</h3>
 		<h5>{{ champion.getTitle() }}</h5>
 		<dl>
-			<dt>Points de vie (PV)</dt>
-			  <dd>{{ champion.getBaseHealth() }}</dd>
-			<dt class="bonus">Bonus par niveau</dt>
-			  <dd class="bonus">{{ champion.getBonusHealthPerLevel() }}</dd>
-			  
-		    <dt>Régén. de PV/5 sec</dt>
-		      <dd>{{ champion.getBaseHealthRegen() * 5 }}</dd>
-			<dt class="bonus">Bonus par niveau</dt>
-			  <dd class="bonus">{{ champion.getBonusHealthRegenPerLevel() }}</dd>  
-			  
-		     <dt>Points de mana</dt>
-		      <dd>{{ champion.getBaseMana() }}</dd>	
-			<dt class="bonus">Bonus par niveau</dt>
-			  <dd class="bonus">{{ champion.getBonusManaPerLevel() }}</dd>  
-			
-		    <dt>Régén. de mana/5 sec</dt>
-		      <dd>{{ champion.getBaseManaRegen() * 5 }}</dd>
-			<dt class="bonus">Bonus par niveau</dt>
-			  <dd class="bonus">{{ champion.getBonusManaRegenPerLevel() }}</dd>
-			  
-		    <dt>Armure</dt>
-		      <dd>{{ champion.getBaseArmor() }}</dd>
-			<dt class="bonus">Bonus par niveau</dt>
-			  <dd class="bonus">{{ champion.getBonusArmorPerLevel() }}</dd>
-			  
-		    <dt>Résistance magique</dt>
-		      <dd>{{ champion.getBaseMagicResist() }}</dd>
-			<dt class="bonus">Bonus par niveau</dt>
-			  <dd class="bonus">{{ champion.getBonusMagicResistPerLevel() }}</dd>
-			  
-		  	<dt>Dégâts d'attaque</dt>
-		      <dd>{{ champion.getBaseDamage() }}</dd>
-			<dt class="bonus">Bonus par niveau</dt>
-			  <dd class="bonus">{{ champion.getBonusDamagePerLevel() }}</dd>
-			  
-	      	<dt>Vitesse d'attaque</dt>
-		      <dd>{{ champion.getBaseAttackSpeed() }}</dd>
-			<dt class="bonus">Bonus par niveau</dt>
-			  <dd class="bonus">{{ champion.getBonusAttackSpeedPerLevel() }}</dd>
-			  
-	      	<dt>Portée d'attaque</dt>
-		      <dd>{{ champion.getAttackRange() }}</dd>
-			  
-	      	<dt class="last-child">Vitesse de déplacement</dt>
-		      <dd>{{ champion.getMoveSpeed() }}</dd>
+			<dt>{{'Champion_preview.stat.health'|trans}}</dt>
+			<dd>{{ champion.getBaseHealth() }}</dd>
+			<dt class="bonus">{{'Champion_preview.stat.bonus_per_level.label'|trans}}</dt>
+			<dd class="bonus">{{ champion.getBonusHealthPerLevel() }}</dd>
+
+			<dt>{{'Champion_preview.stat.health_regen'|trans}}</dt>
+			<dd>{{ champion.getBaseHealthRegen() * 5 }}</dd>
+			<dt class="bonus">{{'Champion_preview.stat.bonus_per_level.label'|trans}}</dt>
+			<dd class="bonus">{{ champion.getBonusHealthRegenPerLevel() }}</dd>  
+
+			<dt>{{'Champion_preview.stat.mana'|trans}}</dt>
+			<dd>{{ champion.getBaseMana() }}</dd>	
+			<dt class="bonus">{{'Champion_preview.stat.bonus_per_level.label'|trans}}</dt>
+			<dd class="bonus">{{ champion.getBonusManaPerLevel() }}</dd>  
+
+			<dt>{{'Champion_preview.stat.mana_regen'|trans}}</dt>
+			<dd>{{ champion.getBaseManaRegen() * 5 }}</dd>
+			<dt class="bonus">{{'Champion_preview.stat.bonus_per_level.label'|trans}}</dt>
+			<dd class="bonus">{{ champion.getBonusManaRegenPerLevel() }}</dd>
+
+			<dt>{{'Champion_preview.stat.armor'|trans}}</dt>
+			<dd>{{ champion.getBaseArmor() }}</dd>
+			<dt class="bonus">{{'Champion_preview.stat.bonus_per_level.label'|trans}}</dt>
+			<dd class="bonus">{{ champion.getBonusArmorPerLevel() }}</dd>
+
+			<dt>{{'Champion_preview.stat.magic_resist'|trans}}</dt>
+			<dd>{{ champion.getBaseMagicResist() }}</dd>
+			<dt class="bonus">{{'Champion_preview.stat.bonus_per_level.label'|trans}}</dt>
+			<dd class="bonus">{{ champion.getBonusMagicResistPerLevel() }}</dd>
+
+			<dt>{{'Champion_preview.stat.damage'|trans}}</dt>
+			<dd>{{ champion.getBaseDamage() }}</dd>
+			<dt class="bonus">{{'Champion_preview.stat.bonus_per_level.label'|trans}}</dt>
+			<dd class="bonus">{{ champion.getBonusDamagePerLevel() }}</dd>
+
+			<dt>{{'Champion_preview.stat.attack_speed'|trans}}</dt>
+			<dd>{{ champion.getBaseAttackSpeed() }}</dd>
+			<dt class="bonus">{{'Champion_preview.stat.bonus_per_level.label'|trans}}</dt>
+			<dd class="bonus">{{ champion.getBonusAttackSpeedPerLevel() }}</dd>
+
+			<dt>{{'Champion_preview.stat.range'|trans}}</dt>
+			<dd>{{ champion.getAttackRange() }}</dd>
+
+			<dt class="last-child">{{'Champion_preview.stat.movement_speed'|trans}}</dt>
+			<dd>{{ champion.getMoveSpeed() }}</dd>
 		</dl>
-		
-		<p class="indication">Les caractéristiques ci-dessus sont celle de {{ champion.getName() }} au niveau 1</p>
+
+		<p class="indication">{{'Champion_preview.stat.indication.part1'|trans}} {{ champion.getName() }} {{'Champion_preview.stat.indication.part2'|trans}}</p>
 	</div>
 	<div class="span6 right-side">
 		<p>
-			<img src="{{ asset('/images/commons/ip_logo.png') }}" /> {{ champion.getIpCost() }} ou <img src="{{ asset('/images/commons/rp_logo.png') }}" /> {{ champion.getRpCost() }}
+			<img src="{{ asset('/images/commons/ip_logo.png') }}" /> {{ champion.getIpCost() }} {{'General.or'|trans}} <img src="{{ asset('/images/commons/rp_logo.png') }}" /> {{ champion.getRpCost() }}
 		</p>
 		<img src="{{ asset('/images/champions/portrait/' ~ champion.getSlug() ~ '.jpg') }}" class="portrait" />
 	</div>
