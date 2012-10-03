@@ -133,10 +133,56 @@ div.header-container div.countdown div strong {
   line-height: 1em;
   margin-bottom: 5px;
 }
+div.header-container div.switch-language-container {
+  float: right;
+}
+div.header-container div.switch-language-container span,
+div.header-container div.switch-language-container a {
+  display: block;
+  float: left;
+}
+div.header-container div.switch-language-container span.current-language-msg,
+div.header-container div.switch-language-container span.switch-language-msg {
+  color: #aaa;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.3em;
+  margin-right: 10px;
+  text-align: right;
+  text-transform: uppercase;
+  width: 134px;
+}
+div.header-container div.switch-language-container span.current-language,
+div.header-container div.switch-language-container a {
+  font-family: 'Arial', sans-serif;
+  font-size: 32px;
+  line-height: 1em;
+  opacity: .3;
+  position: relative;
+  text-transform: uppercase;
+}
+div.header-container div.switch-language-container span.current-language {
+  color: #19a0df;
+  margin-right: 20px;
+}
+div.header-container div.switch-language-container a,
+div.header-container div.switch-language-container a:visited,
+div.header-container div.switch-language-container a:hover {
+  color: #db4a38;
+  text-decoration: none;
+}
+div.header-container div.switch-language-container a:hover {
+  opacity: 1;
+  -webkit-transition: opacity 0.5s linear;
+  -moz-transition: opacity 0.5s linear;
+  -o-transition: opacity 0.5s linear;
+  transition: opacity 0.5s linear;
+}
 div.header-container div.social-container {
   background: #000000 url('/images/launch_site/social_bg.png') no-repeat;
   border: 1px solid black;
-  margin: 20px 0 0 0;
+  margin: 5px 0 0 0;
   padding: 2px 20px;
 }
 div.header-container div.social-container p {

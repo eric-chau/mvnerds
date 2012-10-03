@@ -25,7 +25,8 @@ class AppKernel extends Kernel
 			new MVNerds\DidYouKnowBundle\MVNerdsDidYouKnowBundle(),
             new MVNerds\ChampionHandlerBundle\MVNerdsChampionHandlerBundle(),
             new MVNerds\LaunchSiteBundle\MVNerdsLaunchSiteBundle(),
-			new FOS\JsRoutingBundle\FOSJsRoutingBundle()
+			new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new MVNerds\MainBundle\MVNerdsMainBundle(),
 		);
 
 		if (in_array($this->getEnvironment(), array('dev', 'test')))
