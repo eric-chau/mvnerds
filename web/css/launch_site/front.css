@@ -696,6 +696,9 @@ div.body-container div.champions-handler-container div.actions-bar div#actions-b
 div.body-container div.champions-handler-container div#champion-comparison {
   padding-left: 6px;
 }
+div.body-container div.champions-handler-container div#champion-comparison div.data-scrollable {
+  position: relative;
+}
 div.body-container div.champions-handler-container div#champion-list ul {
   margin: 20px 0;
   padding: 0;

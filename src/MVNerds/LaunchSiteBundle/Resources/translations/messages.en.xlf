@@ -208,10 +208,18 @@
 				<target>'s at level 1</target>
 			</trans-unit>
 
-			<!--  CHAMPION PREVIEW -->
+			<!--  CHAMPION COMPARISON -->
 			<trans-unit id="7000">
 				<source>Champion_comparison.back_to_list</source>
 				<target>Back to list</target>
+			</trans-unit>
+			<trans-unit id="7001">
+				<source>Champion_comparison.actions.title</source>
+				<target>Actions</target>
+			</trans-unit>
+			<trans-unit id="7002">
+				<source>Champion_comparison.actions.set_reference</source>
+				<target>Make this champion the new reference</target>
 			</trans-unit>
 		</body>
 	</file>
