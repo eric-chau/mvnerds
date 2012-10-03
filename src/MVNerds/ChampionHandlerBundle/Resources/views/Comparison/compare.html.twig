@@ -47,9 +47,19 @@
 			{% include 'MVNerdsChampionHandlerBundle:Comparison:champion_list.html.twig' with {'reference_champion': reference_champion,'comparison_list': app.session.get('comparison_list')} %}
 		</tbody>
 	</table>	
-		
-	{#	
-	<div>
-		{% include 'MVNerdsChampionHandlerBundle:Comparison:compare_row.html.twig' with {'field_names':  field_names}%}
-	</div>#}
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function() 
+	{
+		$('div.actions-bar ul.action-buttons li.action').each(function()
+		{
+			if ($(this).data('page-display') == 'compare') {
+				$(this).removeClass('force-hide');
+			}
+			else {
+				$(this).addClass('force-hide');
+			}
+		});
+	});
+</script>

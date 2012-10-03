@@ -4,3 +4,18 @@
 		{% include 'MVNerdsChampionHandlerBundle:Front:champion_grid.html.twig' %}
 	</div>
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function() 
+	{
+		$('div.actions-bar ul.action-buttons li.action').each(function()
+		{
+			if ($(this).data('page-display') == 'champions') {
+				$(this).removeClass('force-hide');
+			}
+			else {
+				$(this).addClass('force-hide');
+			}
+		});
+	});
+</script>

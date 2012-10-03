@@ -20,14 +20,14 @@ function getAlertMessage(type)
 //Permet d afficher les messages d erreur et de succes
 function displayMessage(message, type)
 {
-	var alert = '<div style="display:none" class="fade in alert alert-fixed alert-'+type+'"><button type="button" class="close" data-dismiss="alert">×</button>'+message+'</div>';
+	var alert = '<div class="fade in hide alert alert-fixed alert-'+type+'"><button type="button" class="close" data-dismiss="alert">×</button>'+message+'</div>';
 	//On crée le nouveau message
 	$('#champion-comparison').before(alert);
 	$('.alert-fixed').show(400);
 	timeoutID = setTimeout(function(){
 		hideMessages();
 	},
-	1500);
+	4000);
 }
 //Permet de retirer les messages d'alerte actuellement affichés
 function hideMessages(){

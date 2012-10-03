@@ -116,10 +116,55 @@ div.header-container {
 		}
 	}
 
+	div.switch-language-container {
+		float: right;
+
+		span, a {
+			display: block;
+			float: left;
+		}
+
+		span.current-language-msg, span.switch-language-msg {
+			color: #aaa;
+			font-family: 'Ubuntu', sans-serif;
+			font-size: 12px;
+			font-weight: bold;
+			line-height: 1.3em;
+			margin-right: 10px;
+			text-align: right;
+			text-transform: uppercase;
+			width: 134px;
+		}
+
+		span.current-language, a {
+			font-family: 'Arial', sans-serif;
+			font-size: 32px;
+			line-height: 1em;
+			opacity: .3;
+			position: relative;
+			text-transform: uppercase;
+		}
+
+		span.current-language {
+			color: @MVNerdsBlue;
+			margin-right: 20px;
+		}
+
+		a, a:visited, a:hover {
+			color: @MVNerdsRed;
+			text-decoration: none;
+		}
+
+		a:hover {
+			opacity: 1;
+			.transition(opacity .5s linear);
+		}
+	}
+
 	div.social-container {
 		background: black url('/images/launch_site/social_bg.png') no-repeat;
 		border: 1px solid black;
-		margin: 20px 0 0 0;
+		margin: 5px 0 0 0;
 		padding: 2px 20px;
 
 		p {
@@ -295,12 +340,46 @@ div.body-container {
 
 	div.champions-handler-container {
 		background: black url('/images/launch_site/champion_handler_bg.png') no-repeat bottom center;
-		//.border-radius(4px);
 		margin: 10px 0;
 		min-height: 700px;
 		padding: 10px;
 
+		div.alert {
+			border: 1px solid rgba(255,255,255,0.5);
+			.border-radius(0);
+			color: white;
+			font-family: 'Ubuntu', sans-serif;
+			font-size: 14px;
+			opacity: 0.8;
+			text-shadow: none;
+
+			&.alert-fixed {
+				bottom: 10px;
+				position: fixed;
+				right: 10px;
+				width: 300px;
+				z-index: 1100;
+			}
+
+			&.alert-success {
+				background-color: @MVNerdsGreen;
+
+			}
+
+			&.alert-error {
+				background-color: @MVNerdsRed;
+			}
+		}
 		div.actions-bar {
+			margin: 10px 0 0 0;
+
+			h2 {
+				color: white;
+				float: left;
+				font-size: 1.1em;
+				line-height: 32px;
+				margin: 0;
+			}
 			&.active {
 				//.box-shadow(0 15px 8px 0 rgba(0,0,0,.7)); FIXME
 				left: 0;
@@ -332,6 +411,7 @@ div.body-container {
 					margin: 0;
 					padding: 0;
 					text-align: right;
+					text-align: left;
 
 					li.action:last-child {
 						margin-right: 8px;
@@ -543,10 +623,6 @@ div.body-container {
 									margin: 0;
 									padding: 0;
 									width: 167px;
-
-									&:hover {
-
-									}
 								}
 
 								i {
@@ -805,9 +881,9 @@ div.body-container {
 							margin-top: 15px;
 							opacity: .7;
 						}
-					}
-				}
-			}
-		}
-	}
+					} // Fin div.right-side
+				} // Fin div.preview
+			} // Fin li.champion
+		} // Fin div#champion-list
+	} // Fin div.champions-handler-container
 }
