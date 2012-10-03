@@ -44,7 +44,7 @@
 			<!--  OVERVIEW -->
 			<trans-unit id="3000">
 				<source>Overview.title</source>
-				<target>Who are we ?</target>
+				<target>About us</target>
 			</trans-unit>
 			<trans-unit id="3001">
 				<source>Overview.content.p1</source>
@@ -73,7 +73,7 @@
 			<trans-unit id="4001">
 				<source>Registration.content.p1</source>
 				<target>
-					Leaving your e-mail offers many advantages et zero inconvenience ! We won't bother you with spams and we won't communicate
+					Leaving your e-mail offers many advantages and zero inconvenience ! We won't bother you with spams and we won't communicate
 					your e-mail. Our goal is to keep you informed about the website development and especially to announce you it's official opening !
 				</target>
 			</trans-unit>
