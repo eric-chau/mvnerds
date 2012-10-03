@@ -1,6 +1,42 @@
 /**
  * @Author Eric Chau
  */
+// Déclaration de variable pour gérer la fixation de la barre en haut de page ou non
+var $win = $(window), 
+	$actionBar = $('div.actions-bar'),
+	actionBarTop = $actionBar.length && $actionBar.offset().top,
+	isFixed = 0,
+	$benchmarkChampion,
+	benchmarkChampionTop,
+	isBenchmarkChampionFixed;
+		
+function initBenchmark(){
+	$benchmarkChampion = $('div#compare-champion-div-header'),
+	benchmarkChampionTop = $benchmarkChampion.length && $benchmarkChampion.offset().top,
+	isBenchmarkChampionFixed = 0;
+	processScroll();
+}
+
+ //Fixation du subnav en fonction du scroll
+function processScroll()
+{
+	var scrollTop = $win.scrollTop();
+
+	if (scrollTop >= actionBarTop - 9.85 && !isFixed) {
+		isFixed = 1;
+		$actionBar.addClass('active');
+		$actionBar.parent('.champions-handler-container').addClass('active');
+		$benchmarkChampion.addClass('active');
+		$benchmarkChampion.parent('#champion-comparator').addClass('active');
+	} 
+	else if (scrollTop <= actionBarTop - 9.85 && isFixed) {
+		isFixed = 0;
+		$actionBar.removeClass('active');
+		$actionBar.parent('.champions-handler-container').removeClass('active');
+		$benchmarkChampion.removeClass('active');
+		$benchmarkChampion.parent('#champion-comparator').removeClass('active');
+	}
+}
 
 $(document).ready(function()
 {
@@ -44,16 +80,7 @@ $(document).ready(function()
 		$secondsDiv.html('<strong>' + seconds + '</strong> seconde' + (seconds >1? 's' : ''));
 
 		setTimeout(updateCountDown, 1000);
-	}
-
-	// Déclaration de variable pour gérer la fixation de la barre en haut de page ou non
-	var $win = $(window), 
-		$actionBar = $('div.actions-bar'),
-		actionBarTop = $actionBar.length && $actionBar.offset().top,
-		isFixed = 0,
-		$benchmarkChampion = $('div#compare-champion-div-header'),
-		benchmarkChampionTop = $benchmarkChampion.length && $benchmarkChampion.offset().top,
-		isBenchmarkChampionFixed = 0;
+	}	
 
 	$('div.presentation-container div.link').on('click', function()
 	{
@@ -220,30 +247,9 @@ $(document).ready(function()
 		saveItemInLS('display-' + $this.data('content-name'), $this.hasClass('no-margin'));
 	}	
  
+	initBenchmark();
+ 
 	processScroll();
  
 	 $win.on('scroll', processScroll);
-	 
-	 //Fixation du subnav en fonction du scroll
-	 function processScroll()
-	 {
-	  	var scrollTop = $win.scrollTop();
-		
-	  	if (scrollTop >= actionBarTop - 9.85 && !isFixed) {
-				isFixed = 1;
-				$actionBar.addClass('active');
-				$actionBar.parent('.champions-handler-container').addClass('active');
-				$benchmarkChampion.addClass('active');
-				$benchmarkChampion.parent('#champion-comparator').addClass('active');
-	  	} 
-	  	else if (scrollTop <= actionBarTop - 9.85 && isFixed) {
-				isFixed = 0;
-				$actionBar.removeClass('active');
-				$actionBar.parent('.champions-handler-container').removeClass('active');
-				$benchmarkChampion.removeClass('active');
-				$benchmarkChampion.parent('#champion-comparator').removeClass('active');
-	 	}
-
-	 	
-	}
 });

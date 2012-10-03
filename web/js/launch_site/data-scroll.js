@@ -26,6 +26,8 @@ jQuery(function(){
 			initTypeahead($isotope);
 			initFilterList($isotope);
 		}
+		
+		initBenchmark();
 	}
 	
 	//On affecte aux liens qui n'ont pas la classe disabled la fonction de scroll lors du clic
