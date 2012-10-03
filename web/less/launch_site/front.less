@@ -1,6 +1,10 @@
 @import '../bootstrap/mixins.less';
 @import '../mvnerds-variables.less';
 
+.force-hide {
+	display: none !important;
+}
+
 p {
 	color: #222;
 	font-family: 'Ubuntu', sans-serif;
@@ -604,7 +608,7 @@ div.body-container {
 
 			&.active {
 				background-color: black;
-				.box-shadow(0 15px 8px 0 rgba(0,0,0,.7));
+				//.box-shadow(0 15px 8px 0 rgba(0,0,0,.7)); FIXME
 				left: 50%;
 				margin-left: -512px;
 				padding: 10px;

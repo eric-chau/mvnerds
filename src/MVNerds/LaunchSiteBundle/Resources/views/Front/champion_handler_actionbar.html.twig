@@ -4,12 +4,17 @@
 	</h2>
 
 	<ul class="action-buttons">
-		
+		<li class="action {% if page != 'compare' %}force-hide{% endif %}" data-page-display="compare">
+			<a rel="previous" class="data-pagination" href="#" data-target="{{ path('launch_site_front') }}" data-page-display="champions">
+				<i class="icon-arrow-left icon-white"></i> <span class="action-label">Retourner à la liste</span>
+			</a>
+		</li>
+			
 		{# Récupération de la taille de la liste #}
 		{% set list_size = app.session.get('comparison_list')|length %}
-		
+
 		{# Bouton dropdown de la liste des champions sélectionnés pour la comparaison #}
-		<li class="action link dropdown" id="comparison-list-dropdown">
+		<li class="action link dropdown {% if page != 'champions' %}force-hide{% endif %}" id="comparison-list-dropdown" data-page-display="champions">
 			<a href="#" class="dropdown-toggle action-button-link" data-toggle="dropdown" id="drop-comparison-list" role="button">
 				<i class="icon-th-large icon-white"></i> 
 				<span class="action-label">Liste de comparaison</span>
@@ -22,7 +27,7 @@
 				{% for championSlug, champion in app.session.get('comparison_list') %}
 					{% include 'MVNerdsChampionHandlerBundle:Comparison:comparison_row.html.twig' with {'champion': champion}%}
 				{% endfor %}
-				
+
 				<li id="li-clean" class="clean {% if list_size < 1 %} disabled{% endif %}">
 					<a id="btn-clean" href="{{path('champion_handler_comparison_clean_comparison') }}" {% if list_size < 1 %}class="disabled"{%endif%}>
 						Vider la liste<i class="icon-trash"></i>
@@ -30,10 +35,10 @@
 				</li>
 			</ul>
 		</li>
-		
+
 		{# Bouton d'action qui permet de comparer la liste des champions sélectionnés #}
-		<li class="action red-button {% if list_size < 2 %} disabled{% endif %}">
-			<a id="btn-compare" class="data-pagination{% if list_size < 2 %} disabled{%endif%}" rel="next" href="#" data-target="{{path('launch_site_front_compare_champions') }}">
+		<li class="action red-button {% if list_size < 2 %} disabled{% endif %} {% if page != 'champions' %}force-hide{% endif %}" data-page-display="champions">
+			<a id="btn-compare" class="data-pagination{% if list_size < 2 %} disabled{%endif%}" rel="next" href="#" data-target="{{path('launch_site_front_compare_champions') }}" data-page-display="compare">
 				<i class="icon-random icon-white"></i> <span class="action-label">Comparer</span>
 			</a>
 		</li>
@@ -42,12 +47,12 @@
 		{% include 'MVNerdsChampionHandlerBundle:Comparison:filter_list.html.twig' %}
 
 		{# Champ input qui permet de filtrer / rechercher un champion selon son nom #}
-		<li class="action filter-action search-action">
+		<li class="action filter-action search-action {% if page != 'champions' %}force-hide{% endif %}" data-page-display="champions">
 			<i class="icon-search icon-white"></i> <input id="filter-value" type="text" class="input-mini" placeholder="Rechercher" data-provide="typeahead"/>
 		</li>
 
 		{# Bouton d'action qui permet de démarrer une visite guidée #}
-		<li class="action help-action">
+		<li class="action help-action {% if page != 'champions' %}force-hide{% endif %}" data-page-display="champions">
 			<i class="icon-question-sign icon-white"></i> <span class="action-label">Visite guidée</span>
 		</li>
 	</ul>

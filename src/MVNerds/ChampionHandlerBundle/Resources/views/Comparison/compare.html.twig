@@ -1,35 +1,50 @@
-<div class="data-scrollable" id="champion-comparator">
-	<div class="action-buttons">
-		<a rel="previous" href="#" data-target="{{ path('launch_site_front') }}" class=" data-pagination btn btn-large"><i class="icon-arrow-left"></i> <strong>Retourner à la liste</strong></a>
-	</div>
-	
-	<table class="compare-champion-table">
+<div class="data-scrollable" id="champion-comparator">	
+	<table class="compare-champion-table header">
 		<thead>
 			<tr>
-				<th>Points de vie</th>
-				<th>Régén. de PV</th>
-				<th>Points de mana</th>
-				<th>Régén. de mana</th>
-				<th>Armure</th>
-				<th>Résistance magique</th>
-				<th>Dégâts d'attaque</th>
-				<th>Vit. d'attaque</th>
-				<th>Portée d'attaque</th>
-				<th>Vit. de déplacement</th>
+				<th class="first-col">
+					<img src="{{ asset('/images/champion_handler/attribute_icon/champion.jpg') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Champion" />
+				</th>
+				<th>
+					<img src="{{ asset('/images/champion_handler/attribute_icon/health.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Points de vie (PV)" />
+				</th>
+				<th>
+					<img src="{{ asset('/images/champion_handler/attribute_icon/health_regen.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Régen. de PV/5 sec" />
+				</th>
+				<th>
+					<img src="{{ asset('/images/champion_handler/attribute_icon/mana.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Mana" />
+				</th>
+				<th>
+					<img src="{{ asset('/images/champion_handler/attribute_icon/mana_regen.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Régen. de mana/5 sec" />
+				</th>
+				<th>
+					<img src="{{ asset('/images/champion_handler/attribute_icon/armor.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Armure" />
+				</th>
+				<th>
+					<img src="{{ asset('/images/champion_handler/attribute_icon/magic_resist.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Résistance magique" />
+				</th>
+				<th>
+					<img src="{{ asset('/images/champion_handler/attribute_icon/damage.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Dégât" />
+				</th>
+				<th>
+					<img src="{{ asset('/images/champion_handler/attribute_icon/attack_speed.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Vitesse d'attaque" />
+				</th>
+				<th>
+					<img src="{{ asset('/images/champion_handler/attribute_icon/attack_range.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Portée d'attaque" />
+				</th>
+				<th>
+					<img src="{{ asset('/images/champion_handler/attribute_icon/move_speed.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Vitesse de déplacement" />
+				</th>
 			</tr>
-			<tr>
-				<td>{{ reference_champion.getBaseHealth() }}</td>
-				<td>{{ reference_champion.getBaseHealthRegen() }}</td>
-				<td>{{ reference_champion.getBaseMana() }}</td>
-				<td>{{ reference_champion.getBaseManaRegen() }}</td>
-				<td>{{ reference_champion.getBaseArmor() }}</td>
-				<td>{{ reference_champion.getBaseMagicResist() }}</td>
-				<td>{{ reference_champion.getBaseDamage() }}</td>
-				<td>{{ reference_champion.getBaseAttackSpeed() }}</td>
-				<td>{{ reference_champion.getAttackRange() }}</td>
-				<td>{{ reference_champion.getMoveSpeed() }}</td>
-			</tr>
+			
+			{% include 'MVNerdsChampionHandlerBundle:Comparison:benchmark_champion_row.html.twig' with {'reference_champion': reference_champion} %}
 		</thead>
+	</table>
+		
+	<table class="compare-champion-table body">
+		<tbody>
+			{% include 'MVNerdsChampionHandlerBundle:Comparison:champion_list.html.twig' with {'reference_champion': reference_champion,'comparison_list': app.session.get('comparison_list')} %}
+		</tbody>
 	</table>	
 		
 	{#	

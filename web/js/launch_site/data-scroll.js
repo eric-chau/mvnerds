@@ -4,11 +4,20 @@
 */
 jQuery(function(){
 	
-	var container = $('#champion-comparison');	
+	var container = $('#champion-comparison'),
+		liToShow = [],
+		liToShowCount = 0;	
 	
 	function loadData(data){
 		//On remplace le contenu
 		container.html(data);
+
+		for (i = 0; i < liToShowCount; i++) {
+			liToShow[i].removeClass('force-hide');
+		}
+
+		liToShow = [];
+		liToShowCount = 0;
 
 		var $isotope = $('#isotope-list');
 
@@ -20,8 +29,19 @@ jQuery(function(){
 	}
 	
 	//On affecte aux liens qui n'ont pas la classe disabled la fonction de scroll lors du clic
-	 $('#wrapper').on('click', '.data-pagination:not(.disabled)', function(){
-		
+	 $('#wrapper').on('click', '.data-pagination:not(.disabled)', function() {
+		var $this = $(this);
+		// On cache les liens selon la page sur laquelle l'utilisateur se rend
+		$('div.actions-bar ul.action-buttons li.action').each(function()
+		{
+			if ($(this).data('page-display') == $this.data('page-display')) {
+				liToShow[liToShowCount++] = $(this);
+			}
+			else {
+				$(this).addClass('force-hide');
+			}
+		});
+
 		//On récupère le lien
 		var href = $(this).attr('data-target');
 		//Si le lien a l attribut rel et que c est next on coulisse vers la gauche sinon a droite
@@ -55,7 +75,7 @@ jQuery(function(){
 	
 	var initialPath = location.pathname;
     	
-	$(window).bind('popstate', function(){
+	$(window).bind('popstate', function() {
 		if (location.pathname == initialPath) {
 			initialPath = null;
 			return;

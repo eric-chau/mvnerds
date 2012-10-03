@@ -25,6 +25,9 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+.force-hide {
+  display: none !important;
+}
 p {
   color: #222;
   font-family: 'Ubuntu', sans-serif;
@@ -591,9 +594,6 @@ div.body-container div.champions-handler-container div.actions-bar ul.action-but
 }
 div.body-container div.champions-handler-container div.actions-bar.active {
   background-color: black;
-  -webkit-box-shadow: 0 15px 8px 0 rgba(0, 0, 0, 0.7);
-  -moz-box-shadow: 0 15px 8px 0 rgba(0, 0, 0, 0.7);
-  box-shadow: 0 15px 8px 0 rgba(0, 0, 0, 0.7);
   left: 50%;
   margin-left: -512px;
   padding: 10px;
