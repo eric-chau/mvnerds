@@ -340,11 +340,36 @@ div.body-container {
 
 	div.champions-handler-container {
 		background: black url('/images/launch_site/champion_handler_bg.png') no-repeat bottom center;
-		//.border-radius(4px);
 		margin: 10px 0;
 		min-height: 700px;
 		padding: 10px;
 
+		div.alert {
+			border: 1px solid rgba(255,255,255,0.5);
+			.border-radius(0);
+			color: white;
+			font-family: 'Ubuntu', sans-serif;
+			font-size: 14px;
+			opacity: 0.8;
+			text-shadow: none;
+
+			&.alert-fixed {
+				bottom: 10px;
+				position: fixed;
+				right: 10px;
+				width: 300px;
+				z-index: 1100;
+			}
+
+			&.alert-success {
+				background-color: @MVNerdsGreen;
+
+			}
+
+			&.alert-error {
+				background-color: @MVNerdsRed;
+			}
+		}
 		div.actions-bar {
 			margin: 10px 0 0 0;
 
@@ -840,9 +865,9 @@ div.body-container {
 							margin-top: 15px;
 							opacity: .7;
 						}
-					}
-				}
-			}
-		}
-	}
+					} // Fin div.right-side
+				} // Fin div.preview
+			} // Fin li.champion
+		} // Fin div#champion-list
+	} // Fin div.champions-handler-container
 }
