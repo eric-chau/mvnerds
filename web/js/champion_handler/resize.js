@@ -17,16 +17,38 @@ function initIsotope($isotope){
 	});
 	
 	//Lors du clic sur un champion miniature
-	$isotope.on('click', 'li.champion:not(.champion-maxi)', function(){
-		return maximizeChampion($(this), $isotope);
+	var timeout, dblClic = false, that;
+	$isotope.on('click', 'li.champion:not(.champion-maxi)', function(e){console.log('click');
+		that = this;
+		
+		if(!$(that).hasClass('animating')){
+			e.preventDefault();
+			timeout = setTimeout(function() {
+				if (!dblClic){
+					timeout = null;
+					maximizeChampion($(that), $isotope);
+				}
+				else {
+					dblClic = false;
+				}
+			}, 200);
+		}
+	}).on('dblclick', function(){
+		if(!$(that).hasClass('champion-maxi') && !$(that).hasClass('animating')){
+			clearTimeout(timeout);
+			timeout = null;
+			dblClic = true;
+			addChampionToList($(that).attr('id'));
+		}
 	});
-	//Lors du clic sur un champion maximisé
-	$isotope.on('click', 'li.champion-maxi', function(){
-		return minimizeChampion($(this), $isotope);
+	//Lors du clic sur le bouton close d un champion maximisé
+	$isotope.on('click', 'li.champion-maxi button.close', function(){
+		return minimizeChampion($('#'+$(this).attr('data-dissmiss')), $isotope);
 	});
 }
 	
 function maximizeChampion($champ, $isotope){
+	$champ.addClass('animating');
 	
 	//Si on trouve un autre champion déjà maximisé on le referme
 	var $maxiChampion = $isotope.find('li.champion-maxi');
@@ -42,6 +64,7 @@ function maximizeChampion($champ, $isotope){
 		$isotope.isotope( 'reLayout', function(){
 			setTimeout(function(){
 				scrollToChampion($('#'+$champ.attr('id')))
+				$champ.removeClass('animating');
 				},
 				100
 			);
@@ -53,15 +76,18 @@ function maximizeChampion($champ, $isotope){
 }
 
 function minimizeChampion($champ, $isotope){
+	$champ.addClass('animating');
 	$champ.find('div.preview').fadeOut(150);
 	setTimeout(function() 
 	{
 		$champ.find('div.portrait').fadeIn(300);
+		
 		$champ.toggleClass('champion-portrait champion-maxi');
 		setTimeout(function() 
 		{
 			$isotope.isotope( 'reLayout');
 			$champ.removeClass('champion-portrait');
+			$champ.removeClass('animating');
 		},
 		320);
 	},

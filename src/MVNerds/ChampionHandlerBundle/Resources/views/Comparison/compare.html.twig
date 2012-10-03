@@ -1,46 +1,47 @@
 <div class="data-scrollable" id="champion-comparator">	
-	<table class="compare-champion-table header">
-		<thead>
-			<tr>
-				<th class="first-col">
-					<img src="{{ asset('/images/champion_handler/attribute_icon/champion.jpg') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Champion" />
-				</th>
-				<th>
-					<img src="{{ asset('/images/champion_handler/attribute_icon/health.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Points de vie (PV)" />
-				</th>
-				<th>
-					<img src="{{ asset('/images/champion_handler/attribute_icon/health_regen.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Régen. de PV/5 sec" />
-				</th>
-				<th>
-					<img src="{{ asset('/images/champion_handler/attribute_icon/mana.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Mana" />
-				</th>
-				<th>
-					<img src="{{ asset('/images/champion_handler/attribute_icon/mana_regen.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Régen. de mana/5 sec" />
-				</th>
-				<th>
-					<img src="{{ asset('/images/champion_handler/attribute_icon/armor.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Armure" />
-				</th>
-				<th>
-					<img src="{{ asset('/images/champion_handler/attribute_icon/magic_resist.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Résistance magique" />
-				</th>
-				<th>
-					<img src="{{ asset('/images/champion_handler/attribute_icon/damage.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Dégât" />
-				</th>
-				<th>
-					<img src="{{ asset('/images/champion_handler/attribute_icon/attack_speed.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Vitesse d'attaque" />
-				</th>
-				<th>
-					<img src="{{ asset('/images/champion_handler/attribute_icon/attack_range.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Portée d'attaque" />
-				</th>
-				<th>
-					<img src="{{ asset('/images/champion_handler/attribute_icon/move_speed.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Vitesse de déplacement" />
-				</th>
-			</tr>
-			
-			{% include 'MVNerdsChampionHandlerBundle:Comparison:benchmark_champion_row.html.twig' with {'reference_champion': reference_champion} %}
-		</thead>
-	</table>
-		
+	<div id="compare-champion-div-header">
+		<table class="compare-champion-table header">
+			<thead>
+				<tr>
+					<th class="first-col">
+						<img src="{{ asset('/images/champion_handler/attribute_icon/champion.jpg') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="Champion" />
+					</th>
+					<th>
+						<img src="{{ asset('/images/champion_handler/attribute_icon/health.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="{{'Champion_preview.stat.health'|trans}}" />
+					</th>
+					<th>
+						<img src="{{ asset('/images/champion_handler/attribute_icon/health_regen.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="{{'Champion_preview.stat.health_regen'|trans}}" />
+					</th>
+					<th>
+						<img src="{{ asset('/images/champion_handler/attribute_icon/mana.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="{{'Champion_preview.stat.mana'|trans}}" />
+					</th>
+					<th>
+						<img src="{{ asset('/images/champion_handler/attribute_icon/mana_regen.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="{{'Champion_preview.stat.mana_regen'|trans}}" />
+					</th>
+					<th>
+						<img src="{{ asset('/images/champion_handler/attribute_icon/armor.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="{{'Champion_preview.stat.armor'|trans}}" />
+					</th>
+					<th>
+						<img src="{{ asset('/images/champion_handler/attribute_icon/magic_resist.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="{{'Champion_preview.stat.magic_resist'|trans}}" />
+					</th>
+					<th>
+						<img src="{{ asset('/images/champion_handler/attribute_icon/damage.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="{{'Champion_preview.stat.damage'|trans}}" />
+					</th>
+					<th>
+						<img src="{{ asset('/images/champion_handler/attribute_icon/attack_speed.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="{{'Champion_preview.stat.attack_speed'|trans}}" />
+					</th>
+					<th>
+						<img src="{{ asset('/images/champion_handler/attribute_icon/attack_range.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="{{'Champion_preview.stat.range'|trans}}" />
+					</th>
+					<th>
+						<img src="{{ asset('/images/champion_handler/attribute_icon/move_speed.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="{{'Champion_preview.stat.movement_speed'|trans}}" />
+					</th>
+				</tr>
+
+				{% include 'MVNerdsChampionHandlerBundle:Comparison:benchmark_champion_row.html.twig' with {'reference_champion': reference_champion} %}
+			</thead>
+		</table>
+	</div>
 	<table class="compare-champion-table body">
 		<tbody>
 			{% include 'MVNerdsChampionHandlerBundle:Comparison:champion_list.html.twig' with {'reference_champion': reference_champion,'comparison_list': app.session.get('comparison_list')} %}

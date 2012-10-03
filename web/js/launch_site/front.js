@@ -51,7 +51,7 @@ $(document).ready(function()
 		$actionBar = $('div.actions-bar'),
 		actionBarTop = $actionBar.length && $actionBar.offset().top,
 		isFixed = 0,
-		$benchmarkChampion = $('table.compare-champion-table.header'),
+		$benchmarkChampion = $('div#compare-champion-div-header'),
 		benchmarkChampionTop = $benchmarkChampion.length && $benchmarkChampion.offset().top,
 		isBenchmarkChampionFixed = 0;
 
@@ -228,22 +228,20 @@ $(document).ready(function()
 	 function processScroll()
 	 {
 	  	var scrollTop = $win.scrollTop();
+		
 	  	if (scrollTop >= actionBarTop - 9.85 && !isFixed) {
-	    	isFixed = 1;
-	    	$actionBar.addClass('active');
+				isFixed = 1;
+				$actionBar.addClass('active');
+				$benchmarkChampion.addClass('active');
+				$benchmarkChampion.parent('#champion-comparator').addClass('active');
 	  	} 
 	  	else if (scrollTop <= actionBarTop - 9.85 && isFixed) {
-	    	isFixed = 0;
-	    	$actionBar.removeClass('active');
+				isFixed = 0;
+				$actionBar.removeClass('active');
+				$benchmarkChampion.removeClass('active');
+				$benchmarkChampion.parent('#champion-comparator').removeClass('active');
 	 	}
 
-	 	if (scrollTop >= benchmarkChampionTop - 9.85 && !isBenchmarkChampionFixed) {
-	    	isBenchmarkChampionFixed = 1;
-	    	$benchmarkChampion.addClass('active');
-	  	} 
-	  	else if (scrollTop <= benchmarkChampionTop - 9.85 && isBenchmarkChampionFixed) {
-	    	isBenchmarkChampionFixed = 0;
-	    	$benchmarkChampion.removeClass('active');
-	 	}
+	 	
 	}
 });

@@ -39,6 +39,7 @@ class FrontController extends Controller
 	/**
 	 * Permet de rediriger vers l action de comparaison
 	 * 
+	 * @Route("/{_locale}/comparer-champions", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"})
 	 * @Route("/comparer-champions", name="launch_site_front_compare_champions", options={"expose"=true})
 	 */
 	public function compareChampionsAction()

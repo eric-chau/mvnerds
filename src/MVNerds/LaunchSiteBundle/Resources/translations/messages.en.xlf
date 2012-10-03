@@ -207,6 +207,12 @@
 				<source>Champion_preview.stat.indication.part2</source>
 				<target>'s at level 1</target>
 			</trans-unit>
+
+			<!--  CHAMPION PREVIEW -->
+			<trans-unit id="7000">
+				<source>Champion_comparison.back_to_list</source>
+				<target>Back to list</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
