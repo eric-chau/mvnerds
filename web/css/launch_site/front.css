@@ -653,11 +653,11 @@ div.body-container div.champions-handler-container div.actions-bar div#actions-b
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action ul#filters-list {
   background-color: rgba(0, 0, 0, 0.8);
   border: 1px solid #19a0df;
-  margin-left: -571px;
+  margin-left: -658px;
   text-align: left;
   width: 1014px;
 }
-div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action ul#filters-list div.row-filters {
+div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action ul#filters-list div.row-filters div.span6 {
   padding: 5px 20px;
 }
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action ul#filters-list li.list-header {
