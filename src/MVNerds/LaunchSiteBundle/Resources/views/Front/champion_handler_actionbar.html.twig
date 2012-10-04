@@ -16,7 +16,7 @@
 			<li class="action link dropdown {% if page != 'champions' %}force-hide{% endif %}" id="comparison-list-dropdown" data-page-display="champions">
 				<a href="#" class="dropdown-toggle action-button-link" data-toggle="dropdown" id="drop-comparison-list" role="button">
 					<i class="icon-th-large icon-white"></i> 
-					<span class="action-label">{{'Actionsbar.Comparison_list.title'|trans}}</span>
+					<span class="action-label">{{'Actionsbar.Comparison_list.title'|trans}}<i id="comparison-list-size">&nbsp;({{list_size}})</i></span>
 				</a>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="drop-comparison-list" id="comparison-list">
 					<li class="list-header"><img class="loader"  id="comparison-list-loading" src="{{ asset('images/commons/loader2.gif') }}"/> {{'Actionsbar.Comparison_list.Dropdown.title'|trans}}</li>

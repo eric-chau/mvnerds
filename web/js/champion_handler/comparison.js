@@ -1,4 +1,5 @@
 var $comparisonListLoading = $('#comparison-list-loading');
+var nbComparedChampions = 0;
 
 function addChampionToList(slug){
 	hideMessages();
@@ -42,13 +43,66 @@ function addChampionToList(slug){
 	}).fail(function(){
 		$comparisonListLoading.hide();
 	});
-};
-	
+}
+
 //Permet d'ajouter un champion au format html à la liste de comparaison
 function appendChampion(data)
 {		
 	//On ajoute le champion à la liste
 	$(data).insertBefore('li#li-clean');
+	nbComparedChampions++;
+	if (nbComparedChampions > 15){
+		$('#comparison-list').addClass('scrollable');
+	}
+	setNbComparedChampionsLabel(nbComparedChampions);
+}
+
+function removeChampionFromComparisonList(slug)
+{
+	//On retire le champion et son tooltip
+	$('ul#comparison-list li#comparable-'+slug+' a').tooltip('destroy')
+	$('ul#comparison-list li#comparable-'+slug).remove();
+	//On vérifie la taille de la liste
+	if( nbComparedChampions < 1){
+		//On désactive les deux boutons
+		deactivateCleanButton();
+		deactivateCompareButton();
+		//On affiche l indication
+		$('ul#comparison-list li.indication').show();
+	}
+	else if(nbComparedChampions < 2){
+		deactivateCompareButton();
+	}
+	else if (nbComparedChampions <= 16){
+		$('#comparison-list').removeClass('scrollable');
+	}
+	nbComparedChampions--;
+	setNbComparedChampionsLabel(nbComparedChampions);
+	//Et on affiche le message de succes
+	getAlertMessage(SUCCESS_ALERT);
+}
+
+function cleanComparisonList()
+{
+	//On retire tous les champions
+	$('ul#comparison-list li.champion-comparable').each(function(){
+		$(this).remove();
+	});
+	//On affiche l indication
+	$('ul#comparison-list li.indication').show();
+	//On affiche le message de succes
+	getAlertMessage(SUCCESS_ALERT);
+
+	//On désactive les deux boutons
+	deactivateCleanButton();
+	deactivateCompareButton();
+	$('#comparison-list').removeClass('scrollable');
+	nbComparedChampions = 0;
+	setNbComparedChampionsLabel(nbComparedChampions);
+}
+function setNbComparedChampionsLabel(value)
+{
+	$('#comparison-list-size').html(' ('+value+')');
 }
 
 //permet d activer le bouton de comparaison de champions
@@ -78,6 +132,13 @@ function deactivateCompareButton()
 
 
 jQuery(function($) {
+	
+	nbComparedChampions = $('#comparison-list li.champion-comparable').size();
+	
+	if (nbComparedChampions > 15){
+		$('#comparison-list').addClass('scrollable');
+	}
+	
 	//On active les tooltips
 	$('#wrapper').on('mouseover', '.tooltip-anchor', function(){
 		$(this).tooltip('show');
@@ -104,18 +165,7 @@ jQuery(function($) {
 		}).done(function(data){
 			//Si data vaut true
 			if(data[0]){
-				//On retire tous les champions
-				$('ul#comparison-list li.champion-comparable').each(function(){
-					$(this).remove();
-				});
-				//On affiche l indication
-				$('ul#comparison-list li.indication').show();
-				//On affiche le message de succes
-				getAlertMessage(SUCCESS_ALERT);
-				
-				//On désactive les deux boutons
-				deactivateCleanButton();
-				deactivateCompareButton();
+				cleanComparisonList();
 			}
 			$comparisonListLoading.hide();
 		}).fail(function(){
@@ -178,23 +228,7 @@ jQuery(function($) {
 		}).done(function(data){
 			//Si data vaut true
 			if(data[0]){
-				//On retire le champion et son tooltip
-				$('ul#comparison-list li#comparable-'+slug+' a').tooltip('destroy')
-				$('ul#comparison-list li#comparable-'+slug).remove();
-				//On vérifie la taille de la liste
-				var listSize = $('ul#comparison-list li.champion-comparable').size();
-				if( listSize < 1){
-					//On désactive les deux boutons
-					deactivateCleanButton();
-					deactivateCompareButton();
-					//On affiche l indication
-					$('ul#comparison-list li.indication').show();
-				}
-				else if(listSize < 2){
-					deactivateCompareButton();
-				}
-				//Et on affiche le message de succes
-				getAlertMessage(SUCCESS_ALERT);
+				removeChampionFromComparisonList(slug);
 			}
 			$comparisonListLoading.hide();
 		}).fail(function(data){

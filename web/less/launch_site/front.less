@@ -563,13 +563,21 @@ div.body-container {
 
 						}
 
+						i#comparison-list-size{
+							font-size: 13px;
+							color: #aaa;
+						}
+
 						ul#comparison-list {
 							background-color: rgba(0,0,0,0.8);
 							border: 1px solid @MVNerdsBlue !important;
 							width: 250px;
-							max-height: 500px;
-							overflow-x: hidden;
-							overflow-y: auto;
+							max-height: 550px;
+							
+							&.scrollable{
+								overflow-x: hidden;
+								overflow-y: auto;
+							}
 
 							li {
 								text-align: center;
@@ -785,6 +793,7 @@ div.body-container {
 			ul {
 				margin: 20px 0;
 				padding: 0;
+				min-height: 700px;
 			}
 
 			li.champion {
