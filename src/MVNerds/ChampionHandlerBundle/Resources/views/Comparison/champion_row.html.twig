@@ -1,100 +1,363 @@
 {% if champion.getId() != reference_champion.getId() %}
-	<tr>
-		<td>
-			<img src="{{ asset('/images/champions/square/' ~ champion.getSlug() ~ '.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="{{ champion.getName() }}" />
-		</td>
+	<div class="row-fluid champion-row">
+		<div class="span1 no-margin">
+			<p><img src="{{ asset('/images/champions/square/' ~ champion.getSlug() ~ '.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="<span class='tooltip-stat'>{{ champion.getName() }}</span>" /></p>
+		</div>
+			
+		{# PV #}
 		{% set diff = champion.getBaseHealth() - reference_champion.getBaseHealth() %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
-		<td>
-			<span class="diff {% if diff > 0 %}plus{% else %}minus{% endif %}">{{ diff }}</span>
-			<span class="own">{{ champion.getBaseHealth() }}</span>
-		</td>
-
+		{% if diff >= 0 %}
+			{% set diff = '+' ~ diff %}
+		{% endif %}
+		{% set ten_percent_level = reference_champion.getBaseHealth() * 0.1 %}
+		{% set one_percent_level = reference_champion.getBaseHealth() * 0.01 %}
+		<div class="span1 tooltip-anchor" 
+			 rel="tooltip" 
+			 data-placement="bottom" 
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.health'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			<p>
+				<span class="own">{{ champion.getBaseHealth() }}</span>
+				<span class="diff 
+					{% if diff > 0 and diff > one_percent_level %}
+						{% if diff <= ten_percent_level %}
+							minor-plus
+						{% else %}
+							plus
+						{% endif %}
+					{% elseif diff < 0 and diff < (one_percent_level * -1) %}
+						{% if diff >= (ten_percent_level * -1) %}
+							minor-minus
+						{% else %}
+							minus
+						{% endif %}
+					{% endif %}
+				">{{ diff }}</span>				
+			</p>
+		</div>
+			
+		{# Régen. PV/5 sec #}
 		{% set diff = champion.getBaseHealthRegen() * 5 - reference_champion.getBaseHealthRegen() * 5 %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
-		<td>
-			<span class="diff {% if diff > 0 %}plus{% else %}minus{% endif %}">{{ diff }}</span>
-			<span class="own">{{ champion.getBaseHealthRegen() * 5 }}</span>
-		</td>
-
+		{% if diff >= 0 %}
+			{% set diff = '+' ~ diff %}
+		{% endif %}
+		{% set ten_percent_level = reference_champion.getBaseHealthRegen() * 5 * 0.1 %}
+		{% set one_percent_level = reference_champion.getBaseHealthRegen() * 5 * 0.01 %}
+		<div class="span1 tooltip-anchor" 
+			 rel="tooltip" 
+			 data-placement="bottom" 
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.health_regen'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			<p>
+				<span class="own">{{ champion.getBaseHealthRegen() * 5 }}</span>
+				<span class="diff 
+					{% if diff > 0 and diff > one_percent_level %}
+						{% if diff <= ten_percent_level %}
+							minor-plus
+						{% else %}
+							plus
+						{% endif %}
+					{% elseif diff < 0 and diff < (one_percent_level * -1) %}
+						{% if diff >= (ten_percent_level * -1) %}
+							minor-minus
+						{% else %}
+							minus
+						{% endif %}
+					{% endif %}
+				">{{ diff }}</span>
+			</p>
+		</div>
+			
+		{# Mana #}
 		{% set diff = champion.getBaseMana() - reference_champion.getBaseMana() %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
-		<td>
-			<span class="diff {% if diff > 0 %}plus{% else %}minus{% endif %}">{{ diff }}</span>
-			<span class="own">{{ champion.getBaseMana() }}</span>
-		</td>
-
+		{% if diff >= 0 %}
+			{% set diff = '+' ~ diff %}
+		{% endif %}
+		{% set ten_percent_level = reference_champion.getBaseMana() * 0.1 %}
+		{% set one_percent_level = reference_champion.getBaseMana() * 0.01 %}
+		<div class="span1 tooltip-anchor" 
+			 rel="tooltip" 
+			 data-placement="bottom" 
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.mana'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			<p>
+				<span class="own">{{ champion.getBaseMana() }}</span>
+				<span class="diff 
+					{% if diff > 0 and diff > one_percent_level %}
+						{% if diff <= ten_percent_level %}
+							minor-plus
+						{% else %}
+							plus
+						{% endif %}
+					{% elseif diff < 0 and diff < (one_percent_level * -1) %}
+						{% if diff >= (ten_percent_level * -1) %}
+							minor-minus
+						{% else %}
+							minus
+						{% endif %}
+					{% endif %}
+				">{{ diff }}</span>
+			</p>
+		</div>
+			
+		{# Régen. mana/5sec #}
 		{% set diff = champion.getBaseManaRegen() * 5 - reference_champion.getBaseManaRegen() * 5 %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
-		<td>
-			<span class="diff {% if diff > 0 %}plus{% else %}minus{% endif %}">{{ diff }}</span>
-			<span class="own">{{ champion.getBaseManaRegen() * 5 }}</span>
-		</td>
-
+		{% if diff >= 0 %}
+			{% set diff = '+' ~ diff %}
+		{% endif %}
+		{% set ten_percent_level = reference_champion.getBaseManaRegen() * 5 * 0.1 %}
+		{% set one_percent_level = reference_champion.getBaseManaRegen() * 5 * 0.01 %}
+		<div class="span1 tooltip-anchor" 
+			 rel="tooltip" 
+			 data-placement="bottom" 
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.mana_regen'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			<p>
+				<span class="own">{{ champion.getBaseManaRegen() * 5 }}</span>
+				<span class="diff 
+					{% if diff > 0 and diff > one_percent_level %}
+						{% if diff <= ten_percent_level %}
+							minor-plus
+						{% else %}
+							plus
+						{% endif %}
+					{% elseif diff < 0 and diff < (one_percent_level * -1) %}
+						{% if diff >= (ten_percent_level * -1) %}
+							minor-minus
+						{% else %}
+							minus
+						{% endif %}
+					{% endif %}
+				">{{ diff }}</span>
+			</p>
+		</div>
+			
+		{# Armure #}
 		{% set diff = champion.getBaseArmor() - reference_champion.getBaseArmor() %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
-		<td>
-			<span class="diff {% if diff > 0 %}plus{% else %}minus{% endif %}">{{ diff }}</span>
-			<span class="own">{{ champion.getBaseArmor() }}</span>
-		</td>
-
+		{% if diff >= 0 %}
+			{% set diff = '+' ~ diff %}
+		{% endif %}
+		{% set ten_percent_level = reference_champion.getBaseArmor() * 0.05 %}
+		{% set one_percent_level = reference_champion.getBaseArmor() * 0.01 %}
+		<div class="span1 tooltip-anchor" 
+			 rel="tooltip" 
+			 data-placement="bottom" 
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.armor'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			<p>
+				<span class="own">{{ champion.getBaseArmor() }}</span>
+				<span class="diff 
+					{% if diff > 0 and diff > one_percent_level %}
+						{% if diff <= ten_percent_level %}
+							minor-plus
+						{% else %}
+							plus
+						{% endif %}
+					{% elseif diff < 0 and diff < (one_percent_level * -1) %}
+						{% if diff >= (ten_percent_level * -1) %}
+							minor-minus
+						{% else %}
+							minus
+						{% endif %}
+					{% endif %}
+				">{{ diff }}</span>
+			</p>
+		</div>
+			
+		{# Résistance magique #}
 		{% set diff = champion.getBaseMagicResist() - reference_champion.getBaseMagicResist() %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
-		<td>
-			<span class="diff {% if diff > 0 %}plus{% else %}minus{% endif %}">{{ diff }}</span>
-			<span class="own">{{ champion.getBaseMagicResist() }}</span>
-		</td>
-
+		{% if diff >= 0 %}
+			{% set diff = '+' ~ diff %}
+		{% endif %}
+		{% set ten_percent_level = reference_champion.getBaseMagicResist() * 0.05 %}
+		{% set one_percent_level = reference_champion.getBaseMagicResist() * 0.01 %}
+		<div class="span1 tooltip-anchor" 
+			 rel="tooltip" 
+			 data-placement="bottom" 
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.magic_resist'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			<p>
+				<span class="own">{{ champion.getBaseMagicResist() }}</span>
+				<span class="diff 
+					{% if diff > 0 and diff > one_percent_level %}
+						{% if diff <= ten_percent_level %}
+							minor-plus
+						{% else %}
+							plus
+						{% endif %}
+					{% elseif diff < 0 and diff < (one_percent_level * -1) %}
+						{% if diff >= (ten_percent_level * -1) %}
+							minor-minus
+						{% else %}
+							minus
+						{% endif %}
+					{% endif %}
+				">{{ diff }}</span>
+			</p>
+		</div>
+		
+		{# Dégât #}
 		{% set diff = champion.getBaseDamage() - reference_champion.getBaseDamage() %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
-		<td>
-			<span class="diff {% if diff > 0 %}plus{% else %}minus{% endif %}">{{ diff }}</span>
-			<span class="own">{{ champion.getBaseDamage() }}</span>
-		</td>
-
+		{% if diff >= 0 %}
+			{% set diff = '+' ~ diff %}
+		{% endif %}
+		{% set ten_percent_level = reference_champion.getBaseDamage() * 0.1 %}
+		{% set one_percent_level = reference_champion.getBaseDamage() * 0.01 %}
+		<div class="span1 tooltip-anchor" 
+			 rel="tooltip" 
+			 data-placement="bottom" 
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.damage'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			<p>
+				<span class="own">{{ champion.getBaseDamage() }}</span>
+				<span class="diff 
+					{% if diff > 0 and diff > one_percent_level %}
+						{% if diff <= ten_percent_level %}
+							minor-plus
+						{% else %}
+							plus
+						{% endif %}
+					{% elseif diff < 0 and diff < (one_percent_level * -1) %}
+						{% if diff >= (ten_percent_level * -1) %}
+							minor-minus
+						{% else %}
+							minus
+						{% endif %}
+					{% endif %}
+				">{{ diff }}</span>
+			</p>
+		</div>
+			
+		{# Vit. d'attaque #}
 		{% set diff = champion.getBaseAttackSpeed() - reference_champion.getBaseAttackSpeed() %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
-		<td>
-			<span class="diff {% if diff > 0 %}plus{% else %}minus{% endif %}">{{ diff }}</span>
-			<span class="own">{{ champion.getBaseAttackSpeed() }}</span>
-		</td>
-
+		{% if diff >= 0 %}
+			{% set diff = '+' ~ diff %}
+		{% endif %}
+		{% set ten_percent_level = reference_champion.getBaseAttackSpeed() * 0.05 %}
+		{% set one_percent_level = reference_champion.getBaseAttackSpeed() * 0.01 %}
+		<div class="span1 tooltip-anchor" 
+			 rel="tooltip" 
+			 data-placement="bottom" 
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.attack_speed'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			<p>
+				<span class="own">{{ champion.getBaseAttackSpeed() }}</span>
+				<span class="diff 
+					{% if diff > 0 and diff > one_percent_level %}
+						{% if diff <= ten_percent_level %}
+							minor-plus
+						{% else %}
+							plus
+						{% endif %}
+					{% elseif diff < 0 and diff < (one_percent_level * -1) %}
+						{% if diff >= (ten_percent_level * -1) %}
+							minor-minus
+						{% else %}
+							minus
+						{% endif %}
+					{% endif %}
+				">{{ diff }}</span>
+			</p>
+		</div>
+			
+		{# Portée d'attaque #}
 		{% set diff = champion.getAttackRange() - reference_champion.getAttackRange() %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
-		<td>
-			<span class="diff {% if diff > 0 %}plus{% else %}minus{% endif %}">{{ diff }}</span>
-			<span class="own">{{ champion.getAttackRange() }}</span>
-		</td>
-
+		{% if diff >= 0 %}
+			{% set diff = '+' ~ diff %}
+		{% endif %}
+		{% set ten_percent_level = reference_champion.getAttackRange() * 0.1 %}
+		{% set one_percent_level = reference_champion.getAttackRange() * 0.01 %}
+		<div class="span1 tooltip-anchor" 
+			 rel="tooltip" 
+			 data-placement="bottom" 
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.range'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			<p>
+				<span class="own">{{ champion.getAttackRange() }}</span>
+				<span class="diff 
+					{% if diff > 0 and diff > one_percent_level %}
+						{% if diff <= ten_percent_level %}
+							minor-plus
+						{% else %}
+							plus
+						{% endif %}
+					{% elseif diff < 0 and diff < (one_percent_level * -1) %}
+						{% if diff >= (ten_percent_level * -1) %}
+							minor-minus
+						{% else %}
+							minus
+						{% endif %}
+					{% endif %}
+				">{{ diff }}</span>
+			</p>
+		</div>
+			
+		{# Vit. déplacement #}
 		{% set diff = champion.getMoveSpeed() - reference_champion.getMoveSpeed() %}
 		{% if diff|length > 9 %}
 			{% set diff = diff|number_format(3) %}
 		{% endif %}
-		<td>
-			<span class="diff {% if diff > 0 %}plus{% else %}minus{% endif %}">{{ diff }}</span>
-			<span class="own">{{ champion.getMoveSpeed() }}</span>
-		</td>
-		<td>
-			<a href="{{path('champion_handler_comparison_set_reference_champion', {'slug': champion.getSlug()})}}" class="champion-comparison-action set-champion-reference-link" title="{{'Champion_comparison.actions.set_reference'|trans}}"><i class="icon-star-empty icon-white"></i></a>
-			<a href="{{path('champion_handler_comparison_remove_from_compare', {'slug': champion.getSlug()})}}" class="champion-comparison-action remove-champion-from-list" title="{{'Actionsbar.Comparison_list.Dropdown.Champion.tooltip'|trans}}"><i class="icon-remove icon-white"></i></a>
-		</td>
-	</tr>
+		{% if diff >= 0 %}
+			{% set diff = '+' ~ diff %}
+		{% endif %}
+		{% set ten_percent_level = reference_champion.getMoveSpeed() * 0.05 %}
+		{% set one_percent_level = reference_champion.getMoveSpeed() * 0.01 %}
+		<div class="span1 tooltip-anchor" 
+			 rel="tooltip" 
+			 data-placement="bottom" 
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.movement_speed'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			<p>
+				<span class="own">{{ champion.getMoveSpeed() }}</span>
+				<span class="diff 
+					{% if diff > 0 and diff > one_percent_level %}
+						{% if diff <= ten_percent_level %}
+							minor-plus
+						{% else %}
+							plus
+						{% endif %}
+					{% elseif diff < 0 and diff < (one_percent_level * -1) %}
+						{% if diff >= (ten_percent_level * -1) %}
+							minor-minus
+						{% else %}
+							minus
+						{% endif %}
+					{% endif %}
+				">{{ diff }}</span>
+			</p>
+		</div>
+			
+		{# Action #}
+		<div class="span1">
+			<a href="{{path('champion_handler_comparison_set_reference_champion', {'slug': champion.getSlug()})}}" class="champion-comparison-action set-champion-reference-link tooltip-anchor" 
+				rel="tooltip" 
+				data-placement="left" 
+				data-original-title="<span class='tooltip-stat'>{{'Champion_comparison.actions.set_reference'|trans}}</span>">
+				<i class="icon-fire icon-white"></i>
+			</a>
+			<a href="{{path('champion_handler_comparison_remove_from_compare', {'slug': champion.getSlug()})}}" class="champion-comparison-action remove-champion-from-list tooltip-anchor"
+				rel="tooltip" 
+				data-placement="left" 
+				data-original-title="<span class='tooltip-stat'>{{'Actionsbar.Comparison_list.Dropdown.Champion.tooltip'|trans}}</span>">
+				<i class="icon-remove icon-white"></i>
+			</a>
+		</div>
+	</div>
 {% endif %}

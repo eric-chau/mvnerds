@@ -1,6 +1,47 @@
 <div class="data-scrollable" id="champion-comparator">	
 	<div id="compare-champion-div-header">
-		<table class="compare-champion-table header">
+		<div class="row-fluid table-header">
+			<div class="span1 no-margin">
+				<p>Champion</p>
+			</div>
+			<div class="span1">
+				<p>{{'Champion_preview.stat.health'|trans}}</p>
+			</div>
+			<div class="span1">
+				<p>{{'Champion_preview.stat.health_regen'|trans}}</p>
+			</div>
+			<div class="span1">
+				<p>{{'Champion_preview.stat.mana'|trans}}</p>
+			</div>
+			<div class="span1">
+				<p>{{'Champion_preview.stat.mana_regen'|trans}}</p>
+			</div>
+			<div class="span1">
+				<p>{{'Champion_preview.stat.armor'|trans}}</p>
+			</div>
+			<div class="span1">
+				<p>{{'Champion_preview.stat.magic_resist'|trans}}</p>
+			</div>
+			<div class="span1">
+				<p>{{'Champion_preview.stat.damage'|trans}}</p>
+			</div>
+			<div class="span1">
+				<p>{{'Champion_preview.stat.attack_speed'|trans}}</p>
+			</div>
+			<div class="span1">
+				<p>{{'Champion_preview.stat.range'|trans}}</p>
+			</div>
+			<div class="span1">
+				<p>{{'Champion_preview.stat.movement_speed'|trans}}</p>
+			</div>
+			<div class="span1">
+				<p>Mes actions</p>
+			</div>
+		</div>
+		
+		{% include 'MVNerdsChampionHandlerBundle:Comparison:benchmark_champion_row.html.twig' with {'reference_champion': reference_champion} %}
+		
+		{#<table class="compare-champion-table header">
 			<thead>
 				<tr>
 					<th class="first-col">
@@ -43,7 +84,7 @@
 					
 				{% include 'MVNerdsChampionHandlerBundle:Comparison:benchmark_champion_row.html.twig' with {'reference_champion': reference_champion} %}
 			</thead>
-		</table>
+		</table>#}
 	</div>
 	<table class="compare-champion-table body">
 		<tbody>

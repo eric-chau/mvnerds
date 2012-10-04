@@ -25,89 +25,154 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-#champion-comparator.active table.compare-champion-table.body {
-  margin-top: 120px;
-}
-#champion-comparator div#compare-champion-div-header.active {
-  position: fixed;
-  top: 45px;
-  left: 0;
-  right: 0;
-  min-width: 1064px;
-}
-#champion-comparator div#compare-champion-div-header.active table.compare-champion-table.header {
-  position: relative;
-  left: 3px;
-  margin: 0 auto;
-}
-#champion-comparator div#compare-champion-div-header.active table.compare-champion-table.header thead {
-  background-color: rgba(0, 0, 0, 0.7);
-}
-#champion-comparator div#compare-champion-div-header.active table.compare-champion-table.header thead th {
-  background-color: black;
-}
-#champion-comparator div#compare-champion-div-header table.compare-champion-table.header thead th.first-col {
-  width: 100px;
-}
-#champion-comparator div#compare-champion-div-header table.compare-champion-table.header thead td.first-col img {
-  width: 64px;
-}
-#champion-comparator div#compare-champion-div-header table.compare-champion-table.header thead th {
-  width: 72px;
-}
-#champion-comparator div#compare-champion-div-header table.compare-champion-table.header thead th img {
-  display: block;
-  margin: 5px auto;
-  opacity: .65;
-  width: 32px;
-}
-#champion-comparator div#compare-champion-div-header table.compare-champion-table.header thead td {
-  color: #fb9701;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 5px 0;
+div.row-fluid div.span1 {
+  margin-left: 1%;
   text-align: center;
+  width: 7.41%;
 }
-#champion-comparator table.compare-champion-table {
-  margin: auto;
+div.row-fluid div.span1.no-margin {
+  border-left: 0;
+  margin: 0;
 }
-#champion-comparator table.compare-champion-table th,
-#champion-comparator table.compare-champion-table td {
-  font-family: 'Trebuchet MS', sans-serif;
+div.row-fluid div.span1.no-margin p {
+  padding-bottom: 0;
 }
-#champion-comparator table.compare-champion-table th a.champion-comparison-action,
-#champion-comparator table.compare-champion-table td a.champion-comparison-action {
-  margin-right: 10px;
+div.row-fluid div.span1 p {
+  cursor: default;
+  display: inline-block;
+  line-height: 1em;
+  margin: 0;
+  text-transform: uppercase;
+  vertical-align: middle;
 }
-#champion-comparator table.compare-champion-table th a.champion-comparison-action:hover,
-#champion-comparator table.compare-champion-table td a.champion-comparison-action:hover {
+div.row-fluid div.span1 a,
+div.row-fluid div.span1 a:hover,
+div.row-fluid div.span1 a:visited {
   text-decoration: none;
 }
-#champion-comparator table.compare-champion-table.body tbody tr td:first-child {
-  width: 100px;
-}
-#champion-comparator table.compare-champion-table.body tbody td {
-  font-family: 'Trebuchez MS', sans-serif;
-  color: white;
-  padding: 20px 0;
-  text-align: center;
-  width: 74px;
-}
-#champion-comparator table.compare-champion-table.body tbody td img {
-  width: 48px;
-}
-#champion-comparator table.compare-champion-table.body tbody td span.diff {
-  display: block;
+div.row-fluid div.span1 a i {
+  color: #0a3d55;
+  display: inline-block;
   font-size: 16px;
+  margin: 0 5px;
+}
+div.row-fluid div.span1 a i:hover {
+  color: #19a0df;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div#compare-champion-div-header {
+  padding-top: 20px;
+}
+div#compare-champion-div-header.active {
+  background-color: black;
+  left: 6px;
+  margin: auto;
+  padding-top: 20px;
+  position: fixed;
+  right: 0;
+  top: 45px;
+  width: 998px;
+}
+div#compare-champion-div-header div.table-header.row-fluid {
+  margin-bottom: 10px;
+}
+div#compare-champion-div-header div.table-header div.span1 {
+  background-color: #222;
+  height: 30px;
+  line-height: 30px;
+}
+div#compare-champion-div-header div.table-header div.span1 p {
+  display: inline-block;
+  color: #eee;
+  font-size: 8px;
   font-weight: bold;
 }
-#champion-comparator table.compare-champion-table.body tbody td span.diff.plus {
+div#compare-champion-div-header div.benchmark {
+  background-color: #111;
+  margin: 10px 0;
+}
+div#compare-champion-div-header div.benchmark div.span1 {
+  height: 74px;
+  line-height: 74px;
+}
+div#compare-champion-div-header div.benchmark div.span1 p {
+  color: #fb9701;
+  font-weight: bold;
+}
+div#compare-champion-div-header div.benchmark div.span1 p img {
+  width: 54px;
+}
+div#compare-champion-div-header div.benchmark div.span1 a i {
+  color: #633b00;
+}
+div#compare-champion-div-header div.benchmark div.span1 a i:hover {
+  color: #fb9701;
+}
+div.champion-row {
+  border-bottom: 1px solid #333;
+  margin: 5px 0;
+}
+div.champion-row:hover {
+  background-color: #222;
+}
+div.champion-row div.span1 {
+  border-left: 1px solid #333;
+  height: 56px;
+  line-height: 56px;
+}
+div.champion-row div.span1:hover span.own {
+  color: #19a0df;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div.champion-row p {
+  padding-bottom: 8px;
+}
+div.champion-row p span.diff {
+  color: #555;
+  display: block;
+  font-size: 16px;
+  line-height: 1em;
+  font-weight: bold;
+  width: 74px;
+}
+div.champion-row p span.diff.plus {
   color: #759e1a;
 }
-#champion-comparator table.compare-champion-table.body tbody td span.diff.minus {
+div.champion-row p span.diff.minus {
   color: #db4a38;
 }
-#champion-comparator table.compare-champion-table.body tbody td span.own {
-  color: #999;
+div.champion-row p span.diff.minor-plus {
+  color: #34460c;
+}
+div.champion-row p span.diff.minor-minus {
+  color: #92281b;
+}
+div.champion-row p span.own {
+  color: #0c4e6c;
+  display: inline-block;
   font-size: 12px;
+  line-height: 1em;
+  margin-bottom: 5px;
+  width: 74px;
+}
+div.champion-row p img {
+  width: 36px;
+}
+span.tooltip-stat {
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 12px;
+}
+span.tooltip-stat span.plus,
+span.tooltip-stat span.minus {
+  color: #db4a38;
+  font-weight: bold;
+}
+span.tooltip-stat span.plus {
+  color: #759e1a;
 }

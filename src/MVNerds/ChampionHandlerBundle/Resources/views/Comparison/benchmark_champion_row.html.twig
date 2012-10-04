@@ -1,16 +1,43 @@
-<tr class="benchmark">
-	<td class="first-col">
-		<img src="{{ asset('/images/champions/square/' ~ reference_champion.getSlug() ~ '.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="{{ reference_champion.getName() }}" />
-	</td>
-	<td>{{ reference_champion.getBaseHealth() }}</td>
-	<td>{{ reference_champion.getBaseHealthRegen() * 5 }}</td>
-	<td>{{ reference_champion.getBaseMana() }}</td>
-	<td>{{ reference_champion.getBaseManaRegen() * 5 }}</td>
-	<td>{{ reference_champion.getBaseArmor() }}</td>
-	<td>{{ reference_champion.getBaseMagicResist() }}</td>
-	<td>{{ reference_champion.getBaseDamage() }}</td>
-	<td>{{ reference_champion.getBaseAttackSpeed() }}</td>
-	<td>{{ reference_champion.getAttackRange() }}</td>
-	<td>{{ reference_champion.getMoveSpeed() }}</td>
-	<td></td>
-</tr>
+<div class="row-fluid benchmark">
+	<div class="span1 no-margin">
+		<p><img src="{{ asset('/images/champions/square/' ~ reference_champion.getSlug() ~ '.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="{{ reference_champion.getName() }}" /></p>
+	</div>
+	<div class="span1">
+		<p>{{ reference_champion.getBaseHealth() }}</p>
+	</div>
+	<div class="span1">
+		<p>{{ reference_champion.getBaseHealthRegen() * 5 }}</p>
+	</div>
+	<div class="span1">
+		<p>{{ reference_champion.getBaseMana() }}</p>
+	</div>
+	<div class="span1">
+		<p>{{ reference_champion.getBaseManaRegen() * 5 }}</p>
+	</div>
+	<div class="span1">
+		<p>{{ reference_champion.getBaseArmor() }}</p>
+	</div>
+	<div class="span1">
+		<p>{{ reference_champion.getBaseMagicResist() }}</p>
+	</div>
+	<div class="span1">
+		<p>{{ reference_champion.getBaseDamage() }}</p>
+	</div>
+	<div class="span1">
+		<p>{{ reference_champion.getBaseAttackSpeed() }}</p>
+	</div>
+	<div class="span1">
+		<p>{{ reference_champion.getAttackRange() }}</p>
+	</div>
+	<div class="span1">
+		<p>{{ reference_champion.getMoveSpeed() }}</p>
+	</div>
+	<div class="span1">
+		<a href="{{path('champion_handler_comparison_remove_from_compare', {'slug': reference_champion.getSlug()})}}" class="champion-comparison-action remove-champion-from-list tooltip-anchor"
+				rel="tooltip" 
+				data-placement="left" 
+				data-original-title="<span class='tooltip-stat'>{{'Actionsbar.Comparison_list.Dropdown.Champion.tooltip'|trans}}</span>">
+				<i class="icon-remove"></i>
+			</a>
+	</div>
+</div>
