@@ -117,7 +117,7 @@ class ComparisonController extends Controller
 			else
 			{
 				// On redirige l'utilisateur vers la liste des utilisateurs
-				return $this->redirect($this->generateUrl('launch_site_front_compare_champions'));
+				return $this->redirect($this->generateUrl('launch_site_front'));
 			}
 		}
 		$flashManager->setSuccessMessage('Flash.success.remove_from_compare.champions');
@@ -130,8 +130,15 @@ class ComparisonController extends Controller
 		}
 		else
 		{
-			// On redirige l'utilisateur vers la liste des utilisateurs
-			return $this->redirect($this->generateUrl('launch_site_front_compare_champions'));
+			if($comparisonManager->isComparable())
+			{
+				// On redirige l'utilisateur vers la liste des utilisateurs
+				return $this->redirect($this->generateUrl('launch_site_front_compare_champions').'#champion-comparator');
+			}
+			else
+			{
+				return $this->redirect($this->generateUrl('launch_site_front'));
+			}
 		}
 	}
 

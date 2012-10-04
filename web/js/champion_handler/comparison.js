@@ -197,7 +197,9 @@ jQuery(function($) {
 				getAlertMessage(SUCCESS_ALERT);
 			}
 			$comparisonListLoading.hide();
-		}).fail(function(){
+		}).fail(function(data){
+			console.log(data);
+			$('div.presentation-container').html('<div>'+data.responseText+'</div>');
 			$comparisonListLoading.hide();
 		});
 		return false;
