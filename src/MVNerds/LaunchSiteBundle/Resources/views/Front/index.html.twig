@@ -8,13 +8,6 @@
 	{{ parent() }}
 
 	 <link rel="stylesheet" href="{{ asset('/css/launch_site/front.css') }}">
-	 {% if app.request.getLocale() == 'en' %}
-		<style>
-		   div.body-container div.champions-handler-container div.actions-bar ul.action-buttons li.action ul#filters-list {
-			   left: -895%;
-		   }
-		</style>
-	 {% endif %}
 	 <link rel="stylesheet" href="{{ asset('/css/launch_site/front-compare.css') }}">
 	 <link rel="stylesheet" href="{{ asset('/css/launch_site/data-scroll.css') }}">
 	 <link href='http://fonts.googleapis.com/css?family=Quantico:700' rel='stylesheet' type='text/css'>

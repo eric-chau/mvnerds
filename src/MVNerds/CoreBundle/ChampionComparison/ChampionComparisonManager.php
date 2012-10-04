@@ -273,7 +273,7 @@ class ChampionComparisonManager
 		$comparisonList = $this->getList();
 		
 		//Si le champion existe dans la liste
-		if ($this->championExists($champion) && !$this->isReferenceChampion($champion))
+		if ($this->championExists($champion))
 		{
 			//On le retire
 			unset($comparisonList[$champion->getSlug()]);
@@ -284,6 +284,15 @@ class ChampionComparisonManager
 			if ( $this->isReferenceChampion($champion) )
 			{
 				$this->cleanReferenceChampion();
+				
+				$comparisonList = $this->getList();
+				$championNames = array_keys($comparisonList);
+				
+				if (count($championNames) >= 1)
+				{
+					$nextChampion = $comparisonList[$championNames[0]];
+					$this->setReferenceChampion($nextChampion);
+				}
 			}
 		}
 		else

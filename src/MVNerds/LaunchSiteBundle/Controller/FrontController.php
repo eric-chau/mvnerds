@@ -45,19 +45,25 @@ class FrontController extends Controller
 	{
 		$form = $this->createForm(new UserType());
 		$request = $this->getRequest();
-		if ($request->isXmlHttpRequest())
+		if($this->get('mvnerds.champion_comparison_manager')->isComparable())
 		{
-			return $this->redirect($this->generateUrl('champion_handler_comparison_compare'));
+			if ($request->isXmlHttpRequest())
+			{
+				return $this->redirect($this->generateUrl('champion_handler_comparison_compare'));
+			}
+			elseif($request->isMethod('POST'))
+			{
+				$form->bind($request);			
+			}
+			return $this->render('MVNerdsLaunchSiteBundle:Front:index.html.twig', array(
+				'form' => $form->createView(),
+				'page' => 'compare'
+			));
 		}
-		elseif($request->isMethod('POST'))
+		else
 		{
-			$form->bind($request);
-			
+			return $this->redirect($this->generateUrl('launch_site_front'));
 		}
-		return $this->render('MVNerdsLaunchSiteBundle:Front:index.html.twig', array(
-			'form' => $form->createView(),
-			'page' => 'compare'
-		));
 	}
 
 	/**

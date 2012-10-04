@@ -153,6 +153,14 @@
 				<source>Actionsbar.Guide_tour.title</source>
 				<target>Visite guidée</target>
 			</trans-unit>
+			<trans-unit id="5017">
+				<source>Actionsbar.Filter.Dropdown.clean</source>
+				<target>Nettoyer le filtre</target>
+			</trans-unit>
+			<trans-unit id="5018">
+				<source>Actionsbar.Filter.Dropdown.compare_filtered</source>
+				<target>Ajouter les champions filtrés à la liste de comparaison</target>
+			</trans-unit>
 			
 			<!--  CHAMPION PREVIEW -->
 			<trans-unit id="6000">

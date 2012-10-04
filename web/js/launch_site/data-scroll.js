@@ -50,7 +50,7 @@ jQuery(function(){
 		var pos = this.rel == 'next' ? '-150%' : '150%';
 		if (Modernizr.history) {
 			history.pushState(location.pathname, '', href);
-		}console.log(pos);
+		}
 		//On récupère le contenu a faire glisser
 		container.find('div.data-scrollable').animate({
 			left: pos,

@@ -5,7 +5,7 @@
 	</a>
 	<ul id="filters-list" class="dropdown-menu" role="menu" aria-labelledby="drop-filters-list">
 		<li class="list-header">{{'Actionsbar.Filter.Dropdown.title'|trans}}</li>
-		<div class="row-fluid">
+		<div class="row-fluid row-filters">
 			<div class="span6">
 				<h4>{{'Actionsbar.Filter.Dropdown.subtitle1'|trans}}</h4>
 				<ul class="tags-group">
@@ -67,6 +67,24 @@
 						<a href="#" class="filter-link" data-option-value="hybrid damage"><i class=" icon-ok-sign"></i>Hybrid Damage</a>
 					</li>
 				</ul>
+			</div>
+		</div>
+		<div class="row-fluid div-action-buttons">
+			<div class="span6 div-left">
+				<li id="li-clean-filter" class="li-filter-action li-filter-action-left hide">
+					<a id="btn-clean-fitler" href="#"class="filter-action disabled">
+						{{'Actionsbar.Filter.Dropdown.clean'|trans}}
+						<i class="icon-trash"></i>
+					</a>
+				</li>
+			</div>
+			<div class="span6 div-right">
+				<li id="li-compare-filtered" class="li-filter-action li-filter-action-right hide">
+					<a id="btn-compare-filtered" href="#" class="filter-action disabled">
+						{{'Actionsbar.Filter.Dropdown.compare_filtered'|trans}}
+						<i class="icon-plus-sign"></i>
+					</a>
+				</li>
 			</div>
 		</div>
 	</ul>
