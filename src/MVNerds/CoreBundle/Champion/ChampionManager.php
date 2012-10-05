@@ -133,6 +133,27 @@ class ChampionManager
 	}
 	
 	/**
+	 * Récupère une collection de Champion à partir d'un tableau de slugs
+	 * 
+	 * @param array $championsSlugs les slugs des champions pour lesquels on veut récupérer les objets associés
+	 * @return PropelCollection<MVNerds\CoreBundle\Model\Champion> la collection de Champion qui correspond aux slugs $slugs
+	 * @throws InvalidArgumentException exception levé si aucune liste de slugs est fournie
+	 */
+	public function findManyBySlugs($championsSlugs)
+	{
+		$champions = ChampionQuery::create()
+			->add(ChampionPeer::SLUG, $championsSlugs,\Criteria::IN)
+		->find();
+
+		if (null === $championsSlugs)
+		{
+			throw new InvalidArgumentException('No champion slugs given!');
+		}
+
+		return $champions;
+	}
+	
+	/**
 	 * Récupère un objet Champion à partir de son nom $name
 	 * 
 	 * @param string $name le nom du champion dont on souhaite récupérer l'objet Champion associé 

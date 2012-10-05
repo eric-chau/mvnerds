@@ -259,6 +259,45 @@ class ChampionComparisonManager
 			throw new Exception('Flash.error.max_reached.add_to_compare.champions');
 		}
 	}
+	/**
+	 * Permet d'ajouter plusieurs champions a la liste de comparaison
+	 * 
+	 * @param PropelCollection<MVNerds\CoreBundle\Model\Champion> $champions les champions à ajouter à la liste de comparaison
+	 */
+	public function addManyChampions($champions)
+	{		
+		//On vérifie que la taille du tableau ne soit pas dépassée
+		if (! $this->isFull())
+		{
+			//On récupère la liste
+			$comparisonList = $this->getList();
+			$firstChamp = null;
+			foreach($champions as $champion)
+			{
+				//Si le champion n'est pas déjà présent dans la liste
+				if (!$this->championExists($champion) && !$this->isFull())
+				{
+					//On ajoute le nouveau champion
+					$comparisonList[$champion->getSlug()] = $champion;	
+				}
+				if (! $this->isReferenceChampionSet() && $firstChamp == null)
+				{
+					$firstChamp = $champion;
+				}
+			}
+			//On enregistre la nouvelle liste dans la session
+			$this->setList($comparisonList);
+			//Si aucun champion de référence n'existe on déclare ce champion comme étant la référence
+			if ($firstChamp)
+			{
+				$this->setReferenceChampion($firstChamp);
+			}
+		}
+		else
+		{
+			throw new Exception('Flash.error.max_reached.add_to_compare.champions');
+		}
+	}
 	
 	/**
 	 * Permet de retirer un champion de la liste de comparaison

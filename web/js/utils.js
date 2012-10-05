@@ -68,3 +68,7 @@ function getIsotopeOptions(){
 	return isotopeOptions;
 }
 /************** /ISOTOPE ****************/
+
+function displayAjaxData(data){
+	$('div.presentation-container').append(data);
+}

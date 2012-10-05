@@ -45,12 +45,69 @@ function addChampionToList(slug){
 	});
 }
 
+//Permet d ajouter plusieurs champions simultanément en fournissant un tableau de slugs de champions
+function addManyChampionsToList(championsSlugArray){
+	hideMessages();
+	//On affiche l'icone de chargement
+	$comparisonListLoading.show();
+
+	//On fait un appel ajax pour demander à ajouter le champion
+	$.ajax({
+		type: 'POST',
+		url:  Routing.generate('champion_handler_comparison_add_many_to_compare'),
+		data: {championsSlug: championsSlugArray},
+		dataType: 'html'
+	}).done(function(data){console.log(data);
+		//Si data est vide ça veut dire qu'on est confrontés à une erreur
+		if(data == undefined || data == '')
+		{
+			//Il ne faut donc pas afficher de nouveau champion dans la liste mais afficher un message d erreur
+			getAlertMessage(ERROR_ALERT);
+		}
+		else
+		{			
+			cleanComparisonList();
+			//Sinon on ajoute le champion à la liste
+			appendManyChampions(data);
+			//Et on affiche le message de succes
+			getAlertMessage(SUCCESS_ALERT);
+
+			if ($('li.champion-comparable').length >0)
+			{
+				//On active le bouton de vidage
+				activateCleanButton();
+				//On retire le message d'information
+				$('li.indication').hide();
+			}
+			//Si les champions peuvent etre comparés
+			if ($('li.champion-comparable').length >= 2)
+			{
+				//On active le bouton de comparaison
+				activateCompareButton();
+			}
+		}
+		$comparisonListLoading.hide();
+	}).fail(function(){
+		$comparisonListLoading.hide();
+	});
+}
+
 //Permet d'ajouter un champion au format html à la liste de comparaison
 function appendChampion(data)
 {		
 	//On ajoute le champion à la liste
-	$(data).insertBefore('li#li-clean');
+	$(data).insertBefore('#comparison-list li#li-clean');
 	nbComparedChampions++;
+	if (nbComparedChampions > 15){
+		$('#comparison-list').addClass('scrollable');
+	}
+	setNbComparedChampionsLabel(nbComparedChampions);
+}
+function appendManyChampions(data)
+{		
+	//On ajoute le champion à la liste
+	$(data).insertBefore('#comparison-list li#li-clean');
+	nbComparedChampions+= getNbComparedChampions();
 	if (nbComparedChampions > 15){
 		$('#comparison-list').addClass('scrollable');
 	}
@@ -99,6 +156,9 @@ function cleanComparisonList()
 	$('#comparison-list').removeClass('scrollable');
 	nbComparedChampions = 0;
 	setNbComparedChampionsLabel(nbComparedChampions);
+}
+function getNbComparedChampions(){
+	return $('#comparison-list li.champion-comparable').size();
 }
 function setNbComparedChampionsLabel(value)
 {
