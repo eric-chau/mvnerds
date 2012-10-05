@@ -1,40 +1,35 @@
 <?xml version="1.0" ?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-		   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-		   xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
-
-	<!--
- <parameters>
-  <parameter key="mv_nerds_core.example.class">MVNerds\CoreBundle\Example</parameter>
- </parameters>
-	-->
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+	
+	<parameters>
+		<parameter key="locale.listener.class">MVNerds\CoreBundle\Listener\LocaleListener</parameter>
+	</parameters>
 	
 	
 	<services>
-		<!-- 
-			FLASH MANAGER SERVICES
-		-->
+		<!-- AUTO SET LOCALE SERVICES -->
+		<service id="locale.listener" class="%locale.listener.class%">
+			<argument>%default_locale%</argument>
+			<tag name="kernel.event_listener" event="kernel.request" method="setLocale" />
+			<call method="setSession">
+				<argument type="service" id="session" />
+			</call>
+		</service>
+
+		<!-- FLASH MANAGER SERVICES -->
 		<service id="mvnerds.flash_manager" class="MVNerds\CoreBundle\Flash\FlashManager">
 			<call method="setSession">
 				<argument type="service" id="session" />
 			</call>
 		</service>
 
-		<!-- 
-			USER MANAGER SERVICES
-		-->
-		<service id="mvnerds.user_manager" class="MVNerds\CoreBundle\User\UserManager">
-			<!-- *Aucun argument pour le moment*
-			<argument type="service" id="service_id" />
-   <argument>plain_value</argument>
-   <argument>%parameter_name%</argument>
-			-->
-		</service>
+		<!-- USER MANAGER SERVICES -->
+		<service id="mvnerds.user_manager" class="MVNerds\CoreBundle\User\UserManager" />
 
-		<!-- 
-			CHAMPION MANAGER SERVICES
-		-->
+		<!-- CHAMPION MANAGER SERVICES -->
 		<service id="mvnerds.champion_manager" class="MVNerds\CoreBundle\Champion\ChampionManager"></service>
     
 		<!-- 
@@ -54,15 +49,11 @@
 			</call>
 		</service>
 
-		<!-- 
-			TAG MANAGER SERVICES
-		-->
+		<!-- TAG MANAGER SERVICES -->
 		<service id="mvnerds.tag_manager" class="MVNerds\CoreBundle\Tag\TagManager">
 		</service>
 
-		<!-- 
-			TWIG - FLASH EXTENSION
-		-->
+		<!-- TWIG - FLASH EXTENSION -->
 		<service id="mvnerds.twig.flash_extension" class="MVNerds\CoreBundle\Twig\MVNerdsFlashExtension">
 			<tag name="twig.extension" />
 			<call method="setFlashManager">

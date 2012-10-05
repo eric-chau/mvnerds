@@ -13,8 +13,8 @@ class CultureController extends Controller
     public function switchLanguageAction($locale)
     {
 		$request = $this->getRequest();
-		$request->setLocale($locale);
-		
+		$this->get('session')->set('locale', $locale);
+
 		$allowedLocales = $this->container->getParameter('available_languages');
 		if (array_search($locale, $allowedLocales) === false) {
     		throw $this->createNotFoundException('La langue ' . $locale . ' n\'existe pas !');

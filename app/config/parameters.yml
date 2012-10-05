@@ -11,7 +11,7 @@ parameters:
     mailer_user:       ~
     mailer_password:   ~
 
-    locale:            fr
+    default_locale:            fr
     secret:            ThisTokenIsNotSoSecretChangeIt
     
     available_languages:	['fr', 'en']
