@@ -69,6 +69,13 @@ function getIsotopeOptions(){
 }
 /************** /ISOTOPE ****************/
 
+//Permet d afficher data sur la page
 function displayAjaxData(data){
 	$('div.presentation-container').append(data);
+}
+
+//Permet d'afficher un chargement sur le curseur de la souris lors du survol de target (target = * par defaut)
+function toggleProgressCursor(toggle, target){
+	target = typeof target !== 'undefined' ? target : '*';
+	toggle ? $(target).css('cursor', 'progress') : $(target).css('cursor', 'auto');
 }

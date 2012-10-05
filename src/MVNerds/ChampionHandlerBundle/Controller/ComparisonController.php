@@ -105,11 +105,22 @@ class ComparisonController extends Controller
 				{
 					//Récupération du champion
 					$championsArray = $this->get('mvnerds.champion_manager')->findManyBySlugs($championsSlug);
-					$comparisonManager->addManyChampions($championsArray);
 					
-					return $this->render('MVNerdsChampionHandlerBundle:Comparison:comparison_list.html.twig',array(
-						'champions' => $comparisonManager->getList()
-					));
+					try {
+						$comparisonManager->addManyChampions($championsArray);
+
+						$flashManager->setSuccessMessage('Les champions du filtre ont bien été ajoutés à la liste de comparaison.');
+
+						return $this->render('MVNerdsChampionHandlerBundle:Comparison:comparison_list.html.twig',array(
+							'champions' => $comparisonManager->getList()
+						));
+					}
+					catch(\Exception $e) {
+						$flashManager->setErrorMessage($e->getMessage());
+						return $this->render('MVNerdsChampionHandlerBundle:Comparison:comparison_list.html.twig',array(
+							'champions' => $comparisonManager->getList()
+						));
+					}
 				}
 				else
 				{

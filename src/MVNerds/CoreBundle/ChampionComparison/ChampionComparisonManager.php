@@ -272,13 +272,32 @@ class ChampionComparisonManager
 			//On récupère la liste
 			$comparisonList = $this->getList();
 			$firstChamp = null;
+			$listSize = count($comparisonList);
 			foreach($champions as $champion)
 			{
 				//Si le champion n'est pas déjà présent dans la liste
-				if (!$this->championExists($champion) && !$this->isFull())
+				if (!$this->championExists($champion))
 				{
-					//On ajoute le nouveau champion
-					$comparisonList[$champion->getSlug()] = $champion;	
+					//Et si la liste n'est pas encore pleine
+					if ($listSize < self::MAX_CHAMPION_COMPARISON)
+					{
+						//On ajoute le nouveau champion
+						$comparisonList[$champion->getSlug()] = $champion;	
+						$listSize++;
+					}
+					else
+					{
+						//On enregistre la nouvelle liste dans la session
+						$this->setList($comparisonList);
+						//Si aucun champion de référence n'existe on déclare ce champion comme étant la référence
+						if ($firstChamp)
+						{
+							$this->setReferenceChampion($firstChamp);
+						}
+						//Et on lance une exception pour indiquer que la liste est remplie
+						throw new Exception('Flash.error.max_reached.add_to_compare.champions');
+						return;
+					}
 				}
 				if (! $this->isReferenceChampionSet() && $firstChamp == null)
 				{
