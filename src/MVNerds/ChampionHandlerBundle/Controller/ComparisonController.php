@@ -38,13 +38,103 @@ class ComparisonController extends Controller
 		//Récupération du flashManager
 		/* @var $flahManager MVNerds\CoreBundle\Flash\FlashManager */
 		$flashManager = $this->get('mvnerds.flash_manager');
-		//On vérifie di la requete est une requete AJAX
+		//On vérifie si la requete est une requete AJAX
 		$isXHR = $this->getRequest()->isXmlHttpRequest();
 
 		//On essaie d'ajouter le champion à la liste
 		try
 		{
 			$comparisonManager->addChampion($champion);
+		}
+		catch (\Exception $e)
+		{
+			//on affiche le message d'erreur
+			$flashManager->setErrorMessage($e->getMessage());
+			//Si c'est une requete ajax
+			if ($isXHR)
+			{
+				//On renvoie une réponse nulle
+				return new Response(null);
+			}
+			else
+			{
+				// Sinon on redirige l'utilisateur vers la liste des champions
+				return $this->redirect($this->generateUrl('champion_handler_comparison_index'));
+			}
+		}
+
+		//On affiche un message de succes
+		$flashManager->setSuccessMessage('Flash.success.add_to_compare.champions');
+		//Si c'est une requete ajax
+		if ($isXHR)
+		{
+			//On renvoie le champion comparison row
+			return $this->render('MVNerdsChampionHandlerBundle:Comparison:comparison_row.html.twig', array(
+						'champion' => $champion,
+					));
+		}
+		else
+		{
+			// On redirige l'utilisateur vers la liste des champions
+			return $this->redirect($this->generateUrl('launch_site_front'));
+		}
+	}
+	/**
+	 * Permet d'ajouter plusieurs champions à la liste des champions à comparer grâce à un tableau de slugs
+	 * 
+	 * @Route("ajouter-plusieurs-champions", name="champion_handler_comparison_add_many_to_compare", options={"expose"=true})
+	 */
+	public function addManyToCompareAction()
+	{
+		$request = $this->getRequest();
+		//Si c est bien une requete AJAX
+		if($request->isXmlHttpRequest())
+		{
+			//Récupération du flashManager
+			/* @var $flahManager MVNerds\CoreBundle\Flash\FlashManager */
+			$flashManager = $this->get('mvnerds.flash_manager');
+			
+			//Il faut que la requete soit envoyée en post 
+			if($request->isMethod('POST'))
+			{
+				//récupération du champion_comparison_manager
+				/* @var $comparisonManager \MVNerds\CoreBundle\ChampionComparison\ChampionComparisonManager */
+				$comparisonManager = $this->get('mvnerds.champion_comparison_manager');
+				
+				if (( $championsSlug = $request->get('championsSlug') ))
+				{
+					//Récupération du champion
+					$championsArray = $this->get('mvnerds.champion_manager')->findManyBySlugs($championsSlug);
+					$comparisonManager->addManyChampions($championsArray);
+					
+					return $this->render('MVNerdsChampionHandlerBundle:Comparison:champion_list.html.twig',array(
+						'champions' => $comparisonManager->getList()
+					));
+				}
+				else
+				{
+					$flashManager->setErrorMessage('No champions slug found');
+				
+					return new Response(null);
+				}
+			}
+			else
+			{
+				$flashManager->setErrorMessage('Method must be POST');
+				
+				return new Response(null);
+			}
+		}
+		else
+		{
+			// Sinon on redirige l'utilisateur vers la liste des champions
+			return $this->redirect($this->generateUrl('launch_site_index'));
+		}
+
+		//On essaie d'ajouter le champion à la liste
+		try
+		{
+			$comparisonManager->addManyChampions($championsArray);
 		}
 		catch (\Exception $e)
 		{

@@ -113,9 +113,11 @@ function deactivateCleanFilterButton(){
 
 //Permet d ajouter tous les champions filtrés à la liste
 function addFilteredChampions(){
+	var championsSlug = new Array();
 	$('#isotope-list li.isotope-item.champion:not(.isotope-hidden)').each(function(){
-		addChampionToList($(this).attr('id'));
+		championsSlug.push($(this).attr('id'));
 	});
+	addManyChampionsToList(championsSlug);
 	return false;
 }
 function activateCompareFilteredButton(){
