@@ -463,12 +463,17 @@ div.body-container {
 				div#actions-bar-content{
 					height: 40px;
 					padding-top: 13px;
+					ul#filters-list,
+					ul#comparison-list{
+						margin-top: -8px;
+					}
 				}
 			}
 			div#actions-bar-content{
 				width: 1004px;
 				margin: 0 auto;
 				background-color: black;
+				position: relative;
 
 				h2 {
 					color: white;
@@ -486,6 +491,11 @@ div.body-container {
 
 					li.action:last-child {
 						margin-right: 8px;
+					}
+
+					li#filters-block,
+					li#comparison-list-dropdown{
+						position: static;
 					}
 
 					li.action {
@@ -638,7 +648,7 @@ div.body-container {
 							background-color: rgba(0,0,0,0.8);
 							border: 1px solid @MVNerdsBlue !important;
 							overflow: hidden;
-							width: 750px;
+							width: 1002px;
 
 							li {
 								float: left;
@@ -739,9 +749,9 @@ div.body-container {
 						ul#filters-list {
 							background-color: rgba(0,0,0,0.8);
 							border: 1px solid @MVNerdsBlue;
-							margin-left: -571px;
 							text-align: left;
-							width: 1014px;
+							width: 1002px;
+							position: absolute;
 
 							div.row-filters{
 								div.span6{
@@ -879,6 +889,7 @@ div.body-container {
 				width: @PortraitWidth;
 
 				&:hover {
+					cursor: pointer;
 					border: 1px solid @LoLOrangeAD;
 					.transition(border .25s linear);
 
@@ -887,6 +898,12 @@ div.body-container {
 						color: #eee;
 						.transition(all .25s linear);
 					}
+				}
+
+				&.animate-champion-portrait {
+					height: @PortraitHeight;
+					.transition(all .3s linear);
+					width: @PortraitWidth;	
 				}
 
 				&.champion-maxi {
@@ -899,23 +916,8 @@ div.body-container {
 					margin-bottom: 4px;				
 				}
 
-				&.champion-portrait {
-					height: @PortraitHeight;
-					.transition(all .3s linear);
-					width: @PortraitWidth;	
-				}
-
-				a {
-					display: block;
+				div.portrait {
 					padding: 9px;
-				}
-
-				a, a:hover, a:visited {
-					text-decoration: none;
-				}
-
-				img.champion-image {
-					width: 100px;
 				}
 
 				div.champion-name {
@@ -1046,10 +1048,9 @@ div.body-container {
 					}
 
 					div.right-side {
-						img.portrait {
-							display: block;
+						div.champion-portrait {
 							margin-top: 7px;
-							opacity: .7;
+							opacity: 0.7;
 						}
 					} // Fin div.right-side
 				} // Fin div.preview

@@ -477,10 +477,15 @@ div.body-container div.champions-handler-container div.actions-bar.active div#ac
   height: 40px;
   padding-top: 13px;
 }
+div.body-container div.champions-handler-container div.actions-bar.active div#actions-bar-content ul#filters-list,
+div.body-container div.champions-handler-container div.actions-bar.active div#actions-bar-content ul#comparison-list {
+  margin-top: -8px;
+}
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content {
   width: 1004px;
   margin: 0 auto;
   background-color: black;
+  position: relative;
 }
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content h2 {
   color: white;
@@ -497,6 +502,10 @@ div.body-container div.champions-handler-container div.actions-bar div#actions-b
 }
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action:last-child {
   margin-right: 8px;
+}
+div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li#filters-block,
+div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li#comparison-list-dropdown {
+  position: static;
 }
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action {
   background-color: rgba(25, 160, 223, 0.7);
@@ -660,7 +669,7 @@ div.body-container div.champions-handler-container div.actions-bar div#actions-b
   background-color: rgba(0, 0, 0, 0.8);
   border: 1px solid #19a0df !important;
   overflow: hidden;
-  width: 750px;
+  width: 1002px;
 }
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action ul#comparison-list li {
   float: left;
@@ -752,9 +761,9 @@ div.body-container div.champions-handler-container div.actions-bar div#actions-b
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action ul#filters-list {
   background-color: rgba(0, 0, 0, 0.8);
   border: 1px solid #19a0df;
-  margin-left: -571px;
   text-align: left;
-  width: 1014px;
+  width: 1002px;
+  position: absolute;
 }
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action ul#filters-list div.row-filters div.span6 {
   padding: 5px 20px;
@@ -873,6 +882,7 @@ div.body-container div.champions-handler-container div#champion-list li.champion
   width: 118px;
 }
 div.body-container div.champions-handler-container div#champion-list li.champion:hover {
+  cursor: pointer;
   border: 1px solid #fb9701;
   -webkit-transition: border 0.25s linear;
   -moz-transition: border 0.25s linear;
@@ -887,6 +897,14 @@ div.body-container div.champions-handler-container div#champion-list li.champion
   -o-transition: all 0.25s linear;
   transition: all 0.25s linear;
 }
+div.body-container div.champions-handler-container div#champion-list li.champion.animate-champion-portrait {
+  height: 120px;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+  width: 118px;
+}
 div.body-container div.champions-handler-container div#champion-list li.champion.champion-maxi {
   background: #000000 url('/images/launch_site/champion_preview_bg.png') no-repeat top left;
   border: 1px solid #fb9701;
@@ -899,25 +917,8 @@ div.body-container div.champions-handler-container div#champion-list li.champion
   z-index: 900;
   margin-bottom: 4px;
 }
-div.body-container div.champions-handler-container div#champion-list li.champion.champion-portrait {
-  height: 120px;
-  -webkit-transition: all 0.3s linear;
-  -moz-transition: all 0.3s linear;
-  -o-transition: all 0.3s linear;
-  transition: all 0.3s linear;
-  width: 118px;
-}
-div.body-container div.champions-handler-container div#champion-list li.champion a {
-  display: block;
+div.body-container div.champions-handler-container div#champion-list li.champion div.portrait {
   padding: 9px;
-}
-div.body-container div.champions-handler-container div#champion-list li.champion a,
-div.body-container div.champions-handler-container div#champion-list li.champion a:hover,
-div.body-container div.champions-handler-container div#champion-list li.champion a:visited {
-  text-decoration: none;
-}
-div.body-container div.champions-handler-container div#champion-list li.champion img.champion-image {
-  width: 100px;
 }
 div.body-container div.champions-handler-container div#champion-list li.champion div.champion-name {
   background-color: rgba(0, 0, 0, 0.3);
@@ -1032,10 +1033,9 @@ div.body-container div.champions-handler-container div#champion-list li.champion
   text-align: center;
   margin: 29px 0 0 0;
 }
-div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.right-side img.portrait {
-  display: block;
+div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.right-side div.champion-portrait {
   margin-top: 7px;
-  opacity: .7;
+  opacity: 0.7;
 }
 div.modal {
   background: #000000 url('/images/launch_site/modal_bg.png') no-repeat top left;

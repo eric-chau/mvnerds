@@ -1,10 +1,8 @@
 <li class="champion {{champion.getTagsToString()}}" id="{{ champion.getSlug() }}" data-name="{{ champion.getName() | lower }}" >
 	
 	<div class="portrait">
-		<a href="#" draggable="false">
-			<div class="champion-square {{ champion.getSlug() }}"></div>
-			<div class="champion-name">{{ champion.getName() }}</div>
-		</a>
+		<div class="champion-square {{ champion.getSlug() }}"></div>
+		<div class="champion-name">{{ champion.getName() }}</div>
 	</div>
 	<div class="preview hide">
 		{% include 'MVNerdsChampionHandlerBundle:Front:champion_preview.html.twig' %}

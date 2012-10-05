@@ -47,9 +47,7 @@ function initIsotope($isotope){
 	});
 }
 	
-function maximizeChampion($champ, $isotope){
-	$champ.addClass('animating');
-	
+function maximizeChampion($champ, $isotope){	
 	//Si on trouve un autre champion déjà maximisé on le referme
 	var $maxiChampion = $isotope.find('li.champion-maxi');
 	if($maxiChampion != undefined){
@@ -61,12 +59,15 @@ function maximizeChampion($champ, $isotope){
 	setTimeout(function() 
 	{
 		$champ.find('div.preview').fadeIn(250);
+		$champ.find('div.champion-portrait').fadeIn(250);
+		
 		$isotope.isotope( 'reLayout', function(){
+			
 			setTimeout(function(){
 				scrollToChampion($('#'+$champ.attr('id')))
-				$champ.removeClass('animating');
+				
 				},
-				100
+				150
 			);
 		});
 	},
@@ -76,18 +77,17 @@ function maximizeChampion($champ, $isotope){
 }
 
 function minimizeChampion($champ, $isotope){
-	$champ.addClass('animating');
+	$champ.find('div.champion-portrait').fadeOut(150);
 	$champ.find('div.preview').fadeOut(150);
 	setTimeout(function() 
 	{
 		$champ.find('div.portrait').fadeIn(300);
 		
-		$champ.toggleClass('champion-portrait champion-maxi');
+		$champ.toggleClass('animate-champion-portrait champion-maxi');
 		setTimeout(function() 
 		{
 			$isotope.isotope( 'reLayout');
-			$champ.removeClass('champion-portrait');
-			$champ.removeClass('animating');
+			$champ.removeClass('animate-champion-portrait');
 		},
 		320);
 	},

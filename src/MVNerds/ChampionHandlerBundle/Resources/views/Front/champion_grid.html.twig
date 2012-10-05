@@ -1,7 +1,5 @@
 <ul id="isotope-list">
 	{% for champion in champions %}
 		{% include 'MVNerdsChampionHandlerBundle:Front:champion_block.html.twig' with {'champion': champion}%}
-	{% else %}
-		<li><i>Aucun champion enregistré pour le moment, et si vous en ajoutiez un en cliquant sur le bouton "Ajouter un champion" ?</i></li>
 	{% endfor %}
 </ul>
