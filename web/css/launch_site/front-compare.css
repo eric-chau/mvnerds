@@ -165,7 +165,8 @@ div.champion-list div.champion-row p span.own {
   margin-bottom: 5px;
   width: 74px;
 }
-div.champion-list div.champion-row p img {
+div.champion-list div.champion-row p span.img {
+  display: inline-block;
   width: 36px;
 }
 span.tooltip-stat {

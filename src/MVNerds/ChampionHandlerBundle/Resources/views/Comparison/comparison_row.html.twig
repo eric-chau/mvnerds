@@ -1,7 +1,8 @@
 <li class="champion-comparable" id="comparable-{{ champion.getSlug() }}">
 	<a class="tooltip-anchor champion-comparable-remove" rel="tooltip" data-placement="right" data-original-title="{{'Actionsbar.Comparison_list.Dropdown.Champion.tooltip'|trans}}" href="{{ path('champion_handler_comparison_remove_from_compare', {'slug': champion.getSlug()}) }}">
 		<span class="slug hide">{{champion.getSlug()}}</span>
-		<img src="{{ asset('images/champions/square/' ~ champion.getSlug() ~ '.png') }}" alt="image du champion {{ champion.getName() }}" title = "{{ champion.getName() }}" class="pull-left"/> 
+		<div class="champion-square25 {{ champion.getSlug() }} pull-left"></div>
+		{#<img src="{{ asset('images/champions/square/' ~ champion.getSlug() ~ '.png') }}" alt="image du champion {{ champion.getName() }}" title = "{{ champion.getName() }}" class="pull-left"/> #}
 		<span class="champion-comparable-name">{{champion.getName()}}</span>
 		<i class="icon-remove"></i>
 	</a>

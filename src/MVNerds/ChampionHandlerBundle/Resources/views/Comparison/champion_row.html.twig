@@ -1,7 +1,9 @@
 {% if champion.getId() != reference_champion.getId() %}
 	<div class="row-fluid champion-row">
 		<div class="span1 no-margin">
-			<p><img src="{{ asset('/images/champions/square/' ~ champion.getSlug() ~ '.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="<span class='tooltip-stat'>{{ champion.getName() }}</span>" /></p>
+			<p>
+				<span class="champion-square36 {{ champion.getSlug() }} img tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="<span class='tooltip-stat'>{{ champion.getName() }}</span>"></span>
+			</p>
 		</div>
 			
 		{# PV #}

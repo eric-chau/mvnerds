@@ -64,7 +64,6 @@
 		<p class="indication">{{'Champion_preview.stat.indication.part1'|trans}} {{ champion.getName() }} {{'Champion_preview.stat.indication.part2'|trans}}</p>
 	</div>
 	<div class="span6 right-side">
-		
-		<img src="{{ asset('/images/champions/portrait/' ~ champion.getSlug() ~ '.jpg') }}" class="portrait" />
+		<div class="champion-portrait {{ champion.getSlug() }}"></div>
 	</div>
 </div>
