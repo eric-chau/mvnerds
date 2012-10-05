@@ -19,7 +19,7 @@
 		<div class="span1 tooltip-anchor" 
 			 rel="tooltip" 
 			 data-placement="bottom" 
-			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.health'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}}   <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.health'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
 			<p>
 				<span class="own">{{ champion.getBaseHealth() }}</span>
 				<span class="diff 
@@ -53,7 +53,7 @@
 		<div class="span1 tooltip-anchor" 
 			 rel="tooltip" 
 			 data-placement="bottom" 
-			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.health_regen'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}} <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.health_regen'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
 			<p>
 				<span class="own">{{ champion.getBaseHealthRegen() * 5 }}</span>
 				<span class="diff 
@@ -87,7 +87,7 @@
 		<div class="span1 tooltip-anchor" 
 			 rel="tooltip" 
 			 data-placement="bottom" 
-			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.mana'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}} <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.mana'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
 			<p>
 				<span class="own">{{ champion.getBaseMana() }}</span>
 				<span class="diff 
@@ -121,7 +121,7 @@
 		<div class="span1 tooltip-anchor" 
 			 rel="tooltip" 
 			 data-placement="bottom" 
-			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.mana_regen'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}} <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.mana_regen'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
 			<p>
 				<span class="own">{{ champion.getBaseManaRegen() * 5 }}</span>
 				<span class="diff 
@@ -155,7 +155,7 @@
 		<div class="span1 tooltip-anchor" 
 			 rel="tooltip" 
 			 data-placement="bottom" 
-			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.armor'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}} <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.armor'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
 			<p>
 				<span class="own">{{ champion.getBaseArmor() }}</span>
 				<span class="diff 
@@ -189,7 +189,7 @@
 		<div class="span1 tooltip-anchor" 
 			 rel="tooltip" 
 			 data-placement="bottom" 
-			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.magic_resist'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}} <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.magic_resist'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
 			<p>
 				<span class="own">{{ champion.getBaseMagicResist() }}</span>
 				<span class="diff 
@@ -223,7 +223,7 @@
 		<div class="span1 tooltip-anchor" 
 			 rel="tooltip" 
 			 data-placement="bottom" 
-			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.damage'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}} <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.damage'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
 			<p>
 				<span class="own">{{ champion.getBaseDamage() }}</span>
 				<span class="diff 
@@ -257,7 +257,7 @@
 		<div class="span1 tooltip-anchor" 
 			 rel="tooltip" 
 			 data-placement="bottom" 
-			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.attack_speed'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}} <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.attack_speed'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
 			<p>
 				<span class="own">{{ champion.getBaseAttackSpeed() }}</span>
 				<span class="diff 
@@ -291,7 +291,7 @@
 		<div class="span1 tooltip-anchor" 
 			 rel="tooltip" 
 			 data-placement="bottom" 
-			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.range'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}} <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.range'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
 			<p>
 				<span class="own">{{ champion.getAttackRange() }}</span>
 				<span class="diff 
@@ -325,7 +325,7 @@
 		<div class="span1 tooltip-anchor" 
 			 rel="tooltip" 
 			 data-placement="bottom" 
-			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} a <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.movement_speed'|trans}} par rapport à {{ reference_champion.getName() }}</span>">
+			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}} <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.movement_speed'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
 			<p>
 				<span class="own">{{ champion.getMoveSpeed() }}</span>
 				<span class="diff 

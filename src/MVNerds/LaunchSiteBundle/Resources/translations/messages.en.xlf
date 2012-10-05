@@ -12,6 +12,10 @@
 				<source>General.or</source>
 				<target>or</target>
 			</trans-unit>
+			<trans-unit id="3">
+				<source>General.has</source>
+				<target>has</target>
+			</trans-unit>
 
 			<!--  COUNTDOWN -->
 			<trans-unit id="1000">
@@ -169,7 +173,7 @@
 			</trans-unit>
 			<trans-unit id="6001">
 				<source>Champion_preview.stat.health</source>
-				<target>Health points (HP)</target>
+				<target>health points (HP)</target>
 			</trans-unit>
 			<trans-unit id="6002">
 				<source>Champion_preview.stat.health_regen</source>
@@ -177,7 +181,7 @@
 			</trans-unit>
 			<trans-unit id="6003">
 				<source>Champion_preview.stat.mana</source>
-				<target>Mana</target>
+				<target>mana</target>
 			</trans-unit>
 			<trans-unit id="6004">
 				<source>Champion_preview.stat.mana_regen</source>
@@ -185,31 +189,31 @@
 			</trans-unit>
 			<trans-unit id="6005">
 				<source>Champion_preview.stat.armor</source>
-				<target>Armor</target>
+				<target>armor</target>
 			</trans-unit>
 			<trans-unit id="6006">
 				<source>Champion_preview.stat.magic_resist</source>
-				<target>Magic resistance</target>
+				<target>magic resistance</target>
 			</trans-unit>
 			<trans-unit id="6007">
 				<source>Champion_preview.stat.damage</source>
-				<target>Attack damage</target>
+				<target>attack damage</target>
 			</trans-unit>
 			<trans-unit id="6008">
 				<source>Champion_preview.stat.attack_speed</source>
-				<target>Attack speed</target>
+				<target>attack speed</target>
 			</trans-unit>
 			<trans-unit id="6009">
 				<source>Champion_preview.stat.range</source>
-				<target>Attack range</target>
+				<target>attack range</target>
 			</trans-unit>
 			<trans-unit id="6010">
 				<source>Champion_preview.stat.movement_speed</source>
-				<target>Movement speed</target>
+				<target>movement speed</target>
 			</trans-unit>
 			<trans-unit id="6011">
 				<source>Champion_preview.stat.indication.part1</source>
-				<target>The above caracteristics are</target>
+				<target>the above caracteristics are</target>
 			</trans-unit>
 			<trans-unit id="6012">
 				<source>Champion_preview.stat.indication.part2</source>
@@ -228,6 +232,40 @@
 			<trans-unit id="7002">
 				<source>Champion_comparison.actions.set_reference</source>
 				<target>Make this champion the new reference</target>
+			</trans-unit>
+			<trans-unit id="7003">
+				<source>Champion_comparison.champion_row.tooltip.compared_to</source>
+				<target>compared to</target>
+			</trans-unit>
+
+			<!--  FLASH MESSAGES -->
+			<trans-unit id="8000">
+				<source>Flash.success.add_to_compare.champions</source>
+				<target>The champion has been successfully added to the comparison list</target>
+			</trans-unit>
+			<trans-unit id="8001">
+				<source>Flash.error.already_in_list.add_to_compare.champions</source>
+				<target>This champion is already in the comparison list</target>
+			</trans-unit>
+			<trans-unit id="8002">
+				<source>Flash.error.max_reached.add_to_compare.champions</source>
+				<target>Maximum comparable champion number is reached, remove one from the list first</target>
+			</trans-unit>
+			<trans-unit id="8003">
+				<source>Flash.success.remove_from_compare.champions</source>
+				<target>The champion has been successfully removed from the comparison list</target>
+			</trans-unit>
+			<trans-unit id="8004">
+				<source>Flash.error.not_enough.compare.champions</source>
+				<target>Not enough champions to compare</target>
+			</trans-unit>
+			<trans-unit id="8005">
+				<source>Flash.error.empty.compare.champions</source>
+				<target>There is no champion to compare</target>
+			</trans-unit>
+			<trans-unit id="8006">
+				<source>Flash.success.clean_comparison.champions</source>
+				<target>Comparison list has been successfully cleaned</target>
 			</trans-unit>
 		</body>
 	</file>

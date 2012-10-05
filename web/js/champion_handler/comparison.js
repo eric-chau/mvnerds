@@ -1,4 +1,5 @@
 var $comparisonListLoading = $('#comparison-list-loading');
+var $filterListAddChampionLoading = $('#filter-list-add-champions-loading');
 var nbComparedChampions = 0;
 
 function addChampionToList(slug){
@@ -50,6 +51,7 @@ function addManyChampionsToList(championsSlugArray){
 	hideMessages();
 	//On affiche l'icone de chargement
 	$comparisonListLoading.show();
+	toggleProgressCursor(true, '#li-compare-filtered a');
 
 	//On fait un appel ajax pour demander à ajouter le champion
 	$.ajax({
@@ -57,38 +59,35 @@ function addManyChampionsToList(championsSlugArray){
 		url:  Routing.generate('champion_handler_comparison_add_many_to_compare'),
 		data: {championsSlug: championsSlugArray},
 		dataType: 'html'
-	}).done(function(data){console.log(data);
-		//Si data est vide ça veut dire qu'on est confrontés à une erreur
-		if(data == undefined || data == '')
-		{
-			//Il ne faut donc pas afficher de nouveau champion dans la liste mais afficher un message d erreur
-			getAlertMessage(ERROR_ALERT);
-		}
-		else
-		{			
-			cleanComparisonList();
-			//Sinon on ajoute le champion à la liste
-			appendManyChampions(data);
-			//Et on affiche le message de succes
-			getAlertMessage(SUCCESS_ALERT);
+	}).done(function(data){
+		
+		cleanComparisonList();
+		//Sinon on ajoute le champion à la liste
+		appendManyChampions(data);
 
-			if ($('li.champion-comparable').length >0)
-			{
-				//On active le bouton de vidage
-				activateCleanButton();
-				//On retire le message d'information
-				$('li.indication').hide();
-			}
-			//Si les champions peuvent etre comparés
-			if ($('li.champion-comparable').length >= 2)
-			{
-				//On active le bouton de comparaison
-				activateCompareButton();
-			}
+		//Et on affiche les messages
+		getAlertMessage(SUCCESS_ALERT);
+		getAlertMessage(ERROR_ALERT);
+
+		if ($('li.champion-comparable').length >0)
+		{
+			//On active le bouton de vidage
+			activateCleanButton();
+			//On retire le message d'information
+			$('li.indication').hide();
 		}
+		//Si les champions peuvent etre comparés
+		if ($('li.champion-comparable').length >= 2)
+		{
+			//On active le bouton de comparaison
+			activateCompareButton();
+		}
+
 		$comparisonListLoading.hide();
+		toggleProgressCursor(false, '#li-compare-filtered a');
 	}).fail(function(){
 		$comparisonListLoading.hide();
+		toggleProgressCursor(false, '#li-compare-filtered a');
 	});
 }
 
@@ -116,8 +115,7 @@ function appendManyChampions(data)
 
 function removeChampionFromComparisonList(slug)
 {
-	//On retire le champion et son tooltip
-	$('ul#comparison-list li#comparable-'+slug+' a').tooltip('destroy')
+	//On retire le champion
 	$('ul#comparison-list li#comparable-'+slug).remove();
 	//On vérifie la taille de la liste
 	if( nbComparedChampions < 1){
@@ -197,12 +195,7 @@ jQuery(function($) {
 	
 	if (nbComparedChampions > 15){
 		$('#comparison-list').addClass('scrollable');
-	}
-	
-	//On active les tooltips
-	$('#wrapper').on('mouseover', '.tooltip-anchor', function(){
-		$(this).tooltip('show');
-	});
+	}	
 	
 	//On active le popover du bouton d aide de l actionbar
 	$('#comparison-list-help').popover();
@@ -271,11 +264,8 @@ jQuery(function($) {
 		}
 	});
 	
-	
-	
 	$('#comparison-list').on('click', 'a.champion-comparable-remove', function(){
 		var slug = $(this).find('span.slug').html();
-		$(this).tooltip('destroy');
 		$comparisonListLoading.show();
 		
 		hideMessages();
