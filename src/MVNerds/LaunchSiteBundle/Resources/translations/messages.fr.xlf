@@ -87,7 +87,7 @@
 			<!--  ACTIONS BAR -->
 			<trans-unit id="5000">
 				<source>Actionsbar.title</source>
-				<target>Module des champions (Bêta)</target>
+				<target>Module des champions</target>
 			</trans-unit>
 			<trans-unit id="5001">
 				<source>Actionsbar.Comparison_list.title</source>

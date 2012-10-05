@@ -1,6 +1,6 @@
 <div class="actions-bar">
 	<div id="actions-bar-content">
-		<h2 data-content-name="champion-handler">{{'Actionsbar.title'|trans}}</h2>
+		<h2 data-content-name="champion-handler">{{'Actionsbar.title'|trans}} <span class="sign red">beta</span></h2>
 
 		<ul class="action-buttons">
 			<li class="action {% if page != 'compare' %}force-hide{% endif %}" data-page-display="compare">
@@ -16,7 +16,7 @@
 			<li class="action link dropdown {% if page != 'champions' %}force-hide{% endif %}" id="comparison-list-dropdown" data-page-display="champions">
 				<a href="#" class="dropdown-toggle action-button-link" data-toggle="dropdown" id="drop-comparison-list" role="button">
 					<i class="icon-th-large icon-white"></i> 
-					<span class="action-label">{{'Actionsbar.Comparison_list.title'|trans}}<i id="comparison-list-size">&nbsp;({{list_size}})</i></span>
+					<span class="action-label">{{'Actionsbar.Comparison_list.title'|trans}} <i id="comparison-list-size">({{list_size}})</i></span>
 				</a>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="drop-comparison-list" id="comparison-list">
 					<li class="list-header"><img class="loader"  id="comparison-list-loading" src="{{ asset('images/commons/loader2.gif') }}"/> {{'Actionsbar.Comparison_list.Dropdown.title'|trans}}</li>
@@ -24,7 +24,7 @@
 					<li class="indication {% if app.session.get('comparison_list') | length > 0 %}hide{% endif %}">{{'Actionsbar.Comparison_list.Dropdown.indication'|trans}}</li>
 
 					{% for championSlug, champion in app.session.get('comparison_list') %}
-						{% include 'MVNerdsChampionHandlerBundle:Comparison:comparison_row.html.twig' with {'champion': champion}%}
+						{% include 'MVNerdsChampionHandlerBundle:Comparison:comparison_row.html.twig' with {'champion': champion }%}
 					{% endfor %}
 
 					<li id="li-clean" class="clean {% if list_size < 1 %} disabled{% endif %}">
@@ -38,7 +38,7 @@
 
 			{# Bouton d'action qui permet de comparer la liste des champions sélectionnés #}
 			<li class="action red-button {% if list_size < 2 %} disabled{% endif %} {% if page != 'champions' %}force-hide{% endif %}" data-page-display="champions">
-				<a id="btn-compare" class="data-pagination{% if list_size < 2 %} disabled{%endif%}" rel="next" href="{{path('launch_site_front_compare_champions') }}" data-page-display="compare">
+				<a id="btn-compare" class="data-pagination{% if list_size < 2 %} disabled{%endif%}" rel="next" href="{{path('launch_site_front_compare_champions', {'_locale': locale }) }}" data-page-display="compare">
 					<i class="icon-random icon-white"></i> <span class="action-label">{{'Actionsbar.Compare.title'|trans}}</span>
 				</a>
 			</li>

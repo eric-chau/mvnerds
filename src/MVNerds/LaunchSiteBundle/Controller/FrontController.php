@@ -22,7 +22,7 @@ class FrontController extends Controller
 		$request = $this->getRequest();	
 		if ($request->isXmlHttpRequest())
 		{
-			return $this->redirect($this->generateUrl('champion_handler_front_champion_comparison'));
+			return $this->forward('MVNerdsChampionHandlerBundle:Front:championComparison');
 		}
 		elseif($request->isMethod('POST'))
 		{
@@ -38,8 +38,7 @@ class FrontController extends Controller
 	/**
 	 * Permet de rediriger vers l action de comparaison
 	 * 
-	 * @Route("/{_locale}/comparer-champions", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"})
-	 * @Route("/comparer-champions", name="launch_site_front_compare_champions", options={"expose"=true})
+	 * @Route("/{_locale}/comparer-champions", name="launch_site_front_compare_champions", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"}, options={"expose"=true})
 	 */
 	public function compareChampionsAction()
 	{
@@ -49,7 +48,7 @@ class FrontController extends Controller
 		{
 			if ($request->isXmlHttpRequest())
 			{
-				return $this->redirect($this->generateUrl('champion_handler_comparison_compare'));
+				return $this->forward('MVNerdsChampionHandlerBundle:Comparison:compare');
 			}
 			elseif($request->isMethod('POST'))
 			{
@@ -62,7 +61,7 @@ class FrontController extends Controller
 		}
 		else
 		{
-			return $this->redirect($this->generateUrl('launch_site_front'));
+			return $this->forward('MVNerdsLaunchSiteBundle:Front:index');
 		}
 	}
 

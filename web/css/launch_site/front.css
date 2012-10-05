@@ -72,6 +72,20 @@ i.icon-24px {
 i.icon-36px {
   font-size: 36px;
 }
+span.sign {
+  display: inline-block;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 8px;
+  line-height: 1em;
+  padding: 3px;
+  position: relative;
+  text-transform: uppercase;
+  top: -13px;
+}
+span.sign.red {
+  color: #eee;
+  background-color: #db4a38;
+}
 body {
   background: #303030 url('/images/launch_site/layout_bg.png') no-repeat center center fixed;
 }
@@ -457,6 +471,20 @@ div.body-container div.champions-handler-container div.actions-bar div#actions-b
   display: block;
   padding: 3px 6px 0 2px;
 }
+div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action.link a.action-button-link.active {
+  color: #fb9701;
+  -webkit-transition: color 0.15s linear;
+  -moz-transition: color 0.15s linear;
+  -o-transition: color 0.15s linear;
+  transition: color 0.15s linear;
+}
+div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action.link a.action-button-link.active i {
+  color: #fb9701;
+  -webkit-transition: color 0.15s linear;
+  -moz-transition: color 0.15s linear;
+  -o-transition: color 0.15s linear;
+  transition: color 0.15s linear;
+}
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action.red-button {
   background-color: rgba(219, 74, 56, 0.7);
 }
@@ -567,22 +595,27 @@ div.body-container div.champions-handler-container div.actions-bar div#actions-b
   font-weight: bold;
   line-height: 20px;
   text-transform: uppercase;
+  width: 100%;
 }
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action i#comparison-list-size {
-  font-size: 13px;
-  color: #aaa;
+  color: black;
+  display: inline-block;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: bold;
+  top: -1px;
 }
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action ul#comparison-list {
   background-color: rgba(0, 0, 0, 0.8);
   border: 1px solid #19a0df !important;
-  width: 250px;
-  max-height: 550px;
-}
-div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action ul#comparison-list.scrollable {
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow: hidden;
+  width: 750px;
 }
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action ul#comparison-list li {
+  float: left;
+  display: inline;
+  width: 33%;
   text-align: center;
   min-height: 30px;
 }
@@ -598,16 +631,23 @@ div.body-container div.champions-handler-container div.actions-bar div#actions-b
   border-radius: 5px;
   color: #999;
   font-style: italic;
+  line-height: 30px;
   margin: 0 10px 11px 10px;
   padding: 15px;
+  width: 698px;
+}
+div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action ul#comparison-list li.indication.hide {
+  display: none;
 }
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action ul#comparison-list li.clean {
   border-top: 1px dashed rgba(255, 255, 255, 0.3);
+  display: block;
   font-family: 'Ubuntu', sans-serif;
   font-size: 12px;
   position: relative;
   text-align: right;
   top: 6px;
+  width: 100%;
 }
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action ul#comparison-list li.clean i,
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action ul#comparison-list li.clean a {

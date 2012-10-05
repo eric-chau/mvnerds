@@ -1,6 +1,6 @@
 var options, typeaheadValue, $isotope = $('#isotope-list'), $filterValue = $('#filter-value');
 
-function initTypeahead($isotope){
+function initTypeahead($isotope) {
 	options =  getIsotopeOptions();
 	$filterValue.off('keyup change');
 	$filterValue.keyup(function(){
@@ -10,21 +10,23 @@ function initTypeahead($isotope){
 		filter($isotope);
 	});
 }
-function initFilterList($isotope){
+function initFilterList($isotope) {
 	$('#filters-list  li').off('click', ' a.filter-link:not(.selected)');
 	$('#filters-list li').off('click', 'a.selected');
 	
 	$('#filters-list  li').on('click', ' a.filter-link:not(.selected)', function(){
 		$(this).addClass('selected');
+		$('a#drop-filter-list').addClass('active');
 		activateCompareFilteredButton();
 		addFilterValue($isotope, '.'+$(this).attr('data-option-value'));
 		return false;
 	});
-	$('#filters-list li').on('click', 'a.selected',function(){
+	$('#filters-list li').on('click', 'a.selected',function() {
 		$(this).removeClass('selected');
 		removeFilterValue($isotope, '.'+$(this).attr('data-option-value'));
 		if($('#filters-list li a.selected').size() <= 0)
 		{
+			$('a#drop-filter-list').removeClass('active');
 			deactivateCompareFilteredButton();
 		}
 		return false;
@@ -33,7 +35,7 @@ function initFilterList($isotope){
 	$('#li-compare-filtered').on('click', '#btn-compare-filtered', addFilteredChampions);
 }
 
-function setTypeaheadChampionsName(){
+function setTypeaheadChampionsName() {
 	$.ajax({
 		type: 'POST',
 		url:  Routing.generate('champion_handler_front_get_champions_name'),
@@ -43,7 +45,7 @@ function setTypeaheadChampionsName(){
 	});
 }
 
-function filter($isotope){
+function filter($isotope) {
 	var filterValue = $filterValue.val();
 	if(filterValue != '')
 	{
@@ -55,12 +57,12 @@ function filter($isotope){
 		$isotope.isotope(options);
 	}
 }
-function addFilterValue($isotope, value){
+function addFilterValue($isotope, value) {
 	options['filter'] = options['filter'] + value;
 	activateCleanFilterButton();
 	$isotope.isotope(options);
 }
-function removeFilterValue($isotope, value){
+function removeFilterValue($isotope, value) {
 	var oldOptions = options['filter'];
 	var newOptions;
 	if(value != undefined && value != '')
@@ -88,7 +90,8 @@ function setTypeaheadValue($isotope, value){
 }
 
 //Permet de vider le filtre
-function cleanFilter(){
+function cleanFilter() {
+	$('a#drop-filter-list').removeClass('active');
 	$filterValue.val('');
 	options['filter'] = '';
 	$('ul#filters-list ul.tags-group a.filter-link.selected').each(function(){

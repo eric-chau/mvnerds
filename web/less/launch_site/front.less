@@ -47,6 +47,22 @@ i {
 	}
 }
 
+span.sign {
+	display: inline-block;
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 8px;
+	line-height: 1em;
+	padding: 3px;
+	position: relative;
+	text-transform: uppercase;
+	top: -13px;
+
+	&.red {
+		color: #eee;
+		background-color: @MVNerdsRed;
+	}
+}
+
 body {
 	background: #303030 url('/images/launch_site/layout_bg.png') no-repeat center center fixed;
 }
@@ -460,6 +476,16 @@ div.body-container {
 							a.action-button-link {
 								display: block;
 								padding: 3px 6px 0 2px;
+
+								&.active {
+									color: @LoLOrangeAD;
+									.transition(color .15s linear);
+
+									i {
+										color: @LoLOrangeAD;
+										.transition(color .15s linear);
+									}
+								}
 							}					
 						}
 
@@ -557,27 +583,31 @@ div.body-container {
 								font-weight: bold;
 								line-height: 20px;
 								text-transform: uppercase;
+								width: 100%;
 							}
 
 						}
 
 						i#comparison-list-size{
-							font-size: 13px;
-							color: #aaa;
+							color: black;
+							display: inline-block;
+							font-family: 'Ubuntu', sans-serif;
+							font-size: 10px;
+							font-style: normal;
+							font-weight: bold;
+							top: -1px;
 						}
 
 						ul#comparison-list {
 							background-color: rgba(0,0,0,0.8);
 							border: 1px solid @MVNerdsBlue !important;
-							width: 250px;
-							max-height: 550px;
-							
-							&.scrollable{
-								overflow-x: hidden;
-								overflow-y: auto;
-							}
+							overflow: hidden;
+							width: 750px;
 
 							li {
+								float: left;
+								display: inline;
+								width: 33%;
 								text-align: center;
 								min-height: 30px;
 							}
@@ -593,17 +623,25 @@ div.body-container {
 								.border-radius(5px);
 								color: #999;
 								font-style: italic;
+								line-height: 30px;
 								margin: 0 10px 11px 10px;
 								padding: 15px;
+								width: 698px;
+
+								&.hide {
+									display: none;
+								}
 							}
 
 							li.clean {
 								border-top: 1px dashed rgba(255,255,255,0.3);
+								display: block;
 								font-family: 'Ubuntu', sans-serif;
 								font-size: 12px;
 								position: relative;
 								text-align: right;
 								top: 6px;
+								width: 100%;
 
 								i, a {
 									color: #666;	

@@ -165,8 +165,14 @@ div.champion-row p img {
   width: 36px;
 }
 span.tooltip-stat {
+  background-color: #333;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  display: block;
   font-family: 'Trebuchet MS', sans-serif;
   font-size: 12px;
+  padding: 3px;
 }
 span.tooltip-stat span.plus,
 span.tooltip-stat span.minus {

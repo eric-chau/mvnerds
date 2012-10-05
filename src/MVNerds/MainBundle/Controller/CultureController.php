@@ -22,8 +22,8 @@ class CultureController extends Controller
 		
 		$host = $request->headers->get('host');
 		$referer = $request->headers->get('referer');
-		$route = str_split($referer, strpos($referer, $host) + strlen($host));
-		$route[0] .= '/' . $locale;
+		$route = explode($host, $referer);
+		$route[0] .= $host . '/' . $locale;
 		
 		if (strlen($route[1]) ==1 && $route[1] == '/') {
 			$route[1] = '';

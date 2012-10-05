@@ -87,7 +87,7 @@
 			<!--  ACTIONS BAR -->
 			<trans-unit id="5000">
 				<source>Actionsbar.title</source>
-				<target>Champion benchmark (Bêta)</target>
+				<target>Champion benchmark</target>
 			</trans-unit>
 			<trans-unit id="5001">
 				<source>Actionsbar.Comparison_list.title</source>

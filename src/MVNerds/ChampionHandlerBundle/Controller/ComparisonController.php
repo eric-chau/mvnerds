@@ -152,7 +152,7 @@ class ComparisonController extends Controller
 		//Création du FlashManager
 		/* @var $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
 		$flashManager = $this->get('mvnerds.flash_manager');
-
+		
 		//récupération du champion_comparison_manager
 		/* @var $comparisonManager \MVNerds\CoreBundle\ChampionComparison\ChampionComparisonManager */
 		$comparisonManager = $this->get('mvnerds.champion_comparison_manager');
