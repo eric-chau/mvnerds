@@ -157,7 +157,7 @@ div.header-container div.switch-language-container a {
 }
 div.header-container div.switch-language-container span.current-language-msg,
 div.header-container div.switch-language-container span.switch-language-msg {
-  color: #aaa;
+  color: #999;
   font-family: 'Ubuntu', sans-serif;
   font-size: 12px;
   font-weight: bold;
@@ -184,6 +184,7 @@ div.header-container div.switch-language-container a,
 div.header-container div.switch-language-container a:visited,
 div.header-container div.switch-language-container a:hover {
   color: #db4a38;
+  opacity: .5;
   text-decoration: none;
 }
 div.header-container div.switch-language-container a:hover {
@@ -205,6 +206,55 @@ div.header-container div.social-container p {
   margin: 0;
   padding: 0;
   text-align: right;
+}
+div.header-container div.social-container a,
+div.header-container div.social-container a:hover,
+div.header-container div.social-container a:visited {
+  color: #759e1a;
+  font-weight: bold;
+  text-decoration: none;
+}
+div.header-container div.social-container a i,
+div.header-container div.social-container a:hover i,
+div.header-container div.social-container a:visited i {
+  color: #759e1a;
+  font-size: 16px;
+}
+div.header-container div.social-container a.twitter:hover,
+div.header-container div.social-container a:hover.twitter:hover,
+div.header-container div.social-container a:visited.twitter:hover {
+  color: #00acee;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div.header-container div.social-container a.twitter:hover i,
+div.header-container div.social-container a:hover.twitter:hover i,
+div.header-container div.social-container a:visited.twitter:hover i {
+  color: #00acee;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div.header-container div.social-container a.facebook:hover,
+div.header-container div.social-container a:hover.facebook:hover,
+div.header-container div.social-container a:visited.facebook:hover {
+  color: #345390;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div.header-container div.social-container a.facebook:hover i,
+div.header-container div.social-container a:hover.facebook:hover i,
+div.header-container div.social-container a:visited.facebook:hover i {
+  color: #345390;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
 }
 div.header-container div.social-container em {
   color: #759e1a;

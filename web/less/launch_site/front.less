@@ -139,7 +139,7 @@ div.header-container {
 		}
 
 		span.current-language-msg, span.switch-language-msg {
-			color: #aaa;
+			color: #999;
 			font-family: 'Ubuntu', sans-serif;
 			font-size: 12px;
 			font-weight: bold;
@@ -166,6 +166,7 @@ div.header-container {
 
 		a, a:visited, a:hover {
 			color: @MVNerdsRed;
+			opacity: .5;
 			text-decoration: none;
 		}
 
@@ -187,6 +188,41 @@ div.header-container {
 			margin: 0;
 			padding: 0;
 			text-align: right;
+		}
+
+		a, a:hover, a:visited {
+			color: @MVNerdsGreen;
+			font-weight: bold;
+			text-decoration: none;
+
+			i {
+				color: @MVNerdsGreen;
+				font-size: 16px;
+			}
+
+			&.twitter {
+				&:hover {
+					color: #00acee;
+					.transition(color .25s linear);
+
+					i {
+						color: #00acee;
+						.transition(color .25s linear);
+					}
+				}
+			}
+			
+			&.facebook {
+				&:hover {
+					color: #345390;
+					.transition(color .25s linear);
+
+					i {
+						color: #345390;
+						.transition(color .25s linear);
+					}
+				}
+			}
 		}
 
 		em {
