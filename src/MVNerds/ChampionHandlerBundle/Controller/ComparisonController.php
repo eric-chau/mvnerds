@@ -107,7 +107,7 @@ class ComparisonController extends Controller
 					$championsArray = $this->get('mvnerds.champion_manager')->findManyBySlugs($championsSlug);
 					$comparisonManager->addManyChampions($championsArray);
 					
-					return $this->render('MVNerdsChampionHandlerBundle:Comparison:champion_list.html.twig',array(
+					return $this->render('MVNerdsChampionHandlerBundle:Comparison:comparison_list.html.twig',array(
 						'champions' => $comparisonManager->getList()
 					));
 				}
