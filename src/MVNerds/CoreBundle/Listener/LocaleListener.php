@@ -23,9 +23,13 @@ class LocaleListener implements EventSubscriberInterface
 			return;
 		}
 		
+		$request = $event->getRequest();
 		if (null == $event->getRequest()->get('_locale')) {
 			$locale = $this->session->get('locale', null);
-			$event->getRequest()->setLocale(null != $locale? $locale : $this->defaultLocale);
+			$request->setLocale(null != $locale? $locale : $this->defaultLocale);
+		}
+		else {
+			$this->session->set('locale', $request->getLocale());
 		}
 	}
 	
