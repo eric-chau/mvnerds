@@ -27,7 +27,7 @@ function displayMessage(message, type)
 	timeoutID = setTimeout(function(){
 		hideMessages();
 	},
-	4000);
+	3000);
 }
 //Permet de retirer les messages d'alerte actuellement affichés
 function hideMessages(){

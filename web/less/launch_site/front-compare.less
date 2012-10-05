@@ -109,73 +109,78 @@ div#compare-champion-div-header {
 	}
 }
 
-div.champion-row {
-	border-bottom: 1px solid #333;
-	margin: 5px 0;
-
-	&:hover {
-		background-color: #222;
-	}
-
-	div.span1 {
-		border-left: 1px solid #333;
-		height: 56px;
-		line-height: 56px;
+div.champion-list {
+	div.champion-row {
+		background-color: #141414;
+		border-bottom: 1px solid #333;
+		margin: 5px 0;
 
 		&:hover {
+			background-color: #222;
+		}
+
+		div.span1 {
+			border-left: 1px solid #333;
+			height: 56px;
+			line-height: 56px;
+
+			&.no-margin {
+				border-left: 0;
+			}
+
+			&:hover {
+				span.own {
+					color: @MVNerdsBlue;
+					.transition(color .25s linear);	
+				}
+			}
+		}
+
+		p {
+			padding-bottom: 8px;
+
+			span.diff {
+				color: #555;
+				display: block;
+				font-size: 16px;
+				line-height: 1em;
+				font-weight: bold;
+				width: 74px;
+
+				&.plus {
+				color: @MVNerdsGreen;
+				}
+
+				&.minus {
+					color: @MVNerdsRed;
+				}
+
+				&.minor-plus {
+					color: darken(@MVNerdsGreen, 20%);
+				}
+
+				&.minor-minus {
+					color: darken(@MVNerdsRed, 20%);
+				}
+			}
+
 			span.own {
-				color: @MVNerdsBlue;
-				.transition(color .25s linear);	
-			}
-		}
-	}
-
-	p {
-		padding-bottom: 8px;
-
-		span.diff {
-			color: #555;
-			display: block;
-			font-size: 16px;
-			line-height: 1em;
-			font-weight: bold;
-			width: 74px;
-
-			&.plus {
-			color: @MVNerdsGreen;
+				color: darken(@MVNerdsBlue, 25%);
+				display: inline-block;
+				font-size: 12px;
+				line-height: 1em;
+				margin-bottom: 5px;
+				width: 74px;
 			}
 
-			&.minus {
-				color: @MVNerdsRed;
+			img {
+				width: 36px;
 			}
-
-			&.minor-plus {
-				color: darken(@MVNerdsGreen, 20%);
-			}
-
-			&.minor-minus {
-				color: darken(@MVNerdsRed, 20%);
-			}
-		}
-
-		span.own {
-			color: darken(@MVNerdsBlue, 25%);
-			display: inline-block;
-			font-size: 12px;
-			line-height: 1em;
-			margin-bottom: 5px;
-			width: 74px;
-		}
-
-		img {
-			width: 36px;
 		}
 	}
 }
 
 span.tooltip-stat {
-	background-color: #333;
-	.border-radius(4px);
 	display: block;
 	font-family: 'Trebuchet MS', sans-serif;
 	font-size: 12px;
