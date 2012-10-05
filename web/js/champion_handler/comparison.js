@@ -115,8 +115,7 @@ function appendManyChampions(data)
 
 function removeChampionFromComparisonList(slug)
 {
-	//On retire le champion et son tooltip
-	$('ul#comparison-list li#comparable-'+slug+' a').tooltip('destroy')
+	//On retire le champion
 	$('ul#comparison-list li#comparable-'+slug).remove();
 	//On vérifie la taille de la liste
 	if( nbComparedChampions < 1){
@@ -196,12 +195,7 @@ jQuery(function($) {
 	
 	if (nbComparedChampions > 15){
 		$('#comparison-list').addClass('scrollable');
-	}
-	
-	//On active les tooltips
-	$('#wrapper').on('mouseover', '.tooltip-anchor', function(){
-		$(this).tooltip('show');
-	});
+	}	
 	
 	//On active le popover du bouton d aide de l actionbar
 	$('#comparison-list-help').popover();
@@ -270,11 +264,8 @@ jQuery(function($) {
 		}
 	});
 	
-	
-	
 	$('#comparison-list').on('click', 'a.champion-comparable-remove', function(){
 		var slug = $(this).find('span.slug').html();
-		$(this).tooltip('destroy');
 		$comparisonListLoading.show();
 		
 		hideMessages();

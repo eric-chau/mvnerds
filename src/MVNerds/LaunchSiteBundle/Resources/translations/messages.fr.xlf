@@ -12,6 +12,10 @@
 				<source>General.or</source>
 				<target>ou</target>
 			</trans-unit>
+			<trans-unit id="3">
+				<source>General.has</source>
+				<target>a</target>
+			</trans-unit>
 
 			<!--  COUNTDOWN -->
 			<trans-unit id="1000">
@@ -169,47 +173,47 @@
 			</trans-unit>
 			<trans-unit id="6001">
 				<source>Champion_preview.stat.health</source>
-				<target>Points de vie (PV)</target>
+				<target>points de vie (PV)</target>
 			</trans-unit>
 			<trans-unit id="6002">
 				<source>Champion_preview.stat.health_regen</source>
-				<target>Régen. de PV/5 sec</target>
+				<target>régen. de PV/5 sec</target>
 			</trans-unit>
 			<trans-unit id="6003">
 				<source>Champion_preview.stat.mana</source>
-				<target>Points de mana</target>
+				<target>points de mana</target>
 			</trans-unit>
 			<trans-unit id="6004">
 				<source>Champion_preview.stat.mana_regen</source>
-				<target>Régen. de mana/5 sec</target>
+				<target>régen. de mana/5 sec</target>
 			</trans-unit>
 			<trans-unit id="6005">
 				<source>Champion_preview.stat.armor</source>
-				<target>Armure</target>
+				<target>armure</target>
 			</trans-unit>
 			<trans-unit id="6006">
 				<source>Champion_preview.stat.magic_resist</source>
-				<target>Résistance magique</target>
+				<target>résistance magique</target>
 			</trans-unit>
 			<trans-unit id="6007">
 				<source>Champion_preview.stat.damage</source>
-				<target>Dégâts d'attaque</target>
+				<target>régâts d'attaque</target>
 			</trans-unit>
 			<trans-unit id="6008">
 				<source>Champion_preview.stat.attack_speed</source>
-				<target>Vitesse d'attaque</target>
+				<target>vitesse d'attaque</target>
 			</trans-unit>
 			<trans-unit id="6009">
 				<source>Champion_preview.stat.range</source>
-				<target>Portée d'attaque</target>
+				<target>portée d'attaque</target>
 			</trans-unit>
 			<trans-unit id="6010">
 				<source>Champion_preview.stat.movement_speed</source>
-				<target>Vitesse de déplacement</target>
+				<target>vitesse de déplacement</target>
 			</trans-unit>
 			<trans-unit id="6011">
 				<source>Champion_preview.stat.indication.part1</source>
-				<target>Les caractéristiques ci-dessus sont celle de</target>
+				<target>les caractéristiques ci-dessus sont celle de</target>
 			</trans-unit>
 			<trans-unit id="6012">
 				<source>Champion_preview.stat.indication.part2</source>
@@ -228,6 +232,44 @@
 			<trans-unit id="7002">
 				<source>Champion_comparison.actions.set_reference</source>
 				<target>Faire de ce champion la référence</target>
+			</trans-unit>
+			<trans-unit id="7003">
+				<source>Champion_comparison.champion_row.tooltip.compared_to</source>
+				<target>par rapport à</target>
+			</trans-unit>
+			
+			<!--  FLASH MESSAGES -->
+			<trans-unit id="8000">
+				<source>Flash.success.add_to_compare.champions</source>
+				<target>Le champion a bien été ajouté à la liste de comparaison</target>
+			</trans-unit>
+			<trans-unit id="8001">
+				<source>Flash.error.already_in_list.add_to_compare.champions</source>
+				<target>Le champion est déjà présent dans la liste de comparaison</target>
+			</trans-unit>
+			<trans-unit id="8002">
+				<source>Flash.error.max_reached.add_to_compare.champions</source>
+				<target>Le nombre de champion maximum à comparer est atteint, veuillez en supprimer un de la liste d'abord</target>
+			</trans-unit>
+			<trans-unit id="8003">
+				<source>Flash.success.remove_from_compare.champions</source>
+				<target>Le champion a bien été retiré de la liste</target>
+			</trans-unit>
+			<trans-unit id="8004">
+				<source>Flash.error.not_enough.compare.champions</source>
+				<target>il n'y a pas assez de champions à comparer</target>
+			</trans-unit>
+			<trans-unit id="8005">
+				<source>Flash.error.empty.compare.champions</source>
+				<target>Aucun champion à comparer</target>
+			</trans-unit>
+			<trans-unit id="8006">
+				<source>Flash.error.not_enough.compare.champions</source>
+				<target>il n'y a pas assez de champions à comparer</target>
+			</trans-unit>
+			<trans-unit id="8007">
+				<source>Flash.success.clean_comparison.champions</source>
+				<target>La liste de comparaison a bien été vidée</target>
 			</trans-unit>
 		</body>
 	</file>

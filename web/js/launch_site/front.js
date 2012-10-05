@@ -39,7 +39,12 @@ function processScroll()
 }
 
 $(document).ready(function()
-{
+{	
+	//On active les tooltips
+	$('#wrapper').on('mouseover', '.tooltip-anchor', function(){
+		$(this).tooltip('show');
+	});
+	
 	/**
 	 * GESTION DU COMPTE A REBOUR AVANT LA DATE DE SORTIE
 	 */
@@ -106,7 +111,7 @@ $(document).ready(function()
 			benchmarkChampionTop = $benchmarkChampion.length && $benchmarkChampion.offset().top;
 		}
 		processScroll();
-}
+	}
 
 	/**
 	 * GESTION DU DÉPOT D'EMAIL
