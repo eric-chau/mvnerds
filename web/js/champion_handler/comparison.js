@@ -6,7 +6,7 @@ function addChampionToList(slug){
 	hideMessages();
 	//On affiche l'icone de chargement
 	$comparisonListLoading.show();
-
+	toggleProgressCursor(true, '#'+slug);
 	//On fait un appel ajax pour demander à ajouter le champion
 	$.ajax({
 		type: 'GET',
@@ -41,8 +41,10 @@ function addChampionToList(slug){
 			}
 		}
 		$comparisonListLoading.hide();
+		toggleProgressCursor(false, '#'+slug, 'pointer');
 	}).fail(function(){
 		$comparisonListLoading.hide();
+		toggleProgressCursor(false,'#'+slug, 'pointer');
 	});
 }
 

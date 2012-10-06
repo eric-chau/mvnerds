@@ -5,6 +5,12 @@
 {% block javascripts %}
 	{{ parent() }}
 	<script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-typeahead.js') }}"></script>
+	<script type="text/javascript">
+		$(function(){
+			var input = $('#champion-name');
+			input[0].selectionStart = input[0].selectionEnd = input.val().length;
+		});
+	</script>
 {% endblock %}
 
 {% block content %}
@@ -19,7 +25,7 @@
 	<div class="content-container">
 		<form action="{{ path('admin_tags_manage_champions_affectation', {'label': tag.getLabel()}) }}" method="POST">
 			<label>Nom du champion</label>
-			<input type="text" name="champion-name" id="champion-name" placeholder="Nom du champion" data-provide="typeahead" data-source="{{championsNames}}"/>
+			<input type="text" name="champion-name" autocomplete="off" tabindex="0" id="champion-name" placeholder="Nom du champion" data-provide="typeahead" data-source="{{championsNames}}"/>
 
 			<input type="submit" class="submit-form hide" />
 		</form>

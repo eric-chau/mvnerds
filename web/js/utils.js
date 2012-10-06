@@ -75,7 +75,10 @@ function displayAjaxData(data){
 }
 
 //Permet d'afficher un chargement sur le curseur de la souris lors du survol de target (target = * par defaut)
-function toggleProgressCursor(toggle, target){
+//On peut également spécifier le type de curseur pour la remise a zero de la cible
+function toggleProgressCursor(toggle, target, cursor){
 	target = typeof target !== 'undefined' ? target : '*';
-	toggle ? $(target).css('cursor', 'progress') : $(target).css('cursor', 'auto');
+	cursor = typeof cursor !== 'undefined' ? cursor : 'auto';
+	
+	toggle ? $(target).css('cursor', 'progress') : $(target).css('cursor', cursor);
 }

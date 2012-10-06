@@ -81,9 +81,11 @@ class TagController extends Controller
 			// On redirige l'utilisateur vers la liste des utilisateurs
 			return $this->redirect($this->generateUrl('admin_tags_manage_champions_affectation', array('label' => $label)));
 		}
+		$c = new \Criteria();
+		$c ->addAscendingOrderByColumn(\MVNerds\CoreBundle\Model\ChampionPeer::NAME);
 		return $this->render('MVNerdsAdminBundle:Tag:manage_champions_affectation.html.twig', array(
 			'tag'				=> $tag,
-			'championsTagsAffected'	=> $tag->getChampionTagsJoinChampion(),
+			'championsTagsAffected'	=> $tag->getChampionTagsJoinChampion($c),
 			'championsNames'	=> json_encode($this->get('mvnerds.champion_manager')->getChampionsName()->toArray())
 		));
 	}
