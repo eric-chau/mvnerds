@@ -12,7 +12,7 @@ var $championComparator = $('#champion-comparison'),
 function sortByColumn(column, order){
 	var sortValue,
 		sortSlug,
-		$filterHeader,
+		$sortHeader,
 		sortArray = new Array();
 
 	$championHeader = $('#champion-comparator div#compare-champion-div-header div.table-header');
@@ -21,7 +21,7 @@ function sortByColumn(column, order){
 	order = typeof order !== 'undefined' ? order : SORT_DESC;
 
 	//On parcours tous les champions en récupérant la valeur de leur colonne dans un tableau
-	$('div[data-filter="'+column+'"]').each(function(){
+	$('div[data-sort="'+column+'"]').each(function(){
 		sortValue = $(this).data('value');
 		sortSlug = $(this).parent('div.champion-row').data('slug');
 		sortArray.push({
@@ -35,22 +35,21 @@ function sortByColumn(column, order){
 		return (column == 'champion-name') ? (a.value.localeCompare(b.value)) : (parseFloat(a.value) -  parseFloat(b.value));
 	});
 
-	$filterHeader = $championHeader.find('div[data-target="'+column+'"]');
+	$sortHeader = $championHeader.find('div[data-target="'+column+'"]');
+
+	$championHeader.find('div.sort').removeClass('sort-desc sort-asc');
+	$championHeader.find('div.sort i').attr('class',  'icon-sort icon-white');
 
 	if(order == SORT_DESC)
 	{
 		sortArray.reverse();
-		$filterHeader.addClass('filter-desc');
-		$filterHeader.removeClass('filter-asc');
-		$filterHeader.find('i').removeClass('icon-sort-up');
-		$filterHeader.find('i').addClass('icon-sort-down');
+		$sortHeader.addClass('sort-desc');
+		$sortHeader.find('i').attr('class', 'icon-sort-down icon-white');
 	}
 	else
 	{
-		$filterHeader.addClass('filter-asc')
-		$filterHeader.removeClass('filter-desc');
-		$filterHeader.find('i').removeClass('icon-sort-down');
-		$filterHeader.find('i').addClass('icon-sort-up');
+		$sortHeader.addClass('sort-asc')
+		$sortHeader.find('i').attr('class', 'icon-sort-up icon-white');
 	}
 
 	$championList.html('');
@@ -62,14 +61,14 @@ function sortByColumn(column, order){
 
 jQuery(function(){
 	//Lors du click sur un header de stat
-	$championComparator.on('click', 'div#compare-champion-div-header div.table-header div.sort:not(.filter-asc):not(.filter-desc)', function(){console.log('sort');
+	$championComparator.on('click', 'div#compare-champion-div-header div.table-header div.sort:not(.sort-asc):not(.sort-desc)', function(){console.log('sort');
 		$(this).find('i').removeClass('icon-sort');
 		sortByColumn($(this).data('target'));
 	});
-	$championComparator.on('click', 'div#compare-champion-div-header div.table-header div.sort.filter-asc', function(){
+	$championComparator.on('click', 'div#compare-champion-div-header div.table-header div.sort.sort-asc', function(){
 		sortByColumn($(this).data('target'), SORT_DESC);
 	});
-	$championComparator.on('click', 'div#compare-champion-div-header div.table-header div.sort.filter-desc', function(){
+	$championComparator.on('click', 'div#compare-champion-div-header div.table-header div.sort.sort-desc', function(){
 		sortByColumn($(this).data('target'), SORT_ASC);
 	});
 
