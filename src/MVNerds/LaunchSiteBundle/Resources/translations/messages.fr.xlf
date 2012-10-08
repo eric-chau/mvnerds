@@ -197,7 +197,7 @@
 			</trans-unit>
 			<trans-unit id="6007">
 				<source>Champion_preview.stat.damage</source>
-				<target>régâts d'attaque</target>
+				<target>dégâts d'attaque</target>
 			</trans-unit>
 			<trans-unit id="6008">
 				<source>Champion_preview.stat.attack_speed</source>

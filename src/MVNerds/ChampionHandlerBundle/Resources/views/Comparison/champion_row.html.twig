@@ -1,6 +1,6 @@
 {% if champion.getId() != reference_champion.getId() %}
 	<div class="row-fluid champion-row" data-slug="{{ champion.getslug() }}">
-		<div class="span1 no-margin" data-filter="champion-name" data-value="{{ champion.getName() }}">
+		<div class="span1 no-margin" data-sort="champion-name" data-value="{{ champion.getName() }}">
 			<p>
 				<span class="champion-square36 {{ champion.getSlug() }} img tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="<span class='tooltip-stat'>{{ champion.getName() }}</span>"></span>
 			</p>
@@ -16,7 +16,7 @@
 		{% endif %}
 		{% set ten_percent_level = reference_champion.getBaseHealth() * 0.1 %}
 		{% set one_percent_level = reference_champion.getBaseHealth() * 0.01 %}
-		<div class="span1 tooltip-anchor"  data-filter="health" data-value="{{ champion.getBaseHealth() }}"
+		<div class="span1 tooltip-anchor"  data-sort="health" data-value="{{ champion.getBaseHealth() }}"
 			 rel="tooltip" 
 			 data-placement="bottom" 
 			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}}   <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.health'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
@@ -50,7 +50,7 @@
 		{% endif %}
 		{% set ten_percent_level = reference_champion.getBaseHealthRegen() * 5 * 0.1 %}
 		{% set one_percent_level = reference_champion.getBaseHealthRegen() * 5 * 0.01 %}
-		<div class="span1 tooltip-anchor"  data-filter="health-regen" data-value="{{ champion.getBaseHealthRegen() * 5 }}"
+		<div class="span1 tooltip-anchor"  data-sort="health-regen" data-value="{{ champion.getBaseHealthRegen() * 5 }}"
 			 rel="tooltip" 
 			 data-placement="bottom" 
 			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}} <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.health_regen'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
@@ -84,7 +84,7 @@
 		{% endif %}
 		{% set ten_percent_level = reference_champion.getBaseMana() * 0.1 %}
 		{% set one_percent_level = reference_champion.getBaseMana() * 0.01 %}
-		<div class="span1 tooltip-anchor"  data-filter="mana" data-value="{{ champion.getBaseMana() }}"
+		<div class="span1 tooltip-anchor"  data-sort="mana" data-value="{{ champion.getBaseMana() }}"
 			 rel="tooltip" 
 			 data-placement="bottom" 
 			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}} <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.mana'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
@@ -118,7 +118,7 @@
 		{% endif %}
 		{% set ten_percent_level = reference_champion.getBaseManaRegen() * 5 * 0.1 %}
 		{% set one_percent_level = reference_champion.getBaseManaRegen() * 5 * 0.01 %}
-		<div class="span1 tooltip-anchor"  data-filter="mana-regen" data-value="{{ champion.getBaseManaRegen() * 5 }}"
+		<div class="span1 tooltip-anchor"  data-sort="mana-regen" data-value="{{ champion.getBaseManaRegen() * 5 }}"
 			 rel="tooltip" 
 			 data-placement="bottom" 
 			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}} <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.mana_regen'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
@@ -152,7 +152,7 @@
 		{% endif %}
 		{% set ten_percent_level = reference_champion.getBaseArmor() * 0.05 %}
 		{% set one_percent_level = reference_champion.getBaseArmor() * 0.01 %}
-		<div class="span1 tooltip-anchor"  data-filter="armor" data-value="{{ champion.getBaseArmor() }}"
+		<div class="span1 tooltip-anchor"  data-sort="armor" data-value="{{ champion.getBaseArmor() }}"
 			 rel="tooltip" 
 			 data-placement="bottom" 
 			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}} <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.armor'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
@@ -186,7 +186,7 @@
 		{% endif %}
 		{% set ten_percent_level = reference_champion.getBaseMagicResist() * 0.05 %}
 		{% set one_percent_level = reference_champion.getBaseMagicResist() * 0.01 %}
-		<div class="span1 tooltip-anchor"  data-filter="magic-resist" data-value="{{ champion.getBaseMagicResist() }}"
+		<div class="span1 tooltip-anchor"  data-sort="magic-resist" data-value="{{ champion.getBaseMagicResist() }}"
 			 rel="tooltip" 
 			 data-placement="bottom" 
 			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}} <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.magic_resist'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
@@ -220,7 +220,7 @@
 		{% endif %}
 		{% set ten_percent_level = reference_champion.getBaseDamage() * 0.1 %}
 		{% set one_percent_level = reference_champion.getBaseDamage() * 0.01 %}
-		<div class="span1 tooltip-anchor"  data-filter="damage" data-value="{{ champion.getBaseDamage() }}"
+		<div class="span1 tooltip-anchor"  data-sort="damage" data-value="{{ champion.getBaseDamage() }}"
 			 rel="tooltip" 
 			 data-placement="bottom" 
 			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}} <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.damage'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
@@ -254,7 +254,7 @@
 		{% endif %}
 		{% set ten_percent_level = reference_champion.getBaseAttackSpeed() * 0.05 %}
 		{% set one_percent_level = reference_champion.getBaseAttackSpeed() * 0.01 %}
-		<div class="span1 tooltip-anchor"  data-filter="attack-speed" data-value="{{ champion.getBaseAttackSpeed() }}"
+		<div class="span1 tooltip-anchor"  data-sort="attack-speed" data-value="{{ champion.getBaseAttackSpeed() }}"
 			 rel="tooltip" 
 			 data-placement="bottom" 
 			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}} <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.attack_speed'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
@@ -288,7 +288,7 @@
 		{% endif %}
 		{% set ten_percent_level = reference_champion.getAttackRange() * 0.08 %}
 		{% set one_percent_level = reference_champion.getAttackRange() * 0.01 %}
-		<div class="span1 tooltip-anchor"  data-filter="range" data-value="{{ champion.getAttackRange() }}"
+		<div class="span1 tooltip-anchor"  data-sort="range" data-value="{{ champion.getAttackRange() }}"
 			 rel="tooltip" 
 			 data-placement="bottom" 
 			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}} <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.range'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
@@ -322,7 +322,7 @@
 		{% endif %}
 		{% set ten_percent_level = reference_champion.getMoveSpeed() * 0.05 %}
 		{% set one_percent_level = reference_champion.getMoveSpeed() * 0.01 %}
-		<div class="span1 tooltip-anchor"  data-filter="movement-speed" data-value="{{ champion.getMoveSpeed() }}"
+		<div class="span1 tooltip-anchor"  data-sort="movement-speed" data-value="{{ champion.getMoveSpeed() }}"
 			 rel="tooltip" 
 			 data-placement="bottom" 
 			 data-original-title="<span class='tooltip-stat'>{{ champion.getName() }} {{'General.has'|trans}} <span class='{% if diff > 0 %}plus{% elseif diff < 0 %}minus{% endif %}'>{{ diff }}</span> {{'Champion_preview.stat.movement_speed'|trans}} {{'Champion_comparison.champion_row.tooltip.compared_to'|trans}} {{ reference_champion.getName() }}</span>">
