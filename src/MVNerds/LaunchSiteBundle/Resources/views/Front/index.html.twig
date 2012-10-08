@@ -50,10 +50,6 @@
 	 
 {% block body %}
 	<div id="wrapper">
-		<div class="span3" id="sidebar">
-			{% block sidebar %}{% endblock %}
-		</div>
-
 		<div class="container main-container">
 			<div class="header-container">
 
@@ -147,7 +143,13 @@
 						</p>#}
 					</div>
 				</div>
-			</div>		
+			</div>	
+				
+			<div id="footer">
+				{% include 'MVNerdsLaunchSiteBundle:Front:footer.html.twig' %}
+			</div>
+		</div>
 	</div>
-			
+	
+	
 {% endblock %}

@@ -6,6 +6,7 @@ use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use MVNerds\CoreBundle\Model\Champion;
 use MVNerds\CoreBundle\Model\ChampionQuery;
 use MVNerds\CoreBundle\Model\ChampionPeer;
+use MVNerds\CoreBundle\Model\ChampionI18nPeer;
 
 class ChampionManager
 {
@@ -43,8 +44,10 @@ class ChampionManager
 	public function getChampionsName()
 	{
 		return ChampionQuery::create()
-			->select(array(ChampionPeer::NAME))
-			->OrderBy(ChampionPeer::NAME)
+			->joinChampionI18n('i18n')
+			->withColumn('i18n.name', 'name')
+			->select(array('name'))
+			->OrderBy('name')
 		->find();
 	}
 
@@ -121,9 +124,10 @@ class ChampionManager
 	public function findBySlug($slug)
 	{
 		$champion = ChampionQuery::create()
+			->joinWithI18n()
 			->add(ChampionPeer::SLUG, $slug)
 		->findOne();
-
+		
 		if (null === $champion)
 		{
 			throw new InvalidArgumentException('No champion with slug:' . $slug . '!');
@@ -142,6 +146,7 @@ class ChampionManager
 	public function findManyBySlugs($championsSlugs)
 	{
 		$champions = ChampionQuery::create()
+			->joinWithI18n()
 			->add(ChampionPeer::SLUG, $championsSlugs,\Criteria::IN)
 		->find();
 
