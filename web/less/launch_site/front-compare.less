@@ -93,8 +93,17 @@ div#compare-champion-div-header {
 	}
 
 	div#level-selector{
-		margin: 0 auto;
-		span.action {
+		text-align: center;
+		margin: 10px;
+		color: white;
+		
+		h3{
+			color: white;
+			display: inline;
+		}
+
+		a.action {
+			color: white;
 			background-color: rgba(25,160,223,.7);
 			cursor: pointer;
 			display: inline-block;
@@ -102,6 +111,7 @@ div#compare-champion-div-header {
 			margin: 0;
 			margin-right: 1px;
 			padding: 3px 6px 0 4px;
+			width: 25px;
 
 			&.disabled {
 				cursor: not-allowed;
@@ -118,6 +128,10 @@ div#compare-champion-div-header {
 				&:hover {
 					background-color: @MVNerdsRed;
 				}
+			}
+			&:hover {
+				background-color: rgba(25,160,223,1);
+				.transition(all .25s linear);
 			}
 		}
 	}

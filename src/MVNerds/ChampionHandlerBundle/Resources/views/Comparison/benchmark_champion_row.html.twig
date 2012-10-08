@@ -3,7 +3,7 @@
 		<p><img src="{{ asset('/images/champions/square/' ~ reference_champion.getSlug() ~ '.png') }}" class="tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="{{ reference_champion.getName() }}" /></p>
 	</div>
 	<div class="span1">
-		<p>{{ reference_champion.getBaseHealth() }}</p>
+		<p>{{ reference_champion.getBaseHealth() + (reference_champion.getBonusHealthPerLevel() * ( lvl - 1 ) ) }}</p>
 	</div>
 	<div class="span1">
 		<p>{{ reference_champion.getBaseHealthRegen() * 5 }}</p>

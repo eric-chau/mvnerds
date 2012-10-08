@@ -101,9 +101,16 @@ div#compare-champion-div-header div.table-header div.span1 p {
   font-weight: bold;
 }
 div#compare-champion-div-header div#level-selector {
-  margin: 0 auto;
+  text-align: center;
+  margin: 10px;
+  color: white;
 }
-div#compare-champion-div-header div#level-selector span.action {
+div#compare-champion-div-header div#level-selector h3 {
+  color: white;
+  display: inline;
+}
+div#compare-champion-div-header div#level-selector a.action {
+  color: white;
   background-color: rgba(25, 160, 223, 0.7);
   cursor: pointer;
   display: inline-block;
@@ -111,19 +118,27 @@ div#compare-champion-div-header div#level-selector span.action {
   margin: 0;
   margin-right: 1px;
   padding: 3px 6px 0 4px;
+  width: 25px;
 }
-div#compare-champion-div-header div#level-selector span.action.disabled {
+div#compare-champion-div-header div#level-selector a.action.disabled {
   cursor: not-allowed;
   opacity: .65;
 }
-div#compare-champion-div-header div#level-selector span.action.disabled a:hover {
+div#compare-champion-div-header div#level-selector a.action.disabled a:hover {
   cursor: not-allowed;
 }
-div#compare-champion-div-header div#level-selector span.action.active {
+div#compare-champion-div-header div#level-selector a.action.active {
   background-color: rgba(219, 74, 56, 0.7);
 }
-div#compare-champion-div-header div#level-selector span.action.active:hover {
+div#compare-champion-div-header div#level-selector a.action.active:hover {
   background-color: #db4a38;
+}
+div#compare-champion-div-header div#level-selector a.action:hover {
+  background-color: #19a0df;
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
+  transition: all 0.25s linear;
 }
 div#compare-champion-div-header div.benchmark {
   background-color: #111;
