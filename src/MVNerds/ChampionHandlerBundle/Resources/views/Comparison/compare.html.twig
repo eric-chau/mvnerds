@@ -1,38 +1,38 @@
 <div class="data-scrollable" id="champion-comparator">	
 	<div id="compare-champion-div-header">
 		<div class="row-fluid table-header">
-			<div class="span1 no-margin">
-				<p>Champion</p>
+			<div class="span1 no-margin sort" data-target="champion-name">
+				<p>Champion</p> <br /><i class="icon-white icon-sort"></i>
 			</div>
-			<div class="span1">
-				<p>{{'Champion_preview.stat.health'|trans}}</p>
+			<div class="span1 sort" data-target="health">
+				<p>{{'Champion_preview.stat.health'|trans}}</p> <br /><i class="icon-white icon-sort"></i>
 			</div>
-			<div class="span1">
-				<p>{{'Champion_preview.stat.health_regen'|trans}}</p>
+			<div class="span1 sort" data-target="health-regen">
+				<p>{{'Champion_preview.stat.health_regen'|trans}}</p> <br /><i class="icon-white icon-sort"></i>
 			</div>
-			<div class="span1">
-				<p>{{'Champion_preview.stat.mana'|trans}}</p>
+			<div class="span1 sort" data-target="mana">
+				<p>{{'Champion_preview.stat.mana'|trans}}</p> <br /><i class="icon-white icon-sort"></i>
 			</div>
-			<div class="span1">
-				<p>{{'Champion_preview.stat.mana_regen'|trans}}</p>
+			<div class="span1 sort" data-target="mana-regen">
+				<p>{{'Champion_preview.stat.mana_regen'|trans}}</p> <br /><i class="icon-white icon-sort"></i>
 			</div>
-			<div class="span1">
-				<p>{{'Champion_preview.stat.armor'|trans}}</p>
+			<div class="span1 sort" data-target="armor">
+				<p>{{'Champion_preview.stat.armor'|trans}}</p> <br /><i class="icon-white icon-sort"></i>
 			</div>
-			<div class="span1">
-				<p>{{'Champion_preview.stat.magic_resist'|trans}}</p>
+			<div class="span1 sort" data-target="magic-resist">
+				<p>{{'Champion_preview.stat.magic_resist'|trans}}</p> <br /><i class="icon-white icon-sort"></i>
 			</div>
-			<div class="span1">
-				<p>{{'Champion_preview.stat.damage'|trans}}</p>
+			<div class="span1 sort" data-target="damage">
+				<p>{{'Champion_preview.stat.damage'|trans}}</p> <br /><i class="icon-white icon-sort"></i>
 			</div>
-			<div class="span1">
-				<p>{{'Champion_preview.stat.attack_speed'|trans}}</p>
+			<div class="span1 sort" data-target="attack-speed">
+				<p>{{'Champion_preview.stat.attack_speed'|trans}}</p> <br /><i class="icon-white icon-sort"></i>
 			</div>
-			<div class="span1">
-				<p>{{'Champion_preview.stat.range'|trans}}</p>
+			<div class="span1 sort" data-target="range">
+				<p>{{'Champion_preview.stat.range'|trans}}</p> <br /><i class="icon-white icon-sort"></i>
 			</div>
-			<div class="span1">
-				<p>{{'Champion_preview.stat.movement_speed'|trans}}</p>
+			<div class="span1 sort" data-target="movement-speed">
+				<p>{{'Champion_preview.stat.movement_speed'|trans}}</p> <br /><i class="icon-white icon-sort"></i>
 			</div>
 			<div class="span1">
 				<p>Mes actions</p>
@@ -86,11 +86,8 @@
 			</thead>
 		</table>#}
 	</div>
-	<table class="compare-champion-table body">
-		<tbody>
-			{% include 'MVNerdsChampionHandlerBundle:Comparison:champion_list.html.twig' with {'reference_champion': reference_champion,'comparison_list': app.session.get('comparison_list')} %}
-		</tbody>
-	</table>	
+	{% include 'MVNerdsChampionHandlerBundle:Comparison:champion_list.html.twig' with {'reference_champion': reference_champion,'comparison_list': app.session.get('comparison_list')} %}
+
 </div>
 
 <script type="text/javascript">
