@@ -11,7 +11,8 @@ use MVNerds\CoreBundle\Model\ChampionPeer;
 use MVNerds\DataGrabberBundle\Form\Type\ChampionGrabberType;
 use MVNerds\CoreBundle\Model\TagQuery;
 use MVNerds\CoreBundle\Model\TagI18nPeer;
-
+use MVNerds\CoreBundle\Model\ChampionI18nPeer;
+use MVNerds\CoreBundle\Model\ChampionI18nQuery;
 /**
  * @Route("/champions")
  */
@@ -119,12 +120,17 @@ class ChampionController extends Controller
 						{	
 							//Récupération du nom du champion
 							$name= $championHtml->find('ul#champion-skin-switcher li', 1)->plaintext;
+							$champion = ChampionQuery::create()->joinWithI18n()->add(ChampionI18nPeer::NAME, $name)->findOne();
 							//On vérifie si le champion éxiste déjà
-							if (!($champion = ChampionQuery::create()->add(ChampionPeer::NAME, $name)->findOne()))
+							if (!$champion)
 							{
 								//S'il n'éxiste pas on en crée un nouveau
 								$champion = new Champion();
 								$champion->setName($name);
+								$champion->setLocale('en');
+								$champion->setName($name);
+								$champion->setLocale('fr');
+								
 							}
 							$championTitleTmp = $championHtml->find('#content h2', 0)->plaintext;
 							$championTitle = substr(stristr($championTitleTmp, ', '), 2);

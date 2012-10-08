@@ -5,7 +5,6 @@
     <column name="name" required="true" size="45" type="VARCHAR" />
     <column name="title" size="255" type="VARCHAR" />
     <column name="lore" type="LONGVARCHAR" />
-    <column name="main_role" primaryString="true" required="true" type="ENUM" valueSet="CARRY_AD, CARRY_AP, BRUISER, JUNGLER, SUPPORT" />
     <column name="base_damage" required="true" scale="3" type="FLOAT" />
     <column name="bonus_damage_per_level" required="true" scale="3" type="FLOAT" />
     <column name="base_health" required="true" type="SMALLINT" />
@@ -40,7 +39,7 @@
       <parameter name="permanent" value="false" />
     </behavior>
     <behavior name="i18n">
-      <parameter name="i18n_columns" value="title,lore" />
+      <parameter name="i18n_columns" value="name,title,lore" />
       <parameter name="default_locale" value="fr" />
       <parameter name="locale_column" value="lang" />
       <parameter name="i18n_table" value="champion_i18n" />

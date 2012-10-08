@@ -277,4 +277,6 @@ $(document).ready(function()
 	processScroll();
  
 	 $win.on('scroll', processScroll);
+	 
+	 $('.dropdown-toggle').dropdown();
 });

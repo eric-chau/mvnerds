@@ -1,7 +1,6 @@
-var options, typeaheadValue, $isotope = $('#isotope-list'), $filterValue = $('#filter-value');
+var typeaheadValue, $filterValue;
 
 function initTypeahead($isotope) {
-	options =  getIsotopeOptions();
 	$filterValue.off('keyup change');
 	$filterValue.keyup(function(){
 		filter($isotope);
@@ -130,6 +129,7 @@ function deactivateCompareFilteredButton(){
 }
 
 $(function(){	
+	$filterValue = $('#filter-value');
 	setTypeaheadChampionsName();
 	initTypeahead($isotope);
 	initFilterList($isotope);
