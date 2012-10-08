@@ -237,6 +237,10 @@
 				<source>Champion_comparison.champion_row.tooltip.compared_to</source>
 				<target>compared to</target>
 			</trans-unit>
+			<trans-unit id="7004">
+				<source>Champion_comparison.champion.actions.level.selector</source>
+				<target>Champions level</target>
+			</trans-unit>
 
 			<!--  FLASH MESSAGES -->
 			<trans-unit id="8000">
