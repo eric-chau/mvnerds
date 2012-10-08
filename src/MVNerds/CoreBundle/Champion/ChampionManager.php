@@ -194,10 +194,10 @@ class ChampionManager
 	 * @return PropelCollection<MVNerds\CoreBundle\Model\Champion> retourne un objet PropelCollection qui contient
 	 * tous les champions de la base de données
 	 */
-	public function findAllWithTags()
+	public function findAllWithTags($locale)
 	{
 		return ChampionQuery::create()
-			->joinWithI18n()
+			->joinWithI18n($locale)
 			->joinWith('ChampionTag', \Criteria::LEFT_JOIN)
 			->joinWith('ChampionTag.Tag', \Criteria::LEFT_JOIN)
 			->joinWith('Tag.TagI18n', \Criteria::LEFT_JOIN)
