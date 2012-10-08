@@ -1,6 +1,12 @@
 @import '../bootstrap/mixins.less';
 @import '../mvnerds-variables.less';
 
+div#champion-comparator.active{
+	div.champion-list{
+		margin-top: 158px;
+	}
+}
+
 div.row-fluid {
 	div.span1 {
 		margin-left: 1%;
@@ -66,9 +72,9 @@ div#compare-champion-div-header {
 		}
 
 		div.span1 {
+			cursor: pointer;
 			background-color: #222;
-			height: 30px;
-			line-height: 30px;
+			height: 43px;
 
 			p {
 				display: inline-block;

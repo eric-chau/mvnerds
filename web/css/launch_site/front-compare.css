@@ -25,6 +25,9 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+div#champion-comparator.active div.champion-list {
+  margin-top: 158px;
+}
 div.row-fluid div.span1 {
   margin-left: 1%;
   text-align: center;
@@ -80,9 +83,9 @@ div#compare-champion-div-header div.table-header.row-fluid {
   margin-bottom: 10px;
 }
 div#compare-champion-div-header div.table-header div.span1 {
+  cursor: pointer;
   background-color: #222;
-  height: 30px;
-  line-height: 30px;
+  height: 43px;
 }
 div#compare-champion-div-header div.table-header div.span1 p {
   display: inline-block;
