@@ -2,14 +2,12 @@
  * Permet de gérer l'affichage du détail des champions lors du clic sur leurs miniatures
  */
 
-var options = getIsotopeOptions();
-	
-$isotope = $('#isotope-list');
+var options, $isotope; 
 	
 function initIsotope($isotope){
-	$isotope.imagesLoaded( function(){
+	//$isotope.imagesLoaded( function(){
 		$isotope.isotope(options);
-	});
+	//});
 	
 	//Bloquage du drag sur les champions agrandis
 	$isotope.on('mouseover', 'li.champion-maxi', function(){
@@ -64,8 +62,7 @@ function maximizeChampion($champ, $isotope){
 		$isotope.isotope( 'reLayout', function(){
 			
 			setTimeout(function(){
-				scrollToChampion($('#'+$champ.attr('id')))
-				
+				scrollToChampion($('#'+$champ.attr('id')))				
 				},
 				150
 			);
@@ -103,6 +100,8 @@ function scrollToChampion($champ){
 	$('body,html').animate({scrollTop:position},500);
 }
 
-jQuery(function($) {
+jQuery(function() {
+	options =  getIsotopeOptions();
+	$isotope = $('#isotope-list');
 	initIsotope($isotope);
 });
