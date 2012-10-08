@@ -28,4 +28,19 @@ class User extends BaseUser
 	{
 		return UserPeer::isEmailAlreadyInUse($this->getEmail(), ($this->getId() == null? null : $this));
 	}
+	
+	/**
+	 * Permet de vérifier si l'utilisateur courant possède une adresse mail avec un domaine valide ou non
+	 * 
+	 * @return boolean renvoie true si le domaine de l'email est valide, false sinon
+	 */
+	public function isValidDomain()
+	{
+		$domain = explode('@', $this->getEmail()); 
+		if (checkdnsrr($domain[1])) {
+			return false;
+		}
+		
+		return true;
+	}
 } // User

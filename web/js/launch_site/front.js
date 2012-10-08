@@ -86,7 +86,7 @@ $(document).ready(function()
 		shortcutListener(event);
 	});
 
-	$searchInputText.on('focus', function()
+	$('input[type="email"]#user_email, input[type="text"]#filter-value').on('focus', function()
 	{
 		$('body').unbind('keyup');
 		$searchInputText.bind('keyup', function(event)
@@ -99,7 +99,7 @@ $(document).ready(function()
 
 	
 
-	$searchInputText.on('blur', function()
+	$('input[type="email"]#user_email, input[type="text"]#filter-value').on('blur', function()
 	{
 		$('body').bind('keyup', function(event)
 		{
