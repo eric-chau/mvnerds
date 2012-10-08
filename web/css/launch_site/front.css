@@ -1105,3 +1105,21 @@ div.modal div.modal-body {
 span.back-to-home-tooltip {
   font-size: 14px;
 }
+#footer {
+  background: #333333 url('/images/launch_site/footer_bg.png') no-repeat top left;
+  border: 0;
+  -webkit-box-shadow: 0px 0px 55px #000000;
+  -moz-box-shadow: 0px 0px 55px #000000;
+  box-shadow: 0px 0px 55px #000000;
+  padding: 10px;
+  min-height: 200px;
+  margin: 0 auto;
+  color: white;
+}
+#footer div.row-fluid {
+  padding: 10px;
+  background-color: #000;
+}
+#footer div.row-fluid h5 {
+  color: #19A0DF;
+}
