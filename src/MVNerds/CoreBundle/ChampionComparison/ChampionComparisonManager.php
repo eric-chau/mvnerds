@@ -407,6 +407,14 @@ class ChampionComparisonManager
 			throw new InvalidArgumentException('Champion given does not exists in the comparison list');
 		}
 	}
+	
+	public function setLevelToChampions($level)
+	{
+		$champions = $this->getList();
+		foreach ($champions as $champion) {
+			$champion->setLevel($level);
+		}
+		
+		$this->setList($champions);
+	}
 }
-
-?>

@@ -16,8 +16,10 @@ use MVNerds\CoreBundle\Model\om\BaseChampion;
  *
  * @package    propel.generator.src.MVNerds.CoreBundle.Model
  */
-class Champion extends BaseChampion {
-
+class Champion extends BaseChampion 
+{
+	private $level = 1;
+	
 	public function getProperty($name)
 	{
 		$classMethods = get_class_methods($this);
@@ -58,5 +60,55 @@ class Champion extends BaseChampion {
 			$tags .= strtolower($championtag->getTag()->getLabel() . ' ');
 		}
 		return $tags;
+	}	
+	
+	public function getBaseHealth()
+	{
+		return $this->base_health + ($this->bonus_health_per_level * ($this->level - 1));
+	}
+	
+	public function getBaseHealthRegen()
+	{
+		return $this->base_health_regen + ($this->bonus_health_regen_per_level * ($this->level - 1));
+	}
+	
+	public function getBaseMana()
+	{
+		return $this->base_mana + ($this->bonus_mana_per_level * ($this->level - 1));
+	}
+	
+	public function getBaseManaRegen()
+	{
+		return $this->base_mana_regen + ($this->bonus_mana_regen_per_level * ($this->level - 1));
+	}
+	
+	public function getBaseArmor()
+	{
+		return $this->base_armor + ($this->bonus_armor_per_level * ($this->level - 1));
+	}
+	
+	public function getBaseMagicResist()
+	{
+		return $this->base_magic_resist + ($this->bonus_magic_resist_per_level * ($this->level - 1));
+	}
+	
+	public function getBaseDamage()
+	{
+		return $this->base_damage + ($this->bonus_damage_per_level * ($this->level - 1));
+	}
+	
+	public function getBaseAttackSpeed()
+	{
+		return $this->base_attack_speed + ($this->bonus_attack_speed_per_level * ($this->level - 1));
+	}
+	
+	public function getLevel()
+	{
+		return $this->level;
+	}
+	
+	public function setLevel($level)
+	{
+		$this->level = $level;
 	}
 } // Champion

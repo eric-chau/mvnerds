@@ -245,7 +245,7 @@ class ComparisonController extends Controller
 	/**
 	 * Envoie vers la page de comparaison des champions
 	 * 
-	 * @Route("comparer/{lvl}", name="champion_handler_comparison_compare", defaults={"lvl" = 1}, options={"expose"=true})
+	 * @Route("comparer/niveau-{lvl}", name="champion_handler_comparison_compare", defaults={"lvl" = 1}, options={"expose"=true})
 	 */
 	public function compareAction($lvl)
 	{
@@ -256,7 +256,11 @@ class ComparisonController extends Controller
 		//récupération du champion_comparison_manager
 		/* @var $comparisonManager \MVNerds\CoreBundle\ChampionComparison\ChampionComparisonManager */
 		$comparisonManager = $this->get('mvnerds.champion_comparison_manager');
-
+		
+		if ($lvl > 1) {
+			$comparisonManager->setLevelToChampions($lvl);
+		}
+		
 		//Si la liste peut être comparée
 		if ($comparisonManager->isComparable())
 		{

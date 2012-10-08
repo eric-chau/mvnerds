@@ -17,6 +17,10 @@
 				<source>Validation.User.email.already_in_use</source>
 				<target>L'adresse mail renseignée est déjà utilisée par un autre utilisateur</target>
 			</trans-unit>
+			<trans-unit id="1003">
+				<source>Validation.User.email.not_valid_domain</source>
+				<target>Le domaine de votre e-mail n'est pas valide</target>
+			</trans-unit>
 
 			<!-- 
 				FLASH MESSAGES
