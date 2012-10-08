@@ -1,1 +1,220 @@
-.clearfix{*zoom:1}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0}.clearfix:after{clear:both}.hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0}.input-block-level{display:block;width:100%;min-height:30px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}div#champion-comparator.active div.champion-list{margin-top:158px}div.row-fluid div.span1{margin-left:1%;text-align:center;width:7.41%}div.row-fluid div.span1.no-margin{border-left:0;margin:0}div.row-fluid div.span1.no-margin p{padding-bottom:0}div.row-fluid div.span1 p{cursor:default;display:inline-block;line-height:1em;margin:0;text-transform:uppercase;vertical-align:middle}div.row-fluid div.span1 a,div.row-fluid div.span1 a:hover,div.row-fluid div.span1 a:visited{text-decoration:none}div.row-fluid div.span1 a i{color:#0a3d55;display:inline-block;font-size:16px;margin:0 5px}div.row-fluid div.span1 a i:hover{color:#19a0df;-webkit-transition:color .25s linear;-moz-transition:color .25s linear;-o-transition:color .25s linear;transition:color .25s linear}div#compare-champion-div-header{padding-top:20px}div#compare-champion-div-header.active{background-color:#000;left:6px;margin:auto;padding-top:20px;position:fixed;right:0;top:45px;width:998px}div#compare-champion-div-header div.table-header.row-fluid{margin-bottom:10px}div#compare-champion-div-header div.table-header div.span1{background-color:#222;height:43px;line-height:43px}div#compare-champion-div-header div.table-header div.span1.sort{line-height:inherit;cursor:pointer}div#compare-champion-div-header div.table-header div.span1.sort p{cursor:pointer}div#compare-champion-div-header div.table-header div.span1 p{display:inline-block;color:#eee;font-size:8px;font-weight:700}div#compare-champion-div-header div.benchmark{background-color:#111;margin:10px 0}div#compare-champion-div-header div.benchmark div.span1{height:74px;line-height:74px}div#compare-champion-div-header div.benchmark div.span1 p{color:#fb9701;font-weight:700}div#compare-champion-div-header div.benchmark div.span1 p img{width:54px}div#compare-champion-div-header div.benchmark div.span1 a i{color:#633b00}div#compare-champion-div-header div.benchmark div.span1 a i:hover{color:#fb9701}div.champion-list div.champion-row{background-color:#141414;border-bottom:1px solid #333;margin:5px 0}div.champion-list div.champion-row:hover{background-color:#222}div.champion-list div.champion-row div.span1{border-left:1px solid #333;height:56px;line-height:56px}div.champion-list div.champion-row div.span1.no-margin{border-left:0}div.champion-list div.champion-row div.span1:hover span.own{color:#19a0df;-webkit-transition:color .25s linear;-moz-transition:color .25s linear;-o-transition:color .25s linear;transition:color .25s linear}div.champion-list div.champion-row p{padding-bottom:8px}div.champion-list div.champion-row p span.diff{color:#555;display:block;font-size:16px;line-height:1em;font-weight:700;width:74px}div.champion-list div.champion-row p span.diff.plus{color:#759e1a}div.champion-list div.champion-row p span.diff.minus{color:#db4a38}div.champion-list div.champion-row p span.diff.minor-plus{color:#34460c}div.champion-list div.champion-row p span.diff.minor-minus{color:#92281b}div.champion-list div.champion-row p span.own{color:#0c4e6c;display:inline-block;font-size:12px;line-height:1em;margin-bottom:5px;width:74px}div.champion-list div.champion-row p span.img{display:inline-block;width:36px}span.tooltip-stat{display:block;font-family:'Trebuchet MS',sans-serif;font-size:12px;padding:3px}span.tooltip-stat span.plus,span.tooltip-stat span.minus{color:#db4a38;font-weight:700}span.tooltip-stat span.plus{color:#759e1a}
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+div#champion-comparator.active div.champion-list {
+  margin-top: 158px;
+}
+div.row-fluid div.span1 {
+  margin-left: 1%;
+  text-align: center;
+  width: 7.41%;
+}
+div.row-fluid div.span1.no-margin {
+  border-left: 0;
+  margin: 0;
+}
+div.row-fluid div.span1.no-margin p {
+  padding-bottom: 0;
+}
+div.row-fluid div.span1 p {
+  cursor: default;
+  display: inline-block;
+  line-height: 1em;
+  margin: 0;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+div.row-fluid div.span1 a,
+div.row-fluid div.span1 a:hover,
+div.row-fluid div.span1 a:visited {
+  text-decoration: none;
+}
+div.row-fluid div.span1 a i {
+  color: #0a3d55;
+  display: inline-block;
+  font-size: 16px;
+  margin: 0 5px;
+}
+div.row-fluid div.span1 a i:hover {
+  color: #19a0df;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div#compare-champion-div-header {
+  padding-top: 20px;
+}
+div#compare-champion-div-header.active {
+  background-color: black;
+  left: 6px;
+  margin: auto;
+  padding-top: 20px;
+  position: fixed;
+  right: 0;
+  top: 45px;
+  width: 998px;
+}
+div#compare-champion-div-header div.table-header.row-fluid {
+  margin-bottom: 10px;
+}
+div#compare-champion-div-header div.table-header div.span1 {
+  background-color: #222;
+  height: 43px;
+  line-height: 43px;
+}
+div#compare-champion-div-header div.table-header div.span1.sort {
+  line-height: inherit;
+  cursor: pointer;
+}
+div#compare-champion-div-header div.table-header div.span1.sort p {
+  cursor: pointer;
+}
+div#compare-champion-div-header div.table-header div.span1 p {
+  display: inline-block;
+  color: #eee;
+  font-size: 8px;
+  font-weight: bold;
+}
+div#compare-champion-div-header div#level-selector {
+  margin: 0 auto;
+}
+div#compare-champion-div-header div#level-selector span.action {
+  background-color: rgba(25, 160, 223, 0.7);
+  cursor: pointer;
+  display: inline-block;
+  line-height: 26px;
+  margin: 0;
+  margin-right: 1px;
+  padding: 3px 6px 0 4px;
+}
+div#compare-champion-div-header div#level-selector span.action.disabled {
+  cursor: not-allowed;
+  opacity: .65;
+}
+div#compare-champion-div-header div#level-selector span.action.disabled a:hover {
+  cursor: not-allowed;
+}
+div#compare-champion-div-header div#level-selector span.action.active {
+  background-color: rgba(219, 74, 56, 0.7);
+}
+div#compare-champion-div-header div#level-selector span.action.active:hover {
+  background-color: #db4a38;
+}
+div#compare-champion-div-header div.benchmark {
+  background-color: #111;
+  margin: 10px 0;
+}
+div#compare-champion-div-header div.benchmark div.span1 {
+  height: 74px;
+  line-height: 74px;
+}
+div#compare-champion-div-header div.benchmark div.span1 p {
+  color: #fb9701;
+  font-weight: bold;
+}
+div#compare-champion-div-header div.benchmark div.span1 p img {
+  width: 54px;
+}
+div#compare-champion-div-header div.benchmark div.span1 a i {
+  color: #633b00;
+}
+div#compare-champion-div-header div.benchmark div.span1 a i:hover {
+  color: #fb9701;
+}
+div.champion-list div.champion-row {
+  background-color: #141414;
+  border-bottom: 1px solid #333;
+  margin: 5px 0;
+}
+div.champion-list div.champion-row:hover {
+  background-color: #222;
+}
+div.champion-list div.champion-row div.span1 {
+  border-left: 1px solid #333;
+  height: 56px;
+  line-height: 56px;
+}
+div.champion-list div.champion-row div.span1.no-margin {
+  border-left: 0;
+}
+div.champion-list div.champion-row div.span1:hover span.own {
+  color: #19a0df;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div.champion-list div.champion-row p {
+  padding-bottom: 8px;
+}
+div.champion-list div.champion-row p span.diff {
+  color: #555;
+  display: block;
+  font-size: 16px;
+  line-height: 1em;
+  font-weight: bold;
+  width: 74px;
+}
+div.champion-list div.champion-row p span.diff.plus {
+  color: #759e1a;
+}
+div.champion-list div.champion-row p span.diff.minus {
+  color: #db4a38;
+}
+div.champion-list div.champion-row p span.diff.minor-plus {
+  color: #34460c;
+}
+div.champion-list div.champion-row p span.diff.minor-minus {
+  color: #92281b;
+}
+div.champion-list div.champion-row p span.own {
+  color: #0c4e6c;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1em;
+  margin-bottom: 5px;
+  width: 74px;
+}
+div.champion-list div.champion-row p span.img {
+  display: inline-block;
+  width: 36px;
+}
+span.tooltip-stat {
+  display: block;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 12px;
+  padding: 3px;
+}
+span.tooltip-stat span.plus,
+span.tooltip-stat span.minus {
+  color: #db4a38;
+  font-weight: bold;
+}
+span.tooltip-stat span.plus {
+  color: #759e1a;
+}

@@ -1,5 +1,12 @@
 <div class="data-scrollable" id="champion-comparator">	
 	<div id="compare-champion-div-header">
+		
+		<div class="row-fluid" id="level-selector">
+			{% for lvl in 1..18 %}
+				<span class="action level-selector-action" id="level-selector-{{lvl}}">{{lvl}}</span>
+			{% endfor %}
+		</div>
+		
 		<div class="row-fluid table-header">
 			<div class="span1 no-margin sort" data-target="champion-name">
 				<p>Champion</p> <br /><i class="icon-white icon-sort"></i>
