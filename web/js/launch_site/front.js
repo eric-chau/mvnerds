@@ -86,12 +86,20 @@ $(document).ready(function()
 		shortcutListener(event);
 	});
 
-	$('input[type="text"]#filter-value').on('focus', function()
+	$searchInputText.on('focus', function()
 	{
 		$('body').unbind('keyup');
+		$searchInputText.bind('keyup', function(event)
+		{
+			if (event.which == 27) {
+				$(this).blur();
+			}
+		});
 	});
 
-	$('input[type="text"]#filter-value').on('blur', function()
+	
+
+	$searchInputText.on('blur', function()
 	{
 		$('body').bind('keyup', function(event)
 		{
