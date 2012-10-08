@@ -35,17 +35,17 @@
 
 	<script type="text/javascript" src="{{ asset('/js/champion_handler/comparison.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/launch_site/front.js') }}"></script>
-
-
+	<script type="text/javascript" src="{{ asset('/js/guiders-1.2.8.js') }}"></script>
+	{% if locale == 'fr' %}
+		<script type="text/javascript" src="{{ asset('/js/champion_handler/shortcut-fr.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('/js/champion_handler/guide-tour-fr.js') }}"></script>
+	{% else %}
+		<script type="text/javascript" src="{{ asset('/js/champion_handler/shortcut.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('/js/champion_handler/guide-tour.js') }}"></script>
+	{% endif %}
 
 	<script type="text/javascript" src="{{ asset('/js/launch_site/data-scroll.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/champion_handler/sort.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/guiders-1.2.8.js') }}"></script>
-	{% if locale == 'fr' %}
-	   <script type="text/javascript" src="{{ asset('/js/champion_handler/guide_tour.js') }}"></script>
-	{% else %}
-	   <script type="text/javascript" src="{{ asset('/js/champion_handler/guide_tour_en.js') }}"></script>
-	{% endif %}
 {% endblock %}
 	 
 {% block body %}
