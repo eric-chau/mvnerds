@@ -1,6 +1,6 @@
 {% extends '::base.html.twig' %}
 
-{% block title %}Bienvenue sur Most Valuable Nerds !{% endblock %}
+{% block title %}Guides, Builds and Tools for League of Legends - LoL | MVNerds{% endblock %}
 
 {% set locale = app.request.getLocale() %}
 
@@ -14,6 +14,7 @@
 	 <link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-portrait-sprite.css') }}">
 	 <link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square25-sprite.css') }}">
 	 <link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square36-sprite.css') }}">
+	 
 	 <link href='http://fonts.googleapis.com/css?family=Quantico:700' rel='stylesheet' type='text/css'>
 {% endblock %}
 
@@ -39,6 +40,8 @@
 	 <script type="text/javascript" src="{{ asset('/js/champion_handler/resize.js') }}"></script>
 	 <script type="text/javascript" src="{{ asset('/js/launch_site/data-scroll.js') }}"></script>
 	 <script type="text/javascript" src="{{ asset('/js/champion_handler/filter.js') }}"></script>
+	 <script type="text/javascript" src="{{ asset('/js/guiders-1.2.8.js') }}"></script>
+	 <script type="text/javascript" src="{{ asset('/js/champion_handler/guide_tour.js') }}"></script>
 	 <script type="text/javascript">
 		$(document).ready(function()
 		{
@@ -58,9 +61,12 @@
 
 				<div class="row-fluid">
 					<div class="span5">
-						<div class="logo">
-							<h1>MOST <font color="#db4a38">V</font><font color="#bf5650">A</font><font color="#a46368">L</font><font color="#886f80">U</font><font color="#6c7b97">A</font><font color="#5087af">B</font><font color="#3594c7">L</font><font color="#19a0df">E</font> <em>NERDS</em></h1>
-						</div>
+						<a href="{{ path('launch_site_front', {'_locale': locale}) }}" class="logo-link">
+							<div class="logo">
+								<div class="back-home-sign">Retourner<br /> à l'accueil</div>
+								<h1>MOST <font color="#db4a38">V</font><font color="#bf5650">A</font><font color="#a46368">L</font><font color="#886f80">U</font><font color="#6c7b97">A</font><font color="#5087af">B</font><font color="#3594c7">L</font><font color="#19a0df">E</font> <em>NERDS</em></h1>
+							</div>
+						</a>
 					</div>
 					
 					<div class="span7">

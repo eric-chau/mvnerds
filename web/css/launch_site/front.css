@@ -86,8 +86,13 @@ span.sign.red {
   color: #eee;
   background-color: #db4a38;
 }
+a,
+a:visited,
+a:hover {
+  text-decoration: none;
+}
 body {
-  background: #303030 url('/images/launch_site/layout_bg.png') no-repeat center center fixed;
+  background: #303030 url('/images/launch_site/layout_bg.jpg') no-repeat center center fixed;
 }
 div.main-container {
   background: #333333 url('/images/launch_site/main_container_bg.png') no-repeat top left;
@@ -101,21 +106,49 @@ div.main-container {
 div.header-container {
   margin: 0 0 20px 0;
 }
-div.header-container div.logo {
+div.header-container a.logo-link {
+  display: block;
+}
+div.header-container a.logo-link div.back-home-sign {
+  background-color: #19a0df;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  color: white;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 8px;
+  font-weight: bold;
+  left: 734px;
+  line-height: 1.2em;
+  opacity: 0;
+  padding: 5px;
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  top: 35px;
+}
+div.header-container a.logo-link div.logo {
   background: url('/images/launch_site/mvnerds_logo.png') no-repeat top center;
   height: 167px;
   width: 100%;
 }
-div.header-container div.logo h1 {
+div.header-container a.logo-link div.logo h1 {
   color: #db4a38;
   font-family: 'Quantico', sans-serif;
   font-size: 2.2em;
   padding-top: 119px;
   text-shadow: 1px 1px 1px rgba(80, 80, 80, 0.3);
 }
-div.header-container div.logo h1 em {
+div.header-container a.logo-link div.logo h1 em {
   color: #19a0df;
   font-style: normal;
+}
+div.header-container a.logo-link:hover div.back-home-sign {
+  opacity: 1;
+  -webkit-transition: opacity 0.5s linear;
+  -moz-transition: opacity 0.5s linear;
+  -o-transition: opacity 0.5s linear;
+  transition: opacity 0.5s linear;
 }
 div.header-container div.launch-date-msg {
   color: #999;
@@ -195,7 +228,7 @@ div.header-container div.switch-language-container a:hover {
   transition: opacity 0.5s linear;
 }
 div.header-container div.social-container {
-  background: #000000 url('/images/launch_site/social_bg.png') no-repeat;
+  background: #000000 url('/images/launch_site/social_bg.jpg') no-repeat;
   border: 1px solid black;
   border-bottom: 0;
   margin: 5px 0 0 0;
@@ -270,7 +303,7 @@ div.header-container div.presentation-container {
   border-top: 0;
 }
 div.header-container div.presentation-container div.content {
-  background: #000000 url('/images/launch_site/content_bg.png') no-repeat top left;
+  background: #000000 url('/images/launch_site/content_bg.jpg') no-repeat top left;
   /*border: 1px solid black;
 			border-bottom: 0;
 			border-top: 0;*/
@@ -422,7 +455,7 @@ div.body-container div.registration-container.active h2 {
   padding: 0;
 }
 div.body-container div.champions-handler-container {
-  background: #000000 url('/images/launch_site/champion_handler_bg.png') no-repeat bottom center;
+  background: #000000 url('/images/launch_site/champion_handler_bg.jpg') no-repeat bottom center;
   margin: 10px 0;
   min-height: 700px;
   padding: 10px;
@@ -674,7 +707,7 @@ div.body-container div.champions-handler-container div.actions-bar div#actions-b
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action ul#comparison-list li {
   float: left;
   display: inline;
-  width: 33%;
+  width: 25%;
   text-align: center;
   min-height: 30px;
 }
@@ -1038,7 +1071,7 @@ div.body-container div.champions-handler-container div#champion-list li.champion
   opacity: 0.7;
 }
 div.modal {
-  background: #000000 url('/images/launch_site/modal_bg.png') no-repeat top left;
+  background: #000000 url('/images/launch_site/modal_bg.jpg') no-repeat top left;
   border: 1px solid rgba(255, 255, 255, 0.4);
   -webkit-border-radius: 0;
   -moz-border-radius: 0;
@@ -1068,4 +1101,7 @@ div.modal div.modal-header button.close:hover {
 }
 div.modal div.modal-body {
   width: 315px;
+}
+span.back-to-home-tooltip {
+  font-size: 14px;
 }

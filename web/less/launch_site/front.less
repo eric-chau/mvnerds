@@ -63,8 +63,12 @@ span.sign {
 	}
 }
 
+a, a:visited, a:hover {
+	text-decoration: none;
+}
+
 body {
-	background: #303030 url('/images/launch_site/layout_bg.png') no-repeat center center fixed;
+	background: #303030 url('/images/launch_site/layout_bg.jpg') no-repeat center center fixed;
 }
 
 div.main-container {
@@ -78,21 +82,49 @@ div.main-container {
 div.header-container {
 	margin: 0 0 20px 0;
 
-	div.logo {
-		background: url('/images/launch_site/mvnerds_logo.png') no-repeat top center;
-		height: 167px;
-		width: 100%;
+	a.logo-link {
+		display: block;
 
-		h1 {
-			color: @MVNerdsRed;
-			font-family: 'Quantico', sans-serif;
-			font-size: 2.2em;
-			padding-top: 119px;
-			text-shadow: 1px 1px 1px rgba(80,80,80,.3);
+		div.back-home-sign {
+			background-color: @MVNerdsBlue;
+			.border-radius(4px);
+			color: white;
+			font-family: 'Ubuntu', sans-serif;
+			font-size: 8px;
+			font-weight: bold;
+			left: 734px;
+			line-height: 1.2em;
+			opacity: 0;
+			padding: 5px;
+			position: absolute;
+			text-align: center;
+			text-transform: uppercase;
+			top: 35px;
+		}
+	
+		div.logo {
+			background: url('/images/launch_site/mvnerds_logo.png') no-repeat top center;
+			height: 167px;
+			width: 100%;
 
-			em {
-				color: @MVNerdsBlue;
-				font-style: normal;
+			h1 {
+				color: @MVNerdsRed;
+				font-family: 'Quantico', sans-serif;
+				font-size: 2.2em;
+				padding-top: 119px;
+				text-shadow: 1px 1px 1px rgba(80,80,80,.3);
+
+				em {
+					color: @MVNerdsBlue;
+					font-style: normal;
+				}
+			}
+		}
+
+		&:hover {
+			div.back-home-sign {
+				opacity: 1;
+				.transition(opacity .5s linear);
 			}
 		}
 	}
@@ -177,7 +209,7 @@ div.header-container {
 	}
 
 	div.social-container {
-		background: black url('/images/launch_site/social_bg.png') no-repeat;
+		background: black url('/images/launch_site/social_bg.jpg') no-repeat;
 		border: 1px solid black;
 		border-bottom: 0;
 		margin: 5px 0 0 0;
@@ -242,7 +274,7 @@ div.header-container {
 		border-top: 0;
 
 		div.content {
-			background: black url('/images/launch_site/content_bg.png') no-repeat top left;
+			background: black url('/images/launch_site/content_bg.jpg') no-repeat top left;
 			/*border: 1px solid black;
 			border-bottom: 0;
 			border-top: 0;*/
@@ -404,7 +436,7 @@ div.body-container {
 	}
 
 	div.champions-handler-container {
-		background: black url('/images/launch_site/champion_handler_bg.png') no-repeat bottom center;
+		background: black url('/images/launch_site/champion_handler_bg.jpg') no-repeat bottom center;
 		margin: 10px 0;
 		min-height: 700px;
 		padding: 10px;
@@ -653,7 +685,7 @@ div.body-container {
 							li {
 								float: left;
 								display: inline;
-								width: 33%;
+								width: 25%;
 								text-align: center;
 								min-height: 30px;
 							}
@@ -1060,7 +1092,7 @@ div.body-container {
 }
 
 div.modal {
-	background: black url('/images/launch_site/modal_bg.png') no-repeat top left;
+	background: black url('/images/launch_site/modal_bg.jpg') no-repeat top left;
 	border: 1px solid rgba(255,255,255,.4);
 	.border-radius(0);
 	height: 350px;
@@ -1090,4 +1122,8 @@ div.modal {
 	div.modal-body {
 		width: 315px;
 	}
+}
+
+span.back-to-home-tooltip {
+	font-size: 14px;
 }

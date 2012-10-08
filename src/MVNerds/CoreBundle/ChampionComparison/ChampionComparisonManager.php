@@ -28,7 +28,7 @@ class ChampionComparisonManager
 	/**
 	 * Constante contenant le nombre de comparaisons simultanées de champions
 	 */
-	const MAX_CHAMPION_COMPARISON = 50;
+	const MAX_CHAMPION_COMPARISON = 64;
 	
 	/**
 	 * Constante contenant le nom de la clé associée à la liste de comparaison dans la session

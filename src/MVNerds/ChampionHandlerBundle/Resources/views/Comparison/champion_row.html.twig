@@ -346,15 +346,16 @@
 			</p>
 		</div>
 			
+		{% set locale = app.request.getLocale() %}
 		{# Action #}
 		<div class="span1">
-			<a href="{{path('champion_handler_comparison_set_reference_champion', {'slug': champion.getSlug()})}}" class="champion-comparison-action set-champion-reference-link tooltip-anchor" 
+			<a href="{{path('champion_handler_comparison_set_reference_champion', {'_locale': locale, 'slug': champion.getSlug()})}}" class="champion-comparison-action set-champion-reference-link tooltip-anchor" 
 				rel="tooltip" 
 				data-placement="left" 
 				data-original-title="<span class='tooltip-stat'>{{'Champion_comparison.actions.set_reference'|trans}}</span>">
 				<i class="icon-fire icon-white"></i>
 			</a>
-			<a href="{{path('champion_handler_comparison_remove_from_compare', {'slug': champion.getSlug()})}}" class="champion-comparison-action remove-champion-from-list tooltip-anchor"
+			<a href="{{path('champion_handler_comparison_remove_from_compare', {'_locale': locale, 'slug': champion.getSlug()})}}" class="champion-comparison-action remove-champion-from-list tooltip-anchor"
 				rel="tooltip" 
 				data-placement="left" 
 				data-original-title="<span class='tooltip-stat'>{{'Actionsbar.Comparison_list.Dropdown.Champion.tooltip'|trans}}</span>">

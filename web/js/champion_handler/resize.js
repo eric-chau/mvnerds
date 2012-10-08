@@ -18,7 +18,7 @@ function initIsotope($isotope){
 	
 	//Lors du clic sur un champion miniature
 	var timeout, dblClic = false, that;
-	$isotope.on('click', 'li.champion:not(.champion-maxi)', function(e){console.log('click');
+	$isotope.on('click', 'li.champion:not(.champion-maxi)', function(e){
 		that = this;
 		
 		if(!$(that).hasClass('animating')){

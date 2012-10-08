@@ -5,7 +5,6 @@ namespace MVNerds\ChampionHandlerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
-use MVNerds\CoreBundle\Model\ChampionPeer;
 
 /**
  * @Route("/comparaison")
@@ -186,7 +185,7 @@ class ComparisonController extends Controller
 	 * 
 	 * @param string $slug le slug du champion à retirer de la comparaison
 	 * 
-	 * @Route("/{slug}/retirer-comparaison", name="champion_handler_comparison_remove_from_compare", options={"expose"=true})
+	 * @Route("/{_locale}/{slug}/retirer-comparaison", name="champion_handler_comparison_remove_from_compare", options={"expose"=true}, requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"})
 	 */
 	public function removeFromCompareAction($slug)
 	{
@@ -311,7 +310,7 @@ class ComparisonController extends Controller
 	 * 
 	 * @param string le slug du champion à déclarer comme champion de référence
 	 * 
-	 * @Route("/{slug}/selectionner-champion-de-reference", name="champion_handler_comparison_set_reference_champion")
+	 * @Route("/{_locale}/{slug}/selectionner-champion-de-reference", name="champion_handler_comparison_set_reference_champion", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"})
 	 */
 	public function setReferenceChampionAction($slug)
 	{
