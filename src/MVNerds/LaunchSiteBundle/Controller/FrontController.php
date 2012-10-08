@@ -38,9 +38,9 @@ class FrontController extends Controller
 	/**
 	 * Permet de rediriger vers l action de comparaison
 	 * 
-	 * @Route("/{_locale}/comparer-champions", name="launch_site_front_compare_champions", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"}, options={"expose"=true})
+	 * @Route("/{_locale}/comparer-champions/{lvl}", name="launch_site_front_compare_champions", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr", "lvl" = 1}, options={"expose"=true})
 	 */
-	public function compareChampionsAction()
+	public function compareChampionsAction($lvl)
 	{
 		$form = $this->createForm(new UserType());
 		$request = $this->getRequest();
@@ -48,7 +48,7 @@ class FrontController extends Controller
 		{
 			if ($request->isXmlHttpRequest())
 			{
-				return $this->forward('MVNerdsChampionHandlerBundle:Comparison:compare');
+				return $this->forward('MVNerdsChampionHandlerBundle:Comparison:compare', array('lvl' => $lvl));
 			}
 			elseif($request->isMethod('POST'))
 			{
@@ -56,7 +56,8 @@ class FrontController extends Controller
 			}
 			return $this->render('MVNerdsLaunchSiteBundle:Front:index.html.twig', array(
 				'form' => $form->createView(),
-				'page' => 'compare'
+				'page' => 'compare',
+				'lvl' => $lvl
 			));
 		}
 		else

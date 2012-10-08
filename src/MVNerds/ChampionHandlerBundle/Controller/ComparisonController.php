@@ -245,9 +245,9 @@ class ComparisonController extends Controller
 	/**
 	 * Envoie vers la page de comparaison des champions
 	 * 
-	 * @Route("/comparer", name="champion_handler_comparison_compare", options={"expose"=true})
+	 * @Route("comparer/{lvl}", name="champion_handler_comparison_compare", defaults={"lvl" = 1}, options={"expose"=true})
 	 */
-	public function compareAction()
+	public function compareAction($lvl)
 	{
 		//Création du FlashManager
 		/* @var $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
@@ -265,7 +265,8 @@ class ComparisonController extends Controller
 
 			//On affiche la page de comparaison
 			return $this->render('MVNerdsChampionHandlerBundle:Comparison:compare.html.twig', array(
-				'reference_champion' => $comparisonManager->getReferenceChampion()
+				'reference_champion' => $comparisonManager->getReferenceChampion(),
+				'lvl' => $lvl
 			));
 		}
 		else
