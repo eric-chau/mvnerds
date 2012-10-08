@@ -83,9 +83,16 @@ div#compare-champion-div-header div.table-header.row-fluid {
   margin-bottom: 10px;
 }
 div#compare-champion-div-header div.table-header div.span1 {
-  cursor: pointer;
   background-color: #222;
   height: 43px;
+  line-height: 43px;
+}
+div#compare-champion-div-header div.table-header div.span1.sort {
+  line-height: inherit;
+  cursor: pointer;
+}
+div#compare-champion-div-header div.table-header div.span1.sort p {
+  cursor: pointer;
 }
 div#compare-champion-div-header div.table-header div.span1 p {
   display: inline-block;

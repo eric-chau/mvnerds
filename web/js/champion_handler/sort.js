@@ -4,8 +4,8 @@ var SORT_DESC = 'desc',
 		SORT_ASC  = 'asc';
 
 var $championComparator = $('#champion-comparison'),
-	$championHeader = $('#champion-comparator div#compare-champion-div-header div.table-header'),
-	$championList = $('#champion-comparator div.champion-list');
+	$championHeader,
+	$championList;
 
 //Permet de trier la liste de comparaison en fonction d'une colonne et d'un ordre
 //Par défaut l'ordre de tri est l'ordre décroissant
@@ -14,6 +14,9 @@ function sortByColumn(column, order){
 		sortSlug,
 		$filterHeader,
 		sortArray = new Array();
+
+	$championHeader = $('#champion-comparator div#compare-champion-div-header div.table-header');
+	$championList = $('#champion-comparator div.champion-list');
 	
 	order = typeof order !== 'undefined' ? order : SORT_DESC;
 
@@ -59,7 +62,7 @@ function sortByColumn(column, order){
 
 jQuery(function(){
 	//Lors du click sur un header de stat
-	$championComparator.on('click', 'div#compare-champion-div-header div.table-header div.sort:not(.filter-asc):not(.filter-desc)', function(){
+	$championComparator.on('click', 'div#compare-champion-div-header div.table-header div.sort:not(.filter-asc):not(.filter-desc)', function(){console.log('sort');
 		$(this).find('i').removeClass('icon-sort');
 		sortByColumn($(this).data('target'));
 	});

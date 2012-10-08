@@ -72,10 +72,17 @@ div#compare-champion-div-header {
 		}
 
 		div.span1 {
-			cursor: pointer;
 			background-color: #222;
 			height: 43px;
+			line-height: 43px;
 
+			&.sort{
+				line-height: inherit;
+				cursor: pointer;
+				p{
+					cursor: pointer;
+				}
+			}
 			p {
 				display: inline-block;
 				color: #eee;
