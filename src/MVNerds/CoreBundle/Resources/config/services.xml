@@ -30,12 +30,16 @@
 		<service id="mvnerds.user_manager" class="MVNerds\CoreBundle\User\UserManager" />
 
 		<!-- CHAMPION MANAGER SERVICES -->
-		<service id="mvnerds.champion_manager" class="MVNerds\CoreBundle\Champion\ChampionManager"></service>
+		<service id="mvnerds.champion_manager" class="MVNerds\CoreBundle\Champion\ChampionManager">
+			<call method="setUserLocale">
+				<argument type="service" id="session" />
+			</call>
+		</service>
     
 		<!-- 
 			CHAMPION_TAG MANAGER SERVICES
 		-->
-		<service id="mvnerds.champion_tag_manager" class="MVNerds\CoreBundle\ChampionTag\ChampionTagManager"></service>
+		<service id="mvnerds.champion_tag_manager" class="MVNerds\CoreBundle\ChampionTag\ChampionTagManager" />
 
 		<!-- 
 			CHAMPION_COMPARISON MANAGER SERVICES

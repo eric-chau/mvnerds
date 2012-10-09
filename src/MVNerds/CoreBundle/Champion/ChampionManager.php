@@ -3,14 +3,16 @@
 namespace MVNerds\CoreBundle\Champion;
 
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
+use Symfony\Component\HttpFoundation\Session\Session;
+
 use MVNerds\CoreBundle\Model\Champion;
 use MVNerds\CoreBundle\Model\ChampionQuery;
 use MVNerds\CoreBundle\Model\ChampionPeer;
-use MVNerds\CoreBundle\Model\ChampionI18nPeer;
 
 class ChampionManager
 {
-
+	private $userLocale;
+	
 	/**
 	 * Vérifies les informations contenu dans l'objet $champion passé en paramètre; si tout se passe bien,
 	 * le champion est créé en base de données
@@ -128,10 +130,10 @@ class ChampionManager
 	public function findBySlug($slug)
 	{
 		$champion = ChampionQuery::create()
-			->joinWithI18n()
+			->joinWithI18n($this->userLocale)
 			->add(ChampionPeer::SLUG, $slug)
 		->findOne();
-		
+
 		if (null === $champion)
 		{
 			throw new InvalidArgumentException('No champion with slug:' . $slug . '!');
@@ -150,7 +152,7 @@ class ChampionManager
 	public function findManyBySlugs($championsSlugs)
 	{
 		$champions = ChampionQuery::create()
-			->joinWithI18n()
+			->joinWithI18n($this->userLocale)
 			->add(ChampionPeer::SLUG, $championsSlugs,\Criteria::IN)
 		->find();
 
@@ -193,7 +195,7 @@ class ChampionManager
 	public function findAll()
 	{
 		return ChampionQuery::create()
-			->joinWithI18n()
+			->joinWithI18n($this->userLocale)
 			->OrderBy(ChampionPeer::ID)
 		->find();
 	}
@@ -207,7 +209,7 @@ class ChampionManager
 	public function findAllWithTags($locale)
 	{
 		return ChampionQuery::create()
-			->joinWithI18n($locale)
+			->joinWithI18n($this->userLocale)
 			->joinWith('ChampionTag', \Criteria::LEFT_JOIN)
 			->joinWith('ChampionTag.Tag', \Criteria::LEFT_JOIN)
 			->joinWith('Tag.TagI18n', \Criteria::LEFT_JOIN)
@@ -223,5 +225,11 @@ class ChampionManager
 	public function save(Champion $champion)
 	{
 		$champion->save();
+	}
+	
+	public function setUserLocale(Session $session)
+	{
+		$locale = $session->get('locale', null);
+		$this->userLocale = null === $locale? 'fr' : $locale;
 	}
 }

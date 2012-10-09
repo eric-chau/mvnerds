@@ -8,15 +8,16 @@ $(document).ready(function()
     $('body').unbind('keyup');
     $('body').bind('keypress', function(event)
     {
+      console.log(event.which);
       event.preventDefault();
       switch(event.which) {
-        case 115: // touche 's'
+        case 110: // touche 'n'
           guiders.next();
           break;
         case 112: // touche 'p'
           guiders.prev();
           break;
-        case 102: // touche 'f'
+        case 99: // touche 'c'
           isFirstActionAfterGT = true;
           onCloseCallBack();
         default:
@@ -36,9 +37,9 @@ $(document).ready(function()
   });
 });
 
-var nextButton = {name: "<em>S</em>uivant", classString: "btn-next", onclick: guiders.next},
-    closeButton = {name: "<em>F</em>ermer", classString: "btn-close", onclick: onCloseCallBack},
-    prevButton = {name: "<em>P</em>récédent", classString: "btn-prv", onclick: guiders.prev};
+var nextButton = {name: "<em>N</em>ext", classString: "btn-next", onclick: guiders.next},
+    closeButton = {name: "<em>C</em>lose", classString: "btn-close", onclick: onCloseCallBack},
+    prevButton = {name: "<em>P</em>revious", classString: "btn-prv", onclick: guiders.prev};
 
 // STEP #1 : Présentation
 guiders.createGuider({
@@ -47,7 +48,7 @@ guiders.createGuider({
   id: "first",
   next: "second",
   overlay: true,
-  title: "Visite guidée <span class='shortcut'>(Raccourci clavier : V)</span>"
+  title: "Guide tour <span class='shortcut'>(Shortcut : G)</span>"
 });
 /* .show() means that this guider will get shown immediately after creation. */
 
@@ -82,12 +83,12 @@ guiders.createGuider({
   next: "finally",
   highlight: "div.champions-handler-container ul.action-buttons li#filters-block, div.champions-handler-container ul.action-buttons li.search-action",
   overlay: true,
-  title: "Filtrer par tag et recherche <span class='shortcut'>(Raccourci clavier: L et R)</span>"
+  title: "Filtrer par tag et recherche <span class='shortcut'>(Raccourci clavier: F et S)</span>"
 });
 
 // STEP #5 : Aller à la page de comparaison
 guiders.createGuider({
-  buttons: [prevButton, {name: "<em>F</em>in de la visite, merci !", classString: "btn-close", onclick: onCloseCallBack}],
+  buttons: [prevButton, {name: "End of guide tour, thank you !", classString: "btn-close", onclick: onCloseCallBack}],
   description: "Deux champions doivent être au minimum présent dans la liste pour pouvoir démarrer une comparaison. A noter que vous pouvez comparer au maximum 64 champions simultanément.",
    id: "finally",
   highlight: "div.champions-handler-container ul.action-buttons li.red-button",

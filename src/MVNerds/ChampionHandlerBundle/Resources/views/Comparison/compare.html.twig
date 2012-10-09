@@ -1,9 +1,9 @@
 <div class="data-scrollable" id="champion-comparator">	
 	<div id="compare-champion-div-header">
 		<div class="row-fluid" id="level-selector">
-			<h3 class="pull-left">Niveau des champions : </h3>
+			<h6>{{ 'Champion_comparison.champion.actions.level.selector'|trans }}:</h6>
 			{% for index in 1..18 %}
-				<a class="action level-selector-action {{ index == lvl ? 'active' : '' }}" id="level-selector-{{index}}" href="{{path('launch_site_front_compare_champions', {'lvl':index}) }}">{{index}}</a>
+				<a class="action level-selector-action {{ index == lvl? 'active' : '' }}" href="{{path('launch_site_front_compare_champions', {'lvl': index}) }}">{{index}}</a>
 			{% endfor %}
 		</div>
 		

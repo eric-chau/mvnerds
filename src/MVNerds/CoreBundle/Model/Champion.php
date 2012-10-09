@@ -30,6 +30,7 @@ class Champion extends BaseChampion
 		{
 			return $this->$method();
 		}
+		
 		return null;
 	}
 	
@@ -44,6 +45,7 @@ class Champion extends BaseChampion
 		{
 			$tags[] = $championtag->getTag()->getLabel();
 		}
+		
 		return $tags;
 	}
 	
@@ -59,6 +61,7 @@ class Champion extends BaseChampion
 		{
 			$tags .= strtolower($championtag->getTag()->getLabel() . ' ');
 		}
+		
 		return $tags;
 	}	
 	
