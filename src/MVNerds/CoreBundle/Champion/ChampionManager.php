@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use MVNerds\CoreBundle\Model\Champion;
 use MVNerds\CoreBundle\Model\ChampionQuery;
 use MVNerds\CoreBundle\Model\ChampionPeer;
+use MVNerds\CoreBundle\Model\ChampionI18nPeer;
 
 class ChampionManager
 {
