@@ -1127,21 +1127,115 @@ span.back-to-home-tooltip {
 	font-size: 14px;
 }
 
-#footer{
-	background: #333 url('/images/launch_site/footer_bg.png') no-repeat top left;
-	border: 0;
-	.box-shadow(0px 0px 55px rgba(0,0,0,1));
-	padding: 10px;
-	min-height: 200px;
-	margin: 0 auto;
+div#footer {
+	background: black;
 	color: white;
+	height: 118px;
+	padding: 10px;
+	text-align: center;
 
-	div.row-fluid{
-		padding: 10px;
-		background-color: #000;
+	img {
+		opacity: .8;
+	}
+
+	div.footer-social-container {
+		border-left: 2px solid #999;
+		height: 118px;
+
+		p {
+			display: inline-block;
+			margin: 26px 0;
+			vertical-align: middle;
+
+			span.msg {
+				color: @MVNerdsGreen;
+				display: block;
+				font-family: 'Ubuntu', sans-serif;
+				font-size: 12px;
+				font-weight: bold;
+				line-height: 1em;
+				margin-bottom: 5px;
+				text-transform: uppercase;
+			}
+
+			i {
+				color: #666;
+				font-size: 48px;
+				line-height: 1em;
+				margin: 0 3px;
+
+				&.twitter:hover {
+					color: #00acee;
+					.transition(color .25s linear);
+				}
+
+				&.facebook:hover {
+					color: #345390;
+					.transition(color .25s linear);
+				}
+			}
+		}
+	}
+
+	div.links {
+		margin-top: 10px;
+		text-align: left;
+
+		h5, p {
+			margin: 0;
+			padding: 0;
+		}
+
+		h5 {
+			color: @LoLOrangeAD;
+			display:inline-block;
+		}
+
+		p {
+			color: #999;
+			font-size: 12px;
+			line-height: 1.4em;
+			margin-bottom: 5px;
+
+			&.subtitle {
+				display: inline-block;
+			}
+		}
 		
-		h5{
-			color: #19A0DF;
+		ul {
+			color: #666;
+			font-size: 12px;
+			list-style: none;
+			margin: 0;
+			padding: 0;
+			text-align: left;
+
+			li:last-child, li:last-child {
+				border: 0;
+			}
+
+			li:first-child {
+				color: #999;
+				padding-left: 0;
+			}
+
+			li {
+				border-right: 1px solid #666;
+				display: inline-block;
+				line-height: 1em;
+				padding: 0 5px;
+
+				a, a:visited {
+					color: #666;
+					font-family: 'Ubuntu', sans-serif;
+					font-size: 12px;
+
+					&:hover {
+						color: @LoLOrangeAD;
+						.transition(color .25s linear);
+					}
+				}
+			}
 		}
 	}
 }
