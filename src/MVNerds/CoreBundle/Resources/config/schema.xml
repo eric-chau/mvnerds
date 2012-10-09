@@ -23,13 +23,14 @@
     <column name="mana_type" required="true" type="ENUM" valueSet="MANA, ENERGY, RAGE" />
     <column name="base_attack_speed" required="true" scale="4" type="FLOAT" />
     <column name="bonus_attack_speed_per_level" required="true" scale="4" type="FLOAT" />
-    <column name="attack_range" required="true" type="INTEGER" />
+    <column name="attack_range" required="true" type="SMALLINT" />
     <column defaultValue="0" name="lifesteal" type="SMALLINT" />
     <column defaultValue="0" name="critical_chance" type="TINYINT" />
     <column defaultValue="0" name="critical_damage" type="SMALLINT" />
     <column name="spell_vamp" type="SMALLINT" />
     <column name="ip_cost" required="true" type="SMALLINT" />
     <column name="rp_cost" required="true" type="SMALLINT" />
+    <column defaultValue="0" name="bonus_attack_range_per_level" required="true" type="SMALLINT" />
     <behavior name="sluggable">
       <parameter name="slug_column" value="slug" />
       <parameter name="slug_pattern" value="{name}" />

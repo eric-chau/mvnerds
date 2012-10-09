@@ -105,6 +105,11 @@ class Champion extends BaseChampion
 		return $this->base_attack_speed + ($this->bonus_attack_speed_per_level * ($this->level - 1));
 	}
 	
+	public function getAttackRange()
+	{
+		return $this->attack_range + ($this->bonus_attack_range_per_level * ($this->level - 1));
+	}
+	
 	public function getLevel()
 	{
 		return $this->level;

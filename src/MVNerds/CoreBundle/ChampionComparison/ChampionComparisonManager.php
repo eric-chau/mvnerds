@@ -231,7 +231,6 @@ class ChampionComparisonManager
 	 */
 	public function addChampion(Champion $champion)
 	{		
-		var_dump($champion); die;
 		//On vérifie que la taille du tableau ne soit pas dépassée
 		if (! $this->isFull())
 		{
