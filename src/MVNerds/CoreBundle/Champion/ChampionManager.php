@@ -29,7 +29,11 @@ class ChampionManager
 		}
 
 		// On vérifie qu'il n'y a pas de champion dans la base de données avec le même nom
-		if (null != ChampionQuery::create()->add(ChampionPeer::NAME, $champion->getName())->findOne())
+		$oldChampion = ChampionQuery::create()
+					->joinWithI18n()
+					->add(ChampionI18nPeer::NAME, $champion->getName())
+				->findOne();
+		if (null != $oldChampion)
 		{
 			throw new InvalidArgumentException('Champion with name:\'' . $champion->getName() . '\' already exists!');
 		}
@@ -168,7 +172,8 @@ class ChampionManager
 	public function findByName($name)
 	{
 		$champion = ChampionQuery::create()
-			->add(ChampionPeer::NAME, $name)
+			->joinWithI18n()
+			->add(ChampionI18nPeer::NAME, $name)
 		->findOne();
 
 		if (null === $champion)
