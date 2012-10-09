@@ -127,7 +127,7 @@
 							{% if page == 'champions'%}
 								{% render 'MVNerdsChampionHandlerBundle:Front:championComparison' %}
 							{% elseif page == 'compare' %}
-								{% render 'MVNerdsChampionHandlerBundle:Comparison:compare' with {'lvl': lvl}  %}
+								{% include 'MVNerdsChampionHandlerBundle:Comparison:compare.html.twig' %}
 							{% endif %}
 						</div>
 						{#<p>

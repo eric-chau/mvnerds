@@ -81,7 +81,7 @@ class ComparisonController extends Controller
 	/**
 	 * Permet d'ajouter plusieurs champions à la liste des champions à comparer grâce à un tableau de slugs
 	 * 
-	 * @Route("ajouter-plusieurs-champions", name="champion_handler_comparison_add_many_to_compare", options={"expose"=true})
+	 * @Route("/ajouter-plusieurs-champions", name="champion_handler_comparison_add_many_to_compare", options={"expose"=true})
 	 */
 	public function addManyToCompareAction()
 	{
@@ -102,22 +102,29 @@ class ComparisonController extends Controller
 				
 				if (( $championsSlug = $request->get('championsSlug') ))
 				{
+					$championManager = $this->get('mvnerds.champion_manager');
+					
 					//Récupération du champion
-					$championsArray = $this->get('mvnerds.champion_manager')->findManyBySlugs($championsSlug);
+					$championsArray = $championManager->findManyBySlugs($championsSlug);
 					
 					try {
 						$comparisonManager->addManyChampions($championsArray);
 
 						$flashManager->setSuccessMessage('Les champions du filtre ont bien été ajoutés à la liste de comparaison.');
-
+						
+						$comparisonListSlugs = $comparisonManager->getListSlugs();
+						$comparisonList = $championManager->findManyBySlugs($comparisonListSlugs);
+						
 						return $this->render('MVNerdsChampionHandlerBundle:Comparison:comparison_list.html.twig',array(
-							'champions' => $comparisonManager->getList()
+							'champions' => $comparisonList
 						));
 					}
 					catch(\Exception $e) {
+						$comparisonListSlugs = $comparisonManager->getListSlugs();
+						$comparisonList = $championManager->findManyBySlugs($comparisonListSlugs);
 						$flashManager->setErrorMessage($e->getMessage());
 						return $this->render('MVNerdsChampionHandlerBundle:Comparison:comparison_list.html.twig',array(
-							'champions' => $comparisonManager->getList()
+							'champions' => $comparisonList
 						));
 					}
 				}
@@ -139,44 +146,6 @@ class ComparisonController extends Controller
 		{
 			// Sinon on redirige l'utilisateur vers la liste des champions
 			return $this->redirect($this->generateUrl('launch_site_index'));
-		}
-
-		//On essaie d'ajouter le champion à la liste
-		try
-		{
-			$comparisonManager->addManyChampions($championsArray);
-		}
-		catch (\Exception $e)
-		{
-			//on affiche le message d'erreur
-			$flashManager->setErrorMessage($e->getMessage());
-			//Si c'est une requete ajax
-			if ($isXHR)
-			{
-				//On renvoie une réponse nulle
-				return new Response(null);
-			}
-			else
-			{
-				// Sinon on redirige l'utilisateur vers la liste des champions
-				return $this->redirect($this->generateUrl('champion_handler_comparison_index'));
-			}
-		}
-
-		//On affiche un message de succes
-		$flashManager->setSuccessMessage('Flash.success.add_to_compare.champions');
-		//Si c'est une requete ajax
-		if ($isXHR)
-		{
-			//On renvoie le champion comparison row
-			return $this->render('MVNerdsChampionHandlerBundle:Comparison:comparison_row.html.twig', array(
-						'champion' => $champion,
-					));
-		}
-		else
-		{
-			// On redirige l'utilisateur vers la liste des champions
-			return $this->redirect($this->generateUrl('launch_site_front'));
 		}
 	}
 
@@ -247,39 +216,51 @@ class ComparisonController extends Controller
 	 * 
 	 * @Route("comparer/niveau-{lvl}", name="champion_handler_comparison_compare", defaults={"lvl" = 1}, options={"expose"=true})
 	 */
-	public function compareAction($lvl)
-	{
-		//Création du FlashManager
-		/* @var $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
-		$flashManager = $this->get('mvnerds.flash_manager');
-		
-		//récupération du champion_comparison_manager
-		/* @var $comparisonManager \MVNerds\CoreBundle\ChampionComparison\ChampionComparisonManager */
-		$comparisonManager = $this->get('mvnerds.champion_comparison_manager');
-		
-		if ($lvl > 1) {
-			$comparisonManager->setLevelToChampions($lvl);
-		}
-		
-		//Si la liste peut être comparée
-		if ($comparisonManager->isComparable())
-		{
-			//on récupère les champs à comparer
-			//$fieldNames = ChampionPeer::getFieldNames();
-
-			//On affiche la page de comparaison
-			return $this->render('MVNerdsChampionHandlerBundle:Comparison:compare.html.twig', array(
-				'reference_champion' => $comparisonManager->getReferenceChampion(),
-				'lvl' => $lvl
-			));
-		}
-		else
-		{
-			$flashManager->setErrorMessage('Flash.error.not_enough.compare.champions');
-		}
-
-		return $this->redirect($this->generateUrl('launch_site_front'));
-	}
+//	public function compareAction($lvl)
+//	{
+//		//Création du FlashManager
+//		/* @var $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
+//		$flashManager = $this->get('mvnerds.flash_manager');
+//		
+//		//récupération du champion_comparison_manager
+//		/* @var $comparisonManager \MVNerds\CoreBundle\ChampionComparison\ChampionComparisonManager */
+//		$comparisonManager = $this->get('mvnerds.champion_comparison_manager');
+//		
+//		//récupération du champion_manager
+//		/* @var $championManager \MVNerds\CoreBundle\Champion\ChampionManager */
+//		$championManager = $this->get('mvnerds.champion_manager');
+//		
+//		//Si la liste peut être comparée
+//		if ($comparisonManager->isComparable())
+//		{
+//			$referenceChampionArray = $comparisonManager->getReferenceChampion();
+//			
+//			$comparisonListSlugs = $comparisonManager->getListSlugs();
+//			$comparisonList = $championManager->findManyBySlugs($comparisonListSlugs);
+//			$comparisonList = $championManager->setLevelToChampions($lvl, $comparisonList);
+//			
+//			foreach($comparisonList as $champion)
+//			{
+//				if ($champion->getSlug() == $referenceChampionArray['slug'])
+//				{
+//					$referenceChampion = $champion;
+//					break;
+//				}
+//			}
+//			//On affiche la page de comparaison
+//			return $this->render('MVNerdsChampionHandlerBundle:Comparison:compare.html.twig', array(
+//				'reference_champion' => $referenceChampion,
+//				'comparison_list' => $comparisonList,
+//				'lvl' => $lvl
+//			));
+//		}
+//		else
+//		{
+//			$flashManager->setErrorMessage('Flash.error.not_enough.compare.champions');
+//		}
+//
+//		return $this->redirect($this->generateUrl('launch_site_front'));
+//	}
 
 	/**
 	 * Permet de vider la liste de comparaison de champions

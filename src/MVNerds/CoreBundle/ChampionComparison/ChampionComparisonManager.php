@@ -71,8 +71,18 @@ class ChampionComparisonManager
 		{
 			$this->initComparisonList();
 		}
-		
+
 		return $this->session->get(self::COMPARISON_LIST_KEY);
+	}
+	
+	/**
+	 * Permet de récupérer les slugs des champions présents dans la liste sous forme de tableau 
+	 * Afin de pouvoir faire une requete pour récupérer tous les objets champion associés
+	 */
+	public function getListSlugs()
+	{
+		$comparisonList = $this->getList();
+		return array_keys($comparisonList);
 	}
 	
 	/**
@@ -113,7 +123,7 @@ class ChampionComparisonManager
 		if($this->championExists($champion))
 		{
 			//On l'indique comme champion de référence
-			$this->session->set(self::REFERENCE_CHAMPION_KEY, $champion);
+			$this->session->set(self::REFERENCE_CHAMPION_KEY, array('slug' => $champion->getSlug(), 'name' => $champion->getName()));
 			//On fait passer le champion en premier dans la liste
 			$this->sortListByChampion($champion);
 		}
@@ -211,7 +221,7 @@ class ChampionComparisonManager
 	public function isReferenceChampion(Champion $champion)
 	{
 		$referenceChampion = $this->getReferenceChampion();
-		return ( $referenceChampion != null ) && ( $referenceChampion->getSlug() == $champion->getSlug());
+		return ( $referenceChampion != null ) && ( $referenceChampion['slug'] == $champion->getSlug());
 	}
 	
 	/**
@@ -240,7 +250,8 @@ class ChampionComparisonManager
 				//On récupère la liste
 				$comparisonList = $this->getList();
 				//On ajoute le nouveau champion
-				$comparisonList[$champion->getSlug()] = $champion;				
+				//$comparisonList[$champion->getSlug()] = $champion;				
+				$comparisonList[$champion->getSlug()] = $champion->getName();				
 				//On enregistre la nouvelle liste dans la session
 				$this->setList($comparisonList);
 				
@@ -283,7 +294,7 @@ class ChampionComparisonManager
 					if ($listSize < self::MAX_CHAMPION_COMPARISON)
 					{
 						//On ajoute le nouveau champion
-						$comparisonList[$champion->getSlug()] = $champion;	
+						$comparisonList[$champion->getSlug()] = $champion->getName();	
 						$listSize++;
 					}
 					else
@@ -345,11 +356,14 @@ class ChampionComparisonManager
 				$this->cleanReferenceChampion();
 				
 				$comparisonList = $this->getList();
-				$championNames = array_keys($comparisonList);
+				$championSlugs = array_keys($comparisonList);
 				
-				if (count($championNames) >= 1)
+				if (count($championSlugs) >= 1)
 				{
-					$nextChampion = $comparisonList[$championNames[0]];
+					$nextChampionName = $comparisonList[$championSlugs[0]];
+					$nextChampion = new Champion();
+					$nextChampion->setName($nextChampionName);
+					$nextChampion->setSlug($championSlugs[0]);					
 					$this->setReferenceChampion($nextChampion);
 				}
 			}
@@ -391,13 +405,13 @@ class ChampionComparisonManager
 			//On crée une nouvelle liste
 			$newList = array();
 			//On ajoute le champion à mettre en premier
-			$newList[$champion->getSlug()] = $champion;
+			$newList[$champion->getSlug()] = $champion->getName();
 			//On parcourt tous les autres champions afin de les ajouter à la nouvelle liste
-			foreach ($oldList as $champ)
+			foreach ($oldList as $champSlug => $champName)
 			{
-				if ($champ->getSlug() != $champion->getSlug())
+				if ($champSlug != $champion->getSlug())
 				{
-					$newList[$champ->getSlug()] = $champ;
+					$newList[$champSlug] = $champName;
 				}
 			}
 			//On enregistre la nouvelle liste
@@ -407,15 +421,5 @@ class ChampionComparisonManager
 		{
 			throw new InvalidArgumentException('Champion given does not exists in the comparison list');
 		}
-	}
-	
-	public function setLevelToChampions($level)
-	{
-		$champions = $this->getList();
-		foreach ($champions as $champion) {
-			$champion->setLevel($level);
-		}
-		
-		$this->setList($champions);
 	}
 }

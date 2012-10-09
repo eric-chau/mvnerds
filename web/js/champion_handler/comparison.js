@@ -87,7 +87,7 @@ function addManyChampionsToList(championsSlugArray){
 
 		$comparisonListLoading.hide();
 		toggleProgressCursor(false, '#li-compare-filtered a');
-	}).fail(function(){
+	}).fail(function(data){console.log(data.responseText);
 		$comparisonListLoading.hide();
 		toggleProgressCursor(false, '#li-compare-filtered a');
 	});

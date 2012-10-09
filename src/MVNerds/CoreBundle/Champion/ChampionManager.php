@@ -233,4 +233,13 @@ class ChampionManager
 		$locale = $session->get('locale', null);
 		$this->userLocale = null === $locale? 'fr' : $locale;
 	}
+	
+	public function setLevelToChampions($level, $champions)
+	{
+		foreach ($champions as $champion) {
+			$champion->setLevel($level);
+		}
+		
+		return $champions;
+	}
 }

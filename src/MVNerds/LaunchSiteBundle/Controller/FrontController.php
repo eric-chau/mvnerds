@@ -29,8 +29,12 @@ class FrontController extends Controller
 			$form->bind($request);
 			
 		}
+		$comparisonListSlugs = $this->get('mvnerds.champion_comparison_manager')->getListSlugs();
+		$comparisonList = $this->get('mvnerds.champion_manager')->findManyBySlugs($comparisonListSlugs);
+		
 		return $this->render('MVNerdsLaunchSiteBundle:Front:index.html.twig', array(
 			'form' => $form->createView(),
+			'comparison_list' => $comparisonList,
 			'page' => 'champions'
 		));
 	}
@@ -44,20 +48,49 @@ class FrontController extends Controller
 	{
 		$form = $this->createForm(new UserType());
 		$request = $this->getRequest();
-		if($this->get('mvnerds.champion_comparison_manager')->isComparable())
+		
+		$comparisonManager = $this->get('mvnerds.champion_comparison_manager');
+		
+		if($comparisonManager->isComparable())
 		{
+			$championManager = $this->get('mvnerds.champion_manager');
+			
+			$referenceChampionArray = $comparisonManager->getReferenceChampion();
+			
+			$comparisonListSlugs = $comparisonManager->getListSlugs();
+			$comparisonList = $championManager->findManyBySlugs($comparisonListSlugs);	
+			$comparisonList = $championManager->setLevelToChampions($lvl, $comparisonList);
+			
+			foreach($comparisonList as $champion)
+			{
+				if ($champion->getSlug() == $referenceChampionArray['slug'])
+				{
+					$referenceChampion = $champion;
+					break;
+				}
+			}
+			
 			if ($request->isXmlHttpRequest())
 			{
-				return $this->forward('MVNerdsChampionHandlerBundle:Comparison:compare', array('lvl' => $lvl));
+				
+				
+				return $this->render('MVNerdsChampionHandlerBundle:Comparison:compare.html.twig', array(
+					'reference_champion'	=> $referenceChampion,
+					'comparison_list'		=> $comparisonList,
+					'lvl'				=> $lvl
+				));
 			}
 			elseif($request->isMethod('POST'))
 			{
-				$form->bind($request);			
+				$form->bind($request);		
 			}
+			
 			return $this->render('MVNerdsLaunchSiteBundle:Front:index.html.twig', array(
-				'form' => $form->createView(),
-				'page' => 'compare',
-				'lvl' => $lvl
+				'form'				=> $form->createView(),
+				'comparison_list'		=> $comparisonList,
+				'reference_champion'	=> $referenceChampion,
+				'page'				=> 'compare',
+				'lvl'				=> $lvl
 			));
 		}
 		else
