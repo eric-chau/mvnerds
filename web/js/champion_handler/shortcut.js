@@ -5,8 +5,38 @@ var $btnCompare = $('a#btn-compare'),
   $btnFilter = $('a#drop-filter-list'),
   isFirstActionAfterGT = false;
 
+var ctrlDown = false,
+    ctrlKey = 17,
+    escapeKey = 27,
+    compareShortcut = 67,
+    listShortcut = 76,
+    filterShortcut = 70,
+    searchShortcut,
+    guideShortcut;
+
+if (locale == 'fr') {
+  searchShortcut = 82;
+  guideShortcut = 86;
+}
+else {
+  searchShortcut = 83;
+  guideShortcut = 71;
+}
+
 $(document).ready(function()
 {
+    $(document).keydown(function(event)
+    {
+      if (event.which == ctrlKey) {
+        ctrlDown = true;
+      }
+    }).keyup(function(event)
+    {
+        if (event.which == ctrlKey) {
+          ctrlDown = false;
+        }
+    });
+
     $('body').bind('keyup', function(event) 
     {
       shortcutListener(event);
@@ -17,7 +47,7 @@ $(document).ready(function()
       $('body').unbind('keyup');
       $searchInputText.bind('keyup', function(event)
       {
-        if (event.which == 27) {
+        if (event.which == escapeKey) {
           $(this).blur();
         }
       });
@@ -41,29 +71,32 @@ function shortcutListener(event) {
     return false;
   }
 
+  if (ctrlDown) {
+    return false;
+  }
+
   switch(event.which) {
-    case 67: // touche 'c'
+    case compareShortcut: 
       if ($btnCompare.hasClass('disabled')) {
         return false;
       }
 
       $btnCompare.trigger('click');
       break;
-    case 83: // touche 's'
+    case searchShortcut:
       $('.dropdown.open .dropdown-toggle').dropdown('toggle');
       $searchInputText[0].selectionStart = $searchInputText[0].selectionEnd = $searchInputText.val().length;
       break;
-    case 76: // touche 'l'
+    case listShortcut:
       $btnComparisonList.trigger('click');
       break;
-    case 70: // touche 'f'
+    case filterShortcut:
       $btnFilter.trigger('click');
       break;
-    case 71: // touche 'g'
+    case guideShortcut:
       $('.dropdown.open .dropdown-toggle').dropdown('toggle');
       $btnHelp.trigger('click');
     default:
       break;
-
   }
 }
