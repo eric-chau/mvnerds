@@ -42,7 +42,7 @@ class FrontController extends Controller
 	/**
 	 * Permet de rediriger vers l action de comparaison
 	 * 
-	 * @Route("/{_locale}/comparer-champions/niveau-{lvl}", name="launch_site_front_compare_champions", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr", "lvl" = 1}, options={"expose"=true})
+	 * @Route("/{_locale}/compare-champions/level-{lvl}", name="launch_site_front_compare_champions", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr", "lvl" = 1}, options={"expose"=true})
 	 */
 	public function compareChampionsAction($lvl)
 	{

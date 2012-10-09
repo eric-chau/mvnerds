@@ -271,6 +271,36 @@
 				<source>Flash.success.clean_comparison.champions</source>
 				<target>Comparison list has been successfully cleaned</target>
 			</trans-unit>
+
+			<!--  FOOTER -->
+			<trans-unit id="9000">
+				<source>Footer.subtitle</source>
+				<target>Guides, builds and tools for League of Legends players!</target>
+			</trans-unit>
+			<trans-unit id="9001">
+				<source>Footer.riot.p1</source>
+				<target>League of Legends and Riot Games Inc. are trademarks or registered trademarks of Riot Games, Inc.</target>
+			</trans-unit>
+			<trans-unit id="9002">
+				<source>Footer.riot.p2</source>
+				<target>All the elements extracted or copied from the game League of Legends, presents on the website, belong to Riot Games Inc.</target>
+			</trans-unit>
+			<trans-unit id="9003">
+				<source>Footer.links.contact</source>
+				<target>Contact us</target>
+			</trans-unit>
+			<trans-unit id="9004">
+				<source>Footer.links.privacy_policy</source>
+				<target>Privacy policy</target>
+			</trans-unit>
+			<trans-unit id="9005">
+				<source>Footer.links.terms_of_use</source>
+				<target>Terms of use</target>
+			</trans-unit>
+			<trans-unit id="9006">
+				<source>Footer.links.legal</source>
+				<target>Legal</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
