@@ -84,7 +84,7 @@
 					<div class="span5">
 						<a href="{{ path('launch_site_front', {'_locale': locale}) }}" class="logo-link">
 							<div class="logo">
-								<div class="back-home-sign">Retourner<br /> à l'accueil</div>
+								<div class="back-home-sign">{{'Go_back_home.1'|trans}}<br /> {{'Go_back_home.2'|trans}}</div>
 								<h1>MOST <font color="#db4a38">V</font><font color="#bf5650">A</font><font color="#a46368">L</font><font color="#886f80">U</font><font color="#6c7b97">A</font><font color="#5087af">B</font><font color="#3594c7">L</font><font color="#19a0df">E</font> <em>NERDS</em></h1>
 							</div>
 						</a>
@@ -103,9 +103,9 @@
 				</div>	
 				
 				<div class="switch-language-container">
-					<span class="current-language-msg">La langue affichée<br />à l'écran</span> 
+					<span class="current-language-msg">{{'Switch_language.current.s1'|trans}}<br />{{'Switch_language.current.s2'|trans}}</span> 
 					<span class="current-language">{% if locale == 'fr' %}français{% else %}english{% endif %}</span> 
-					<span class="switch-language-msg">I want to switch<br />language</span>
+					<span class="switch-language-msg">{{'Switch_language.switch.s1'|trans}}<br />{{'Switch_language.switch.s2'|trans}}</span>
 					{% if locale == 'fr' %}
 						<a href="{{ path('culture_switch_language', {'locale': 'en'}) }}">english</a>
 					{% else %}
@@ -125,8 +125,6 @@
 							<p>{{'Overview.content.p1'|trans}}</p>
 							
 							<p>{{'Overview.content.p2'|trans}}</p>
-							
-							<p>{{'Overview.content.p3'|trans}}</p>
 						</div>
 						<div class="registration">
 							<h2>{{'Registration.title'|trans}}</h2>
