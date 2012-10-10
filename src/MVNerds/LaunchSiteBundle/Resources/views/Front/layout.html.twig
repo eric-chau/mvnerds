@@ -1,0 +1,83 @@
+{% extends '::base.html.twig' %}
+
+{% block title %}Guides, Builds and Tools for League of Legends - LoL | MVNerds{% endblock %}
+
+{% set locale = app.request.getLocale() %}
+
+{% block css %}
+	{{ parent() }}
+
+	 <link rel="stylesheet" href="{{ asset('/css/launch_site/front.css') }}">
+	 
+	 <link href='http://fonts.googleapis.com/css?family=Quantico:700' rel='stylesheet' type='text/css'>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<script type="text/javascript" src="{{ asset('/js/launch_site/front.js') }}"></script>
+{% endblock %}
+	 
+{% block body %}
+	<div id="wrapper">
+		<div class="container main-container">
+			<div class="header-container">
+
+				<div class="row-fluid">
+					<div class="span5">
+						<a href="{{ path('launch_site_front', {'_locale': locale}) }}" class="logo-link">
+							<div class="logo">
+								<div class="back-home-sign">Retourner<br /> à l'accueil</div>
+								<h1>MOST <font color="#db4a38">V</font><font color="#bf5650">A</font><font color="#a46368">L</font><font color="#886f80">U</font><font color="#6c7b97">A</font><font color="#5087af">B</font><font color="#3594c7">L</font><font color="#19a0df">E</font> <em>NERDS</em></h1>
+							</div>
+						</a>
+					</div>
+					
+					<div class="span7">
+						<div class="launch-date-msg">{{'Countdown.message'|trans}}</div> 
+						
+						<div class="countdown">
+							<div class="days"></div>
+							<div class="hours"></div>
+							<div class="minutes"></div>
+							<div class="seconds"></div>
+						</div>
+					</div>
+				</div>	
+				
+				<div class="switch-language-container">
+					<span class="current-language-msg">La langue affichée<br />à l'écran</span> 
+					<span class="current-language">{% if locale == 'fr' %}français{% else %}english{% endif %}</span> 
+					<span class="switch-language-msg">I want to switch<br />language</span>
+					{% if locale == 'fr' %}
+						<a href="{{ path('culture_switch_language', {'locale': 'en'}) }}">english</a>
+					{% else %}
+						<a href="{{ path('culture_switch_language', {'locale': 'fr'}) }}">français</a>
+					{% endif %}
+				</div>
+				<div class="clearfix"></div>
+				
+				<div class="social-container">
+					<p> {{'Social.follow_us_on'|trans}} <a href="https://twitter.com/MVNerds" target="_blank" class="twitter">Twitter <i class="icon-twitter"></i></a> {{'General.and'|trans}} <a href="http://www.facebook.com/mvnerds" target="_blank" class="facebook">Facebook <i class="icon-facebook-sign"></i></a>.</p>
+				</div>
+				<div class="presentation-container">
+					<div class="content">
+						<div class="overview custom">
+							{% block overview %}
+							{% endblock %}
+						</div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+				
+			{#<div class="body-container">
+			</div>	#}
+				
+			<div id="footer">
+				{% include 'MVNerdsLaunchSiteBundle:Front:footer.html.twig' %}
+			</div>
+		</div>
+	</div>
+	
+	
+{% endblock %}

@@ -166,5 +166,35 @@ class FrontController extends Controller
 					'email' => $email
 				));
 	}
+	
+	/**
+	 * Permet d'accéder à la page de la politique de confidentialité
+	 * 
+	 * @Route("/{_locale}/privacy-policy", name="launch_site_privacy_policy", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"})
+	 */
+	public function privacyPolicyAction()
+	{
+		return $this->render('MVNerdsLaunchSiteBundle:Front:privacy_policy.html.twig');
+	}
+	
+	/**
+	 * Permet d'accéder à la page de conditions générales d'utilisation
+	 * 
+	 * @Route("/{_locale}/terms-of-use", name="launch_site_terms_of_use", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"})
+	 */
+	public function termsOfUseAction()
+	{
+		return $this->render('MVNerdsLaunchSiteBundle:Front:terms_of_use.html.twig');
+	}
+	
+	/**
+	 * Permet d'accéder à la page de contact
+	 * 
+	 * @Route("/{_locale}/contact-us", name="launch_site_contact_us", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"})
+	 */
+	public function contactUsAction()
+	{
+		return $this->render('MVNerdsLaunchSiteBundle:Front:contact_us.html.twig');
+	}
 
 }

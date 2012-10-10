@@ -16,6 +16,22 @@
 				<source>General.has</source>
 				<target>has</target>
 			</trans-unit>
+			<trans-unit id="4">
+				<source>General.lets_go</source>
+				<target>Let's go!</target>
+			</trans-unit>
+			<trans-unit id="5">
+				<source>General.checking_in_progress</source>
+				<target>Checking in progress</target>
+			</trans-unit>
+			<trans-unit id="6">
+				<source>General.see_you_soon</source>
+				<target>See you soon!</target>
+			</trans-unit>
+			<trans-unit id="7">
+				<source>General.thanks</source>
+				<target>Thank you</target>
+			</trans-unit>
 
 			<!--  COUNTDOWN -->
 			<trans-unit id="1000">
@@ -77,14 +93,34 @@
 			<trans-unit id="4001">
 				<source>Registration.content.p1</source>
 				<target>
-					Leaving your e-mail offers many advantages and zero inconvenience ! We won't bother you with spams and we won't communicate
-					your e-mail. Our goal is to keep you informed about the website development and especially to announce you it's official opening !
+					Leaving your e-mail offers many advantages and zero inconvenience! We won't bother you with spams and we won't communicate
+					your e-mail. Our goal is to keep you informed about the website development and especially to announce you it's official opening!
 				</target>
 			</trans-unit>
 			<trans-unit id="4002">
 				<source>Registration.content.p2</source>
 				<target>
 					We say that there will be a (or many, who knows ?) surprise(s) for all of the people who left their e-mail...
+				</target>
+			</trans-unit>
+			<trans-unit id="4003">
+				<source>Registration.form.placeholder</source>
+				<target>mail address</target>
+			</trans-unit>
+			<trans-unit id="4004">
+				<source>Registration.form.mail_allready_in_use</source>
+				<target>The given mail is already in use</target>
+			</trans-unit>
+			<trans-unit id="4005">
+				<source>Registration.form.waiting_for_valid_mail</source>
+				<target>Waiting for a valid mail</target>
+			</trans-unit>
+			<trans-unit id="4006">
+				<source>Registration.modal.content</source>
+				<target>
+					We have successfully saved your e-mail. All the Most Valuable Nerds team thank you for your trust,
+					we will certainly keep you informed of the official release of the website. Until then, come back as often as you wish!
+					Regulars updates will be mades.
 				</target>
 			</trans-unit>
 
@@ -300,6 +336,44 @@
 			<trans-unit id="9006">
 				<source>Footer.links.legal</source>
 				<target>Legal</target>
+			</trans-unit>
+
+			<!--  PRIVACY POLICY -->
+			<trans-unit id="10000">
+				<source>Privacy_policy.h1</source>
+				<target>What informations do MVNerds collects ?</target>
+			</trans-unit>
+			<trans-unit id="10001">
+				<source>Privacy_policy.p1</source>
+				<target>MVNerds offers you for now the possibility to leave your e-mail address.</target>
+			</trans-unit>
+			<trans-unit id="10002">
+				<source>Privacy_policy.h2</source>
+				<target>What do we do with thoses informations ?</target>
+			</trans-unit>
+			<trans-unit id="10003">
+				<source>Privacy_policy.p2</source>
+				<target>
+					The e-mail address you leave will be only used by mvnerds.com, it won't be communicated to any one.
+					This address will allow us to keep you informed of the newest updates mades to the website.
+				</target>
+			</trans-unit>
+
+			<!--  TERMS OF USE -->
+			<trans-unit id="11000">
+				<source>Terms_of_use.h1</source>
+				<target>Intellectual property</target>
+			</trans-unit>
+			<trans-unit id="11001">
+				<source>Terms_of_use.p1</source>
+				<target>
+					All the elements presents on mvnerds.com belong to their respective owners.
+					It is strictly forbidden to copy or take any element without the consent of it's owner.
+				</target>
+			</trans-unit>
+			<trans-unit id="11002">
+				<source>Terms_of_use.h2</source>
+				<target>What do we do with thoses informations ?</target>
 			</trans-unit>
 		</body>
 	</file>
