@@ -461,6 +461,24 @@
 				<source>Contact.p1</source>
 				<target>If youhave any comments, suggestions, or remarks, please use the form below.</target>
 			</trans-unit>
+
+			<!--  CONTACT -->
+			<trans-unit id="14000">
+				<source>Switch_language.current.s1</source>
+				<target>current</target>
+			</trans-unit>
+			<trans-unit id="14001">
+				<source>Switch_language.current.s2</source>
+				<target>version</target>
+			</trans-unit>
+			<trans-unit id="14002">
+				<source>Switch_language.switch.s1</source>
+				<target>Changer de</target>
+			</trans-unit>
+			<trans-unit id="14003">
+				<source>Switch_language.switch.s2</source>
+				<target>Version</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

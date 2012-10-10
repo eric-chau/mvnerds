@@ -102,9 +102,9 @@
 				</div>	
 				
 				<div class="switch-language-container">
-					<span class="current-language-msg">La langue affichée<br />à l'écran</span> 
+					<span class="current-language-msg">{{'Switch_language.current.s1'|trans}}<br />{{'Switch_language.current.s2'|trans}}</span> 
 					<span class="current-language">{% if locale == 'fr' %}français{% else %}english{% endif %}</span> 
-					<span class="switch-language-msg">I want to switch<br />language</span>
+					<span class="switch-language-msg">{{'Switch_language.switch.s1'|trans}}<br />{{'Switch_language.switch.s2'|trans}}</span>
 					{% if locale == 'fr' %}
 						<a href="{{ path('culture_switch_language', {'locale': 'en'}) }}">english</a>
 					{% else %}
