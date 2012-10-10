@@ -43,9 +43,9 @@ class FrontController extends Controller
 	public function getChampionsNameAction()
 	{
 		$request = $this->getRequest();
-		if  (!$request->isXmlHttpRequest() || !$request->isMethod('POST')) {
-			throw new HttpException(500, 'La requête doit être effectuée en AJAX et en method POST !');
-		}
+//		if  (!$request->isXmlHttpRequest() || !$request->isMethod('POST')) {
+//			throw new HttpException(500, 'La requête doit être effectuée en AJAX et en method POST !');
+//		}
 		return new Response(json_encode($this->get('mvnerds.champion_manager')->getChampionsName()->toArray()));
 	}
 	

@@ -51,7 +51,7 @@ class ChampionManager
 	public function getChampionsName()
 	{
 		return ChampionQuery::create()
-			->joinChampionI18n('i18n')
+			->joinI18n($this->userLocale, 'i18n')
 			->withColumn('i18n.name', 'name')
 			->select(array('name'))
 			->OrderBy('name')

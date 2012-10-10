@@ -44,7 +44,7 @@ var nextButton = {name: "<em>N</em>ext", classString: "btn-next", onclick: guide
 // STEP #1 : Présentation
 guiders.createGuider({
   buttons: [nextButton, closeButton],
-  description: "To make sure you know how to benefit from all functionalities, we are now going to explore the champions module together. In order to compare the important statistics such as life points or attacks damage, the Champions benchmark allow you to confront any champion you choose against any other one.<i>Note : You can interrupt the tour by clicking 'Close' at all times.</i><i>Note 2 : press 'N' to show the next step, and 'P' to go back one step. Press 'C' to discontinue the tour.</i>",
+  description: "To make sure you know how to benefit from all functionalities, we are now going to explore the champions module together. In order to compare the important statistics such as life points or attacks damage, the Champions benchmark allows you to confront any champion you choose against any other one.<i>Note : You can interrupt the tour by clicking 'Close' at all times.</i><i>Note 2 : press 'N' to show the next step, and 'P' to go back. Press 'C' to discontinue the tour.</i>",
   id: "first",
   next: "second",
   overlay: true,
@@ -78,7 +78,7 @@ guiders.createGuider({
 // STEP #4 : Affiner le filtrage
 guiders.createGuider({
   buttons: [prevButton, nextButton, closeButton],
-  description: "The quickest way to find a champion is to type in the beginning or full name of a champion. You can also filter champions according to their default tags.<br /><i>Note: in the bottom on the right of the menu 'Filter', a button appears when you apply a filter. It enables to add all filtered champions together to the comparison list.</i>",
+  description: "The quickest way to find a champion is to type in the beginning or full name of it. You can also filter champions according to their default tags.<br /><i>Note: in the bottom on the right of the menu 'Filter', a button appears when you apply a filter. It enables to add all filtered champions together to the comparison list.</i>",
   id: "fourth",
   next: "finally",
   highlight: "div.champions-handler-container ul.action-buttons li#filters-block, div.champions-handler-container ul.action-buttons li.search-action",

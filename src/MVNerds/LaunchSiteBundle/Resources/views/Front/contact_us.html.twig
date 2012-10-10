@@ -2,4 +2,42 @@
 
 {% block overview %}
 	<h2>{{'Footer.links.contact'|trans}}</h2>
+	
+	<p>
+		{{ 'Contact.p1'|trans}}
+	</p>
+	
+	<form id="contact-us-form" action="{{ path('launch_site_contact_us') }}" method="POST" class="form-horizontal">
+		<div class="control-group">
+			<label for="contact-mail" class="control-label">{{ 'Contact.form.mail.label'|trans}}</label>
+			<div class="controls">
+				<input id="contact-mail" class="contact" name="contact-mail" type="email" placeholder="{{ 'Contact.form.mail.placeholder'|trans}}" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label for="contact-subject" class="control-label">{{ 'Contact.form.subject.label'|trans}}</label>
+			<div class="controls">
+				<input id="contact-subject" name="contact-subject" type="text" placeholder="{{ 'Contact.form.subject.label'|trans}}" />
+			</div>
+		</div>
+		<div class="control-group">
+			<label for="contact-message" class="control-label">{{ 'Contact.form.message.label'|trans}}</label>
+			<div class="controls">
+				<textarea id="contact-message" name="contact-message" placeholder="{{ 'Contact.form.message.label'|trans}}" rows="5"></textarea>
+			</div>
+		</div>
+		<div class="control-group">
+			<div class="controls">
+				<button type="submit" class="btn submit-btn">{{ 'General.send'|trans}}</button>
+			</div>
+		</div>
+	</form>
+	<div class="contact-errors">
+		{% autoescape false %}
+			{{ render_success_flash() }}
+		{% endautoescape %}
+		{% autoescape false %}
+			{{ render_error_flash() }}
+		{% endautoescape %}
+	</div>
 {% endblock %}

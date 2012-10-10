@@ -43,7 +43,7 @@ var nextButton = {name: "<em>S</em>uivant", classString: "btn-next", onclick: gu
 // STEP #1 : Présentation
 guiders.createGuider({
   buttons: [nextButton, closeButton],
-  description: "Nous allons effectuer ensemble un tour rapide du module des champions afin de vous permettre de profiter de toutes les fontionnalités. Le 'Champions benchmark' vous permet de confronter les champions de votre choix entre eux pour comparer les caractéristiques importantes telles que les points de vie ou les dégâts d'attaque.<i>Note 1 : vous pouvez interrompre la visite à tout moment en cliquant sur 'Fermer'.</i><i>Note 2 : utilisez la touche 's' pour afficher l'étape suivante ou 'p' pour l'étape précédente et la touche 'f' pour arrêter la visite guidée.</i>",
+  description: "Nous allons effectuer ensemble un tour rapide du module des champions afin de vous permettre de profiter au mieux de toutes les fontionnalités. Le 'Champions benchmark' vous permet de confronter les champions de votre choix entre eux pour comparer les caractéristiques importantes telles que les points de vie ou les dégâts d'attaque.<i>Note 1 : vous pouvez interrompre la visite à tout moment en cliquant sur 'Fermer'.</i><i>Note 2 : utilisez la touche 's' pour afficher l'étape suivante ou 'p' pour l'étape précédente et la touche 'f' pour arrêter la visite guidée.</i>",
   id: "first",
   next: "second",
   overlay: true,

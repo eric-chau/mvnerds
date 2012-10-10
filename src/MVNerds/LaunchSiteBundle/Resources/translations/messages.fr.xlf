@@ -32,6 +32,10 @@
 				<source>General.thanks</source>
 				<target>Merci</target>
 			</trans-unit>
+			<trans-unit id="8">
+				<source>General.send</source>
+				<target>Envoyer</target>
+			</trans-unit>
 
 			<!--  COUNTDOWN -->
 			<trans-unit id="1000">
@@ -69,19 +73,24 @@
 			<trans-unit id="3001">
 				<source>Overview.content.p1</source>
 				<target>
-					The sleepy, non-descript village of Kalamanda, located near the northern entrance to Mogron Pass, now finds itself wide awake 
-					as the leading lady on the world stage. The village's mayor, Anson Ridley, reported this week that a local survey team has
-					uncovered a massive deposit of gold and precious gems within the village's sphere of influence. Furthermore, two nexuses of 
-					considerable magic potency have been discovered alongside the resource deposits.
+					MVNerds.com a pour objectif de fournir des outils simples d'utilisation, ergonomiques et performants dans le but d'aider les joueurs de League of Legends 
+					à se perfectionner toujours plus. 
+					Des guides, des builds, et une multitude d'autres outils seront prochainement disponibles dans le but de servir la communauté LoL. 
+					Ce site est réalisé par deux jeunes développeurs et joueurs qui sont comme vous, passionnés par le jeu de Riot Games.
 				</target>
 			</trans-unit>
 			<trans-unit id="3002">
 				<source>Overview.content.p2</source>
 				<target>
-					Before the discovery, Kalamanda was only moderately known as a decent place to fish for Valoran trout and not much else. 
-					The village now finds itself as the destination point for adventurers and prospectors seeking fame and riches beyond their 
-					wildest dreams. The town council has already set up a temporary camp located near the foothills that lead to Mogron Pass and the 
-					Great Barrier in anticipation of the great influx of individuals hoping to trade a hard day's work for handsome rewards.
+					Cette première version du site est une version bêta vous offrant notre tout premier module : le 'Champions benchmark'. 
+					Cet outil vous permet de comparer facilement et efficacement une multitude de champions. Essayez le sans plus attendre !
+				</target>
+			</trans-unit>
+			<trans-unit id="3003">
+				<source>Overview.content.p3</source>
+				<target>
+					Afin de ne rien rater n'hésitez pas à laisser votre adresse e-mail. 
+					Celle-ci nous permettra de vous tenir informé des dernières améliorations, et vous permettra de bénéficier d'avantages exceptionnels.
 				</target>
 			</trans-unit>
 			
@@ -311,6 +320,22 @@
 				<source>Flash.success.clean_comparison.champions</source>
 				<target>La liste de comparaison a bien été vidée</target>
 			</trans-unit>
+			<trans-unit id="8008">
+				<source>Flash.success.send_mail_contact</source>
+				<target>Le message a bien été envoyé</target>
+			</trans-unit>
+			<trans-unit id="8009">
+				<source>Flash.error.send_mail_contact.mail_invalid</source>
+				<target>Adresse mail non valide</target>
+			</trans-unit>
+			<trans-unit id="8010">
+				<source>Flash.error.send_mail_contact.subject_invalid</source>
+				<target>Sujet non valide</target>
+			</trans-unit>
+			<trans-unit id="8011">
+				<source>Flash.error.send_mail_contact.message_invalid</source>
+				<target>Message non valide</target>
+			</trans-unit>
 
 			<!--  FOOTER -->
 			<trans-unit id="9000">
@@ -378,6 +403,62 @@
 			<trans-unit id="11002">
 				<source>Terms_of_use.h2</source>
 				<target>League of legends</target>
+			</trans-unit>
+			
+			<!--  LEGAL -->
+			<trans-unit id="12000">
+				<source>Legal.h1</source>
+				<target>Propriétaires</target>
+			</trans-unit>
+			<trans-unit id="12001">
+				<source>Legal.p1</source>
+				<target>
+					Les propriétaires de mvnerds.com sont M. Y.Hani et M. C.Eric
+				</target>
+			</trans-unit>
+			<trans-unit id="12002">
+				<source>Legal.h2</source>
+				<target>Hébergement</target>
+			</trans-unit>
+			<trans-unit id="12003">
+				<source>Legal.p2</source>
+				<target>
+					Ce site est hébergé par OVH
+				</target>
+			</trans-unit>
+			<trans-unit id="12004">
+				<source>Legal.p3</source>
+				<target>
+					Siège social : 140 Quai du Sartel - 59100 Roubaix - France
+				</target>
+			</trans-unit>
+			<trans-unit id="12005">
+				<source>Legal.p4</source>
+				<target>
+					Téléphone : 0 899 701 761
+				</target>
+			</trans-unit>
+			
+			<!--  CONTACT -->
+			<trans-unit id="13000">
+				<source>Contact.form.mail.label</source>
+				<target>Votre e-mail</target>
+			</trans-unit>
+			<trans-unit id="13001">
+				<source>Contact.form.mail.placeholder</source>
+				<target>mail</target>
+			</trans-unit>
+			<trans-unit id="13002">
+				<source>Contact.form.subject.label</source>
+				<target>Sujet</target>
+			</trans-unit>
+			<trans-unit id="13003">
+				<source>Contact.form.message.label</source>
+				<target>Message</target>
+			</trans-unit>
+			<trans-unit id="13004">
+				<source>Contact.p1</source>
+				<target>Si vous avez des commentaires à faire, des suggestions à donner ou n'importe quelle remarque à partager veuillez s'il vous plaît utiliser le formulaire ci-dessous.</target>
 			</trans-unit>
 		</body>
 	</file>

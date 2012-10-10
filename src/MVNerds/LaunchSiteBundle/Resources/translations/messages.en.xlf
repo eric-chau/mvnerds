@@ -32,6 +32,10 @@
 				<source>General.thanks</source>
 				<target>Thank you</target>
 			</trans-unit>
+			<trans-unit id="8">
+				<source>General.send</source>
+				<target>Send</target>
+			</trans-unit>
 
 			<!--  COUNTDOWN -->
 			<trans-unit id="1000">
@@ -69,19 +73,25 @@
 			<trans-unit id="3001">
 				<source>Overview.content.p1</source>
 				<target>
-					The sleepy, non-descript village of Kalamanda, located near the northern entrance to Mogron Pass, now finds itself wide awake 
-					as the leading lady on the world stage. The village's mayor, Anson Ridley, reported this week that a local survey team has
-					uncovered a massive deposit of gold and precious gems within the village's sphere of influence. Furthermore, two nexuses of 
-					considerable magic potency have been discovered alongside the resource deposits.
+					MVNerds.com's goal is to provide intuitive, ergonomic, and efficient tools in order to help League of Legends players getting stronger every day.
+					Guides, builds, and a lot of other tools will be avaliable soon with the intention to serve the LoL community.
+					This website has been developped by two young developpers and players wich are like you, passionate about the game provided by Riot Games Inc.
 				</target>
 			</trans-unit>
 			<trans-unit id="3002">
 				<source>Overview.content.p2</source>
 				<target>
-					Before the discovery, Kalamanda was only moderately known as a decent place to fish for Valoran trout and not much else. 
-					The village now finds itself as the destination point for adventurers and prospectors seeking fame and riches beyond their 
-					wildest dreams. The town council has already set up a temporary camp located near the foothills that lead to Mogron Pass and the 
-					Great Barrier in anticipation of the great influx of individuals hoping to trade a hard day's work for handsome rewards.
+					This first version of the website is a beta one. It offers you our very first module : the 'Champions benchmark'.
+					This tool allows you to easily, and effectively compare a large amout of champions. Try it now !
+					Cette première version du site est une version bêta vous offrant notre tout premier module : Le Champion Benchmark. 
+					Cet outil vous permet de comparer facilement et efficacement une multitude de champions. Essayez le sans plus attendre !
+				</target>
+			</trans-unit>
+			<trans-unit id="3003">
+				<source>Overview.content.p3</source>
+				<target>
+					In order not to miss anything don't hesitate to leave your e-mail address.
+					It will allow us to keep you informed of the latest improvements and it will give you the right to enjoy outstanding advantages.
 				</target>
 			</trans-unit>
 			
@@ -304,8 +314,28 @@
 				<target>There is no champion to compare</target>
 			</trans-unit>
 			<trans-unit id="8006">
+				<source>Flash.error.not_enough.compare.champions</source>
+				<target>Not enough champions to comapare</target>
+			</trans-unit>
+			<trans-unit id="8007">
 				<source>Flash.success.clean_comparison.champions</source>
 				<target>Comparison list has been successfully cleaned</target>
+			</trans-unit>
+			<trans-unit id="8008">
+				<source>Flash.success.send_mail_contact</source>
+				<target>The message has been sent succefully</target>
+			</trans-unit>
+			<trans-unit id="8009">
+				<source>Flash.error.send_mail_contact.mail_invalid</source>
+				<target>Email addresss not valid</target>
+			</trans-unit>
+			<trans-unit id="80010">
+				<source>Flash.error.send_mail_contact.subject_invalid</source>
+				<target>Subject not valid</target>
+			</trans-unit>
+			<trans-unit id="80011">
+				<source>Flash.error.send_mail_contact.message_invalid</source>
+				<target>Message not valid</target>
 			</trans-unit>
 
 			<!--  FOOTER -->
@@ -374,6 +404,62 @@
 			<trans-unit id="11002">
 				<source>Terms_of_use.h2</source>
 				<target>What do we do with thoses informations ?</target>
+			</trans-unit>
+
+			<!--  LEGAL -->
+			<trans-unit id="12000">
+				<source>Legal.h1</source>
+				<target>Propriétaires</target>
+			</trans-unit>
+			<trans-unit id="12001">
+				<source>Legal.p1</source>
+				<target>
+					Les propriétaires de mvnerds.com sont M. Y.Hani et M. C.Eric
+				</target>
+			</trans-unit>
+			<trans-unit id="12002">
+				<source>Legal.h2</source>
+				<target>Hébergement</target>
+			</trans-unit>
+			<trans-unit id="12003">
+				<source>Legal.p2</source>
+				<target>
+					Ce site est hébergé par OVH
+				</target>
+			</trans-unit>
+			<trans-unit id="12004">
+				<source>Legal.p3</source>
+				<target>
+					Siège social : 140 Quai du Sartel - 59100 Roubaix - France
+				</target>
+			</trans-unit>
+			<trans-unit id="12005">
+				<source>Legal.p4</source>
+				<target>
+					Téléphone : 0 899 701 761
+				</target>
+			</trans-unit>
+
+			<!--  CONTACT -->
+			<trans-unit id="13000">
+				<source>Contact.form.mail.label</source>
+				<target>Your e-mail</target>
+			</trans-unit>
+			<trans-unit id="13001">
+				<source>Contact.form.mail.placeholder</source>
+				<target>mail</target>
+			</trans-unit>
+			<trans-unit id="13002">
+				<source>Contact.form.subject.label</source>
+				<target>Subject</target>
+			</trans-unit>
+			<trans-unit id="13003">
+				<source>Contact.form.message.label</source>
+				<target>Message</target>
+			</trans-unit>
+			<trans-unit id="13004">
+				<source>Contact.p1</source>
+				<target>If youhave any comments, suggestions, or remarks, please use the form below.</target>
 			</trans-unit>
 		</body>
 	</file>

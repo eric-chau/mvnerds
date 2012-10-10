@@ -194,7 +194,61 @@ class FrontController extends Controller
 	 */
 	public function contactUsAction()
 	{
+		$request = $this->getRequest();
+		if ($request->isMethod('POST'))
+		{
+			$mail = $request->get('contact-mail');
+			$subject = $request->get('contact-subject');
+			$message = $request->get('contact-message');
+			
+			/* $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
+			$flashManager = $this->get('mvnerds.flash_manager');
+			
+			if ($mail &&  strlen($mail) > 4)
+			{
+				if ($subject && strlen($subject) > 5)
+				{
+					if ($message && strlen($message) > 10)
+					{
+						$message = \Swift_Message::newInstance()
+							->setSubject('Contact from : '.$mail)
+							->setFrom($mail)
+							->setTo('hani.yagoub@gmail.com')
+							->setBody($this->renderView('MVNerdsLaunchSiteBundle:Front:contact_mail.txt.twig', array(
+								'mail' => $mail,
+								'subject'	=> $subject,
+								'message'	=> $message
+						)));
+						$this->get('mailer')->send($message);
+						$flashManager->setSuccessMessage('Flash.success.send_mail_contact');
+					}
+					else
+					{
+						$flashManager->setErrorMessage('Flash.error.send_mail_contact.message_invalid');
+					}
+				}
+				else
+				{
+					$flashManager->setErrorMessage('Flash.error.send_mail_contact.subject_invalid');
+				}
+			}
+			else
+			{
+				$flashManager->setErrorMessage('Flash.error.send_mail_contact.mail_invalid');
+			}
+		}
+		
 		return $this->render('MVNerdsLaunchSiteBundle:Front:contact_us.html.twig');
+	}
+	
+	/**
+	 * Permet d'accéder à la page des mentions légales
+	 * 
+	 * @Route("/{_locale}/legal", name="launch_site_legal", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"})
+	 */
+	public function legalAction()
+	{
+		return $this->render('MVNerdsLaunchSiteBundle:Front:legal.html.twig');
 	}
 
 }
