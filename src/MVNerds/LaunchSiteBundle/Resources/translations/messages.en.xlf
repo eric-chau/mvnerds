@@ -110,7 +110,7 @@
 			<trans-unit id="4002">
 				<source>Registration.content.p2</source>
 				<target>
-					We say that there will be a (or many, who knows ?) surprise(s) for all of the people who left their e-mail...
+					We say that there will be a (or many, who knows?) surprise(s) for all of the people who left their e-mail...
 				</target>
 			</trans-unit>
 			<trans-unit id="4003">
@@ -371,7 +371,7 @@
 			<!--  PRIVACY POLICY -->
 			<trans-unit id="10000">
 				<source>Privacy_policy.h1</source>
-				<target>What informations do MVNerds collects ?</target>
+				<target>What informations do MVNerds collects?</target>
 			</trans-unit>
 			<trans-unit id="10001">
 				<source>Privacy_policy.p1</source>
@@ -379,7 +379,7 @@
 			</trans-unit>
 			<trans-unit id="10002">
 				<source>Privacy_policy.h2</source>
-				<target>What do we do with thoses informations ?</target>
+				<target>What do we do with thoses informations?</target>
 			</trans-unit>
 			<trans-unit id="10003">
 				<source>Privacy_policy.p2</source>
@@ -403,7 +403,7 @@
 			</trans-unit>
 			<trans-unit id="11002">
 				<source>Terms_of_use.h2</source>
-				<target>What do we do with thoses informations ?</target>
+				<target>What do we do with thoses informations?</target>
 			</trans-unit>
 
 			<!--  LEGAL -->
