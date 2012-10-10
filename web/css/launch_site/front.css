@@ -322,6 +322,16 @@ div.header-container div.presentation-container div.content div.overview p,
 div.header-container div.presentation-container div.content div.registration p {
   color: #ddd;
 }
+div.header-container div.presentation-container div.content div.overview.custom {
+  min-height: 600px;
+  color: white;
+}
+div.header-container div.presentation-container div.content div.overview.custom h2 {
+  color: #db4a38;
+}
+div.header-container div.presentation-container div.content div.overview.custom h3 {
+  color: #19a0df;
+}
 div.header-container div.presentation-container div.content div.overview h2 {
   color: #19a0df;
 }

@@ -1,13 +1,13 @@
 <form id="leave-email-form" action="{{ path('launch_site_leave_email') }}" method="POST" {{ form_enctype(form) }}>
 	<div>
-		{{ form_widget(form.email, { 'attr' : {'placeholder': 'adresse mail', 'autocomplete': 'off'} }) }}
+		{{ form_widget(form.email, { 'attr' : {'placeholder': 'Registration.form.placeholder'|trans, 'autocomplete': 'off'} }) }}
 		<a href="" class="btn submit-btn disabled">
 			<img src="{{ asset('images/commons/loader16.gif') }}" class="loader hide" /> 
 			<span class="submit-btn-label" 
-				data-submit-label="C'est parti !" 
-				data-checking-label="Vérification en cours"
-				data-used-email-label="L'email renseigné est déjà utilisé"
-				data-check-label="En attente d'un e-mail valide">En attente d'un e-mail valide</span>
+				data-submit-label="{{'General.lets_go'|trans }}"
+				data-checking-label="{{'General.checking_in_progress'|trans }}"
+				data-used-email-label="{{'General.mail_already_in_use'|trans }}"
+				data-check-label="{{'Registration.form.waiting_for_valid_mail'|trans }}">{{'Registration.form.waiting_for_valid_mail'|trans }}</span>
 		</a>
 		<div class="registration-errors">
 			{% include ':Form:render_form_errors.html.twig' with {'item': form.email} %}
@@ -20,16 +20,14 @@
 	<div class="modal hide fade" id="leave-email-success-modal">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			<h3>Merci {{ email }} !</h3>
+			<h3>{{'General.thanks'|trans}} {{ email }} !</h3>
 		</div>
 		<div class="modal-body">
 			<p>
-				Nous avons bien enregistré votre e-mail. Toute l'équipe Most Valuable Nerds vous remercie pour votre confiance, 
-				nous ne manquerons pas de vous tenir informer de la sortie officielle du site. D'ici là, revenez autant que vous le souhaitez ! 
-				Des mises à jours arriveront régulièrement.
+				{{'Registration.modal.content'|trans}}
 			</p>
 			<p>
-				A bientôt !
+				{{'General.see_you_soon'|trans}}
 			</p>
 		</div>
 	</div>

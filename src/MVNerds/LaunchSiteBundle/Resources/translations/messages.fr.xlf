@@ -16,6 +16,22 @@
 				<source>General.has</source>
 				<target>a</target>
 			</trans-unit>
+			<trans-unit id="4">
+				<source>General.lets_go</source>
+				<target>C'est parti !</target>
+			</trans-unit>
+			<trans-unit id="5">
+				<source>General.checking_in_progress</source>
+				<target>Vérification en cours</target>
+			</trans-unit>
+			<trans-unit id="6">
+				<source>General.see_you_soon</source>
+				<target>A bientôt !</target>
+			</trans-unit>
+			<trans-unit id="7">
+				<source>General.thanks</source>
+				<target>Merci</target>
+			</trans-unit>
 
 			<!--  COUNTDOWN -->
 			<trans-unit id="1000">
@@ -85,6 +101,26 @@
 				<source>Registration.content.p2</source>
 				<target>
 					Il se murmure qu'il y aura une (ou des, qui sait ?) surprise(s) pour tous ceux qui ont laissé leur e-mail... mais chut hein, je ne vous ai rien dit :P
+				</target>
+			</trans-unit>
+			<trans-unit id="4003">
+				<source>Registration.form.placeholder</source>
+				<target>adresse mail</target>
+			</trans-unit>
+			<trans-unit id="4004">
+				<source>Registration.form.mail_allready_in_use</source>
+				<target>L'email renseigné est déjà utilisé</target>
+			</trans-unit>
+			<trans-unit id="4005">
+				<source>Registration.form.waiting_for_valid_mail</source>
+				<target>En attente d'un e-mail valide</target>
+			</trans-unit>
+			<trans-unit id="4006">
+				<source>Registration.modal.content</source>
+				<target>
+					Nous avons bien enregistré votre e-mail. Toute l'équipe Most Valuable Nerds vous remercie pour votre confiance, 
+					nous ne manquerons pas de vous tenir informer de la sortie officielle du site. D'ici là, revenez autant que vous le souhaitez ! 
+					Des mises à jours arriveront régulièrement.
 				</target>
 			</trans-unit>
 
@@ -274,6 +310,74 @@
 			<trans-unit id="8007">
 				<source>Flash.success.clean_comparison.champions</source>
 				<target>La liste de comparaison a bien été vidée</target>
+			</trans-unit>
+
+			<!--  FOOTER -->
+			<trans-unit id="9000">
+				<source>Footer.subtitle</source>
+				<target>Guides, builds et outils pour les joueurs de League of Legends !</target>
+			</trans-unit>
+			<trans-unit id="9001">
+				<source>Footer.riot.p1</source>
+				<target>League of Legends et Riot Games sont des marques déposées de Riot Games, Inc.</target>
+			</trans-unit>
+			<trans-unit id="9002">
+				<source>Footer.riot.p2</source>
+				<target>Tous les éléments extraits ou recopiés du jeu League of Legends, présents sur le site, appartiennent à Riot Games Inc.</target>
+			</trans-unit>
+			<trans-unit id="9003">
+				<source>Footer.links.contact</source>
+				<target>Nous contacter</target>
+			</trans-unit>
+			<trans-unit id="9004">
+				<source>Footer.links.privacy_policy</source>
+				<target>Politique de confidentialité</target>
+			</trans-unit>
+			<trans-unit id="9005">
+				<source>Footer.links.terms_of_use</source>
+				<target>Conditions générales d'utilisation</target>
+			</trans-unit>
+			<trans-unit id="9006">
+				<source>Footer.links.legal</source>
+				<target>Mentions légales</target>
+			</trans-unit>
+
+			<!--  PRIVACY POLICY -->
+			<trans-unit id="10000">
+				<source>Privacy_policy.h1</source>
+				<target>Quelles sont les informations collectées par MVNerds ?</target>
+			</trans-unit>
+			<trans-unit id="10001">
+				<source>Privacy_policy.p1</source>
+				<target>MVNerds vous propose pour le moment de laisser votre adresse e-mail de manière mais rien ne vous y oblige</target>
+			</trans-unit>
+			<trans-unit id="10002">
+				<source>Privacy_policy.h2</source>
+				<target>Que fait MVNerds avec les informations collectées ?</target>
+			</trans-unit>
+			<trans-unit id="10003">
+				<source>Privacy_policy.p2</source>
+				<target>
+					L'adresse e-mail que vous laissez ne sera utilisée que par mvnerds.com, celle-ci ne sera pas communiquée à des tiers. 
+					Cette adresse nous permettra de vous tenir informé des dernières évolutions apportées au site.
+				</target>
+			</trans-unit>
+
+			<!--  TERMS OF USE -->
+			<trans-unit id="11000">
+				<source>Terms_of_use.h1</source>
+				<target>Propriété intellectuelle</target>
+			</trans-unit>
+			<trans-unit id="11001">
+				<source>Terms_of_use.p1</source>
+				<target>
+					Tout les éléments présents sur mvnerds.com appartiennent à leur propriétaires respectifs. 
+					Il est strictement interdit de copier ou de reprendre un élément sans l'accord de son propriétaire.
+				</target>
+			</trans-unit>
+			<trans-unit id="11002">
+				<source>Terms_of_use.h2</source>
+				<target>League of legends</target>
 			</trans-unit>
 		</body>
 	</file>

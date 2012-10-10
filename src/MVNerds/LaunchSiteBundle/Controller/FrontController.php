@@ -42,7 +42,7 @@ class FrontController extends Controller
 	/**
 	 * Permet de rediriger vers l action de comparaison
 	 * 
-	 * @Route("/{_locale}/comparer-champions/niveau-{lvl}", name="launch_site_front_compare_champions", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr", "lvl" = 1}, options={"expose"=true})
+	 * @Route("/{_locale}/compare-champions/level-{lvl}", name="launch_site_front_compare_champions", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr", "lvl" = 1}, options={"expose"=true})
 	 */
 	public function compareChampionsAction($lvl)
 	{
@@ -165,6 +165,36 @@ class FrontController extends Controller
 					'is_success_action' => $isSuccessAction,
 					'email' => $email
 				));
+	}
+	
+	/**
+	 * Permet d'accéder à la page de la politique de confidentialité
+	 * 
+	 * @Route("/{_locale}/privacy-policy", name="launch_site_privacy_policy", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"})
+	 */
+	public function privacyPolicyAction()
+	{
+		return $this->render('MVNerdsLaunchSiteBundle:Front:privacy_policy.html.twig');
+	}
+	
+	/**
+	 * Permet d'accéder à la page de conditions générales d'utilisation
+	 * 
+	 * @Route("/{_locale}/terms-of-use", name="launch_site_terms_of_use", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"})
+	 */
+	public function termsOfUseAction()
+	{
+		return $this->render('MVNerdsLaunchSiteBundle:Front:terms_of_use.html.twig');
+	}
+	
+	/**
+	 * Permet d'accéder à la page de contact
+	 * 
+	 * @Route("/{_locale}/contact-us", name="launch_site_contact_us", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"})
+	 */
+	public function contactUsAction()
+	{
+		return $this->render('MVNerdsLaunchSiteBundle:Front:contact_us.html.twig');
 	}
 
 }
