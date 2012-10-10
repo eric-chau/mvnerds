@@ -47,6 +47,14 @@ i {
 	}
 }
 
+a, a:visited, a:hover {
+	text-decoration: none;
+}
+
+body {
+	background: #303030 url('/images/launch_site/layout_bg.jpg') no-repeat center center fixed;
+}
+
 span.sign {
 	display: inline-block;
 	font-family: 'Ubuntu', sans-serif;
@@ -61,14 +69,6 @@ span.sign {
 		color: #eee;
 		background-color: @MVNerdsRed;
 	}
-}
-
-a, a:visited, a:hover {
-	text-decoration: none;
-}
-
-body {
-	background: #303030 url('/images/launch_site/layout_bg.jpg') no-repeat center center fixed;
 }
 
 div.main-container {
@@ -275,9 +275,6 @@ div.header-container {
 
 		div.content {
 			background: black url('/images/launch_site/content_bg.jpg') no-repeat top left;
-			/*border: 1px solid black;
-			border-bottom: 0;
-			border-top: 0;*/
 
 			div.overview, div.registration {
 				padding: 20px;
@@ -349,7 +346,6 @@ div.header-container {
 		div.link {
 			background-color: black;
 			.border-bottom-radius(4px);
-			//.box-shadow(inset 0px 1px 2px rgba(0,0,0,.4);
 			cursor: pointer;
 			display: inline-block;
 			float: right;
@@ -484,7 +480,6 @@ div.body-container {
 				margin: 0;
 			}
 			&.active {
-				//.box-shadow(0 15px 8px 0 rgba(0,0,0,.7)); FIXME
 				left: 0;
 				right: 0;
 				position: fixed;
@@ -1003,6 +998,22 @@ div.body-container {
 							font-size: 14px;
 							margin: 15px 10px 15px 0;
 							text-align: right;
+
+							i {
+								background-repeat: no-repeat;
+								background-size: 16px 16px;
+								display: inline-block;
+								height: 16px;
+								width: 16px;
+
+								&.icon-rp {
+									background-image: url('/images/commons/rp_logo.png');
+								}
+
+								&.icon-ip {
+									background-image: url('/images/commons/ip_logo.png');
+								}
+							}
 
 							img {
 								display: inline-block;

@@ -72,6 +72,14 @@ i.icon-24px {
 i.icon-36px {
   font-size: 36px;
 }
+a,
+a:visited,
+a:hover {
+  text-decoration: none;
+}
+body {
+  background: #303030 url('/images/launch_site/layout_bg.jpg') no-repeat center center fixed;
+}
 span.sign {
   display: inline-block;
   font-family: 'Ubuntu', sans-serif;
@@ -85,14 +93,6 @@ span.sign {
 span.sign.red {
   color: #eee;
   background-color: #db4a38;
-}
-a,
-a:visited,
-a:hover {
-  text-decoration: none;
-}
-body {
-  background: #303030 url('/images/launch_site/layout_bg.jpg') no-repeat center center fixed;
 }
 div.main-container {
   background: #333333 url('/images/launch_site/main_container_bg.png') no-repeat top left;
@@ -304,10 +304,6 @@ div.header-container div.presentation-container {
 }
 div.header-container div.presentation-container div.content {
   background: #000000 url('/images/launch_site/content_bg.jpg') no-repeat top left;
-  /*border: 1px solid black;
-			border-bottom: 0;
-			border-top: 0;*/
-
 }
 div.header-container div.presentation-container div.content div.overview,
 div.header-container div.presentation-container div.content div.registration {
@@ -1001,6 +997,19 @@ div.body-container div.champions-handler-container div#champion-list li.champion
   font-size: 14px;
   margin: 15px 10px 15px 0;
   text-align: right;
+}
+div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.preview-header p i {
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+}
+div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.preview-header p i.icon-rp {
+  background-image: url('/images/commons/rp_logo.png');
+}
+div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.preview-header p i.icon-ip {
+  background-image: url('/images/commons/ip_logo.png');
 }
 div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.preview-header p img {
   display: inline-block;
