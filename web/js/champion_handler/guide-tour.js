@@ -44,11 +44,11 @@ var nextButton = {name: "<em>N</em>ext", classString: "btn-next", onclick: guide
 // STEP #1 : Présentation
 guiders.createGuider({
   buttons: [nextButton, closeButton],
-  description: "Nous allons effectuer ensemble un tour rapide du module des champions afin de vous permettre de profiter de toutes les fontionnalités.<i>Note : vous pouvez interrompre la visite à tout moment en cliquant sur 'Fermer'.</i><i>Note 2 : utilisez la touche 's' pour afficher l'étape suivante ou 'p' pour l'étape précédente et la touche 'f' pour arrêter la visite guidée.</i>",
+  description: "To make sure you know how to benefit from all functionalities, we are now going to explore the champions module together. In order to compare the important statistics such as life points or attacks damage, the Champions benchmark allow you to confront any champion you choose against any other one.<i>Note : You can interrupt the tour by clicking 'Close' at all times.</i><i>Note 2 : press 'N' to show the next step, and 'P' to go back one step. Press 'C' to discontinue the tour.</i>",
   id: "first",
   next: "second",
   overlay: true,
-  title: "Guide tour <span class='shortcut'>(Shortcut : G)</span>"
+  title: "Guide tour <span class='shortcut'>(Shortcut: G)</span>"
 });
 /* .show() means that this guider will get shown immediately after creation. */
 
@@ -56,44 +56,44 @@ guiders.createGuider({
 guiders.createGuider({
   //attachTo: "div.champions-handler-container ul#isotope-list li.champion",
   buttons: [prevButton, nextButton, closeButton],
-  description: "Cliquez sur le champion pour consulter ses caractéristiques au <em>niveau 1</em>, son coût à l'acquisition en point d'influence et en riot point.",
+  description: "Click on any champion to view their statistics at level 1, their purchase price in influence points and riot points.",
   id: "second",
   next: "third",
   highlight: "div.champions-handler-container ul#isotope-list li.champion",
   overlay: true,
-  title: "Aperçu rapide d'un champion"
+  title: "Champion quick overview"
 });
 
 // STEP #3 : liste de comparaison
 guiders.createGuider({
   buttons: [prevButton, nextButton, closeButton],
-  description: "Deux possibilités vous sont offertes pour ajouter un champion à la liste de comparaison : <ul><li>Glisser / déposer un champion dans la liste de comparaison</li><li>Double-clic sur un champion</li></ul><i>Note : le premier champion dans la liste (celui le plus en haut, à gauche) est considéré comme le champion de référence.</i>",
+  description: "You are offered two possibilities to add a champion in the list of comparison:<ul><li>Drag and drop a champion into comparison list</li><li>Double click on a champion</li></ul><i>Note: The first champion on the list (the higher up one, on the left) is considered as the reference champion.</i>",
   id: "third",
   next: "fourth",
   highlight: "div.champions-handler-container ul.action-buttons li#comparison-list-dropdown",
   overlay: true,
-  title: "Liste de comparaison <span class='shortcut'>(Raccourci clavier : L)</span>"
+  title: "Comparison List <span class='shortcut'>(Shortcut: L)</span>"
 });
 
 // STEP #4 : Affiner le filtrage
 guiders.createGuider({
   buttons: [prevButton, nextButton, closeButton],
-  description: "Saisissez le début ou le nom complet d'un champion pour le retrouver plus rapidement. Vous pouvez également filtrer les champions selon des tags prédéfinis.<br /><i>Note : un bouton en bas à droite apparaît lorsque vous appliqué un filtre pour faciliter l'ajout des champions à la liste de comparaison.</i>",
+  description: "The quickest way to find a champion is to type in the beginning or full name of a champion. You can also filter champions according to their default tags.<br /><i>Note: in the bottom on the right of the menu 'Filter', a button appears when you apply a filter. It enables to add all filtered champions together to the comparison list.</i>",
   id: "fourth",
   next: "finally",
   highlight: "div.champions-handler-container ul.action-buttons li#filters-block, div.champions-handler-container ul.action-buttons li.search-action",
   overlay: true,
-  title: "Filtrer par tag et recherche <span class='shortcut'>(Raccourci clavier: F et S)</span>"
+  title: "Filter by tags and search <span class='shortcut'>(Shortcut: F and S)</span>"
 });
 
 // STEP #5 : Aller à la page de comparaison
 guiders.createGuider({
   buttons: [prevButton, {name: "End of guide tour, thank you !", classString: "btn-close", onclick: onCloseCallBack}],
-  description: "Deux champions doivent être au minimum présent dans la liste pour pouvoir démarrer une comparaison. A noter que vous pouvez comparer au maximum 64 champions simultanément.",
+  description: "Two champions from the list are needed to make a comparison. Note that you can compare 64 champions simultaneously.",
    id: "finally",
   highlight: "div.champions-handler-container ul.action-buttons li.red-button",
   overlay: true,
-  title: "Comparer les champions <span class='shortcut'>(Raccourci clavier : C)</span>"
+  title: "To compare champions <span class='shortcut'>(Shortcut: C)</span>"
 });
 
 function onCloseCallBack()

@@ -43,7 +43,7 @@ var nextButton = {name: "<em>S</em>uivant", classString: "btn-next", onclick: gu
 // STEP #1 : Présentation
 guiders.createGuider({
   buttons: [nextButton, closeButton],
-  description: "Nous allons effectuer ensemble un tour rapide du module des champions afin de vous permettre de profiter de toutes les fontionnalités.<i>Note 1 : vous pouvez interrompre la visite à tout moment en cliquant sur 'Fermer'.</i><i>Note 2 : utilisez la touche 's' pour afficher l'étape suivante ou 'p' pour l'étape précédente et la touche 'f' pour arrêter la visite guidée.</i>",
+  description: "Nous allons effectuer ensemble un tour rapide du module des champions afin de vous permettre de profiter de toutes les fontionnalités. Le 'Champions benchmark' vous permet de confronter les champions de votre choix entre eux pour comparer les caractéristiques importantes telles que les points de vie ou les dégâts d'attaque.<i>Note 1 : vous pouvez interrompre la visite à tout moment en cliquant sur 'Fermer'.</i><i>Note 2 : utilisez la touche 's' pour afficher l'étape suivante ou 'p' pour l'étape précédente et la touche 'f' pour arrêter la visite guidée.</i>",
   id: "first",
   next: "second",
   overlay: true,
@@ -55,7 +55,7 @@ guiders.createGuider({
 guiders.createGuider({
   //attachTo: "div.champions-handler-container ul#isotope-list li.champion",
   buttons: [prevButton, nextButton, closeButton],
-  description: "Cliquez sur le champion pour consulter ses caractéristiques au niveau 1, son coût à l'acquisition en points d'influence et en riot points.",
+  description: "Cliquez sur un champion pour consulter ses caractéristiques au niveau 1, son coût à l'acquisition en points d'influence et en riot points.",
   id: "second",
   next: "third",
   highlight: "div.champions-handler-container ul#isotope-list li.champion",
@@ -82,7 +82,7 @@ guiders.createGuider({
   next: "finally",
   highlight: "div.champions-handler-container ul.action-buttons li#filters-block, div.champions-handler-container ul.action-buttons li.search-action",
   overlay: true,
-  title: "Filtrer par tag et recherche <span class='shortcut'>(Raccourci clavier: F et R)</span>"
+  title: "Filtrer par tag et recherche <span class='shortcut'>(Raccourci clavier : F et R)</span>"
 });
 
 // STEP #5 : Aller à la page de comparaison

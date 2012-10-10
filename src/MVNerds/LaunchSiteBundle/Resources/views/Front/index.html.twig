@@ -6,22 +6,49 @@
 
 {% block css %}
 	{{ parent() }}
-
-	 <link rel="stylesheet" href="{{ asset('/css/launch_site/front.css') }}">
-	 <link rel="stylesheet" href="{{ asset('/css/launch_site/front-compare.css') }}">
-	 <link rel="stylesheet" href="{{ asset('/css/launch_site/data-scroll.css') }}">
-	 <link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square-sprite.css') }}">
-	 <link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-portrait-sprite.css') }}">
-	 <link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square25-sprite.css') }}">
-	 <link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square36-sprite.css') }}">
-	 
-	 <link href='http://fonts.googleapis.com/css?family=Quantico:700' rel='stylesheet' type='text/css'>
+	
+	{% stylesheets 
+		'css/bootstrap.css'
+		'css/normalize.css'
+		'css/main.css'
+		'css/launch_site/front.css'
+		'css/guide-tour.css'
+		'css/launch_site/front-compare.css'
+		'css/launch_site/data-scroll.css'
+		'css/champion_handler/champion-square-sprite.css'
+		'css/champion_handler/champion-portrait-sprite.css'
+		'css/champion_handler/champion-square25-sprite.css'
+		'css/champion_handler/champion-square36-sprite.css'
+		output='css/compiled/index.css'
+		filter='yui_css'
+	%}
+	<link rel="stylesheet" href="{{ asset_url }}" />
+	{% endstylesheets %}
+	{#<link rel="stylesheet" href="{{ asset('/css/launch_site/front.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/launch_site/front-compare.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/launch_site/data-scroll.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square-sprite.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-portrait-sprite.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square25-sprite.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square36-sprite.css') }}">#}
 {% endblock %}
 
 {% block javascripts %}
 	{{ parent() }}
-	 
-	<script type="text/javascript" src="{{ asset('/js/jquery-ui-1.8.23.custom.min.js') }}"></script>
+	
+	{% javascripts
+		'js/launch_site/front.js'
+		'js/champion_handler/shortcut.js'
+		'js/launch_site/alerts-ajax-handler.js'
+		'js/launch_site/data-scroll.js'
+		'js/champion_handler/sort.js'
+		output='js/compiled/index.js'
+		filter='yui_js'
+	%}
+	<script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+
+	{#<script type="text/javascript" src="{{ asset('/js/jquery-ui-1.8.23.custom.min.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/jquery.isotope.min.js') }}"></script>
 
 	<script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-tooltip.js') }}"></script>
@@ -30,20 +57,21 @@
 	<script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-alert.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-modal.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-typeahead.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('/js/guiders-1.2.8.js') }}"></script>#}
 
-	<script type="text/javascript" src="{{ asset('/js/launch_site/alerts-ajax-handler.js') }}"></script>
+	{#<script type="text/javascript" src="{{ asset('/js/launch_site/alerts-ajax-handler.js') }}"></script>
 
 	<script type="text/javascript" src="{{ asset('/js/launch_site/front.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/guiders-1.2.8.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/champion_handler/shortcut.js') }}"></script>
+
+	<script type="text/javascript" src="{{ asset('/js/champion_handler/shortcut.js') }}"></script>#}
 	{% if locale == 'fr' %}
 		<script type="text/javascript" src="{{ asset('/js/champion_handler/guide-tour-fr.js') }}"></script>
 	{% else %}
 		<script type="text/javascript" src="{{ asset('/js/champion_handler/guide-tour.js') }}"></script>
 	{% endif %}
 
-	<script type="text/javascript" src="{{ asset('/js/launch_site/data-scroll.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/champion_handler/sort.js') }}"></script>
+	{#<script type="text/javascript" src="{{ asset('/js/launch_site/data-scroll.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/js/champion_handler/sort.js') }}"></script>#}
 {% endblock %}
 	 
 {% block body %}
