@@ -412,7 +412,7 @@
 			<trans-unit id="12001">
 				<source>Legal.p1</source>
 				<target>
-					mvnerds.com awners ares Mr. Y.Hani et Mr. C.Eric
+					mvnerds.com owners ares Mr. Y.Hani et Mr. C.Eric
 				</target>
 			</trans-unit>
 			<trans-unit id="12002">
@@ -457,7 +457,7 @@
 			</trans-unit>
 			<trans-unit id="13004">
 				<source>Contact.p1</source>
-				<target>If youhave any comments, suggestions, or remarks, please use the form below.</target>
+				<target>If you have any comments, suggestions, or remarks, please use the form below.</target>
 			</trans-unit>
 
 			<!--  CONTACT -->

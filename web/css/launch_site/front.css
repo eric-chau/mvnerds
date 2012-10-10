@@ -137,7 +137,9 @@ div.header-container a.logo-link div.logo h1 {
   font-family: 'Quantico', sans-serif;
   font-size: 2.2em;
   padding-top: 119px;
+  position: relative;
   text-shadow: 1px 1px 1px rgba(80, 80, 80, 0.3);
+  top: -28px;
 }
 div.header-container a.logo-link div.logo h1 em {
   color: #19a0df;
@@ -198,7 +200,7 @@ div.header-container div.switch-language-container span.switch-language-msg {
   margin-right: 10px;
   text-align: right;
   text-transform: uppercase;
-  width: 134px;
+  width: 100px;
 }
 div.header-container div.switch-language-container span.current-language,
 div.header-container div.switch-language-container a {
