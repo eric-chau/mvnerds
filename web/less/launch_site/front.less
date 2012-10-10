@@ -75,7 +75,6 @@ div.main-container {
 	background: #333 url('/images/launch_site/main_container_bg.png') no-repeat top left;
 	border: 0;
 	.box-shadow(0px 0px 55px rgba(0,0,0,1));
-	min-height: 980px;
 	padding: 20px;
 }
 
@@ -89,17 +88,18 @@ div.header-container {
 			background-color: @MVNerdsBlue;
 			.border-radius(4px);
 			color: white;
+			display: inline-block;
 			font-family: 'Ubuntu', sans-serif;
 			font-size: 8px;
 			font-weight: bold;
-			left: 734px;
+			left: 325px;
 			line-height: 1.2em;
 			opacity: 0;
 			padding: 5px;
-			position: absolute;
+			position: relative;
 			text-align: center;
 			text-transform: uppercase;
-			top: 35px;
+			top: 15px;
 		}
 	
 		div.logo {
@@ -295,13 +295,39 @@ div.header-container {
 
 			div.overview {
 				&.custom{
-					min-height: 600px;
-					color: white;
+					background-color: rgba(0,0,0,.4);
+					color: #eee;
+					min-height: 547px;
+
 					h2 {
-						color: @MVNerdsRed;
+						color: @LoLOrangeAD;
+						margin-bottom: 30px;
 					}
-					h3{
-						color: @MVNerdsBlue;
+
+					h3 {
+						color: #666;
+						margin-bottom: 15px;
+					}
+
+					p {
+						font-size: 14px;
+					}
+
+					form {
+						margin: 10px 0;
+						button, label, textarea, input[type="text"], input[type="email"] {
+							font-family: 'Ubuntu', sans-serif;
+						}
+
+						textarea, input[type="text"], input[type="email"] {
+							background-color: #eee;
+							.border-radius(0);
+							width: 50%;
+						}
+
+						button {
+							font-weight: bold;
+						}
 					}
 				}
 				h2 {

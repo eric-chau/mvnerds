@@ -100,7 +100,6 @@ div.main-container {
   -webkit-box-shadow: 0px 0px 55px #000000;
   -moz-box-shadow: 0px 0px 55px #000000;
   box-shadow: 0px 0px 55px #000000;
-  min-height: 980px;
   padding: 20px;
 }
 div.header-container {
@@ -115,17 +114,18 @@ div.header-container a.logo-link div.back-home-sign {
   -moz-border-radius: 4px;
   border-radius: 4px;
   color: white;
+  display: inline-block;
   font-family: 'Ubuntu', sans-serif;
   font-size: 8px;
   font-weight: bold;
-  left: 734px;
+  left: 325px;
   line-height: 1.2em;
   opacity: 0;
   padding: 5px;
-  position: absolute;
+  position: relative;
   text-align: center;
   text-transform: uppercase;
-  top: 35px;
+  top: 15px;
 }
 div.header-container a.logo-link div.logo {
   background: url('/images/launch_site/mvnerds_logo.png') no-repeat top center;
@@ -323,14 +323,42 @@ div.header-container div.presentation-container div.content div.registration p {
   color: #ddd;
 }
 div.header-container div.presentation-container div.content div.overview.custom {
-  min-height: 600px;
-  color: white;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #eee;
+  min-height: 547px;
 }
 div.header-container div.presentation-container div.content div.overview.custom h2 {
-  color: #db4a38;
+  color: #fb9701;
+  margin-bottom: 30px;
 }
 div.header-container div.presentation-container div.content div.overview.custom h3 {
-  color: #19a0df;
+  color: #666;
+  margin-bottom: 15px;
+}
+div.header-container div.presentation-container div.content div.overview.custom p {
+  font-size: 14px;
+}
+div.header-container div.presentation-container div.content div.overview.custom form {
+  margin: 10px 0;
+}
+div.header-container div.presentation-container div.content div.overview.custom form button,
+div.header-container div.presentation-container div.content div.overview.custom form label,
+div.header-container div.presentation-container div.content div.overview.custom form textarea,
+div.header-container div.presentation-container div.content div.overview.custom form input[type="text"],
+div.header-container div.presentation-container div.content div.overview.custom form input[type="email"] {
+  font-family: 'Ubuntu', sans-serif;
+}
+div.header-container div.presentation-container div.content div.overview.custom form textarea,
+div.header-container div.presentation-container div.content div.overview.custom form input[type="text"],
+div.header-container div.presentation-container div.content div.overview.custom form input[type="email"] {
+  background-color: #eee;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  width: 50%;
+}
+div.header-container div.presentation-container div.content div.overview.custom form button {
+  font-weight: bold;
 }
 div.header-container div.presentation-container div.content div.overview h2 {
   color: #19a0df;
