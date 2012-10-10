@@ -73,25 +73,23 @@
 			<trans-unit id="3001">
 				<source>Overview.content.p1</source>
 				<target>
-					MVNerds.com's goal is to provide intuitive, ergonomic, and efficient tools in order to help League of Legends players getting stronger every day.
-					Guides, builds, and a lot of other tools will be avaliable soon with the intention to serve the LoL community.
-					This website has been developped by two young developpers and players wich are like you, passionate about the game provided by Riot Games Inc.
+					MVNerds.com's goal is to provide intuitive, ergonomic, and efficient tools in order to help League of Legends players getting stronger and stronger.
+					Guides, builds, and a lot of other tools will be avaliable soon with the view of serving The LoL Community.
+					This website has been developed by two young developers and players who are having like you a passion for the game provided by Riot Games Inc.
 				</target>
 			</trans-unit>
 			<trans-unit id="3002">
 				<source>Overview.content.p2</source>
 				<target>
 					This first version of the website is a beta one. It offers you our very first module : the 'Champions benchmark'.
-					This tool allows you to easily, and effectively compare a large amout of champions. Try it now !
-					Cette première version du site est une version bêta vous offrant notre tout premier module : Le Champion Benchmark. 
-					Cet outil vous permet de comparer facilement et efficacement une multitude de champions. Essayez le sans plus attendre !
+					This tool allows you to compare easily and effectively a large number of champions. Try it now !
 				</target>
 			</trans-unit>
 			<trans-unit id="3003">
 				<source>Overview.content.p3</source>
 				<target>
-					In order not to miss anything don't hesitate to leave your e-mail address.
-					It will allow us to keep you informed of the latest improvements and it will give you the right to enjoy outstanding advantages.
+					Leave your email address to make sure you do not miss anything!
+					It will keep you updated on all the latest news, not to mention the opportunity to benefit outstanding advantages.
 				</target>
 			</trans-unit>
 			
@@ -137,7 +135,7 @@
 			<!--  ACTIONS BAR -->
 			<trans-unit id="5000">
 				<source>Actionsbar.title</source>
-				<target>Champion benchmark</target>
+				<target>Champions benchmark</target>
 			</trans-unit>
 			<trans-unit id="5001">
 				<source>Actionsbar.Comparison_list.title</source>
@@ -409,34 +407,34 @@
 			<!--  LEGAL -->
 			<trans-unit id="12000">
 				<source>Legal.h1</source>
-				<target>Propriétaires</target>
+				<target>Owners</target>
 			</trans-unit>
 			<trans-unit id="12001">
 				<source>Legal.p1</source>
 				<target>
-					Les propriétaires de mvnerds.com sont M. Y.Hani et M. C.Eric
+					mvnerds.com awners ares Mr. Y.Hani et Mr. C.Eric
 				</target>
 			</trans-unit>
 			<trans-unit id="12002">
 				<source>Legal.h2</source>
-				<target>Hébergement</target>
+				<target>Hosting</target>
 			</trans-unit>
 			<trans-unit id="12003">
 				<source>Legal.p2</source>
 				<target>
-					Ce site est hébergé par OVH
+					This website is hosted by OVH
 				</target>
 			</trans-unit>
 			<trans-unit id="12004">
 				<source>Legal.p3</source>
 				<target>
-					Siège social : 140 Quai du Sartel - 59100 Roubaix - France
+					Headquarters : 140 Quai du Sartel - 59100 Roubaix - France
 				</target>
 			</trans-unit>
 			<trans-unit id="12005">
 				<source>Legal.p4</source>
 				<target>
-					Téléphone : 0 899 701 761
+					Phone : (+33) 899 701 761
 				</target>
 			</trans-unit>
 
@@ -478,6 +476,16 @@
 			<trans-unit id="14003">
 				<source>Switch_language.switch.s2</source>
 				<target>Version</target>
+			</trans-unit>
+
+			<!--  RETOUR ACCEUIL -->
+			<trans-unit id="15000">
+				<source>Go_back_home.1</source>
+				<target>Back</target>
+			</trans-unit>
+			<trans-unit id="15001">
+				<source>Go_back_home.2</source>
+				<target>to home</target>
 			</trans-unit>
 		</body>
 	</file>

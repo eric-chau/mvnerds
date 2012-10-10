@@ -136,7 +136,7 @@
 			<!--  ACTIONS BAR -->
 			<trans-unit id="5000">
 				<source>Actionsbar.title</source>
-				<target>Module des champions</target>
+				<target>Champions benchmark</target>
 			</trans-unit>
 			<trans-unit id="5001">
 				<source>Actionsbar.Comparison_list.title</source>
@@ -477,6 +477,16 @@
 			<trans-unit id="14003">
 				<source>Switch_language.switch.s2</source>
 				<target>Version</target>
+			</trans-unit>
+
+			<!--  RETOUR ACCEUIL -->
+			<trans-unit id="15000">
+				<source>Go_back_home.1</source>
+				<target>Retourner</target>
+			</trans-unit>
+			<trans-unit id="15001">
+				<source>Go_back_home.2</source>
+				<target>à l'accueil</target>
 			</trans-unit>
 		</body>
 	</file>
