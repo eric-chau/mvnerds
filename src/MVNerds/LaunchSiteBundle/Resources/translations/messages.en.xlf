@@ -101,14 +101,14 @@
 			<trans-unit id="4001">
 				<source>Registration.content.p1</source>
 				<target>
-					Leaving your e-mail offers many advantages and zero inconvenience! We won't bother you with spams and we won't communicate
-					your e-mail. Our goal is to keep you informed about the website development and especially to announce you it's official opening!
+					Leave your email address to make sure you do not miss any upcoming improvements or the official launch of the website.
+					This address will never be communicated to any partner, people or company.
 				</target>
 			</trans-unit>
 			<trans-unit id="4002">
 				<source>Registration.content.p2</source>
 				<target>
-					We say that there will be a (or many, who knows?) surprise(s) for all of the people who left their e-mail...
+					Be sure that we will know how to reward your interest for our project when it will be launched.
 				</target>
 			</trans-unit>
 			<trans-unit id="4003">

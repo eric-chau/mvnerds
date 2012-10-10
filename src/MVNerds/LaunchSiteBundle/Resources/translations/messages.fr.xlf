@@ -102,14 +102,14 @@
 			<trans-unit id="4001">
 				<source>Registration.content.p1</source>
 				<target>
-					Laisser votre e-mail vous offre plusieurs avatanges et zéro inconvénient ! Nous n'allons pas nous amuser à vous spammer 
-					ni à communiquer votre e-mail. Notre but est de pouvoir vous tenir informer de l'évolution du site et notamment de son ouverture officielle !
+					Afin d'être tenu informé des futurs changements qui vont êtres opérés sur le site ou de l'ouverture officielle de ce dernier, nous vous invitons à laisser votre e-mail.
+					Cette adresse ne sera en aucun cas communiquée à nos partenaires ou toute autre personne/société tierce.
 				</target>
 			</trans-unit>
 			<trans-unit id="4002">
 				<source>Registration.content.p2</source>
 				<target>
-					Il se murmure qu'il y aura une (ou des, qui sait ?) surprise(s) pour tous ceux qui ont laissé leur e-mail... mais chut hein, je ne vous ai rien dit :P
+					Soyez sûrs que nous saurons récompenser votre intérêt pour notre projet lors de son lancement officiel.
 				</target>
 			</trans-unit>
 			<trans-unit id="4003">
