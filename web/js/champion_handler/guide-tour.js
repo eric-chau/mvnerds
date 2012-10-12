@@ -1,42 +1,3 @@
-$(document).ready(function()
-{
-  $('div.champions-handler-container ul.action-buttons').on('click', 'li.help-action', function()
-  {
-    $('body,html').animate({scrollTop:$('div.champions-handler-container').position().top},500);
-    guiders.show('first');
-
-    $('body').unbind('keyup');
-    $('body').bind('keypress', function(event)
-    {
-      console.log(event.which);
-      event.preventDefault();
-      switch(event.which) {
-        case 110: // touche 'n'
-          guiders.next();
-          break;
-        case 112: // touche 'p'
-          guiders.prev();
-          break;
-        case 99: // touche 'c'
-          isFirstActionAfterGT = true;
-          onCloseCallBack();
-        default:
-          break;
-      }
-    });
-  });
-
-  $('a.btn-next').on('click', function()
-  {
-    $('body,html').animate({scrollTop:$('div.champions-handler-container').position().top},500);
-  });
-
-  $('a.btn-close').on('click', function()
-  {
-    $('body,html').animate({scrollTop:$('div.champions-handler-container').position().top},500);
-  });
-});
-
 var nextButton = {name: "<em>N</em>ext", classString: "btn-next", onclick: guiders.next},
     closeButton = {name: "<em>C</em>lose", classString: "btn-close", onclick: onCloseCallBack},
     prevButton = {name: "<em>P</em>revious", classString: "btn-prv", onclick: guiders.prev};
@@ -95,13 +56,3 @@ guiders.createGuider({
   overlay: true,
   title: "To compare champions <span class='shortcut'>(Shortcut: C)</span>"
 });
-
-function onCloseCallBack()
-{
-  guiders.hideAll();
-  $('body').unbind('keypress');
-  $('body').bind('keyup', function(event)
-  {
-    shortcutListener(event);
-  });
-}

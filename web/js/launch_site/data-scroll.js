@@ -24,6 +24,10 @@ jQuery(function(){
 	
 	//On affecte aux liens qui n'ont pas la classe disabled la fonction de scroll lors du clic
 	 $('#wrapper').on('click', '.data-pagination:not(.disabled)', function() {
+		if (isGuideTourDisplay != undefined && isGuideTourDisplay == true) {
+			return false;
+		}
+
 		var $this = $(this);
 		// On cache les liens selon la page sur laquelle l'utilisateur se rend
 		$('div.actions-bar ul.action-buttons li.action').each(function()

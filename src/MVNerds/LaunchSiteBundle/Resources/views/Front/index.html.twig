@@ -7,30 +7,37 @@
 {% block css %}
 	{{ parent() }}
 	
-	{% stylesheets 
-		'css/bootstrap.css'
-		'css/normalize.css'
-		'css/main.css'
-		'css/launch_site/front.css'
-		'css/guide-tour.css'
-		'css/launch_site/front-compare.css'
-		'css/launch_site/data-scroll.css'
-		'css/champion_handler/champion-square-sprite.css'
-		'css/champion_handler/champion-portrait-sprite.css'
-		'css/champion_handler/champion-square25-sprite.css'
-		'css/champion_handler/champion-square36-sprite.css'
-		output='css/compiled/index.css'
-		filter='yui_css'
-	%}
-	<link rel="stylesheet" href="{{ asset_url }}" />
-	{% endstylesheets %}
-	{#<link rel="stylesheet" href="{{ asset('/css/launch_site/front.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/launch_site/front-compare.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/launch_site/data-scroll.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square-sprite.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-portrait-sprite.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square25-sprite.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square36-sprite.css') }}">#}
+	{% if app.environment != 'dev' %}
+		{% stylesheets 
+			'css/bootstrap.css'
+			'css/normalize.css'
+			'css/main.css'
+			'css/launch_site/front.css'
+			'css/guide-tour.css'
+			'css/launch_site/front-compare.css'
+			'css/launch_site/data-scroll.css'
+			'css/champion_handler/champion-square-sprite.css'
+			'css/champion_handler/champion-portrait-sprite.css'
+			'css/champion_handler/champion-square25-sprite.css'
+			'css/champion_handler/champion-square36-sprite.css'
+			output='css/compiled/index.css'
+			filter='yui_css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
+	{% else %}
+		<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/main.css') }}">
+		<link rel="stylesheet" href="{{ asset('/css/launch_site/front.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/guide-tour.css') }}">
+		<link rel="stylesheet" href="{{ asset('/css/launch_site/front-compare.css') }}">
+		<link rel="stylesheet" href="{{ asset('/css/launch_site/data-scroll.css') }}">
+		<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square-sprite.css') }}">
+		<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-portrait-sprite.css') }}">
+		<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square25-sprite.css') }}">
+		<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square36-sprite.css') }}">
+	{% endif %}
 {% endblock %}
 
 {% block javascripts %}
@@ -44,6 +51,7 @@
 			'js/launch_site/alerts-ajax-handler.js'
 			'js/launch_site/data-scroll.js'
 			'js/champion_handler/sort.js'
+			'js/champion_handler/common-guide-tour.js'
 			output='js/compiled/index.js'
 			filter='yui_js'
 		%}
@@ -56,6 +64,7 @@
 		<script type="text/javascript" src="{{ asset('/js/launch_site/alerts-ajax-handler.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('/js/launch_site/data-scroll.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('/js/champion_handler/sort.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('/js/champion_handler/common-guide-tour.js') }}"></script>
 	{% endif %}
 		
 	{% if locale == 'fr' %}
@@ -96,12 +105,12 @@
 				
 				<div class="switch-language-container">
 					<span class="current-language-msg">{{'Switch_language.current.s1'|trans}}<br />{{'Switch_language.current.s2'|trans}}</span> 
-					<span class="current-language">{% if locale == 'fr' %}français{% else %}english{% endif %}</span> 
+					<span class="current-language">{% if locale == 'fr' %}française{% else %}english{% endif %}</span> 
 					<span class="switch-language-msg">{{'Switch_language.switch.s1'|trans}}<br />{{'Switch_language.switch.s2'|trans}}</span>
 					{% if locale == 'fr' %}
 						<a href="{{ path('culture_switch_language', {'locale': 'en'}) }}">english</a>
 					{% else %}
-						<a href="{{ path('culture_switch_language', {'locale': 'fr'}) }}">français</a>
+						<a href="{{ path('culture_switch_language', {'locale': 'fr'}) }}">française</a>
 					{% endif %}
 				</div>
 				<div class="clearfix"></div>

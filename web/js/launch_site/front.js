@@ -8,7 +8,8 @@ var $win = $(window),
 	isFixed = 0,
 	$benchmarkChampion,
 	benchmarkChampionTop,
-	isBenchmarkChampionFixed;
+	isBenchmarkChampionFixed,
+	isGuideTourDisplay = false;
 		
 function initBenchmark(){
 	$benchmarkChampion = $('div#compare-champion-div-header'),
@@ -20,6 +21,10 @@ function initBenchmark(){
  //Fixation du subnav en fonction du scroll
 function processScroll()
 {
+	if (getItemFromLS('is_not_first_visit') != 'true') {
+		$('li.help-action').trigger('click');
+	}
+
 	var scrollTop = $win.scrollTop();
 
 	if (scrollTop >= actionBarTop - 9.85 && !isFixed) {
