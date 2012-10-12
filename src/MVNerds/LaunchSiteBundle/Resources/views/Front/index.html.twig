@@ -36,43 +36,35 @@
 {% block javascripts %}
 	{{ parent() }}
 	
-	{% javascripts
-		'js/launch_site/countdown.js'
-		'js/launch_site/front.js'
-		'js/champion_handler/shortcut.js'
-		'js/launch_site/alerts-ajax-handler.js'
-		'js/launch_site/data-scroll.js'
-		'js/champion_handler/sort.js'
-		output='js/compiled/index.js'
-		filter='yui_js'
-	%}
-	<script src="{{ asset_url }}"></script>
-	{% endjavascripts %}
-
-	{#<script type="text/javascript" src="{{ asset('/js/jquery-ui-1.8.23.custom.min.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/jquery.isotope.min.js') }}"></script>
-
-	<script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-tooltip.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-popover.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-transition.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-alert.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-modal.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-typeahead.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('/js/guiders-1.2.8.js') }}"></script>#}
-
-	{#<script type="text/javascript" src="{{ asset('/js/launch_site/alerts-ajax-handler.js') }}"></script>
-
-	<script type="text/javascript" src="{{ asset('/js/launch_site/front.js') }}"></script>
-
-	<script type="text/javascript" src="{{ asset('/js/champion_handler/shortcut.js') }}"></script>#}
+	{% if app.environment != 'dev' %}
+		{% javascripts
+			'js/launch_site/countdown.js'
+			'js/launch_site/front.js'
+			'js/champion_handler/shortcut.js'
+			'js/launch_site/alerts-ajax-handler.js'
+			'js/launch_site/data-scroll.js'
+			'js/champion_handler/sort.js'
+			output='js/compiled/index.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	{% else %}
+		<script type="text/javascript" src="{{ asset('/js/launch_site/countdown.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('/js/launch_site/front.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('/js/champion_handler/shortcut.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('/js/launch_site/alerts-ajax-handler.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('/js/launch_site/data-scroll.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('/js/champion_handler/sort.js') }}"></script>
+	{% endif %}
+		
 	{% if locale == 'fr' %}
 		<script type="text/javascript" src="{{ asset('/js/champion_handler/guide-tour-fr.js') }}"></script>
 	{% else %}
 		<script type="text/javascript" src="{{ asset('/js/champion_handler/guide-tour.js') }}"></script>
 	{% endif %}
 
-	{#<script type="text/javascript" src="{{ asset('/js/launch_site/data-scroll.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/champion_handler/sort.js') }}"></script>#}
+	
 {% endblock %}
 	 
 {% block body %}
@@ -157,17 +149,6 @@
 								{% include 'MVNerdsChampionHandlerBundle:Comparison:compare.html.twig' %}
 							{% endif %}
 						</div>
-						{#<p>
-							Le premier module que nous avons décidé de vous présenter est le module des champions. Vous pouvez vous amusez à les trier selon un large choix de 
-							filtre à votre disposition. Vous pouvez les combinez comme bon vous semble. A consommer sans modération donc !<br />
-							Ce n'est pas tout ! Vous pouvez également les comparer entre eux de manière simple et intuitive. Il vous faudra maintenant quelques clics seulement
-							pour connaître le <em>Carry AD</em> qui a la plus grande portée de tir ou encore quel est le <em>Jungler</em> qui a le plus de point de vie au niveau 6
-							(pourquoi pas ? ^^)
-						</p>
-
-						<p>
-							Nous ne manquerons pas de venir étoffer un peu plus les fonctionnalités du module.
-						</p>#}
 					</div>
 				</div>
 			</div>	
