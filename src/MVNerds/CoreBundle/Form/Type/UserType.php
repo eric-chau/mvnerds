@@ -24,7 +24,7 @@ class UserType extends AbstractType
 	public function setDefaultOptions(OptionsResolverInterface $resolver)
 	{
 		$resolver->setDefaults(array(
-			'data_class' => 'MVnerds\CoreBundle\Model\User'
+			'data_class' => 'MVNerds\CoreBundle\Model\User'
 		));
 	}
 

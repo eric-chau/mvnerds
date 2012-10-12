@@ -120,7 +120,7 @@ div.header-container a.logo-link div.back-home-sign {
   font-weight: bold;
   left: 325px;
   line-height: 1.2em;
-  opacity: 0;
+  opacity: .3;
   padding: 5px;
   position: relative;
   text-align: center;
@@ -200,7 +200,7 @@ div.header-container div.switch-language-container span.switch-language-msg {
   margin-right: 10px;
   text-align: right;
   text-transform: uppercase;
-  width: 100px;
+  width: 85px;
 }
 div.header-container div.switch-language-container span.current-language,
 div.header-container div.switch-language-container a {
@@ -218,7 +218,8 @@ div.header-container div.switch-language-container span.current-language {
 div.header-container div.switch-language-container a,
 div.header-container div.switch-language-container a:visited,
 div.header-container div.switch-language-container a:hover {
-  color: #db4a38;
+  background-color: #db4a38;
+  color: white;
   opacity: .5;
   text-decoration: none;
 }
