@@ -487,6 +487,24 @@
 				<source>Go_back_home.2</source>
 				<target>to home</target>
 			</trans-unit>
+
+			<!--  COMMENT IE -->
+			<trans-unit id="16000">
+				<source>Comment_ie.1</source>
+				<target>You are using an outdated browser. </target>
+			</trans-unit>
+			<trans-unit id="16001">
+				<source>Comment_ie.2</source>
+				<target>Upgrade your browser today</target>
+			</trans-unit>
+			<trans-unit id="16002">
+				<source>Comment_ie.3</source>
+				<target>install Google Chrome Frame</target>
+			</trans-unit>
+			<trans-unit id="16003">
+				<source>Comment_ie.4</source>
+				<target>to better experience this site.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
