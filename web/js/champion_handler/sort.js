@@ -3,7 +3,7 @@
 var SORT_DESC = 'desc',
 		SORT_ASC  = 'asc';
 
-var $championComparator = $('#champion-comparison'),
+var $championComparator,
 	$championHeader,
 	$championList;
 
@@ -24,10 +24,11 @@ function sortByColumn(column, order){
 	$('div[data-sort="'+column+'"]').each(function(){
 		sortValue = $(this).data('value');
 		sortSlug = $(this).parent('div.champion-row').data('slug');
+		
 		sortArray.push({
 			'slug'	: sortSlug,
 			'value'	: sortValue,
-			'dom'	: $(this).parent('div.champion-row')
+			'dom'	: $(this).parent('div.champion-row').clone().wrap('<p>').parent().html()
 		});
 	});
 
@@ -60,8 +61,9 @@ function sortByColumn(column, order){
 }
 
 jQuery(function(){
+	$championComparator = $('#champion-comparison');
 	//Lors du click sur un header de stat
-	$championComparator.on('click', 'div#compare-champion-div-header div.table-header div.sort:not(.sort-asc):not(.sort-desc)', function(){console.log('sort');
+	$championComparator.on('click', 'div#compare-champion-div-header div.table-header div.sort:not(.sort-asc):not(.sort-desc)', function(){
 		$(this).find('i').removeClass('icon-sort');
 		sortByColumn($(this).data('target'));
 	});
