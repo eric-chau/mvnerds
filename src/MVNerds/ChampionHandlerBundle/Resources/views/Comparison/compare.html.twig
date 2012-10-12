@@ -66,4 +66,6 @@
 		});
 	});
 </script>
-<script type="text/javascript" src="{{ asset('/js/google_analytics.js') }}"></script>
+{% if app.environment != 'dev' %}
+	<script type="text/javascript" src="{{ asset('/js/google_analytics.js') }}"></script>
+{% endif %}

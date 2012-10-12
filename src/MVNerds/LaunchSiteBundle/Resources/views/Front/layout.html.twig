@@ -23,7 +23,9 @@
 	{{ parent() }}
 
 	<script type="text/javascript" src="{{ asset('js/launch_site/countdown.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/google_analytics.js') }}"></script>
+	{% if app.environment != 'dev' %}
+		<script type="text/javascript" src="{{ asset('/js/google_analytics.js') }}"></script>
+	{% endif %}
 {% endblock %}
 	 
 {% block body %}

@@ -257,7 +257,7 @@
 			</trans-unit>
 			<trans-unit id="6011">
 				<source>Champion_preview.stat.indication.part1</source>
-				<target>the above caracteristics are</target>
+				<target>These caracteristics are</target>
 			</trans-unit>
 			<trans-unit id="6012">
 				<source>Champion_preview.stat.indication.part2</source>

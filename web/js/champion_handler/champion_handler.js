@@ -435,10 +435,7 @@ jQuery(function() {
 	
 	if (nbComparedChampions > 15){
 		$('#comparison-list').addClass('scrollable');
-	}	
-	
-	//On active le popover du bouton d aide de l actionbar
-	$('#comparison-list-help').popover();
+	}
 		
 	//Désactivation des liens qui ont pour classe disabled
 	$('#wrapper').on('click', 'a.disabled', function(e){

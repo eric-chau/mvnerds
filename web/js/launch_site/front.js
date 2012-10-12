@@ -3,8 +3,8 @@
  */
 // Déclaration de variable pour gérer la fixation de la barre en haut de page ou non
 var $win = $(window), 
-	$actionBar = $('div.actions-bar'),
-	actionBarTop = $actionBar.length && $actionBar.offset().top,
+	$actionBar,
+	actionBarTop,
 	isFixed = 0,
 	$benchmarkChampion,
 	benchmarkChampionTop,
@@ -40,6 +40,11 @@ function processScroll()
 
 $(document).ready(function()
 {	
+	$actionBar = $('div.actions-bar');
+	actionBarTop =  $actionBar.length && $actionBar.offset().top;
+	
+	initBenchmark();
+	
 	//On active les tooltips
 	$('#wrapper').on('mouseover', '.tooltip-anchor', function(){
 		$(this).tooltip('show');
@@ -161,10 +166,6 @@ $(document).ready(function()
 			}
 		});
 	});
- 
-	initBenchmark();
- 
-	processScroll();
  
 	 $win.on('scroll', processScroll);
 	 

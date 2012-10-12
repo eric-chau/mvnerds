@@ -19,19 +19,6 @@ jQuery(function(){
 		liToShow = [];
 		liToShowCount = 0;
 		
-//		var $isotope = $('#isotope-list');
-//
-//		if($isotope.size() > 0){			
-//			initIsotope($isotope);
-//			initTypeahead($isotope);
-//			initFilterList($isotope);
-//		}
-//		*****
-//		if ($('#isotope-list').size() > 0)
-//		{
-//			$isotope.isotope('appended', $('#isotope-list li'));
-//			$isotope.isotope('reLayout');
-//		}
 		initBenchmark();
 	}
 	
