@@ -95,7 +95,14 @@ class FrontController extends Controller
 		}
 		else
 		{
-			return $this->forward('MVNerdsLaunchSiteBundle:Front:index');
+			if ($request->isXmlHttpRequest())
+			{
+				return $this->render('MVNerdsLaunchSiteBundle:Front:redirect.html.twig');
+			}
+			else
+			{
+				return $this->forward('MVNerdsLaunchSiteBundle:Front:index');
+			}
 		}
 	}
 

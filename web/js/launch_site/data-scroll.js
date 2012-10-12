@@ -11,7 +11,7 @@ jQuery(function(){
 	function loadData(data){
 		//On remplace le contenu
 		container.html(data);
-
+console.log(container.html());
 		for (i = 0; i < liToShowCount; i++) {
 			liToShow[i].removeClass('force-hide');
 		}
@@ -55,7 +55,6 @@ jQuery(function(){
 			//le contenu ciblé par le lien
 			$.get(
 				href,
-				{format: 'html' },
 				function(data){
 					//On stop le chargement
 					container.removeClass('loading');

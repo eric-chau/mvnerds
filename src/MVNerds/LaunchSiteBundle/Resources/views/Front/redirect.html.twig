@@ -1,0 +1,11 @@
+
+<h2 style="color:white">Votre session a expirée, vous allez être automatiquement redirigé dans 2 secondes...</h2>
+
+<script type="text/javascript">
+	$(function(){console.log('start');
+		setTimeout(function(){
+			console.log('timeout');
+			document.location.pathname = '{{path('launch_site_front') }}';
+		},2000);
+	});
+</script>
