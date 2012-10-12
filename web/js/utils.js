@@ -63,7 +63,6 @@ var isotopeOptions = {
 	},
 	filter: ''
 };
-
 function getIsotopeOptions(){
 	return isotopeOptions;
 }

@@ -87,7 +87,7 @@ function addManyChampionsToList(championsSlugArray){
 
 		$comparisonListLoading.hide();
 		toggleProgressCursor(false, '#li-compare-filtered a');
-	}).fail(function(data){console.log(data.responseText);
+	}).fail(function(data){
 		$comparisonListLoading.hide();
 		toggleProgressCursor(false, '#li-compare-filtered a');
 	});
@@ -470,7 +470,7 @@ jQuery(function() {
 	//On rends chaque champion draggable
 	$('#champion-comparison').on('mouseover', 'li.champion:not(.champion-maxi)', function(){
 		$(this).draggable({
-			diabled: false,
+			disabled: false,
 			helper: 'clone',
 			revert: 'invalid',
 			revertduration: 300,
@@ -519,7 +519,6 @@ jQuery(function() {
 			}
 			$comparisonListLoading.hide();
 		}).fail(function(data){
-			console.log(data);
 			$('div.presentation-container').html('<div>'+data.responseText+'</div>');
 			$comparisonListLoading.hide();
 		});

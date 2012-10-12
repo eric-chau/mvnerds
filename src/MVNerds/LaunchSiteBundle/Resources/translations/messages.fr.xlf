@@ -488,6 +488,24 @@
 				<source>Go_back_home.2</source>
 				<target>à l'accueil</target>
 			</trans-unit>
+
+			<!--  COMMENT IE -->
+			<trans-unit id="16000">
+				<source>Comment_ie.1</source>
+				<target>Le navigateur internet que vous utilisez actuellement n'est pas optimisé pour ce site.</target>
+			</trans-unit>
+			<trans-unit id="16001">
+				<source>Comment_ie.2</source>
+				<target>Telechargez Google Chrome ou Mozilla Firefox</target>
+			</trans-unit>
+			<trans-unit id="16002">
+				<source>Comment_ie.3</source>
+				<target>Installez Google Chrome Frame</target>
+			</trans-unit>
+			<trans-unit id="16003">
+				<source>Comment_ie.4</source>
+				<target>afin de mieux apprécier ce site.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
