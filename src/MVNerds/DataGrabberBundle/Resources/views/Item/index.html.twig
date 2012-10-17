@@ -1,6 +1,6 @@
 {% extends 'MVNerdsDataGrabberBundle::layout.html.twig' %}
 
-{% block title %}Grabber des champions - MVNerds{% endblock %}
+{% block title %}Grabber des items - MVNerds{% endblock %}
 
 {% block css %}
 	{{ parent() }}
@@ -15,11 +15,11 @@
 {% endblock %}
 
 {% block content %}
-	<h1>Grabber des champions</h1>
+	<h1>Grabber des items</h1>
 
 	<div class="action-buttons right">
-		<a href="{{ path('admin_champions_index') }}" class="btn btn-large"><i class="icon-arrow-right"></i> <strong>Aller à la liste des champions</strong></a>
-		<a href="{{ path('DataGrabber_champions_index') }}" class="btn btn-success btn-large btn-submit-form pull-right"><i class="icon-download-alt icon-white"></i> <strong>Grab !</strong></a>
+		<a href="{{ path('admin_items_index') }}" class="btn btn-large"><i class="icon-arrow-right"></i> <strong>Aller à la liste des items</strong></a>
+		<a href="{{ path('DataGrabber_items_complete') }}" class="btn btn-success btn-large btn-submit-form pull-right"><i class="icon-download-alt icon-white"></i> <strong>Grab !</strong></a>
 	</div>
 	
 	{% autoescape false %}
@@ -31,7 +31,7 @@
 	
 	<div class="content-container">
 		<div class="div12">
-			<form  action="{{ path('DataGrabber_champions_index') }}" method="POST" {{ form_enctype(form) }}>
+			<form  action="{{ path('DataGrabber_items_complete') }}" method="POST" {{ form_enctype(form) }}>
 				{{ form_widget(form) }}
 
 				<input type="submit" class="submit-form hidden" />

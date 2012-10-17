@@ -53,6 +53,20 @@
 			</call>
 		</service>
 
+		<!-- ITEM MANAGER SERVICES -->
+		<service id="mvnerds.item_manager" class="MVNerds\CoreBundle\Item\ItemManager" >
+			<call method="setUserLocale">
+				<argument type="service" id="session" />
+			</call>
+		</service>
+
+		<!-- PRIMARY EFFECT MANAGER SERVICES -->
+		<service id="mvnerds.primary_effect_manager" class="MVNerds\CoreBundle\PrimaryEffect\PrimaryEffectManager" >
+			<call method="setUserLocale">
+				<argument type="service" id="session" />
+			</call>
+		</service>
+
 		<!-- TAG MANAGER SERVICES -->
 		<service id="mvnerds.tag_manager" class="MVNerds\CoreBundle\Tag\TagManager">
 		</service>

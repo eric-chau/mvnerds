@@ -80,7 +80,7 @@ class ChampionManager
 	}
 	
 	/**
-	 * Supprime un champion en fonction de son slug $id
+	 * Supprime un champion en fonction de son slug $slug
 	 * 
 	 * @param strin $slug le slug du champion à supprimer
 	 * @throws InvalidArgumentException exception levé si aucun champion n'est associé au slug $slug
@@ -175,7 +175,7 @@ class ChampionManager
 	public function findByName($name)
 	{
 		$champion = ChampionQuery::create()
-			->joinWithI18n()
+			->joinWithI18n($this->userLocale)
 			->add(ChampionI18nPeer::NAME, $name)
 		->findOne();
 
