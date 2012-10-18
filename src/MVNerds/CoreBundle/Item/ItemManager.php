@@ -119,10 +119,14 @@ class ItemManager
 	 * @return MVNerds\CoreBundle\Model\Item l'objet Item qui correspond au nom $name
 	 * @throws InvalidArgumentException exception levé si aucun item n'est associé au nom  $name
 	 */
-	public function findByName($name)
+	public function findByName($name, $locale = null)
 	{
+		if(null == $locale)
+		{
+			$locale = $this->userLocale;
+		}
 		$item = ItemQuery::create()
-			->joinWithI18n($this->userLocale)
+			->joinWithI18n($locale)
 			->add(ItemI18nPeer::NAME, $name)
 		->findOne();
 
@@ -140,10 +144,14 @@ class ItemManager
 	 * @param type $code le code associé à l'item à récupérer
 	 * @return MVNerds\CoreBundle\Model\Item
 	 */
-	public function findByCode($code)
+	public function findByCode($code, $locale = null)
 	{
-		$item = ItemQuery::create()
-			->joinWithI18n($this->userLocale)
+		if(null == $locale)
+		{
+			$locale = $this->userLocale;
+		}
+		$item = ItemQuery::create($locale)
+			->joinWithI18n()
 			->add(ItemPeer::RIOT_CODE, $code)
 		->findOne();
 
@@ -165,7 +173,12 @@ class ItemManager
 	{
 		return ItemQuery::create()
 			->joinWithI18n($this->userLocale)
-			->OrderBy(ItemPeer::ID)
+			->joinWith('ItemPrimaryEffect', \Criteria::LEFT_JOIN)
+			->joinWith('ItemPrimaryEffect.PrimaryEffect', \Criteria::LEFT_JOIN)
+			->joinWith('PrimaryEffect.PrimaryEffectI18n', \Criteria::LEFT_JOIN)
+			->joinWith('ItemSecondaryEffect', \Criteria::LEFT_JOIN)
+			->joinWith('ItemSecondaryEffect.ItemSecondaryEffectI18n', \Criteria::LEFT_JOIN)
+			->OrderBy('ItemI18n.NAME')
 		->find();
 	}
 	
@@ -175,14 +188,21 @@ class ItemManager
 	 * @return PropelCollection<MVNerds\CoreBundle\Model\Item> retourne un objet PropelCollection qui contient
 	 * tous les items de la base de données avec leurs tags
 	 */
-	public function findAllWithTags($locale)
+	public function findAllWithTags()
 	{
 		return ItemQuery::create()
 			->joinWithI18n($this->userLocale)
+			->joinWith('ItemPrimaryEffect', \Criteria::LEFT_JOIN)
+			->joinWith('ItemPrimaryEffect.PrimaryEffect', \Criteria::LEFT_JOIN)
+			->joinWith('PrimaryEffect.PrimaryEffectI18n', \Criteria::LEFT_JOIN)
+			->joinWith('ItemSecondaryEffect', \Criteria::LEFT_JOIN)
+			->joinWith('ItemSecondaryEffect.ItemSecondaryEffectI18n', \Criteria::LEFT_JOIN)
 			->joinWith('ItemTag', \Criteria::LEFT_JOIN)
 			->joinWith('ItemTag.Tag', \Criteria::LEFT_JOIN)
 			->joinWith('Tag.TagI18n', \Criteria::LEFT_JOIN)
-			->OrderBy(ItemPeer::ID)
+			->joinWith('ItemGameMode', \Criteria::LEFT_JOIN)
+			->joinWith('ItemGameMode.GameMode', \Criteria::LEFT_JOIN)
+			->OrderBy('ItemI18n.NAME')
 		->find();
 	}
 

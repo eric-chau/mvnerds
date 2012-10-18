@@ -33,7 +33,7 @@ class FrontController extends Controller
 	public function championComparisonAction()
 	{		
 		return $this->render('MVNerdsChampionHandlerBundle:Front:champion_comparison.html.twig', array(
-			'champions' => $this->get('mvnerds.champion_manager')->findAllWithTags($this->getRequest()->getLocale())
+			'champions' => $this->get('mvnerds.champion_manager')->findAllWithTags()
 		));
 	}
 	

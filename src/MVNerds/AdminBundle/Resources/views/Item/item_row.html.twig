@@ -1,0 +1,46 @@
+<div class="row-fluid normal-line item" id="{{ item.getSlug() }}">
+	<div class="span1">
+		<img class="item-image" src="{{ asset('images/items/' ~ item.getRiotCode() ~ '.png') }}" alt="image de l'item {{ item.getName() }}" title = "{{ item.getName() }}"/>
+	</div>
+	<div class="span2">
+		<div class="row-fluid">
+			{{ item.getName() }}
+		</div>
+	</div>
+	<div class="span1">
+		{{ item.getRiotCode() }}
+	</div>
+	<div class="span2">
+		{% set itemPrimaryEffects = item.getItemPrimaryEffects() %}
+		{% for itemPrimaryEffect in itemPrimaryEffects %}
+			<div class="row-fluid">
+				+{{itemPrimaryEffect.getValue()}} 
+				{{itemPrimaryEffect.getPrimaryEffect().getLabel()}}
+			</div>
+		{% endfor %}
+	</div>
+	<div class="span2">
+		{% set itemSecondaryEffects = item.getItemSecondaryEffects() %}
+		{% for itemSecondaryEffect in itemSecondaryEffects %}
+			<div class="row-fluid">
+				{{itemSecondaryEffect.getDescription()}}
+			</div>
+		{% endfor %}
+	</div>
+	<div class="span2">
+		{% set itemTags = item.getItemTags() %}
+		{% for itemTag in itemTags %}
+			<div class="row-fluid">
+				{{itemTag.getTag().getLabel()}}
+			</div>
+		{% endfor %}
+	</div>
+	<div class="span2">
+		{% set itemGameModes = item.getItemGameModes() %}
+		{% for itemGameMode in itemGameModes %}
+			<div class="row-fluid">
+				{{itemGameMode.getGameMode().getLabel()}}
+			</div>
+		{% endfor %}
+	</div>
+</div>

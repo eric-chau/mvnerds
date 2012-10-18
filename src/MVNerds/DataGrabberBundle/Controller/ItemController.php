@@ -344,4 +344,222 @@ class ItemController extends Controller
 			'form' => $form->createView()
 		));
 	}
+	
+	/**
+	 * Permet de récupérer les noms des items en anglais
+	 * 
+	 * A utiliser apres avoir insérer les objets de base avec l action getBaseItemsAction 
+	 * sur un fichier provenant de la page des item du site officiel de LoL
+	 * 
+	 * @Route("/en-names", name="DataGrabber_items_en_names")
+	 */
+	public function getEnNamesAction()
+	{
+		include(__DIR__ . '/../SimpleHtmlDom/simple_html_dom.php');
+				
+		//Récupération de la liste des items
+		$itemsList = file_get_html('file:///C:/Users/Haniki/Downloads/Items_lol_en.html')->find('div#list_view table.champion_item');
+
+		$startItem = 0;
+		$nbItem = count($itemsList);
+		
+		//Création du flash manager
+		/* @var $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
+		$flashManager = $this->get('mvnerds.flash_manager');
+
+		//Si la liste des items a bien été récupérée
+		if ($itemsList)
+		{		
+			/* @var $itemManager \MVNerds\CoreBundle\Item\ItemManager */
+			$itemManager = $this->get('mvnerds.item_manager');
+
+			//On boucle sur chaque champion pour récupérer le lien associé
+			for ($i = $startItem; $i < $startItem + $nbItem; $i++)
+			{
+				$description = $itemsList[$i]->find('td.description', 0);
+
+				$itemHref = $description->find('a.lol_item',0)->href;
+				$itemCode = substr(strstr($itemHref, '#'), 1);
+				try{
+					//Si l item a été trouvé
+					$item = $itemManager->findByCode($itemCode, 'en');
+					$item->setLocale('en');
+					$name = $description->find('a.lol_item span',0)->plaintext;
+					$item->setName($name);
+					$itemManager->save($item);
+				}
+				catch(\Exception $e){
+					continue;
+				}
+			}
+		}
+		else
+		{
+			// Ajout d'un message de flash pour notifier que les informations de l'utilisateur ont bien été modifié
+			$flashManager->setErrorMessage('Erreur lors du grab des noms en des items');
+			// On redirige l'utilisateur vers la liste des utilisateurs
+			return $this->redirect($this->generateUrl('DataGrabber_champions_index'));
+		}
+
+		// Ajout d'un message de flash pour notifier que les informations de l'utilisateur ont bien été modifié
+		$flashManager->setSuccessMessage('Les noms en des items ont bien été grabbés');
+		// On redirige l'utilisateur vers la liste des utilisateurs
+		return $this->redirect($this->generateUrl('DataGrabber_champions_index'));
+	}
+	
+	/**
+	 * Permet de récupérer les modes de jeu des items
+	 * 
+	 * A utiliser apres avoir insérer les objets de base avec l action getBaseItemsAction 
+	 * sur un fichier provenant de la page des item du site officiel de LoL
+	 * 
+	 * Cette action s utilise sur un fichier en local  extrait de la page des items de mobafire
+	 * 
+	 * @Route("/game-modes", name="DataGrabber_items_game_modes")
+	 */
+	public function getItemGameModesAction()
+	{
+		include(__DIR__ . '/../SimpleHtmlDom/simple_html_dom.php');
+				
+		//Récupération de la liste des items
+		$itemsList = file_get_html('file:///C:/Users/Haniki/Downloads/MOBAFire_items.htm')->find('div#browse-items a.champ-box');
+
+		$startItem = 0;
+		$nbItem = count($itemsList);
+		
+		//Création du flash manager
+		/* @var $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
+		$flashManager = $this->get('mvnerds.flash_manager');
+
+		//Si la liste des items a bien été récupérée
+		if ($itemsList)
+		{		
+			/* @var $itemManager \MVNerds\CoreBundle\Item\ItemManager */
+			$itemManager = $this->get('mvnerds.item_manager');
+
+			//On boucle sur chaque champion pour récupérer le lien associé
+			for ($i = $startItem; $i < $startItem + $nbItem; $i++)
+			{
+				$link = $itemsList[$i];
+				
+				$itemName = $link->find('div.info div.champ-name', 0)->plaintext;
+				
+				try{
+					//Si l item a été trouvé
+					$item = $itemManager->findByName($itemName, 'en');
+					$item->setLocale('en');
+					
+					$classes = $link->class;
+					
+					$itemGameMode = new \MVNerds\CoreBundle\Model\ItemGameMode();
+					$itemGameMode->setItem($item);
+					
+					if (strpos($classes, 'classic-only') !== false)
+					{
+						$itemGameMode->setGameModeId(1);
+						
+					}
+					elseif (strpos($classes, 'dominion-only') !== false)
+					{
+						$itemGameMode->setGameModeId(2);
+					}
+					else
+					{
+						$itemGameMode->setGameModeId(4);
+					}
+					var_dump($itemGameMode);
+					$itemGameMode->save();
+				}
+				catch(\Exception $e){
+					continue;
+				}
+			}
+		}
+		else
+		{
+			// Ajout d'un message de flash pour notifier que les informations de l'utilisateur ont bien été modifié
+			$flashManager->setErrorMessage('Erreur lors du grab des game modes');
+			// On redirige l'utilisateur vers la liste des utilisateurs
+			return $this->redirect($this->generateUrl('DataGrabber_champions_index'));
+		}
+
+		// Ajout d'un message de flash pour notifier que les informations de l'utilisateur ont bien été modifié
+		$flashManager->setSuccessMessage('Les game modes ont bien été grabbés');
+		// On redirige l'utilisateur vers la liste des utilisateurs
+		return $this->redirect($this->generateUrl('DataGrabber_champions_index'));
+	}
+	
+	/**
+	 * Permet de récupérer effets des items en anglais
+	 * 
+	 * A utiliser apres avoir utilisé getEnNames
+	 * 
+	 * @Route("/game-modes", name="DataGrabber_items_game_modes")
+	 */
+	public function getEnEffectsAction()
+	{
+		include(__DIR__ . '/../SimpleHtmlDom/simple_html_dom.php');
+
+		/* @var $itemManager \MVNerds\CoreBundle\Item\ItemManager */
+		$itemManager = $this->get('mvnerds.item_manager');
+
+		$itemsList = $itemManager->findAll();
+		
+		$startItem = 0;
+		$nbItem = 1;//count($itemsList);
+		
+		//Création du flash manager
+		/* @var $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
+		$flashManager = $this->get('mvnerds.flash_manager');
+
+		//Si la liste des items a bien été récupérée
+		if ($itemsList)
+		{
+			//On boucle sur chaque champion pour récupérer le lien associé
+			for ($i = $startItem; $i < $startItem + $nbItem; $i++)
+			{
+				$item=$itemsList[$i];
+				
+				$enName = $item->setLocale('en')->getName();
+				$escapedName = str_replace('\'', '%27', str_replace(' ', '_', $enName));
+				//Récupération de la page de l'item
+				$itemPage = file_get_html('http://leagueoflegends.wikia.com/wiki/' . $escapedName)->find('table.infobox', 0);
+				
+				$infoRow = $itemPage->find('tr');
+				foreach ($infoRow as $info)
+				{
+					if ($info->find('th', 0)->plaintext == 'Sell value')
+					{
+						$sellValueG = $info->find('td span.gold', 0)->plaintext;
+						$sellValue = strstr($sellValueG, 'g', true);
+						$item->setSellValue($sellValue);
+					}
+					elseif ($info->find('th', 0)->plaintext == 'Stacks')
+					{
+						$stacksPerSlot = $info->find('td', 0)->plaintext;
+						$stacks = strstr($stacksPerSlot, ' per item slot.', true);
+						$item->setStacks($stacks);
+					}
+					elseif ($info->find('th', 0)->plaintext == 'Effects')
+					{
+						$stacksPerSlot = $info->find('td', 0)->plaintext;
+						$stacks = strstr($stacksPerSlot, ' per item slot.', true);
+						$item->setStacks($stacks);
+					}
+				}
+			}
+		}
+		else
+		{
+			// Ajout d'un message de flash pour notifier que les informations de l'utilisateur ont bien été modifié
+			$flashManager->setErrorMessage('Erreur lors du grab des game modes');
+			// On redirige l'utilisateur vers la liste des utilisateurs
+			return $this->redirect($this->generateUrl('DataGrabber_champions_index'));
+		}
+
+		// Ajout d'un message de flash pour notifier que les informations de l'utilisateur ont bien été modifié
+		$flashManager->setSuccessMessage('Les game modes ont bien été grabbés');
+		// On redirige l'utilisateur vers la liste des utilisateurs
+		return $this->redirect($this->generateUrl('DataGrabber_champions_index'));
+	}
 }

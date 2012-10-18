@@ -16,9 +16,10 @@ class ItemController extends Controller
 	 * @Route("/", name="admin_items_index")
 	 */
 	public function indexAction()
-	{		
-		die(var_dump($this->get('mvnerds.item_manager')->getItemsName()));
-		
+	{
+		return $this->render('MVNerdsAdminBundle:Item:index.html.twig', array(
+			'items' => $this->get('mvnerds.item_manager')->findAllWithTags()
+		));
 	}
 }
 
