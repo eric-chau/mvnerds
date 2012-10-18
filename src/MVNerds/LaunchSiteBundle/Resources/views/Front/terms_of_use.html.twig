@@ -1,16 +1,18 @@
-{% extends 'MVNerdsLaunchSiteBundle:Front:layout.html.twig' %}
+{% extends 'MVNerdsLaunchSiteBundle::layout.html.twig' %}
+	
+{% block header_footer %}
+	<div class="presentation-container">
+		<div class="content">
+			<div class="overview custom">
+				<h2>{{'Footer.links.terms_of_use'|trans}}</h2>
+	
+				<h3>{{'Terms_of_use.h1'|trans}}</h3>
+				<p>{{'Terms_of_use.p1'|trans}}</p>
 
-{% block overview %}
-	<h2>{{'Footer.links.terms_of_use'|trans}}</h2>
-	
-	<h3>{{'Terms_of_use.h1'|trans}}</h3>
-	<p>
-		{{'Terms_of_use.p1'|trans}}
-	</p>
-	
-	<h3>{{'Terms_of_use.h2'|trans}}</h3>
-	<p>	
-		{{'Footer.riot.p1'|trans}}<br />
-		{{'Footer.riot.p2'|trans}}
-	</p>
+				<h3>{{'Terms_of_use.h2'|trans}}</h3>
+				<p>{{'Footer.riot.p1'|trans}}<br />{{'Footer.riot.p2'|trans}}</p>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
 {% endblock %}

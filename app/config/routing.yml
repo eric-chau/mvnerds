@@ -14,7 +14,7 @@ MVNerdsLaunchSite_homepage:
 mv_nerds_champion_handler:
     resource: "@MVNerdsChampionHandlerBundle/Controller/"
     type:     annotation
-    prefix:   /champions
+    prefix:   /{_locale}/champions
 
 mv_nerds_did_you_know:
     resource: "@MVNerdsDidYouKnowBundle/Controller/"

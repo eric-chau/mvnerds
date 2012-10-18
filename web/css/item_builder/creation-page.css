@@ -1,0 +1,14 @@
+.game-mode-bg {
+  background: url('/images/item_builder/game-mode-bg.jpg');
+  height: 155px;
+  width: 289px;
+}
+.game-mode-bg .dominion {
+  background-position: -290px 0px;
+}
+.game-mode-bg .proving_grounds {
+  background-position: 0px -156px;
+}
+.game-mode-bg .summoners_treeline {
+  background-position: 0px 0px;
+}

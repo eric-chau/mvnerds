@@ -74,7 +74,7 @@ class FrontController extends Controller
 			{
 				
 				
-				return $this->render('MVNerdsChampionHandlerBundle:Comparison:compare.html.twig', array(
+				return $this->render('MVNerdsChampionHandlerBundle:Comparison:compare_index.html.twig', array(
 					'reference_champion'	=> $referenceChampion,
 					'comparison_list'		=> $comparisonList,
 					'lvl'				=> $lvl
