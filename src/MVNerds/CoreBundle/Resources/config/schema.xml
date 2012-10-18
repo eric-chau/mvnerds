@@ -51,7 +51,7 @@
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
     <column name="email" required="true" size="255" type="VARCHAR" />
   </table>
-  <table name="item">
+  <table name="old_item">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
     <column name="label" required="true" size="255" type="VARCHAR" />
     <column defaultValue="0" name="bonus_damage" required="true" type="SMALLINT" />
@@ -72,12 +72,14 @@
     <column defaultValue="0" name="bonus_attack_speed_percent" required="true" type="TINYINT" />
     <column defaultValue="0" name="bonus_critical_chance_percent" required="true" type="TINYINT" />
     <column defaultValue="0" name="bonus_critical_damage_percent" required="true" type="TINYINT" />
+    <column name="sell_value" required="true" type="SMALLINT" />
+    <column name="item_code" required="true" size="4" type="VARCHAR" />
   </table>
-  <table name="item_extra_property">
+  <table name="old_item_extra_property">
     <column name="id" primaryKey="true" required="true" type="INTEGER" />
     <column name="item_id" required="true" type="INTEGER" />
     <column defaultValue="0" name="is_passive_property" required="true" type="BOOLEAN" />
-    <foreign-key foreignTable="item">
+    <foreign-key foreignTable="old_item">
       <reference foreign="id" local="item_id" />
     </foreign-key>
   </table>
@@ -281,6 +283,14 @@
       <parameter name="i18n_table" value="tag_i18n" />
       <parameter name="i18n_phpname" value="TagI18n" />
     </behavior>
+    <behavior name="sluggable">
+      <parameter name="slug_column" value="slug" />
+      <parameter name="slug_pattern" value="{label}" />
+      <parameter name="replace_pattern" value="/[^\w\/]+/u" />
+      <parameter name="replacement" value="-" />
+      <parameter name="separator" value="-" />
+      <parameter name="permanent" value="false" />
+    </behavior>
   </table>
   <table name="champion_tag">
     <column name="champion_id" primaryKey="true" required="true" type="INTEGER" />
@@ -299,6 +309,174 @@
     <column name="parent_id" type="INTEGER" />
     <foreign-key foreignTable="tag_type">
       <reference foreign="id" local="parent_id" />
+    </foreign-key>
+  </table>
+  <table name="item_tag">
+    <column name="item_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="tag_id" primaryKey="true" required="true" type="INTEGER" />
+    <foreign-key foreignTable="item">
+      <reference foreign="id" local="item_id" />
+    </foreign-key>
+    <foreign-key foreignTable="tag">
+      <reference foreign="id" local="tag_id" />
+    </foreign-key>
+  </table>
+  <table name="item">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column defaultValue="NULL" description="Un item peut etre specifique a un champion" name="champion_id" type="INTEGER" />
+    <column name="name" required="true" size="45" type="VARCHAR" />
+    <column name="cost" required="true" type="SMALLINT" />
+    <column name="sell_value" required="true" type="SMALLINT" />
+    <column name="riot_code" required="true" size="5" type="VARCHAR" />
+    <column defaultValue="1" name="stacks" required="true" type="INTEGER" />
+    <foreign-key foreignTable="champion">
+      <reference foreign="id" local="champion_id" />
+    </foreign-key>
+    <behavior name="i18n">
+      <parameter name="i18n_columns" value="name" />
+      <parameter name="default_locale" value="fr" />
+      <parameter name="locale_column" value="lang" />
+      <parameter name="i18n_table" value="item_i18n" />
+      <parameter name="i18n_phpname" value="ItemI18n" />
+    </behavior>
+    <behavior name="sluggable">
+      <parameter name="slug_column" value="slug" />
+      <parameter name="slug_pattern" value="{name}" />
+      <parameter name="replace_pattern" value="/[^\w\/]+/u" />
+      <parameter name="replacement" value="-" />
+      <parameter name="separator" value="-" />
+      <parameter name="permanent" value="false" />
+    </behavior>
+  </table>
+  <table name="primary_effect">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="label" required="true" size="100" type="VARCHAR" />
+    <column name="slug" required="true" size="100" type="VARCHAR" />
+    <behavior name="i18n">
+      <parameter name="i18n_columns" value="label" />
+      <parameter name="default_locale" value="fr" />
+      <parameter name="locale_column" value="lang" />
+      <parameter name="i18n_table" value="primary_effect_i18n" />
+      <parameter name="i18n_phpname" value="PrimaryEffectI18n" />
+    </behavior>
+    <behavior name="sluggable">
+      <parameter name="slug_column" value="slug" />
+      <parameter name="slug_pattern" value="{label}" />
+      <parameter name="replace_pattern" value="/[^\w\/]+/u" />
+      <parameter name="replacement" value="-" />
+      <parameter name="separator" value="-" />
+      <parameter name="permanent" value="false" />
+    </behavior>
+  </table>
+  <table name="item_primary_effect">
+    <column name="item_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="primary_effect_id" primaryKey="true" required="true" type="INTEGER" />
+    <column defaultValue="0" name="value" required="true" type="SMALLINT" />
+    <foreign-key foreignTable="item">
+      <reference foreign="id" local="item_id" />
+    </foreign-key>
+    <foreign-key foreignTable="primary_effect">
+      <reference foreign="id" local="primary_effect_id" />
+    </foreign-key>
+  </table>
+  <table name="item_secondary_effect">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="item_id" required="true" type="INTEGER" />
+    <column name="category" required="true" type="ENUM" valueSet="ACTIVE, AURA, PASSIVE, CONSUMABLE" />
+    <column name="description" required="true" type="LONGVARCHAR" />
+    <column defaultValue="true" name="is_unique" required="true" type="BOOLEAN" />
+    <foreign-key foreignTable="item">
+      <reference foreign="id" local="item_id" />
+    </foreign-key>
+    <behavior name="i18n">
+      <parameter name="i18n_columns" value="description" />
+      <parameter name="default_locale" value="fr" />
+      <parameter name="locale_column" value="lang" />
+      <parameter name="i18n_table" value="item_secondary_effect_i18n" />
+      <parameter name="i18n_phpname" value="ItemSecondaryEffectI18n" />
+    </behavior>
+  </table>
+  <table name="game_mode">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column description="shared, classic, dominion, aram" name="label" required="true" size="255" type="VARCHAR" />
+  </table>
+  <table name="item_game_mode">
+    <column name="item_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="game_mode_id" primaryKey="true" required="true" type="INTEGER" />
+    <foreign-key foreignTable="item">
+      <reference foreign="id" local="item_id" />
+    </foreign-key>
+    <foreign-key foreignTable="game_mode">
+      <reference foreign="id" local="game_mode_id" />
+    </foreign-key>
+  </table>
+  <table name="item_build">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="item1_id" required="true" type="INTEGER" />
+    <column name="item2_id" required="true" type="INTEGER" />
+    <column name="item3_id" required="true" type="INTEGER" />
+    <column name="item4_id" required="true" type="INTEGER" />
+    <column name="item5_id" required="true" type="INTEGER" />
+    <column name="item6_id" required="true" type="INTEGER" />
+    <column name="name" required="true" size="255" type="VARCHAR" />
+    <column defaultValue="NULL" name="user_id" type="INTEGER" />
+    <column defaultValue="0" name="like" required="true" type="INTEGER" />
+    <column defaultValue="0" name="dislike" required="true" type="INTEGER" />
+    <column name="description" type="LONGVARCHAR" />
+    <foreign-key foreignTable="user">
+      <reference foreign="id" local="user_id" />
+    </foreign-key>
+    <foreign-key foreignTable="item">
+      <reference foreign="id" local="item1_id" />
+    </foreign-key>
+    <foreign-key foreignTable="item">
+      <reference foreign="id" local="item2_id" />
+    </foreign-key>
+    <foreign-key foreignTable="item">
+      <reference foreign="id" local="item3_id" />
+    </foreign-key>
+    <foreign-key foreignTable="item">
+      <reference foreign="id" local="item4_id" />
+    </foreign-key>
+    <foreign-key foreignTable="item">
+      <reference foreign="id" local="item5_id" />
+    </foreign-key>
+    <foreign-key foreignTable="item">
+      <reference foreign="id" local="item6_id" />
+    </foreign-key>
+    <behavior name="sluggable">
+      <parameter name="slug_column" value="slug" />
+      <parameter name="slug_pattern" value="{name}" />
+      <parameter name="replace_pattern" value="/[^\w\/]+/u" />
+      <parameter name="replacement" value="-" />
+      <parameter name="separator" value="-" />
+      <parameter name="permanent" value="false" />
+    </behavior>
+  </table>
+  <table name="champion_item_build">
+    <column name="champion_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="item_build_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="game_mode_id" primaryKey="true" required="true" type="INTEGER" />
+    <column defaultValue="0" name="is_default_build" required="true" type="BOOLEAN" />
+    <foreign-key foreignTable="champion">
+      <reference foreign="id" local="champion_id" />
+    </foreign-key>
+    <foreign-key foreignTable="item_build">
+      <reference foreign="id" local="item_build_id" />
+    </foreign-key>
+    <foreign-key foreignTable="game_mode">
+      <reference foreign="id" local="game_mode_id" />
+    </foreign-key>
+  </table>
+  <table name="item_geneology">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="parent_id" required="true" type="INTEGER" />
+    <column name="child_id" required="true" type="INTEGER" />
+    <foreign-key foreignTable="item">
+      <reference foreign="id" local="parent_id" />
+    </foreign-key>
+    <foreign-key foreignTable="item">
+      <reference foreign="id" local="child_id" />
     </foreign-key>
   </table>
 </database>

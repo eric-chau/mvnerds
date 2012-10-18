@@ -1,0 +1,15 @@
+{# #}
+<div class="row-fluid title-line">
+	<div class="span1">Image</div>
+	<div class="span2">Nom</div>
+	<div class="span1">Riot Code</div>
+	<div class="span2">Primary effects</div>
+	<div class="span2">Secondary effects</div>
+	<div class="span2">Tags</div>
+	<div class="span2">Game modes</div>
+</div>
+{% for item in items %}
+	{% include 'MVNerdsAdminBundle:Item:item_row.html.twig' %}
+{% else %}
+	<i>Aucun item enregistré pour le moment, et si vous en ajoutiez un en cliquant sur le bouton "Ajouter un item" ?</i>
+{% endfor %}

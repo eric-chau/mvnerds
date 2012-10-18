@@ -4,6 +4,7 @@
 	{{ parent() }}
 
 	<link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 {% endblock %}
 
 {% block javascripts %}
@@ -18,10 +19,6 @@
 	{% endblock %}
 	
 	<div id="wrapper">
-		<div class="span3" id="sidebar">
-			{% block sidebar %}{% endblock %}
-		</div>
-
 		<div class="container main-container">
 			{% block content %}{% endblock %}
 		</div>

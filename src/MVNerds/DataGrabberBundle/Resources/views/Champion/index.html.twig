@@ -22,12 +22,12 @@
 		<a href="{{ path('DataGrabber_champions_index') }}" class="btn btn-success btn-large btn-submit-form pull-right"><i class="icon-download-alt icon-white"></i> <strong>Grab !</strong></a>
 	</div>
 	
-	{% if app.session.hasFlash('success') %}
-		<div class="alert alert-success">
-			<button type="button" class="close" data-dismiss="alert">×</button>
-			{{ app.session.getFlash('success') }}
-		</div>
-	{% endif %}
+	{% autoescape false %}
+		{{ render_success_flash() }}
+	{% endautoescape %}
+	{% autoescape false %}
+		{{ render_error_flash() }}
+	{% endautoescape %}
 	
 	<div class="content-container">
 		<div class="div12">

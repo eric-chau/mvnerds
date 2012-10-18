@@ -29,10 +29,10 @@ class TagManager
 	 * @return MVNerds\CoreBundle\Model\Tag l'objet Tag qui correspond au label $label
 	 * @throws InvalidArgumentException exception levée si aucun tag n'est associé au label $label
 	 */
-	public function findOneByLabel($label)
+	public function findOneByLabel($label, $locale ='en')
 	{
 		$tag = TagQuery::create()
-			->joinWithI18n()
+			->joinWithI18n($locale)
 			->joinWith('ChampionTag', \Criteria::LEFT_JOIN)
 			->joinWith('ChampionTag.Champion', \Criteria::LEFT_JOIN)
 			->add(TagI18nPeer::LABEL, $label)
