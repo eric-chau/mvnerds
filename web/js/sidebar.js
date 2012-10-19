@@ -4,7 +4,7 @@ $(document).ready(function()
 
 	$('div#sidebar ul a').on('click', function()
 	{
-		return false;
+		//return false;
 	});
 
 	$sidebar.on('click', function() 

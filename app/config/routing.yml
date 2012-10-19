@@ -1,3 +1,8 @@
+MVNerdsItemHandler:
+    resource: "@MVNerdsItemHandlerBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}
+
 MVNerdsMainBundle_main:
     resource: "@MVNerdsMainBundle/Controller/"
     type:     annotation

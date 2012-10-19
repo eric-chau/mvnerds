@@ -1,14 +1,121 @@
-.game-mode-bg {
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+span,
+input[type="text"] {
+  font-family: 'Ubuntu', sans-serif;
+}
+p {
+  color: #ddd;
+  font-size: 14px;
+}
+div.social-container {
+  border-bottom: 1px solid #000 !important;
+}
+div.body-container {
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+div.body-container h2 {
+  color: #db4a38;
+}
+div.body-container div.game-mode-container,
+div.body-container div.generate-button-container,
+div.body-container div.name-container {
+  text-align: center;
+  margin: 30px 0;
+}
+div.body-container div.game-mode-container .game-mode {
   background: url('/images/item_builder/game-mode-bg.jpg');
-  height: 155px;
-  width: 289px;
+  border: 2px solid #111;
+  cursor: pointer;
+  display: inline-block;
+  height: 153px;
+  margin: 0 5px;
+  width: 287px;
 }
-.game-mode-bg .dominion {
-  background-position: -290px 0px;
+div.body-container div.game-mode-container .game-mode.dominion {
+  background-position: -291px -1px;
 }
-.game-mode-bg .proving_grounds {
-  background-position: 0px -156px;
+div.body-container div.game-mode-container .game-mode.proving-grounds {
+  background-position: -1px -157px;
 }
-.game-mode-bg .summoners_treeline {
-  background-position: 0px 0px;
+div.body-container div.game-mode-container .game-mode.summoners-treeline {
+  background-position: -1px -1px;
+}
+div.body-container div.game-mode-container .game-mode.active {
+  border: 2px solid #c87801;
+}
+div.body-container div.game-mode-container .game-mode.active span.message {
+  background-color: #c87801;
+}
+div.body-container div.game-mode-container .game-mode span.message {
+  color: #eee;
+  background-color: #111;
+  display: block;
+  font-size: 14px;
+  padding: 3px 10px;
+  margin-top: 124px;
+  text-align: right;
+}
+div.body-container div.name-container input[type="text"] {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  font-size: 18px;
+  padding: 7px;
+  width: 250px;
+}
+div.body-container div.generate-button-container a {
+  background-color: #333;
+  color: #999;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0 10px;
+  padding: 5px 10px;
+}
+div.body-container div.generate-button-container a:hover {
+  background-color: #666;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+div.body-container div.generate-button-container a.main {
+  color: #fff;
+  background-color: #be3322;
+  font-size: 18px;
+  padding: 10px 15px;
+  position: relative;
+  top: 2px;
+}
+div.body-container div.generate-button-container a.main:hover {
+  background-color: #db4a38;
 }
