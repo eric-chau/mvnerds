@@ -15,3 +15,5 @@ parameters:
     secret:            ThisTokenIsNotSoSecretChangeIt
     
     available_languages:	['fr', 'en']
+    
+    item_builds_path: %kernel.root_dir%/../web/builds

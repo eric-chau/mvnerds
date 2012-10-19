@@ -18,6 +18,14 @@
 				<argument type="service" id="session" />
 			</call>
 		</service>
+		
+		<!-- AUTO SET LOCALE SERVICES -->
+		<service id="mvnerds.batch_manager" class="MVNerds\CoreBundle\Batch\BatchManager">
+			<argument>%item_builds_path%</argument>
+			<call method="setUserLocale">
+				<argument type="service" id="session" />
+			</call>
+		</service>
 
 		<!-- FLASH MANAGER SERVICES -->
 		<service id="mvnerds.flash_manager" class="MVNerds\CoreBundle\Flash\FlashManager">
