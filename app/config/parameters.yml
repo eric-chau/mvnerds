@@ -7,11 +7,11 @@ parameters:
     database_password: ~
 
     mailer_transport:  gmail
-#    mailer_host:       
+#   mailer_host:       
     mailer_user:       mailer@mvnerds.com
     mailer_password:   mailermvnerds2012
 
-    default_locale:            fr
+    default_locale:    fr
     secret:            ThisTokenIsNotSoSecretChangeIt
     
     available_languages:	['fr', 'en']

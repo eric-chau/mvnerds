@@ -4,14 +4,14 @@
 div#sidebar {
 	background-color: rgba(0,0,0,.3);
 	cursor: pointer;
-	font-family: 'Ubuntu', sans-serif;
+	font-family: 'Trebuchet MS', sans-serif;
 	height: 100%;
 	left: 0;
 	padding: 10px;
 	position: fixed;
 	text-align: center;
 	top: 0;
-	width: 44px; .transition(width .25s linear);
+	width: 44px;
 	z-index: 2000;
 
 	&:hover {
@@ -20,48 +20,99 @@ div#sidebar {
 
 	&.active {
 		background-color: rgba(0,0,0,.8);
+		cursor: default;
 		text-align: left;
 		width: 360px; .transition(width .35s cubic-bezier(0, 1, 0, 1));
 
 		.only-active-show {
-			display: inline-block;
+			display: initial;
+		}
+
+		div.toggle-sidebar {
+			cursor: pointer;
+			float: right;
+			height: 100%;
+			left: 10px;
+			position: relative;
+			text-align: center;
+			top: -10px;
+			width: 45px;
+
+			i {
+				color: #999;
+				display: block;
+				font-size: 60px;
+				left: 343px;
+				margin-top: -45px;
+				opacity: .3;
+				position: fixed;
+				top: 50%;
+			}
+
+			&:hover {
+				background-color: rgba(204,204,204,.1); .transition(background-color .25s linear);
+
+				i {
+					opacity: .8; .transition(opacity .25s linear);
+				}
+			}
 		}
 
 		div#user-container {
-			height: 124px;
-
 			img {
-				display: inline;
+				border: 1px solid #999;
+				display: inline-block;
 				float: left;
-				margin: 0 10px 5px 0;
-				width: 116px;
+				margin: 0 10px 10px 0;
+				padding: 2px;
+				width: 100px;
 			}
 
-			span.item {
-				color: #999;
+			p {
+				color: #eee;
 				display: block;
+				font-size: 14px;
+				margin: 0;
+
+				&.nickname, &.team {
+					font-size: 16px;
+				}
 
 				&.nickname {
-					strong {
-						color: #999;
-						display: inline-block;
-						font-size: 16px;
-						margin-right: 5px;
-					}
+					font-weight: bold;
 				}
 
 				&.team {
 					color: @MVNerdsRed;
-					font-size: 14px;
-					margin-bottom: 10px;
+					margin-bottom: 15px;
 				}
 			}
+		}
 
-			i {
-				color: #999;
-				display: inline-block;
-				position: relative;
-				top: 2px;
+		ul {
+			margin-bottom: 20px;
+
+			&.first-ul {
+				margin-top: 30px;
+			}
+
+			li {
+				border-bottom: 1px solid darken(@MVNerdsBlue, 25%);
+				display: list-item !important;
+				margin: 2px 40px;
+			
+				&.header {
+					border: 0;
+					margin: 0;
+
+					a {
+						display: inline-block !important;
+					}
+				}
+
+				a {
+					display: block !important;
+				}
 			}
 		}
 	}
@@ -70,82 +121,68 @@ div#sidebar {
 		display: none;
 	}
 
-	i.arrow {
-		font-size: 60px;
-		margin-top: 50%;
-		position: relative;
-		right: 0;
-		top: -44px;
-	}
-
 	div#user-container {
-		margin: 0 0 20px 0;
+		margin: 10px 0 20px 0;
 
 		img {
 			border: 1px solid #999;
-			display: block;
-			margin: 0;
-			padding: 3px;
+			display: inline-block;
+			padding: 1px;
 			width: 36px;
 		}
 
-		span.item {
-			color: #eee;
-			font-size: 12px;
-			font-weight: bold;
+		p {
+			cursor: default;
 
-			&.nickname, &.nickname i {
-				color: darken(@LoLOrangeAD, 10%);
+			a, i {
+				color: #666;
+			}
 
-				i {
-					position: relative;
-					top: 2px;
+			&:hover {
+				a, i {
+					color: #ccc; .transition(color .25s linear);
 				}
 			}
 		}
 	}
 
 	ul {
-		color: #eee;
-		list-style: none;
-		margin: 0;
-		padding: 5px 0;
-
-		&.menu {
-			clear: both;
-		}
-
-		&.item-builder {
-			list-style: square;
-		}
-
-		a, a:hover, a:visited {
-			color: @MVNerdsBlue;
-		}
+		list-style: square;
+		margin: 10px 0;
+		padding: 0;
 
 		li {
-			font-family: 'Ubuntu', sans-serif;
-			font-size: 12px;
-			font-weight: bold;
-			margin: 5px 0;
+			color: #999;
+			font-size: 14px;
 
-			text-transform: uppercase;
-
-			&:hover {
+			&.header {
 				color: @LoLOrangeAD;
-				border-color: @LoLOrangeAD; 
-				.transition(all .15s linear);
+				font-size: 16px;
+				font-weight: bold;
+
+				&:hover {
+					i, span {
+						color: darken(@LoLOrangeAD, 15%); .transition(color .25s linear);
+					}
+				}
+
+				i {
+					color: @LoLOrangeAD;
+				}
 			}
 
-			.only-active-show {
-				position: relative;
-				top: -2px;
-			}
+			a {
+				color: inherit;
+				display: block;
 
-			i {
-				color: #eee;
-				font-size: 20px;
+				&:hover {
+					color: @MVNerdsBlue; .transition(color .25s linear);
+				}
 			}
 		}
 	}
+}
+
+span.sidebar-tooltip {
+	font-family: 'Ubuntu', sans-serif;
 }

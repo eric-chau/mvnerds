@@ -1,2 +1,206 @@
-.clearfix{*zoom:1}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0}.clearfix:after{clear:both}.hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0}.input-block-level{display:block;width:100%;min-height:30px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}div#sidebar{background-color:rgba(0,0,0,.3);cursor:pointer;font-family:'Ubuntu',sans-serif;height:100%;left:0;padding:10px;position:fixed;text-align:center;top:0;width:44px;-webkit-transition:width .25s linear;-moz-transition:width .25s linear;-o-transition:width .25s linear;transition:width .25s linear;z-index:2000}div#sidebar:hover{background-color:rgba(0,0,0,.7);-webkit-transition:background-color .15s linear;-moz-transition:background-color .15s linear;-o-transition:background-color .15s linear;transition:background-color .15s linear}div#sidebar.active{background-color:rgba(0,0,0,.8);text-align:left;width:360px;-webkit-transition:width .35s cubic-bezier(0,1,0,1);-moz-transition:width .35s cubic-bezier(0,1,0,1);-o-transition:width .35s cubic-bezier(0,1,0,1);transition:width .35s cubic-bezier(0,1,0,1)}div#sidebar.active .only-active-show{display:inline-block}div#sidebar.active div#user-container{height:124px}div#sidebar.active div#user-container img{display:inline;float:left;margin:0 10px 5px 0;width:116px}div#sidebar.active div#user-container span.item{color:#999;display:block}div#sidebar.active div#user-container span.item.nickname strong{color:#999;display:inline-block;font-size:16px;margin-right:5px}div#sidebar.active div#user-container span.item.team{color:#db4a38;font-size:14px;margin-bottom:10px}div#sidebar.active div#user-container i{color:#999;display:inline-block;position:relative;top:2px}div#sidebar .only-active-show{display:none}div#sidebar i.arrow{font-size:60px;margin-top:50%;position:relative;right:0;top:-44px}div#sidebar div#user-container{margin:0 0 20px 0}div#sidebar div#user-container img{border:1px solid #999;display:block;margin:0;padding:3px;width:36px}div#sidebar div#user-container span.item{color:#eee;font-size:12px;font-weight:700}div#sidebar div#user-container span.item.nickname,div#sidebar div#user-container span.item.nickname i{color:#c87801}div#sidebar div#user-container span.item.nickname i,div#sidebar div#user-container span.item.nickname i i{position:relative;top:2px}div#sidebar ul{color:#eee;list-style:none;margin:0;padding:5px 0}div#sidebar ul.menu{clear:both}div#sidebar ul.item-builder{list-style:square}div#sidebar ul a,div#sidebar ul a:hover,div#sidebar ul a:visited{color:#19a0df}div#sidebar ul li{font-family:'Ubuntu',sans-serif;font-size:12px;font-weight:700;margin:5px 0;text-transform:uppercase}div#sidebar ul li:hover{color:#fb9701;border-color:#fb9701;-webkit-transition:all .15s linear;-moz-transition:all .15s linear;-o-transition:all .15s linear;transition:all .15s linear}div#sidebar ul li .only-active-show{position:relative;top:-2px}div#sidebar ul li i{color:#eee;font-size:20px}
-/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+div#sidebar {
+  background-color: rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  font-family: 'Trebuchet MS', sans-serif;
+  height: 100%;
+  left: 0;
+  padding: 10px;
+  position: fixed;
+  text-align: center;
+  top: 0;
+  width: 44px;
+  z-index: 2000;
+}
+div#sidebar:hover {
+  background-color: rgba(0, 0, 0, 0.7);
+  -webkit-transition: background-color 0.15s linear;
+  -moz-transition: background-color 0.15s linear;
+  -o-transition: background-color 0.15s linear;
+  transition: background-color 0.15s linear;
+}
+div#sidebar.active {
+  background-color: rgba(0, 0, 0, 0.8);
+  cursor: default;
+  text-align: left;
+  width: 360px;
+  -webkit-transition: width 0.35s cubic-bezier(0, 1, 0, 1);
+  -moz-transition: width 0.35s cubic-bezier(0, 1, 0, 1);
+  -o-transition: width 0.35s cubic-bezier(0, 1, 0, 1);
+  transition: width 0.35s cubic-bezier(0, 1, 0, 1);
+}
+div#sidebar.active .only-active-show {
+  display: initial;
+}
+div#sidebar.active div.toggle-sidebar {
+  cursor: pointer;
+  float: right;
+  height: 100%;
+  left: 10px;
+  position: relative;
+  text-align: center;
+  top: -10px;
+  width: 45px;
+}
+div#sidebar.active div.toggle-sidebar i {
+  color: #999;
+  display: block;
+  font-size: 60px;
+  left: 343px;
+  margin-top: -45px;
+  opacity: .3;
+  position: fixed;
+  top: 50%;
+}
+div#sidebar.active div.toggle-sidebar:hover {
+  background-color: rgba(204, 204, 204, 0.1);
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+div#sidebar.active div.toggle-sidebar:hover i {
+  opacity: .8;
+  -webkit-transition: opacity 0.25s linear;
+  -moz-transition: opacity 0.25s linear;
+  -o-transition: opacity 0.25s linear;
+  transition: opacity 0.25s linear;
+}
+div#sidebar.active div#user-container img {
+  border: 1px solid #999;
+  display: inline-block;
+  float: left;
+  margin: 0 10px 10px 0;
+  padding: 2px;
+  width: 100px;
+}
+div#sidebar.active div#user-container p {
+  color: #eee;
+  display: block;
+  font-size: 14px;
+  margin: 0;
+}
+div#sidebar.active div#user-container p.nickname,
+div#sidebar.active div#user-container p.team {
+  font-size: 16px;
+}
+div#sidebar.active div#user-container p.nickname {
+  font-weight: bold;
+}
+div#sidebar.active div#user-container p.team {
+  color: #db4a38;
+  margin-bottom: 15px;
+}
+div#sidebar.active ul {
+  margin-bottom: 20px;
+}
+div#sidebar.active ul.first-ul {
+  margin-top: 30px;
+}
+div#sidebar.active ul li {
+  border-bottom: 1px solid #0c4e6c;
+  display: list-item !important;
+  margin: 2px 40px;
+}
+div#sidebar.active ul li.header {
+  border: 0;
+  margin: 0;
+}
+div#sidebar.active ul li.header a {
+  display: inline-block !important;
+}
+div#sidebar.active ul li a {
+  display: block !important;
+}
+div#sidebar .only-active-show {
+  display: none;
+}
+div#sidebar div#user-container {
+  margin: 10px 0 20px 0;
+}
+div#sidebar div#user-container img {
+  border: 1px solid #999;
+  display: inline-block;
+  padding: 1px;
+  width: 36px;
+}
+div#sidebar div#user-container p {
+  cursor: default;
+}
+div#sidebar div#user-container p a,
+div#sidebar div#user-container p i {
+  color: #666;
+}
+div#sidebar div#user-container p:hover a,
+div#sidebar div#user-container p:hover i {
+  color: #ccc;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div#sidebar ul {
+  list-style: square;
+  margin: 10px 0;
+  padding: 0;
+}
+div#sidebar ul li {
+  color: #999;
+  font-size: 14px;
+}
+div#sidebar ul li.header {
+  color: #fb9701;
+  font-size: 16px;
+  font-weight: bold;
+}
+div#sidebar ul li.header:hover i,
+div#sidebar ul li.header:hover span {
+  color: #af6901;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div#sidebar ul li.header i {
+  color: #fb9701;
+}
+div#sidebar ul li a {
+  color: inherit;
+  display: block;
+}
+div#sidebar ul li a:hover {
+  color: #19a0df;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+span.sidebar-tooltip {
+  font-family: 'Ubuntu', sans-serif;
+}
