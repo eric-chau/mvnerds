@@ -1,0 +1,112 @@
+@import '../bootstrap/mixins.less';
+@import '../mvnerds-variables.less';
+
+span, input[type="text"] {
+	font-family: 'Ubuntu', sans-serif;
+}
+
+p {
+	color: #ddd;
+	cursor: default;
+	font-size: 14px;
+}
+
+div.social-container {
+	border-bottom: 1px solid #000 !important;
+}
+
+div.body-container {
+	background-color: #000;
+	color: #fff;
+	padding: 20px;
+	margin-bottom: 20px;
+
+	h2 {
+		color: @MVNerdsRed;
+	}
+
+	div.game-mode-container, div.generate-button-container, div.name-container {
+		text-align: center;
+		margin: 30px 0;
+	}
+
+	div.game-mode-container {
+		.game-mode {
+		    background: url('/images/item_builder/game-mode-bg.jpg');
+		    border: 2px solid #111;
+		    cursor: pointer;
+		    display: inline-block;
+		    height: 153px;
+		    margin: 0 5px;
+		    width: 287px;
+
+		    &.dominion {    
+			    background-position: -291px -1px;
+			}
+
+			&.proving-grounds {
+			    background-position: -1px -157px;
+			}
+
+			&.summoners-treeline {
+			    background-position: -1px -1px;
+			}
+
+			&.active {
+				border: 2px solid darken(@LoLOrangeAD, 10%);
+
+				span.message {
+					background-color: darken(@LoLOrangeAD, 10%);
+				}
+			}
+
+			span.message {
+				color: #eee;
+				background-color: #111;
+				display: block;
+				font-size: 14px;
+				padding: 3px 10px;
+				margin-top: 124px;
+				text-align: right;
+			}
+		}
+	}
+
+	div.name-container {
+		input[type="text"] {
+			.border-radius(0);
+			font-size: 18px;
+			padding: 7px;
+			width: 250px;
+		}
+	}
+
+	div.generate-button-container {
+		a {
+			background-color: #333;
+			color: #999;
+			display: inline-block;
+			font-size: 12px;
+			font-weight: bold;
+			margin: 0 10px;
+			padding: 5px 10px;
+
+			&:hover {
+				background-color: #666; .transition(background-color .25s linear);
+			}
+
+			&.main {
+				color: #fff;
+				background-color: darken(@MVNerdsRed, 10%);
+				font-size: 18px;
+				padding: 10px 15px;
+				position: relative;
+				top: 2px;
+
+				&:hover {
+					background-color: @MVNerdsRed;
+				}
+			}
+		}
+	}
+}

@@ -24,7 +24,7 @@
 					<li class="indication {% if list_size > 0 %}hide{% endif %}">{{'Actionsbar.Comparison_list.Dropdown.indication'|trans}}</li>
 
 					{% for champion in comparison_list %}
-						{% include 'MVNerdsChampionHandlerBundle:Comparison:comparison_row.html.twig' with {'champion': champion }%}
+						{% include 'MVNerdsChampionHandlerBundle:CompareList:comparison_row.html.twig' with {'champion': champion }%}
 					{% endfor %}
 
 					<li id="li-clean" class="clean {% if list_size < 1 %} disabled{% endif %}">
@@ -44,7 +44,7 @@
 			</li>
 
 			{# Bouton d'action qui permet de filtrer les champions #}
-			{% include 'MVNerdsChampionHandlerBundle:Comparison:filter_list.html.twig' %}
+			{% include 'MVNerdsChampionHandlerBundle:ActionBar:filter_list.html.twig' %}
 
 			{# Champ input qui permet de filtrer / rechercher un champion selon son nom #}
 			<li class="action filter-action search-action {% if page != 'champions' %}force-hide{% endif %}" data-page-display="champions">

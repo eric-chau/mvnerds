@@ -1,0 +1,25 @@
+<div id="sidebar">
+	<div id="user-container">
+		<img src="{{ asset('images/avatar/ro0ny.jpg') }}" />
+		<span class="item only-active-show nickname"><strong>Ro0ny</strong> 999 <i class="icon-trophy"></i></span>
+		<span class="item only-active-show team">Most Valuable Nerds</span>
+		<span class="item only-active-show"><i class="icon-cog"></i> Administrer mon profil</span>
+		<span class="item only-active-show"><i class="icon-off"></i> Me déconnecter</span>
+	</div>
+
+	<ul class="menu champion-benchmark">
+		<li><i class="icon-random"></i> <span class="only-active-show">Champions Benchmark</span></li>
+	</ul>
+
+	<ul class="menu item-builder">
+		<li><i class="icon-wrench"></i> <span class="only-active-show">Item Builder</span></li>
+		<a href="{{ path('item_builder_create') }}"><li><span class="only-active-show">Créer une nouvelle liste d'objets</span></li></a>
+		<li><span class="only-active-show">Consulter les listes d'objets publiques</span></li>
+	</ul>
+
+	<ul class="about-mvnerds-menu">
+		<a href=""><li><i class="icon-group"></i> <span class="only-active-show">L'équipe MVNerds</span></li></a>
+		<a href=""><li><i class="icon-file"></i> <span class="only-active-show">MVNerds patch note</span></li></a>
+		<a href=""><li><i class="icon-warning-sign"></i> <span class="only-active-show">Signaler un bug</span></li></a>
+	</ul>
+</div>

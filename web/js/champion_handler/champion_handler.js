@@ -10,7 +10,7 @@ function addChampionToList(slug){
 	//On fait un appel ajax pour demander à ajouter le champion
 	$.ajax({
 		type: 'GET',
-		url:  Routing.generate('champion_handler_comparison_add_to_compare', {'slug': slug}),
+		url:  Routing.generate('champion_handler_comparison_add_to_compare', {_locale: locale, 'slug': slug}),
 		dataType: 'html'
 	}).done(function(data){
 		//Si data est vide ça veut dire qu'on est confrontés à une erreur
@@ -58,7 +58,7 @@ function addManyChampionsToList(championsSlugArray){
 	//On fait un appel ajax pour demander à ajouter le champion
 	$.ajax({
 		type: 'POST',
-		url:  Routing.generate('champion_handler_comparison_add_many_to_compare'),
+		url:  Routing.generate('champion_handler_comparison_add_many_to_compare', {_locale: locale}),
 		data: {championsSlug: championsSlugArray},
 		dataType: 'html'
 	}).done(function(data){
@@ -334,7 +334,7 @@ function initFilterList($isotope) {
 function setTypeaheadChampionsName() {
 	$.ajax({
 		type: 'POST',
-		url:  Routing.generate('champion_handler_front_get_champions_name'),
+		url:  Routing.generate('champion_handler_front_get_champions_name',{_locale: locale}), 
 		dataType: 'html'
 	}).done(function(data){
 		$filterValue.attr('data-source', data);
@@ -528,6 +528,13 @@ jQuery(function() {
 	options =  getIsotopeOptions();
 	$isotope = $('#isotope-list');
 	initIsotope($isotope);
+
+	$('div.champion-portrait  a.btn-add-to-list').on('click', function(event)
+	{
+		event.preventDefault();
+		console.log($(this).data('champion-slug'));
+		addChampionToList($(this).data('champion-slug'));
+	});
 	
 	
 	$filterValue = $('#filter-value');

@@ -64,6 +64,9 @@
 		<p class="indication">{{'Champion_preview.stat.indication.part1'|trans}} {{ champion.getName() }} {{'Champion_preview.stat.indication.part2'|trans}}</p>
 	</div>
 	<div class="span6 right-side">
-		<div class="champion-portrait {{ champion.getSlug() }}"></div>
+		<div class="champion-portrait {{ champion.getSlug() }}">
+			<a href="{{ path('champion_handler_detail', {'championSlug': champion.getSlug()}) }}" class="btn-action-champion-preview"><strong>En savoir plus</strong> sur {{ champion.getName() }}</a>
+			<a href="#" class="btn-action-champion-preview btn-add-to-list" data-champion-slug="{{ champion.getSlug() }}"><strong>Ajouter</strong> à la liste</a>
+		</div>
 	</div>
 </div>

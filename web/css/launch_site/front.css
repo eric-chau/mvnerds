@@ -978,6 +978,7 @@ div.body-container div.champions-handler-container div#champion-list li.champion
 div.body-container div.champions-handler-container div#champion-list li.champion.champion-maxi {
   background: #000000 url('/images/launch_site/champion_preview_bg.png') no-repeat top left;
   border: 1px solid #fb9701;
+  cursor: default;
   height: 498px;
   -webkit-transition: all 0.3s linear;
   -moz-transition: all 0.3s linear;
@@ -1119,6 +1120,31 @@ div.body-container div.champions-handler-container div#champion-list li.champion
 div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.right-side div.champion-portrait {
   margin-top: 7px;
   opacity: 0.7;
+}
+div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.right-side div.champion-portrait a.btn-action-champion-preview {
+  background-color: rgba(0, 0, 0, 0.3);
+  border: 1px solid #999;
+  color: white;
+  display: inline-block;
+  float: right;
+  font-family: 'Ubuntu', sans-serif;
+  line-height: 1em;
+  margin: 360px 0 0 2px;
+  padding: 7px 0;
+  text-align: center;
+  width: 48%;
+}
+div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.right-side div.champion-portrait a.btn-action-champion-preview:hover {
+  background-color: #000000;
+  border: 1px solid #fb9701;
+  color: #fb9701;
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+div.body-container div.champions-handler-container div#champion-list li.champion div.preview div.right-side div.champion-portrait a.btn-action-champion-preview strong {
+  display: block;
 }
 div.modal {
   background: #000000 url('/images/launch_site/modal_bg.jpg') no-repeat top left;

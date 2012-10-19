@@ -1,0 +1,30 @@
+{% extends 'MVNerdsLaunchSiteBundle::layout.html.twig' %}
+
+{% block title %}{{ champion.getName() }} - Most Valuable Nerds | MVNerds {% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/main.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/launch_site/front.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square-sprite.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-portrait-sprite.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square25-sprite.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square36-sprite.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	
+	<script type="text/javascript" src="{{ asset('/js/launch_site/countdown.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/js/launch_site/front.js') }}"></script>	
+{% endblock %}
+				
+{% block body_main_content %}	
+	<div class="body-container">
+		<h2>{{ champion.getName() }}</h2>
+		<p>{{ champion.getLore() }}</p>
+	</div>	
+{% endblock %}

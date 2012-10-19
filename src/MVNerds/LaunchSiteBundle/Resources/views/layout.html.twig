@@ -30,6 +30,8 @@
 	 
 {% block body %}
 	<div id="wrapper">
+		{% render 'MVNerdsLaunchSiteBundle:SideBar:renderSideBar' %}
+			
 		<div class="container main-container">
 			<div class="header-container">
 
@@ -70,16 +72,12 @@
 				<div class="social-container">
 					<p> {{'Social.follow_us_on'|trans}} <a href="https://twitter.com/MVNerds" target="_blank" class="twitter">Twitter <i class="icon-twitter"></i></a> {{'General.and'|trans}} <a href="http://www.facebook.com/mvnerds" target="_blank" class="facebook">Facebook <i class="icon-facebook-sign"></i></a>.</p>
 				</div>
-				<div class="presentation-container">
-					<div class="content">
-						<div class="overview custom">
-							{% block overview %}{% endblock %}
-						</div>
-					</div>
-				</div>
-				<div class="clearfix"></div>
+				
+				{% block header_footer %}{% endblock %}
 			</div>
 
+			{% block body_main_content %}{% endblock %}
+				
 			<div id="footer">
 				{% include 'MVNerdsLaunchSiteBundle:Front:footer.html.twig' %}
 			</div>

@@ -1,0 +1,71 @@
+{% extends 'MVNerdsLaunchSiteBundle::layout.html.twig' %}
+
+{% block css %}
+	{{ parent() }}
+
+	<link href="{{ asset('css/item_builder/creation-page.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+	
+{% block javascripts %}
+	{{ parent() }}
+	
+	<script src="{{ asset('js/item_handler/item_builder/creation-page.js') }}"></script>
+{% endblock %}
+
+{% block body_main_content %}
+	<div class="body-container create-item-builder">
+		<p>Bienvenue sur la page de création d'une nouvelle liste d'objets recommandés pour vos champions favoris. Pour être plus précis, nous allons voir comment de manière
+		simple et intuitive on modifier la liste des objets conseillés, celle qui apparaît lorsque vous êtes en jeu et que vous ouvrez la boutique.</p>
+		<p></p>
+		
+		<h2>Etape 1 : choisissez un ou plusieurs champions</h2>
+		<p>Sélectionnez ici le champion dont vous souhaitez éditer sa liste d'objets conseillés.</p>
+		<p class="tip">Astuce : un des avantages à utiliser notre outil est qu'il vous permet de changer en une seule fois les objets recommandés de plusieurs champions, 
+		pratique non ?</p>
+		
+		<div class="champion-container">
+			
+		</div>
+		
+		<h2>Etape 2 : choisissez le mode de jeu</h2>
+		<p>Dans League of Legends, pour chaque champion sa liste d'objets conseillés diffèrent selon le mode de jeu. Vous n'aurez donc pas forcément la même liste 
+		si vous faites une partie sur la carte "Brèche de cristal" (Dominion) ou une partie sur la carte "Faille de l'invocateur" (5 contre 5 - classique).</p>
+		<p class="note">Note : les objets recommandés d'un champion sont identiques pour le mode 5 contre 5 (Faille de l'invocation) et 3 contre 3 (Forêt torturée).</p>
+		
+		<div class="game-mode-container">
+			<div class="game-mode summoners-treeline" data-game-mode="classic"><span class="message">Classique</span></div>
+			<div class="game-mode dominion"><span class="message" data-game-mode="dominion">Dominion</span></div>
+			<div class="game-mode proving-grounds"><span class="message" data-game-mode="aram">All Random All Mid (ARAM)</span></div>
+		</div>
+		
+		<h2>Etape 3 : choisissez vos objets</h2>
+		<p>Vous devez sélectionner un à six objets dont vous souhaitez voir apparaître dans la boutique en jeu pour le ou les champions dans le(s) mode(s) de jeu
+		que vous avez sélectionné ci-dessus.</p>
+		<p note="tip">Astuce : les consommables ne disparaissent pas de la liste des objets conseillés même après que vous les ayez acheté.</p>
+		<p class="note">Note : Certains objets ne sont pas disponibles dans tous les modes comme par exemple la "Lantern de Wriggles". Ne soyez donc pas surpris si jamais vous
+		ne retrouvez pas certains objets.</p>
+		
+		<div class="item-container"></div>
+		
+		<h2>Etape 4 : nommez votre liste</h2>
+		<p>C'est presque terminé. Vous devez maintenant nommer votre liste d'objet conseillés. Vous pourrez ensuite si vous le souhaitez, la consulter de nouveau,
+		la récupérer, l'éditer ou encore la partagée avec le reste de la communauté MVNerds.</p>
+		
+		<div class="name-container">
+			<form action="#" method="POST">
+				<input type="text" class="" id="" placeholder="Nom de la liste..." />
+			</form>
+		</div>
+		
+		<h2>Dernière étape</h2>
+		<p>Félicitation, vous avez confectionné votre nouvelle liste d'objet conseillé pour les champions <CHAMPION NAME LIST HERE> pour le mode de jeu <GAME MODE HERE>.
+		Vous n'avez plus qu'à cliquer sur le bouton "Sauvegarder et générer" ou "Générer seulement".</p>
+		<p class="note">Note : la sauvegarde d'une liste d'objets conseillés vous permet de la retrouver ultérieurement depuis votre profil. Si vous souhaitez seulement
+		générer la liste, celle-ci ne sera pas récupérable mais sera toutefois mémoriser par notre système.</p>
+		
+		<div class="generate-button-container">
+			<a href="#" class="main">Sauvegarder & générer</a>
+			<a href="#">Générer seulement</a>
+		</div>
+	</div>
+{% endblock %}

@@ -25,7 +25,7 @@ class ComparisonController extends Controller
 	 * 
 	 * @param string $slug le slug du champion à ajouter à la comparaison
 	 * 
-	 * @Route("/{slug}/ajouter-comparaison", name="champion_handler_comparison_add_to_compare", options={"expose"=true})
+	 * @Route("/{slug}/add-to-comparaison-list", name="champion_handler_comparison_add_to_compare", options={"expose"=true})
 	 */
 	public function addToCompareAction($slug)
 	{
@@ -68,9 +68,9 @@ class ComparisonController extends Controller
 		if ($isXHR)
 		{
 			//On renvoie le champion comparison row
-			return $this->render('MVNerdsChampionHandlerBundle:Comparison:comparison_row.html.twig', array(
-						'champion' => $champion,
-					));
+			return $this->render('MVNerdsChampionHandlerBundle:CompareList:comparison_row.html.twig', array(
+				'champion' => $champion,
+			));
 		}
 		else
 		{
@@ -81,7 +81,7 @@ class ComparisonController extends Controller
 	/**
 	 * Permet d'ajouter plusieurs champions à la liste des champions à comparer grâce à un tableau de slugs
 	 * 
-	 * @Route("/ajouter-plusieurs-champions", name="champion_handler_comparison_add_many_to_compare", options={"expose"=true})
+	 * @Route("/add-many-champions", name="champion_handler_comparison_add_many_to_compare", options={"expose"=true})
 	 */
 	public function addManyToCompareAction()
 	{
@@ -115,7 +115,7 @@ class ComparisonController extends Controller
 						$comparisonListSlugs = $comparisonManager->getListSlugs();
 						$comparisonList = $championManager->findManyBySlugs($comparisonListSlugs);
 						
-						return $this->render('MVNerdsChampionHandlerBundle:Comparison:comparison_list.html.twig',array(
+						return $this->render('MVNerdsChampionHandlerBundle:CompareList:comparison_list.html.twig',array(
 							'champions' => $comparisonList
 						));
 					}
@@ -123,7 +123,7 @@ class ComparisonController extends Controller
 						$comparisonListSlugs = $comparisonManager->getListSlugs();
 						$comparisonList = $championManager->findManyBySlugs($comparisonListSlugs);
 						$flashManager->setErrorMessage($e->getMessage());
-						return $this->render('MVNerdsChampionHandlerBundle:Comparison:comparison_list.html.twig',array(
+						return $this->render('MVNerdsChampionHandlerBundle:CompareList:comparison_list.html.twig',array(
 							'champions' => $comparisonList
 						));
 					}
@@ -154,7 +154,7 @@ class ComparisonController extends Controller
 	 * 
 	 * @param string $slug le slug du champion à retirer de la comparaison
 	 * 
-	 * @Route("/{_locale}/{slug}/retirer-comparaison", name="champion_handler_comparison_remove_from_compare", options={"expose"=true}, requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"})
+	 * @Route("/{slug}/remove-from-comparaison-list", name="champion_handler_comparison_remove_from_compare", options={"expose"=true}, requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"})
 	 */
 	public function removeFromCompareAction($slug)
 	{
@@ -212,60 +212,9 @@ class ComparisonController extends Controller
 	}
 
 	/**
-	 * Envoie vers la page de comparaison des champions
-	 * 
-	 * @Route("comparer/niveau-{lvl}", name="champion_handler_comparison_compare", defaults={"lvl" = 1}, options={"expose"=true})
-	 */
-//	public function compareAction($lvl)
-//	{
-//		//Création du FlashManager
-//		/* @var $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
-//		$flashManager = $this->get('mvnerds.flash_manager');
-//		
-//		//récupération du champion_comparison_manager
-//		/* @var $comparisonManager \MVNerds\CoreBundle\ChampionComparison\ChampionComparisonManager */
-//		$comparisonManager = $this->get('mvnerds.champion_comparison_manager');
-//		
-//		//récupération du champion_manager
-//		/* @var $championManager \MVNerds\CoreBundle\Champion\ChampionManager */
-//		$championManager = $this->get('mvnerds.champion_manager');
-//		
-//		//Si la liste peut être comparée
-//		if ($comparisonManager->isComparable())
-//		{
-//			$referenceChampionArray = $comparisonManager->getReferenceChampion();
-//			
-//			$comparisonListSlugs = $comparisonManager->getListSlugs();
-//			$comparisonList = $championManager->findManyBySlugs($comparisonListSlugs);
-//			$comparisonList = $championManager->setLevelToChampions($lvl, $comparisonList);
-//			
-//			foreach($comparisonList as $champion)
-//			{
-//				if ($champion->getSlug() == $referenceChampionArray['slug'])
-//				{
-//					$referenceChampion = $champion;
-//					break;
-//				}
-//			}
-//			//On affiche la page de comparaison
-//			return $this->render('MVNerdsChampionHandlerBundle:Comparison:compare.html.twig', array(
-//				'reference_champion' => $referenceChampion,
-//				'comparison_list' => $comparisonList,
-//				'lvl' => $lvl
-//			));
-//		}
-//		else
-//		{
-//			$flashManager->setErrorMessage('Flash.error.not_enough.compare.champions');
-//		}
-//
-//		return $this->redirect($this->generateUrl('launch_site_front'));
-//	}
-
-	/**
 	 * Permet de vider la liste de comparaison de champions
 	 * 
-	 * @Route("/vider-comparaison", name="champion_handler_comparison_clean_comparison", options={"expose"=true})
+	 * @Route("/clean-comparaison-list", name="champion_handler_comparison_clean_comparison", options={"expose"=true})
 	 */
 	public function cleanComparisonAction()
 	{
@@ -296,7 +245,7 @@ class ComparisonController extends Controller
 	 * 
 	 * @param string le slug du champion à déclarer comme champion de référence
 	 * 
-	 * @Route("/{_locale}/{slug}/selectionner-champion-de-reference", name="champion_handler_comparison_set_reference_champion", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"})
+	 * @Route("/{slug}/define-as-reference", name="champion_handler_comparison_set_reference_champion", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"})
 	 */
 	public function setReferenceChampionAction($slug)
 	{
@@ -317,7 +266,7 @@ class ComparisonController extends Controller
 	/**
 	 * Permet de retirer le champion de référence pour la comparaison de champions
 	 * 
-	 * @Route("/retirer-champion-de-reference", name="champion_handler_comparison_remove_reference_champion")
+	 * @Route("/remove-benchmark-champion", name="champion_handler_comparison_remove_reference_champion")
 	 */
 	public function removeReferenceChampionAction()
 	{
@@ -334,7 +283,7 @@ class ComparisonController extends Controller
 	/**
 	 * Permet de réupérer les messages d'erreur du flash manager de manière asynchrone
 	 * 
-	 * @Route("/recup-message-erreur", name="champion_handler_comparison_get_error_message", options={"expose"=true})
+	 * @Route("/get-error-message", name="champion_handler_comparison_get_error_message", options={"expose"=true})
 	 */
 	public function getErrorMessageAction()
 	{
@@ -354,7 +303,7 @@ class ComparisonController extends Controller
 	/**
 	 * Permet de réupérer les messages de succes du flash manager de manière asynchrone
 	 * 
-	 * @Route("/recup-message-succes", name="champion_handler_comparison_get_success_message", options={"expose"=true})
+	 * @Route("/get-success-message", name="champion_handler_comparison_get_success_message", options={"expose"=true})
 	 */
 	public function getSuccessMessageAction()
 	{

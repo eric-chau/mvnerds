@@ -974,6 +974,7 @@ div.body-container {
 				&.champion-maxi {
 					background: black url('/images/launch_site/champion_preview_bg.png') no-repeat top left;
 					border: 1px solid @LoLOrangeAD;
+					cursor: default;
 					height: (4 * @PortraitHeight) + (4 * @PortraitGutter) - 2;
 					.transition(all .3s linear);
 					width: (4 * @PortraitWidth) + (3 * @PortraitGutterWidth);
@@ -1132,6 +1133,30 @@ div.body-container {
 						div.champion-portrait {
 							margin-top: 7px;
 							opacity: 0.7;
+
+							a.btn-action-champion-preview {
+								background-color: rgba(0,0,0,.3);
+								border: 1px solid #999;
+								color: white;
+								display: inline-block;
+								float: right;
+								font-family: 'Ubuntu', sans-serif;
+								line-height: 1em;
+								margin: 360px 0 0 2px;
+								padding: 7px 0;
+								text-align: center;
+								width: 48%;
+
+								&:hover {
+									background-color:  rgba(0,0,0,1);
+									border: 1px solid @LoLOrangeAD;
+									color: @LoLOrangeAD; .transition(all .25s linear);
+								}
+
+								strong {
+									display: block;
+								}
+							}
 						}
 					} // Fin div.right-side
 				} // Fin div.preview

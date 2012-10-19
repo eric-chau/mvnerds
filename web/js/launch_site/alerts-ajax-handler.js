@@ -8,7 +8,7 @@ function getAlertMessage(type)
 {
 	$.ajax({
 		type: 'GET',
-		url: Routing.generate('champion_handler_comparison_get_'+type+'_message'),
+		url: Routing.generate('champion_handler_comparison_get_'+type+'_message', {_locale: locale}),
 		dataType: 'text'
 	}).done(function(message){
 		if (message != undefined && message != '')

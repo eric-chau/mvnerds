@@ -1,71 +1,31 @@
-{% extends '::base.html.twig' %}
-
-{% block title %}Guides, Builds and Tools for League of Legends - LoL | MVNerds{% endblock %}
-
-{% set locale = app.request.getLocale() %}
+{% extends 'MVNerdsLaunchSiteBundle::layout.html.twig' %}
 
 {% block css %}
 	{{ parent() }}
-	
-	{% if app.environment != 'dev' %}
-		{% stylesheets 
-			'css/bootstrap.css'
-			'css/normalize.css'
-			'css/main.css'
-			'css/launch_site/front.css'
-			'css/guide-tour.css'
-			'css/launch_site/front-compare.css'
-			'css/launch_site/data-scroll.css'
-			'css/champion_handler/champion-square-sprite.css'
-			'css/champion_handler/champion-portrait-sprite.css'
-			'css/champion_handler/champion-square25-sprite.css'
-			'css/champion_handler/champion-square36-sprite.css'
-			output='css/compiled/index.css'
-			filter='yui_css'
-		%}
-		<link rel="stylesheet" href="{{ asset_url }}" />
-		{% endstylesheets %}
-	{% else %}
-		<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-		<link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
-		<link rel="stylesheet" href="{{ asset('css/main.css') }}">
-		<link rel="stylesheet" href="{{ asset('/css/launch_site/front.css') }}">
-		<link rel="stylesheet" href="{{ asset('css/guide-tour.css') }}">
-		<link rel="stylesheet" href="{{ asset('/css/launch_site/front-compare.css') }}">
-		<link rel="stylesheet" href="{{ asset('/css/launch_site/data-scroll.css') }}">
-		<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square-sprite.css') }}">
-		<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-portrait-sprite.css') }}">
-		<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square25-sprite.css') }}">
-		<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square36-sprite.css') }}">
-	{% endif %}
+
+	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/main.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/launch_site/front.css') }}">
+	<link rel="stylesheet" href="{{ asset('css/guide-tour.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/launch_site/front-compare.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/launch_site/data-scroll.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square-sprite.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-portrait-sprite.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square25-sprite.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square36-sprite.css') }}">
 {% endblock %}
 
 {% block javascripts %}
 	{{ parent() }}
 	
-	{% if app.environment != 'dev' %}
-		{% javascripts
-			'js/launch_site/countdown.js'
-			'js/launch_site/front.js'
-			'js/champion_handler/shortcut.js'
-			'js/launch_site/alerts-ajax-handler.js'
-			'js/launch_site/data-scroll.js'
-			'js/champion_handler/sort.js'
-			'js/champion_handler/common-guide-tour.js'
-			output='js/compiled/index.js'
-			filter='yui_js'
-		%}
-		<script src="{{ asset_url }}"></script>
-		{% endjavascripts %}
-	{% else %}
-		<script type="text/javascript" src="{{ asset('/js/launch_site/countdown.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('/js/launch_site/front.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('/js/champion_handler/shortcut.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('/js/launch_site/alerts-ajax-handler.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('/js/launch_site/data-scroll.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('/js/champion_handler/sort.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('/js/champion_handler/common-guide-tour.js') }}"></script>
-	{% endif %}
+	<script type="text/javascript" src="{{ asset('/js/launch_site/countdown.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/js/launch_site/front.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/js/champion_handler/shortcut.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/js/launch_site/alerts-ajax-handler.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/js/launch_site/data-scroll.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/js/champion_handler/sort.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/js/champion_handler/common-guide-tour.js') }}"></script>
 		
 	{% if locale == 'fr' %}
 		<script type="text/javascript" src="{{ asset('/js/champion_handler/guide-tour-fr.js') }}"></script>
@@ -75,98 +35,50 @@
 
 	
 {% endblock %}
-	 
-{% block body %}
-	<div id="wrapper">
-		<div class="container main-container">
-			<div class="header-container">
+		
+{% block header_footer %}
+	<div class="presentation-container">
+		<div class="content">
+			<div class="overview">
+				<h2>{{'Overview.title'|trans}}</h2>
 
-				<div class="row-fluid">
-					<div class="span5">
-						<a href="{{ path('launch_site_front', {'_locale': locale}) }}" class="logo-link">
-							<div class="logo">
-								<div class="back-home-sign">{{'Go_back_home.1'|trans}}<br /> {{'Go_back_home.2'|trans}}</div>
-								<h1>MOST <font color="#db4a38">V</font><font color="#bf5650">A</font><font color="#a46368">L</font><font color="#886f80">U</font><font color="#6c7b97">A</font><font color="#5087af">B</font><font color="#3594c7">L</font><font color="#19a0df">E</font> <em>NERDS</em></h1>
-							</div>
-						</a>
-					</div>
-					
-					<div class="span7">
-						<div class="launch-date-msg">{{'Countdown.message'|trans}}</div> 
-						
-						<div class="countdown">
-							<div class="days"></div>
-							<div class="hours"></div>
-							<div class="minutes"></div>
-							<div class="seconds"></div>
-						</div>
-					</div>
-				</div>	
-				
-				<div class="switch-language-container">
-					<span class="current-language-msg">{{'Switch_language.current.s1'|trans}}<br />{{'Switch_language.current.s2'|trans}}</span> 
-					<span class="current-language">{% if locale == 'fr' %}française{% else %}english{% endif %}</span> 
-					<span class="switch-language-msg">{{'Switch_language.switch.s1'|trans}}<br />{{'Switch_language.switch.s2'|trans}}</span>
-					{% if locale == 'fr' %}
-						<a href="{{ path('culture_switch_language', {'locale': 'en'}) }}">english</a>
-					{% else %}
-						<a href="{{ path('culture_switch_language', {'locale': 'fr'}) }}">française</a>
-					{% endif %}
-				</div>
-				<div class="clearfix"></div>
-				
-				<div class="social-container">
-					<p> {{'Social.follow_us_on'|trans}} <a href="https://twitter.com/MVNerds" target="_blank" class="twitter">Twitter <i class="icon-twitter"></i></a> {{'General.and'|trans}} <a href="http://www.facebook.com/mvnerds" target="_blank" class="facebook">Facebook <i class="icon-facebook-sign"></i></a>.</p>
-				</div>
-				<div class="presentation-container">
-					<div class="content">
-						<div class="overview">
-							<h2>{{'Overview.title'|trans}}</h2>
-							
-							<p>{{'Overview.content.p1'|trans}}</p>
-							
-							<p>{{'Overview.content.p2'|trans}}</p>
-						</div>
-						<div class="registration">
-							<h2>{{'Registration.title'|trans}}</h2>
+				<p>{{'Overview.content.p1'|trans}}</p>
 
-							<p>{{'Registration.content.p1'|trans}}</p>
-
-							<div id="leave-email-form-container">
-								{% include 'MVNerdsLaunchSiteBundle:Front:leave_email_form.html.twig' with {'form': form} %}
-							</div>
-
-							<p class="secret-msg">{{'Registration.content.p2'|trans}}</p>
-						</div>
-					</div>
-					<div class="link registration" data-content-name="registration">{{'Registration.title'|trans}}</div>
-					<div class="link overview" data-content-name="overview">{{'Overview.title'|trans}}</div>
-				</div>
-				<div class="clearfix"></div>
+				<p>{{'Overview.content.p2'|trans}}</p>
 			</div>
-				
-			<div class="body-container">
-				<div class="champions-handler-container">
-					{# Barre d'action du module des champions #}
-					{% include 'MVNerdsLaunchSiteBundle:Front:champion_handler_actionbar.html.twig' with {'page': page} %}
-					
-					<div class="content">
-						<div id="champion-comparison">
-							{% if page == 'champions'%}
-								{% render 'MVNerdsChampionHandlerBundle:Front:championComparison' %}
-							{% elseif page == 'compare' %}
-								{% include 'MVNerdsChampionHandlerBundle:Comparison:compare.html.twig' %}
-							{% endif %}
-						</div>
-					</div>
+			<div class="registration">
+				<h2>{{'Registration.title'|trans}}</h2>
+
+				<p>{{'Registration.content.p1'|trans}}</p>
+
+				<div id="leave-email-form-container">
+					{% include 'MVNerdsLaunchSiteBundle:Front:leave_email_form.html.twig' with {'form': form} %}
 				</div>
-			</div>	
-				
-			<div id="footer">
-				{% include 'MVNerdsLaunchSiteBundle:Front:footer.html.twig' %}
+
+				<p class="secret-msg">{{'Registration.content.p2'|trans}}</p>
 			</div>
 		</div>
+		<div class="link registration" data-content-name="registration">{{'Registration.title'|trans}}</div>
+		<div class="link overview" data-content-name="overview">{{'Overview.title'|trans}}</div>
 	</div>
-	
-	
+	<div class="clearfix"></div>
+{% endblock %}
+		
+{% block body_main_content %}	
+	<div class="body-container">
+		<div class="champions-handler-container">
+			{# Barre d'action du module des champions #}
+			{% include 'MVNerdsChampionHandlerBundle:ActionBar:actionbar.html.twig' with {'page': page} %}
+
+			<div class="content">
+				<div id="champion-comparison">
+					{% if page == 'champions'%}
+						{% render 'MVNerdsChampionHandlerBundle:Front:championComparison' %}
+					{% elseif page == 'compare' %}
+						{% include 'MVNerdsChampionHandlerBundle:Comparison:compare_index.html.twig' %}
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>	
 {% endblock %}

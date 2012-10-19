@@ -10,6 +10,7 @@
 		<meta name="description" content="{{'Overview.content.p1'|trans}}">
 		<meta name="viewport" content="width=device-width">
 		
+		<link href="{{ asset('css/sidebar.css') }}" rel="stylesheet" type="text/css">
 		{% block css %}{% endblock %}
 		
 		{# Google Fonts #}
@@ -25,41 +26,19 @@
 		<script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 		<script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
 	
-		{% if app.environment != 'dev' %}
-			{% javascripts
-				'js/vendor/modernizr-2.6.1.min.js'
-				'js/plugins.js'
-				'js/utils.js'
-				'js/jquery-ui-1.9.0.custom.min.js'
-				'js/jquery.isotope.min.js'
-				'js/jquery.form.js'
-				'js/bootstrap/bootstrap-dropdown.js'
-				'js/bootstrap/bootstrap-tooltip.js'
-				'js/bootstrap/bootstrap-transition.js'
-				'js/bootstrap/bootstrap-alert.js'
-				'js/bootstrap/bootstrap-modal.js'
-				'js/bootstrap/bootstrap-typeahead.js'
-				'js/guiders-1.2.8.js'
-				output='js/compiled/main.js'
-				filter='yui_js'
-			%}
-			<script src="{{ asset_url }}"></script>
-			{% endjavascripts %}
-		{% else %}
-			<script type="text/javascript" src="{{ asset('js/jquery-ui-1.9.0.custom.min.js') }}"></script>
-			<script type="text/javascript" src="{{ asset('js/vendor/modernizr-2.6.1.min.js') }}"></script>
-			<script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
-			<script type="text/javascript" src="{{ asset('js/utils.js') }}"></script>
-			<script type="text/javascript" src="{{ asset('js/jquery.isotope.min.js') }}"></script>
-			<script type="text/javascript" src="{{ asset('js/jquery.form.js') }}"></script>
-			<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-dropdown.js') }}"></script>
-			<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-tooltip.js') }}"></script>
-			<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-transition.js') }}"></script>
-			<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-alert.js') }}"></script>
-			<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-modal.js') }}"></script>
-			<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-typeahead.js') }}"></script>
-			<script type="text/javascript" src="{{ asset('js/guiders-1.2.8.js') }}"></script>
-		{% endif %}
+		<script type="text/javascript" src="{{ asset('js/jquery-ui-1.9.0.custom.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/vendor/modernizr-2.6.1.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/utils.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/jquery.isotope.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/jquery.form.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-dropdown.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-tooltip.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-transition.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-alert.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-modal.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-typeahead.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/guiders-1.2.8.js') }}"></script>
 		
 	</head>
 	<body>
@@ -68,7 +47,8 @@
 		<![endif]-->
 
 		{% block body %}{% endblock %}
-			
+		
+		<script type="text/javascript" src="{{ asset('js/sidebar.js') }}"></script>
 		{% block javascripts %}{% endblock %}
 	</body>
 </html>
