@@ -19,16 +19,16 @@ class ItemBuildManager
 	 * Récupère un objet ItemBuild à partir de son identifiant $id 
 	 * 
 	 * @param integer $id l'id de l'item build dont on souhaite récupérer l'objet ItemBuild associé 
-	 * @return MVNerds\CoreBundle\Model\ItemBuild l'objet ItemBuild qui correspond à l'id $id 
+	 * @return ItemBuild l'objet ItemBuild qui correspond à l'id $id 
 	 * @throws InvalidArgumentException exception levé si aucun item build n'est associé à l'id $id
 	 */
 	public function findOneById($id)
 	{
 		$itemBuild = ItemBuildQuery::create()
 			->joinWith('ChampionItemBuild', \Criteria::LEFT_JOIN)
-			->joinWith('Item', \Criteria::LEFT_JOIN)
 			->joinWith('ChampionItemBuild.GameMode', \Criteria::LEFT_JOIN)
 			->joinWith('ChampionItemBuild.Champion', \Criteria::LEFT_JOIN)
+			->joinWith('Champion.ChampionI18n', \Criteria::LEFT_JOIN)
 			->add(ItemBuildPeer::ID, $id)
 		->findOne();
 

@@ -1,0 +1,31 @@
+
+rem Permet de se placer dans le repertoire de release le plus recent
+setlocal enableextensions enabledelayedexpansion
+set cmpt=0
+set folder=
+for /d %%i in (*) do (
+	set path=%%i
+	set test=!path:.= !
+	set temp=
+	set j=1000000000
+	set mult=
+	for %%x in (!test!) do (
+		if %%x GTR 0 (
+			set /a var=!j!*%%x
+			set /a temp=!temp!+!var!
+		)
+		set /a j=!j!/1000
+	)
+	if !temp! GTR !cmpt! (
+		set cmpt=!temp!
+		set folder=!path!
+	)
+)
+cd !folder!
+cd "deploy/DATA"
+
+
+rem Cree le repertoire des champions s il n existe pas et se place dedans
+md "Characters"
+cd "Characters"
+
