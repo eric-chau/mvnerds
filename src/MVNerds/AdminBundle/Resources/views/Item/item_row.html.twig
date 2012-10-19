@@ -14,7 +14,7 @@
 		{% set itemPrimaryEffects = item.getItemPrimaryEffects() %}
 		{% for itemPrimaryEffect in itemPrimaryEffects %}
 			<div class="row-fluid">
-				+{{itemPrimaryEffect.getValue()}} 
+				{{itemPrimaryEffect.getValue()}} 
 				{{itemPrimaryEffect.getPrimaryEffect().getLabel()}}
 			</div>
 		{% endfor %}

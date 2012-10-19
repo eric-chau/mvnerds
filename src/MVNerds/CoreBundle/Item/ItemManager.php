@@ -189,7 +189,7 @@ class ItemManager
 	 * tous les items de la base de données avec leurs tags
 	 */
 	public function findAllWithTags()
-	{
+	{		
 		return ItemQuery::create()
 			->joinWithI18n($this->userLocale)
 			->joinWith('ItemPrimaryEffect', \Criteria::LEFT_JOIN)
@@ -202,7 +202,8 @@ class ItemManager
 			->joinWith('Tag.TagI18n', \Criteria::LEFT_JOIN)
 			->joinWith('ItemGameMode', \Criteria::LEFT_JOIN)
 			->joinWith('ItemGameMode.GameMode', \Criteria::LEFT_JOIN)
-			->OrderBy('ItemI18n.NAME')
+			->orderBy('ItemI18n.NAME')
+			->orderBy('ItemSecondaryEffect.ID')
 		->find();
 	}
 

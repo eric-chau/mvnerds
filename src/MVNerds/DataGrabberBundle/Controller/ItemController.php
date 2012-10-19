@@ -249,73 +249,6 @@ class ItemController extends Controller
 								}
 							}
 						}
-						elseif (strpos($stat, 'Propriété passive') !== false)
-						{
-							$itemSecondaryEffect = new ItemSecondaryEffect();
-							if (strpos($stat, 'UNIQUE') !== false)
-							{
-								$itemSecondaryEffect->setIsUnique(true);
-							}
-							else
-							{
-								$itemSecondaryEffect->setIsUnique(false);
-							}
-							$itemSecondaryEffect->setCategory('PASSIVE');
-							$itemSecondaryEffect->setDescription($stat);
-							$itemSecondaryEffect->setItem($item);
-							$itemSecondaryEffect->save();
-						}
-						elseif (strpos($stat, 'Propriété active') !== false)
-						{
-							$itemSecondaryEffect = new ItemSecondaryEffect();
-							if (strpos($stat, 'UNIQUE') !== false)
-							{
-								$itemSecondaryEffect->setIsUnique(true);
-							}
-							else
-							{
-								$itemSecondaryEffect->setIsUnique(false);
-							}
-							$itemSecondaryEffect->setCategory('ACTIVE');
-							$itemSecondaryEffect->setDescription($stat);
-							$itemSecondaryEffect->setItem($item);
-							$itemSecondaryEffect->save();
-						}
-						elseif (strpos($stat, 'Halo') !== false)
-						{
-							$itemSecondaryEffect = new ItemSecondaryEffect();
-							if (strpos($stat, 'UNIQUE') !== false)
-							{
-								$itemSecondaryEffect->setIsUnique(true);
-							}
-							else
-							{
-								$itemSecondaryEffect->setIsUnique(false);
-							}
-							$itemSecondaryEffect->setCategory('AURA');
-							$itemSecondaryEffect->setDescription($stat);
-							$itemSecondaryEffect->setItem($item);
-							$itemSecondaryEffect->save();
-							
-						}
-						elseif (strpos($stat, 'Cliquer pour consommer :') !== false)
-						{
-							$itemSecondaryEffect = new ItemSecondaryEffect();
-							$itemSecondaryEffect->setIsUnique(false);		
-							$itemSecondaryEffect->setCategory('CONSUMABLE');
-							$itemSecondaryEffect->setDescription($stat);
-							$itemSecondaryEffect->setItem($item);
-							$itemSecondaryEffect->save();
-						}
-						else
-						{
-							$itemSecondaryEffect = new ItemSecondaryEffect();
-							$itemSecondaryEffect->setIsUnique(false);		
-							$itemSecondaryEffect->setCategory('OTHER');
-							$itemSecondaryEffect->setDescription($stat);
-							$itemSecondaryEffect->setItem($item);
-							$itemSecondaryEffect->save();
-						}
 					}
 					if (( $categories = $itemPage->find('div#item-categories ul li')))
 					{
@@ -343,6 +276,157 @@ class ItemController extends Controller
 		return $this->render('MVNerdsDataGrabberBundle:Item:index.html.twig', array(
 			'form' => $form->createView()
 		));
+	}
+	
+	/**
+	 * V2 depuis lol toolkits en local
+	 * 
+	 * Permet de récupérer le reste des données de l item (stats tags)
+	 * 
+	 * A utiliser apres avoir insérer les objets de base avec l action getBaseItemsAction 
+	 * sur un fichier provenant de la page des item du site officiel de LoL
+	 * 
+	 * @Route("/complete-bis", name="DataGrabber_items_complete_bis")
+	 */
+	public function getCompleteItemsBisAction()
+	{
+		
+		include(__DIR__ . '/../SimpleHtmlDom/simple_html_dom.php');
+
+		//Création du flash manager
+		/* @var $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
+		$flashManager = $this->get('mvnerds.flash_manager');
+
+		$startItem = 0;
+		$nbItem =0;
+
+		/* @var $primaryEffectManager \MVNerds\CoreBundle\PrimaryEffect\PrimaryEffectManager */
+		$primaryEffectManager = $this->get('mvnerds.primary_effect_manager');
+
+		$itemEffects = array(
+			'armure'						=> $primaryEffectManager->findByLabel('armure'),
+			'résistance magique'				=> $primaryEffectManager->findByLabel('résistance magique'),
+			'PV'							=> $primaryEffectManager->findByLabel('PV'),
+			'puissance'						=> $primaryEffectManager->findByLabel('puissance'),
+			'régénération du mana toutes les 5 sec'	=> $primaryEffectManager->findByLabel('régénération du mana toutes les 5 sec'),
+			'vitesse d\'attaque'					=> $primaryEffectManager->findByLabel('vitesse d\'attaque'),
+			'dégâts d\'attaque'					=> $primaryEffectManager->findByLabel('dégâts d\'attaque'),
+			'régénération des PV toutes les 5 sec'	=> $primaryEffectManager->findByLabel('régénération des PV toutes les 5 sec'),
+			'mana'						=> $primaryEffectManager->findByLabel('mana'),
+			'chances de coup critique'			=> $primaryEffectManager->findByLabel('chances de coup critique'),
+			'vol de vie'						=> $primaryEffectManager->findByLabel('vol de vie'),
+			'vitesse de déplacement'				=> $primaryEffectManager->findByLabel('vitesse de déplacement'),
+			'puissance par niveau'				=> $primaryEffectManager->findByLabel('puissance par niveau'),
+			'dégâts d\'attaque par niveau'			=> $primaryEffectManager->findByLabel('dégâts d\'attaque par niveau')
+		);
+
+		/* @var $tagManager \MVNerds\CoreBundle\Tag\TagManager */
+		$tagManager = $this->get('mvnerds.tag_manager');
+
+		//Tableau de conversion des tags
+		$statConversion = array(
+			'Santé'			=> $tagManager->findOneByLabel('santé', 'fr'),
+			'Résistance magique'	=> $tagManager->findOneByLabel('résistance magique', 'fr'),
+			'Régénération santé'	=> $tagManager->findOneByLabel('régénération santé', 'fr'),
+			'Armure'			=> $tagManager->findOneByLabel('armure', 'fr'),
+			'Dégâts'			=> $tagManager->findOneByLabel('dégâts', 'fr'),
+			'Coup critique'		=> $tagManager->findOneByLabel('coup critique', 'fr'),
+			'Vitesse d\'attaque'	=> $tagManager->findOneByLabel('vitesse d\'attaque', 'fr'),
+			'Vol de vie'			=> $tagManager->findOneByLabel('vol de vie', 'fr'),
+			'Puissance'			=> $tagManager->findOneByLabel('puissance', 'fr'),
+			'Réduction des délais'	=> $tagManager->findOneByLabel('réduction des délais', 'fr'),
+			'Mana'			=> $tagManager->findOneByLabel('mana', 'fr'),
+			'Régénération mana'	=> $tagManager->findOneByLabel('régénération mana', 'fr'),
+			'Déplacements'		=> $tagManager->findOneByLabel('déplacement', 'fr'),
+			'Consommables'		=> $tagManager->findOneByLabel('consommable', 'fr')
+		);
+
+		/* @var $itemManager \MVNerds\CoreBundle\Item\ItemManager */
+		$itemManager = $this->get('mvnerds.item_manager');
+
+		$items = file_get_html('file:///C:/Users/Haniki/Downloads/lol_tk_build.html')->find('select#selectItemFrench option');
+		//Si l'utilisateur demande à récupérer tous les champions qui suivent l'index de départ
+		if ($nbItem <= 0)
+		{
+			$nbItem = count($items) - $startItem;
+		}
+
+		for ($i = $startItem; $i < $startItem + $nbItem; $i++)
+		{
+			$itemPage = $items[$i];
+			$onclick = $itemPage->onclick;
+
+			$onclickEscaped = str_replace	('addItem(', '', $onclick);
+
+			$pos = strrpos($onclickEscaped, ')');
+
+			$onclickEscaped = substr_replace($onclickEscaped, '', $pos, strlen($onclickEscaped));
+			
+			$onclickExploded = explode(',', $onclickEscaped, 5);
+			$itemCode = trim($onclickExploded[1]);
+			
+			$itemEffects = $onclickExploded[4];
+			$itemEffects = substr($itemEffects, 2, - 1);
+			
+			$stats = explode('&lt;br/&gt;', $itemEffects);
+			$stats = str_replace('\\', '', $stats);
+			
+			try{
+				$item = $itemManager->findByCode($itemCode);
+			}catch(\Exception $e){
+				continue;
+			}
+			
+			foreach ($stats as $stat)
+			{
+				$stat = trim($stat);
+				
+				//Si le symbole + est trouvé ça veut dire que c est une stat de base
+				if (strpos($stat, '+') !== false && strpos($stat, '+') == 0)
+				{
+					continue;
+				}
+				else
+				{
+					$itemSecondaryEffect = new ItemSecondaryEffect();
+					
+					if (strpos($stat, 'UNIQUE') !== false)
+					{
+						$itemSecondaryEffect->setIsUnique(true);
+					}
+					else
+					{
+						$itemSecondaryEffect->setIsUnique(false);
+					}
+					
+					if (strpos($stat, 'Propriété passive') !== false)
+					{
+						$itemSecondaryEffect->setCategory('PASSIVE');
+					}
+					elseif (strpos($stat, 'Propriété active') !== false)
+					{
+						$itemSecondaryEffect->setCategory('ACTIVE');
+					}
+					elseif (strpos($stat, 'Halo') !== false)
+					{
+						$itemSecondaryEffect->setCategory('AURA');
+
+					}
+					elseif (strpos($stat, 'Cliquer pour consommer :') !== false)
+					{
+						$itemSecondaryEffect->setCategory('CONSUMABLE');
+					}
+					else
+					{	
+						$itemSecondaryEffect->setCategory('OTHER');
+					}
+					$itemSecondaryEffect->setDescription(utf8_encode($stat));
+					$itemSecondaryEffect->setItem($item);
+					echo $itemSecondaryEffect->getDescription() . ' | '.utf8_decode($itemSecondaryEffect->getDescription()).' | '.utf8_encode($itemSecondaryEffect->getDescription()).'<br/><br/>';
+					$itemSecondaryEffect->save();
+				}
+			}
+		}die();
 	}
 	
 	/**
