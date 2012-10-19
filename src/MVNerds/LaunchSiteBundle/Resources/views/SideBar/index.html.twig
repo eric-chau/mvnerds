@@ -1,25 +1,40 @@
 <div id="sidebar">
+	<div class="toggle-sidebar only-active-show"><i class="icon-chevron-left"></i></div>
+
 	<div id="user-container">
-		<img src="{{ asset('images/avatar/ro0ny.jpg') }}" />
-		<span class="item only-active-show nickname"><strong>Ro0ny</strong> 999 <i class="icon-trophy"></i></span>
-		<span class="item only-active-show team">Most Valuable Nerds</span>
-		<span class="item only-active-show"><i class="icon-cog"></i> Administrer mon profil</span>
-		<span class="item only-active-show"><i class="icon-off"></i> Me déconnecter</span>
+		<img src="{{ asset('images/avatar/ro0ny.jpg') }}" class="sidebar-tooltip-anchor" rel="tooltip" data-placement="right" data-original-title="<span class='sidebar-tooltip'>Accèdez à votre profil</span>" />
+		<p class="item only-active-show nickname">Ro0ny</p>
+		<p class="item only-active-show team">Most Valuable Nerds</p>
+		<p class="item only-active-show"><a href="#"><i class="icon-cog"></i> Administrer mon profil</a></p>
+		<p class="item only-active-show"><a href="#"><i class="icon-off"></i> Me déconnecter</a></p>
 	</div>
 
-	<ul class="menu champion-benchmark">
-		<li><i class="icon-random"></i> <span class="only-active-show">Champions Benchmark</span></li>
+	<ul class="first-ul">
+		 <a href="#">
+			 <li class="header sidebar-tooltip-anchor" rel="tooltip" data-placement="right" data-original-title="<span class='sidebar-tooltip'>Accèder au module Champion Benchmark</span>">
+				 <i class="icon-random"></i> <span class="only-active-show">Champions Benchmark</span>
+			 </li>
+		 </a>
 	</ul>
 
-	<ul class="menu item-builder">
-		<li><i class="icon-wrench"></i> <span class="only-active-show">Item Builder</span></li>
-		<a href="{{ path('item_builder_create') }}"><li><span class="only-active-show">Créer une nouvelle liste d'objets</span></li></a>
-		<li><span class="only-active-show">Consulter les listes d'objets publiques</span></li>
+	<ul>
+		<a href="#">
+			<li class="header sidebar-tooltip-anchor" rel="tooltip" data-placement="right" data-original-title="<span class='sidebar-tooltip'>Accèder au module Item Builder</span>">
+				<i class="icon-wrench"></i> <span class="only-active-show">Item Builder</span>
+			</li>
+		</a>
+		<li class="only-active-show"><a href="{{ path('item_builder_create') }}">Personnaliser la liste d'objets conseillés</a></li>
+		<li class="only-active-show"><a href="#" >Consulter les listes d'objets publiques</a></li>
 	</ul>
 
-	<ul class="about-mvnerds-menu">
-		<a href=""><li><i class="icon-group"></i> <span class="only-active-show">L'équipe MVNerds</span></li></a>
-		<a href=""><li><i class="icon-file"></i> <span class="only-active-show">MVNerds patch note</span></li></a>
-		<a href=""><li><i class="icon-warning-sign"></i> <span class="only-active-show">Signaler un bug</span></li></a>
+	<ul>
+		<a href="#">
+			<li class="header sidebar-tooltip-anchor" rel="tooltip" data-placement="right" data-original-title="<span class='sidebar-tooltip'>Se rendre sur la section dédiée à Most Valuable Nerds</span>">
+				<i class="icon-group"></i> <span class="only-active-show">Most Valuable Nerds</span>
+			</li>
+		</a>
+		<li class="only-active-show"><a href="#"> L'équipe League of Legends</a></li>
+		<li class="only-active-show"><a href="#"> Nos patchs notes</a></li>
+		<li class="only-active-show"><a href="#"> Signaler un bug</a></li>
 	</ul>
 </div>
