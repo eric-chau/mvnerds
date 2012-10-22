@@ -11,15 +11,19 @@ echo ###########################################################################
 
 
 echo Le build suivant : 
-echo 	Item 1 : Doran's Ring
-echo 	Item 2 : Blasting Wand
-echo 	Item 3 : Needlessly Large Rod
-echo 	Item 4 : Rabadon's Deathcap
-echo 	Item 5 : Rod of Ages
-echo 	Item 6 : Archangel's Staff
+echo 	Item 1 : Faerie Charm
+echo 	Item 2 : Sight Ward
+echo 	Item 3 : Health Potion
+echo 	Item 4 : Ionian Boots of Lucidity
+echo 	Item 5 : Heart of Gold
+echo 	Item 6 : Aegis of the Legion
 echo va etre affecte aux champions suivants : 
-echo 	Annie
-echo 	Brand
+echo 	Alistar
+echo 	Janna
+echo 	Leona
+echo 	Nunu
+echo 	Sona
+echo 	Soraka
 pause
 @echo off
 
@@ -70,30 +74,86 @@ rem Cree le repertoire des champions s il n existe pas et se place dedans
 md "Characters"
 cd "Characters"
 
-md "Annie"
-cd "Annie"
+md "Alistar"
+cd "Alistar"
 echo [ItemSet1] > RecItemsCLASSIC.ini
 echo SetName=Set1 >> RecItemsCLASSIC.ini
-echo RecItem1=1056 >> RecItemsCLASSIC.ini
-echo RecItem2=1026 >> RecItemsCLASSIC.ini
-echo RecItem3=1058 >> RecItemsCLASSIC.ini
-echo RecItem4=3089 >> RecItemsCLASSIC.ini
-echo RecItem5=3027 >> RecItemsCLASSIC.ini
-echo RecItem6=3003 >> RecItemsCLASSIC.ini
+echo RecItem1=1004 >> RecItemsCLASSIC.ini
+echo RecItem2=2044 >> RecItemsCLASSIC.ini
+echo RecItem3=2003 >> RecItemsCLASSIC.ini
+echo RecItem4=3158 >> RecItemsCLASSIC.ini
+echo RecItem5=3132 >> RecItemsCLASSIC.ini
+echo RecItem6=3105 >> RecItemsCLASSIC.ini
 
 
 cd "../"
 
-md "Brand"
-cd "Brand"
+md "Janna"
+cd "Janna"
 echo [ItemSet1] > RecItemsCLASSIC.ini
 echo SetName=Set1 >> RecItemsCLASSIC.ini
-echo RecItem1=1056 >> RecItemsCLASSIC.ini
-echo RecItem2=1026 >> RecItemsCLASSIC.ini
-echo RecItem3=1058 >> RecItemsCLASSIC.ini
-echo RecItem4=3089 >> RecItemsCLASSIC.ini
-echo RecItem5=3027 >> RecItemsCLASSIC.ini
-echo RecItem6=3003 >> RecItemsCLASSIC.ini
+echo RecItem1=1004 >> RecItemsCLASSIC.ini
+echo RecItem2=2044 >> RecItemsCLASSIC.ini
+echo RecItem3=2003 >> RecItemsCLASSIC.ini
+echo RecItem4=3158 >> RecItemsCLASSIC.ini
+echo RecItem5=3132 >> RecItemsCLASSIC.ini
+echo RecItem6=3105 >> RecItemsCLASSIC.ini
+
+
+cd "../"
+
+md "Leona"
+cd "Leona"
+echo [ItemSet1] > RecItemsCLASSIC.ini
+echo SetName=Set1 >> RecItemsCLASSIC.ini
+echo RecItem1=1004 >> RecItemsCLASSIC.ini
+echo RecItem2=2044 >> RecItemsCLASSIC.ini
+echo RecItem3=2003 >> RecItemsCLASSIC.ini
+echo RecItem4=3158 >> RecItemsCLASSIC.ini
+echo RecItem5=3132 >> RecItemsCLASSIC.ini
+echo RecItem6=3105 >> RecItemsCLASSIC.ini
+
+
+cd "../"
+
+md "Nunu"
+cd "Nunu"
+echo [ItemSet1] > RecItemsCLASSIC.ini
+echo SetName=Set1 >> RecItemsCLASSIC.ini
+echo RecItem1=1004 >> RecItemsCLASSIC.ini
+echo RecItem2=2044 >> RecItemsCLASSIC.ini
+echo RecItem3=2003 >> RecItemsCLASSIC.ini
+echo RecItem4=3158 >> RecItemsCLASSIC.ini
+echo RecItem5=3132 >> RecItemsCLASSIC.ini
+echo RecItem6=3105 >> RecItemsCLASSIC.ini
+
+
+cd "../"
+
+md "Sona"
+cd "Sona"
+echo [ItemSet1] > RecItemsCLASSIC.ini
+echo SetName=Set1 >> RecItemsCLASSIC.ini
+echo RecItem1=1004 >> RecItemsCLASSIC.ini
+echo RecItem2=2044 >> RecItemsCLASSIC.ini
+echo RecItem3=2003 >> RecItemsCLASSIC.ini
+echo RecItem4=3158 >> RecItemsCLASSIC.ini
+echo RecItem5=3132 >> RecItemsCLASSIC.ini
+echo RecItem6=3105 >> RecItemsCLASSIC.ini
+
+
+cd "../"
+
+md "Soraka"
+cd "Soraka"
+echo [ItemSet1] > RecItemsCLASSIC.ini
+echo SetName=Set1 >> RecItemsCLASSIC.ini
+echo RecItem1=1004 >> RecItemsCLASSIC.ini
+echo RecItem2=2044 >> RecItemsCLASSIC.ini
+echo RecItem3=2003 >> RecItemsCLASSIC.ini
+echo RecItem4=3158 >> RecItemsCLASSIC.ini
+echo RecItem5=3132 >> RecItemsCLASSIC.ini
+echo RecItem6=3105 >> RecItemsCLASSIC.ini
 
 
 cd "../"
