@@ -2,7 +2,7 @@
 
 {% block css %}
 	{{ parent() }}
-
+	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square-sprite.css') }}">
 	<link href="{{ asset('css/item_builder/creation-page.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 	
@@ -24,7 +24,7 @@
 		pratique non ?</p>
 		
 		<div class="champion-container">
-			
+			{% include 'MVNerdsChampionHandlerBundle:Front:champion_grid.html.twig' %}
 		</div>
 		
 		<h2>Etape 2 : choisissez le mode de jeu</h2>
@@ -33,9 +33,9 @@
 		<p class="note">Note : les objets recommandés d'un champion sont identiques pour le mode 5 contre 5 (Faille de l'invocation) et 3 contre 3 (Forêt torturée).</p>
 		
 		<div class="game-mode-container">
-			<div class="game-mode summoners-treeline" data-game-mode="classic"><span class="message">Classique</span></div>
-			<div class="game-mode dominion"><span class="message" data-game-mode="dominion">Dominion</span></div>
-			<div class="game-mode proving-grounds"><span class="message" data-game-mode="aram">All Random All Mid (ARAM)</span></div>
+			<div class="game-mode summoners-treeline active" data-game-mode="classic"><span class="message">Classique</span></div>
+			<div class="game-mode dominion" data-game-mode="dominion"><span class="message" >Dominion</span></div>
+			<div class="game-mode proving-grounds" data-game-mode="aram"><span class="message" >All Random All Mid (ARAM)</span></div>
 		</div>
 		
 		<h2>Etape 3 : choisissez vos objets</h2>
@@ -45,7 +45,22 @@
 		<p class="note">Note : Certains objets ne sont pas disponibles dans tous les modes comme par exemple la "Lantern de Wriggles". Ne soyez donc pas surpris si jamais vous
 		ne retrouvez pas certains objets.</p>
 		
-		<div class="item-container"></div>
+		<div class="item-container">
+			<div id="rec-item-list">
+				<ul id="rec-item-sortable">
+					<li class="rec-item first free" data-original-position="1" id="rec-item-1"><div><i class="icon-question-sign icon-white"></i></div></li>
+					<li class="rec-item free" data-original-position="2" id="rec-item-2"><div><i class="icon-question-sign icon-white"></i></div></li>
+					<li class="rec-item free" data-original-position="3" id="rec-item-3"><div><i class="icon-question-sign icon-white"></i></div></li>
+					<li class="rec-item free" data-original-position="4" id="rec-item-4"><div><i class="icon-question-sign icon-white"></i></div></li>
+					<li class="rec-item free" data-original-position="5" id="rec-item-5"><div><i class="icon-question-sign icon-white"></i></div></li>
+					<li class="rec-item last free" data-original-position="6" id="rec-item-6"><div><i class="icon-question-sign icon-white"></i></div></li>
+				</ul>
+			</div>
+				
+			<div id="item-list">
+				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_grid.html.twig' %}
+			</div>
+		</div>
 		
 		<h2>Etape 4 : nommez votre liste</h2>
 		<p>C'est presque terminé. Vous devez maintenant nommer votre liste d'objet conseillés. Vous pourrez ensuite si vous le souhaitez, la consulter de nouveau,
@@ -53,7 +68,7 @@
 		
 		<div class="name-container">
 			<form action="#" method="POST">
-				<input type="text" class="" id="" placeholder="Nom de la liste..." />
+				<input type="text" class="" id="build-name" placeholder="Nom de la liste..." />
 			</form>
 		</div>
 		
@@ -65,7 +80,7 @@
 		
 		<div class="generate-button-container">
 			<a href="#" class="main">Sauvegarder & générer</a>
-			<a href="#">Générer seulement</a>
+			<a href="#" id="only-generate-build">Générer seulement</a>
 		</div>
 	</div>
 {% endblock %}

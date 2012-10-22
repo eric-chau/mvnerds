@@ -57,9 +57,9 @@ class Champion extends BaseChampion
 	public function getTagsToString()
 	{
 		$tags = '';
-		foreach ($this->getChampionTags() as $championtag) 
+		foreach ($this->getChampionTags() as $championTag) 
 		{
-			$tags .= strtolower($championtag->getTag()->getLabel() . ' ');
+			$tags .= strtolower($championTag->getTag()->getLabel() . ' ');
 		}
 		
 		return $tags;
