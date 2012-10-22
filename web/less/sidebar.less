@@ -144,6 +144,49 @@ div#sidebar {
 				}
 			}
 		}
+
+		form {
+			input[type="text"], input[type="password"] {
+				background-color: #333;
+				border-color: #666;
+				.border-radius(0);
+				color: @MVNerdsBlue;
+				font-family: 'Ubuntu', sans-serif;
+				font-size: 12px;
+				height: 14px;
+				line-height: 1.2em;
+				width: 140px;
+
+				&:focus {
+					background-color: #000; .transition(background-color .25s linear);
+				}
+			}
+
+			a.btn-registration, a.btn-connection {
+				background-color: darken(@MVNerdsRed, 10%);
+				color: white;
+				display: inline-block;
+				font-size: 12px;
+				font-weight: bold;
+				margin: 0 4px 0 0;
+				padding: 4px 5px;
+
+				&:hover {
+					background-color: @MVNerdsRed; .transition(background-color .25s linear);
+				}
+			}
+
+			a.btn-connection {
+				background-color: darken(@MVNerdsGreen, 5%);
+				margin: 0;
+				text-align: center;
+				width: 30px;
+
+				&:hover {
+					background-color: @MVNerdsGreen;
+				}
+			}
+		}
 	}
 
 	ul {
