@@ -18,4 +18,14 @@ use MVNerds\CoreBundle\Model\om\BaseItem;
  */
 class Item extends BaseItem {
 
+	public function getTagsToString()
+	{
+		$tags = '';
+		foreach ($this->getItemTags() as $itemTag) 
+		{
+			$tags .= strtolower($itemTag->getTag()->getSlug() . ' ');
+		}
+		
+		return $tags;
+	}
 } // Item

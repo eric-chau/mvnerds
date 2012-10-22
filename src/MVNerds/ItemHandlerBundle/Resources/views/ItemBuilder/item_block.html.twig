@@ -1,0 +1,14 @@
+<li class="item {{item.getTagsToString()}}" id="{{ item.getSlug() }}" data-name="{{ item.getName() | lower }}" >
+	
+	<div class="portrait" data-slug="{{item.getSlug()}}">
+		{#<div class="item-square {{ item.getSlug() }}"></div>#}
+		<img class="item-image" src="{{ asset('images/items/' ~ item.getRiotCode() ~ '.png') }}" alt="image de l'item {{ item.getName() }}" />
+		{#<div class="item-name">{{ item.getName() }}</div>#}
+	</div>
+	<div class="preview hide">
+		{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_preview.html.twig' %}
+	</div>
+	<div class="loader hide">
+		<img src="{{ asset('/images/commons/loader32.gif') }}" />
+	</div>
+</li>

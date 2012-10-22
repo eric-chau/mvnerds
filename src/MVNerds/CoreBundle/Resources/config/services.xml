@@ -18,6 +18,14 @@
 				<argument type="service" id="session" />
 			</call>
 		</service>
+		
+		<!-- BATCH SERVICES -->
+		<service id="mvnerds.batch_manager" class="MVNerds\CoreBundle\Batch\BatchManager">
+			<argument>%item_builds_path%</argument>
+			<call method="setUserLocale">
+				<argument type="service" id="session" />
+			</call>
+		</service>
 
 		<!-- FLASH MANAGER SERVICES -->
 		<service id="mvnerds.flash_manager" class="MVNerds\CoreBundle\Flash\FlashManager">
@@ -40,6 +48,11 @@
 			CHAMPION_TAG MANAGER SERVICES
 		-->
 		<service id="mvnerds.champion_tag_manager" class="MVNerds\CoreBundle\ChampionTag\ChampionTagManager" />
+		
+		<!-- 
+			ITEM BUILD MANAGER SERVICES
+		-->
+		<service id="mvnerds.item_build_manager" class="MVNerds\CoreBundle\ItemBuild\ItemBuildManager" />
 
 		<!-- 
 			CHAMPION_COMPARISON MANAGER SERVICES
