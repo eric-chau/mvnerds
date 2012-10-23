@@ -75,7 +75,8 @@ function generateRecItemBuilder()
 			data: {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName},
 			dataType: 'json'
 		}).done(function(data){
-			
+			console.log(data);
+			window.location = Routing.generate('item_builder_download_file', {_locale: locale, itemBuildSlug: data});
 		}).fail(function(data){
 			console.log(data);
 		});

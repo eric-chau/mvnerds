@@ -106,6 +106,27 @@ class ItemBuilderController extends Controller
 
 		$batchManager->createRecItemBuilder($itemBuild);
 
-		return new Response(json_encode($itemBuild->toArray()));
+		return new Response(json_encode($itemBuild->getSlug()));
+	}
+	
+	/**
+	 * @Route("/{itemBuildSlug}/download-rec-items", name="item_builder_download_file", options={"expose"=true})
+	 */
+	public function executeDownloadItemBuildAction($itemBuildSlug)
+	{
+		$path = $this->container->getParameter('item_builds_path') . $itemBuildSlug . '.bat';
+		
+		if (file_exists($path))
+		{
+			$response = new Response();
+			
+			$response->headers->set('ContentType', 'application/octetstream');
+			$response->headers->set('Content-Disposition', 'attachment;filename='.basename($path));
+			$response->headers->set('Content-Transfer-Encoding', 'binary');
+			$response->headers->set('Content-Length', filesize($path));
+
+			@readfile($path);
+		}
+		return $response;
 	}
 }
