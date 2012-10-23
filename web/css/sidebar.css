@@ -101,6 +101,12 @@ div#sidebar.active div#user-container img {
   padding: 2px;
   width: 100px;
 }
+div#sidebar.active div#user-container img.anonymous {
+  display: none;
+}
+div#sidebar.active div#user-container a {
+  display: inline-block;
+}
 div#sidebar.active div#user-container p {
   color: #eee;
   display: block;
@@ -117,6 +123,14 @@ div#sidebar.active div#user-container p.nickname {
 div#sidebar.active div#user-container p.team {
   color: #db4a38;
   margin-bottom: 15px;
+}
+div#sidebar.active div#user-container form {
+  display: block;
+}
+div#sidebar.active div#user-container form input[type="text"],
+div#sidebar.active div#user-container form input[type="password"],
+div#sidebar.active div#user-container form a.btn-connection {
+  display: inline;
 }
 div#sidebar.active ul {
   margin-bottom: 20px;
@@ -166,6 +180,37 @@ div#sidebar div#user-container p:hover i {
   -o-transition: color 0.25s linear;
   transition: color 0.25s linear;
 }
+div#sidebar div#user-container a.btn-registration,
+div#sidebar div#user-container a.btn-connection {
+  background-color: #be3322;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  margin: 0 4px 0 0;
+  padding: 3px 5px;
+}
+div#sidebar div#user-container a.btn-registration:hover,
+div#sidebar div#user-container a.btn-connection:hover {
+  background-color: #db4a38;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+div#sidebar div#user-container a.btn-registration {
+  font-size: 16px;
+  margin: 10px 0 0 0;
+  padding: 9px 9px 10px 9px;
+}
+div#sidebar div#user-container a.btn-connection {
+  position: relative;
+  top: 0;
+}
+div#sidebar div#user-container form {
+  margin: 10px 0;
+  padding: 10px;
+  text-align: center;
+}
 div#sidebar div#user-container form input[type="text"],
 div#sidebar div#user-container form input[type="password"] {
   background-color: #333;
@@ -178,29 +223,11 @@ div#sidebar div#user-container form input[type="password"] {
   font-size: 12px;
   height: 14px;
   line-height: 1.2em;
-  width: 140px;
+  width: 120px;
 }
 div#sidebar div#user-container form input[type="text"]:focus,
 div#sidebar div#user-container form input[type="password"]:focus {
   background-color: #000;
-  -webkit-transition: background-color 0.25s linear;
-  -moz-transition: background-color 0.25s linear;
-  -o-transition: background-color 0.25s linear;
-  transition: background-color 0.25s linear;
-}
-div#sidebar div#user-container form a.btn-registration,
-div#sidebar div#user-container form a.btn-connection {
-  background-color: #be3322;
-  color: white;
-  display: inline-block;
-  font-size: 12px;
-  font-weight: bold;
-  margin: 0 4px 0 0;
-  padding: 4px 5px;
-}
-div#sidebar div#user-container form a.btn-registration:hover,
-div#sidebar div#user-container form a.btn-connection:hover {
-  background-color: #db4a38;
   -webkit-transition: background-color 0.25s linear;
   -moz-transition: background-color 0.25s linear;
   -o-transition: background-color 0.25s linear;
@@ -214,6 +241,27 @@ div#sidebar div#user-container form a.btn-connection {
 }
 div#sidebar div#user-container form a.btn-connection:hover {
   background-color: #759e1a;
+}
+div#sidebar div#user-container form h3 {
+  color: #999;
+  margin: 0 0 8px 0;
+  text-align: right;
+}
+div#sidebar div#user-container form a,
+div#sidebar div#user-container form label {
+  color: #999;
+  font-size: 12px;
+  display: inline-block;
+  position: relative;
+  top: -1px;
+}
+div#sidebar div#user-container form a:hover,
+div#sidebar div#user-container form label:hover {
+  color: #eee;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
 }
 div#sidebar ul {
   list-style: none;

@@ -1,6 +1,9 @@
-<img src="{{ asset('images/avatar/anonymous.jpg') }}" class="sidebar-tooltip-anchor" rel="tooltip" data-placement="right" data-original-title="<span class='sidebar-tooltip'>Accèdez à votre profil</span>" />
+<img src="{{ asset('images/avatar/anonymous.jpg') }}" class="sidebar-tooltip-anchor anonymous" rel="tooltip" data-placement="right" data-original-title="<span class='sidebar-tooltip'>Accèdez à votre profil</span>" />
 <form class="only-active-show" action="#" method="POST">
+	<h3>Je me connecte</h3>
 	<input type="text" placeholder="Adresse email" />
-	<input type="password" placeholder="Mot de passe" />
-	<a href="#" class="btn-connection">Go</a> <a href="#" class="btn-registration">Pas de compte, je m'inscris</a> 
+	<input type="password" placeholder="Mot de passe" /> <a href="#" class="btn-connection">Go</a>
+	<input type="checkbox" id="remember_me" name="_remember_me" checked />
+    <label for="remember_me">Se souvenir de moi |</label> <a href="#">Mot de passe oublié ?</a> <a href="#" class="btn-registration only-active-show">Nouveau sur MVNerds ? Inscrivez-vous</a>
 </form>
+

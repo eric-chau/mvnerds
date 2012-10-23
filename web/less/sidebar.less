@@ -67,6 +67,14 @@ div#sidebar {
 				margin: 0 10px 10px 0;
 				padding: 2px;
 				width: 100px;
+
+				&.anonymous {
+					display: none;
+				}
+			}
+
+			a {
+				display: inline-block;
 			}
 
 			p {
@@ -86,6 +94,14 @@ div#sidebar {
 				&.team {
 					color: @MVNerdsRed;
 					margin-bottom: 15px;
+				}
+			}
+
+			form {
+				display: block;
+
+				input[type="text"], input[type="password"], a.btn-connection {
+					display: inline;
 				}
 			}
 		}
@@ -146,7 +162,35 @@ div#sidebar {
 			}
 		}
 
+		a.btn-registration, a.btn-connection {
+			background-color: darken(@MVNerdsRed, 10%);
+			color: white;
+			font-size: 12px;
+			font-weight: bold;
+			margin: 0 4px 0 0;
+			padding: 3px 5px;
+
+			&:hover {
+				background-color: @MVNerdsRed; .transition(background-color .25s linear);
+			}
+		}
+
+		a.btn-registration {
+			font-size: 16px;
+			margin: 10px 0 0 0;
+			padding: 9px 9px 10px 9px;
+		}
+
+		a.btn-connection {
+			position: relative;
+			top: 0;
+		}
+
 		form {
+			margin: 10px 0;
+			padding: 10px;
+			text-align: center;
+
 			input[type="text"], input[type="password"] {
 				background-color: #333;
 				border-color: #666;
@@ -156,24 +200,10 @@ div#sidebar {
 				font-size: 12px;
 				height: 14px;
 				line-height: 1.2em;
-				width: 140px;
+				width: 120px;
 
 				&:focus {
 					background-color: #000; .transition(background-color .25s linear);
-				}
-			}
-
-			a.btn-registration, a.btn-connection {
-				background-color: darken(@MVNerdsRed, 10%);
-				color: white;
-				display: inline-block;
-				font-size: 12px;
-				font-weight: bold;
-				margin: 0 4px 0 0;
-				padding: 4px 5px;
-
-				&:hover {
-					background-color: @MVNerdsRed; .transition(background-color .25s linear);
 				}
 			}
 
@@ -185,6 +215,24 @@ div#sidebar {
 
 				&:hover {
 					background-color: @MVNerdsGreen;
+				}
+			}
+
+			h3 {
+				color: #999;
+				margin: 0 0 8px 0;
+				text-align: right;
+			}
+
+			a, label {
+				color: #999;
+				font-size: 12px;
+				display: inline-block;
+				position: relative;
+				top: -1px;
+
+				&:hover {
+					color: #eee; .transition(color .25s linear);
 				}
 			}
 		}

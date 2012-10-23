@@ -2,6 +2,8 @@
 
 namespace MVNerds\CoreBundle\Model;
 
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+
 use MVNerds\CoreBundle\Model\om\BaseUser;
 
 
@@ -16,7 +18,7 @@ use MVNerds\CoreBundle\Model\om\BaseUser;
  *
  * @package    propel.generator.src.MVNerds.CoreBundle.Model
  */
-class User extends BaseUser 
+class User extends BaseUser  implements AdvancedUserInterface
 {
 	/**
 	 * Permet de vérifier si l'utilisateur courant possède une adresse mail unique ou non
@@ -43,4 +45,39 @@ class User extends BaseUser
 		
 		return true;
 	}
+	
+	/**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+        return array('ROLE_USER');
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+    }
+	
+	public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->isActive;
+    }
 } // User

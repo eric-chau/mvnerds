@@ -11,6 +11,10 @@ security:
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
     providers:
+        main:
+            propel:
+                class: MVNerds\CoreBundle\User
+                property: username
         in_memory:
             memory:
                 users:
@@ -20,7 +24,11 @@ security:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
+        
+        user_area:
+            pattern: ^/
+            anonymous: ~
+        
         login:
             pattern:  ^/administration/login$
             security: false

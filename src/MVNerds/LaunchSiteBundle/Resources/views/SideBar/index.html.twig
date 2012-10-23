@@ -2,7 +2,12 @@
 	<div class="toggle-sidebar only-active-show"><i class="icon-chevron-left"></i></div>
 
 	<div id="user-container">
-		{% include 'MVNerdsLaunchSiteBundle:SideBar:logged_user_block.html.twig' %}
+		{#{% include 'MVNerdsLaunchSiteBundle:SideBar:logged_user_block.html.twig' %}#}
+		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+			{% include 'MVNerdsLaunchSiteBundle:SideBar:logged_user_block.html.twig' %}
+		{% else %}
+			{% include 'MVNerdsLaunchSiteBundle:SideBar:anonymous_user_block.html.twig' %}
+		{% endif %}
 	</div>
 
 	<ul class="first-ul">
