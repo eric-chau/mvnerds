@@ -5,7 +5,9 @@ var
 	$recItems,
 	recItemsTop,
 	isRecItemsFixed = false,
-	$championContainer
+	$championContainer,
+	$itemIsotopeList,
+	itemIsotopeOptions
 ;
 
 function setRecItem(slug, recItemId)
@@ -17,6 +19,7 @@ function setRecItem(slug, recItemId)
 	$recItem.removeClass('free');
 	$recItem.addClass('full');
 }
+
 function addItemToList(slug)
 {	
 	var recItemId = $('li.rec-item.free').first().attr('id');
@@ -49,7 +52,7 @@ function processScrollRecItems()
 function generateRecItemBuilder()
 {
 	$champions = $('div.champion-container li.champion.active');
-	$items = $('#rec-item-list li.rec-item.full');
+	$items = $('#item-topbar li.rec-item.full');
 	gameMode = $('div.game-mode-container div.game-mode.active').first().data('game-mode');
 	buildName = $('input#build-name').val();
 	
@@ -88,19 +91,150 @@ function generateRecItemBuilder()
 	return false;
 }
 
+/************************************************************************** FILTER ***************************************************************/
+var itemTypeaheadValue, $itemFilterInput;
+
+function initTypeahead($itemIsotopeList) {
+	$itemFilterInput.off('keyup change');
+	$itemFilterInput.keyup(function(){
+		itemFilter($itemIsotopeList);
+	});
+	$itemFilterInput.change(function(){
+		itemFilter($itemIsotopeList);
+	});
+}
+function initFilterList($itemIsotopeList) {
+	$('#item-filters-list  li').off('click', ' a.filter-link:not(.selected)');
+	$('#item-filters-list li').off('click', 'a.selected');
+	
+	$('#item-filters-list  li').on('click', ' a.filter-link:not(.selected)', function(){
+		$(this).addClass('selected');
+		$('a#drop-filter-list').addClass('active');
+		addItemFilterValue($itemIsotopeList, '.'+$(this).attr('data-option-value'));
+		return false;
+	});
+	$('#item-filters-list li').on('click', 'a.selected',function() {
+		$(this).removeClass('selected');
+		removeItemFilterValue($itemIsotopeList, '.'+$(this).attr('data-option-value'));
+		if($('#item-filters-list li a.selected').size() <= 0)
+		{
+			$('a#item-drop-filter-list').removeClass('active');
+		}
+		return false;
+	});
+	$('#item-li-clean-filter').on('click', '#btn-clean-filter', cleanItemFilter);
+}
+
+function setTypeaheadItemsName() {
+	$.ajax({
+		type: 'POST',
+		url:  Routing.generate('item_builder_get_items_name',{_locale: locale}), 
+		dataType: 'html'
+	}).done(function(data){
+		$itemFilterInput.attr('data-source', data);
+	});
+}
+
+function itemFilter($itemIsotopeList) {
+	var filterValue = $itemFilterInput.val();
+	if(filterValue != '')
+	{
+		setItemTypeaheadValue($itemIsotopeList, "[data-name*='" + filterValue.toLowerCase()+"']");
+	}
+	else
+	{
+		removeItemFilterValue($itemIsotopeList, itemTypeaheadValue);
+		$itemIsotopeList.isotope(itemIsotopeOptions);
+	}
+}
+function addItemFilterValue($itemIsotopeList, value) {
+	itemIsotopeOptions['filter'] = itemIsotopeOptions['filter'] + value;
+	activateItemCleanFilterButton();
+	$itemIsotopeList.isotope(itemIsotopeOptions);
+}
+function removeItemFilterValue($itemIsotopeList, value) {
+	var oldOptions = itemIsotopeOptions['filter'];
+	var newOptions;
+	if(value != undefined && value != '')
+	{
+		var splitedOptions = oldOptions.split(value);
+		newOptions = splitedOptions[0].concat(splitedOptions[1]);
+	}
+	else
+	{
+		newOptions = oldOptions;
+	}
+	itemTypeaheadValue = undefined;
+	if(newOptions == undefined || newOptions == '')
+	{
+		deactivateItemCleanFilterButton();
+	}
+	itemIsotopeOptions['filter'] = newOptions;
+	$itemIsotopeList.isotope(itemIsotopeOptions);
+}
+function setItemTypeaheadValue($itemIsotopeList, value){
+	removeItemFilterValue($itemIsotopeList, itemTypeaheadValue);
+	itemTypeaheadValue = value;
+	addItemFilterValue($itemIsotopeList,itemTypeaheadValue);
+	$itemIsotopeList.isotope(itemIsotopeOptions);
+}
+
+//Permet de vider le filtre
+function cleanItemFilter() {
+	$('a#drop-filter-list').removeClass('active');
+	$itemFilterInput.val('');
+	itemIsotopeOptions['filter'] = '';
+	$('ul#filters-list ul.tags-group a.filter-link.selected').each(function(){
+		$(this).removeClass('selected');
+	});
+	deactivateItemCleanFilterButton();
+	$itemIsotopeList.isotope(itemIsotopeOptions);
+	return false;
+}
+
+function activateItemCleanFilterButton(){
+	$('#li-clean-filter').removeClass('disabled hide');
+	$('#li-clean-filter').find('a').removeClass('disabled');
+}
+function deactivateItemCleanFilterButton(){
+	$('#item-li-clean-filter').addClass('disabled hide');
+	$('#item-li-clean-filter').find('a').addClass('disabled');
+}
+
 $(document).ready(function()
 {
 	$window = $(window);
-	
-	$recItemList = $('#rec-item-list');
+	$recItemList = $('#item-topbar');
+	$itemIsotopeList = $('#item-isotope-list');
 	$recItems = $('li.rec-item');
 	recItemsTop = $recItemList.length && $recItemList.offset().top;
-	
 	$championContainer = $('div.champion-container');
 	
 	processScrollRecItems();
 	
 	$window.on('scroll', processScrollRecItems)
+	
+	itemIsotopeOptions = {
+			itemSelector: '.item',
+			animationEngine: 'jquery',
+			masonry: {
+				columnWidth: 30
+			},
+			animationOptions: {
+				duration: 400,
+				queue: false,
+				opacity: 1
+			},
+			filter: '',
+			containerStyle: {
+				position: 'relative',
+				overflow: 'visible'
+			}
+		};
+	
+	$itemIsotopeList.imagesLoaded( function(){
+		$itemIsotopeList.isotope(itemIsotopeOptions);
+	});
 	
 	// Écoute sur l'événement d'un clique sur un des modes de jeu
 	$('div.game-mode-container div.game-mode').on('click', function()
@@ -141,7 +275,7 @@ $(document).ready(function()
 	});
 	
 	//On rends chaque item draggable
-	$('#item-isotope-list').on('mouseover', 'li.item', function(){
+	$itemIsotopeList.on('mouseover', 'li.item', function(){
 		$(this).draggable({
 			disabled: false,
 			helper: 'clone',
@@ -191,5 +325,15 @@ $(document).ready(function()
 		$(this).toggleClass('active');
 	});
 	
+	//Bouton de generation du build
 	$('#only-generate-build').click(generateRecItemBuilder);
+	
+	//Activation des tooltips
+	$('#champion-isotope-list li.champion').tooltip();
+	$('#item-isotope-list li.item').tooltip();
+	
+	$itemFilterInput = $('#item-filter-input');
+	setTypeaheadItemsName();
+	initTypeahead($itemIsotopeList);
+	initFilterList($itemIsotopeList);
 });

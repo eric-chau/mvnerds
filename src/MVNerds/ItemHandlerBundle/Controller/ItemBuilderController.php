@@ -20,8 +20,8 @@ class ItemBuilderController extends Controller
 	public function createAction()
 	{
 		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:create_index.html.twig', array(
-			'champions' => $this->get('mvnerds.champion_manager')->findAll(),
-			'items'	=> $this->get('mvnerds.item_manager')->findAll()
+			'champions' => $this->get('mvnerds.champion_manager')->findAllWithTags(),
+			'items'	=> $this->get('mvnerds.item_manager')->findAllWithTags()
 		));
 	}
 	
@@ -128,5 +128,17 @@ class ItemBuilderController extends Controller
 			@readfile($path);
 		}
 		return $response;
+	}
+	
+	/**
+	 * @Route("/get-items-name", name="item_builder_get_items_name", options={"expose"=true})
+	 */
+	public function getItemsNameAction()
+	{
+		$request = $this->getRequest();
+		if  (!$request->isXmlHttpRequest() || !$request->isMethod('POST')) {
+			throw new HttpException(500, 'La requête doit être effectuée en AJAX et en method POST !');
+		}
+		return new Response(json_encode($this->get('mvnerds.item_manager')->getItemsName()->toArray()));
 	}
 }

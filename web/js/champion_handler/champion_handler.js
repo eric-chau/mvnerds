@@ -299,10 +299,7 @@ var typeaheadValue, $filterValue;
 
 function initTypeahead($isotope) {
 	$filterValue.off('keyup change');
-	$filterValue.keyup(function(){
-		filter($isotope);
-	});
-	$filterValue.change(function(){
+	$filterValue.on('keyup change',function(){
 		filter($isotope);
 	});
 }

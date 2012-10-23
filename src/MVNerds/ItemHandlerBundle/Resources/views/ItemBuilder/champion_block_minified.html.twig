@@ -1,0 +1,9 @@
+<li class="champion {{champion.getTagsToString()}}" id="{{ champion.getSlug() }}" data-name="{{ champion.getName() | lower }}" data-title="{{ champion.getName()}}">
+	
+	<div class="portrait">
+		<div class="champion-square36 {{ champion.getSlug() }}"></div>
+	</div>
+	<div class="loader hide">
+		<img src="{{ asset('/images/commons/loader32.gif') }}" />
+	</div>
+</li>
