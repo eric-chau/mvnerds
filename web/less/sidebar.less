@@ -30,6 +30,7 @@ div#sidebar {
 
 		div.toggle-sidebar {
 			cursor: pointer;
+			display: block;
 			float: right;
 			height: 100%;
 			left: 10px;
@@ -66,6 +67,14 @@ div#sidebar {
 				margin: 0 10px 10px 0;
 				padding: 2px;
 				width: 100px;
+
+				&.anonymous {
+					display: none;
+				}
+			}
+
+			a {
+				display: inline-block;
 			}
 
 			p {
@@ -87,6 +96,14 @@ div#sidebar {
 					margin-bottom: 15px;
 				}
 			}
+
+			form {
+				display: block;
+
+				input[type="text"], input[type="password"], a.btn-connection {
+					display: inline;
+				}
+			}
 		}
 
 		ul {
@@ -99,13 +116,13 @@ div#sidebar {
 			li {
 				border-bottom: 1px solid darken(@MVNerdsBlue, 25%);
 				display: list-item !important;
-				margin: 2px 40px;
+				margin: 2px 40px 2px 26px;
 			
 				&.header {
 					border: 0;
 					margin: 0;
 
-					a {
+					span.only-active-show {
 						display: inline-block !important;
 					}
 				}
@@ -144,10 +161,85 @@ div#sidebar {
 				}
 			}
 		}
+
+		a.btn-registration, a.btn-connection {
+			background-color: darken(@MVNerdsRed, 10%);
+			color: white;
+			font-size: 12px;
+			font-weight: bold;
+			margin: 0 4px 0 0;
+			padding: 3px 5px;
+
+			&:hover {
+				background-color: @MVNerdsRed; .transition(background-color .25s linear);
+			}
+		}
+
+		a.btn-registration {
+			font-size: 16px;
+			margin: 10px 0 0 0;
+			padding: 9px 9px 10px 9px;
+		}
+
+		a.btn-connection {
+			position: relative;
+			top: 0;
+		}
+
+		form {
+			margin: 10px 0;
+			padding: 10px;
+			text-align: center;
+
+			input[type="text"], input[type="password"] {
+				background-color: #333;
+				border-color: #666;
+				.border-radius(0);
+				color: @MVNerdsBlue;
+				font-family: 'Ubuntu', sans-serif;
+				font-size: 12px;
+				height: 14px;
+				line-height: 1.2em;
+				width: 120px;
+
+				&:focus {
+					background-color: #000; .transition(background-color .25s linear);
+				}
+			}
+
+			a.btn-connection {
+				background-color: darken(@MVNerdsGreen, 5%);
+				margin: 0;
+				text-align: center;
+				width: 30px;
+
+				&:hover {
+					background-color: @MVNerdsGreen;
+				}
+			}
+
+			h3 {
+				color: #999;
+				margin: 0 0 8px 0;
+				text-align: right;
+			}
+
+			a, label {
+				color: #999;
+				font-size: 12px;
+				display: inline-block;
+				position: relative;
+				top: -1px;
+
+				&:hover {
+					color: #eee; .transition(color .25s linear);
+				}
+			}
+		}
 	}
 
 	ul {
-		list-style: square;
+		list-style: none;
 		margin: 10px 0;
 		padding: 0;
 
@@ -177,6 +269,19 @@ div#sidebar {
 
 				&:hover {
 					color: @MVNerdsBlue; .transition(color .25s linear);
+
+					i {
+						color: @MVNerdsBlue; .transition(color .25s linear);
+					}
+				}
+
+				i {
+					color: inherit;
+					display: inline-block;
+					font-size: 8px;
+					left: -2px;
+					position: relative;
+					top: -2px;
 				}
 			}
 		}

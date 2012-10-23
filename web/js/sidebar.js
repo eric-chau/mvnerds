@@ -2,7 +2,8 @@ $(document).ready(function()
 {
 	var $sidebar = $('div#sidebar'),
 		$toggleSidebar = $('div#sidebar div.toggle-sidebar'),
-		$sidebarTooltipAnchor = $('.sidebar-tooltip-anchor');
+		$sidebarTooltipAnchor = $('.sidebar-tooltip-anchor'),
+		$rememberMeElements = $('div#user-container form label, input#remember_me');
 
 	$sidebarTooltipAnchor.tooltip();
 
@@ -28,6 +29,11 @@ $(document).ready(function()
 			$sidebar.removeClass('active');
 			$sidebarTooltipAnchor.tooltip('enable');
 		}
+	});
+
+	$rememberMeElements.on('click', function(event)
+	{
+		event.stopPropagation();
 	});
 });
 

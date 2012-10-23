@@ -15,3 +15,5 @@ src/MVNerds/CoreBundle/Model/map/*
 /nbproject/*
 
 *.orig
+
+web/builds/*.bat

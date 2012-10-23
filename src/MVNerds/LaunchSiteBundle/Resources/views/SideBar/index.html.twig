@@ -2,11 +2,12 @@
 	<div class="toggle-sidebar only-active-show"><i class="icon-chevron-left"></i></div>
 
 	<div id="user-container">
-		<img src="{{ asset('images/avatar/ro0ny.jpg') }}" class="sidebar-tooltip-anchor" rel="tooltip" data-placement="right" data-original-title="<span class='sidebar-tooltip'>Accèdez à votre profil</span>" />
-		<p class="item only-active-show nickname">Ro0ny</p>
-		<p class="item only-active-show team">Most Valuable Nerds</p>
-		<p class="item only-active-show"><a href="#"><i class="icon-cog"></i> Administrer mon profil</a></p>
-		<p class="item only-active-show"><a href="#"><i class="icon-off"></i> Me déconnecter</a></p>
+		{#{% include 'MVNerdsLaunchSiteBundle:SideBar:logged_user_block.html.twig' %}#}
+		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+			{% include 'MVNerdsLaunchSiteBundle:SideBar:logged_user_block.html.twig' %}
+		{% else %}
+			{% include 'MVNerdsLaunchSiteBundle:SideBar:anonymous_user_block.html.twig' %}
+		{% endif %}
 	</div>
 
 	<ul class="first-ul">
@@ -23,8 +24,8 @@
 				<i class="icon-wrench"></i> <span class="only-active-show">Item Builder</span>
 			</li>
 		</a>
-		<li class="only-active-show"><a href="{{ path('item_builder_create') }}">Personnaliser la liste d'objets conseillés</a></li>
-		<li class="only-active-show"><a href="#" >Consulter les listes d'objets publiques</a></li>
+		<li class="only-active-show"><a href="{{ path('item_builder_create') }}"><i class="icon-stop"></i> Personnaliser la liste d'objets conseillés</a></li>
+		<li class="only-active-show"><a href="#" ><i class="icon-stop"></i> Consulter les listes d'objets publiques</a></li>
 	</ul>
 
 	<ul>
@@ -33,8 +34,8 @@
 				<i class="icon-group"></i> <span class="only-active-show">Most Valuable Nerds</span>
 			</li>
 		</a>
-		<li class="only-active-show"><a href="#"> L'équipe League of Legends</a></li>
-		<li class="only-active-show"><a href="#"> Nos patchs notes</a></li>
-		<li class="only-active-show"><a href="#"> Signaler un bug</a></li>
+		<li class="only-active-show"><a href="#"><i class="icon-stop"></i> L'équipe League of Legends</a></li>
+		<li class="only-active-show"><a href="#"><i class="icon-stop"></i> Nos patchs notes</a></li>
+		<li class="only-active-show"><a href="#"><i class="icon-stop"></i> Signaler un bug</a></li>
 	</ul>
 </div>
