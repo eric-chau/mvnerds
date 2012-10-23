@@ -30,6 +30,7 @@ div#sidebar {
 
 		div.toggle-sidebar {
 			cursor: pointer;
+			display: block;
 			float: right;
 			height: 100%;
 			left: 10px;
@@ -99,13 +100,13 @@ div#sidebar {
 			li {
 				border-bottom: 1px solid darken(@MVNerdsBlue, 25%);
 				display: list-item !important;
-				margin: 2px 40px;
+				margin: 2px 40px 2px 26px;
 			
 				&.header {
 					border: 0;
 					margin: 0;
 
-					a {
+					span.only-active-show {
 						display: inline-block !important;
 					}
 				}
@@ -190,7 +191,7 @@ div#sidebar {
 	}
 
 	ul {
-		list-style: square;
+		list-style: none;
 		margin: 10px 0;
 		padding: 0;
 
@@ -220,6 +221,19 @@ div#sidebar {
 
 				&:hover {
 					color: @MVNerdsBlue; .transition(color .25s linear);
+
+					i {
+						color: @MVNerdsBlue; .transition(color .25s linear);
+					}
+				}
+
+				i {
+					color: inherit;
+					display: inline-block;
+					font-size: 8px;
+					left: -2px;
+					position: relative;
+					top: -2px;
 				}
 			}
 		}

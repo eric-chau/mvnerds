@@ -60,6 +60,7 @@ div#sidebar.active .only-active-show {
 }
 div#sidebar.active div.toggle-sidebar {
   cursor: pointer;
+  display: block;
   float: right;
   height: 100%;
   left: 10px;
@@ -126,13 +127,13 @@ div#sidebar.active ul.first-ul {
 div#sidebar.active ul li {
   border-bottom: 1px solid #0c4e6c;
   display: list-item !important;
-  margin: 2px 40px;
+  margin: 2px 40px 2px 26px;
 }
 div#sidebar.active ul li.header {
   border: 0;
   margin: 0;
 }
-div#sidebar.active ul li.header a {
+div#sidebar.active ul li.header span.only-active-show {
   display: inline-block !important;
 }
 div#sidebar.active ul li a {
@@ -215,7 +216,7 @@ div#sidebar div#user-container form a.btn-connection:hover {
   background-color: #759e1a;
 }
 div#sidebar ul {
-  list-style: square;
+  list-style: none;
   margin: 10px 0;
   padding: 0;
 }
@@ -249,6 +250,21 @@ div#sidebar ul li a:hover {
   -moz-transition: color 0.25s linear;
   -o-transition: color 0.25s linear;
   transition: color 0.25s linear;
+}
+div#sidebar ul li a:hover i {
+  color: #19a0df;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div#sidebar ul li a i {
+  color: inherit;
+  display: inline-block;
+  font-size: 8px;
+  left: -2px;
+  position: relative;
+  top: -2px;
 }
 span.sidebar-tooltip {
   font-family: 'Ubuntu', sans-serif;

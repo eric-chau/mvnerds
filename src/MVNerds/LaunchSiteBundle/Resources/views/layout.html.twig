@@ -7,16 +7,10 @@
 {% block css %}
 	{{ parent() }}
 
-	{% stylesheets 
-		'css/bootstrap.css'
-		'css/normalize.css'
-		'css/main.css'
-		'css/launch_site/front.css'
-		output='css/compiled/layout.css'
-		filter='yui_css'
-	%}
-	<link rel="stylesheet" href="{{ asset_url }}" />
-	{% endstylesheets %}
+	<link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('css/normalize.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('css/launch_site/front.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block javascripts %}
