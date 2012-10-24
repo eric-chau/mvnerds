@@ -49,15 +49,14 @@ function processScrollRecItems()
 	}
 }
 
-function generateRecItemBuilder()
-{
+//Permet de generer le build
+function generateRecItemBuilder() {
 	$champions = $('div.champion-container li.champion.active');
 	$items = $('#item-topbar li.rec-item.full');
 	gameMode = $('div.game-mode-container div.game-mode.active').first().data('game-mode');
 	buildName = $('input#build-name').val();
 	
-	if($champions.length >= 1 && $items.length == 6 && gameMode.length > 0 && buildName.length > 0)
-	{
+	if($champions.length >= 1 && $items.length == 6 && gameMode.length > 0 && buildName.length > 0) {
 		championsSlugs = new Array();
 		$champions.each(function(){
 			championsSlugs.push($(this).attr('id'));
@@ -68,137 +67,87 @@ function generateRecItemBuilder()
 			itemsSlugs.push($(this).find('div.portrait').data('slug'));
 		});
 		
-		console.log(championsSlugs);
-		console.log(itemsSlugs);
-		console.log(gameMode);
-		
 		$.ajax({
 			type: 'POST',
 			url:  Routing.generate('item_builder_generate_rec_item_file', {_locale: locale}),
 			data: {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName},
 			dataType: 'json'
 		}).done(function(data){
-			console.log(data);
 			window.location = Routing.generate('item_builder_download_file', {_locale: locale, itemBuildSlug: data});
 		}).fail(function(data){
 			console.log(data);
 		});
 	}
-	else
-	{
+	else {
 		console.log('error : not enough champions or rec items, or no game mode or buildName set');
 	}
+	
 	return false;
 }
 
 /************************************************************************** FILTER ***************************************************************/
 var itemTypeaheadValue, $itemFilterInput;
 
-function initTypeahead($itemIsotopeList) {
-	$itemFilterInput.off('keyup change');
-	$itemFilterInput.keyup(function(){
-		itemFilter($itemIsotopeList);
+function initTypeahead($isotope, $filterInput, route) {
+	//lorsqu'un  changement survient dans le typeahead
+	$filterInput.on('keyup change',function(){
+		$isotope.setNameFilter($filterInput.val());
 	});
-	$itemFilterInput.change(function(){
-		itemFilter($itemIsotopeList);
-	});
+	//Chargement de l autocompletion du champ de recherche
+	if (route != undefined) {
+		$.ajax({
+			type: 'POST',
+			url:  route, 
+			dataType: 'html'
+		}).done(function(data){
+			$filterInput.attr('data-source', data);
+		});
+	}
 }
-function initFilterList($itemIsotopeList) {
-	$('#item-filters-list  li').off('click', ' a.filter-link:not(.selected)');
-	$('#item-filters-list li').off('click', 'a.selected');
-	
-	$('#item-filters-list  li').on('click', ' a.filter-link:not(.selected)', function(){
+
+function initItemFilterList($isotope, $filterButtons) {
+	//Clic sur un bouton de filtrage non selectionné
+	$filterButtons.on('click', ' a.filter-link:not(.selected)', function(){
 		$(this).addClass('selected');
-		$('a#drop-filter-list').addClass('active');
-		addItemFilterValue($itemIsotopeList, '.'+$(this).attr('data-option-value'));
+		$(this).parent('a.dropdown-toggle').addClass('active');
+		activateButton($('li#item-li-clean-filter'));
+		$isotope.addFilterValue('.'+$(this).attr('data-option-value'));
 		return false;
 	});
-	$('#item-filters-list li').on('click', 'a.selected',function() {
+	//Clic sur un bouton de filtrage sélectionné
+	$filterButtons.on('click', 'a.filter-link.selected',function() {
 		$(this).removeClass('selected');
-		removeItemFilterValue($itemIsotopeList, '.'+$(this).attr('data-option-value'));
-		if($('#item-filters-list li a.selected').size() <= 0)
+		$isotope.removeFilterValue('.'+$(this).attr('data-option-value'));
+		if($(this).parent().find('a.filter-link.selected').size() <= 0)
 		{
-			$('a#item-drop-filter-list').removeClass('active');
+			$(this).parent('a.dropdown-toggle').removeClass('active');
+			if($isotope.options == undefined || $isotope.options == ''){
+				deactivateButton($('li#item-li-clean-filter'));
+			}
 		}
 		return false;
+	});	
+}
+
+function initItemCleanAction($isotope, $filterInput) {
+	//Lors du clic sur le bouton de nettoyage du filtre
+	$('#item-li-clean-filter').on('click', '#btn-clean-filter', function(){
+		$isotope.cleanFilter($filterInput);
+		$('a#drop-filter-list').removeClass('active');
+		$('ul#item-filters-list ul.tags-group a.filter-link.selected').removeClass('selected');
+		deactivateButton($('li#btn-clean-filter'));
+		return false;
 	});
-	$('#item-li-clean-filter').on('click', '#btn-clean-filter', cleanItemFilter);
 }
 
-function setTypeaheadItemsName() {
-	$.ajax({
-		type: 'POST',
-		url:  Routing.generate('item_builder_get_items_name',{_locale: locale}), 
-		dataType: 'html'
-	}).done(function(data){
-		$itemFilterInput.attr('data-source', data);
-	});
+//TODO a generaliser ailleurs. Plugin ?
+function activateButton($buttonLi){
+	$buttonLi.removeClass('disabled hide');
+	$buttonLi.find('a').removeClass('disabled');
 }
-
-function itemFilter($itemIsotopeList) {
-	var filterValue = $itemFilterInput.val();
-	if(filterValue != '')
-	{
-		setItemTypeaheadValue($itemIsotopeList, "[data-name*='" + filterValue.toLowerCase()+"']");
-	}
-	else
-	{
-		removeItemFilterValue($itemIsotopeList, itemTypeaheadValue);
-		$itemIsotopeList.isotope(itemIsotopeOptions);
-	}
-}
-function addItemFilterValue($itemIsotopeList, value) {
-	itemIsotopeOptions['filter'] = itemIsotopeOptions['filter'] + value;
-	activateItemCleanFilterButton();
-	$itemIsotopeList.isotope(itemIsotopeOptions);
-}
-function removeItemFilterValue($itemIsotopeList, value) {
-	var oldOptions = itemIsotopeOptions['filter'];
-	var newOptions;
-	if(value != undefined && value != '')
-	{
-		var splitedOptions = oldOptions.split(value);
-		newOptions = splitedOptions[0].concat(splitedOptions[1]);
-	}
-	else
-	{
-		newOptions = oldOptions;
-	}
-	itemTypeaheadValue = undefined;
-	if(newOptions == undefined || newOptions == '')
-	{
-		deactivateItemCleanFilterButton();
-	}
-	itemIsotopeOptions['filter'] = newOptions;
-	$itemIsotopeList.isotope(itemIsotopeOptions);
-}
-function setItemTypeaheadValue($itemIsotopeList, value){
-	removeItemFilterValue($itemIsotopeList, itemTypeaheadValue);
-	itemTypeaheadValue = value;
-	addItemFilterValue($itemIsotopeList,itemTypeaheadValue);
-	$itemIsotopeList.isotope(itemIsotopeOptions);
-}
-
-//Permet de vider le filtre
-function cleanItemFilter() {
-	$('a#drop-filter-list').removeClass('active');
-	$itemFilterInput.val('');
-	itemIsotopeOptions['filter'] = '';
-	$('ul#filters-list ul.tags-group a.filter-link.selected').each(function(){
-		$(this).removeClass('selected');
-	});
-	deactivateItemCleanFilterButton();
-	$itemIsotopeList.isotope(itemIsotopeOptions);
-	return false;
-}
-
-function activateItemCleanFilterButton(){
-	$('#li-clean-filter').removeClass('disabled hide');
-	$('#li-clean-filter').find('a').removeClass('disabled');
-}
-function deactivateItemCleanFilterButton(){
-	$('#item-li-clean-filter').addClass('disabled hide');
-	$('#item-li-clean-filter').find('a').addClass('disabled');
+function deactivateButton($buttonLi){
+	$buttonLi.addClass('disabled hide');
+	$buttonLi.find('a').addClass('disabled');
 }
 
 $(document).ready(function()
@@ -215,33 +164,31 @@ $(document).ready(function()
 	$window.on('scroll', processScrollRecItems)
 	
 	itemIsotopeOptions = {
-			itemSelector: '.item',
-			animationEngine: 'jquery',
-			masonry: {
-				columnWidth: 30
-			},
-			animationOptions: {
-				duration: 400,
-				queue: false,
-				opacity: 1
-			},
-			filter: '',
-			containerStyle: {
-				position: 'relative',
-				overflow: 'visible'
-			}
-		};
+		itemSelector: '.item',
+		animationEngine: 'jquery',
+		masonry: {
+			columnWidth: 30
+		},
+		animationOptions: {
+			duration: 400,
+			queue: false,
+			opacity: 1
+		},
+		filter: '',
+		containerStyle: {
+			position: 'relative',
+			overflow: 'visible'
+		}
+	};
 	
 	$itemIsotopeList.imagesLoaded( function(){
 		$itemIsotopeList.isotope(itemIsotopeOptions);
 	});
 	
 	// Écoute sur l'événement d'un clique sur un des modes de jeu
-	$('div.game-mode-container div.game-mode').on('click', function()
-	{
+	$('div.game-mode-container div.game-mode').on('click', function() {
 		var $this = $(this);
-		$('div.game-mode-container div.game-mode').each(function()
-		{
+		$('div.game-mode-container div.game-mode').each(function() {
 			$(this).removeClass('active');
 		});
 
@@ -250,13 +197,13 @@ $(document).ready(function()
 	
 	//Lors du clic ou du double clic sur un item
 	var timeout, dblClic = false, that;
-	$('ul#item-isotope-list').on('click', 'li.item:not(.item-maxi)', function(e){
+	$('ul#item-isotope-list').on('click', 'li.item:not(.item-maxi)', function(e) {
 		that = this;
 		
-		if(!$(that).hasClass('animating')){
+		if(!$(that).hasClass('animating')) {
 			e.preventDefault();
 			timeout = setTimeout(function() {
-				if (!dblClic){
+				if (!dblClic) {
 					timeout = null;
 					console.log('maximize item');
 				}
@@ -265,8 +212,8 @@ $(document).ready(function()
 				}
 			}, 200);
 		}
-	}).on('dblclick', function(){
-		if(!$(that).hasClass('item-maxi') && !$(that).hasClass('animating')){
+	}).on('dblclick', function() {
+		if(!$(that).hasClass('item-maxi') && !$(that).hasClass('animating')) {
 			clearTimeout(timeout);
 			timeout = null;
 			dblClic = true;
@@ -275,7 +222,7 @@ $(document).ready(function()
 	});
 	
 	//On rends chaque item draggable
-	$itemIsotopeList.on('mouseover', 'li.item', function(){
+	$itemIsotopeList.on('mouseover', 'li.item', function() {
 		$(this).draggable({
 			disabled: false,
 			helper: 'clone',
@@ -296,10 +243,10 @@ $(document).ready(function()
 	//On rends la rec item list capable d accepter les items
 	$recItems.droppable({
 		accept: '#item-isotope-list li.item',
-		over: function(){
+		over: function() {
 			$(this).css('border-color', 'red');
 		},
-		out: function(){
+		out: function() {
 			$(this).css('border-color', '#FB9701');
 		},
 		drop: function( event, ui ) {
@@ -309,7 +256,7 @@ $(document).ready(function()
 	});
 	
 	//Lors du clic sur un objet recommendé rempli
-	$recItemList.on('click', 'li.rec-item.full', function(){
+	$recItemList.on('click', 'li.rec-item.full', function() {
 		$(this).removeClass('full');
 		$(this).addClass('free');
 		$(this).html('<div><i class="icon-question-sign icon-white"></i></div>');
@@ -320,7 +267,7 @@ $(document).ready(function()
 	});
 	
 	//Lors du clic sur un champion
-	$championContainer.on('click', 'li.champion', function(){
+	$championContainer.on('click', 'li.champion', function() {
 		//On rend actif le champion
 		$(this).toggleClass('active');
 	});
@@ -332,8 +279,11 @@ $(document).ready(function()
 	$('#champion-isotope-list li.champion').tooltip();
 	$('#item-isotope-list li.item').tooltip();
 	
+	//Activation des filtres
 	$itemFilterInput = $('#item-filter-input');
-	setTypeaheadItemsName();
-	initTypeahead($itemIsotopeList);
-	initFilterList($itemIsotopeList);
+	//On set les options sur l objet isotope pour y acceder plus facilement
+	$itemIsotopeList.options = itemIsotopeOptions;
+	initTypeahead($itemIsotopeList, $itemFilterInput, Routing.generate('item_builder_get_items_name',{_locale: locale}));
+	initItemFilterList($itemIsotopeList, $('ul#item-filters-list li'));
+	initItemCleanAction($itemIsotopeList, $itemFilterInput);
 });

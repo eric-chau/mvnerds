@@ -1,117 +1,55 @@
-function initTypeahead($isotope, $filterInput) {
-	$filterInput.off('keyup change');
-	//lorsqu'un  changement survient dans le typeahead
-	$filterInput.on('keyup change',function(){
-		filter($isotope, $filterInput.val());
-	});
-}
+//Permet de gérer le filtre d isotope
 
-function initFilterList($isotope, $filterButtons) {
-	$filterButtons.off('click', ' a.filter-link:not(.selected), a.selected');
-	
-	//Clic sur un bouton de filtrage non selectionné
-	$filterButtons.on('click', ' a.filter-link:not(.selected)', function(){
-		$(this).addClass('selected');
-		$(this).parent('a.dropdown-toggle').addClass('active');
-		activateCompareFilteredButton();
-		addFilterValue($isotope, '.'+$(this).attr('data-option-value'));
-		return false;
-	});
-	//Clic sur un bouton de filtrage sélectionné
-	$filterButtons.on('click', 'a.filter-link.selected',function() {
-		$(this).removeClass('selected');
-		removeFilterValue($isotope, '.'+$(this).attr('data-option-value'));
-		if($(this).parent().find('a.filter-link.selected').size() <= 0)
-		{
-			$(this).parent('a.dropdown-toggle').removeClass('active');
-			deactivateCompareFilteredButton();
+(function($)
+{	
+	//Appelé lorsqu'un changement survient dans l'input typeahead
+	//Si filter value n est pas null on change la valeur du filtre [data-name]
+	$.fn.setNameFilter = function(filterValue) {
+		if(filterValue != '') {
+			//On enleve la precedente valeur du filtre de nom
+			this.removeFilterValue(this.typeaheadValue);
+			//On enregistre la nouvelle valeur dans la variable destinée à cet effet dans l objet $isotope
+			this.typeaheadValue = "[data-name*='" + filterValue.toLowerCase()+"']";
+			//On ajoute la nouvelle valeur du filtre
+			this.addFilterValue(this.typeaheadValue);
+		} else {
+			this.removeFilterValue(this.typeaheadValue);
 		}
-		return false;
-	});	
-}
-
-function initCleanAction() {
-	//Lors du clic sur le bouton de nettoyage du filtre
-	$('#li-clean-filter').on('click', '#btn-clean-fitler', cleanFilter);
-}
-function initAddFilteredAction() {
-	$('#li-compare-filtered').on('click', '#btn-compare-filtered', addFilteredChampions);
-}
-
-function initTypeaheadAutocomplete(route, $filterInput) {
-	// Routing.generate('champion_handler_front_get_champions_name',{_locale: locale})
-	//Initialise l auto completion du typeahead
-	$.ajax({
-		type: 'POST',
-		url:  route, 
-		dataType: 'html'
-	}).done(function(data){
-		$filterInput.attr('data-source', data);
-	});
-}
-
-function filter($isotope, filterValue) {
-	if(filterValue != '') {
-		setFilterValue($isotope, "[data-name*='" + filterValue.toLowerCase()+"']");
+		
+		return this;
 	}
-}
 
-function setFilterValue($isotope, value){
-	removeFilterValue($isotope, typeaheadValue);
-	typeaheadValue = value;
-	addFilterValue($isotope,typeaheadValue);
-	$isotope.isotope(options);
-}
-
-function addFilterValue($isotope, options, value) {
-	options['filter'] = options['filter'] + value;
-	activateCleanFilterButton();
-	$isotope.isotope(options);
-}
-
-function removeFilterValue($isotope, options, value) {
-	var oldOptions = options['filter'];
-	var newOptions = oldOptions;
-	if(value != undefined && value != ''){
-		var splitedOptions = oldOptions.split(value);
-		newOptions = splitedOptions[0].concat(splitedOptions[1]);
+	//Permet d ajouter un filtre a la liste
+	//La value peut être une classe dans le cas du clic sur un tag
+	//Ou au filtre [data-name] si le typeahead a été modifié
+	$.fn.addFilterValue = function (value) {
+		//On ajoute la nouvelle classe a la liste des filtres
+		this.options['filter'] += value;
+		this.isotope(this.options);
+		
+		return this;
 	}
-	
-	typeaheadValue = undefined;
-	if(newOptions == undefined || newOptions == ''){
-		deactivateCleanFilterButton();
+
+	//Permet de retirer un filtre de la liste
+	//Uniquement appellé lors du clic sur un tag déjà sélectionné
+	$.fn.removeFilterValue = function (value) {
+		if(value != undefined && value != ''){
+			//On retire le filtre de la liste en le remplaçant par une chaine vide
+			this.options['filter'] =  this.options['filter'].replace(value, '');
+			this.isotope(this.options);
+		}
+		
+		return this;
 	}
-	options['filter'] = newOptions;
-	$isotope.isotope(options);
-}
 
-function cleanFilter($filterInput, options) {
-	$('a#drop-filter-list').removeClass('active');
-	$filterInput.val('');
-	options['filter'] = '';
-	$('ul#filters-list ul.tags-group a.filter-link.selected').each(function(){
-		$(this).removeClass('selected');
-	});
-	deactivateCleanFilterButton();
-	deactivateCompareFilteredButton();
-	$isotope.isotope(options);
-	return false;
-}
-
-//Permet d ajouter tous les champions filtrés à la liste
-function addFilteredChampions(){
-	var championsSlug = new Array();
-	$('#isotope-list li.isotope-item.champion:not(.isotope-hidden)').each(function(){
-		championsSlug.push($(this).attr('id'));
-	});
-	addManyChampionsToList(championsSlug);
-	return false;
-}
-function activateButton($buttonLi){
-	$buttonLi.removeClass('disabled hide');
-	$buttonLi.find('a').removeClass('disabled');
-}
-function deactivateButton($buttonLi){
-	$buttonLi.addClass('disabled hide');
-	$buttonLi.find('a').addClass('disabled');
-}
+	//Permet de nettoyer completement le filtre
+	$.fn.cleanFilter = function ($filterInput) {
+		//On vide le typeahead
+		$filterInput.val('');
+		//Et on vide la liste des filtres
+		this.options['filter'] = '';
+		this.isotope(this.options);
+		
+		return this;
+	}
+})(jQuery);

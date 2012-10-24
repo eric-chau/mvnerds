@@ -57,8 +57,8 @@ class ItemBuilderController extends Controller
 			throw new HttpException(500, 'Request must be XmlHttp and POST method!');
 		}
 		
-		$itemBuild = new ItemBuild();
-
+		$itemBuild = new \MVNerds\CoreBundle\Model\ItemBuild();
+		
 		$championsSlugs = $request->get('championsSlugs');
 		$itemsSlugs = $request->get('itemsSlugs');
 		$gameMode = $request->get('gameMode');
@@ -77,8 +77,8 @@ class ItemBuilderController extends Controller
 		}
 		
 		$itemBuild->setName($buildName);
-		
-		$itemBuild->save();
+		$itemBuild->setSlug(preg_replace('/[^\w\/]+/u', '-', $buildName));
+		$championItemBuilds = new \PropelCollection();
 		
 		$gameModes = array(
 			'dominion'	=> 2,
@@ -98,8 +98,9 @@ class ItemBuilderController extends Controller
 			$championItemBuild->setItemBuild($itemBuild);
 			$championItemBuild->setGameModeId($gameModes[$gameMode]);
 			$championItemBuild->setIsDefaultBuild(false);
-			$championItemBuild->save();
+			$championItemBuilds->append($championItemBuild);
 		}
+		$itemBuild->setChampionItemBuilds($championItemBuilds);
 		
 		/* @var $batchManager \MVNerds\CoreBundle\Batch\BatchManager */
 		$batchManager = $this->get('mvnerds.batch_manager');
@@ -116,10 +117,10 @@ class ItemBuilderController extends Controller
 	{
 		$path = $this->container->getParameter('item_builds_path') . $itemBuildSlug . '.bat';
 		
+		$response = new Response();
+		
 		if (file_exists($path))
-		{
-			$response = new Response();
-			
+		{			
 			$response->headers->set('ContentType', 'application/octetstream');
 			$response->headers->set('Content-Disposition', 'attachment;filename='.basename($path));
 			$response->headers->set('Content-Transfer-Encoding', 'binary');
