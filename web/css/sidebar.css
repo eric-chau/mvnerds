@@ -242,7 +242,7 @@ div#sidebar div#user-container form a.btn-connection {
 div#sidebar div#user-container form a.btn-connection:hover {
   background-color: #759e1a;
 }
-div#sidebar div#user-container form h3 {
+div#sidebar div#user-container form h2 {
   color: #999;
   margin: 0 0 8px 0;
   text-align: right;

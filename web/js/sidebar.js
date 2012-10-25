@@ -35,5 +35,17 @@ $(document).ready(function()
 	{
 		event.stopPropagation();
 	});
+
+	$('a.btn-registration, div#user-container p a').on('click', function(event)
+	{
+		event.stopPropagation();
+	});
+
+	$('a.btn-connection').on('click', function()
+	{
+		event.preventDefault();
+		event.stopPropagation();
+		$('form#sidebar-login-form').submit();
+	});
 });
 

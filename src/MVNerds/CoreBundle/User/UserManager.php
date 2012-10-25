@@ -3,13 +3,35 @@
 namespace MVNerds\CoreBundle\User;
 
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
+use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 
+use MVNerds\CoreBundle\Model\Profile;
 use MVNerds\CoreBundle\Model\User;
 use MVNerds\CoreBundle\Model\UserQuery;
 use MVNerds\CoreBundle\Model\UserPeer;
 
 class UserManager 
 {	
+	private $encoderFactory;
+	
+	public function createUser(array $userParams)
+	{
+		$user = new User();
+		$user->setUsername($userParams['username']);
+		$user->setEmail($userParams['email']);
+		$user->setSalt(base64_encode(mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)));
+		// Generate crypted password
+		$encoder = $this->encoderFactory->getEncoder($user);
+		$password = $encoder->encodePassword($userParams['password'], $user->getSalt());
+		$user->setPassword($password);
+		$user->setProfile(new Profile());
+		
+		// Finally
+		$user->save();
+		
+		return $user;
+	}
+	
 	/**
 	 * Vérifies les informations contenu dans l'objet $user passé en paramètre; si tout se passe bien,
 	 * l'utilisateur est créé en base de données
@@ -124,5 +146,10 @@ class UserManager
 	public function save(User $user)
 	{
 		$user->save();
+	}
+	
+	public function setEncoderFactory(EncoderFactory $encoderFactory)
+	{
+		$this->encoderFactory = $encoderFactory;
 	}
 }
