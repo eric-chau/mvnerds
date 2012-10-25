@@ -52,9 +52,7 @@ class BatchManager
 		}
 		$batFileName = $this->itemBuildsPath . $itemBuild->getSlug() . '.bat';
 		$batFile = fopen($batFileName, 'w');
-				
-		//Ecriture du header
-		fwrite($batFile, $batchHeader);
+		
 		
 		//Ecriture des chemins d acces au dossier de league of legends
 		foreach ($paths as $path)
@@ -67,6 +65,10 @@ class BatchManager
 		
 		//Parcours de chaque champion
 		$championItemBuilds = $itemBuild->getChampionItemBuildsJoinChampion();
+		if ($championItemBuilds->count() <= 0)
+		{
+			$championItemBuilds = $itemBuild->getChampionItemBuilds();
+		}
 		
 		$champNames=array();
 		$itemNames = array(

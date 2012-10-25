@@ -18,10 +18,10 @@ class ItemBuilderController extends Controller
 	 * @Route("/create", name="item_builder_create")
 	 */
 	public function createAction()
-	{
+	{				
 		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:create_index.html.twig', array(
-			'champions' => $this->get('mvnerds.champion_manager')->findAll(),
-			'items'	=> $this->get('mvnerds.item_manager')->findAll()
+			'champions' => $this->get('mvnerds.champion_manager')->findAllWithTags(),
+			'items'	=> $this->get('mvnerds.item_manager')->findAllWithTags()
 		));
 	}
 	
@@ -57,8 +57,8 @@ class ItemBuilderController extends Controller
 			throw new HttpException(500, 'Request must be XmlHttp and POST method!');
 		}
 		
-		$itemBuild = new ItemBuild();
-
+		$itemBuild = new \MVNerds\CoreBundle\Model\ItemBuild();
+		
 		$championsSlugs = $request->get('championsSlugs');
 		$itemsSlugs = $request->get('itemsSlugs');
 		$gameMode = $request->get('gameMode');
@@ -77,8 +77,8 @@ class ItemBuilderController extends Controller
 		}
 		
 		$itemBuild->setName($buildName);
-		
-		$itemBuild->save();
+		$itemBuild->setSlug(preg_replace('/[^\w\/]+/u', '-', $buildName));
+		$championItemBuilds = new \PropelCollection();
 		
 		$gameModes = array(
 			'dominion'	=> 2,
@@ -98,8 +98,9 @@ class ItemBuilderController extends Controller
 			$championItemBuild->setItemBuild($itemBuild);
 			$championItemBuild->setGameModeId($gameModes[$gameMode]);
 			$championItemBuild->setIsDefaultBuild(false);
-			$championItemBuild->save();
+			$championItemBuilds->append($championItemBuild);
 		}
+		$itemBuild->setChampionItemBuilds($championItemBuilds);
 		
 		/* @var $batchManager \MVNerds\CoreBundle\Batch\BatchManager */
 		$batchManager = $this->get('mvnerds.batch_manager');
@@ -116,10 +117,10 @@ class ItemBuilderController extends Controller
 	{
 		$path = $this->container->getParameter('item_builds_path') . $itemBuildSlug . '.bat';
 		
+		$response = new Response();
+		
 		if (file_exists($path))
-		{
-			$response = new Response();
-			
+		{			
 			$response->headers->set('ContentType', 'application/octetstream');
 			$response->headers->set('Content-Disposition', 'attachment;filename='.basename($path));
 			$response->headers->set('Content-Transfer-Encoding', 'binary');
@@ -128,5 +129,17 @@ class ItemBuilderController extends Controller
 			@readfile($path);
 		}
 		return $response;
+	}
+	
+	/**
+	 * @Route("/get-items-name", name="item_builder_get_items_name", options={"expose"=true})
+	 */
+	public function getItemsNameAction()
+	{
+		$request = $this->getRequest();
+		if  (!$request->isXmlHttpRequest() || !$request->isMethod('POST')) {
+			throw new HttpException(500, 'La requête doit être effectuée en AJAX et en method POST !');
+		}
+		return new Response(json_encode($this->get('mvnerds.item_manager')->getItemsName()->toArray()));
 	}
 }

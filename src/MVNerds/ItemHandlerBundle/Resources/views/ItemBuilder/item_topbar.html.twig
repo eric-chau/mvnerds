@@ -1,0 +1,23 @@
+<div id="item-topbar-container">
+	<h3 class="pull-left">Objets recommandés :</h3>
+	
+	<ul id="item-actions" >
+		<li>
+			<ul id="rec-item-sortable">
+				<li class="rec-item free" data-original-position="1" id="rec-item-1"><div><i class="icon-question-sign icon-white"></i></div></li>
+				<li class="rec-item free" data-original-position="2" id="rec-item-2"><div><i class="icon-question-sign icon-white"></i></div></li>
+				<li class="rec-item free" data-original-position="3" id="rec-item-3"><div><i class="icon-question-sign icon-white"></i></div></li>
+				<li class="rec-item free" data-original-position="4" id="rec-item-4"><div><i class="icon-question-sign icon-white"></i></div></li>
+				<li class="rec-item free" data-original-position="5" id="rec-item-5"><div><i class="icon-question-sign icon-white"></i></div></li>
+				<li class="rec-item free" data-original-position="6" id="rec-item-6"><div><i class="icon-question-sign icon-white"></i></div></li>
+			</ul>
+		</li>
+		{# Bouton d'action qui permet de filtrer les champions #}
+		{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_filter_list.html.twig' %}
+
+		{# Champ input qui permet de filtrer / rechercher un champion selon son nom #}
+		<li class="action filter-action search-action " data-page-display="champions">
+			<i class="icon-search icon-white"></i> <input id="item-filter-input" type="text" class="input-mini" placeholder="{{'Actionsbar.Search.placeholder'|trans}}" data-provide="typeahead"/>
+		</li>
+	</ul>
+</div>

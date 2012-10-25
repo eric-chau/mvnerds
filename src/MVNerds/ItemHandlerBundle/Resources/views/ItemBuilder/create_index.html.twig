@@ -2,13 +2,16 @@
 
 {% block css %}
 	{{ parent() }}
-	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square-sprite.css') }}">
+	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square36-sprite.css') }}">
 	<link href="{{ asset('css/item_builder/creation-page.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 	
 {% block javascripts %}
 	{{ parent() }}
-	
+
+	<script src="{{ asset('js/jquery.isotope.min.js') }}"></script>
+	<script src="{{ asset('js/launch_site/alerts-ajax-handler.js') }}"></script>
+	<script src="{{ asset('js/launch_site/isotope-filter.js') }}"></script>
 	<script src="{{ asset('js/item_handler/item_builder/creation-page.js') }}"></script>
 {% endblock %}
 
@@ -24,7 +27,13 @@
 		pratique non ?</p>
 		
 		<div class="champion-container">
-			{% include 'MVNerdsChampionHandlerBundle:Front:champion_grid.html.twig' %}
+			<div id="champion-topbar">
+				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:champion_topbar_minified.html.twig' %}
+			</div>
+				
+			<div id="champion-list">
+				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:champion_grid_minified.html.twig' %}
+			</div>
 		</div>
 		
 		<h2>Etape 2 : choisissez le mode de jeu</h2>
@@ -46,15 +55,8 @@
 		ne retrouvez pas certains objets.</p>
 		
 		<div class="item-container">
-			<div id="rec-item-list">
-				<ul id="rec-item-sortable">
-					<li class="rec-item first free" data-original-position="1" id="rec-item-1"><div><i class="icon-question-sign icon-white"></i></div></li>
-					<li class="rec-item free" data-original-position="2" id="rec-item-2"><div><i class="icon-question-sign icon-white"></i></div></li>
-					<li class="rec-item free" data-original-position="3" id="rec-item-3"><div><i class="icon-question-sign icon-white"></i></div></li>
-					<li class="rec-item free" data-original-position="4" id="rec-item-4"><div><i class="icon-question-sign icon-white"></i></div></li>
-					<li class="rec-item free" data-original-position="5" id="rec-item-5"><div><i class="icon-question-sign icon-white"></i></div></li>
-					<li class="rec-item last free" data-original-position="6" id="rec-item-6"><div><i class="icon-question-sign icon-white"></i></div></li>
-				</ul>
+			<div id="item-topbar">
+				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_topbar.html.twig' %}
 			</div>
 				
 			<div id="item-list">
