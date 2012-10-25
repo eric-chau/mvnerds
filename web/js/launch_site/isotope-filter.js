@@ -11,18 +11,19 @@
 			tags += this.filters.tags[i];
 		}
 		if (this.filters.gameMode != undefined) {
-			this.setFilterValue('.shared'+tags+this.filters.name+', .'+this.filters.gameMode+tags+this.filters.name);
+			this.options['filter'] = '.shared'+tags+this.filters.name+', .'+this.filters.gameMode+tags+this.filters.name;
 		} else {
-			this.setFilterValue(tags+this.filters.name);
+			this.options['filter'] = tags+this.filters.name;
 		}
+		this.isotope(this.options);
 
 		return this;
 	}
 	
 	$.fn.setFilterValue = function (value) {
 		//On ajoute la nouvelle classe a la liste des filtres
-		this.options['filter'] = value;
-		this.isotope(this.options);
+		
+		
 		
 		return this;
 	}

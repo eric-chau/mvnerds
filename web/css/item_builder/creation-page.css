@@ -29,6 +29,9 @@ span,
 input[type="text"] {
   font-family: 'Ubuntu', sans-serif;
 }
+.isotope-hidden {
+  display: none !important;
+}
 p {
   color: #ddd;
   cursor: default;
