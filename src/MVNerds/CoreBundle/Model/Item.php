@@ -28,4 +28,20 @@ class Item extends BaseItem {
 		
 		return $tags;
 	}
+	
+	/**
+	 * 
+	 * @return string renvoie une chaine de caracteres contenant tous les game modes 
+	 * de l'item pour les utiliser en tant que classe CSS
+	 */
+	public function getGameModesToString()
+	{
+		$gameModes = '';
+		foreach ($this->getItemGameModes() as $itemGameMode) 
+		{
+			$gameModes .= strtolower($itemGameMode->getGameMode()->getLabel() . ' ');
+		}
+		
+		return $gameModes;
+	}	
 } // Item

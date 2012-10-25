@@ -292,118 +292,44 @@ function scrollToChampion($champ){
 	$('body,html').animate({scrollTop:position},500);
 }
 
+var typeaheadValue, $filterInput;
 
-
-
-var typeaheadValue, $filterValue;
-
-function initTypeahead($isotope) {
-	$filterValue.off('keyup change');
-	$filterValue.on('keyup change',function(){
-		filter($isotope);
-	});
-}
 function initFilterList($isotope) {
-	$('#filters-list  li').off('click', ' a.filter-link:not(.selected)');
-	$('#filters-list li').off('click', 'a.selected');
+	$('#filters-list  li').off('click', ' a.filter-link:not(.selected), a.selected');
 	
 	$('#filters-list  li').on('click', ' a.filter-link:not(.selected)', function(){
 		$(this).addClass('selected');
 		$('a#drop-filter-list').addClass('active');
-		activateCompareFilteredButton();
-		addFilterValue($isotope, '.'+$(this).attr('data-option-value'));
+		activateButton($('#li-compare-filtered'));
+		activateButton($('#li-clean-filter'));
+		$isotope.addFilterValue('.'+$(this).attr('data-option-value'));
 		return false;
 	});
 	$('#filters-list li').on('click', 'a.selected',function() {
 		$(this).removeClass('selected');
-		removeFilterValue($isotope, '.'+$(this).attr('data-option-value'));
-		if($('#filters-list li a.selected').size() <= 0)
-		{
+		$isotope.removeFilterValue('.'+$(this).attr('data-option-value'));
+		if($('#filters-list li a.selected').size() <= 0) {
 			$('a#drop-filter-list').removeClass('active');
-			deactivateCompareFilteredButton();
+			deactivateButton($('#li-compare-filtered'));
+			if($isotope.options == undefined || $isotope.options == ''){
+				deactivateButton($('#li-clean-filter'));
+			}
 		}
 		return false;
 	});
-	$('#li-clean-filter').on('click', '#btn-clean-fitler', cleanFilter);
 	$('#li-compare-filtered').on('click', '#btn-compare-filtered', addFilteredChampions);
 }
-
-function setTypeaheadChampionsName() {
-	$.ajax({
-		type: 'POST',
-		url:  Routing.generate('champion_handler_front_get_champions_name',{_locale: locale}), 
-		dataType: 'html'
-	}).done(function(data){
-		$filterValue.attr('data-source', data);
+function initCleanAction($isotope, $filterInput) {
+	//Lors du clic sur le bouton de nettoyage du filtre
+	$('#li-clean-filter').on('click', 'a', function(){
+		$isotope.cleanFilter($filterInput);
+		$(this).parents('li.dropdown').find('a.dropdown-toggle').removeClass('active');
+		$(this).parents('ul.dropdown-menu').find('a.filter-link.selected').removeClass('selected');
+		deactivateButton($('#li-clean-filter'));
+		deactivateButton($('#li-compare-filtered'));
+		return false;
 	});
 }
-
-function filter($isotope) {
-	var filterValue = $filterValue.val();
-	if(filterValue != '')
-	{
-		setTypeaheadValue($isotope, "[data-name*='" + filterValue.toLowerCase()+"']");
-	}
-	else
-	{
-		removeFilterValue($isotope, typeaheadValue);
-		$isotope.isotope(options);
-	}
-}
-function addFilterValue($isotope, value) {
-	options['filter'] = options['filter'] + value;
-	activateCleanFilterButton();
-	$isotope.isotope(options);
-}
-function removeFilterValue($isotope, value) {
-	var oldOptions = options['filter'];
-	var newOptions;
-	if(value != undefined && value != '')
-	{
-		var splitedOptions = oldOptions.split(value);
-		newOptions = splitedOptions[0].concat(splitedOptions[1]);
-	}
-	else
-	{
-		newOptions = oldOptions;
-	}
-	typeaheadValue = undefined;
-	if(newOptions == undefined || newOptions == '')
-	{
-		deactivateCleanFilterButton();
-	}
-	options['filter'] = newOptions;
-	$isotope.isotope(options);
-}
-function setTypeaheadValue($isotope, value){
-	removeFilterValue($isotope, typeaheadValue);
-	typeaheadValue = value;
-	addFilterValue($isotope,typeaheadValue);
-	$isotope.isotope(options);
-}
-
-//Permet de vider le filtre
-function cleanFilter() {
-	$('a#drop-filter-list').removeClass('active');
-	$filterValue.val('');
-	options['filter'] = '';
-	$('ul#filters-list ul.tags-group a.filter-link.selected').each(function(){
-		$(this).removeClass('selected');
-	});
-	deactivateCleanFilterButton();
-	deactivateCompareFilteredButton();
-	$isotope.isotope(options);
-	return false;
-}
-function activateCleanFilterButton(){
-	$('#li-clean-filter').removeClass('disabled hide');
-	$('#li-clean-filter').find('a').removeClass('disabled');
-}
-function deactivateCleanFilterButton(){
-	$('#li-clean-filter').addClass('disabled hide');
-	$('#li-clean-filter').find('a').addClass('disabled');
-}
-
 //Permet d ajouter tous les champions filtrés à la liste
 function addFilteredChampions(){
 	var championsSlug = new Array();
@@ -413,18 +339,6 @@ function addFilteredChampions(){
 	addManyChampionsToList(championsSlug);
 	return false;
 }
-function activateCompareFilteredButton(){
-	$('#li-compare-filtered').removeClass('disabled hide');
-	$('#li-compare-filtered').find('a').removeClass('disabled');
-}
-function deactivateCompareFilteredButton(){
-	$('#li-compare-filtered').addClass('disabled hide');
-	$('#li-compare-filtered').find('a').addClass('disabled');
-}
-
-
-
-
 
 jQuery(function() {
 	
@@ -447,7 +361,7 @@ jQuery(function() {
 		//On fait un appel ajax pour demander à ajouter le champion
 		$.ajax({
 			type: 'GET',
-			url:  Routing.generate('champion_handler_comparison_clean_comparison'),
+			url:  Routing.generate('champion_handler_comparison_clean_comparison', {_locale:locale}),
 			dataType: 'json'
 		}).done(function(data){
 			//Si data vaut true
@@ -526,16 +440,19 @@ jQuery(function() {
 	$isotope = $('#isotope-list');
 	initIsotope($isotope);
 
-	$('div.champion-portrait  a.btn-add-to-list').on('click', function(event)
-	{
+	$('div.champion-portrait  a.btn-add-to-list').on('click', function(event) {
 		event.preventDefault();
 		console.log($(this).data('champion-slug'));
 		addChampionToList($(this).data('champion-slug'));
 	});
 	
-	
-	$filterValue = $('#filter-value');
-	setTypeaheadChampionsName();
-	initTypeahead($isotope);
+	$filterInput = $('#filter-value');
+	$isotope.options = options;
+	$isotope.filters = {
+		tags : [],
+		name: ''
+	}
+	$isotope.initTypeahead($filterInput, Routing.generate('champion_handler_front_get_champions_name',{_locale: locale}));
 	initFilterList($isotope);
+	initCleanAction($isotope, $filterInput);
 });

@@ -10,6 +10,7 @@
 	{{ parent() }}
 
 	<script src="{{ asset('js/jquery.isotope.min.js') }}"></script>
+	<script src="{{ asset('js/launch_site/alerts-ajax-handler.js') }}"></script>
 	<script src="{{ asset('js/launch_site/isotope-filter.js') }}"></script>
 	<script src="{{ asset('js/item_handler/item_builder/creation-page.js') }}"></script>
 {% endblock %}
@@ -26,7 +27,13 @@
 		pratique non ?</p>
 		
 		<div class="champion-container">
-			{% include 'MVNerdsItemHandlerBundle:ItemBuilder:champion_grid_minified.html.twig' %}
+			<div id="champion-topbar">
+				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:champion_topbar_minified.html.twig' %}
+			</div>
+				
+			<div id="champion-list">
+				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:champion_grid_minified.html.twig' %}
+			</div>
 		</div>
 		
 		<h2>Etape 2 : choisissez le mode de jeu</h2>

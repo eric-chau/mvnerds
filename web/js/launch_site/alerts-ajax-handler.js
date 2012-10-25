@@ -22,7 +22,7 @@ function displayMessage(message, type)
 {
 	var alert = '<div class="fade in hide alert alert-fixed alert-'+type+'"><button type="button" class="close" data-dismiss="alert">×</button>'+message+'</div>';
 	//On crée le nouveau message
-	$('#champion-comparison').before(alert);
+	$('body').append(alert);
 	$('.alert-fixed').show(400);
 	timeoutID = setTimeout(function(){
 		hideMessages();
@@ -32,7 +32,7 @@ function displayMessage(message, type)
 //Permet de retirer les messages d'alerte actuellement affichés
 function hideMessages(){
 	clearTimeout(timeoutID);
-	$('div.container div.alert-fixed').animate({
+	$('div.alert-fixed').animate({
 		opacity: 0.25,
 		bottom: '+=100'
 	},

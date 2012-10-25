@@ -18,7 +18,7 @@ class ItemBuilderController extends Controller
 	 * @Route("/create", name="item_builder_create")
 	 */
 	public function createAction()
-	{
+	{				
 		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:create_index.html.twig', array(
 			'champions' => $this->get('mvnerds.champion_manager')->findAllWithTags(),
 			'items'	=> $this->get('mvnerds.item_manager')->findAllWithTags()
