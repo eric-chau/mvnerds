@@ -10,21 +10,21 @@
 		for (var i=0; i<this.filters.tags.length; i++) {
 			tags += this.filters.tags[i];
 		}
+		if (this.filters.championSpecificFilter != undefined) {
+			tags += this.filters.championSpecificFilter;
+		}
+		
 		if (this.filters.gameMode != undefined) {
-			this.options['filter'] = '.shared'+tags+this.filters.name+', .'+this.filters.gameMode+tags+this.filters.name;
+			if (this.filters.championItemsFilter != undefined) {
+				this.options['filter'] = '.shared'+tags+this.filters.name+':not(.champion-specific), .'+this.filters.gameMode+tags+this.filters.name+':not(.champion-specific), '+this.filters.championItemsFilter+tags+this.filters.name;
+			} else {
+				this.options['filter'] = '.shared'+tags+this.filters.name+', .'+this.filters.gameMode+tags+this.filters.name;
+			}
 		} else {
 			this.options['filter'] = tags+this.filters.name;
 		}
 		this.isotope(this.options);
 
-		return this;
-	}
-	
-	$.fn.setFilterValue = function (value) {
-		//On ajoute la nouvelle classe a la liste des filtres
-		
-		
-		
 		return this;
 	}
 	
@@ -108,6 +108,26 @@
 				$filterInput.attr('data-source', data);
 			});
 		}
+		
+		return this;
+	}
+	
+	$.fn.hideChampionSpecificItems = function() {
+		this.filters.championSpecificFilter = ':not(.champion-specific)';
+		this.filters.championItemsFilter = undefined;
+		this.refreshFilter();
+		
+		return this;
+	}
+	$.fn.showChampionSpecificItems = function($championSelectedSlug) {
+		if ($championSelectedSlug != undefined ) {
+			this.filters.championItemsFilter = '[data-champion="'+$championSelectedSlug+'"]';
+		} else {
+			this.filters.championItemsFilter = undefined;
+		}
+		this.filters.championSpecificFilter = undefined;
+		
+		this.refreshFilter();
 		
 		return this;
 	}

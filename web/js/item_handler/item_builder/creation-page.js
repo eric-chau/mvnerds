@@ -171,6 +171,20 @@ function initChampionAddFilteredAction($isotope) {
 	});
 }
 
+function checkRecItemsByMode($gameMode) {
+	$('ul#rec-item-sortable li.rec-item div.portrait').each( function() {
+		itemGameModes = $(this).data('game-modes');
+		if ( itemGameModes.indexOf($gameMode) < 0 && itemGameModes.indexOf('shared') < 0 ) {
+			$(this).parent('li.rec-item').removeClass('full').addClass('free').html('<div><i class="icon-question-sign icon-white"></i></div>');
+		}
+	});
+}
+
+//Retire tous les objets spécifiques a des champions des objets recommandés
+function checkRecItemsByChampionSpecific() {
+	$('ul#rec-item-sortable li.rec-item div.portrait[data-champion!=""]').parent('li.rec-item').removeClass('full').addClass('free').html('<div><i class="icon-question-sign icon-white"></i></div>');
+}
+
 $(document).ready(function()
 {
 	$window = $(window);
@@ -190,6 +204,7 @@ $(document).ready(function()
 		$('div.game-mode-container div.game-mode').removeClass('active');
 		$(this).addClass('active');
 		$itemIsotopeList.setGameModeFilter($(this).data('game-mode'));
+		checkRecItemsByMode($itemIsotopeList.filters.gameMode);
 	});
 	
 	//Lors du clic ou du double clic sur un item
@@ -263,6 +278,23 @@ $(document).ready(function()
 	$championContainer.on('click', 'li.champion', function() {
 		//On rend actif le champion
 		$(this).toggleClass('active');
+		
+		var activeChampions = $('ul#champion-isotope-list li.champion.active');
+		//s il y a plus d un champion selectionné on ne peut pas laisser les items dedies a des champions particuliers
+		if (activeChampions.length > 1) {
+			$itemIsotopeList.hideChampionSpecificItems();
+			checkRecItemsByChampionSpecific();
+		}else if(activeChampions.length > 0) {
+			var championSlug = activeChampions.first().data('name');
+			var relatedItems = $('ul#item-isotope-list li.item div.portrait[data-champion="'+championSlug+'"]');
+			if (relatedItems != undefined && relatedItems.length > 0) {
+				$itemIsotopeList.showChampionSpecificItems(championSlug);
+			} else {
+				$itemIsotopeList.hideChampionSpecificItems();
+			}
+		} else {
+			$itemIsotopeList.showChampionSpecificItems();
+		}
 	});
 	
 	//Bouton de generation du build

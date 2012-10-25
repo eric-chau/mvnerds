@@ -202,6 +202,7 @@ class ItemManager
 			->joinWith('Tag.TagI18n', \Criteria::LEFT_JOIN)
 			->joinWith('ItemGameMode', \Criteria::LEFT_JOIN)
 			->joinWith('ItemGameMode.GameMode', \Criteria::LEFT_JOIN)
+			->joinWith('Champion', \Criteria::LEFT_JOIN)
 			->orderBy('ItemI18n.NAME')
 			->orderBy('ItemSecondaryEffect.ID')
 		->find();
