@@ -25,14 +25,34 @@ class RegistrationController extends Controller
 		if ($request->isMethod('POST')) {
 			$form->bind($request);
 			if ($form->isValid()) {
-				$form->getData()->save();
+				$user = $form->getData()->save();
 				
-				return $this->render('MVNerdsLaunchSiteBundle:Login:registration_success.html.twig');
+				return $this->render('MVNerdsLaunchSiteBundle:Login:registration_success.html.twig', array(
+					'user' => $user
+				));
 			}
 		}
 		
 		return $this->render('MVNerdsLaunchSiteBundle:Login:registration_index.html.twig', array(
 			'form' => $form->createView(),
+		));
+	}
+	
+	/**
+	 * @Route("/{_locale}/summoner/{slug}/account-activation/{activationCode}", name="launch_site_account_activation")
+	 */
+	public function activateAccountAction($slug, $activationCode)
+	{
+		$success = $this->get('mvnerds.user_manager')->activateAccount($slug, $activationCode);
+		if (!$success) {
+			return $this->render('MVNerdsLaunchSiteBundle:Login:activation_fail.html.twig', array(
+				'slug'				=> $slug,
+				'activation_code'	=> $activationCode
+			));
+		}
+		
+		return $this->render('MVNerdsLaunchSiteBundle:Login:activation_success.html.twig', array(
+			'user' => $this->get('mvnerds.user_manager')->findBySlug($slug)
 		));
 	}
 }

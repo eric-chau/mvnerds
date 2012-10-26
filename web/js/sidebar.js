@@ -47,5 +47,14 @@ $(document).ready(function()
 		event.stopPropagation();
 		$('form#sidebar-login-form').submit();
 	});
+
+	
+	// Soumission du formulaire de connexion si l'utilisateur presse la touche entrée
+	$('form#sidebar-login-form input').on('keypress', function(event)
+	{
+		if (event.which == 13) {
+			$('form#sidebar-login-form').submit();
+		}
+	});
 });
 

@@ -55,11 +55,19 @@
     <column name="email" required="true" size="100" type="VARCHAR" />
     <column defaultValue="0" name="is_active" required="true" type="BOOLEAN" />
     <column name="profile_id" type="INTEGER" />
-    <column name="activation_code" required="true" size="6" type="VARCHAR" />
+    <column name="activation_code" required="true" size="32" type="VARCHAR" />
     <foreign-key foreignTable="profile">
       <reference foreign="id" local="profile_id" />
     </foreign-key>
     <behavior name="timestampable" />
+    <behavior name="sluggable">
+      <parameter name="slug_column" value="slug" />
+      <parameter name="slug_pattern" value="{username}" />
+      <parameter name="replace_pattern" value="/[^\w\/]+/u" />
+      <parameter name="replacement" value="-" />
+      <parameter name="separator" value="-" />
+      <parameter name="permanent" value="false" />
+    </behavior>
   </table>
   <table name="old_item">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />

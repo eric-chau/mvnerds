@@ -4,6 +4,7 @@ namespace MVNerds\CoreBundle\User;
 
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
+use Swift_Message;
 
 use MVNerds\CoreBundle\Model\Profile;
 use MVNerds\CoreBundle\Model\User;
@@ -13,9 +14,12 @@ use MVNerds\CoreBundle\Model\UserPeer;
 class UserManager 
 {	
 	private $encoderFactory;
+	private $mailer;
+	private $templating;
 	
 	public function createUser(array $userParams)
 	{
+		// User creation process
 		$user = new User();
 		$user->setUsername($userParams['username']);
 		$user->setEmail($userParams['email']);
@@ -24,11 +28,24 @@ class UserManager
 		$encoder = $this->encoderFactory->getEncoder($user);
 		$password = $encoder->encodePassword($userParams['password'], $user->getSalt());
 		$user->setPassword($password);
+		// Generate unique activation code
+		$user->setActivationCode(md5(uniqid(rand(), true)));
+		$user->setPlainPassword($userParams['password']);
 		$user->setProfile(new Profile());
 		
 		// Finally
 		$user->save();
 		
+		// Send confirmation mail to user
+		$message = Swift_Message::newInstance()
+			->setSubject('Invocateur, vous êtes inscrit sur MVNerds.com !') // Utiliser le service de traduction
+			->setFrom('registration@mvnerds.com')
+			->setTo($user->getEmail())
+			->setBody($this->templating->render('MVNerdsLaunchSiteBundle:Login:confirmation_mail.txt.twig', array(
+				'user' => $user
+			)), 'text/plain');
+		$this->mailer->send($message);
+						
 		return $user;
 	}
 	
@@ -123,6 +140,19 @@ class UserManager
 		return $user;
 	}
 	
+	public function findBySlug($slug)
+	{
+		$user = UserQuery::create()
+			->add(UserPeer::SLUG, $slug)
+		->findOne();
+		
+		if (null === $user)
+		{
+			throw new InvalidArgumentException('No user with slug:'.$slug.'!');
+		}
+		
+		return $user;
+	}
 	
 	/**
 	 * Récupère tous les utilisateurs de la base de données
@@ -148,8 +178,37 @@ class UserManager
 		$user->save();
 	}
 	
+	public function activateAccount($slug, $activationCode)
+	{
+		$user = $this->findBySlug($slug);
+		
+		if (null == $user) {
+			return false;
+		}
+		
+		if (0 != strcmp($user->getActivationCode(), $activationCode)) {
+			return false;
+		}
+		
+		// Account activation process
+		$user->activateAccount();
+		$user->save();
+		
+		return true;
+	}
+	
 	public function setEncoderFactory(EncoderFactory $encoderFactory)
 	{
 		$this->encoderFactory = $encoderFactory;
+	}
+	
+	public function setMailer($mailer)
+	{
+		$this->mailer = $mailer;
+	}
+	
+	public function setTemplating($templating)
+	{
+		$this->templating = $templating;
 	}
 }

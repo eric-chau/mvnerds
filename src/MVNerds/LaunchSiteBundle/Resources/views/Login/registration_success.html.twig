@@ -7,8 +7,8 @@
 				<h1>Enregistrement terminé - Merci !</h1>
 
 				<p>
-					Invocateur >>USERNAME<<, votre enregistrement s'est déroulé avec succès. Vous allez recevoir dans les prochaines minutes un email à l'adresse email 
-					que vous avez renseigné, >>USER ADDRESS<<. L'email comporte un lien de confirmation qui vous permet d'activer votre compte MVNerds.
+					Invocateur {{ user.getUsername() }}, votre enregistrement s'est déroulé avec succès. Vous allez recevoir dans les prochaines minutes un email à 
+					l'adresse email que vous avez renseigné, {{ user.getEmail() }}. L'email comporte un lien de confirmation qui vous permet d'activer votre compte MVNerds.
 				</p>
 				
 				<p>

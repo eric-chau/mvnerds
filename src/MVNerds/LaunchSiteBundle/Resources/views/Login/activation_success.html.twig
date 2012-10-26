@@ -1,0 +1,26 @@
+{% extends 'MVNerdsLaunchSiteBundle::layout.html.twig' %}
+	
+{% block header_footer %}
+	<div class="presentation-container">
+		<div class="content">
+			<div class="overview custom">
+				<h1>Votre compte est actif</h1>
+
+				<p>
+					Invocateur >>USERNAME<<, vous êtes maintenant membre de la communauté MVNerds ! Vous disposez dès à présent d'une page profil que vous pouvez
+					personnaliser à souhait. Nous prendrons également le soin d'enregistrer vos préférences d'utilisations sur le site (votre avis vous sera toujours
+					demandé avant toute opération de mémorisation). N'hésitez pas à revenir, beaucoup de nouveautés vont arrivés pour récompenser votre fidélité.
+				</p>
+				
+				<p>
+					Toute l'équipe MVNerds vous remercie !
+				</p>
+				
+				<p>
+					<a href="#">Aller sur mon profil</a> <a href="{{ path('launch_site_front', {'_locale': locale}) }}">Retourner à l'accueil</a>
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+{% endblock %}

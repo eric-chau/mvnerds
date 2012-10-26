@@ -17,7 +17,7 @@ class FrontController extends Controller
 	 * @Route("/{_locale}", name="launch_site_front", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"})
 	 */
 	public function indexAction()
-	{		
+	{	
 		$form = $this->createForm(new UserType());
 		$request = $this->getRequest();	
 		if ($request->isXmlHttpRequest())

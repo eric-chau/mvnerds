@@ -1,26 +1,53 @@
 {% extends 'MVNerdsLaunchSiteBundle::layout.html.twig' %}
-	
+
+{% block css %}
+	{{ parent() }}
+
+	<link href="{{ asset('css/launch_site/login.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
 {% block header_footer %}
 	<div class="presentation-container">
 		<div class="content">
-			<div class="overview custom">
+			<div class="overview custom summoner-login">
 				<h1>Authentification de l'invocateur</h1>
-
+				
 				{% if error %}
 					<div>{{ error.message }}</div>
 				{% endif %}
 
 				<form action="{{ path('security_summoner_login_check') }}" method="post">
-					<label for="username">Identifiant d'invocateur :</label>
-					<input type="text" id="username" name="_username" value="{{ last_username }}" />
-
-					<label for="password">Mot de passe :</label>
-					<input type="password" id="password" name="_password" />
-
 					<input type="hidden" name="_target_path" value="/profile" />
-
-					<button type="submit">login</button>
+					<div>
+						<label for="username_main">Identifiant d'invocateur</label>
+						<input type="text" id="username_main" name="_username" value="{{ last_username }}" />
+					</div>
+					
+					<div>
+						<label for="password_main">Mot de passe</label>
+						<input type="password" id="password_main" name="_password" /> <button>Connexion</button>
+					</div>
+					
+					<div>
+						<label for="remember_me_main">Se souvenir de moi</label>
+						<input type="checkbox" id="remember_me_main" name="_remember_me" checked />
+					</div>
+					
+					<div>
+						<label></label>
+						<a href="#">Mot de passe oublié ?</a>
+					</div>
 				</form>
+					
+				<h2>Je ne suis pas encore inscrit</h2>
+				
+				<p>
+					Créez-vous un compte MVNerds et profitez des avantages qui vous sont offerts. Beaucoup de nouvelles fonctionnalités vont arriver, soyez
+					en avance sur les autres joueurs de League of Legends. N'hésitez plus, cliquez sur le bouton ci-dessous :
+				</p>
+				<p class="align-center">
+					<a href="{{ path('launch_site_summoner_registration') }}" class="btn-registration">Créer un compte</a>
+				</p>
 			</div>
 		</div>
 	</div>
