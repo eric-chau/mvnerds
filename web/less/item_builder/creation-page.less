@@ -901,13 +901,18 @@ div.body-container {
 			}
 
 			li.item {
+				@itemPortraitHeight: 50px;
+				@itemPortraitWidth: 50px;
+				@itemGutterWidth: 8px;
+				@itemGutterHeight: 4px;
+
 				background-color: black;
 				border: 1px solid rgba(255,255,255,0.2);
 				.border-radius(5px);
 				display: inline-block;
 				margin: 0 2px 4px 2px;
 				padding: 0;
-				width: 50px;
+				width: @itemPortraitWidth;
 
 				&:hover {
 					cursor: pointer;
@@ -922,19 +927,19 @@ div.body-container {
 				}
 
 				&.animate-item-portrait {
-					height: @PortraitHeight;
+					height: @itemPortraitHeight;
 					.transition(all .3s linear);
-					width: @PortraitWidth;	
+					width: @itemPortraitWidth;	
 				}
 
 				&.item-maxi {
 					background: black url('/images/launch_site/champion_preview_bg.png') no-repeat top left;
 					border: 1px solid @LoLOrangeAD;
 					cursor: default;
-					height: (4 * @PortraitHeight) + (4 * @PortraitGutter) - 2;
+					height: (9 * (@itemPortraitHeight + 2)) + (8 * @itemGutterHeight) - 2;
 					.transition(all .3s linear);
-					width: (4 * @PortraitWidth) + (3 * @PortraitGutterWidth);
-					z-index: 900;	
+					width: (8 * (@itemPortraitWidth + 2)) + (7 * @itemGutterWidth) - 2;
+					z-index: 900;
 					margin-bottom: 4px;				
 				}
 
