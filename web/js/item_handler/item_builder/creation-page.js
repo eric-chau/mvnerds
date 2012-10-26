@@ -42,14 +42,17 @@ function processScrollRecItems() {
 }
 
 //Permet de generer le build
-function generateRecItemBuilder(route) {
+function generateRecItemBuilder(saveBuild) {
+	
+	saveBuild = saveBuild == undefined ? false : saveBuild;
+	
 	$champions = $('div.champion-container li.champion.active');
 	$items = $('#item-topbar li.rec-item.full');
 	gameMode = $('div.game-mode-container div.game-mode.active').first().data('game-mode');
 	buildName = $('input#build-name').val();
 	
 	if($champions.length >= 1) {
-		if(jQuery.inArray(gameMode, gameModesArray) ) {
+		if(gameModesArray.indexOf(gameMode) >=0 ) {
 			if ( $items.length == 6 ) {
 				if (buildName.length > 0) {
 					championsSlugs = new Array();
@@ -62,13 +65,22 @@ function generateRecItemBuilder(route) {
 						itemsSlugs.push($(this).find('div.portrait').data('slug'));
 					});
 
+					var data
+					if (saveBuild) {
+						data =  {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName, saveBuild: 'true'};
+					} else {
+						data =  {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName};
+					}
+
 					$.ajax({
 						type: 'POST',
-						url:  route,
-						data: {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName},
+						url:  Routing.generate('item_builder_generate_rec_item_file', {_locale: locale}),
+						data: data,
 						dataType: 'json'
 					}).done(function(data){
 						window.location = Routing.generate('item_builder_download_file', {_locale: locale, itemBuildSlug: data});
+					}).fail(function(){
+						displayMessage('Impossible de créer le build.', 'error');
 					})
 				} else {
 					displayMessage('Veuillez saisir un nom pour votre build.', 'error');
@@ -345,11 +357,11 @@ $(document).ready(function()
 	//Bouton de generation du build
 	$('#only-generate-build').click(function(e){
 		e.preventDefault();
-		generateRecItemBuilder(Routing.generate('item_builder_generate_rec_item_file', {_locale: locale}));
+		generateRecItemBuilder();
 	});
 	$('#save-and-generate-build').click(function(e) {
 		e.preventDefault();
-		generateRecItemBuilder(Routing.generate('item_builder_save_rec_item_file', {_locale: locale}));
+		generateRecItemBuilder(true);
 	});
 	
 	//Activation des tooltips

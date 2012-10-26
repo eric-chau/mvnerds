@@ -214,7 +214,7 @@ class ChampionManager
 			->joinWith('ChampionTag', \Criteria::LEFT_JOIN)
 			->joinWith('ChampionTag.Tag', \Criteria::LEFT_JOIN)
 			->joinWith('Tag.TagI18n', \Criteria::LEFT_JOIN)
-			->OrderBy(ChampionPeer::ID)
+			->OrderBy(ChampionPeer::SLUG)
 		->find();
 	}
 
