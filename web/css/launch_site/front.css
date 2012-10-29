@@ -28,6 +28,9 @@
 .force-hide {
   display: none !important;
 }
+.isotope-hidden {
+  display: none !important;
+}
 p {
   color: #222;
   font-family: 'Ubuntu', sans-serif;

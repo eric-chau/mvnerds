@@ -16,21 +16,18 @@ var
 	$championFilterInput
 ;
 
-function setRecItem(slug, recItemId)
-{	
+function setRecItem(slug, recItemId) {
 	$recItem = $('#'+recItemId);
-	$portrait = $('#'+slug).find('div.portrait');
-	$recItem.html($portrait.clone()).removeClass('free').addClass('full');
+	$portrait = $('#'+slug).find('div.portrait').clone();
+	$recItem.html($portrait.css('display', 'inline-block')).removeClass('free').addClass('full');
 }
 //Ajoute un item grace a son slug au premier emplacement d objets recommandés libre
-function addItemToList(slug)
-{
+function addItemToList(slug) {
 	setRecItem(slug,$('li.rec-item.free').first().attr('id'));
 }
 
  //Fixation de la liste d objets recommandés
-function processScrollRecItems()
-{
+function processScrollRecItems() {
 	var scrollTop = $window.scrollTop();
 
 	if (scrollTop >= recItemsTop - 9.85 && ! isRecItemsFixed) {
@@ -45,14 +42,17 @@ function processScrollRecItems()
 }
 
 //Permet de generer le build
-function generateRecItemBuilder() {
+function generateRecItemBuilder(saveBuild) {
+	
+	saveBuild = saveBuild == undefined ? false : saveBuild;
+	
 	$champions = $('div.champion-container li.champion.active');
 	$items = $('#item-topbar li.rec-item.full');
 	gameMode = $('div.game-mode-container div.game-mode.active').first().data('game-mode');
 	buildName = $('input#build-name').val();
 	
 	if($champions.length >= 1) {
-		if(jQuery.inArray(gameMode, gameModesArray) ) {
+		if(gameModesArray.indexOf(gameMode) >=0 ) {
 			if ( $items.length == 6 ) {
 				if (buildName.length > 0) {
 					championsSlugs = new Array();
@@ -65,13 +65,22 @@ function generateRecItemBuilder() {
 						itemsSlugs.push($(this).find('div.portrait').data('slug'));
 					});
 
+					var data
+					if (saveBuild) {
+						data =  {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName, saveBuild: 'true'};
+					} else {
+						data =  {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName};
+					}
+
 					$.ajax({
 						type: 'POST',
 						url:  Routing.generate('item_builder_generate_rec_item_file', {_locale: locale}),
-						data: {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName},
+						data: data,
 						dataType: 'json'
 					}).done(function(data){
 						window.location = Routing.generate('item_builder_download_file', {_locale: locale, itemBuildSlug: data});
+					}).fail(function(){
+						displayMessage('Impossible de créer le build.', 'error');
 					})
 				} else {
 					displayMessage('Veuillez saisir un nom pour votre build.', 'error');
@@ -171,6 +180,59 @@ function initChampionAddFilteredAction($isotope) {
 	});
 }
 
+function checkRecItemsByMode($gameMode) {
+	$('ul#rec-item-sortable li.rec-item div.portrait').each( function() {
+		itemGameModes = $(this).data('game-modes');
+		if ( itemGameModes.indexOf($gameMode) < 0 && itemGameModes.indexOf('shared') < 0 ) {
+			$(this).parent('li.rec-item').removeClass('full').addClass('free').html('<div><i class="icon-question-sign icon-white"></i></div>');
+		}
+	});
+}
+
+//Retire tous les objets spécifiques a des champions des objets recommandés
+function checkRecItemsByChampionSpecific() {
+	$('ul#rec-item-sortable li.rec-item div.portrait[data-champion!=""]').parent('li.rec-item').removeClass('full').addClass('free').html('<div><i class="icon-question-sign icon-white"></i></div>');
+}
+
+/******************************************************* Maximisation isotope *************************************************/
+function maximizeItem($item, $isotope){	
+	//Si on trouve un autre champion déjà maximisé on le referme
+	var $maxiItem = $isotope.find('li.item-maxi');
+	if($maxiItem != undefined){
+		minimizeItem($maxiItem, $isotope);
+	}
+	
+	$item.find('div.portrait').fadeOut(250);
+	$item.addClass('item-maxi');
+	setTimeout(function() {
+		$item.find('div.preview').fadeIn(250);
+		$item.find('div.item-portrait').fadeIn(250);
+		
+		$isotope.isotope( 'reLayout');
+	},
+	320);
+
+	return false;
+}
+
+function minimizeItem($item, $isotope){
+	$item.find('div.item-portrait').fadeOut(150);
+	$item.find('div.preview').fadeOut(150);
+	setTimeout(function() {
+		$item.find('div.portrait').fadeIn(300);
+		
+		$item.toggleClass('animate-item-portrait item-maxi');
+		setTimeout(function() {
+			$isotope.isotope( 'reLayout');
+			$item.removeClass('animate-item-portrait');
+		},
+		320);
+	},
+	150);
+
+	return false;
+}
+
 $(document).ready(function()
 {
 	$window = $(window);
@@ -190,6 +252,7 @@ $(document).ready(function()
 		$('div.game-mode-container div.game-mode').removeClass('active');
 		$(this).addClass('active');
 		$itemIsotopeList.setGameModeFilter($(this).data('game-mode'));
+		checkRecItemsByMode($itemIsotopeList.filters.gameMode);
 	});
 	
 	//Lors du clic ou du double clic sur un item
@@ -201,6 +264,7 @@ $(document).ready(function()
 			timeout = setTimeout(function() {
 				if (!dblClic) {
 					timeout = null;
+					maximizeItem($(that), $itemIsotopeList);
 				}
 				else {
 					dblClic = false;
@@ -214,6 +278,14 @@ $(document).ready(function()
 			dblClic = true;
 			addItemToList($(that).attr('id'));
 		}
+	});
+	//Lors du clic sur le bouton close d un champion maximisé
+	$itemIsotopeList.on('click', 'li.item-maxi div.preview-header', function(){
+		return minimizeItem($('#'+$(this).attr('data-dissmiss')), $itemIsotopeList);
+	});
+	$itemIsotopeList.on('click', 'li.item-maxi a.btn-add-to-list', function(){
+		addItemToList($(this).data('item-slug'));
+		return false;
 	});
 	
 	//On rends chaque item draggable
@@ -263,10 +335,34 @@ $(document).ready(function()
 	$championContainer.on('click', 'li.champion', function() {
 		//On rend actif le champion
 		$(this).toggleClass('active');
+		
+		var activeChampions = $('ul#champion-isotope-list li.champion.active');
+		//s il y a plus d un champion selectionné on ne peut pas laisser les items dedies a des champions particuliers
+		if (activeChampions.length > 1) {
+			$itemIsotopeList.hideChampionSpecificItems();
+			checkRecItemsByChampionSpecific();
+		}else if(activeChampions.length > 0) {
+			var championSlug = activeChampions.first().data('name');
+			var relatedItems = $('ul#item-isotope-list li.item div.portrait[data-champion="'+championSlug+'"]');
+			if (relatedItems != undefined && relatedItems.length > 0) {
+				$itemIsotopeList.showChampionSpecificItems(championSlug);
+			} else {
+				$itemIsotopeList.hideChampionSpecificItems();
+			}
+		} else {
+			$itemIsotopeList.showChampionSpecificItems();
+		}
 	});
 	
 	//Bouton de generation du build
-	$('#only-generate-build').click(generateRecItemBuilder);
+	$('#only-generate-build').click(function(e){
+		e.preventDefault();
+		generateRecItemBuilder();
+	});
+	$('#save-and-generate-build').click(function(e) {
+		e.preventDefault();
+		generateRecItemBuilder(true);
+	});
 	
 	//Activation des tooltips
 	$('#champion-isotope-list li.champion').tooltip();
@@ -320,7 +416,7 @@ $(document).ready(function()
 	$itemIsotopeList.imagesLoaded( function(){
 		$itemIsotopeList.isotope(itemIsotopeOptions);
 	});
-		$championIsotopeList.isotope(championIsotopeOptions);
+	$championIsotopeList.isotope(championIsotopeOptions);
 	
 	//Activation des filtres
 	$itemFilterInput = $('#item-filter-input');

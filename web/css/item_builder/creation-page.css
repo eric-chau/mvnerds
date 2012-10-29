@@ -29,6 +29,9 @@ span,
 input[type="text"] {
   font-family: 'Ubuntu', sans-serif;
 }
+.isotope-hidden {
+  display: none !important;
+}
 p {
   color: #ddd;
   cursor: default;
@@ -895,12 +898,12 @@ div.body-container div.item-container div#item-list li.item:hover div.item-name 
   transition: all 0.25s linear;
 }
 div.body-container div.item-container div#item-list li.item.animate-item-portrait {
-  height: 120px;
+  height: 50px;
   -webkit-transition: all 0.3s linear;
   -moz-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
   transition: all 0.3s linear;
-  width: 118px;
+  width: 50px;
 }
 div.body-container div.item-container div#item-list li.item.item-maxi {
   background: #000000 url('/images/launch_site/champion_preview_bg.png') no-repeat top left;
@@ -911,7 +914,7 @@ div.body-container div.item-container div#item-list li.item.item-maxi {
   -moz-transition: all 0.3s linear;
   -o-transition: all 0.3s linear;
   transition: all 0.3s linear;
-  width: 490px;
+  width: 470px;
   z-index: 900;
   margin-bottom: 4px;
 }

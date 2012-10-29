@@ -11,11 +11,18 @@
 
 <div class="row-fluid">
 	<div class="span6">
-		
+		<ul>
+			{% for itemPrimaryEffect in item.getItemPrimaryEffects()%}
+				<li>{{itemPrimaryEffect.getValue()}} {{itemPrimaryEffect.getPrimaryEffect().getLabel()}}</li>
+			{% endfor %}
+			{% for itemSecondaryEffect in item.getItemSecondaryEffects()%}
+				<li>{{itemSecondaryEffect.getDescription()}}</li>
+			{% endfor %}
+		</ul>
 	</div>
 	<div class="span6 right-side">
-		<div class="item-portrait {{ item.getRiotCode() }}">
-			<a href="#" class="btn-action-item-preview"><strong>En savoir plus</strong> sur {{ item.getName() }}</a>
+		<div class="item-portrait">
+			<img draggable="false" class="item-image-preview pull-right" src="{{ asset('images/items/' ~ item.getRiotCode() ~ '.png') }}" alt="image de l'item {{ item.getName() }}" />
 			<a href="#" class="btn-action-item-preview btn-add-to-list" data-item-slug="{{ item.getSlug() }}"><strong>Ajouter</strong> à la liste</a>
 		</div>
 	</div>

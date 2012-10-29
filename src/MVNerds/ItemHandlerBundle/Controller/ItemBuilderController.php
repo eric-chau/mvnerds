@@ -5,6 +5,7 @@ namespace MVNerds\ItemHandlerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 use MVNerds\CoreBundle\Model\ItemBuild;
 use MVNerds\CoreBundle\Model\ChampionItemBuild;
@@ -62,23 +63,11 @@ class ItemBuilderController extends Controller
 		$championsSlugs = $request->get('championsSlugs');
 		$itemsSlugs = $request->get('itemsSlugs');
 		$gameMode = $request->get('gameMode');
-		$buildName = $request->get('buildName');
-
+		$buildName = $request->get('buildName');//TODO a echaper
+		$saveBuild = $request->get('saveBuild');
+		
 		/* @var $itemManager \MVNerds\CoreBundle\Item\ItemManager */
 		$itemManager = $this->get('mvnerds.item_manager');
-		
-		$i = 1;
-		foreach ($itemsSlugs as $itemSlug)
-		{
-			$item = $itemManager->findBySlug($itemSlug);
-			$method = 'setItem'.$i.'Id';
-			$itemBuild->$method($item->getId());
-			$i ++;
-		}
-		
-		$itemBuild->setName($buildName);
-		$itemBuild->setSlug(preg_replace('/[^\w\/]+/u', '-', $buildName));
-		$championItemBuilds = new \PropelCollection();
 		
 		$gameModes = array(
 			'dominion'	=> 2,
@@ -86,21 +75,75 @@ class ItemBuilderController extends Controller
 			'aram'		=> 3
 		);
 		
+		if (!key_exists($gameMode, $gameModes)) {
+			$gameMode = 'classic';
+		}
+		
+		$i = 1;
+		foreach ($itemsSlugs as $itemSlug)
+		{
+			try {
+				$item = $itemManager->findBySlug($itemSlug);
+			} catch (\Exception $e) {
+				throw new HttpException(500, 'Invalid recommended items : item not found!');
+			}
+			if (strpos($item->getGameModesToString(), 'shared') === false && strpos($item->getGameModesToString(), $gameMode) === false) {
+				throw new HttpException(500, 'Invalid recommended items : game mode!');
+			}
+			
+			$method = 'setItem'.$i.'Id';
+			$itemBuild->$method($item->getId());
+			$i ++;
+		}
+		
+		$itemBuild->setName($buildName);
+		
+		$itemBuild->setSlug(preg_replace('/[^\w\/]+/u', '-', $buildName));
+		$championItemBuilds = new \PropelCollection();
+		
 		/* @var $championManager \MVNerds\CoreBundle\Champion\ChampionManager */
 		$championManager = $this->get('mvnerds.champion_manager');
 		
 		foreach ($championsSlugs as $championSlug)
 		{
-			$champion = $championManager->findBySlug($championSlug);
-			
+			try {
+				$champion = $championManager->findBySlug($championSlug);
+			} catch (\Exception $e) {
+				continue;
+			}
 			$championItemBuild = new ChampionItemBuild();
 			$championItemBuild->setChampion($champion);
-			$championItemBuild->setItemBuild($itemBuild);
 			$championItemBuild->setGameModeId($gameModes[$gameMode]);
 			$championItemBuild->setIsDefaultBuild(false);
 			$championItemBuilds->append($championItemBuild);
 		}
-		$itemBuild->setChampionItemBuilds($championItemBuilds);
+		//Si on a au moins un champion dans la liste
+		if($championItemBuilds->count() > 0) {
+			$itemBuild->setChampionItemBuilds($championItemBuilds);
+			
+			//On vérifie qu il n y a pas d items spécifiques a un champion qui ne devrait pas etre la
+			for ($i = 1; $i <=6; $i++) {
+				$method = 'getItemRelatedByItem'.$i.'Id';
+				/* @var $item \MVNerds\CoreBundle\Model\Item */
+				$item = $itemBuild->$method();
+				//Si l item est associé a un champion
+				if ($item->getChampionId() != null) {
+					//S il y a plus d un champion dans la liste c est que c est une erreur
+					if($championItemBuilds->count() > 1) {
+						throw new HttpException(500, 'Invalid champion-specific item given!');
+					} elseif ($item->getChampionId() != $championItemBuilds->getFirst()->getChampionId()) {
+						//Sinon on verifie que l id du champion de la liste differe de l'id associé a l item
+						throw new HttpException(500, 'Invalid champion-specific item given!');
+					}
+				}
+			}
+			
+			if (null != $saveBuild && $saveBuild == 'true') {
+				$itemBuild->save();
+			}
+		} else {
+			throw new HttpException(500, 'No valid champion given!');
+		}
 		
 		/* @var $batchManager \MVNerds\CoreBundle\Batch\BatchManager */
 		$batchManager = $this->get('mvnerds.batch_manager');
