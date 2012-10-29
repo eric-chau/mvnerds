@@ -5,100 +5,106 @@
 .champion-square25.ahri {
     width: 25px;
     height: 25px;
-    background-position: -260px -104px;
+    background-position: -260px -130px;
 }
 
 .champion-square25.akali {
     width: 25px;
     height: 25px;
-    background-position: -260px -78px;
+    background-position: -260px -104px;
 }
 
 .champion-square25.alistar {
     width: 25px;
     height: 25px;
-    background-position: -260px -52px;
+    background-position: -260px -78px;
 }
 
 .champion-square25.amumu {
     width: 25px;
     height: 25px;
-    background-position: -260px -26px;
+    background-position: -260px -52px;
 }
 
 .champion-square25.anivia {
     width: 25px;
     height: 25px;
-    background-position: -260px -0px;
+    background-position: -260px -26px;
 }
 
 .champion-square25.annie {
     width: 25px;
     height: 25px;
-    background-position: -234px -234px;
+    background-position: -260px -0px;
 }
 
 .champion-square25.ashe {
     width: 25px;
     height: 25px;
-    background-position: -208px -234px;
+    background-position: -234px -234px;
 }
 
 .champion-square25.blitzcrank {
     width: 25px;
     height: 25px;
-    background-position: -182px -234px;
+    background-position: -208px -234px;
 }
 
 .champion-square25.brand {
     width: 25px;
     height: 25px;
-    background-position: -156px -234px;
+    background-position: -182px -234px;
 }
 
 .champion-square25.caitlyn {
     width: 25px;
     height: 25px;
-    background-position: -130px -234px;
+    background-position: -156px -234px;
 }
 
 .champion-square25.cassiopeia {
     width: 25px;
     height: 25px;
-    background-position: -104px -234px;
+    background-position: -130px -234px;
 }
 
 .champion-square25.chogath {
     width: 25px;
     height: 25px;
-    background-position: -78px -234px;
+    background-position: -104px -234px;
 }
 
 .champion-square25.corki {
     width: 25px;
     height: 25px;
-    background-position: -52px -234px;
+    background-position: -78px -234px;
 }
 
 .champion-square25.darius {
     width: 25px;
     height: 25px;
-    background-position: -26px -234px;
+    background-position: -52px -234px;
 }
 
 .champion-square25.diana {
     width: 25px;
     height: 25px;
-    background-position: -0px -234px;
+    background-position: -26px -234px;
 }
 
 .champion-square25.dr-mundo {
     width: 25px;
     height: 25px;
-    background-position: -234px -208px;
+    background-position: -0px -234px;
 }
 
 .champion-square25.draven {
+    width: 25px;
+    height: 25px;
+    background-position: -234px -208px;
+}
+
+.champion-square25.elise {
     width: 25px;
     height: 25px;
     background-position: -234px -182px;
