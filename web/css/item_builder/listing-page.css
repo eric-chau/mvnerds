@@ -1,0 +1,41 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+div.body-container {
+  background-color: #000;
+  color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  min-height: 500px;
+}
+div.body-container h1 {
+  color: #db4a38;
+}
+div.popover-content div.champion-square25 {
+  display: inline-block;
+  margin-right: 2px;
+}

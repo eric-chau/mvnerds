@@ -2,7 +2,7 @@
 
 (function($)
 {		
-	filterGameModes = ['classic', 'dominion', 'aram'];
+	filterGameModes = ['classic', 'dominion', 'aram', 'twisted-treeline'];
 	
 	//Raffraichit le filtre
 	$.fn.refreshFilter = function() {
@@ -43,7 +43,7 @@
 	}
 	
 	//Appelé lorsqu'un changement survient dans le game mode
-	$.fn.setGameModeFilter = function(gameMode) {console.log(filterGameModes);
+	$.fn.setGameModeFilter = function(gameMode) {
 		if(gameMode != '' && filterGameModes.indexOf(gameMode)>=0) {
 			this.filters.gameMode = gameMode;
 			this.refreshFilter();
@@ -81,9 +81,6 @@
 		//Et on vide la liste des filtres
 		this.filters.tags = [];
 		this.filters.name = '';
-		if (this.filters.gameMode != undefined) {
-			this.filters.gameMode = 'classic';
-		}
 		this.refreshFilter();
 		
 		return this;

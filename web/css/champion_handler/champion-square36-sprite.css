@@ -1,103 +1,110 @@
 .champion-square36 {
 	background-image: url('/images/champions/square36-sprite.jpg');
 }
+
 .champion-square36.ahri {
     width: 36px;
     height: 36px;
-    background-position: -370px -111px;
+    background-position: -370px -185px;
 }
 
 .champion-square36.akali {
     width: 36px;
     height: 36px;
-    background-position: -370px -74px;
+    background-position: -370px -148px;
 }
 
 .champion-square36.alistar {
     width: 36px;
     height: 36px;
-    background-position: -370px -37px;
+    background-position: -370px -111px;
 }
 
 .champion-square36.amumu {
     width: 36px;
     height: 36px;
-    background-position: -370px -0px;
+    background-position: -370px -74px;
 }
 
 .champion-square36.anivia {
     width: 36px;
     height: 36px;
-    background-position: -370px -148px;
+    background-position: -370px -37px;
 }
 
 .champion-square36.annie {
     width: 36px;
     height: 36px;
-    background-position: -333px -333px;
+    background-position: -370px -0px;
 }
 
 .champion-square36.ashe {
     width: 36px;
     height: 36px;
-    background-position: -296px -333px;
+    background-position: -333px -333px;
 }
 
 .champion-square36.blitzcrank {
     width: 36px;
     height: 36px;
-    background-position: -259px -333px;
+    background-position: -296px -333px;
 }
 
 .champion-square36.brand {
     width: 36px;
     height: 36px;
-    background-position: -222px -333px;
+    background-position: -259px -333px;
 }
 
 .champion-square36.caitlyn {
     width: 36px;
     height: 36px;
-    background-position: -185px -333px;
+    background-position: -222px -333px;
 }
 
 .champion-square36.cassiopeia {
     width: 36px;
     height: 36px;
-    background-position: -148px -333px;
+    background-position: -185px -333px;
 }
 
 .champion-square36.chogath {
     width: 36px;
     height: 36px;
-    background-position: -111px -333px;
+    background-position: -148px -333px;
 }
 
 .champion-square36.corki {
     width: 36px;
     height: 36px;
-    background-position: -74px -333px;
+    background-position: -111px -333px;
 }
 
 .champion-square36.darius {
     width: 36px;
     height: 36px;
-    background-position: -37px -333px;
+    background-position: -74px -333px;
 }
 
 .champion-square36.diana {
     width: 36px;
     height: 36px;
-    background-position: -0px -333px;
+    background-position: -37px -333px;
 }
 
 .champion-square36.dr-mundo {
     width: 36px;
     height: 36px;
-    background-position: -333px -296px;
+    background-position: -0px -333px;
 }
 
 .champion-square36.draven {
+    width: 36px;
+    height: 36px;
+    background-position: -333px -296px;
+}
+
+.champion-square36.elise {
     width: 36px;
     height: 36px;
     background-position: -296px -296px;
@@ -629,4 +636,4 @@
     width: 36px;
     height: 36px;
     background-position: -0px -0px;
-}
+}}

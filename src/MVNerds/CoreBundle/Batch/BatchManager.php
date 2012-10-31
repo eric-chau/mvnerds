@@ -104,6 +104,10 @@ class BatchManager
 			{
 				$fileName .= 'ARAM.ini';
 			}
+			elseif ($gameMode == 'twisted-treeline')
+			{
+				$fileName .= 'CLASSICMap10.ini';
+			}
 			else
 			{
 				$fileName .= 'CLASSIC.ini';

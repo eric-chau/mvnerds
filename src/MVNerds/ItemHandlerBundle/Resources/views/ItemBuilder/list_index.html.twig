@@ -1,0 +1,52 @@
+{% extends 'MVNerdsLaunchSiteBundle::layout.html.twig' %}
+
+{% block css %}
+	{{ parent() }}
+	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square25-sprite.css') }}">
+	{#<link rel="stylesheet" href="{{ asset('/css/DT_bootstrap.css') }}">#}
+	<link href="{{ asset('css/item_builder/listing-page.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+	
+{% block javascripts %}
+	{{ parent() }}
+
+	<script src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
+	<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+	{#<script src="{{ asset('js/dataTables.bootstrap.js') }}"></script>#}
+	<script src="{{ asset('js/item_handler/item_builder/listing-page.js') }}"></script>
+	<script src="{{ asset('js/launch_site/alerts-ajax-handler.js') }}"></script>
+{% endblock %}
+
+{% block body_main_content %}
+	<div class="body-container list-item-builder">
+		<h1>Item Builds List</h1>
+		
+		<table id="item-builds-table" class="table data-table" data-filter="{% if championSlug is defined %}{{championSlug}}{% endif %}">
+			<thead>
+				<tr>
+					<th>Nom</th>
+					<th>Champion</th>
+					<th>Mode de jeu</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for itemBuild in itemBuilds%}
+					<tr>
+						<td>{{itemBuild.getName()}}</td>
+						<td>
+							{% if itemBuild.getChampionItemBuilds()|length <= 1 %}
+								<div class="champion-square25 {{ itemBuild.getChampionItemBuilds().getFirst().getChampion().getSlug() }} pull-left" >&nbsp;</div>{{itemBuild.getChampionItemBuilds().getFirst().getChampion().getName()}}
+							{% else %}
+								<div class="bootstrap-popover" data-placement="bottom" data-trigger="hover" data-title="{{itemBuild.getName()}}" data-content="{%for championItemBuild in itemBuild.getChampionItemBuilds() %}<div class='champion-square25 {{championItemBuild.getChampion().getSlug()}}' ></div>{% endfor %}">Multi</div>
+							{% endif %}
+						</td>
+						<td>{{itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel()}}</td>
+						<td></td>
+						<td>{% for championItemBuild in  itemBuild.getChampionItemBuilds()%}{{championItemBuild.getChampion().getName}} {% endfor %}</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
