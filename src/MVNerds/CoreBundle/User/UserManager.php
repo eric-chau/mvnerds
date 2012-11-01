@@ -6,11 +6,15 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use Swift_Message;
+use Exception;
 
+use MVNerds\LaunchSiteBundle\CustomException\UnknowUserException;
+use MVNerds\LaunchSiteBundle\CustomException\UserAlreadyEnabledException;
+use MVNerds\LaunchSiteBundle\CustomException\WrongActivationCodeException;
 use MVNerds\CoreBundle\Model\Profile;
 use MVNerds\CoreBundle\Model\User;
-use MVNerds\CoreBundle\Model\UserQuery;
 use MVNerds\CoreBundle\Model\UserPeer;
+use MVNerds\CoreBundle\Model\UserQuery;
 
 class UserManager 
 {	
@@ -181,50 +185,70 @@ class UserManager
 	
 	public function activateAccount($slug, $activationCode)
 	{
-		$user = $this->findBySlug($slug);
-		
-		if (null == $user) {
-			return false;
+		$user = null;
+		// On vérifie d'abord si un utilisateur est associé au slug fourni
+		try {
+			$user = $this->findBySlug($slug);
+		}
+		catch (InvalidArgumentException $e) {
+			throw new UnknowUserException();
 		}
 		
+		// On vérifie si le compte utilisateur est déjà actif ou non
+		if ($user->isEnabled()) {
+			throw new UserAlreadyEnabledException();
+		}
+		
+		// On vérifie si le code d'activation est correct ou non
 		if (0 != strcmp($user->getActivationCode(), $activationCode)) {
-			return false;
+			throw new WrongActivationCodeException();
 		}
 		
-		// Account activation process
+		// Finally, account activation process
 		$user->activateAccount();
 		$user->setActivationCode('');
 		$user->save();
-		
-		return true;
 	}
 	
 	public function initForgotPasswordProcess(User $user)
 	{
+		$user->setActivationCode(md5(uniqid(rand(), true)));
+		$user->save();
+		
+		$message = Swift_Message::newInstance()
+			->setSubject('Réinitialiser votre mot de passe MVNerds !') // Utiliser le service de traduction
+			->setFrom('noreply@mvnerds.com')
+			->setTo($user->getEmail())
+			->setBody($this->templating->render('MVNerdsLaunchSiteBundle:Login:forgot_password_mail.txt.twig', array(
+				'user' => $user
+			)), 'text/plain');
+		$this->mailer->send($message);
+	}
+	
+	public function isValidResetPasswordAction($slug, $activationCode)
+	{
+		$user = null;
+		// On vérifie d'abord si un utilisateur est associé au slug fourni
+		try {
+			$user = $this->findBySlug($slug);
+		}
+		catch (InvalidArgumentException $e) {
+			throw new UnknowUserException();
+		}
+		
+		// On vérifie si le compte utilisateur est déjà actif ou non
 		if ($user->isEnabled()) {
-			if ($user->getActivationCode() == '') {
-				$user->setActivationCode(md5(uniqid(rand(), true)));
-				
-				$message = Swift_Message::newInstance()
-					->setSubject('Invocateur, vous êtes inscrit sur MVNerds.com !') // Utiliser le service de traduction
-					->setFrom('registration@mvnerds.com')
-					->setTo($user->getEmail())
-					->setBody($this->templating->render('MVNerdsLaunchSiteBundle:Login:confirmation_mail.txt.twig', array(
-						'user' => $user
-					)), 'text/plain');
-				$this->mailer->send($message);
-						
-		return $user;
-				
-				return $user;
-			}
-			else {
-				throw new Exception('Cet utilisateur a déjà effectué une demande de nouveau mot de passe !');
-			}
+			throw new UserAlreadyEnabledException();
 		}
-		else {
-			throw new AccessDeniedException('User account is currently disabled!');
+		
+		// On vérifie si le code d'activation est correct ou non
+		if (0 != strcmp($user->getActivationCode(), $activationCode)) {
+			throw new WrongActivationCodeException();
 		}
+		
+		$user->setActivationCode('');
+		
+		return true;
 	}
 	
 	public function setEncoderFactory(EncoderFactory $encoderFactory)
