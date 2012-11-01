@@ -4,6 +4,7 @@
 	<input type="text" placeholder="Nom d'invocateur" id="username" name="_username" />
 	<input type="password" placeholder="Mot de passe" id="password" name="_password" /> <a href="#" class="btn-connection">Go</a>
 	<input type="checkbox" id="remember_me" name="_remember_me" checked />
-    <label for="remember_me">Se souvenir de moi |</label> <a href="#">Mot de passe oublié ?</a> <a href="{{ path('launch_site_summoner_registration') }}" class="btn-registration only-active-show">Nouveau sur MVNerds ? Inscrivez-vous</a>
+    <label for="remember_me">Se souvenir de moi |</label> <a href="{{ path('launch_site_forgot_password') }}">Mot de passe oublié ?</a> 
+	<a href="{{ path('launch_site_summoner_registration') }}" class="btn-registration only-active-show">Nouveau sur MVNerds ? Inscrivez-vous</a>
 </form>
 

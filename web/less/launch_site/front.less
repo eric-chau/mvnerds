@@ -8,6 +8,7 @@
 .isotope-hidden {
 	display: none !important;
 }
+
 p {
 	color: #222;
 	font-family: 'Ubuntu', sans-serif;
@@ -488,32 +489,6 @@ div.body-container {
 			}
 		}
 
-		div.alert {
-			border: 1px solid rgba(255,255,255,0.5);
-			.border-radius(0);
-			color: white;
-			font-family: 'Ubuntu', sans-serif;
-			font-size: 14px;
-			opacity: 0.8;
-			text-shadow: none;
-
-			&.alert-fixed {
-				bottom: 10px;
-				position: fixed;
-				right: 10px;
-				width: 300px;
-				z-index: 1100;
-			}
-
-			&.alert-success {
-				background-color: @MVNerdsGreen;
-
-			}
-
-			&.alert-error {
-				background-color: @MVNerdsRed;
-			}
-		}
 		div.actions-bar {
 			margin: 10px 0 0 0;
 
@@ -1318,5 +1293,32 @@ div#footer {
 				}
 			}
 		}
+	}
+}
+
+div.alert {
+	border: 1px solid rgba(255,255,255,0.5);
+	.border-radius(0);
+	color: white;
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 14px;
+	opacity: 0.8;
+	text-shadow: none;
+
+	&.alert-fixed {
+		bottom: 10px;
+		position: fixed;
+		right: 10px;
+		width: 300px;
+		z-index: 1100;
+	}
+
+	&.alert-success {
+		background-color: @MVNerdsGreen;
+
+	}
+
+	&.alert-error {
+		background-color: @MVNerdsRed;
 	}
 }

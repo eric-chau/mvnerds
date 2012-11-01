@@ -2,6 +2,7 @@
 
 namespace MVNerds\CoreBundle\User;
 
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use Swift_Message;
@@ -192,9 +193,38 @@ class UserManager
 		
 		// Account activation process
 		$user->activateAccount();
+		$user->setActivationCode('');
 		$user->save();
 		
 		return true;
+	}
+	
+	public function initForgotPasswordProcess(User $user)
+	{
+		if ($user->isEnabled()) {
+			if ($user->getActivationCode() == '') {
+				$user->setActivationCode(md5(uniqid(rand(), true)));
+				
+				$message = Swift_Message::newInstance()
+					->setSubject('Invocateur, vous êtes inscrit sur MVNerds.com !') // Utiliser le service de traduction
+					->setFrom('registration@mvnerds.com')
+					->setTo($user->getEmail())
+					->setBody($this->templating->render('MVNerdsLaunchSiteBundle:Login:confirmation_mail.txt.twig', array(
+						'user' => $user
+					)), 'text/plain');
+				$this->mailer->send($message);
+						
+		return $user;
+				
+				return $user;
+			}
+			else {
+				throw new Exception('Cet utilisateur a déjà effectué une demande de nouveau mot de passe !');
+			}
+		}
+		else {
+			throw new AccessDeniedException('User account is currently disabled!');
+		}
 	}
 	
 	public function setEncoderFactory(EncoderFactory $encoderFactory)

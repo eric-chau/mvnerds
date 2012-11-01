@@ -36,7 +36,7 @@ $(document).ready(function()
 		event.stopPropagation();
 	});
 
-	$('a.btn-registration, div#user-container p a').on('click', function(event)
+	$('div#sidebar a').on('click', function(event)
 	{
 		event.stopPropagation();
 	});

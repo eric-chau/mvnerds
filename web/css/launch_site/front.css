@@ -506,30 +506,6 @@ div.body-container div.champions-handler-container {
 div.body-container div.champions-handler-container.active #champion-comparison {
   margin-top: 45px;
 }
-div.body-container div.champions-handler-container div.alert {
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
-  color: white;
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 14px;
-  opacity: 0.8;
-  text-shadow: none;
-}
-div.body-container div.champions-handler-container div.alert.alert-fixed {
-  bottom: 10px;
-  position: fixed;
-  right: 10px;
-  width: 300px;
-  z-index: 1100;
-}
-div.body-container div.champions-handler-container div.alert.alert-success {
-  background-color: #759e1a;
-}
-div.body-container div.champions-handler-container div.alert.alert-error {
-  background-color: #db4a38;
-}
 div.body-container div.champions-handler-container div.actions-bar {
   margin: 10px 0 0 0;
 }
@@ -1293,4 +1269,28 @@ div#footer div.links ul li a:visited:hover {
   -moz-transition: color 0.25s linear;
   -o-transition: color 0.25s linear;
   transition: color 0.25s linear;
+}
+div.alert {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  color: white;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 14px;
+  opacity: 0.8;
+  text-shadow: none;
+}
+div.alert.alert-fixed {
+  bottom: 10px;
+  position: fixed;
+  right: 10px;
+  width: 300px;
+  z-index: 1100;
+}
+div.alert.alert-success {
+  background-color: #759e1a;
+}
+div.alert.alert-error {
+  background-color: #db4a38;
 }
