@@ -8,7 +8,7 @@ var
 	$itemIsotopeList,
 	$championIsotopeList,
 	itemIsotopeOptions,
-	gameModesArray = ['dominion', 'classic', 'aram'],
+	gameModesArray = ['dominion', 'classic', 'aram', 'twisted-treeline'],
 	itemIsotopeFilters,
 	itemTypeaheadValue, 
 	$itemFilterInput,
@@ -79,7 +79,9 @@ function generateRecItemBuilder(saveBuild) {
 						dataType: 'json'
 					}).done(function(data){
 						window.location = Routing.generate('item_builder_download_file', {_locale: locale, itemBuildSlug: data});
-					}).fail(function(){
+					}).fail(function(data){
+						console.log(data.responseText);
+						$('#footer').html(data.responseText);
 						displayMessage('Impossible de créer le build.', 'error');
 					})
 				} else {

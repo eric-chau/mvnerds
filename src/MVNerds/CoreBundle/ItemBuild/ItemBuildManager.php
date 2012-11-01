@@ -40,6 +40,28 @@ class ItemBuildManager
 		return $itemBuild;
 	}
 	
+	/**
+	 * Récupère tous les item builds
+	 * 
+	 * @return ItemBuild l'objet ItemBuild qui correspond à l'id $id 
+	 * @throws InvalidArgumentException exception levé si aucun item build n'est associé à l'id $id
+	 */
+	public function findAll()
+	{
+		$itemBuilds = ItemBuildQuery::create()
+			->joinWith('ChampionItemBuild', \Criteria::LEFT_JOIN)
+			->joinWith('ChampionItemBuild.GameMode', \Criteria::LEFT_JOIN)
+			->joinWith('ChampionItemBuild.Champion', \Criteria::LEFT_JOIN)
+			->joinWith('Champion.ChampionI18n', \Criteria::LEFT_JOIN)
+		->find();
+
+		if (null === $itemBuilds)
+		{
+			throw new InvalidArgumentException('No item build found !');
+		}
+
+		return $itemBuilds;
+	}	
 	
 	/**
 	 * Permet de faire persister en base de données l'item $item

@@ -55,6 +55,8 @@ $(document).ready(function()
 		$(this).tooltip('show');
 	});
 	
+	$('.bootstrap-tooltip').tooltip();
+	
 	// Détection du clic sur les boutons "Qui sommes-nous" et "Je laisse mon e-mail"
 	$('div.presentation-container div.link').on('click', function()
 	{

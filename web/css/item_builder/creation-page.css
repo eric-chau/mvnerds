@@ -529,7 +529,7 @@ div.body-container div.game-mode-container .game-mode {
   display: inline-block;
   height: 153px;
   margin: 0 5px;
-  width: 287px;
+  width: 229px;
 }
 div.body-container div.game-mode-container .game-mode.dominion {
   background-position: -291px -1px;
@@ -537,8 +537,11 @@ div.body-container div.game-mode-container .game-mode.dominion {
 div.body-container div.game-mode-container .game-mode.proving-grounds {
   background-position: -1px -157px;
 }
-div.body-container div.game-mode-container .game-mode.summoners-treeline {
+div.body-container div.game-mode-container .game-mode.classic {
   background-position: -1px -1px;
+}
+div.body-container div.game-mode-container .game-mode.twisted-treeline {
+  background-position: -348px -157px;
 }
 div.body-container div.game-mode-container .game-mode.active {
   border: 2px solid #c87801;

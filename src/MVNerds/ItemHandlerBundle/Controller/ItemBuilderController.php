@@ -27,6 +27,25 @@ class ItemBuilderController extends Controller
 	}
 	
 	/**
+	 * 
+	 * @Route("/list/{championSlug}", name="item_builder_list", defaults={"championSlug"=null})
+	 */
+	public function listAction($championSlug) 
+	{
+		try {
+			$champion = $this->get('mvnerds.champion_manager')->findBySlug($championSlug);
+			return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:list_index.html.twig', array(
+				'itemBuilds'		=> $this->get('mvnerds.item_build_manager')->findAll(),
+				'championSlug'	=> $championSlug
+			));
+		} catch( \Exception $e) {
+			return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:list_index.html.twig', array(
+				'itemBuilds'	=> $this->get('mvnerds.item_build_manager')->findAll()
+			));
+		}
+	}
+	
+	/**
 	 * @Route("/batch", name="item_builder_batch")
 	 */
 	public function batchAction()
@@ -70,9 +89,10 @@ class ItemBuilderController extends Controller
 		$itemManager = $this->get('mvnerds.item_manager');
 		
 		$gameModes = array(
-			'dominion'	=> 2,
-			'classic'	=> 1,
-			'aram'		=> 3
+			'dominion'		=> 2,
+			'classic'		=> 1,
+			'aram'			=> 3,
+			'twisted-treeline'	=> 5
 		);
 		
 		if (!key_exists($gameMode, $gameModes)) {
