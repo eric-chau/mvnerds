@@ -113,9 +113,9 @@ div.header-container a.logo-link {
 }
 div.header-container a.logo-link div.back-home-sign {
   background-color: #19a0df;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  border-radius: 4px;
+  -webkit-border-radius: 4px !important;
+  -moz-border-radius: 4px !important;
+  border-radius: 4px !important;
   color: white;
   display: inline-block;
   font-family: 'Ubuntu', sans-serif;
@@ -166,9 +166,9 @@ div.header-container div.launch-date-msg {
 }
 div.header-container div.countdown div {
   border: 1px solid rgba(0, 0, 0, 0.1);
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  -webkit-border-radius: 10px !important;
+  -moz-border-radius: 10px !important;
+  border-radius: 10px !important;
   display: inline-block;
   font-size: 22px;
   line-height: 1em;
@@ -358,9 +358,9 @@ div.header-container div.presentation-container div.content div.overview.custom 
 div.header-container div.presentation-container div.content div.overview.custom form input[type="text"],
 div.header-container div.presentation-container div.content div.overview.custom form input[type="email"] {
   background-color: #eee;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
   width: 50%;
 }
 div.header-container div.presentation-container div.content div.overview.custom form button {
@@ -382,9 +382,9 @@ div.header-container div.presentation-container div.content div.registration for
 }
 div.header-container div.presentation-container div.content div.registration form#leave-email-form input[type="email"] {
   background-color: #eee;
-  -webkit-border-radius: 0px;
-  -moz-border-radius: 0px;
-  border-radius: 0px;
+  -webkit-border-radius: 0px !important;
+  -moz-border-radius: 0px !important;
+  border-radius: 0px !important;
   font-family: 'Ubuntu', sans-serif;
   font-size: 16px;
   line-height: 1.4em;
@@ -505,9 +505,9 @@ div.body-container div.champions-handler-container.active #champion-comparison {
 }
 div.body-container div.champions-handler-container div.alert {
   border: 1px solid rgba(255, 255, 255, 0.5);
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
   color: white;
   font-family: 'Ubuntu', sans-serif;
   font-size: 14px;
@@ -691,9 +691,9 @@ div.body-container div.champions-handler-container div.actions-bar div#actions-b
 }
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action input[type="text"] {
   border: 0;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
   background-color: #11709c;
   color: white;
   font-family: 'Ubuntu', sans-serif;
@@ -715,9 +715,9 @@ div.body-container div.champions-handler-container div.actions-bar div#actions-b
   color: #cccccc;
 }
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action ul.dropdown-menu {
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
 }
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action ul#comparison-list li.list-header,
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action ul#filter-list li.list-header {
@@ -758,9 +758,9 @@ div.body-container div.champions-handler-container div.actions-bar div#actions-b
 }
 div.body-container div.champions-handler-container div.actions-bar div#actions-bar-content ul.action-buttons li.action ul#comparison-list li.indication {
   border: 1px dashed #999;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  border-radius: 5px !important;
   color: #999;
   font-style: italic;
   line-height: 30px;
@@ -945,9 +945,9 @@ div.body-container div.champions-handler-container div#champion-list ul {
 div.body-container div.champions-handler-container div#champion-list li.champion {
   background-color: black;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  border-radius: 5px !important;
   display: inline-block;
   height: 120px;
   margin: 0 2px 4px 2px;
@@ -1152,9 +1152,9 @@ div.body-container div.champions-handler-container div#champion-list li.champion
 div.modal {
   background: #000000 url('/images/launch_site/modal_bg.jpg') no-repeat top left;
   border: 1px solid rgba(255, 255, 255, 0.4);
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
   height: 350px;
   width: 650px;
 }

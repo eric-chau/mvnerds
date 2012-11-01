@@ -1164,3 +1164,47 @@ div.body-container {
 		}
 	}
 }
+
+div.modal {
+	background: black url('/images/launch_site/modal_bg.jpg') no-repeat top left;
+	border: 1px solid rgba(255,255,255,.4);
+	.border-radius(0);
+	height: 411px;
+	width: 650px;
+	
+	div.modal-header, div.modal-body, div.modal-footer {
+		border: 0;
+		i {
+			color: white;
+		}
+	}
+	
+	div.modal-footer {
+		background-color: black;
+	}
+
+	div.modal-header {
+		h3 {
+			margin-top: 35px;
+			color: @MVNerdsGreen;
+		}
+
+		button.close {
+			color: white;
+			opacity: .4;
+
+			&:hover {
+				opacity: 1;
+				.transition(opacity .25s linear);
+			}
+		}
+	}
+
+	div.modal-body {
+		width: 620px;
+		color: white;
+		p {
+			color: white;
+		}
+	}
+}

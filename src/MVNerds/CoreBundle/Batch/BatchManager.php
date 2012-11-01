@@ -48,7 +48,7 @@ class BatchManager
 		//Si le chemin du repertoire de riot est défini par l'utilisateur on l ajoute en fin de la liste des repertoires
 		if (null != $path)
 		{
-			$paths[] = $path;
+			$paths[] = $path . 'League of Legends/RADS/solutions/lol_game_client_sln/releases/';
 		}
 		$batFileName = $this->itemBuildsPath . $itemBuild->getSlug() . '.bat';
 		$batFile = fopen($batFileName, 'w');

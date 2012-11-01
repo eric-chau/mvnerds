@@ -54,6 +54,20 @@
     <column name="password" required="true" size="255" type="VARCHAR" />
     <column name="email" required="true" size="100" type="VARCHAR" />
     <column defaultValue="0" name="is_active" required="true" type="BOOLEAN" />
+    <column name="profile_id" type="INTEGER" />
+    <column name="activation_code" required="true" size="32" type="VARCHAR" />
+    <foreign-key foreignTable="profile">
+      <reference foreign="id" local="profile_id" />
+    </foreign-key>
+    <behavior name="timestampable" />
+    <behavior name="sluggable">
+      <parameter name="slug_column" value="slug" />
+      <parameter name="slug_pattern" value="{username}" />
+      <parameter name="replace_pattern" value="/[^\w\/]+/u" />
+      <parameter name="replacement" value="-" />
+      <parameter name="separator" value="-" />
+      <parameter name="permanent" value="false" />
+    </behavior>
   </table>
   <table name="old_item">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -238,11 +252,15 @@
     <column autoIncrement="true" name="preference_id" primaryKey="true" required="true" type="INTEGER" />
     <column name="user_id" primaryKey="true" required="true" type="INTEGER" />
     <column name="value" required="true" size="255" type="VARCHAR" />
+    <column name="module_id" type="INTEGER" />
     <foreign-key foreignTable="user">
       <reference foreign="id" local="user_id" />
     </foreign-key>
     <foreign-key foreignTable="preference">
       <reference foreign="id" local="preference_id" />
+    </foreign-key>
+    <foreign-key foreignTable="module">
+      <reference foreign="id" local="module_id" />
     </foreign-key>
   </table>
   <table name="preference">
@@ -424,8 +442,8 @@
     <column name="item6_id" required="true" type="INTEGER" />
     <column name="name" required="true" size="255" type="VARCHAR" />
     <column defaultValue="NULL" name="user_id" type="INTEGER" />
-    <column defaultValue="0" name="like" required="true" type="INTEGER" />
-    <column defaultValue="0" name="dislike" required="true" type="INTEGER" />
+    <column defaultValue="0" name="download" required="true" type="INTEGER" />
+    <column defaultValue="0" name="view" required="true" type="INTEGER" />
     <column name="description" type="LONGVARCHAR" />
     <foreign-key foreignTable="user">
       <reference foreign="id" local="user_id" />
@@ -456,6 +474,10 @@
       <parameter name="separator" value="-" />
       <parameter name="permanent" value="false" />
     </behavior>
+    <behavior name="timestampable">
+      <parameter name="create_column" value="create_time" />
+      <parameter name="update_column" value="update_time" />
+    </behavior>
   </table>
   <table name="champion_item_build">
     <column name="champion_id" primaryKey="true" required="true" type="INTEGER" />
@@ -481,6 +503,28 @@
     </foreign-key>
     <foreign-key foreignTable="item">
       <reference foreign="id" local="child_id" />
+    </foreign-key>
+  </table>
+  <table name="module">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="unique_name" required="true" size="100" type="VARCHAR" />
+    <column name="label" required="true" size="50" type="VARCHAR" />
+  </table>
+  <table name="profile">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column defaultValue="0" description="pour le moment avatar_id vaut un entier qui correspond au nom de fichier d une image dans le dossier web avatars" name="avatar_id" required="true" type="INTEGER" />
+    <column name="team_id" type="INTEGER" />
+    <foreign-key foreignTable="team">
+      <reference foreign="id" local="team_id" />
+    </foreign-key>
+  </table>
+  <table name="vote">
+    <column name="object_id" primaryKey="true" required="true" type="INTEGER" />
+    <column description="namespace de classe php associee" name="object_namespace" primaryKey="true" required="true" size="255" type="VARCHAR" />
+    <column name="user_id" required="true" type="INTEGER" />
+    <column defaultValue="1" description="true si c'est un like et false si c est un dislike" name="like" required="true" type="BOOLEAN" />
+    <foreign-key foreignTable="user">
+      <reference foreign="id" local="user_id" />
     </foreign-key>
   </table>
 </database>
