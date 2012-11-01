@@ -50,6 +50,7 @@ function generateRecItemBuilder(saveBuild) {
 	$items = $('#item-topbar li.rec-item.full');
 	gameMode = $('div.game-mode-container div.game-mode.active').first().data('game-mode');
 	buildName = $('input#build-name').val();
+	path = $('#modal-lol-path').val();
 	
 	if($champions.length >= 1) {
 		if(gameModesArray.indexOf(gameMode) >=0 ) {
@@ -67,9 +68,9 @@ function generateRecItemBuilder(saveBuild) {
 
 					var data
 					if (saveBuild) {
-						data =  {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName, saveBuild: 'true'};
+						data =  {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName, path: path, saveBuild: 'true'};
 					} else {
-						data =  {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName};
+						data =  {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName, path: path};
 					}
 
 					$.ajax({
@@ -359,11 +360,17 @@ $(document).ready(function()
 	//Bouton de generation du build
 	$('#only-generate-build').click(function(e){
 		e.preventDefault();
-		generateRecItemBuilder();
+		$('#modal-btn-download').attr('data-save-build', 'false');
+		$('#modal-dl-build').modal('show');
 	});
 	$('#save-and-generate-build').click(function(e) {
 		e.preventDefault();
-		generateRecItemBuilder(true);
+		$('#modal-btn-download').attr('data-save-build', 'true');
+		$('#modal-dl-build').modal('show');
+	});
+	$('#modal-btn-download').click(function(e) {
+		e.preventDefault();
+		generateRecItemBuilder($(this).data('save-build'));
 	});
 	
 	//Activation des tooltips

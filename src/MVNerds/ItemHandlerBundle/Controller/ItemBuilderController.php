@@ -64,6 +64,35 @@ class ItemBuilderController extends Controller
 	}
 	
 	/**
+	 * @Route("/generate-rec-items-from-slug", name="item_builder_generate_rec_item_file_from_slug", options={"expose"=true})
+	 */
+	public function generateRecItemsFileFromSlugAction()
+	{
+		/* @var $itemBuildManager \MVNerds\CoreBundle\ItemBuild\ItemBuildManager */
+		$itemBuildManager = $this->get('mvnerds.item_build_manager');
+		
+		$request = $this->getRequest();	
+		if (!$request->isXmlHttpRequest() && !$request->isMethod('POST'))
+		{
+			throw new HttpException(500, 'Request must be XmlHttp and POST method!');
+		}
+		
+		$itemBuildSlug = $request->get('itemBuildSlug');
+		$path = $request->get('path');
+		
+		try {
+			$itemBuild = $itemBuildManager->findOneBySlug($itemBuildSlug);
+		} catch (\Exception $e ) {
+			throw new HttpException(500, 'Invalid slug given!');
+		}
+		
+		/* @var $batchManager \MVNerds\CoreBundle\Batch\BatchManager */
+		$batchManager = $this->get('mvnerds.batch_manager');
+		$batchManager->createRecItemBuilder($itemBuild, $path);
+		
+		return new Response(json_encode($itemBuild->getSlug()));
+	}
+	/**
 	 * @Route("/generate-rec-items", name="item_builder_generate_rec_item_file", options={"expose"=true})
 	 */
 	public function generateRecItemsFileAction()
@@ -84,6 +113,7 @@ class ItemBuilderController extends Controller
 		$gameMode = $request->get('gameMode');
 		$buildName = $request->get('buildName');//TODO a echaper
 		$saveBuild = $request->get('saveBuild');
+		$path = $request->get('path');
 		
 		/* @var $itemManager \MVNerds\CoreBundle\Item\ItemManager */
 		$itemManager = $this->get('mvnerds.item_manager');
@@ -168,7 +198,7 @@ class ItemBuilderController extends Controller
 		/* @var $batchManager \MVNerds\CoreBundle\Batch\BatchManager */
 		$batchManager = $this->get('mvnerds.batch_manager');
 
-		$batchManager->createRecItemBuilder($itemBuild);
+		$batchManager->createRecItemBuilder($itemBuild, $path);
 
 		return new Response(json_encode($itemBuild->getSlug()));
 	}
@@ -178,6 +208,11 @@ class ItemBuilderController extends Controller
 	 */
 	public function executeDownloadItemBuildAction($itemBuildSlug)
 	{
+		/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
+		$itemBuild = $this->get('mvnerds.item_build_manager')->findOneBySlug($itemBuildSlug);
+		$itemBuild->setDownload($itemBuild->getDownload()+1);
+		$itemBuild->save();
+		
 		$path = $this->container->getParameter('item_builds_path') . $itemBuildSlug . '.bat';
 		
 		$response = new Response();
@@ -204,5 +239,22 @@ class ItemBuilderController extends Controller
 			throw new HttpException(500, 'La requête doit être effectuée en AJAX et en method POST !');
 		}
 		return new Response(json_encode($this->get('mvnerds.item_manager')->getItemsName()->toArray()));
+	}
+	
+	/**
+	 * @Route("/builds/{slug}", name="item_builder_builds", options={"expose"=true})
+	 */
+	public function showBuildAction($slug) {
+		/* @var $itemBuildManager \MVNerds\CoreBundle\ItemBuild\ItemBuildManager */
+		$itemBuildManager = $this->get('mvnerds.item_build_manager');
+		
+		try {
+			$itemBuild = $itemBuildManager->findOneBySlug($slug);
+			return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:builds.html.twig', array(
+				'itemBuild'	=> $itemBuild
+			));
+		} catch (\Exception $e ) {
+			return $this->redirect($this->generateUrl('item_builder_list'));
+		}
 	}
 }

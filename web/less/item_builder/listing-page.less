@@ -22,3 +22,195 @@ div.popover-content {
 		margin-right: 2px;
 	}
 }
+
+table#item-builds-table {
+	
+	thead {
+		tr {
+			background-color: #222;
+			height: 30px;
+			cursor: pointer;
+			th {
+				text-align: center;
+				color: #eee;
+				font-size: 10px;
+				font-weight: bold;
+				text-transform: uppercase;
+				&.champions {
+					width: 55px!important;
+				}
+				&.items {
+					width: 201px!important;
+				}
+				&.game-mode {
+					width: 100px!important;
+				}
+				&.actions {
+					width: 110px!important;
+				}
+			}
+		}
+	}
+
+	tbody tr {
+		color: #aaa;
+		background-color: #141414;
+		border-bottom: 1px solid #333;
+
+		&:hover {
+			background-color: #222;
+		}
+
+		td {
+			border-top: 1px solid #666;
+			border-left: 1px solid #333;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			div {
+				margin: 0 auto;
+			}
+			img {
+				width:30px;
+				height:30px;
+			}
+			span {
+				color: #666;
+				i {
+					color: #666;
+					font-size: 16px;
+					margin: 0 5px;
+				}
+			}
+		}
+	}
+}
+
+a.action {
+	color: #eee;
+	border: 1px solid #333;
+	display: inline-block;
+	font-size: 12px;
+	line-height: 1.4em;
+	padding: 5px;
+	text-align: center;
+	width: 100px;
+	background-color: rgba(25, 160, 223, 0.7);
+	cursor: pointer;
+
+	i {
+		color: #fff;
+	}
+
+	&:hover {
+		background-color: @MVNerdsBlue;
+		.transition(all .25s linear);
+	}
+}
+
+div.modal {
+	background: black url('/images/launch_site/modal_bg.jpg') no-repeat top left;
+	border: 1px solid rgba(255,255,255,.4);
+	.border-radius(0);
+	height: 411px;
+	width: 650px;
+	
+	div.modal-header, div.modal-body, div.modal-footer {
+		border: 0;
+		i {
+			color: white;
+		}
+	}
+	
+	div.modal-footer {
+		background-color: black;
+	}
+
+	div.modal-header {
+		h3 {
+			margin-top: 35px;
+			color: @MVNerdsGreen;
+		}
+
+		button.close {
+			color: white;
+			opacity: .4;
+
+			&:hover {
+				opacity: 1;
+				.transition(opacity .25s linear);
+			}
+		}
+	}
+
+	div.modal-body {
+		width: 620px;
+		color: white;
+		p {
+			color: white;
+		}
+	}
+}
+
+div.dataTables_paginate {
+	ul {
+		color: white;
+		li {		
+			&.prev a{
+				border-left: 1px solid #666;
+			}
+			&.disabled {
+				a {
+					background-color: rgba(25, 160, 223, 0.5);
+					border: 1px solid #666;
+					&:hover {
+						cursor: not-allowed;
+						background-color: rgba(25, 160, 223, 0.6);
+					}
+				}
+			}
+			&.active {
+				a {
+					background-color: rgba(219, 74, 56, 0.7);
+					&:hover {
+						background-color: rgba(219, 74, 56, 0.9);
+						cursor: not-allowed;
+					}
+				}
+			}
+			a {
+				border-top: 1px solid #666;
+				border-right: 1px solid #666;
+				border-bottom: 1px solid #666;
+				color: white;
+				background-color: rgba(25, 160, 223, 0.7);
+				.border-radius(0);
+				&:hover {
+					background-color: rgba(25, 160, 223, 0.9);
+				}
+			}
+		}
+	}
+}
+
+h3.popover-title{
+	text-align: right;
+	height: 45px!important;
+}
+ img.tooltip-item-img {
+	width: 40px;
+}
+
+.search-box {
+	padding: 0 3px;
+	background-color: rgba(25, 160, 223, 0.7);
+	input {
+		background-color: #11709C;
+		color: white!important;
+		border: 0;
+		height: 15px;
+		width: 165px;
+		margin: 4px;
+		.border-radius(0);
+	}
+}

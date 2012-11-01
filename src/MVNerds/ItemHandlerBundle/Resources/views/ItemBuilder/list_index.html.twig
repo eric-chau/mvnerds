@@ -24,29 +24,98 @@
 		<table id="item-builds-table" class="table data-table" data-filter="{% if championSlug is defined %}{{championSlug}}{% endif %}">
 			<thead>
 				<tr>
-					<th>Nom</th>
-					<th>Champion</th>
-					<th>Mode de jeu</th>
-					<th>Actions</th>
+					<th class="champions">Champion</th>
+					<th class="name">Nom</th>
+					<th class="items">Items</th>
+					<th class="game-mode">Mode de jeu</th>
+					<th class="stats">Stats</th>
+					<th class="actions">Actions</th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for itemBuild in itemBuilds%}
-					<tr>
-						<td>{{itemBuild.getName()}}</td>
+					<tr class="item-build-row" data-target="{{itemBuild.getSlug()}}">
 						<td>
 							{% if itemBuild.getChampionItemBuilds()|length <= 1 %}
-								<div class="champion-square25 {{ itemBuild.getChampionItemBuilds().getFirst().getChampion().getSlug() }} pull-left" >&nbsp;</div>{{itemBuild.getChampionItemBuilds().getFirst().getChampion().getName()}}
+								<div class="champion-square25 {{ itemBuild.getChampionItemBuilds().getFirst().getChampion().getSlug() }}" >&nbsp;</div>
 							{% else %}
-								<div class="bootstrap-popover" data-placement="bottom" data-trigger="hover" data-title="{{itemBuild.getName()}}" data-content="{%for championItemBuild in itemBuild.getChampionItemBuilds() %}<div class='champion-square25 {{championItemBuild.getChampion().getSlug()}}' ></div>{% endfor %}">Multi</div>
+								<img src="{{asset('images/avatar/anonymous.jpg')}}" alt="image_question" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" data-title="{{itemBuild.getName()}}" data-content="{%for championItemBuild in itemBuild.getChampionItemBuilds() %}<div class='champion-square25 {{championItemBuild.getChampion().getSlug()}}' ></div>{% endfor %}"/>
 							{% endif %}
 						</td>
+						<td>{{itemBuild.getName()}}</td>
+						<td>
+							<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem1Id().getRiotCode() ~ '.png' )}}" alt="{{itemBuild.getItemRelatedByItem1Id().getName}} " class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
+								 data-title="<img class='tooltip-item-img pull-left' src='{{asset('images/items/' ~ itemBuild.getItemRelatedByItem1Id().getRiotCode() ~ '.png' )}}'/>{{itemBuild.getItemRelatedByItem1Id().getName()}}" 
+								 data-content="{%for itemPrimaryEffect in itemBuild.getItemRelatedByItem1Id().getItemPrimaryEffects() %}{{itemPrimaryEffect.getValue()}} {{itemPrimaryEffect.getPrimaryEffect().getLabel()}} {% endfor %}
+											{%for itemSecondaryEffect in itemBuild.getItemRelatedByItem1Id().getItemSecondaryEffects() %}{{itemSecondaryEffect.getDescription()}} {% endfor %}"/>
+							
+							<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem2Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem2Id().getName}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
+								 data-title="<img class='tooltip-item-img pull-left' src='{{asset('images/items/' ~ itemBuild.getItemRelatedByItem2Id().getRiotCode() ~ '.png' )}}'/>{{itemBuild.getItemRelatedByItem2Id().getName()}}" 
+								 data-content="{%for itemPrimaryEffect in itemBuild.getItemRelatedByItem2Id().getItemPrimaryEffects() %}{{itemPrimaryEffect.getValue()}} {{itemPrimaryEffect.getPrimaryEffect().getLabel()}} {% endfor %}
+											{%for itemSecondaryEffect in itemBuild.getItemRelatedByItem2Id().getItemSecondaryEffects() %}{{itemSecondaryEffect.getDescription()}} {% endfor %}"/>
+							
+							<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem3Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem3Id().getName}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
+								 data-title="<img class='tooltip-item-img pull-left' src='{{asset('images/items/' ~ itemBuild.getItemRelatedByItem3Id().getRiotCode() ~ '.png' )}}'/>{{itemBuild.getItemRelatedByItem3Id().getName()}}" 
+								 data-content="{%for itemPrimaryEffect in itemBuild.getItemRelatedByItem3Id().getItemPrimaryEffects() %}{{itemPrimaryEffect.getValue()}} {{itemPrimaryEffect.getPrimaryEffect().getLabel()}} {% endfor %}
+											{%for itemSecondaryEffect in itemBuild.getItemRelatedByItem3Id().getItemSecondaryEffects() %}{{itemSecondaryEffect.getDescription()}} {% endfor %}"/>
+							
+							<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem4Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem4Id().getName}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
+								 data-title="<img class='tooltip-item-img pull-left' src='{{asset('images/items/' ~ itemBuild.getItemRelatedByItem4Id().getRiotCode() ~ '.png' )}}'/>{{itemBuild.getItemRelatedByItem4Id().getName()}}" 
+								 data-content="{%for itemPrimaryEffect in itemBuild.getItemRelatedByItem4Id().getItemPrimaryEffects() %}{{itemPrimaryEffect.getValue()}} {{itemPrimaryEffect.getPrimaryEffect().getLabel()}} {% endfor %}
+											{%for itemSecondaryEffect in itemBuild.getItemRelatedByItem4Id().getItemSecondaryEffects() %}{{itemSecondaryEffect.getDescription()}} {% endfor %}"/>
+							
+							<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem5Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem5Id().getName}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
+								 data-title="<img class='tooltip-item-img pull-left' src='{{asset('images/items/' ~ itemBuild.getItemRelatedByItem5Id().getRiotCode() ~ '.png' )}}'/>{{itemBuild.getItemRelatedByItem5Id().getName()}}" 
+								 data-content="{%for itemPrimaryEffect in itemBuild.getItemRelatedByItem5Id().getItemPrimaryEffects() %}{{itemPrimaryEffect.getValue()}} {{itemPrimaryEffect.getPrimaryEffect().getLabel()}} {% endfor %}
+											{%for itemSecondaryEffect in itemBuild.getItemRelatedByItem5Id().getItemSecondaryEffects() %}{{itemSecondaryEffect.getDescription()}} {% endfor %}"/>
+							
+							<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem6Id().getRiotCode()  ~ '.png' )}}" alt="{{itemBuild.getItemRelatedByItem6Id().getName}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
+								 data-title="<img class='tooltip-item-img pull-left' src='{{asset('images/items/' ~ itemBuild.getItemRelatedByItem6Id().getRiotCode() ~ '.png' )}}'/>{{itemBuild.getItemRelatedByItem6Id().getName()}}" 
+								 data-content="{%for itemPrimaryEffect in itemBuild.getItemRelatedByItem6Id().getItemPrimaryEffects() %}{{itemPrimaryEffect.getValue()}} {{itemPrimaryEffect.getPrimaryEffect().getLabel()}} {% endfor %}
+											{%for itemSecondaryEffect in itemBuild.getItemRelatedByItem6Id().getItemSecondaryEffects() %}{{itemSecondaryEffect.getDescription()}} {% endfor %}"/>
+							
+						</td>
 						<td>{{itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel()}}</td>
-						<td></td>
+						<td>
+							<span title="Téléchargements"><i class="icon-download icon-white"></i> {{itemBuild.getDownload()}}</span>
+						</td>
+						
+						<td>
+							<a class="action download-action" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}"><i class="icon-download-alt"></i> Télécharger</a>
+						</td>
+						
 						<td>{% for championItemBuild in  itemBuild.getChampionItemBuilds()%}{{championItemBuild.getChampion().getName}} {% endfor %}</td>
 					</tr>
 				{% endfor %}
 			</tbody>
 		</table>
+	</div>
+
+	<div id="modal-dl-build" class="modal hide fade">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>Téléchargement du build : <span id="modal-build-name"></span></h3>
+		</div>
+		<div class="modal-body">
+			<p>
+				Si votre jeu League of Legends ne se trouve pas dans l'un des répertoires suivants : 
+			</p>
+			<ul>
+				<li>C:/Program Files/Riot Games/</li>
+				<li>C:/Program Files/Riot/</li>
+				<li>C:/Riot Games/</li>
+				<li>C:/Riot/</li>
+				<li>C:/Program Files (x86)/Riot Games/</li>
+				<li>C:/Program Files (x86)/Riot/</li>
+			</ul>
+			<p>
+				Veuillez l'indiquer ici :
+				<input type="text" id="modal-lol-path" placeholder="ex : D:/Riot/"/>
+			</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#" data-dismiss="modal" class="btn">Annuler</a>
+			<a href="#" id="modal-btn-download" data-target="" class="btn btn-primary"><i class="icon-download-alt"></i> Télécharger</a>
+		</div>
 	</div>
 {% endblock %}

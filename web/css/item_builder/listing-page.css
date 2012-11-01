@@ -39,3 +39,179 @@ div.popover-content div.champion-square25 {
   display: inline-block;
   margin-right: 2px;
 }
+table#item-builds-table thead tr {
+  background-color: #222;
+  height: 30px;
+  cursor: pointer;
+}
+table#item-builds-table thead tr th {
+  text-align: center;
+  color: #eee;
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+table#item-builds-table thead tr th.champions {
+  width: 55px!important;
+}
+table#item-builds-table thead tr th.items {
+  width: 201px!important;
+}
+table#item-builds-table thead tr th.game-mode {
+  width: 100px!important;
+}
+table#item-builds-table thead tr th.actions {
+  width: 110px!important;
+}
+table#item-builds-table tbody tr {
+  color: #aaa;
+  background-color: #141414;
+  border-bottom: 1px solid #333;
+}
+table#item-builds-table tbody tr:hover {
+  background-color: #222;
+}
+table#item-builds-table tbody tr td {
+  border-top: 1px solid #666;
+  border-left: 1px solid #333;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+}
+table#item-builds-table tbody tr td div {
+  margin: 0 auto;
+}
+table#item-builds-table tbody tr td img {
+  width: 30px;
+  height: 30px;
+}
+table#item-builds-table tbody tr td span {
+  color: #666;
+}
+table#item-builds-table tbody tr td span i {
+  color: #666;
+  font-size: 16px;
+  margin: 0 5px;
+}
+a.action {
+  color: #eee;
+  border: 1px solid #333;
+  display: inline-block;
+  font-size: 12px;
+  line-height: 1.4em;
+  padding: 5px;
+  text-align: center;
+  width: 100px;
+  background-color: rgba(25, 160, 223, 0.7);
+  cursor: pointer;
+}
+a.action i {
+  color: #fff;
+}
+a.action:hover {
+  background-color: #19a0df;
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+div.modal {
+  background: #000000 url('/images/launch_site/modal_bg.jpg') no-repeat top left;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  height: 411px;
+  width: 650px;
+}
+div.modal div.modal-header,
+div.modal div.modal-body,
+div.modal div.modal-footer {
+  border: 0;
+}
+div.modal div.modal-header i,
+div.modal div.modal-body i,
+div.modal div.modal-footer i {
+  color: white;
+}
+div.modal div.modal-footer {
+  background-color: black;
+}
+div.modal div.modal-header h3 {
+  margin-top: 35px;
+  color: #759e1a;
+}
+div.modal div.modal-header button.close {
+  color: white;
+  opacity: .4;
+}
+div.modal div.modal-header button.close:hover {
+  opacity: 1;
+  -webkit-transition: opacity 0.25s linear;
+  -moz-transition: opacity 0.25s linear;
+  -o-transition: opacity 0.25s linear;
+  transition: opacity 0.25s linear;
+}
+div.modal div.modal-body {
+  width: 620px;
+  color: white;
+}
+div.modal div.modal-body p {
+  color: white;
+}
+div.dataTables_paginate ul {
+  color: white;
+}
+div.dataTables_paginate ul li.prev a {
+  border-left: 1px solid #666;
+}
+div.dataTables_paginate ul li.disabled a {
+  background-color: rgba(25, 160, 223, 0.5);
+  border: 1px solid #666;
+}
+div.dataTables_paginate ul li.disabled a:hover {
+  cursor: not-allowed;
+  background-color: rgba(25, 160, 223, 0.6);
+}
+div.dataTables_paginate ul li.active a {
+  background-color: rgba(219, 74, 56, 0.7);
+}
+div.dataTables_paginate ul li.active a:hover {
+  background-color: rgba(219, 74, 56, 0.9);
+  cursor: not-allowed;
+}
+div.dataTables_paginate ul li a {
+  border-top: 1px solid #666;
+  border-right: 1px solid #666;
+  border-bottom: 1px solid #666;
+  color: white;
+  background-color: rgba(25, 160, 223, 0.7);
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+}
+div.dataTables_paginate ul li a:hover {
+  background-color: rgba(25, 160, 223, 0.9);
+}
+h3.popover-title {
+  text-align: right;
+  height: 45px!important;
+}
+img.tooltip-item-img {
+  width: 40px;
+}
+.search-box {
+  padding: 0 3px;
+  background-color: rgba(25, 160, 223, 0.7);
+}
+.search-box input {
+  background-color: #11709C;
+  color: white!important;
+  border: 0;
+  height: 15px;
+  width: 165px;
+  margin: 4px;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+}

@@ -102,11 +102,11 @@ $(document).ready(function() {
 		"sProcessing":     "Traitement en cours...",
 		"sLengthMenu":     "Afficher _MENU_ builds par page",
 		"sZeroRecords":    "Aucun build à afficher",
-		"sInfo":           "Affichage des builds de _START_ à _END_ sur _TOTAL_ builds",
+		"sInfo":           "Affichage des builds de _START_ à _END_ sur un total de _TOTAL_ builds",
 		"sInfoEmpty":      "Affichage du build 0 à 0 sur 0 builds",
 		"sInfoFiltered":   "(filtré de _MAX_ builds au total)",
 		"sInfoPostFix":    "",
-		"sSearch":         "Rechercher un build par champion :",
+		"sSearch":         "<i class='icon-search icon-white'></i>",
 		"sLoadingRecords": "Chargement...",
 		"sUrl":            "",
 		"oPaginate": {
@@ -122,11 +122,13 @@ $(document).ready(function() {
 	itemBuildsTable = $('#item-builds-table').dataTable({
 		"oSearch" :{"sSearch":  ((filter != undefined) ? filter : '')},
 		"aoColumns": [
-                      {"bSearchable": false},
-                      {"sType": "html", "bSearchable": false},
-                      {"bSearchable": false},
-                      {"bSearchable": false},
-                      {"bVisible": false, "bSearchable": true}
+                      {"bSearchable": false, "bSortable":false},
+                      {"bSearchable": false, "bSortable":true},
+                      {"bSearchable": false, "bSortable":false},
+                      {"bSearchable": false, "bSortable":true},
+                      {"bSearchable": false, "bSortable":false},
+                      {"bSearchable": false, "bSortable":false},
+                      {"bVisible": false, "bSearchable": true, "bSortable":false}
 		],
 		"sPaginationType": 'bootstrap',
 		"oLanguage": langage
@@ -134,4 +136,43 @@ $(document).ready(function() {
 	
 	$('#item-builds-table_length').addClass('pull-left');
 	$('#item-builds-table_filter').addClass('pull-right');
+	
+	$('#item-builds-table tbody tr.item_build_row').click(function() {
+		window.location = Routing.generate('item_builder_builds', {_locale: locale, itemBuildSlug: $(this).data('target')});
+	});
+	
+	//MODAL
+	$('a.download-action').click(function() {
+		$('#modal-build-name').html($(this).data('name'));
+		$('#modal-dl-build').modal('show');
+		$('#modal-btn-download').attr('data-target', $(this).data('slug'));
+	});
+	$('#modal-btn-download').click(function(e) {
+		e.preventDefault();
+		$.ajax({
+			type: 'POST',
+			url:  Routing.generate('item_builder_generate_rec_item_file_from_slug', {_locale: locale}),
+			data: {itemBuildSlug : $(this).data('target'), path: $('#modal-lol-path').val()},
+			dataType: 'json'
+		}).done(function(data){
+			window.location = Routing.generate('item_builder_download_file', {_locale: locale, itemBuildSlug: data});
+		}).fail(function(data){
+			console.log(data.responseText);
+			displayMessage('Impossible de créer le build.', 'error');
+		});
+	});
+	
+	//CHAMP DE RECHERCHE
+	$('#item-builds-table_filter label').addClass('search-box');
+	$('#item-builds-table_filter label input').attr('data-provide', 'typeahead');
+	$('#item-builds-table_filter label input').attr('placeholder', 'Rechercher par champion');
+	$.ajax({
+		type: 'POST',
+		url:  Routing.generate('champion_handler_front_get_champions_name', {_locale: locale}), 
+		dataType: 'html'
+	}).done(function(data){
+		$('#item-builds-table_filter label input').attr('data-source', data);
+	}).fail(function() {
+		console.log('error');
+	});
 });

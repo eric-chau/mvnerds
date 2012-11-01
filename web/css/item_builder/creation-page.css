@@ -42,9 +42,9 @@ div.social-container {
 }
 div.alert {
   border: 1px solid rgba(255, 255, 255, 0.5);
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
   color: white;
   font-family: 'Ubuntu', sans-serif;
   font-size: 14px;
@@ -81,9 +81,9 @@ div.body-container div.name-container {
 }
 div.body-container div.champion-container div#champion-topbar div#champion-topbar-container {
   border: 1px solid #fb9701;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  border-radius: 5px !important;
   padding: 5px;
   position: relative;
 }
@@ -203,9 +203,9 @@ div.body-container div.champion-container div#champion-topbar div#champion-topba
 }
 div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action input[type="text"] {
   border: 0;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
   background-color: #11709c;
   color: white;
   font-family: 'Ubuntu', sans-serif;
@@ -333,9 +333,9 @@ div.body-container div.champion-container div#champion-list ul {
 div.body-container div.champion-container div#champion-list li.champion {
   background-color: black;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  border-radius: 5px !important;
   display: inline-block;
   height: 50px;
   margin: 0 2px 4px 2px;
@@ -577,9 +577,9 @@ div.body-container div.item-container div#item-topbar.fixed div#item-topbar-cont
 }
 div.body-container div.item-container div#item-topbar div#item-topbar-container {
   border: 1px solid #fb9701;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  border-radius: 5px !important;
   padding: 5px;
   position: relative;
 }
@@ -711,9 +711,9 @@ div.body-container div.item-container div#item-topbar div#item-topbar-container 
 }
 div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action input[type="text"] {
   border: 0;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
   background-color: #11709c;
   color: white;
   font-family: 'Ubuntu', sans-serif;
@@ -844,9 +844,9 @@ div.body-container div.item-container div#item-topbar div#item-topbar-container 
   display: inline-block;
   width: 50px;
   height: 50px;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  border-radius: 5px !important;
 }
 div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item.free {
   height: 50px;
@@ -876,9 +876,9 @@ div.body-container div.item-container div#item-list ul {
 div.body-container div.item-container div#item-list li.item {
   background-color: black;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  border-radius: 5px !important;
   display: inline-block;
   margin: 0 2px 4px 2px;
   padding: 0;
@@ -1078,9 +1078,9 @@ div.body-container div.item-container div#item-list li.item div.preview div.righ
   display: block;
 }
 div.body-container div.name-container input[type="text"] {
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
   font-size: 18px;
   padding: 7px;
   width: 250px;
@@ -1111,4 +1111,48 @@ div.body-container div.generate-button-container a.main {
 }
 div.body-container div.generate-button-container a.main:hover {
   background-color: #db4a38;
+}
+div.modal {
+  background: #000000 url('/images/launch_site/modal_bg.jpg') no-repeat top left;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  height: 411px;
+  width: 650px;
+}
+div.modal div.modal-header,
+div.modal div.modal-body,
+div.modal div.modal-footer {
+  border: 0;
+}
+div.modal div.modal-header i,
+div.modal div.modal-body i,
+div.modal div.modal-footer i {
+  color: white;
+}
+div.modal div.modal-footer {
+  background-color: black;
+}
+div.modal div.modal-header h3 {
+  margin-top: 35px;
+  color: #759e1a;
+}
+div.modal div.modal-header button.close {
+  color: white;
+  opacity: .4;
+}
+div.modal div.modal-header button.close:hover {
+  opacity: 1;
+  -webkit-transition: opacity 0.25s linear;
+  -moz-transition: opacity 0.25s linear;
+  -o-transition: opacity 0.25s linear;
+  transition: opacity 0.25s linear;
+}
+div.modal div.modal-body {
+  width: 620px;
+  color: white;
+}
+div.modal div.modal-body p {
+  color: white;
 }

@@ -41,6 +41,31 @@ class ItemBuildManager
 	}
 	
 	/**
+	 * Récupère un objet ItemBuild à partir de son slug $slug
+	 * 
+	 * @param string $slug le slug de l'item build dont on souhaite récupérer l'objet ItemBuild associé 
+	 * @return ItemBuild l'objet ItemBuild qui correspond au slug $slug
+	 * @throws InvalidArgumentException exception levé si aucun item build n'est associé au slug $slug
+	 */
+	public function findOneBySlug($slug)
+	{
+		$itemBuild = ItemBuildQuery::create()
+			->joinWith('ChampionItemBuild', \Criteria::LEFT_JOIN)
+			->joinWith('ChampionItemBuild.GameMode', \Criteria::LEFT_JOIN)
+			->joinWith('ChampionItemBuild.Champion', \Criteria::LEFT_JOIN)
+			->joinWith('Champion.ChampionI18n', \Criteria::LEFT_JOIN)
+			->add(ItemBuildPeer::SLUG, $slug)
+		->findOne();
+
+		if (null === $itemBuild)
+		{
+			throw new InvalidArgumentException('No item build with slug:' . $slug . '!');
+		}
+
+		return $itemBuild;
+	}
+	
+	/**
 	 * Récupère tous les item builds
 	 * 
 	 * @return ItemBuild l'objet ItemBuild qui correspond à l'id $id 
