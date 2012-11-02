@@ -135,16 +135,17 @@ div.header-container a.logo-link div.logo {
   height: 167px;
   width: 100%;
 }
-div.header-container a.logo-link div.logo h1 {
+div.header-container a.logo-link div.logo div#brand {
   color: #db4a38;
   font-family: 'Quantico', sans-serif;
   font-size: 2.2em;
+  font-weight: bold;
   padding-top: 119px;
   position: relative;
   text-shadow: 1px 1px 1px rgba(80, 80, 80, 0.3);
   top: -28px;
 }
-div.header-container a.logo-link div.logo h1 em {
+div.header-container a.logo-link div.logo div#brand em {
   color: #19a0df;
   font-style: normal;
 }
@@ -333,37 +334,39 @@ div.header-container div.presentation-container div.content div.overview.custom 
   color: #eee;
   min-height: 547px;
 }
-div.header-container div.presentation-container div.content div.overview.custom h2 {
+div.header-container div.presentation-container div.content div.overview.custom h1 {
   color: #fb9701;
+  font-size: 1.6em;
   margin-bottom: 30px;
 }
-div.header-container div.presentation-container div.content div.overview.custom h3 {
+div.header-container div.presentation-container div.content div.overview.custom h2 {
   color: #666;
+  font-size: 1.2em;
   margin-bottom: 15px;
 }
 div.header-container div.presentation-container div.content div.overview.custom p {
   font-size: 14px;
 }
-div.header-container div.presentation-container div.content div.overview.custom form {
+div.header-container div.presentation-container div.content div.overview.custom div.contact-us form {
   margin: 10px 0;
 }
-div.header-container div.presentation-container div.content div.overview.custom form button,
-div.header-container div.presentation-container div.content div.overview.custom form label,
-div.header-container div.presentation-container div.content div.overview.custom form textarea,
-div.header-container div.presentation-container div.content div.overview.custom form input[type="text"],
-div.header-container div.presentation-container div.content div.overview.custom form input[type="email"] {
+div.header-container div.presentation-container div.content div.overview.custom div.contact-us form button,
+div.header-container div.presentation-container div.content div.overview.custom div.contact-us form label,
+div.header-container div.presentation-container div.content div.overview.custom div.contact-us form textarea,
+div.header-container div.presentation-container div.content div.overview.custom div.contact-us form input[type="text"],
+div.header-container div.presentation-container div.content div.overview.custom div.contact-us form input[type="email"] {
   font-family: 'Ubuntu', sans-serif;
 }
-div.header-container div.presentation-container div.content div.overview.custom form textarea,
-div.header-container div.presentation-container div.content div.overview.custom form input[type="text"],
-div.header-container div.presentation-container div.content div.overview.custom form input[type="email"] {
+div.header-container div.presentation-container div.content div.overview.custom div.contact-us form textarea,
+div.header-container div.presentation-container div.content div.overview.custom div.contact-us form input[type="text"],
+div.header-container div.presentation-container div.content div.overview.custom div.contact-us form input[type="email"] {
   background-color: #eee;
   -webkit-border-radius: 0 !important;
   -moz-border-radius: 0 !important;
   border-radius: 0 !important;
   width: 50%;
 }
-div.header-container div.presentation-container div.content div.overview.custom form button {
+div.header-container div.presentation-container div.content div.overview.custom div.contact-us form button {
   font-weight: bold;
 }
 div.header-container div.presentation-container div.content div.overview h2 {
@@ -502,30 +505,6 @@ div.body-container div.champions-handler-container {
 }
 div.body-container div.champions-handler-container.active #champion-comparison {
   margin-top: 45px;
-}
-div.body-container div.champions-handler-container div.alert {
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  -webkit-border-radius: 0 !important;
-  -moz-border-radius: 0 !important;
-  border-radius: 0 !important;
-  color: white;
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 14px;
-  opacity: 0.8;
-  text-shadow: none;
-}
-div.body-container div.champions-handler-container div.alert.alert-fixed {
-  bottom: 10px;
-  position: fixed;
-  right: 10px;
-  width: 300px;
-  z-index: 1100;
-}
-div.body-container div.champions-handler-container div.alert.alert-success {
-  background-color: #759e1a;
-}
-div.body-container div.champions-handler-container div.alert.alert-error {
-  background-color: #db4a38;
 }
 div.body-container div.champions-handler-container div.actions-bar {
   margin: 10px 0 0 0;
@@ -1290,4 +1269,28 @@ div#footer div.links ul li a:visited:hover {
   -moz-transition: color 0.25s linear;
   -o-transition: color 0.25s linear;
   transition: color 0.25s linear;
+}
+div.alert {
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  color: white;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 14px;
+  opacity: 0.8;
+  text-shadow: none;
+}
+div.alert.alert-fixed {
+  bottom: 10px;
+  position: fixed;
+  right: 10px;
+  width: 300px;
+  z-index: 1100;
+}
+div.alert.alert-success {
+  background-color: #759e1a;
+}
+div.alert.alert-error {
+  background-color: #db4a38;
 }

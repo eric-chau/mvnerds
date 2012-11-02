@@ -2,12 +2,12 @@
 
 namespace MVNerds\CoreBundle\User;
 
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use Swift_Message;
 use Exception;
 
+use MVNerds\LaunchSiteBundle\CustomException\DisabledUserException;
 use MVNerds\LaunchSiteBundle\CustomException\UnknowUserException;
 use MVNerds\LaunchSiteBundle\CustomException\UserAlreadyEnabledException;
 use MVNerds\LaunchSiteBundle\CustomException\WrongActivationCodeException;
@@ -237,18 +237,29 @@ class UserManager
 		}
 		
 		// On vérifie si le compte utilisateur est déjà actif ou non
-		if ($user->isEnabled()) {
-			throw new UserAlreadyEnabledException();
+		if (!$user->isEnabled()) {
+			throw new DisabledUserException();
 		}
 		
 		// On vérifie si le code d'activation est correct ou non
 		if (0 != strcmp($user->getActivationCode(), $activationCode)) {
 			throw new WrongActivationCodeException();
 		}
+	}
+	
+	public function changeUserPassword(User $user, $newPassword) {
+		$user->setSalt(base64_encode(mcrypt_create_iv(22, MCRYPT_DEV_URANDOM)));
+		// Generate crypted password
+		$encoder = $this->encoderFactory->getEncoder($user);
+		$password = $encoder->encodePassword($newPassword, $user->getSalt());
+		$user->setPassword($password);
+		$user->setPlainPassword($newPassword);
 		
+		// Finally
 		$user->setActivationCode('');
+		$user->save();
 		
-		return true;
+		return $user;
 	}
 	
 	public function setEncoderFactory(EncoderFactory $encoderFactory)
@@ -264,5 +275,4 @@ class UserManager
 	public function setTemplating($templating)
 	{
 		$this->templating = $templating;
-	}
-}
+	}}

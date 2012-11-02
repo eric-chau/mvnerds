@@ -2,6 +2,7 @@
 
 namespace MVNerds\LaunchSiteBundle\Form\Model;
 
+use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use MVNerds\CoreBundle\User\UserManager;
 
 class ForgotPasswordModel 
@@ -37,7 +38,13 @@ class ForgotPasswordModel
 	
 	public function isUserAccountActivated()
 	{
-		$this->user = $this->userManager->findOneByEmail($this->email);
+		try {
+			$this->user = $this->userManager->findOneByEmail($this->email);
+		}
+		catch (InvalidArgumentException $e)	{
+			// On retourne true car sinon le message dit que le compte utilisateur n'est pas activé alors qu'en réalité il n'existe pas
+			return true;
+		}
 		
 		return $this->user->isEnabled();
 	}

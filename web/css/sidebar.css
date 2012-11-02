@@ -215,9 +215,9 @@ div#sidebar div#user-container form input[type="text"],
 div#sidebar div#user-container form input[type="password"] {
   background-color: #333;
   border-color: #666;
-  -webkit-border-radius: 0;
-  -moz-border-radius: 0;
-  border-radius: 0;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
   color: #19a0df;
   font-family: 'Ubuntu', sans-serif;
   font-size: 12px;

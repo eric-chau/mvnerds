@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Exception;
 
+use MVNerds\LaunchSiteBundle\CustomException\DisabledUserException;
 use MVNerds\LaunchSiteBundle\CustomException\UnknowUserException;
 use MVNerds\LaunchSiteBundle\CustomException\UserAlreadyEnabledException;
 use MVNerds\LaunchSiteBundle\CustomException\WrongActivationCodeException;
@@ -13,6 +14,8 @@ use MVNerds\LaunchSiteBundle\Form\Model\SummonerModel;
 use MVNerds\LaunchSiteBundle\Form\Type\SummonerType;
 use MVNerds\LaunchSiteBundle\Form\Model\ForgotPasswordModel;
 use MVNerds\LaunchSiteBundle\Form\Type\ForgotPasswordType;
+use MVNerds\LaunchSiteBundle\Form\Model\ResetPasswordModel;
+use MVNerds\LaunchSiteBundle\Form\Type\ResetPasswordType;
 
 class RegistrationController extends Controller
 {
@@ -105,15 +108,46 @@ class RegistrationController extends Controller
 					'activation_code'	=> $activationCode
 				));
 			}
-			else if ($e instanceof UserAlreadyEnabledException) {
+			else if ($e instanceof DisabledUserException) {
 				return $this->render('MVNerdsLaunchSiteBundle:Login:reset_password_fail.html.twig', array(
 					'user' => $this->get('mvnerds.user_manager')->findBySlug($slug)
 				));
 			}
 		}
 		
+		$this->get('session')->set('forgot_password_user_slug', $slug);
+		
 		return $this->render('MVNerdsLaunchSiteBundle:Login:reset_password.html.twig', array(
-			'form' => $this->createForm(new ResetPasswordType(), new ResetPasswordModel($this->get('mvnerds.user_manager')))->createView()
+			'form'	=> $this->createForm(new ResetPasswordType(), new ResetPasswordModel($this->get('mvnerds.user_manager')))->createView()
 		));
+	}
+	
+	/**
+	 * @Route("/{_locale}/summoner/change-password", name="launch_site_reset_password_save")
+	 */
+	public function changePasswordAction()
+	{
+		$request = $this->getRequest();
+		if ($request->isMethod('POST')) {
+			$userManager = $this->get('mvnerds.user_manager');
+			$userSlug = $this->get('session')->get('forgot_password_user_slug', null);
+			$form = $this->createForm(new ResetPasswordType(), new ResetPasswordModel($userManager, $userSlug));
+			$form->bind($request);
+			if ($form->isValid()) {
+				$user = $form->getData()->save();
+				if (null != $user) {
+					return $this->render('MVNerdsLaunchSiteBundle:Login:reset_password_success.html.twig', array(
+						'user' => $user
+					));
+				}
+			}
+			
+			return $this->render('MVNerdsLaunchSiteBundle:Login:reset_password.html.twig', array(
+				'form'	=> $form->createView()
+			));
+		}
+		
+		return $this->redirect($this->generateUrl('launch_site_forgot_password'));
+		
 	}
 }
