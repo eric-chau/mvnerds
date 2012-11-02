@@ -42,7 +42,6 @@ class ResetPasswordModel
 	
 	public function save()
 	{
-		var_dump($this->user); die;
 		if ($this->user != null) {
 			return $this->userManager->changeUserPassword($this->user, $this->password);
 		}
