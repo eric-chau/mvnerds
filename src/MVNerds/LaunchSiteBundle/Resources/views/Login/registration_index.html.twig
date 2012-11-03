@@ -1,0 +1,39 @@
+{% extends 'MVNerdsLaunchSiteBundle::layout.html.twig' %}
+
+{% block css %}
+	{{ parent() }}
+
+	<link href="{{ asset('css/launch_site/registration.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block header_footer %}
+	<div class="presentation-container">
+		<div class="content">
+			<div class="overview custom summoner-registration">
+				<h1>Enregistrement d'un nouvel invocateur</h1>
+				
+				<p>Pour créer votre compte MVNerds, vous devez simplement remplir le formulaire ci-dessous en respectant les règles suivantes :</p>
+				<ul>
+					<li class="title">Nom d'invocateur :</li>
+					<li>Doit être composé au minimum de 3 caractères.</li>
+					<li>Doit être unique et disponible.</li>
+					<li>N'utilisez pas un nom d'invocateur d'un autre joueur. Si vous faites l'objet d'une réclamation, des sanctions seront prises à votre encontre.</li>
+					<li class="title">Mot de passe :</li>
+					<li>Doit être composé au minimum de 6 caractères.</li>
+					<li>N'hésitez pas à inclure des caractères spéciaux pour plus de sécurité.</li>
+					<li class="title">Adresse email :</li>
+					<li>Renseignez une adresse valide, elle vous permettra d'activer votre compte.</li>
+					<li>Votre adresse email ne sera pas visible des autres utilisateurs MVNerds et ne sera en aucun cas communiqué à d'autres personnes ou entreprises
+						sans votre autorisation. Nous nous réservons le droit de communiquer votre email dans des cas de force majeur.</li>
+				</ul>
+				
+				<form id="" action="{{ path('launch_site_summoner_registration') }}" method="POST" {{ form_enctype(form) }}>
+					{{ form_widget(form) }}
+					
+					<button>Inscription</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+{% endblock %}

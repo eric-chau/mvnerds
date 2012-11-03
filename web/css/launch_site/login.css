@@ -1,0 +1,101 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+div.summoner-login h2 {
+  color: #db4a38 !important;
+  margin-bottom: 30px !important;
+}
+div.summoner-login form {
+  margin: auto;
+  margin-bottom: 40px;
+  width: 70%;
+}
+div.summoner-login form input[type="email"],
+div.summoner-login form input[type="text"],
+div.summoner-login form input[type="password"],
+div.summoner-login form button,
+div.summoner-login form label {
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  font-family: 'Ubuntu', sans-serif;
+}
+div.summoner-login form label {
+  color: #eee;
+  display: inline-block;
+  margin: 0 15px;
+  text-align: right;
+  width: 180px;
+}
+div.summoner-login form button {
+  background-color: #557213;
+  border: 0;
+  color: white;
+  display: inline-block;
+  height: 30px;
+  margin: 0 0 0 15px;
+  padding: 1px 10px;
+  position: relative;
+  top: 1px;
+}
+div.summoner-login form button:hover {
+  background-color: #759e1a;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+div.summoner-login form a {
+  color: #999;
+  font-size: 12px;
+}
+div.summoner-login form a:hover {
+  color: #ccc;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div.summoner-login p.align-center {
+  text-align: center;
+}
+div.summoner-login p.align-center a.btn-registration {
+  background-color: #be3322;
+  color: white;
+  display: inline-block;
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: auto;
+  padding: 10px 15px;
+}
+div.summoner-login p.align-center a.btn-registration:hover {
+  background-color: #db4a38;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}

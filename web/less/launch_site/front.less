@@ -8,6 +8,7 @@
 .isotope-hidden {
 	display: none !important;
 }
+
 p {
 	color: #222;
 	font-family: 'Ubuntu', sans-serif;
@@ -110,10 +111,11 @@ div.header-container {
 			height: 167px;
 			width: 100%;
 
-			h1 {
+			div#brand {
 				color: @MVNerdsRed;
 				font-family: 'Quantico', sans-serif;
 				font-size: 2.2em;
+				font-weight: bold;
 				padding-top: 119px;
 				position: relative;
 				text-shadow: 1px 1px 1px rgba(80,80,80,.3);
@@ -305,13 +307,15 @@ div.header-container {
 					color: #eee;
 					min-height: 547px;
 
-					h2 {
+					h1 {
 						color: @LoLOrangeAD;
+						font-size: 1.6em;
 						margin-bottom: 30px;
 					}
 
-					h3 {
+					h2 {
 						color: #666;
+						font-size: 1.2em;
 						margin-bottom: 15px;
 					}
 
@@ -319,7 +323,7 @@ div.header-container {
 						font-size: 14px;
 					}
 
-					form {
+					div.contact-us form {
 						margin: 10px 0;
 						button, label, textarea, input[type="text"], input[type="email"] {
 							font-family: 'Ubuntu', sans-serif;
@@ -485,32 +489,6 @@ div.body-container {
 			}
 		}
 
-		div.alert {
-			border: 1px solid rgba(255,255,255,0.5);
-			.border-radius(0);
-			color: white;
-			font-family: 'Ubuntu', sans-serif;
-			font-size: 14px;
-			opacity: 0.8;
-			text-shadow: none;
-
-			&.alert-fixed {
-				bottom: 10px;
-				position: fixed;
-				right: 10px;
-				width: 300px;
-				z-index: 1100;
-			}
-
-			&.alert-success {
-				background-color: @MVNerdsGreen;
-
-			}
-
-			&.alert-error {
-				background-color: @MVNerdsRed;
-			}
-		}
 		div.actions-bar {
 			margin: 10px 0 0 0;
 
@@ -1315,5 +1293,32 @@ div#footer {
 				}
 			}
 		}
+	}
+}
+
+div.alert {
+	border: 1px solid rgba(255,255,255,0.5);
+	.border-radius(0);
+	color: white;
+	font-family: 'Ubuntu', sans-serif;
+	font-size: 14px;
+	opacity: 0.8;
+	text-shadow: none;
+
+	&.alert-fixed {
+		bottom: 10px;
+		position: fixed;
+		right: 10px;
+		width: 300px;
+		z-index: 1100;
+	}
+
+	&.alert-success {
+		background-color: @MVNerdsGreen;
+
+	}
+
+	&.alert-error {
+		background-color: @MVNerdsRed;
 	}
 }

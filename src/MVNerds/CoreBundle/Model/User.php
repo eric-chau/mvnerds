@@ -20,6 +20,8 @@ use MVNerds\CoreBundle\Model\om\BaseUser;
  */
 class User extends BaseUser  implements AdvancedUserInterface
 {
+	private $plainPassword;
+	
 	/**
 	 * Permet de vérifier si l'utilisateur courant possède une adresse mail unique ou non
 	 * 
@@ -44,6 +46,21 @@ class User extends BaseUser  implements AdvancedUserInterface
 		}
 		
 		return true;
+	}
+	
+	public function setPlainPassword($plainPassword)
+    {
+       $this->plainPassword = $plainPassword;
+    }
+	
+	public function getPlainPassword()
+    {
+         return $this->plainPassword;
+    }
+	
+	public function activateAccount()
+	{
+		$this->setIsActive(true);
 	}
 	
 	/**
@@ -78,6 +95,6 @@ class User extends BaseUser  implements AdvancedUserInterface
 
     public function isEnabled()
     {
-        return $this->isActive;
+        return $this->is_active;
     }
 } // User

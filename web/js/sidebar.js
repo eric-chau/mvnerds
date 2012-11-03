@@ -35,5 +35,26 @@ $(document).ready(function()
 	{
 		event.stopPropagation();
 	});
+
+	$('div#sidebar a').on('click', function(event)
+	{
+		event.stopPropagation();
+	});
+
+	$('a.btn-connection').on('click', function()
+	{
+		event.preventDefault();
+		event.stopPropagation();
+		$('form#sidebar-login-form').submit();
+	});
+
+	
+	// Soumission du formulaire de connexion si l'utilisateur presse la touche entrée
+	$('form#sidebar-login-form input').on('keypress', function(event)
+	{
+		if (event.which == 13) {
+			$('form#sidebar-login-form').submit();
+		}
+	});
 });
 

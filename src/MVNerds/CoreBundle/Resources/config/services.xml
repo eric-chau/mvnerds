@@ -35,7 +35,17 @@
 		</service>
 
 		<!-- USER MANAGER SERVICES -->
-		<service id="mvnerds.user_manager" class="MVNerds\CoreBundle\User\UserManager" />
+		<service id="mvnerds.user_manager" class="MVNerds\CoreBundle\User\UserManager">
+			<call method="setEncoderFactory">
+				<argument type="service" id="security.encoder_factory" />
+			</call>
+			<call method="setMailer">
+				<argument type="service" id="mailer" />
+			</call>
+			<call method="setTemplating">
+				<argument type="service" id="templating" />
+			</call>
+		</service>
 
 		<!-- CHAMPION MANAGER SERVICES -->
 		<service id="mvnerds.champion_manager" class="MVNerds\CoreBundle\Champion\ChampionManager">

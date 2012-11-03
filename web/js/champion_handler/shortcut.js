@@ -42,7 +42,7 @@ $(document).ready(function()
       shortcutListener(event);
     });
 
-    $('input[type="email"]#user_email, input[type="text"]#filter-value').on('focus', function()
+    $('input[type="email"]#user_email, input[type="text"]#filter-value, form#sidebar-login-form input').on('focus', function()
     {
       $('body').unbind('keyup');
       $searchInputText.bind('keyup', function(event)
@@ -55,7 +55,7 @@ $(document).ready(function()
 
 
 
-    $('input[type="email"]#user_email, input[type="text"]#filter-value').on('blur', function()
+    $('input[type="email"]#user_email, input[type="text"]#filter-value, form#sidebar-login-form input').on('blur', function()
     {
       $('body').bind('keyup', function(event)
       {

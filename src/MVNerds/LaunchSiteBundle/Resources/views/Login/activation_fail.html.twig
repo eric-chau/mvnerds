@@ -1,0 +1,31 @@
+{% extends 'MVNerdsLaunchSiteBundle::layout.html.twig' %}
+	
+{% block header_footer %}
+	<div class="presentation-container">
+		<div class="content">
+			<div class="overview custom">
+				<h1>L'opération d'activation a échoué</h1>
+
+				{% if user is not defined %}
+					<p>
+						Vous avez tenter d'activer le compte d'invocateur <strong>{{ slug }}</strong> avec le code d'activation <strong>{{ activation_code }}</strong>.
+						L'opération a échoué, le nom du compte et / ou le code activation ne sont pas corrects.
+					</p>
+
+					<p>
+						Pour une question de pratique, nous vous invitons à suivre le lien qui vous ait parvenu par email à l'adresse que vous avez renseigné. Si le problème
+						persiste, n'hésitez pas à nous faire parvenir un email détaillant les manipulations que vous avez effectué, merci.
+					</p>
+				{% else %}
+					<p>
+						Invocateur {{ user.getUsername() }}, votre compte est déjà activé. Vous n'avez plus besoin d'effectuer cette manipulation avant de vous connecter.
+					</p>
+				{% endif %}
+				<p>
+					L'équipe MVNerds
+				</p>
+			</div>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+{% endblock %}

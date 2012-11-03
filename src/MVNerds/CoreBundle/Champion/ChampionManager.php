@@ -197,7 +197,7 @@ class ChampionManager
 	{
 		return ChampionQuery::create()
 			->joinWithI18n($this->userLocale)
-			->OrderBy(ChampionPeer::ID)
+			->OrderBy(ChampionPeer::SLUG)
 		->find();
 	}
 	
