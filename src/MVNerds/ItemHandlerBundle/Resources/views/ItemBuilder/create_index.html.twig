@@ -42,10 +42,10 @@
 		<p class="note">Note : les objets recommandés d'un champion sont identiques pour le mode 5 contre 5 (Faille de l'invocation) et 3 contre 3 (Forêt torturée).</p>
 		
 		<div class="game-mode-container">
-			<div class="game-mode classic active" data-game-mode="classic"><span class="message">Classique</span></div>
-			<div class="game-mode twisted-treeline" data-game-mode="twisted-treeline"><span class="message">Twisted Treeline</span></div>
-			<div class="game-mode dominion" data-game-mode="dominion"><span class="message" >Dominion</span></div>
-			<div class="game-mode proving-grounds" data-game-mode="aram"><span class="message" >All Random All Mid (ARAM)</span></div>
+			<div class="game-mode classic {% if gameMode is defined %} {% if gameMode == 'classic' %}active{%endif %} {% else %}active{% endif %}" data-game-mode="classic"><span class="message">Classique</span></div>
+			<div class="game-mode twisted-treeline {% if gameMode is defined and gameMode == 'twisted-treeline' %}active{%endif %}" data-game-mode="twisted-treeline"><span class="message">Twisted Treeline</span></div>
+			<div class="game-mode dominion {% if gameMode is defined and gameMode == 'dominion' %}active{%endif %}" data-game-mode="dominion"><span class="message" >Dominion</span></div>
+			<div class="game-mode proving-grounds {% if gameMode is defined and gameMode == 'aram' %}active{%endif %}" data-game-mode="aram"><span class="message" >All Random All Mid (ARAM)</span></div>
 		</div>
 		
 		<h2>Etape 3 : choisissez vos objets</h2>
@@ -71,7 +71,7 @@
 		
 		<div class="name-container">
 			<form action="#" method="POST">
-				<input type="text" class="" id="build-name" placeholder="Nom de la liste..." />
+				<input type="text" class="" id="build-name" placeholder="Nom de la liste..." value="{% if buildName is defined %}{{buildName}}{% endif %}"/>
 			</form>
 		</div>
 		
@@ -82,8 +82,12 @@
 		générer la liste, celle-ci ne sera pas récupérable mais sera toutefois mémoriser par notre système.</p>
 		
 		<div class="generate-button-container">
-			<a href="#" id="save-and-generate-build" class="main">Sauvegarder & générer</a>
-			<a href="#" id="only-generate-build">Générer seulement</a>
+			{% if itemBuildSlug is not defined %}
+				<a href="#" id="save-and-generate-build" class="main">Sauvegarder & générer</a>
+				<a href="#" id="only-generate-build">Générer seulement</a>
+			{% else %}
+				<a href="#" id="save-build" class="main" data-slug="{{itemBuildSlug}}">Enregistrer</a>
+			{% endif %}
 		</div>
 	</div>
 	

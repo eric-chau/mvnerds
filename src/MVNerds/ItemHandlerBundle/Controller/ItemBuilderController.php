@@ -106,7 +106,7 @@ class ItemBuilderController extends Controller
 			throw new HttpException(500, 'Request must be XmlHttp and POST method!');
 		}
 		
-		$itemBuild = new \MVNerds\CoreBundle\Model\ItemBuild();
+		
 		
 		$championsSlugs = $request->get('championsSlugs');
 		$itemsSlugs = $request->get('itemsSlugs');
@@ -114,6 +114,17 @@ class ItemBuilderController extends Controller
 		$buildName = $request->get('buildName');//TODO a echaper
 		$saveBuild = $request->get('saveBuild');
 		$path = $request->get('path');
+		$itemBuildSlug = $request->get('itemBuildSlug');
+		
+		if ($itemBuildSlug != null) {
+			try {
+				$itemBuild = $itemBuildManager->findOneBySlug($itemBuildSlug);
+			} catch(\Exception $e) {
+				throw new HttpException(500, 'Unable to find item build with slug '.$itemBuildSlug.'!');
+			}
+		} else {
+			$itemBuild = new \MVNerds\CoreBundle\Model\ItemBuild();
+		}
 		
 		/* @var $itemManager \MVNerds\CoreBundle\Item\ItemManager */
 		$itemManager = $this->get('mvnerds.item_manager');
@@ -256,5 +267,45 @@ class ItemBuilderController extends Controller
 		} catch (\Exception $e ) {
 			return $this->redirect($this->generateUrl('item_builder_list'));
 		}
+	}
+	
+	/**
+	 * @Route("/edit-build/{itemBuildSlug}", name="item_builder_edit_build")
+	 */
+	public function editBuildAction($itemBuildSlug) 
+	{
+		/* @var $itemBuildManager \MVNerds\CoreBundle\ItemBuild\ItemBuildManager */
+		$itemBuildManager = $this->get('mvnerds.item_build_manager');
+			
+		try {
+			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
+			$itemBuild = $itemBuildManager->findOneBySlug($itemBuildSlug);
+			//$itemBuild->getI
+		} catch (\Exception $e ) {
+			return $this->redirect($this->generateUrl('item_builder_list'));
+		}
+		
+		$selectedChampions = array();
+		foreach ($itemBuild->getChampionItemBuildsJoinChampion() as $championItemBuild) 
+		{
+			$selectedChampions[] = $championItemBuild->getChampion()->getSlug();
+		}
+		
+		$selectedItems = array();
+		for ($i = 1; $i <= 6; $i++) 
+		{
+			$method = 'getItemRelatedByItem'.$i.'Id';
+			$selectedItems[] = $itemBuild->$method();
+		}
+		
+		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:create_index.html.twig', array(
+			'champions'			=> $this->get('mvnerds.champion_manager')->findAllWithTags(),
+			'items'			=> $this->get('mvnerds.item_manager')->findAllWithTags(),
+			'selectedChampions'	=> $selectedChampions,
+			'selectedItems'		=> $selectedItems,
+			'buildName'			=> $itemBuild->getName(),
+			'gameMode'			=> $itemBuild->getChampionItemBuilds()->getFirst()->getGameMode()->getLabel(),
+			'itemBuildSlug'		=> $itemBuildSlug
+		));
 	}
 }

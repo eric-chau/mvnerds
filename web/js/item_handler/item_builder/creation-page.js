@@ -42,7 +42,7 @@ function processScrollRecItems() {
 }
 
 //Permet de generer le build
-function generateRecItemBuilder(saveBuild) {
+function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 	
 	saveBuild = saveBuild == undefined ? false : saveBuild;
 	
@@ -66,11 +66,12 @@ function generateRecItemBuilder(saveBuild) {
 						itemsSlugs.push($(this).find('div.portrait').data('slug'));
 					});
 
-					var data
+					var data =  {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName, path: path};
 					if (saveBuild) {
-						data =  {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName, path: path, saveBuild: 'true'};
-					} else {
-						data =  {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName, path: path};
+						data.saveBuild = 'true';
+					}					
+					if(itemBuildSlug != undefined) {
+						data.itemBuildSlug = itemBuildSlug;
 					}
 
 					$.ajax({
@@ -79,7 +80,11 @@ function generateRecItemBuilder(saveBuild) {
 						data: data,
 						dataType: 'json'
 					}).done(function(data){
-						window.location = Routing.generate('item_builder_download_file', {_locale: locale, itemBuildSlug: data});
+						if(itemBuildSlug != undefined) {
+							displayMessage('Les modifications ont bien été enregistrées.', 'success');
+						} else {
+							window.location = Routing.generate('item_builder_download_file', {_locale: locale, itemBuildSlug: data});
+						}
 					}).fail(function(data){
 						console.log(data.responseText);
 						$('#footer').html(data.responseText);
@@ -367,6 +372,10 @@ $(document).ready(function()
 		e.preventDefault();
 		$('#modal-btn-download').attr('data-save-build', 'true');
 		$('#modal-dl-build').modal('show');
+	});
+	$('#save-build').click(function(e) {
+		e.preventDefault();
+		generateRecItemBuilder(true, $(this).data('slug'));
 	});
 	$('#modal-btn-download').click(function(e) {
 		e.preventDefault();
