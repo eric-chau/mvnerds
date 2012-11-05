@@ -27,14 +27,14 @@
 			</div>
 		{% endfor %}
 	</div>
-	<div class="span2">
+	{#<div class="span2">
 		{% set itemTags = item.getItemTags() %}
 		{% for itemTag in itemTags %}
 			<div class="row-fluid">
 				{{itemTag.getTag().getLabel()}}
 			</div>
 		{% endfor %}
-	</div>
+	</div>#}
 	<div class="span2">
 		{% set itemGameModes = item.getItemGameModes() %}
 		{% for itemGameMode in itemGameModes %}
@@ -42,5 +42,16 @@
 				{{itemGameMode.getGameMode().getLabel()}}
 			</div>
 		{% endfor %}
+	</div>
+		
+	<div class="span2">
+		{# Editer l item #}
+		<a  draggable="false" href="{{ path('admin_items_edit', {'slug': item.getSlug()}) }}" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Éditer">
+			<i class="icon-edit"></i>
+		</a>
+		{# Supprimer l item #}
+		<a  draggable="false" href="#" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Supprimer le champion" data-toggle="modal" data-target="#delete-item-{{ item.getSlug() }}-modal">
+			<i class="icon-remove"></i>
+		</a>
 	</div>
 </div>

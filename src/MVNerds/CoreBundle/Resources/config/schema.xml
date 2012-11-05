@@ -404,7 +404,7 @@
   <table name="item_secondary_effect">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
     <column name="item_id" required="true" type="INTEGER" />
-    <column name="category" required="true" type="ENUM" valueSet="ACTIVE, AURA, PASSIVE, CONSUMABLE" />
+    <column name="category" required="true" type="ENUM" valueSet="ACTIVE, AURA, PASSIVE, CONSUMABLE, OTHER" />
     <column name="description" required="true" type="LONGVARCHAR" />
     <column defaultValue="true" name="is_unique" required="true" type="BOOLEAN" />
     <foreign-key foreignTable="item">
@@ -505,4 +505,26 @@
       <reference foreign="id" local="child_id" />
     </foreign-key>
   </table>
-  <table name="module">    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />    <column name="unique_name" required="true" size="100" type="VARCHAR" />    <column name="label" required="true" size="50" type="VARCHAR" />  </table>  <table name="profile">    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />    <column defaultValue="0" description="pour le moment avatar_id vaut un entier qui correspond au nom de fichier d une image dans le dossier web avatars" name="avatar_id" required="true" type="INTEGER" />    <column name="team_id" type="INTEGER" />    <foreign-key foreignTable="team">      <reference foreign="id" local="team_id" />    </foreign-key>  </table>  <table name="vote">    <column name="object_id" primaryKey="true" required="true" type="INTEGER" />    <column description="namespace de classe php associee" name="object_namespace" primaryKey="true" required="true" size="255" type="VARCHAR" />    <column name="user_id" required="true" type="INTEGER" />    <column defaultValue="1" description="true si c'est un like et false si c est un dislike" name="like" required="true" type="BOOLEAN" />    <foreign-key foreignTable="user">      <reference foreign="id" local="user_id" />    </foreign-key>  </table></database>
+  <table name="module">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="unique_name" required="true" size="100" type="VARCHAR" />
+    <column name="label" required="true" size="50" type="VARCHAR" />
+  </table>
+  <table name="profile">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column defaultValue="0" description="pour le moment avatar_id vaut un entier qui correspond au nom de fichier d une image dans le dossier web avatars" name="avatar_id" required="true" type="INTEGER" />
+    <column name="team_id" type="INTEGER" />
+    <foreign-key foreignTable="team">
+      <reference foreign="id" local="team_id" />
+    </foreign-key>
+  </table>
+  <table name="vote">
+    <column name="object_id" primaryKey="true" required="true" type="INTEGER" />
+    <column description="namespace de classe php associee" name="object_namespace" primaryKey="true" required="true" size="255" type="VARCHAR" />
+    <column name="user_id" required="true" type="INTEGER" />
+    <column defaultValue="1" description="true si c'est un like et false si c est un dislike" name="like" required="true" type="BOOLEAN" />
+    <foreign-key foreignTable="user">
+      <reference foreign="id" local="user_id" />
+    </foreign-key>
+  </table>
+</database>

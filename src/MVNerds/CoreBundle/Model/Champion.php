@@ -119,4 +119,34 @@ class Champion extends BaseChampion
 	{
 		$this->level = $level;
 	}
+	
+	public function removeChampionTag(ChampionTag $l)
+	{
+		if ($this->collChampionTags === null) {
+			return $this;
+		}
+		if ($this->collChampionTags->contains($l)) {
+			$this->doRemoveChampionTag($l);
+		}
+
+		return $this;
+	}
+	
+	public function removeChampionI18n(ChampionI18n $l)
+	{
+		die('ko');
+	}
+	
+	protected function doRemoveChampionTag($championTag)
+	{		
+		foreach ($this->collChampionTags as $key => $ct) {
+			if ($ct == $championTag) {
+				unset($this->collChampionTags[$key]);
+				break;
+			}
+		}
+		$this->save();
+		$championTag->delete();
+		return $this;
+	}
 } // Champion

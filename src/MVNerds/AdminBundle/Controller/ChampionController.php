@@ -10,7 +10,7 @@ use MVNerds\CoreBundle\Form\Type\ChampionType;
 use MVNerds\CoreBundle\Model\ChampionPeer;
 
 /**
- * @Route("/champions")
+ * @Route("/champ")
  */
 class ChampionController extends Controller
 {	
@@ -29,7 +29,7 @@ class ChampionController extends Controller
 	/**
 	 * Formulaire d'ajout d'un nouveau champion
 	 *
-	 * @Route("/ajouter", name="admin_champions_add")
+	 * @Route("/add", name="admin_champions_add")
 	 */
 	public function addChampionAction()
 	{
@@ -61,11 +61,15 @@ class ChampionController extends Controller
 	/**
 	 * Formulaire d'édition de champion
 	 *
-	 * @Route("/{slug}/editer", name="admin_champions_edit")
+	 * @Route("/{slug}/edit", name="admin_champions_edit")
 	 */
 	public function editChampionAction($slug)
 	{
-		$champion = $this->get('mvnerds.champion_manager')->findBySlug($slug);
+		try {
+			$champion = $this->get('mvnerds.champion_manager')->findBySlugWithI18ns($slug);
+		} catch (\Exception $e) {
+			return $this->redirect($this->generateUrl('admin_champions_index'));
+		}
 		$form = $this->createForm(new ChampionType(), $champion);
 
 		$request = $this->getRequest();

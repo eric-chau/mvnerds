@@ -4,8 +4,10 @@
 	{{ parent() }}
 
 	<link rel="stylesheet" href="{{ asset('css/admin/champion.css') }}">
+	
+	<link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
-
+	
 {% block topbar %}
 	{% include 'MVNerdsAdminBundle::top_bar.html.twig' with {'section': 'champions'} %}
 {% endblock %}

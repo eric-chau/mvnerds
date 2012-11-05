@@ -1,0 +1,86 @@
+<?php
+
+namespace MVNerds\CoreBundle\Form\Type;
+
+use Symfony\Component\Form\AbstractType;
+use \Symfony\Component\Form\FormBuilderInterface;
+use \Symfony\Component\OptionsResolver\OptionsResolverInterface;
+
+
+class ItemType extends AbstractType
+{
+	public function buildForm(FormBuilderInterface $builder, array $options) 
+	{
+		$builder->add('item_i18ns', 'collection', array(
+			'type' => new ItemI18nType(),
+			'allow_add' => true,
+			'prototype' => true
+		));
+		
+		$builder->add('cost', 'number', array(
+			'label'		=> 'Coût',
+			'required'	=> true
+		));
+		
+		$builder->add('sell_value', 'number', array(
+			'label'		=> 'Prix de vente',
+			'required'	=> false
+		));
+		
+		$builder->add('riot_code', 'text', array(
+			'label'		=> 'Code Riot',
+			'required'	=> true
+		));
+		
+		$builder->add('stacks', 'number', array(
+			'label'		=> 'Stacks'
+		));
+		
+		$builder->add('item_game_modes', 'collection', array(
+			'type' => new ItemGameModeType(),
+			'allow_add' => true,
+			'allow_delete' => true,
+			'by_reference' => false
+		));
+		
+		$builder->add('item_primary_effects', 'collection', array(
+			'type' => new ItemPrimaryEffectType(),
+			'allow_add' => true,
+			'allow_delete' => true,
+			'by_reference' => false
+		));
+		
+		$builder->add('item_secondary_effects', 'collection', array(
+			'type' => new ItemSecondaryEffectType(),
+			'allow_add' => true,
+			'allow_delete' => true,
+			'by_reference' => false
+		));
+		
+		$builder->add('item_geneologies_related_by_child_id', 'collection', array(
+			'type' => new ItemGeneologyType(),
+			'allow_add' => true,
+			'allow_delete' => true,
+			'by_reference' => false
+		));
+		
+		$builder->add('item_tags', 'collection', array(
+			'type' => new ItemTagType(),
+			'allow_add' => true,
+			'allow_delete' => true,
+			'by_reference' => false
+		));
+	}
+	
+	public function getName()
+	{
+		return 'item';
+	}
+	
+	public function setDefaultOptions(OptionsResolverInterface $resolver) 
+	{
+		$resolver->setDefaults(array(
+			'data_class' => 'MVnerds\CoreBundle\Model\Item'
+		));
+	}
+}

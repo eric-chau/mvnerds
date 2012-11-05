@@ -44,4 +44,106 @@ class Item extends BaseItem {
 		
 		return $gameModes;
 	}	
+	
+	public function removeItemGameMode(ItemGameMode $l)
+	{
+		if ($this->collItemGameModes === null) {
+			return $this;
+		}
+		if ($this->collItemGameModes->contains($l)) {
+			$this->doRemoveItemGameMode($l);
+		}
+
+		return $this;
+	}
+	protected function doRemoveItemGameMode($itemGameMode)
+	{		
+		foreach ($this->collItemGameModes as $key => $igm) {
+			if ($igm == $itemGameMode) {
+				unset($this->collItemGameModes[$key]);
+				break;
+			}
+		}
+		$this->save();
+		$itemGameMode->delete();
+		return $this;
+	}
+	
+	public function removeItemPrimaryEffect(ItemPrimaryEffect $l)
+	{
+		if ($this->collItemPrimaryEffects === null) {
+			return $this;
+		}
+		if ($this->collItemPrimaryEffects->contains($l)) {
+			$this->doRemoveItemPrimaryEffects($l);
+		}
+
+		return $this;
+	}
+	protected function doRemoveItemPrimaryEffects($itemPrimaryEffect)
+	{		
+		foreach ($this->collItemPrimaryEffects as $key => $ipe) {
+			if ($ipe == $itemPrimaryEffect) {
+				unset($this->collItemPrimaryEffects[$key]);
+				break;
+			}
+		}
+		$this->save();
+		$itemPrimaryEffect->delete();
+		return $this;
+	}
+	
+	public function removeItemSecondaryEffect(ItemSecondaryEffect $l)
+	{
+		if ($this->collItemSecondaryEffects === null) {
+			return $this;
+		}
+		if ($this->collItemSecondaryEffects->contains($l)) {
+			$this->doRemoveItemSecondaryEffects($l);
+		}
+
+		return $this;
+	}
+	protected function doRemoveItemSecondaryEffects($itemSecondaryEffect)
+	{		
+		foreach ($this->collItemSecondaryEffects as $key => $ise) {
+			if ($ise == $itemSecondaryEffect) {
+				unset($this->collItemSecondaryEffects[$key]);
+				break;
+			}
+		}
+		$this->save();
+		$itemSecondaryEffect->delete();
+		return $this;
+	}
+	
+	public function removeItemTag(ItemTag $l)
+	{
+		if ($this->collItemTags === null) {
+			return $this;
+		}
+		if ($this->collItemTags->contains($l)) {
+			$this->doRemoveItemTag($l);
+		}
+
+		return $this;
+	}
+	
+	protected function doRemoveItemTag($itemTag)
+	{		
+		foreach ($this->collItemTags as $key => $ct) {
+			if ($ct == $itemTag) {
+				unset($this->collItemTags[$key]);
+				break;
+			}
+		}
+		$this->save();
+		$itemTag->delete();
+		return $this;
+	}
+	
+	public function removeItemI18n(ItemI18n $o)
+	{
+		die('ko');
+	}
 } // Item

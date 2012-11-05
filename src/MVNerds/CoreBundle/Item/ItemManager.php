@@ -113,6 +113,27 @@ class ItemManager
 	}
 	
 	/**
+	 * Récupère un objet Item à partir de son slug $slug
+	 * 
+	 * @param string $slug le slug de l'item dont on souhaite récupérer l'objet Item associé 
+	 * @return MVNerds\CoreBundle\Model\Item l'objet Item qui correspond au slug $slug 
+	 * @throws InvalidArgumentException exception levé si aucun item n'est associé au slug $slug
+	 */
+	public function findBySlugWithI18n($slug)
+	{
+		$item = ItemQuery::create()
+			->add(ItemPeer::SLUG, $slug)
+		->findOne();
+
+		if (null === $item)
+		{
+			throw new InvalidArgumentException('No item with slug:' . $slug . '!');
+		}
+
+		return $item;
+	}
+	
+	/**
 	 * Récupère un objet Item à partir de son nom $name
 	 * 
 	 * @param string $name le nom du item dont on souhaite récupérer l'objet Item associé 
