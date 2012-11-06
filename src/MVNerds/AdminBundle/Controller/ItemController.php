@@ -68,7 +68,7 @@ class ItemController extends Controller
 			return $this->redirect($this->generateUrl('admin_items_index'));
 		}
 		$form = $this->createForm(new ItemType(), $item);
-
+		
 		$request = $this->getRequest();
 		if ($request->isMethod('POST'))
 		{

@@ -18,4 +18,8 @@ use MVNerds\CoreBundle\Model\om\BaseItemSecondaryEffect;
  */
 class ItemSecondaryEffect extends BaseItemSecondaryEffect {
 
+	public function removeItemSecondaryEffectI18n(ItemSecondaryEffectI18n $o)
+	{
+		die('ko');
+	}
 } // ItemSecondaryEffect
