@@ -58,10 +58,11 @@ class ItemType extends AbstractType
 			'attr' => array('data-i18n-prototype' => '<div id="item_item_secondary_effects_0_item_secondary_effect_i18ns___name__"><div><label for="item_item_secondary_effects_0_item_secondary_effect_i18ns___name___lang" class="required">Lang</label><select id="item_item_secondary_effects_0_item_secondary_effect_i18ns___name___lang" name="item[item_secondary_effects][0][item_secondary_effect_i18ns][__name__][lang]" required="required"><option value="fr">Français</option><option value="en">English</option></select></div><div><label for="item_item_secondary_effects_0_item_secondary_effect_i18ns___name___description" class="required">Description</label><textarea id="item_item_secondary_effects_0_item_secondary_effect_i18ns___name___description" name="item[item_secondary_effects][0][item_secondary_effect_i18ns][__name__][description]" required="required"></textarea></div></div>')
 		));
 		
-		$builder->add('item_geneologies_related_by_child_id', 'collection', array(
+		$builder->add('item_geneologies_related_by_child_id_custom', 'collection', array(
 			'type' => new ItemGeneologyType(),
 			'allow_add' => true,
-			'allow_delete' => true
+			'allow_delete' => true,
+			'by_reference' => false
 		));
 		
 		$builder->add('item_tags', 'collection', array(

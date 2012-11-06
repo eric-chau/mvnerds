@@ -146,4 +146,21 @@ class Item extends BaseItem {
 	{
 		die('ko');
 	}
+	
+	public function getItemGeneologiesRelatedByChildIdCustom($criteria = null, PropelPDO $con = null)
+	{
+		return $this->getItemGeneologiesRelatedByChildId($criteria, $con);
+	}
+	public function setItemGeneologiesRelatedByChildIdCustom($itemGeneologiesRelatedByChildId, PropelPDO $con = null)
+	{
+		if (is_array($itemGeneologiesRelatedByChildId)) {
+			$collection = new \PropelCollection();
+			foreach($itemGeneologiesRelatedByChildId as $itemGeneology ) {
+				$collection->append($itemGeneology);
+			}
+			$itemGeneologiesRelatedByChildId = $collection;
+		}
+		
+		$this->setItemGeneologiesRelatedByChildId($itemGeneologiesRelatedByChildId, $con);
+	}
 } // Item
