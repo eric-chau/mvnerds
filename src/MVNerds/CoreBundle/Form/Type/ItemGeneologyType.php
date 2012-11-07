@@ -10,7 +10,7 @@ class ItemGeneologyType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options) 
 	{
-		$builder->add('item_related_by_parent_id', 'model', array(
+		$builder->add('item_related_by_child_id', 'model', array(
 			'class' => '\MVNerds\CoreBundle\Model\Item',
 			'property' => 'slug'
 		));

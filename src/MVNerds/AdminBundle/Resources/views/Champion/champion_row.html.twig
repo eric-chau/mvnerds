@@ -26,23 +26,8 @@
 			<i class="icon-edit"></i>
 		</a>
 		{# Supprimer le champion #}
-		<a  draggable="false" href="#" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Supprimer le champion" data-toggle="modal" data-target="#delete-champion-{{ champion.getSlug() }}-modal">
+		<a  draggable="false" href="#" class="tooltip-anchor bootstrap-modal" rel="tooltip" data-placement="top" data-original-title="Supprimer le champion" data-toggle="modal" data-name="{{champion.getName()}}" data-slug="{{champion.getSlug()}}" data-href="/administration/champ/__SLUG__/supprimer">
 			<i class="icon-remove"></i>
 		</a>
-	</div>
-
-	<div id="delete-champion-{{ champion.getSlug() }}-modal" class="modal hide fade">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			<h3>Supprimer le champion {{ champion.getName() }}</h3>
-		</div>
-		<div class="modal-body">
-			<p>Êtes-vous sûr de vouloir supprimer le champion ayant pour nom <strong>{{ champion.getName() }}</strong> ?</p>
-		</div>
-		<div class="modal-footer">
-			<img src="{{ asset('images/commons/loader16.gif') }}" class="hide"/>
-			<a href="#" class="btn" data-dismiss="modal">Annuler</a>
-			<a href="{{ path('admin_champions_delete', {'slug': champion.getSlug()}) }}" class="btn btn-danger btn-confirm-delete">Confirmer</a>
-		</div>
 	</div>
 </div>

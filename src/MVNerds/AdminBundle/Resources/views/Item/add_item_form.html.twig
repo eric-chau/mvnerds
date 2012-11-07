@@ -1,4 +1,4 @@
-{% extends 'MVNerdsAdminBundle:Champion:layout.html.twig' %}
+{% extends 'MVNerdsAdminBundle:Item:layout.html.twig' %}
 
 {% block title %}Administration des items - MVNerds{% endblock %}
 
@@ -78,7 +78,7 @@
 				
 			<fieldset>
 				<legend>Généalogie : </legend>	
-				{{ form_widget(form.item_geneologies_related_by_child_id_custom) }}	
+				{{ form_widget(form.item_geneologies_related_by_parent_id_custom) }}	
 			</fieldset>
 				
 			<fieldset>
@@ -99,7 +99,7 @@
 		var tagCollectionHolder = $('div#item_item_tags');
 		var gameModeCollectionHolder = $('div#item_item_game_modes');
 		var primaryEffectCollectionHolder = $('div#item_item_primary_effects');
-		var geneologyCollectionHolder = $('div#item_item_geneologies_related_by_child_id_custom');
+		var geneologyCollectionHolder = $('div#item_item_geneologies_related_by_parent_id_custom');
 		var i18nCollectionHolder = $('div#item_item_i18ns');
 		var secondaryEffectsCollectionHolder = $('#item_item_secondary_effects');
 		var secondaryEffectsI18nCollectionHolder = $('fieldset.item_item_secondary_effect_i18n');
@@ -197,6 +197,7 @@
 			var prototype = collectionHolder.attr('data-prototype');
 			var collectionSize = collectionHolder.children().length;
 			var newForm = prototype.replace(/__name__label__/g, collectionSize);
+			newForm = newForm.replace(/__name__/g, collectionSize);
 			collectionHolder.append($(newForm));
 			if(enableDelete != undefined && enableDelete) {
 				addFormDeleteLink(collectionHolder.find('div').last().parent().parent());

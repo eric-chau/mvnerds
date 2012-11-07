@@ -147,20 +147,20 @@ class Item extends BaseItem {
 		die('ko');
 	}
 	
-	public function getItemGeneologiesRelatedByChildIdCustom($criteria = null, PropelPDO $con = null)
+	public function getItemGeneologiesRelatedByParentIdCustom($criteria = null, PropelPDO $con = null)
 	{
-		return $this->getItemGeneologiesRelatedByChildId($criteria, $con);
+		return $this->getItemGeneologiesRelatedByParentId($criteria, $con);
 	}
-	public function setItemGeneologiesRelatedByChildIdCustom($itemGeneologiesRelatedByChildId, PropelPDO $con = null)
+	public function setItemGeneologiesRelatedByParentIdCustom($itemGeneologiesRelatedByParentId, PropelPDO $con = null)
 	{
-		if (is_array($itemGeneologiesRelatedByChildId)) {
+		if (is_array($itemGeneologiesRelatedByParentId)) {
 			$collection = new \PropelCollection();
-			foreach($itemGeneologiesRelatedByChildId as $itemGeneology ) {
+			foreach($itemGeneologiesRelatedByParentId as $itemGeneology ) {
 				$collection->append($itemGeneology);
 			}
-			$itemGeneologiesRelatedByChildId = $collection;
+			$itemGeneologiesRelatedByParentId = $collection;
 		}
 		
-		$this->setItemGeneologiesRelatedByChildId($itemGeneologiesRelatedByChildId, $con);
+		$this->setItemGeneologiesRelatedByParentId($itemGeneologiesRelatedByParentId, $con);
 	}
 } // Item

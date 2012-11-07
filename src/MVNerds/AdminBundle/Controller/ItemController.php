@@ -92,6 +92,19 @@ class ItemController extends Controller
 			'item'		=> $item
 		));
 	}
+	
+	/**
+	 * Supprimer l item ayant pour slug $slug de la base de données;
+	 *
+	 * @Route("/{slug}/supprimer", name="admin_items_delete")
+	 */
+	public function deleteItemAction($slug)
+	{
+		$this->get('mvnerds.item_manager')->deleteBySlug($slug);
+
+		return new Response(json_encode(true));
+	}
+	
 }
 
 ?>

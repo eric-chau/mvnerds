@@ -317,10 +317,10 @@
   <table name="champion_tag">
     <column name="champion_id" primaryKey="true" required="true" type="INTEGER" />
     <column name="tag_id" primaryKey="true" required="true" type="INTEGER" />
-    <foreign-key foreignTable="champion">
+    <foreign-key foreignTable="champion" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="champion_id" />
     </foreign-key>
-    <foreign-key foreignTable="tag">
+    <foreign-key foreignTable="tag" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="tag_id" />
     </foreign-key>
   </table>
@@ -336,10 +336,10 @@
   <table name="item_tag">
     <column name="item_id" primaryKey="true" required="true" type="INTEGER" />
     <column name="tag_id" primaryKey="true" required="true" type="INTEGER" />
-    <foreign-key foreignTable="item">
+    <foreign-key foreignTable="item" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="item_id" />
     </foreign-key>
-    <foreign-key foreignTable="tag">
+    <foreign-key foreignTable="tag" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="tag_id" />
     </foreign-key>
   </table>
@@ -394,10 +394,10 @@
     <column name="item_id" primaryKey="true" required="true" type="INTEGER" />
     <column name="primary_effect_id" primaryKey="true" required="true" type="INTEGER" />
     <column defaultValue="0" name="value" required="true" size="45" type="VARCHAR" />
-    <foreign-key foreignTable="item">
+    <foreign-key foreignTable="item" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="item_id" />
     </foreign-key>
-    <foreign-key foreignTable="primary_effect">
+    <foreign-key foreignTable="primary_effect" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="primary_effect_id" />
     </foreign-key>
   </table>
@@ -407,7 +407,7 @@
     <column name="category" required="true" type="ENUM" valueSet="ACTIVE, AURA, PASSIVE, CONSUMABLE, OTHER" />
     <column name="description" required="true" type="LONGVARCHAR" />
     <column defaultValue="true" name="is_unique" required="true" type="BOOLEAN" />
-    <foreign-key foreignTable="item">
+    <foreign-key foreignTable="item" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="item_id" />
     </foreign-key>
     <behavior name="i18n">
@@ -425,10 +425,10 @@
   <table name="item_game_mode">
     <column name="item_id" primaryKey="true" required="true" type="INTEGER" />
     <column name="game_mode_id" primaryKey="true" required="true" type="INTEGER" />
-    <foreign-key foreignTable="item">
+    <foreign-key foreignTable="item" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="item_id" />
     </foreign-key>
-    <foreign-key foreignTable="game_mode">
+    <foreign-key foreignTable="game_mode" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="game_mode_id" />
     </foreign-key>
   </table>
@@ -484,10 +484,10 @@
     <column name="item_build_id" primaryKey="true" required="true" type="INTEGER" />
     <column name="game_mode_id" primaryKey="true" required="true" type="INTEGER" />
     <column defaultValue="0" name="is_default_build" required="true" type="BOOLEAN" />
-    <foreign-key foreignTable="champion">
+    <foreign-key foreignTable="champion" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="champion_id" />
     </foreign-key>
-    <foreign-key foreignTable="item_build">
+    <foreign-key foreignTable="item_build" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="item_build_id" />
     </foreign-key>
     <foreign-key foreignTable="game_mode">
@@ -498,7 +498,7 @@
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
     <column name="parent_id" required="true" type="INTEGER" />
     <column name="child_id" required="true" type="INTEGER" />
-    <foreign-key foreignTable="item">
+    <foreign-key foreignTable="item" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="parent_id" />
     </foreign-key>
     <foreign-key foreignTable="item">

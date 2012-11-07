@@ -1,11 +1,8 @@
 {# #}
 <div class="row-fluid title-line">
-	<div class="span1">Image</div>
-	<div class="span2">Nom</div>
-	<div class="span1">Riot Code</div>
-	<div class="span2">Primary effects</div>
-	<div class="span2">Secondary effects</div>
-	<div class="span2">Game modes</div>
+	<div class="span2">Image</div>
+	<div class="span6">Nom</div>
+	<div class="span2">Riot Code</div>
 	<div class="span2">Actions</div>
 </div>
 {% for item in items %}
@@ -13,3 +10,18 @@
 {% else %}
 	<i>Aucun item enregistré pour le moment, et si vous en ajoutiez un en cliquant sur le bouton "Ajouter un item" ?</i>
 {% endfor %}
+	
+<div id="bootstrap-delete-modal" class="modal hide fade">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>Supprimer l item <span class="bootstrap-modal-name"></span></h3>
+	</div>
+	<div class="modal-body">
+		<p>Êtes-vous sûr de vouloir supprimer l item ayant pour nom <strong><span class="bootstrap-modal-name"></span></strong> ?</p>
+	</div>
+	<div class="modal-footer">
+		<img src="{{ asset('images/commons/loader16.gif') }}" class="hide"/>
+		<a href="#" class="btn" data-dismiss="modal">Annuler</a>
+		<a id="modal-btn-confirm-delete" data-slug="" data-href="" class="btn btn-danger">Confirmer</a>
+	</div>
+</div>

@@ -222,10 +222,14 @@ class ItemBuilderController extends Controller
 	 */
 	public function executeDownloadItemBuildAction($itemBuildSlug)
 	{
-		/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
-		$itemBuild = $this->get('mvnerds.item_build_manager')->findOneBySlug($itemBuildSlug);
-		$itemBuild->setDownload($itemBuild->getDownload()+1);
-		$itemBuild->save();
+		try{
+			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
+			$itemBuild = $this->get('mvnerds.item_build_manager')->findOneBySlug($itemBuildSlug);
+			$itemBuild->setDownload($itemBuild->getDownload()+1);
+			$itemBuild->save();
+		} catch (\Exception $e) {
+			//Si le build n est pas trouvé en base de données on ne fait rien
+		}
 		
 		$path = $this->container->getParameter('item_builds_path') . $itemBuildSlug . '.bat';
 		

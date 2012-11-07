@@ -57,6 +57,10 @@ class ItemManager
 	public function deleteBySlug($slug)
 	{
 		$item = ItemQuery::create()
+			->joinWith('ItemPrimaryEffect', \Criteria::LEFT_JOIN)
+			->joinWith('ItemSecondaryEffect', \Criteria::LEFT_JOIN)
+			->joinWith('ItemTag', \Criteria::LEFT_JOIN)
+			->joinWith('ItemGameMode', \Criteria::LEFT_JOIN)
 			->add(ItemPeer::SLUG, $slug)
 		->findOne();
 

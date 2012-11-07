@@ -73,7 +73,7 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 					if(itemBuildSlug != undefined) {
 						data.itemBuildSlug = itemBuildSlug;
 					}
-
+					
 					$.ajax({
 						type: 'POST',
 						url:  Routing.generate('item_builder_generate_rec_item_file', {_locale: locale}),
