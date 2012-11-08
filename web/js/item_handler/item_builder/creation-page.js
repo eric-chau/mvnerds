@@ -390,6 +390,7 @@ $(document).ready(function()
 		e.preventDefault();
 		if ( ! $(this).hasClass('disabled') ) {
 			$('li.champion.isotope-item').removeClass('active');
+			$(this).addClass('disabled');
 		}
 	});
 	

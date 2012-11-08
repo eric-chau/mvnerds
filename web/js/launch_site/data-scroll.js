@@ -11,7 +11,6 @@ jQuery(function(){
 	function loadData(data){
 		//On remplace le contenu
 		container.html(data);
-console.log(container.html());
 		for (i = 0; i < liToShowCount; i++) {
 			liToShow[i].removeClass('force-hide');
 		}

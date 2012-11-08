@@ -141,27 +141,6 @@ $(document).ready(function() {
 		window.location = Routing.generate('item_builder_builds', {_locale: locale, itemBuildSlug: $(this).data('target')});
 	});
 	
-	//MODAL
-	$('a.download-action').click(function() {
-		$('#modal-build-name').html($(this).data('name'));
-		$('#modal-dl-build').modal('show');
-		$('#modal-btn-download').attr('data-target', $(this).data('slug'));
-	});
-	$('#modal-btn-download').click(function(e) {
-		e.preventDefault();
-		$.ajax({
-			type: 'POST',
-			url:  Routing.generate('item_builder_generate_rec_item_file_from_slug', {_locale: locale}),
-			data: {itemBuildSlug : $(this).data('target'), path: $('#modal-lol-path').val()},
-			dataType: 'json'
-		}).done(function(data){
-			window.location = Routing.generate('item_builder_download_file', {_locale: locale, itemBuildSlug: data});
-		}).fail(function(data){
-			console.log(data.responseText);
-			displayMessage('Impossible de créer le build.', 'error');
-		});
-	});
-	
 	//CHAMP DE RECHERCHE
 	$('#item-builds-table_filter label').addClass('search-box');
 	$('#item-builds-table_filter label input').attr('data-provide', 'typeahead');

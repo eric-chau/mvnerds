@@ -76,55 +76,79 @@ class ItemBuildManager
 	public function findAll()
 	{
 		$itemBuilds = ItemBuildQuery::create()
-				
-//			->joinWith('ItemRelatedByItem1Id i1', \Criteria::LEFT_JOIN)
-//			->joinWith('i1.ItemI18n i18n1', \Criteria::LEFT_JOIN)
-//			->joinWith('i1.ItemPrimaryEffect ipe1', \Criteria::LEFT_JOIN)
-//			->joinWith('i1.ItemSecondaryEffect', \Criteria::LEFT_JOIN)
-//			->joinWith('ipe1.PrimaryEffect pe1', \Criteria::LEFT_JOIN)
-//				
-//			->joinWith('ItemRelatedByItem2Id i2', \Criteria::LEFT_JOIN)
-//			->joinWith('i2.ItemI18n i18n2', \Criteria::LEFT_JOIN)
-//			->joinWith('i2.ItemPrimaryEffect ipe2', \Criteria::LEFT_JOIN)
-//			->joinWith('i2.ItemSecondaryEffect ise2', \Criteria::LEFT_JOIN)
-//			->joinWith('ipe2.PrimaryEffect pe2', \Criteria::LEFT_JOIN)
-//				
-//			->joinWith('ItemRelatedByItem3Id i3', \Criteria::LEFT_JOIN)
-//			->joinWith('i3.ItemI18n i18n3', \Criteria::LEFT_JOIN)
-//			->joinWith('i3.ItemPrimaryEffect ipe3', \Criteria::LEFT_JOIN)
-//			->joinWith('i3.ItemSecondaryEffect ise3', \Criteria::LEFT_JOIN)
-//			->joinWith('ipe3.PrimaryEffect pe3', \Criteria::LEFT_JOIN)
-//				
-//			->joinWith('ItemRelatedByItem4Id i4', \Criteria::LEFT_JOIN)
-//			->joinWith('i4.ItemI18n i18n4', \Criteria::LEFT_JOIN)
-//			->joinWith('i4.ItemPrimaryEffect ipe4', \Criteria::LEFT_JOIN)
-//			->joinWith('i4.ItemSecondaryEffect ise4', \Criteria::LEFT_JOIN)
-//			->joinWith('ipe4.PrimaryEffect pe4', \Criteria::LEFT_JOIN)
-//				
-//			->joinWith('ItemRelatedByItem5Id i5', \Criteria::LEFT_JOIN)
-//			->joinWith('i5.ItemI18n i18n5', \Criteria::LEFT_JOIN)
-//			->joinWith('i5.ItemPrimaryEffect ipe5', \Criteria::LEFT_JOIN)
-//			->joinWith('i5.ItemSecondaryEffect ise5', \Criteria::LEFT_JOIN)
-//			->joinWith('ipe5.PrimaryEffect pe5', \Criteria::LEFT_JOIN)
-//				
-//			->joinWith('ItemRelatedByItem6Id i6', \Criteria::LEFT_JOIN)
-//			->joinWith('i6.ItemI18n i18n6', \Criteria::LEFT_JOIN)
-//			->joinWith('i6.ItemPrimaryEffect ipe6', \Criteria::LEFT_JOIN)
-//			->joinWith('i6.ItemSecondaryEffect ise6', \Criteria::LEFT_JOIN)
-//			->joinWith('ipe6.PrimaryEffect pe6', \Criteria::LEFT_JOIN)
-				
-//			->joinWith('ItemRelatedByItem2Id i2', \Criteria::LEFT_JOIN)
-//			->joinWith('ItemRelatedByItem3Id i3', \Criteria::LEFT_JOIN)
-//			->joinWith('ItemRelatedByItem4Id i4', \Criteria::LEFT_JOIN)
-//			->joinWith('ItemRelatedByItem5Id i5', \Criteria::LEFT_JOIN)
-//			->joinWith('ItemRelatedByItem6Id i6', \Criteria::LEFT_JOIN)
-
 			->joinWith('ChampionItemBuild', \Criteria::LEFT_JOIN)
 			->joinWith('ChampionItemBuild.GameMode', \Criteria::LEFT_JOIN)
-			->joinWith('ChampionItemBuild.Champion', \Criteria::LEFT_JOIN)
-			->joinWith('Champion.ChampionI18n', \Criteria::LEFT_JOIN)
+			->joinWith('ChampionItemBuild.Champion chp', \Criteria::LEFT_JOIN)
+			->joinWith('chp.ChampionI18n', \Criteria::LEFT_JOIN)
 		->find();
 
+		$items = \MVNerds\CoreBundle\Model\ItemQuery::create()
+				->joinWith('ItemI18n', \Criteria::LEFT_JOIN)
+				->joinWith('ItemPrimaryEffect', \Criteria::LEFT_JOIN)
+				->joinWith('ItemPrimaryEffect.PrimaryEffect', \Criteria::LEFT_JOIN)
+				->joinWith('PrimaryEffect.PrimaryEffectI18n', \Criteria::LEFT_JOIN)
+				->joinWith('ItemSecondaryEffect', \Criteria::LEFT_JOIN)
+				->joinWith('ItemSecondaryEffect.ItemSecondaryEffectI18n', \Criteria::LEFT_JOIN);
+		
+		$itemBuilds->populateRelation('ItemRelatedByItem1Id', $items);
+		$itemBuilds->populateRelation('ItemRelatedByItem2Id', $items);
+		$itemBuilds->populateRelation('ItemRelatedByItem3Id', $items);
+		$itemBuilds->populateRelation('ItemRelatedByItem4Id', $items);
+		$itemBuilds->populateRelation('ItemRelatedByItem5Id', $items);
+		$itemBuilds->populateRelation('ItemRelatedByItem6Id', $items);
+		
+		if (null === $itemBuilds)
+		{
+			throw new InvalidArgumentException('No item build found !');
+		}
+
+		return $itemBuilds;
+	}	
+	
+	/**
+	 * Récupère les builds les plus récents
+	 */
+	public function findLatestBuilds($championItemBuildsCriteria, $itemsCriteria)
+	{
+		$itemBuilds = ItemBuildQuery::create()
+			->orderById(\Criteria::DESC)
+			->limit(5)
+		->find();
+		
+		$itemBuilds->populateRelation('ChampionItemBuild', $championItemBuildsCriteria);
+		$itemBuilds->populateRelation('ItemRelatedByItem1Id', $itemsCriteria);
+		$itemBuilds->populateRelation('ItemRelatedByItem2Id', $itemsCriteria);
+		$itemBuilds->populateRelation('ItemRelatedByItem3Id', $itemsCriteria);
+		$itemBuilds->populateRelation('ItemRelatedByItem4Id', $itemsCriteria);
+		$itemBuilds->populateRelation('ItemRelatedByItem5Id', $itemsCriteria);
+		$itemBuilds->populateRelation('ItemRelatedByItem6Id', $itemsCriteria);
+		
+		if (null === $itemBuilds)
+		{
+			throw new InvalidArgumentException('No item build found !');
+		}
+
+		return $itemBuilds;
+	}	
+	
+	/**
+	 * Récupère les builds les plus téléchargés
+	 */
+	public function findMostDownloadedBuilds($championItemBuildsCriteria, $itemsCriteria)
+	{
+		$itemBuilds = ItemBuildQuery::create()
+			->orderByDownload(\Criteria::DESC)
+			->limit(5)
+		->find();
+		
+		$itemBuilds->populateRelation('ChampionItemBuild', $championItemBuildsCriteria);
+		$itemBuilds->populateRelation('ItemRelatedByItem1Id', $itemsCriteria);
+		$itemBuilds->populateRelation('ItemRelatedByItem2Id', $itemsCriteria);
+		$itemBuilds->populateRelation('ItemRelatedByItem3Id', $itemsCriteria);
+		$itemBuilds->populateRelation('ItemRelatedByItem4Id', $itemsCriteria);
+		$itemBuilds->populateRelation('ItemRelatedByItem5Id', $itemsCriteria);
+		$itemBuilds->populateRelation('ItemRelatedByItem6Id', $itemsCriteria);
+		
 		if (null === $itemBuilds)
 		{
 			throw new InvalidArgumentException('No item build found !');

@@ -86,14 +86,14 @@ class ItemBuilderController extends Controller
 		try {
 			$itemBuild = $itemBuildManager->findOneBySlug($itemBuildSlug);
 		} catch (\Exception $e ) {
-			throw new HttpException(500, 'Invalid slug given!');
+			throw new HttpException(500, 'Invalid slug given : '.$itemBuildSlug);
 		}
 		
 		/* @var $batchManager \MVNerds\CoreBundle\Batch\BatchManager */
 		$batchManager = $this->get('mvnerds.batch_manager');
 		$batchManager->createRecItemBuilder($itemBuild, $path);
 		
-		return new Response(json_encode($itemBuild->getSlug()));
+		return new Response(json_encode($itemBuildSlug));
 	}
 	/**
 	 * @Route("/generate-rec-items", name="item_builder_generate_rec_item_file", options={"expose"=true})
@@ -257,23 +257,6 @@ class ItemBuilderController extends Controller
 			throw new HttpException(500, 'La requête doit être effectuée en AJAX et en method POST !');
 		}
 		return new Response(json_encode($this->get('mvnerds.item_manager')->getItemsName()->toArray()));
-	}
-	
-	/**
-	 * @Route("/builds/{slug}", name="item_builder_builds", options={"expose"=true})
-	 */
-	public function showBuildAction($slug) {
-		/* @var $itemBuildManager \MVNerds\CoreBundle\ItemBuild\ItemBuildManager */
-		$itemBuildManager = $this->get('mvnerds.item_build_manager');
-		
-		try {
-			$itemBuild = $itemBuildManager->findOneBySlug($slug);
-			return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:builds.html.twig', array(
-				'itemBuild'	=> $itemBuild
-			));
-		} catch (\Exception $e ) {
-			return $this->redirect($this->generateUrl('item_builder_list'));
-		}
 	}
 	
 	/**
