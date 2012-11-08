@@ -124,7 +124,7 @@ function initItemFilterList($isotope, $filterButtons) {
 		$isotope.removeFilterValue('.'+$(this).attr('data-option-value'));
 		if($(this).parent().find('a.filter-link.selected').size() <= 0) {
 			$(this).parent('a.dropdown-toggle').removeClass('active');
-			if($isotope.options == undefined || $isotope.options == ''){
+			if($isotope.filters.name == undefined || $isotope.filters.name == ''){
 				deactivateButton($('li#item-li-clean-filter'));
 			}
 		}
@@ -149,7 +149,8 @@ function initChampionFilterList($isotope, $filterButtons) {
 	$filterButtons.on('click', ' a.filter-link:not(.selected)', function(){
 		$(this).addClass('selected');
 		$(this).parent('a.dropdown-toggle').addClass('active');
-		activateButton($('li#li-clean-filter'));
+		activateButton($('li#li-clean-filter')); 
+		activateButton($('li#li-compare-filtered'));
 		$isotope.addFilterValue('.'+$(this).attr('data-option-value'));
 		
 		return false;
@@ -160,7 +161,7 @@ function initChampionFilterList($isotope, $filterButtons) {
 		$isotope.removeFilterValue('.'+$(this).attr('data-option-value'));
 		if($(this).parent().find('a.filter-link.selected').size() <= 0) {
 			$(this).parent('a.dropdown-toggle').removeClass('active');
-			if($isotope.options == undefined || $isotope.options == ''){
+			if($isotope.filters.name == undefined || $isotope.filters.name == ''){
 				deactivateButton($('li#li-clean-filter'));
 			}
 		}
@@ -175,7 +176,7 @@ function initChampionCleanAction($isotope, $filterInput) {
 		$(this).parents('li.dropdown').find('a.dropdown-toggle').removeClass('active');
 		$(this).parents('ul.dropdown-menu').find('a.filter-link.selected').removeClass('selected');
 		deactivateButton($('li#li-clean-filter'));
-		
+		deactivateButton($('li#li-compare-filtered'));		
 		return false;
 	});
 }
@@ -183,7 +184,7 @@ function initChampionAddFilteredAction($isotope) {
 	//Lors du clic sur le bouton de nettoyage du filtre
 	$('#li-compare-filtered').on('click', 'a', function(){
 		$championIsotopeList.find('li.champion:not(.isotope-hidden):not(.active)').addClass('active');
-		
+		$('#btn-clear-champions').removeClass('disabled')
 		return false;
 	});
 }
@@ -287,7 +288,6 @@ $(document).ready(function()
 			addItemToList($(that).attr('id'));
 		}
 	});
-	//Lors du clic sur le bouton close d un champion maximisé
 	$itemIsotopeList.on('click', 'li.item-maxi div.preview-header', function(){
 		return minimizeItem($('#'+$(this).attr('data-dissmiss')), $itemIsotopeList);
 	});
@@ -350,7 +350,7 @@ $(document).ready(function()
 			$itemIsotopeList.hideChampionSpecificItems();
 			checkRecItemsByChampionSpecific();
 		}else if(activeChampions.length > 0) {
-			$('#btn-clear-champions').removeClass('disabled');
+			$('#btn-clear-champions').removeClass('disabled').parent('li').removeClass('hide');
 			
 			var championSlug = activeChampions.first().data('name');
 			var relatedItems = $('ul#item-isotope-list li.item div.portrait[data-champion="'+championSlug+'"]');
@@ -453,16 +453,15 @@ $(document).ready(function()
 	//On set les options sur l objet isotope pour y acceder plus facilement
 	$itemIsotopeList.options = itemIsotopeOptions;
 	$itemIsotopeList.filters = itemIsotopeFilters;
-	$itemIsotopeList.initTypeahead($itemFilterInput, Routing.generate('item_builder_get_items_name',{_locale: locale}));
+	$itemIsotopeList.initTypeahead($itemFilterInput, Routing.generate('item_builder_get_items_name',{_locale: locale}), $('li#item-li-clean-filter'));
 	initItemFilterList($itemIsotopeList, $('ul#item-filters-list li'));
 	initItemCleanAction($itemIsotopeList, $itemFilterInput);
-	
-	
+		
 	$championFilterInput = $('#champion-filter-input');
 	
 	$championIsotopeList.options = championIsotopeOptions;
 	$championIsotopeList.filters = championIsotopeFilters;
-	$championIsotopeList.initTypeahead($championFilterInput, Routing.generate('champion_handler_front_get_champions_name',{_locale: locale}));
+	$championIsotopeList.initTypeahead($championFilterInput, Routing.generate('champion_handler_front_get_champions_name',{_locale: locale}), $('li#li-clean-filter'));
 	initChampionFilterList($championIsotopeList, $('ul#filters-list li'));
 	initChampionCleanAction($championIsotopeList, $championFilterInput);
 	initChampionAddFilteredAction($championIsotopeList);
