@@ -360,7 +360,7 @@ $(document).ready(function()
 				$itemIsotopeList.hideChampionSpecificItems();
 			}
 		} else {
-			$('#btn-clear-champions').removeClass('disabled').addClass('disabled');
+			$('#btn-clear-champions').addClass('disabled');
 			$itemIsotopeList.showChampionSpecificItems();
 		}
 	});
