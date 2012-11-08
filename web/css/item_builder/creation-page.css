@@ -64,6 +64,19 @@ div.alert.alert-success {
 div.alert.alert-error {
   background-color: #db4a38;
 }
+h1 {
+  color: #19a0df;
+  margin: 0;
+}
+p.module-name {
+  font-size: 12px;
+  margin-bottom: 40px;
+  opacity: .7;
+  text-transform: uppercase;
+}
+p.module-name strong {
+  color: #fb9701;
+}
 div.body-container {
   background-color: #000;
   color: #fff;
@@ -79,32 +92,29 @@ div.body-container div.name-container {
   text-align: center;
   margin: 30px 0;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container {
-  border: 1px solid #fb9701;
-  -webkit-border-radius: 5px !important;
-  -moz-border-radius: 5px !important;
-  border-radius: 5px !important;
-  padding: 5px;
-  position: relative;
+div.body-container div.champion-container,
+div.body-container div.item-container {
+  background-color: #111;
+  margin: 20px 0 40px 0;
+  padding: 15px;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container h3 {
-  display: inline;
-  color: #fff;
-  text-align: left;
-}
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions {
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 12px;
-  position: static;
+div.body-container div.champion-container div.actionbar ul.actions-list,
+div.body-container div.item-container div.actionbar ul.actions-list {
   list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: right;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li#filters-block {
-  position: static;
+div.body-container div.champion-container div.actionbar ul.actions-list#item-actions li.rec-item-list,
+div.body-container div.item-container div.actionbar ul.actions-list#item-actions li.rec-item-list {
+  display: inline-block;
+  line-height: 78px;
+  position: relative;
+  text-align: left;
+  width: 636px;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li {
-  display: inline;
-}
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action,
+div.body-container div.item-container div.actionbar ul.actions-list li.action {
   background-color: rgba(25, 160, 223, 0.7);
   cursor: pointer;
   display: inline-block;
@@ -113,51 +123,52 @@ div.body-container div.champion-container div#champion-topbar div#champion-topba
   margin-right: 1px;
   padding: 3px 6px 0 4px;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action.disabled {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action.disabled,
+div.body-container div.item-container div.actionbar ul.actions-list li.action.disabled {
   cursor: not-allowed;
   opacity: .65;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action.disabled a:hover {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action.disabled a:hover,
+div.body-container div.item-container div.actionbar ul.actions-list li.action.disabled a:hover {
   cursor: not-allowed;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action.link {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action.link,
+div.body-container div.item-container div.actionbar ul.actions-list li.action.link {
   padding: 0;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action.link a.action-button-link {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action.link a.action-button-link,
+div.body-container div.item-container div.actionbar ul.actions-list li.action.link a.action-button-link {
   display: block;
   padding: 3px 6px 0 2px;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action.link a.action-button-link.active {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action.link a.action-button-link.active,
+div.body-container div.item-container div.actionbar ul.actions-list li.action.link a.action-button-link.active {
   color: #fb9701;
   -webkit-transition: color 0.15s linear;
   -moz-transition: color 0.15s linear;
   -o-transition: color 0.15s linear;
   transition: color 0.15s linear;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action.link a.action-button-link.active i {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action.link a.action-button-link.active i,
+div.body-container div.item-container div.actionbar ul.actions-list li.action.link a.action-button-link.active i {
   color: #fb9701;
   -webkit-transition: color 0.15s linear;
   -moz-transition: color 0.15s linear;
   -o-transition: color 0.15s linear;
   transition: color 0.15s linear;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action.help-action {
-  background-color: rgba(117, 158, 26, 0.7);
-}
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action.help-action:hover {
-  background-color: #759e1a;
-}
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action a,
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action a:visited,
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action a:hover {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action a,
+div.body-container div.item-container div.actionbar ul.actions-list li.action a,
+div.body-container div.champion-container div.actionbar ul.actions-list li.action a:visited,
+div.body-container div.item-container div.actionbar ul.actions-list li.action a:visited,
+div.body-container div.champion-container div.actionbar ul.actions-list li.action a:hover,
+div.body-container div.item-container div.actionbar ul.actions-list li.action a:hover {
   color: white;
   display: block;
   text-decoration: none;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action img.loader {
-  display: none;
-}
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action i {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action i,
+div.body-container div.item-container div.actionbar ul.actions-list li.action i {
   display: inline-block;
   font-size: 22px;
   line-height: 22px;
@@ -165,78 +176,96 @@ div.body-container div.champion-container div#champion-topbar div#champion-topba
   position: relative;
   top: 1px;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action span.action-label {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action span.action-label,
+div.body-container div.item-container div.actionbar ul.actions-list li.action span.action-label {
   font-family: 'Ubuntu', sans-serif;
   font-size: 14px;
   font-weight: normal;
   position: relative;
-  top: -3px;
+  top: -2px;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action:hover {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action:hover,
+div.body-container div.item-container div.actionbar ul.actions-list li.action:hover {
   background-color: #19a0df;
   -webkit-transition: all 0.25s linear;
   -moz-transition: all 0.25s linear;
   -o-transition: all 0.25s linear;
   transition: all 0.25s linear;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action:hover span.action-label {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action:hover span.action-label,
+div.body-container div.item-container div.actionbar ul.actions-list li.action:hover span.action-label {
   -webkit-transition: all 0.25s linear;
   -moz-transition: all 0.25s linear;
   -o-transition: all 0.25s linear;
   transition: all 0.25s linear;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action:hover input[type="text"] {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action:hover input[type="text"],
+div.body-container div.item-container div.actionbar ul.actions-list li.action:hover input[type="text"] {
   background-color: #19a0df;
   -webkit-transition: background-color 0.25s linear;
   -moz-transition: background-color 0.25s linear;
   -o-transition: background-color 0.25s linear;
   transition: background-color 0.25s linear;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action:hover input[type="text"]:-moz-placeholder {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action:hover input[type="text"]:-moz-placeholder,
+div.body-container div.item-container div.actionbar ul.actions-list li.action:hover input[type="text"]:-moz-placeholder {
   color: #cccccc;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action:hover input[type="text"]:-ms-input-placeholder {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action:hover input[type="text"]:-ms-input-placeholder,
+div.body-container div.item-container div.actionbar ul.actions-list li.action:hover input[type="text"]:-ms-input-placeholder {
   color: #cccccc;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action:hover input[type="text"]::-webkit-input-placeholder {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action:hover input[type="text"]::-webkit-input-placeholder,
+div.body-container div.item-container div.actionbar ul.actions-list li.action:hover input[type="text"]::-webkit-input-placeholder {
   color: #cccccc;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action input[type="text"] {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action input[type="text"],
+div.body-container div.item-container div.actionbar ul.actions-list li.action input[type="text"] {
   border: 0;
   -webkit-border-radius: 0 !important;
   -moz-border-radius: 0 !important;
   border-radius: 0 !important;
   background-color: #11709c;
   color: white;
-  font-family: 'Ubuntu', sans-serif;
   font-size: 14px;
   line-height: 1.5em;
   margin: 0 0 2px 0;
   padding: 1px 5px;
   position: relative;
-  top: -3px;
+  top: -2px;
   width: 100px;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action input[type="text"]:-moz-placeholder {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action input[type="text"]:-moz-placeholder,
+div.body-container div.item-container div.actionbar ul.actions-list li.action input[type="text"]:-moz-placeholder {
   color: #cccccc;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action input[type="text"]:-ms-input-placeholder {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action input[type="text"]:-ms-input-placeholder,
+div.body-container div.item-container div.actionbar ul.actions-list li.action input[type="text"]:-ms-input-placeholder {
   color: #cccccc;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li.action input[type="text"]::-webkit-input-placeholder {
+div.body-container div.champion-container div.actionbar ul.actions-list li.action input[type="text"]::-webkit-input-placeholder,
+div.body-container div.item-container div.actionbar ul.actions-list li.action input[type="text"]::-webkit-input-placeholder {
   color: #cccccc;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list {
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu {
   background-color: rgba(0, 0, 0, 0.8);
   border: 1px solid #19a0df;
-  text-align: left;
-  width: 1002px;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  left: 50%;
+  margin-left: -492px;
   position: absolute;
+  text-align: left;
+  width: 984px;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list div.row-filters div.span6 {
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.row-filters div.span6,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.row-filters div.span6 {
   padding: 5px 20px;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list li.list-header {
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu li.list-header,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu li.list-header {
   color: #19a0df;
   font-family: 'Ubuntu', sans-serif;
   font-size: 11px;
@@ -246,44 +275,54 @@ div.body-container div.champion-container div#champion-topbar div#champion-topba
   text-align: center;
   text-transform: uppercase;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list h4 {
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu h4,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu h4 {
   color: #666;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list ul.tags-group {
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group {
   float: left;
   list-style: none;
   margin: 0 20px 0 0;
   padding: 0;
   width: 200px;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list ul.tags-group li.nav-header {
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group li.nav-header,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group li.nav-header {
   color: #fb9701;
   text-shadow: none;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list ul.tags-group a {
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a {
   font-family: 'Ubuntu', sans-serif;
   padding: 3px 10px 3px 20px;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list ul.tags-group a i {
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a i,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a i {
   color: black;
   display: inline-block;
   font-size: 18px;
   margin: 0 10px 0 0;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list ul.tags-group a.selected {
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a.selected,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a.selected {
   color: #fb9701;
   font-weight: bold;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list ul.tags-group a.selected i {
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a.selected i,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a.selected i {
   color: #fb9701;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list ul.tags-group a:hover {
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a:hover,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a:hover {
   color: white;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list ul.tags-group a:hover i {
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a:hover i,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a:hover i {
   color: white;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list div.div-action-buttons {
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons {
   min-height: 0;
   font-family: 'Ubuntu', sans-serif;
   font-size: 12px;
@@ -291,64 +330,103 @@ div.body-container div.champion-container div#champion-topbar div#champion-topba
   top: 6px;
   left: 0;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list div.div-action-buttons div.span6 {
-  min-height: 0;
-  width: 50%;
-}
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list div.div-action-buttons div.span6 i,
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list div.div-action-buttons div.span6 a {
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 i,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 i,
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 i,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 i,
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 a,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 a,
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 a,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 a {
   color: #666;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list div.div-action-buttons div.span6:hover a,
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list div.div-action-buttons div.span6:hover i {
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12:hover a,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12:hover a,
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6:hover a,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6:hover a,
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12:hover i,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12:hover i,
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6:hover i,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6:hover i {
   color: white;
-  -webkit-transition: all 0.25s linear;
-  -moz-transition: all 0.25s linear;
-  -o-transition: all 0.25s linear;
-  transition: all 0.25s linear;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list div.div-action-buttons div.span6 i {
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 i,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 i,
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 i,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 i {
   display: inline-block;
   font-size: 14px;
   left: 3px;
   position: relative;
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list div.div-action-buttons div.span6.div-left {
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 li,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 li {
+  border-top: 1px dashed rgba(255, 255, 255, 0.3);
+}
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 {
+  margin: 0;
+  width: 50%;
+}
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6.div-left li,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6.div-left li {
+  border-right: 1px dashed rgba(255, 255, 255, 0.3);
   border-top: 1px dashed rgba(255, 255, 255, 0.3);
   text-align: left;
-  border-right: 1px dashed rgba(255, 255, 255, 0.3);
 }
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list div.div-action-buttons div.span6.div-right {
-  margin-left: 0;
+div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6.div-right li,
+div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6.div-right li {
   text-align: right;
-}
-div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li ul#filters-list div.div-action-buttons div.span6.div-right li {
   border-top: 1px dashed rgba(255, 255, 255, 0.3);
 }
-div.body-container div.champion-container div#champion-list ul {
-  margin: 20px 0;
-  padding: 0;
-  min-height: 430px;
+div.body-container div.champion-container div.elements-grid,
+div.body-container div.item-container div.elements-grid {
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 15px;
+  width: 900px;
 }
-div.body-container div.champion-container div#champion-list li.champion {
+div.body-container div.champion-container div.elements-grid ul,
+div.body-container div.item-container div.elements-grid ul {
+  margin: 0;
+  padding: 0;
+}
+div.body-container div.champion-container div.elements-grid ul li.item,
+div.body-container div.item-container div.elements-grid ul li.item,
+div.body-container div.champion-container div.elements-grid ul li.champion,
+div.body-container div.item-container div.elements-grid ul li.champion {
   background-color: black;
   border: 1px solid rgba(255, 255, 255, 0.2);
-  -webkit-border-radius: 5px !important;
-  -moz-border-radius: 5px !important;
-  border-radius: 5px !important;
   display: inline-block;
   height: 50px;
   margin: 0 2px 4px 2px;
   padding: 0;
   width: 50px;
 }
-div.body-container div.champion-container div#champion-list li.champion.active {
-  border-color: red;
+div.body-container div.champion-container div.elements-grid ul li.item.active,
+div.body-container div.item-container div.elements-grid ul li.item.active,
+div.body-container div.champion-container div.elements-grid ul li.champion.active,
+div.body-container div.item-container div.elements-grid ul li.champion.active {
+  border-color: #fb9701;
 }
-div.body-container div.champion-container div#champion-list li.champion.active:hover {
+div.body-container div.champion-container div.elements-grid ul li.item.active:hover,
+div.body-container div.item-container div.elements-grid ul li.item.active:hover,
+div.body-container div.champion-container div.elements-grid ul li.champion.active:hover,
+div.body-container div.item-container div.elements-grid ul li.champion.active:hover {
   border-color: red;
+  -webkit-transition: border-color 0.25s linear;
+  -moz-transition: border-color 0.25s linear;
+  -o-transition: border-color 0.25s linear;
+  transition: border-color 0.25s linear;
 }
-div.body-container div.champion-container div#champion-list li.champion:hover {
+div.body-container div.champion-container div.elements-grid ul li.item:hover,
+div.body-container div.item-container div.elements-grid ul li.item:hover,
+div.body-container div.champion-container div.elements-grid ul li.champion:hover,
+div.body-container div.item-container div.elements-grid ul li.champion:hover {
   cursor: pointer;
   border: 1px solid #fb9701;
   -webkit-transition: border 0.25s linear;
@@ -356,7 +434,10 @@ div.body-container div.champion-container div#champion-list li.champion:hover {
   -o-transition: border 0.25s linear;
   transition: border 0.25s linear;
 }
-div.body-container div.champion-container div#champion-list li.champion:hover div.champion-name {
+div.body-container div.champion-container div.elements-grid ul li.item:hover div.champion-name,
+div.body-container div.item-container div.elements-grid ul li.item:hover div.champion-name,
+div.body-container div.champion-container div.elements-grid ul li.champion:hover div.champion-name,
+div.body-container div.item-container div.elements-grid ul li.champion:hover div.champion-name {
   background-color: rgba(0, 0, 0, 0.6);
   color: #eee;
   -webkit-transition: all 0.25s linear;
@@ -364,163 +445,21 @@ div.body-container div.champion-container div#champion-list li.champion:hover di
   -o-transition: all 0.25s linear;
   transition: all 0.25s linear;
 }
-div.body-container div.champion-container div#champion-list li.champion div.portrait {
+div.body-container div.champion-container div.elements-grid ul li.item div.portrait,
+div.body-container div.item-container div.elements-grid ul li.item div.portrait,
+div.body-container div.champion-container div.elements-grid ul li.champion div.portrait,
+div.body-container div.item-container div.elements-grid ul li.champion div.portrait {
   padding: 7px;
 }
-div.body-container div.champion-container div#champion-list li.champion div.champion-name {
-  background-color: rgba(0, 0, 0, 0.3);
-  color: #aaa;
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 1.8em;
+div.body-container div.champion-container div#champion-topbar div#champion-topbar-container {
+  padding: 5px;
   position: relative;
-  text-align: center;
-  top: -27px;
 }
-div.body-container div.champion-container div#champion-list li.champion div.loader {
-  background-color: rgba(0, 0, 0, 0.8);
-  height: 100px;
-  padding-top: 40px;
-  position: relative;
-  text-align: center;
-  top: -142px;
+div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions {
+  position: static;
 }
-div.body-container div.champion-container div#champion-list li.champion div.preview {
-  color: #eee;
-  font-size: 12px;
-  padding: 10px 10px;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview div.preview-header {
-  background-image: url('/images/launch_site/preview_header_fr.png');
-  background-repeat: no-repeat;
-  cursor: pointer;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview div.preview-header h3 {
-  color: #fb9701;
-  font-size: 18px;
-  line-height: 1.2em;
-  margin: 5px 0 0 10px;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview div.preview-header h5 {
-  color: #999;
-  font-family: 'Trebuchet MS';
-  font-size: 12px;
-  margin: 0;
-  margin-left: 10px;
-  text-transform: uppercase;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview div.preview-header p {
-  color: #eee;
-  font-size: 14px;
-  margin: 15px 10px 15px 0;
-  text-align: right;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview div.preview-header p i {
-  background-repeat: no-repeat;
-  background-size: 16px 16px;
-  display: inline-block;
-  height: 16px;
-  width: 16px;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview div.preview-header p i.icon-rp {
-  background-image: url('/images/commons/rp_logo.png');
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview div.preview-header p i.icon-ip {
-  background-image: url('/images/commons/ip_logo.png');
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview div.preview-header p img {
-  display: inline-block;
-  position: relative;
-  top: -2px;
-  width: 16px;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview div.preview-header:hover {
-  background-image: url('/images/launch_site/preview_header_fr_hover.png');
-  -webkit-transition: background-image 0.25s linear;
-  -moz-transition: background-image 0.25s linear;
-  -o-transition: background-image 0.25s linear;
-  transition: background-image 0.25s linear;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview div.preview-header.en {
-  background-image: url('/images/launch_site/preview_header_en.png');
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview div.preview-header.en:hover {
-  background-image: url('/images/launch_site/preview_header_en_hover.png');
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview .ad-color {
-  color: #fb9701;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview dd,
-div.body-container div.champion-container div#champion-list li.champion div.preview dt {
-  font-family: 'Trebuchet MS', sans-serif;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview dt {
-  float: left;
-  margin: 0 10px 0 5px;
-  text-align: right;
-  width: 150px;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview dt.bonus {
-  color: #666;
-  text-transform: uppercase;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview dd {
-  both: clear;
-  color: #fb9701;
-  font-size: 14px;
-  font-weight: bold;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview dd.bonus {
-  color: #19a0df;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview dd.bonus,
-div.body-container div.champion-container div#champion-list li.champion div.preview dt.bonus {
-  font-size: 10px;
-  line-height: 1.1em;
-  margin-bottom: 5px;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview dl {
-  margin: 29px 0 0 0;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview dl dt.last-child,
-div.body-container div.champion-container div#champion-list li.champion div.preview dl dd:last-child {
-  margin-top: 5px;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview p.indication {
-  color: #444;
-  font-size: 12px;
-  text-align: center;
-  margin: 29px 0 0 0;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview div.right-side div.champion-portrait {
-  margin-top: 7px;
-  opacity: 0.7;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview div.right-side div.champion-portrait a.btn-action-champion-preview {
-  background-color: rgba(0, 0, 0, 0.3);
-  border: 1px solid #999;
-  color: white;
-  display: inline-block;
-  float: right;
-  font-family: 'Ubuntu', sans-serif;
-  line-height: 1em;
-  margin: 360px 0 0 2px;
-  padding: 7px 0;
-  text-align: center;
-  width: 48%;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview div.right-side div.champion-portrait a.btn-action-champion-preview:hover {
-  background-color: #000000;
-  border: 1px solid #fb9701;
-  color: #fb9701;
-  -webkit-transition: all 0.25s linear;
-  -moz-transition: all 0.25s linear;
-  -o-transition: all 0.25s linear;
-  transition: all 0.25s linear;
-}
-div.body-container div.champion-container div#champion-list li.champion div.preview div.right-side div.champion-portrait a.btn-action-champion-preview strong {
-  display: block;
+div.body-container div.champion-container div#champion-topbar div#champion-topbar-container ul#champion-actions li#filters-block {
+  position: static;
 }
 div.body-container div.game-mode-container .game-mode {
   background: url('/images/item_builder/game-mode-bg.jpg');
@@ -563,300 +502,57 @@ div.body-container div.item-container.fixed div#item-list {
 }
 div.body-container div.item-container div#item-topbar.fixed {
   left: 0;
-  right: 0;
+  margin-top: 0;
+  min-width: 1064px;
   position: fixed;
+  right: 0;
   top: 0;
   z-index: 1000;
-  min-width: 1064px;
-  margin-top: 0;
 }
 div.body-container div.item-container div#item-topbar.fixed div#item-topbar-container {
   background-color: black;
-  width: 972px;
+  width: 974px;
   margin: 0 auto;
 }
+div.body-container div.item-container div#item-topbar.fixed div#item-topbar-container ul#item-actions li.rec-item-list {
+  width: 664px;
+}
 div.body-container div.item-container div#item-topbar div#item-topbar-container {
-  border: 1px solid #fb9701;
-  -webkit-border-radius: 5px !important;
-  -moz-border-radius: 5px !important;
-  border-radius: 5px !important;
-  padding: 5px;
+  padding: 5px 5px 8px 5px;
   position: relative;
 }
-div.body-container div.item-container div#item-topbar div#item-topbar-container h3 {
-  display: inline;
-  color: #fff;
-  text-align: left;
-}
 div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions {
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 12px;
   position: static;
-  list-style: none;
 }
 div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li#filters-block {
   position: static;
 }
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li {
-  display: inline;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action {
-  background-color: rgba(25, 160, 223, 0.7);
-  cursor: pointer;
-  display: inline-block;
-  line-height: 26px;
-  margin: 0;
-  margin-right: 1px;
-  padding: 3px 6px 0 4px;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action.disabled {
-  cursor: not-allowed;
-  opacity: .65;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action.disabled a:hover {
-  cursor: not-allowed;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action.link {
-  padding: 0;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action.link a.action-button-link {
-  display: block;
-  padding: 3px 6px 0 2px;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action.link a.action-button-link.active {
-  color: #fb9701;
-  -webkit-transition: color 0.15s linear;
-  -moz-transition: color 0.15s linear;
-  -o-transition: color 0.15s linear;
-  transition: color 0.15s linear;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action.link a.action-button-link.active i {
-  color: #fb9701;
-  -webkit-transition: color 0.15s linear;
-  -moz-transition: color 0.15s linear;
-  -o-transition: color 0.15s linear;
-  transition: color 0.15s linear;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action.red-button {
-  background-color: rgba(219, 74, 56, 0.7);
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action.red-button.disabled {
-  background-color: rgba(25, 160, 223, 0.7);
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action.red-button.disabled:hover {
-  background-color: #19a0df;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action.red-button:hover {
-  background-color: #db4a38;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action.help-action {
-  background-color: rgba(117, 158, 26, 0.7);
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action.help-action:hover {
-  background-color: #759e1a;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action a,
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action a:visited,
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action a:hover {
-  color: white;
-  display: block;
-  text-decoration: none;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action img.loader {
-  display: none;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action i {
-  display: inline-block;
-  font-size: 22px;
-  line-height: 22px;
-  margin: 0 0 0 0;
-  position: relative;
-  top: 1px;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action span.action-label {
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 14px;
-  font-weight: normal;
-  position: relative;
-  top: -3px;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action:hover {
-  background-color: #19a0df;
-  -webkit-transition: all 0.25s linear;
-  -moz-transition: all 0.25s linear;
-  -o-transition: all 0.25s linear;
-  transition: all 0.25s linear;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action:hover span.action-label {
-  -webkit-transition: all 0.25s linear;
-  -moz-transition: all 0.25s linear;
-  -o-transition: all 0.25s linear;
-  transition: all 0.25s linear;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action:hover input[type="text"] {
-  background-color: #19a0df;
-  -webkit-transition: background-color 0.25s linear;
-  -moz-transition: background-color 0.25s linear;
-  -o-transition: background-color 0.25s linear;
-  transition: background-color 0.25s linear;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action:hover input[type="text"]:-moz-placeholder {
-  color: #cccccc;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action:hover input[type="text"]:-ms-input-placeholder {
-  color: #cccccc;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action:hover input[type="text"]::-webkit-input-placeholder {
-  color: #cccccc;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action input[type="text"] {
-  border: 0;
-  -webkit-border-radius: 0 !important;
-  -moz-border-radius: 0 !important;
-  border-radius: 0 !important;
-  background-color: #11709c;
-  color: white;
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 14px;
-  line-height: 1.5em;
-  margin: 0 0 2px 0;
-  padding: 1px 5px;
-  position: relative;
-  top: -3px;
-  width: 100px;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action input[type="text"]:-moz-placeholder {
-  color: #cccccc;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action input[type="text"]:-ms-input-placeholder {
-  color: #cccccc;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li.action input[type="text"]::-webkit-input-placeholder {
-  color: #cccccc;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list {
-  background-color: rgba(0, 0, 0, 0.8);
-  border: 1px solid #19a0df;
-  text-align: left;
-  width: 1002px;
-  position: absolute;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list div.row-filters div.span6 {
-  padding: 5px 20px;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list li.list-header {
-  color: #19a0df;
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 11px;
-  font-weight: bold;
-  line-height: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-  text-transform: uppercase;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list h4 {
-  color: #666;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list ul.tags-group {
-  float: left;
-  list-style: none;
-  margin: 0 20px 0 0;
-  padding: 0;
-  width: 200px;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list ul.tags-group li.nav-header {
-  color: #fb9701;
-  text-shadow: none;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list ul.tags-group a {
-  font-family: 'Ubuntu', sans-serif;
-  padding: 3px 10px 3px 20px;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list ul.tags-group a i {
-  color: black;
-  display: inline-block;
-  font-size: 18px;
-  margin: 0 10px 0 0;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list ul.tags-group a.selected {
-  color: #fb9701;
-  font-weight: bold;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list ul.tags-group a.selected i {
-  color: #fb9701;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list ul.tags-group a:hover {
-  color: white;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list ul.tags-group a:hover i {
-  color: white;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list div.div-action-buttons {
-  min-height: 0;
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 12px;
-  position: relative;
-  top: 6px;
-  left: 0;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list div.div-action-buttons div.span6 {
-  min-height: 0;
-  width: 50%;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list div.div-action-buttons div.span6 i,
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list div.div-action-buttons div.span6 a {
-  color: #666;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list div.div-action-buttons div.span6:hover a,
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list div.div-action-buttons div.span6:hover i {
-  color: white;
-  -webkit-transition: all 0.25s linear;
-  -moz-transition: all 0.25s linear;
-  -o-transition: all 0.25s linear;
-  transition: all 0.25s linear;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list div.div-action-buttons div.span6 i {
-  display: inline-block;
-  font-size: 14px;
-  left: 3px;
-  position: relative;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list div.div-action-buttons div.span6.div-left {
-  border-top: 1px dashed rgba(255, 255, 255, 0.3);
-  text-align: left;
-  border-right: 1px dashed rgba(255, 255, 255, 0.3);
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list div.div-action-buttons div.span6.div-right {
-  margin-left: 0;
-  text-align: right;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li ul#item-filters-list div.div-action-buttons div.span6.div-right li {
-  border-top: 1px dashed rgba(255, 255, 255, 0.3);
-}
 div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable {
-  display: inline;
   list-style: none;
-  text-align: right;
+  margin: 0;
+  padding: 0;
 }
 div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item {
-  vertical-align: bottom;
-  color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   display: inline-block;
-  width: 50px;
-  height: 50px;
-  -webkit-border-radius: 5px !important;
-  -moz-border-radius: 5px !important;
-  border-radius: 5px !important;
 }
 div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item.free {
-  height: 50px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  height: 64px;
+  position: relative;
+  text-align: center;
+  top: 2px;
+  width: 64px;
 }
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item.full {
-  border: 1px solid rgba(255, 255, 255, 0.2);
+div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item.free i {
+  position: relative;
+  top: 5px;
 }
 div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item.full:hover {
   border-color: red;
+  -webkit-transition: border-color 0.25s linear;
+  -moz-transition: border-color 0.25s linear;
+  -o-transition: border-color 0.25s linear;
+  transition: border-color 0.25s linear;
   cursor: pointer;
 }
 div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item.hold-rec-item-place {
@@ -867,22 +563,6 @@ div.body-container div.item-container div#item-topbar div#item-topbar-container 
 }
 div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item div i {
   font-size: 30px;
-}
-div.body-container div.item-container div#item-list ul {
-  margin: 20px 0;
-  padding: 0;
-  min-height: 505px;
-}
-div.body-container div.item-container div#item-list li.item {
-  background-color: black;
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  -webkit-border-radius: 5px !important;
-  -moz-border-radius: 5px !important;
-  border-radius: 5px !important;
-  display: inline-block;
-  margin: 0 2px 4px 2px;
-  padding: 0;
-  width: 50px;
 }
 div.body-container div.item-container div#item-list li.item:hover {
   cursor: pointer;
@@ -921,10 +601,6 @@ div.body-container div.item-container div#item-list li.item.item-maxi {
   z-index: 900;
   margin-bottom: 4px;
 }
-div.body-container div.item-container div#item-list li.item div.portrait {
-  padding: 7px;
-  text-align: center;
-}
 div.body-container div.item-container div#item-list li.item div.item-name {
   background-color: rgba(0, 0, 0, 0.3);
   color: #aaa;
@@ -957,38 +633,8 @@ div.body-container div.item-container div#item-list li.item div.preview div.prev
 div.body-container div.item-container div#item-list li.item div.preview div.preview-header h3 {
   color: #fb9701;
   font-size: 18px;
-  line-height: 1.2em;
-  margin: 5px 0 0 10px;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.preview-header h5 {
-  color: #999;
-  font-family: 'Trebuchet MS';
-  font-size: 12px;
-  margin: 0;
-  margin-left: 10px;
-  text-transform: uppercase;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.preview-header p {
-  color: #eee;
-  font-size: 14px;
-  margin: 15px 10px 15px 0;
-  text-align: right;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.preview-header p i {
-  background-repeat: no-repeat;
-  background-size: 16px 16px;
-  display: inline-block;
-  height: 16px;
-  width: 16px;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.preview-header p i.icon-gold {
-  background-image: url('/images/commons/rp_logo.png');
-}
-div.body-container div.item-container div#item-list li.item div.preview div.preview-header p img {
-  display: inline-block;
-  position: relative;
-  top: -2px;
-  width: 16px;
+  line-height: 49px;
+  margin: 0 10px;
 }
 div.body-container div.item-container div#item-list li.item div.preview div.preview-header:hover {
   background-image: url('/images/launch_site/preview_header_fr_hover.png');
@@ -1003,78 +649,55 @@ div.body-container div.item-container div#item-list li.item div.preview div.prev
 div.body-container div.item-container div#item-list li.item div.preview div.preview-header.en:hover {
   background-image: url('/images/launch_site/preview_header_en_hover.png');
 }
-div.body-container div.item-container div#item-list li.item div.preview .ad-color {
-  color: #fb9701;
-}
-div.body-container div.item-container div#item-list li.item div.preview dd,
-div.body-container div.item-container div#item-list li.item div.preview dt {
-  font-family: 'Trebuchet MS', sans-serif;
-}
-div.body-container div.item-container div#item-list li.item div.preview dt {
-  float: left;
-  margin: 0 10px 0 5px;
+div.body-container div.item-container div#item-list li.item div.preview div.preview-header p {
+  line-height: 49px;
+  margin: 0 10px;
   text-align: right;
-  width: 150px;
 }
-div.body-container div.item-container div#item-list li.item div.preview dt.bonus {
-  color: #666;
-  text-transform: uppercase;
-}
-div.body-container div.item-container div#item-list li.item div.preview dd {
-  both: clear;
+div.body-container div.item-container div#item-list li.item div.preview div.preview-header p strong {
   color: #fb9701;
+}
+div.body-container div.item-container div#item-list li.item div.preview div.row-fluid div.span9,
+div.body-container div.item-container div#item-list li.item div.preview div.row-fluid div.span3 {
+  margin: 10px 0;
+}
+div.body-container div.item-container div#item-list li.item div.preview div.row-fluid div.span9 ul {
+  font-family: 'Ubuntu', sans-serif;
   font-size: 14px;
-  font-weight: bold;
+  list-style: none;
 }
-div.body-container div.item-container div#item-list li.item div.preview dd.bonus {
-  color: #19a0df;
-}
-div.body-container div.item-container div#item-list li.item div.preview dd.bonus,
-div.body-container div.item-container div#item-list li.item div.preview dt.bonus {
-  font-size: 10px;
-  line-height: 1.1em;
-  margin-bottom: 5px;
-}
-div.body-container div.item-container div#item-list li.item div.preview dl {
-  margin: 29px 0 0 0;
-}
-div.body-container div.item-container div#item-list li.item div.preview dl dt.last-child,
-div.body-container div.item-container div#item-list li.item div.preview dl dd:last-child {
-  margin-top: 5px;
-}
-div.body-container div.item-container div#item-list li.item div.preview p.indication {
-  color: #444;
-  font-size: 12px;
-  text-align: center;
-  margin: 29px 0 0 0;
+div.body-container div.item-container div#item-list li.item div.preview div.row-fluid div.span9 ul li {
+  margin: 0 0 3px 0;
 }
 div.body-container div.item-container div#item-list li.item div.preview div.right-side div.item-portrait {
   margin-top: 7px;
   opacity: 0.7;
+  text-align: center;
 }
-div.body-container div.item-container div#item-list li.item div.preview div.right-side div.item-portrait a.btn-action-item-preview {
+div.body-container div.item-container div#item-list li.item div.preview div.right-side a.btn-action-item-preview {
   background-color: rgba(0, 0, 0, 0.3);
   border: 1px solid #999;
   color: white;
-  display: inline-block;
-  float: right;
+  display: block;
   font-family: 'Ubuntu', sans-serif;
   line-height: 1em;
-  margin: 360px 0 0 2px;
-  padding: 7px 0;
+  margin: 30px auto;
+  opacity: .5;
+  padding: 7px 5px;
   text-align: center;
-  width: 48%;
+  width: 75%;
 }
-div.body-container div.item-container div#item-list li.item div.preview div.right-side div.item-portrait a.btn-action-item-preview:hover {
+div.body-container div.item-container div#item-list li.item div.preview div.right-side a.btn-action-item-preview:hover {
   background-color: #000000;
   border: 1px solid #fb9701;
   color: #fb9701;
+  opacity: 1;
   -webkit-transition: all 0.25s linear;
   -moz-transition: all 0.25s linear;
   -o-transition: all 0.25s linear;
   transition: all 0.25s linear;
 }
-div.body-container div.item-container div#item-list li.item div.preview div.right-side div.item-portrait a.btn-action-item-preview strong {
+div.body-container div.item-container div#item-list li.item div.preview div.right-side a.btn-action-item-preview strong {
   display: block;
 }
 div.body-container div.name-container input[type="text"] {
@@ -1113,11 +736,6 @@ div.body-container div.generate-button-container a.main:hover {
   background-color: #db4a38;
 }
 div.modal {
-  background: #000000 url('/images/launch_site/modal_bg.jpg') no-repeat top left;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  -webkit-border-radius: 0 !important;
-  -moz-border-radius: 0 !important;
-  border-radius: 0 !important;
   height: 411px;
   width: 650px;
 }
@@ -1129,10 +747,7 @@ div.modal div.modal-footer {
 div.modal div.modal-header i,
 div.modal div.modal-body i,
 div.modal div.modal-footer i {
-  color: white;
-}
-div.modal div.modal-footer {
-  background-color: black;
+  color: #eee;
 }
 div.modal div.modal-header h3 {
   margin-top: 35px;
@@ -1151,8 +766,53 @@ div.modal div.modal-header button.close:hover {
 }
 div.modal div.modal-body {
   width: 620px;
-  color: white;
+  color: #eee;
 }
 div.modal div.modal-body p {
+  color: #eee;
+}
+div.modal div.modal-body p input[type="text"] {
+  background-color: #eee;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  left: 15px;
+  position: relative;
+}
+div.modal div.modal-body ul {
+  font-size: 14px;
+  list-style: square;
+  margin-bottom: 1.4em;
+}
+div.modal div.modal-footer {
+  background-color: black;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+div.modal div.modal-footer a.btn-cancel,
+div.modal div.modal-footer a.btn-download {
+  background-color: #be3322;
   color: white;
+  display: inline-block;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 14px;
+  line-height: 30px;
+  margin-left: 5px;
+  min-height: 30px;
+  padding: 0 7px;
+}
+div.modal div.modal-footer a.btn-cancel:hover,
+div.modal div.modal-footer a.btn-download:hover {
+  background-color: #db4a38;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+div.modal div.modal-footer a.btn-download {
+  background-color: #147fb1;
+}
+div.modal div.modal-footer a.btn-download:hover {
+  background-color: #19a0df;
 }
