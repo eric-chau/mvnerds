@@ -350,6 +350,8 @@ $(document).ready(function()
 			$itemIsotopeList.hideChampionSpecificItems();
 			checkRecItemsByChampionSpecific();
 		}else if(activeChampions.length > 0) {
+			$('#btn-clear-champions').removeClass('disabled');
+			
 			var championSlug = activeChampions.first().data('name');
 			var relatedItems = $('ul#item-isotope-list li.item div.portrait[data-champion="'+championSlug+'"]');
 			if (relatedItems != undefined && relatedItems.length > 0) {
@@ -358,6 +360,7 @@ $(document).ready(function()
 				$itemIsotopeList.hideChampionSpecificItems();
 			}
 		} else {
+			$('#btn-clear-champions').removeClass('disabled').addClass('disabled');
 			$itemIsotopeList.showChampionSpecificItems();
 		}
 	});
@@ -380,6 +383,14 @@ $(document).ready(function()
 	$('#modal-btn-download').click(function(e) {
 		e.preventDefault();
 		generateRecItemBuilder($(this).data('save-build'));
+	});
+	
+	//Activation du bouton de vidage de la liste des champions
+	$('#btn-clear-champions').on('click', function(e) {
+		e.preventDefault();
+		if ( ! $(this).hasClass('disabled') ) {
+			$('li.champion.isotope-item').removeClass('active');
+		}
 	});
 	
 	//Activation des tooltips
