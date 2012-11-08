@@ -1,12 +1,15 @@
 <div id="champion-topbar-container">
-	<h3 class="pull-left">Filtres :</h3>
-	
-	<ul id="champion-actions" >
+	<ul id="champion-actions" class="actions-list">
+		{# Bouton d'action qui permet d'annuler une sélection de champion #}
+		<li id="btn-clear-champions" class="action red-button disabled">
+			<i class="icon-undo icon-white"></i> <span class="action-label">{{'Actionsbar.CleanSelection.title'|trans}}</span>
+		</li>
+		
 		{# Bouton d'action qui permet de filtrer les champions #}
 		{% include 'MVNerdsChampionHandlerBundle:ActionBar:filter_list.html.twig' %}
 
 		{# Champ input qui permet de filtrer / rechercher un champion selon son nom #}
-		<li class="action filter-action search-action ">
+		<li class="action filter-action search-action">
 			<i class="icon-search icon-white"></i> <input id="champion-filter-input" type="text" class="input-mini" placeholder="{{'Actionsbar.Search.placeholder'|trans}}" data-provide="typeahead"/>
 		</li>
 	</ul>

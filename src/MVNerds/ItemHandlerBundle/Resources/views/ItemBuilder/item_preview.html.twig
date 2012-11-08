@@ -1,16 +1,16 @@
 <div class="row-fluid preview-header {{ app.request.getLocale() }}" data-dissmiss="{{ item.getSlug() }}">
-	<div class="span6">
+	<div class="span8">
 		<h3>{{ item.getName() }}</h3>
 	</div>
-	<div class="span6">
+	<div class="span4">
 		<p>
-			 {{ item.getCost() }} gold
+			 <strong>{{ item.getCost() }}</strong> gold
 		</p>
 	</div>
 </div>
 
 <div class="row-fluid">
-	<div class="span6">
+	<div class="span9">
 		<ul>
 			{% for itemPrimaryEffect in item.getItemPrimaryEffects()%}
 				<li>{{itemPrimaryEffect.getValue()}} {{itemPrimaryEffect.getPrimaryEffect().getLabel()}}</li>
@@ -20,10 +20,10 @@
 			{% endfor %}
 		</ul>
 	</div>
-	<div class="span6 right-side">
+	<div class="span3 right-side">
 		<div class="item-portrait">
-			<img draggable="false" class="item-image-preview pull-right" src="{{ asset('images/items/' ~ item.getRiotCode() ~ '.png') }}" alt="image de l'item {{ item.getName() }}" />
-			<a href="#" class="btn-action-item-preview btn-add-to-list" data-item-slug="{{ item.getSlug() }}"><strong>Ajouter</strong> à la liste</a>
+			<img draggable="false" class="item-image-preview" src="{{ asset('images/items/' ~ item.getRiotCode() ~ '.png') }}" alt="image de l'item {{ item.getName() }}" />
 		</div>
+		<a href="#" class="btn-action-item-preview btn-add-to-list" data-item-slug="{{ item.getSlug() }}"><strong>Ajouter</strong> à la liste</a>
 	</div>
 </div>

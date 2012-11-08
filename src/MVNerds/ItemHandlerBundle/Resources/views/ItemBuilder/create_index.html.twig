@@ -2,6 +2,7 @@
 
 {% block css %}
 	{{ parent() }}
+
 	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square36-sprite.css') }}">
 	<link href="{{ asset('css/item_builder/creation-page.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
@@ -17,6 +18,8 @@
 
 {% block body_main_content %}
 	<div class="body-container create-item-builder">
+		<h1> Personnaliser la liste d'objets conseillés</h1>
+		<p class="module-name">Module <strong>Pimp My Recommended Items</strong></p>
 		<p>Bienvenue sur la page de création d'une nouvelle liste d'objets recommandés pour vos champions favoris. Pour être plus précis, nous allons voir comment de manière
 		simple et intuitive on modifier la liste des objets conseillés, celle qui apparaît lorsque vous êtes en jeu et que vous ouvrez la boutique.</p>
 		<p></p>
@@ -27,11 +30,11 @@
 		pratique non ?</p>
 		
 		<div class="champion-container">
-			<div id="champion-topbar">
+			<div id="champion-topbar" class="actionbar">
 				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:champion_topbar_minified.html.twig' %}
 			</div>
 				
-			<div id="champion-list">
+			<div id="champion-list" class="elements-grid">
 				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:champion_grid_minified.html.twig' %}
 			</div>
 		</div>
@@ -56,11 +59,11 @@
 		ne retrouvez pas certains objets.</p>
 		
 		<div class="item-container">
-			<div id="item-topbar">
+			<div id="item-topbar" class="actionbar">
 				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_topbar.html.twig' %}
 			</div>
 				
-			<div id="item-list">
+			<div id="item-list" class="elements-grid">
 				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_grid.html.twig' %}
 			</div>
 		</div>
@@ -114,8 +117,8 @@
 			</p>
 		</div>
 		<div class="modal-footer">
-			<a href="#" data-dismiss="modal" class="btn">Annuler</a>
-			<a href="#" id="modal-btn-download" data-target="" class="btn btn-primary"><i class="icon-download-alt"></i> Télécharger</a>
+			<a href="#" data-dismiss="modal" class="btn-cancel">Annuler</a>
+			<a href="#" id="modal-btn-download" data-target="" class="btn-download"><i class="icon-download-alt"></i> Télécharger</a>
 		</div>
 	</div>
 {% endblock %}
