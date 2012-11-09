@@ -142,9 +142,29 @@ class Item extends BaseItem {
 		return $this;
 	}
 	
-	public function removeItemI18n(ItemI18n $o)
+	public function removeItemI18n(ItemI18n $l)
 	{
-		die('ko');
+		if ($this->collItemI18ns === null) {
+			return $this;
+		}
+		if (!$this->collItemI18ns->contains($l)) { // only add it if the **same** object is not already associated
+			$this->doRemoveItemI18n($l);
+		}
+
+		return $this;
+	}
+	
+	public function doRemoveItemI18n(ItemI18n $itemI18n)
+	{
+		foreach ($this->collItemI18ns as $key => $i) {
+			if ($i == $itemI18n) {
+				unset($this->collItemI18ns[$key]);
+				break;
+			}
+		}
+		$this->save();
+		$itemI18n->delete();
+		return $this;
 	}
 	
 	public function getItemGeneologiesRelatedByParentIdCustom($criteria = null, PropelPDO $con = null)
