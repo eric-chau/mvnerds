@@ -10,10 +10,8 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use MVNerds\CoreBundle\Model\ItemBuild;
 use MVNerds\CoreBundle\Model\ChampionItemBuild;
 
-use MVNerds\CoreBundle\Form\Type\ChampionType;
-
 /**
- * @Route("/item-builder")
+ * @Route("/pimp-my-recommended-items")
  */
 class ItemBuilderController extends Controller
 {
