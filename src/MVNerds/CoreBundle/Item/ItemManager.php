@@ -213,17 +213,20 @@ class ItemManager
 	 * @return PropelCollection<MVNerds\CoreBundle\Model\Item> retourne un objet PropelCollection qui contient
 	 * tous les items de la base de données avec leurs tags
 	 */
-	public function findAllWithTags()
+	public function findAllWithTags($locale = null)
 	{		
+		if( $locale == null )
+			$locale = $this->userLocale;
+		
 		return ItemQuery::create()
-			->joinWithI18n($this->userLocale)
+			->joinWithI18n($locale)
 			->joinWith('ItemPrimaryEffect', \Criteria::LEFT_JOIN)
 			->joinWith('ItemPrimaryEffect.PrimaryEffect', \Criteria::LEFT_JOIN)
 			->joinWith('PrimaryEffect.PrimaryEffectI18n', \Criteria::LEFT_JOIN)
-			->addJoinCondition('PrimaryEffectI18n', 'PrimaryEffectI18n.Lang = ?', $this->userLocale)
+			->addJoinCondition('PrimaryEffectI18n', 'PrimaryEffectI18n.Lang = ?', $locale)
 			->joinWith('ItemSecondaryEffect', \Criteria::LEFT_JOIN)
 			->joinWith('ItemSecondaryEffect.ItemSecondaryEffectI18n', \Criteria::LEFT_JOIN)
-			->addJoinCondition('ItemSecondaryEffectI18n', 'ItemSecondaryEffectI18n.Lang = ?', $this->userLocale)
+			->addJoinCondition('ItemSecondaryEffectI18n', 'ItemSecondaryEffectI18n.Lang = ?', $locale)
 			->joinWith('ItemTag', \Criteria::LEFT_JOIN)
 			->joinWith('ItemTag.Tag', \Criteria::LEFT_JOIN)
 			->joinWith('Tag.TagI18n', \Criteria::LEFT_JOIN)
