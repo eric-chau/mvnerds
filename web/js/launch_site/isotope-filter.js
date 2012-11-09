@@ -88,12 +88,13 @@
 	
 	//Permet d'initialiser les evenements onchange et onkeyup de l inpt typeahead
 	//Et permet de préparer l autocompletion en récupérant les noms des isotopes.
-	$.fn.initTypeahead = function ($filterInput, route) {
+	$.fn.initTypeahead = function ($filterInput, route, $cleanFilter) {
 		$filterInput.off('keyup change');
 		var that = this;
 		//lorsqu'un  changement survient dans le typeahead
 		$filterInput.on('keyup change',function(){
 			that.setNameFilter($filterInput.val());
+			activateButton($cleanFilter);
 		});
 		//Chargement de l autocompletion du champ de recherche
 		if (route != undefined) {

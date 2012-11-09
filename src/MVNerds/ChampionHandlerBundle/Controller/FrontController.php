@@ -8,19 +8,29 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 
+/**
+ * @Route("/champions")
+ */
 class FrontController extends Controller
 {
-
 	/**
-	 * Permet d'afficher le module de comparaison à savoir la liste des champions avec le filtre 
-	 * ainsi que la liste des champions à comparer
 	 *
 	 * @Route("/", name="champion_handler_front_index")
 	 */
 	public function indexAction()
-	{		
+	{
+		$request = $this->getRequest();	
+		if ($request->isXmlHttpRequest())
+		{
+			return $this->forward('MVNerdsChampionHandlerBundle:Front:championComparison');
+		}
+		
+		$comparisonListSlugs = $this->get('mvnerds.champion_comparison_manager')->getListSlugs();
+		$comparisonList = $this->get('mvnerds.champion_manager')->findManyBySlugs($comparisonListSlugs);
+		
 		return $this->render('MVNerdsChampionHandlerBundle:Front:index.html.twig', array(
-			'champions' => $this->get('mvnerds.champion_manager')->findAll()
+			'comparison_list' => $comparisonList,
+			'page' => 'champions'
 		));
 	}
 	

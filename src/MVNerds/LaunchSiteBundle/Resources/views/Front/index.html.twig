@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-portrait-sprite.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square25-sprite.css') }}">
 	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square36-sprite.css') }}">
+	<link href="{{ asset('css/item_builder/listing-page.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block javascripts %}
@@ -26,7 +27,10 @@
 	<script type="text/javascript" src="{{ asset('/js/launch_site/data-scroll.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/champion_handler/sort.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/champion_handler/common-guide-tour.js') }}"></script>
-		
+	<script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-tab.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-popover.js') }}"></script>
+	<script src="{{ asset('js/item_handler/item_builder/dl-modal.js') }}"></script>
+	
 	{% if locale == 'fr' %}
 		<script type="text/javascript" src="{{ asset('/js/champion_handler/guide-tour-fr.js') }}"></script>
 	{% else %}
@@ -66,8 +70,8 @@
 		
 {% block body_main_content %}	
 	<div class="body-container">
-		<div class="champions-handler-container">
-			{# Barre d'action du module des champions #}
+		{% include 'MVNerdsItemHandlerBundle:ItemBuilder:tabed_list_index.html.twig' with {'latestBuilds': latestBuilds, 'mostDownloadedBuilds': mostDownloadedBuilds} %}
+		{#<div class="champions-handler-container">
 			{% include 'MVNerdsChampionHandlerBundle:ActionBar:actionbar.html.twig' with {'page': page} %}
 
 			<div class="content">
@@ -79,6 +83,6 @@
 					{% endif %}
 				</div>
 			</div>
-		</div>
+		</div>#}
 	</div>	
 {% endblock %}

@@ -7,19 +7,69 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * @Route("/comparaison")
+ * @Route("/champion-benchmark")
  */
-class ComparisonController extends Controller
+class ChampionBenchmarkController extends Controller
 {
-
 	/**
-	 * @Route("/", name="champion_handler_comparison_index")
+	 * Permet de rediriger vers l action de comparaison
+	 * 
+	 * @Route("/level-{lvl}", name="champion_benchmark_compare", defaults={"lvl" = 1}, options={"expose"=true})
 	 */
-	public function indexAction()
+	public function compareChampionsAction($lvl)
 	{
-		return $this->render('MVNerdsChampionHandlerBundle:Comparison:index.html.twig');
+		$request = $this->getRequest();
+		
+		$comparisonManager = $this->get('mvnerds.champion_comparison_manager');
+		
+		if($comparisonManager->isComparable())
+		{
+			$championManager = $this->get('mvnerds.champion_manager');
+			
+			$referenceChampionArray = $comparisonManager->getReferenceChampion();
+			
+			$comparisonListSlugs = $comparisonManager->getListSlugs();
+			$comparisonList = $championManager->findManyBySlugs($comparisonListSlugs);	
+			$comparisonList = $championManager->setLevelToChampions($lvl, $comparisonList);
+			
+			foreach($comparisonList as $champion)
+			{
+				if ($champion->getSlug() == $referenceChampionArray['slug'])
+				{
+					$referenceChampion = $champion;
+					break;
+				}
+			}
+			
+			if ($request->isXmlHttpRequest())
+			{
+				return $this->render('MVNerdsChampionHandlerBundle:ChampionBenchmark:compare_index.html.twig', array(
+					'reference_champion'	=> $referenceChampion,
+					'comparison_list'		=> $comparisonList,
+					'lvl'				=> $lvl
+				));
+			}
+			
+			return $this->render('MVNerdsChampionHandlerBundle:Front:index.html.twig', array(
+				'comparison_list'		=> $comparisonList,
+				'reference_champion'	=> $referenceChampion,
+				'page'				=> 'compare',
+				'lvl'				=> $lvl
+			));
+		}
+		else
+		{
+			if ($request->isXmlHttpRequest())
+			{
+				return $this->render('MVNerdsChampionHandlerBundle:ChampionBenchmark:redirect.html.twig');
+			}
+			else
+			{
+				return $this->forward('MVNerdsChampionHandlerBundle:Front:index');
+			}
+		}
 	}
-
+	
 	/**
 	 * Permet d'ajouter un champion à la liste des champions à comparer grâce à son slug
 	 * 

@@ -57,8 +57,11 @@ table#item-builds-table thead tr th.champions {
 table#item-builds-table thead tr th.items {
   width: 201px!important;
 }
+table#item-builds-table thead tr th.name {
+  width: 300px!important;
+}
 table#item-builds-table thead tr th.game-mode {
-  width: 100px!important;
+  width: 110px!important;
 }
 table#item-builds-table thead tr th.actions {
   width: 110px!important;

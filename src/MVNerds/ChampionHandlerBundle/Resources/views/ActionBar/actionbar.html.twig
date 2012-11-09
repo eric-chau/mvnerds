@@ -4,7 +4,7 @@
 
 		<ul class="action-buttons">
 			<li class="action {% if page != 'compare' %}force-hide{% endif %}" data-page-display="compare">
-				<a rel="previous" class="data-pagination" href="{{ path('launch_site_front') }}" data-page-display="champions">
+				<a rel="previous" class="data-pagination" href="{{ path('champion_handler_front_index') }}" data-page-display="champions">
 					<i class="icon-arrow-left icon-white"></i> <span class="action-label">{{'Champion_comparison.back_to_list'|trans}}</span>
 				</a>
 			</li>
@@ -38,7 +38,7 @@
 
 			{# Bouton d'action qui permet de comparer la liste des champions sélectionnés #}
 			<li class="action red-button {% if list_size < 2 %} disabled{% endif %} {% if page != 'champions' %}force-hide{% endif %}" data-page-display="champions">
-				<a id="btn-compare" class="data-pagination{% if list_size < 2 %} disabled{%endif%}" rel="next" href="{{path('launch_site_front_compare_champions', {'_locale': locale }) }}" data-page-display="compare">
+				<a id="btn-compare" class="data-pagination{% if list_size < 2 %} disabled{%endif%}" rel="next" href="{{path('champion_benchmark_compare', {'_locale': locale }) }}" data-page-display="compare">
 					<i class="icon-random icon-white"></i> <span class="action-label">{{'Actionsbar.Compare.title'|trans}}</span>
 				</a>
 			</li>

@@ -1,0 +1,56 @@
+<ul class="nav nav-pills" id="tabed-builds">
+	<li class="active"><a href="#tab-newest-builds">Nouveaux builds</a></li>
+	<li><a href="#tab-most-downloaded-builds">Builds les plus téléchargés</a></li>
+	<li><a class="clickable" href="{{path('item_builder_create')}}">Créer un build</a></li>
+	<li><a class="clickable" href="{{path('item_builder_list')}}">Plus de builds</a></li>
+</ul>
+
+<div class="tab-content">
+	<div class="tab-pane active" id="tab-newest-builds">
+		{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_table.html.twig' with {'itemBuilds': latestBuilds} %}
+	</div>
+	<div class="tab-pane" id="tab-most-downloaded-builds">
+		{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_table.html.twig' with {'itemBuilds': mostDownloadedBuilds} %}
+	</div>
+</div>
+
+<div id="modal-dl-build" class="modal hide fade">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>Téléchargement du build : <span id="modal-build-name"></span></h3>
+	</div>
+	<div class="modal-body">
+		<p>
+			Si votre jeu League of Legends ne se trouve pas dans l'un des répertoires suivants : 
+		</p>
+		<ul>
+			<li>C:/Program Files/Riot Games/</li>
+			<li>C:/Program Files/Riot/</li>
+			<li>C:/Riot Games/</li>
+			<li>C:/Riot/</li>
+			<li>C:/Program Files (x86)/Riot Games/</li>
+			<li>C:/Program Files (x86)/Riot/</li>
+		</ul>
+		<p>
+			Veuillez l'indiquer ici :
+			<input type="text" id="modal-lol-path" placeholder="ex : D:/Riot/"/>
+		</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#" data-dismiss="modal" class="btn">Annuler</a>
+		<a href="#" id="modal-btn-download" data-target="" class="btn btn-primary"><i class="icon-download-alt"></i> Télécharger</a>
+	</div>
+</div>
+
+<script>
+	$(function () {
+		$('#tabed-builds a').click(function(e){
+			e.preventDefault();
+			$(this).tab('show');
+		});
+		
+		$('.bootstrap-popover').popover();
+		
+		$('a.clickable').off('click');
+	});
+</script>

@@ -20,90 +20,29 @@ class FrontController extends Controller
 	{	
 		$form = $this->createForm(new UserType());
 		$request = $this->getRequest();	
-		if ($request->isXmlHttpRequest())
-		{
-			return $this->forward('MVNerdsChampionHandlerBundle:Front:championComparison');
-		}
-		elseif($request->isMethod('POST'))
+		if($request->isMethod('POST'))
 		{
 			$form->bind($request);
-			
 		}
-		$comparisonListSlugs = $this->get('mvnerds.champion_comparison_manager')->getListSlugs();
-		$comparisonList = $this->get('mvnerds.champion_manager')->findManyBySlugs($comparisonListSlugs);
+		
+		$itemsCriteria = \MVNerds\CoreBundle\Model\ItemQuery::create()
+				->joinWith('ItemI18n', \Criteria::LEFT_JOIN)
+				->joinWith('ItemPrimaryEffect', \Criteria::LEFT_JOIN)
+				->joinWith('ItemPrimaryEffect.PrimaryEffect', \Criteria::LEFT_JOIN)
+				->joinWith('PrimaryEffect.PrimaryEffectI18n', \Criteria::LEFT_JOIN)
+				->joinWith('ItemSecondaryEffect', \Criteria::LEFT_JOIN)
+				->joinWith('ItemSecondaryEffect.ItemSecondaryEffectI18n', \Criteria::LEFT_JOIN);
+		
+		$championItemBuildsCriteria = \MVNerds\CoreBundle\Model\ChampionItemBuildQuery::create()
+				->joinWith('GameMode')
+				->joinWith('Champion')
+				->joinWith('Champion.ChampionI18n');
 		
 		return $this->render('MVNerdsLaunchSiteBundle:Front:index.html.twig', array(
 			'form' => $form->createView(),
-			'comparison_list' => $comparisonList,
-			'page' => 'champions'
+			'latestBuilds' => $this->get('mvnerds.item_build_manager')->findLatestBuilds($championItemBuildsCriteria, $itemsCriteria),
+			'mostDownloadedBuilds' => $this->get('mvnerds.item_build_manager')->findMostDownloadedBuilds($championItemBuildsCriteria, $itemsCriteria)
 		));
-	}
-	
-	/**
-	 * Permet de rediriger vers l action de comparaison
-	 * 
-	 * @Route("/{_locale}/compare-champions/level-{lvl}", name="launch_site_front_compare_champions", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr", "lvl" = 1}, options={"expose"=true})
-	 */
-	public function compareChampionsAction($lvl)
-	{
-		$form = $this->createForm(new UserType());
-		$request = $this->getRequest();
-		
-		$comparisonManager = $this->get('mvnerds.champion_comparison_manager');
-		
-		if($comparisonManager->isComparable())
-		{
-			$championManager = $this->get('mvnerds.champion_manager');
-			
-			$referenceChampionArray = $comparisonManager->getReferenceChampion();
-			
-			$comparisonListSlugs = $comparisonManager->getListSlugs();
-			$comparisonList = $championManager->findManyBySlugs($comparisonListSlugs);	
-			$comparisonList = $championManager->setLevelToChampions($lvl, $comparisonList);
-			
-			foreach($comparisonList as $champion)
-			{
-				if ($champion->getSlug() == $referenceChampionArray['slug'])
-				{
-					$referenceChampion = $champion;
-					break;
-				}
-			}
-			
-			if ($request->isXmlHttpRequest())
-			{
-				
-				
-				return $this->render('MVNerdsChampionHandlerBundle:Comparison:compare_index.html.twig', array(
-					'reference_champion'	=> $referenceChampion,
-					'comparison_list'		=> $comparisonList,
-					'lvl'				=> $lvl
-				));
-			}
-			elseif($request->isMethod('POST'))
-			{
-				$form->bind($request);		
-			}
-			
-			return $this->render('MVNerdsLaunchSiteBundle:Front:index.html.twig', array(
-				'form'				=> $form->createView(),
-				'comparison_list'		=> $comparisonList,
-				'reference_champion'	=> $referenceChampion,
-				'page'				=> 'compare',
-				'lvl'				=> $lvl
-			));
-		}
-		else
-		{
-			if ($request->isXmlHttpRequest())
-			{
-				return $this->render('MVNerdsLaunchSiteBundle:Front:redirect.html.twig');
-			}
-			else
-			{
-				return $this->forward('MVNerdsLaunchSiteBundle:Front:index');
-			}
-		}
 	}
 
 	/**

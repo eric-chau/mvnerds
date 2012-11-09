@@ -3,7 +3,7 @@
 		<div class="row-fluid" id="level-selector">
 			<h6>{{ 'Champion_comparison.champion.actions.level.selector'|trans }}:</h6>
 			{% for index in 1..18 %}
-				<a class="action level-selector-action {{ index == lvl? 'active' : '' }}" href="{{path('launch_site_front_compare_champions', {'lvl': index}) }}">{{index}}</a>
+				<a class="action level-selector-action {{ index == lvl? 'active' : '' }}" href="{{path('champion_benchmark_compare', {'lvl': index}) }}">{{index}}</a>
 			{% endfor %}
 		</div>
 		
@@ -46,9 +46,9 @@
 			</div>
 		</div>
 		
-		{% include 'MVNerdsChampionHandlerBundle:Comparison:benchmark_champion_row.html.twig' with {'reference_champion': reference_champion} %}
+		{% include 'MVNerdsChampionHandlerBundle:ChampionBenchmark:benchmark_champion_row.html.twig' with {'reference_champion': reference_champion} %}
 	</div>
-	{% include 'MVNerdsChampionHandlerBundle:Comparison:champion_list.html.twig' with {'reference_champion': reference_champion,'comparison_list': comparison_list} %}
+	{% include 'MVNerdsChampionHandlerBundle:ChampionBenchmark:compare_champion_list.html.twig' with {'reference_champion': reference_champion,'comparison_list': comparison_list} %}
 
 </div>
 
