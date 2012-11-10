@@ -288,9 +288,13 @@ $(document).ready(function()
 			addItemToList($(that).attr('id'));
 		}
 	});
+	
+	//Lors du clic sur un item maximisé
 	$itemIsotopeList.on('click', 'li.item-maxi div.preview-header', function(){
 		return minimizeItem($('#'+$(this).attr('data-dissmiss')), $itemIsotopeList);
 	});
+	
+	//Lors du clic sur le bouton add-to-list d'un item maximisé'
 	$itemIsotopeList.on('click', 'li.item-maxi a.btn-add-to-list', function(){
 		addItemToList($(this).data('item-slug'));
 		return false;
@@ -335,6 +339,7 @@ $(document).ready(function()
 		$(this).removeClass('full').addClass('free').html('<div><i class="icon-question-sign icon-white"></i></div>');
 	});
 	
+	//On active le module sortable pour la liste d'objets recommandés'
 	 $('#rec-item-sortable').sortable({
 		placeholder: 'rec-item hold-rec-item-place'
 	});
@@ -365,9 +370,10 @@ $(document).ready(function()
 		}
 	});
 	
-	//Bouton de generation du build
-	$('#only-generate-build').click(function(e){
+	//Bouton de generation du build uniquement
+	$('#only-generate-build, #modal-btn-only-generate-build').click(function(e){
 		e.preventDefault();
+		$('#modal-authenticate-build').modal('hide');
 		$('#modal-btn-download').attr('data-save-build', 'false');
 		$('#modal-dl-build').modal('show');
 	});
@@ -375,6 +381,10 @@ $(document).ready(function()
 		e.preventDefault();
 		$('#modal-btn-download').attr('data-save-build', 'true');
 		$('#modal-dl-build').modal('show');
+	});
+	$('#save-and-generate-build-not-authenticated').click(function(e) {
+		e.preventDefault();
+		$('#modal-authenticate-build').modal('show');
 	});
 	$('#save-build').click(function(e) {
 		e.preventDefault();

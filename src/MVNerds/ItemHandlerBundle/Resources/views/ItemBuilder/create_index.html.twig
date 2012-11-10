@@ -86,7 +86,12 @@
 		
 		<div class="generate-button-container">
 			{% if itemBuildSlug is not defined %}
-				<a href="#" id="save-and-generate-build" class="main">Sauvegarder & générer</a>
+				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+					<a href="#" id="save-and-generate-build" class="main">Sauvegarder & générer</a>
+				{% else %}
+					<a href="#" id="save-and-generate-build-not-authenticated" class="main">Sauvegarder & générer</a>
+				{% endif %}
+				
 				<a href="#" id="only-generate-build">Générer seulement</a>
 			{% else %}
 				<a href="#" id="save-build" class="main" data-slug="{{itemBuildSlug}}">Enregistrer</a>
@@ -119,6 +124,31 @@
 		<div class="modal-footer">
 			<a href="#" data-dismiss="modal" class="btn-cancel">Annuler</a>
 			<a href="#" id="modal-btn-download" data-target="" class="btn-download"><i class="icon-download-alt"></i> Télécharger</a>
+		</div>
+	</div>
+	
+	<div id="modal-authenticate-build" class="modal hide fade">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>Enregistrement du build</h3>
+		</div>
+		<div class="modal-body" style="min-height:235px;">
+			<p>
+				Afin de pouvoir profiter de la fonction d'enregistrement de vos builds, vous devez être authentifié.
+			</p>
+			<p>
+				Si vous n'avez pas encore de compte vous pouvez vous inscrire dès maintenant.
+			</p>
+			<p>
+				Si vous ne désirez pas vous inscrire pour le moment vous pouvez tout de même télécharger votre build, cependant, 
+				celui-ci ne sera pas enregistré, vous ne pourrez ni le modifier, ni le re-télécharger, ni le supprimer.
+			</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#" data-dismiss="modal" class="btn-cancel">Annuler</a>
+			<a href="#" id="modal-btn-authentication" data-target="" class="btn-download">Connexion</a>
+			<a href="{{path('launch_site_summoner_registration')}}" id="modal-btn-inscription" data-target="" class="btn-download">Inscription</a>
+			<a href="{{path('security_summoner_login')}}" id="modal-btn-only-generate-build" data-target="" class="btn-download"><i class="icon-download-alt"></i> Télécharger uniquement</a>
 		</div>
 	</div>
 {% endblock %}
