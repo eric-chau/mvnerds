@@ -93,6 +93,13 @@
 		<!-- TAG MANAGER SERVICES -->
 		<service id="mvnerds.tag_manager" class="MVNerds\CoreBundle\Tag\TagManager">
 		</service>
+		
+		<!-- News MANAGER SERVICES -->
+		<service id="mvnerds.news_manager" class="MVNerds\CoreBundle\News\NewsManager">
+			<call method="setUserLocale">
+				<argument type="service" id="session" />
+			</call>
+		</service>
 
 		<!-- TWIG - FLASH EXTENSION -->
 		<service id="mvnerds.twig.flash_extension" class="MVNerds\CoreBundle\Twig\MVNerdsFlashExtension">

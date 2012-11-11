@@ -1,0 +1,28 @@
+{# #}
+<div class="row-fluid title-line">
+	<div class="span3">Titre</div>
+	<div class="span3">Createur</div>
+	<div class="span2">Date de creation</div>
+	<div class="span2">Date de mise a jour</div>
+	<div class="span2">Actions</div>
+</div>
+{% for new in news %}
+	{% include 'MVNerdsAdminBundle:News:news_row.html.twig' %}
+{% else %}
+	<i>Aucune news enregistrée pour le moment</i>
+{% endfor %}
+	
+<div id="bootstrap-delete-modal" class="modal hide fade">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>Supprimer la news <span class="bootstrap-modal-name"></span></h3>
+	</div>
+	<div class="modal-body">
+		<p>Êtes-vous sûr de vouloir supprimer la news ayant pour titre <strong><span class="bootstrap-modal-name"></span></strong> ?</p>
+	</div>
+	<div class="modal-footer">
+		<img src="{{ asset('images/commons/loader16.gif') }}" class="hide"/>
+		<a href="#" class="btn" data-dismiss="modal">Annuler</a>
+		<a id="modal-btn-confirm-delete" data-slug="" data-href="" class="btn btn-danger">Confirmer</a>
+	</div>
+</div>

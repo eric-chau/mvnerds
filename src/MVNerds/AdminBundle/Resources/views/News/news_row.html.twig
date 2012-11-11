@@ -1,0 +1,25 @@
+<div class="row-fluid normal-line item" id="{{ new.getSlug() }}">
+	<div class="span3">
+		{{ new.getTitle() }}
+	</div>
+	<div class="span3">
+		{{ new.getUser().getUsername() }}
+	</div>
+	<div class="span2">
+		
+	</div>
+	<div class="span2">
+		
+	</div>
+		
+	<div class="span2">
+		{# Editer la news #}
+		<a  draggable="false" href="{{ path('admin_news_edit', {'slug': new.getSlug()}) }}" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Éditer">
+			<i class="icon-edit"></i>
+		</a>
+		{# Supprimer la news #}
+		<a  draggable="false" href="#" class="tooltip-anchor bootstrap-modal" rel="tooltip" data-placement="top" data-original-title="Supprimer la news" data-toggle="modal" data-name="{{new.getTitle()}}" data-slug="{{new.getSlug()}}" data-href="/administration/news/__SLUG__/supprimer">
+			<i class="icon-remove"></i>
+		</a>
+	</div>
+</div>
