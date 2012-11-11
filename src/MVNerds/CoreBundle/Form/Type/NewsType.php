@@ -17,7 +17,11 @@ class NewsType extends AbstractType
 		
 		$builder->add('content', 'textarea', array(
 			'label'		=> 'Contenu',
-			'required' 	=> true
+			'required' 	=> true,
+			'attr'		=> array(
+				'cols'	=> '80',
+				'rows'	=> '20'
+			)
 		));
 	}
 

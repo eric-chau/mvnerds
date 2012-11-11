@@ -44,7 +44,7 @@ class NewsManager
 	 */
 	public function findBySlug($slug)
 	{
-		$news = ItemQuery::create()
+		$news = NewsQuery::create()
 			->joinWithI18n($this->userLocale)
 			->add(NewsPeer::SLUG, $slug)
 		->findOne();
