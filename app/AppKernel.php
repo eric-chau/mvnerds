@@ -28,6 +28,7 @@ class AppKernel extends Kernel
 			new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new MVNerds\MainBundle\MVNerdsMainBundle(),
             new MVNerds\ItemHandlerBundle\MVNerdsItemHandlerBundle(),
+            new MVNerds\NewsBundle\MVNerdsNewsBundle(),
 		);
 
 		if (in_array($this->getEnvironment(), array('dev', 'test')))

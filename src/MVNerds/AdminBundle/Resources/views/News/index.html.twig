@@ -1,0 +1,33 @@
+{% extends 'MVNerdsAdminBundle:News:layout.html.twig' %}
+
+{% block title %}Administration des news - MVNerds{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-alert.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-modal.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-tooltip.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
+	
+{% endblock %}
+
+	
+{% block content %}	
+	<h1>Les news</h1>
+
+	<div class="action-buttons right">
+		<a href="{{path('admin_news_create')}}" class="btn btn-success btn-large"><i class="icon-plus-sign icon-white"></i> <strong>Créer une news</strong></a>
+	</div>
+
+	{% autoescape false %}
+		{{ render_success_flash() }}
+	{% endautoescape %}
+	{% autoescape false %}
+		{{ render_error_flash() }}
+	{% endautoescape %}
+
+	<div class="content-container">
+		{% include 'MVNerdsAdminBundle:News:news_list.html.twig' %}
+	</div>
+{% endblock %}

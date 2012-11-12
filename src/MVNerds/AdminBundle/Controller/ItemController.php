@@ -19,7 +19,7 @@ class ItemController extends Controller
 	public function indexAction()
 	{
 		return $this->render('MVNerdsAdminBundle:Item:index.html.twig', array(
-			'items' => $this->get('mvnerds.item_manager')->findAllWithTags()
+			'items' => $this->get('mvnerds.item_manager')->findAllWithTags('en')
 		));
 	}
 	

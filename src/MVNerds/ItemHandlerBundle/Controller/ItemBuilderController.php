@@ -66,6 +66,8 @@ class ItemBuilderController extends Controller
 	}
 	
 	/**
+	 * Re-génération d'un build déjà éxistant avec les nouveaux chemins $path
+	 * 
 	 * @Route("/generate-rec-items-from-slug", name="item_builder_generate_rec_item_file_from_slug", options={"expose"=true})
 	 */
 	public function generateRecItemsFileFromSlugAction()
@@ -201,7 +203,9 @@ class ItemBuilderController extends Controller
 				}
 			}
 			
-			if (null != $saveBuild && $saveBuild == 'true') {
+			if (null != $saveBuild && $saveBuild == 'true' && $this->get('security.context')->isGranted('ROLE_USER')) {
+				$user = $this->get('security.context')->getToken()->getUser();
+				$itemBuild->setUser($user);
 				$itemBuild->save();
 			}
 		} else {

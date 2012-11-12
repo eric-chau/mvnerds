@@ -1,0 +1,61 @@
+{% extends 'MVNerdsAdminBundle:News:layout.html.twig' %}
+
+{% block title %}Administration des news - MVNerds{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	<!-- markItUp! skin -->
+	<link rel="stylesheet" type="text/css" href="{{ asset('markitup/skins/markitup/style.css') }}">
+	
+	<link rel="stylesheet" type="text/css" href="{{ asset('markitup/bbcode/style.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	<!-- markItUp! -->
+	<script type="text/javascript" src="{{ asset('markitup/jquery.markitup.js') }}"></script>
+	<!-- markItUp! toolbar settings -->
+	<script type="text/javascript" src="{{ asset('markitup/bbcode/set.js') }}"></script>
+	
+	<script type="text/javascript" src="{{ asset('js/news_handler/init-bbcode.js') }}"></script>
+	
+{% endblock %}
+
+{% block content %}
+	<h1>Editer une news</h1>
+
+	<div class="action-buttons">
+		<a href="{{ path('admin_news_index') }}" class="btn"><i class="icon-arrow-left"></i> <strong>Retourner à la liste</strong></a>
+		<a href="#" class="btn btn-success btn-large pull-right btn-submit-form"><i class="icon-ok icon-white"></i> <strong>J'ai terminé</strong></a>
+		<a href="{{ path('admin_news_index') }}" class="btn pull-right btn-danger"><strong>Annuler</strong></a>
+	</div>
+
+	<div class="content-container">
+		<form action="{{ path('admin_news_edit', {'slug': news.getSlug()}) }}" method="POST" {{ form_enctype(form) }}>			
+			{{form_label(form.news_category)}}<br />
+			{{form_widget(form.news_category)}}<br />
+			
+			{{form_label(form.title)}}<br />
+			{{form_widget(form.title)}}<br />
+			
+			{{form_label(form.preview)}}<br />
+			{{form_widget(form.preview)}}<br />
+			
+			{{form_label(form.content)}}<br />
+			<div id="emoticons">
+				<a href="#" title=":d"><img src="{{ asset('markitup/images/emoticon-happy.png') }}" /></a>
+				<a href="#" title=":("><img src="{{ asset('markitup/images/emoticon-unhappy.png') }}" /></a>
+				<a href="#" title=":o"><img src="{{ asset('markitup/images/emoticon-surprised.png') }}" /></a>
+				<a href="#" title=":p"><img src="{{ asset('markitup/images/emoticon-tongue.png') }}" /></a>
+				<a href="#" title=";)"><img src="{{ asset('markitup/images/emoticon-wink.png') }}" /></a>
+				<a href="#" title=":)"><img src="{{ asset('markitup/images/emoticon-smile.png') }}" /></a>
+			</div>
+			{{form_widget(form.content)}}
+			
+			{{form_rest(form)}}
+			
+			<input type="submit" class="submit-form hide" />
+		</form>
+	</div>
+{% endblock %}

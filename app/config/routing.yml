@@ -1,3 +1,8 @@
+mv_nerds_news:
+    resource: "@MVNerdsNewsBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}
+
 MVNerdsItemHandler:
     resource: "@MVNerdsItemHandlerBundle/Controller/"
     type:     annotation
@@ -29,7 +34,7 @@ mv_nerds_did_you_know:
 MVNerdsAdminBundle_homepage:
     resource: "@MVNerdsAdminBundle/Controller/"
     type:     annotation
-    prefix:   /administration
+    prefix:   /fr/administration
 
 mv_nerds_core:
     resource: "@MVNerdsCoreBundle/Controller/"

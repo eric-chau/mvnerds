@@ -34,7 +34,7 @@ class ItemSecondaryEffectType extends AbstractType
 		
 		$builder->add('is_unique', 'checkbox', array(
 			'label' => 'Est unique ?',
-			'required' => true
+			'required'	=> false
 		));
 	}
 	
