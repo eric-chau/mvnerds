@@ -532,6 +532,7 @@
     <column name="user_id" required="true" type="INTEGER" />
     <column name="news_category_id" required="true" type="INTEGER" />
     <column name="title" required="true" size="255" type="VARCHAR" />
+    <column name="preview" required="true" size="255" type="VARCHAR" />
     <column name="content" required="true" type="LONGVARCHAR" />
     <column defaultValue="0" name="view" required="true" type="INTEGER" />
     <foreign-key foreignTable="user">

@@ -46,6 +46,8 @@ class NewsManager
 	{
 		$news = NewsQuery::create()
 			->joinWithI18n($this->userLocale)
+			->joinWith('NewsCategory')
+			->joinWith('User', \Criteria::LEFT_JOIN)
 			->add(NewsPeer::SLUG, $slug)
 		->findOne();
 
@@ -61,9 +63,31 @@ class NewsManager
 	{
 		return NewsQuery::create()
 			->joinWithI18n($this->userLocale)
+			->joinWith('NewsCategory')
 			->joinWith('User', \Criteria::LEFT_JOIN)
 		->find();
 	}
+	
+	/**
+	 * Récupère les dernieres news
+	 */
+	public function findLatestNews()
+	{
+		$news = NewsQuery::create()
+			->orderByCreateTime(\Criteria::DESC)
+			->limit(5)
+		->find();
+		
+		$news->populateRelation('User');
+		$news->populateRelation('NewsCategory');
+		
+		if (null === $news)
+		{
+			throw new InvalidArgumentException('No news found !');
+		}
+
+		return $news;
+	}	
 
 	/**
 	 * Permet de faire persister en base de données la news $news
