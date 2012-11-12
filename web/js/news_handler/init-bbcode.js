@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	mySettings.previewParserPath = Routing.generate('xbbcode_parse');
+	mySettings.previewParserPath = Routing.generate('bbcode_parse');
 
 	$('#news_content').markItUp(mySettings);
 

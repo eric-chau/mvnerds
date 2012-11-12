@@ -10,6 +10,12 @@ class NewsType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
 	{
+		$builder->add('news_category', 'model', array(
+			'class' => '\MVNerds\CoreBundle\Model\NewsCategory',
+			'property' => 'label',
+			'label' => 'Catégorie'
+		));
+		
 		$builder->add('title', 'text', array(
 			'label'		=> 'Titre',
 			'required' 	=> true

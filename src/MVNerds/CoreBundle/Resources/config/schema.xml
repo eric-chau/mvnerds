@@ -530,10 +530,15 @@
   <table name="news">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
     <column name="user_id" required="true" type="INTEGER" />
+    <column name="news_category_id" required="true" type="INTEGER" />
     <column name="title" required="true" size="255" type="VARCHAR" />
     <column name="content" required="true" type="LONGVARCHAR" />
+    <column defaultValue="0" name="view" required="true" type="INTEGER" />
     <foreign-key foreignTable="user">
       <reference foreign="id" local="user_id" />
+    </foreign-key>
+    <foreign-key foreignTable="news_category">
+      <reference foreign="id" local="news_category_id" />
     </foreign-key>
     <behavior name="timestampable">
       <parameter name="create_column" value="create_time" />
@@ -548,7 +553,7 @@
       <parameter name="permanent" value="false" />
     </behavior>
     <behavior name="i18n">
-      <parameter name="i18n_columns" value="title,content" />
+      <parameter name="i18n_columns" value="title, content" />
       <parameter name="default_locale" value="fr" />
       <parameter name="locale_column" value="lang" />
       <parameter name="i18n_table" value="news_i18n" />
@@ -567,6 +572,18 @@
     <behavior name="timestampable">
       <parameter name="create_column" value="create_time" />
       <parameter name="update_column" value="update_time" />
+    </behavior>
+  </table>
+  <table name="news_category">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="label" required="true" size="100" type="VARCHAR" />
+    <behavior name="sluggable">
+      <parameter name="slug_column" value="slug" />
+      <parameter name="slug_pattern" value="{label}" />
+      <parameter name="replace_pattern" value="/[^\w\/]+/u" />
+      <parameter name="replacement" value="-" />
+      <parameter name="separator" value="-" />
+      <parameter name="permanent" value="false" />
     </behavior>
   </table>
 </database>
