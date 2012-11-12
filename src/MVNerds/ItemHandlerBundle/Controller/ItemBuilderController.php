@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Exception;
 
 use MVNerds\CoreBundle\Model\ItemBuild;
 use MVNerds\CoreBundle\Model\ChampionItemBuild;
@@ -36,10 +37,10 @@ class ItemBuilderController extends Controller
 		try {
 			$champion = $this->get('mvnerds.champion_manager')->findBySlug($championSlug);
 			return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:list_index.html.twig', array(
-				'itemBuilds'		=> $this->get('mvnerds.item_build_manager')->findAll(),
+				'itemBuilds'	=> $this->get('mvnerds.item_build_manager')->findAll(),
 				'championSlug'	=> $championSlug
 			));
-		} catch( \Exception $e) {
+		} catch(Exception $e) {
 			return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:list_index.html.twig', array(
 				'itemBuilds'	=> $this->get('mvnerds.item_build_manager')->findAll()
 			));

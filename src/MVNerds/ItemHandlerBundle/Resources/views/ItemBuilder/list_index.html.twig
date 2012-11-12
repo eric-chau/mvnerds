@@ -2,9 +2,10 @@
 
 {% block css %}
 	{{ parent() }}
+
 	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square25-sprite.css') }}">
-	{#<link rel="stylesheet" href="{{ asset('/css/DT_bootstrap.css') }}">#}
 	<link href="{{ asset('css/item_builder/listing-page.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('css/item_builder/modal.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 	
 {% block javascripts %}
@@ -12,7 +13,6 @@
 
 	<script src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
 	<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-	{#<script src="{{ asset('js/dataTables.bootstrap.js') }}"></script>#}
 	<script src="{{ asset('js/item_handler/item_builder/listing-page.js') }}"></script>
 	<script src="{{ asset('js/item_handler/item_builder/dl-modal.js') }}"></script>
 	<script src="{{ asset('js/launch_site/alerts-ajax-handler.js') }}"></script>
@@ -20,17 +20,18 @@
 
 {% block body_main_content %}
 	<div class="body-container list-item-builder">
-		<h1>Item Builds List</h1>
+		<h1>Pimp My Recommended Items</h1>
+		
+		<p>Retrouvez ci-dessous des liste d'objets conseillés personnalisées et partagées par les autres membres MVNerds.</p>
 		
 		<table id="item-builds-table" class="table data-table" data-filter="{% if championSlug is defined %}{{championSlug}}{% endif %}">
 			<thead>
 				<tr>
 					<th class="champions">Champion</th>
 					<th class="name">Nom</th>
-					<th class="items">Items</th>
 					<th class="game-mode">Mode de jeu</th>
-					<th class="stats">Stats</th>
-					<th class="actions">Actions</th>
+					<th class="items">Items</th>
+					<th class="actions"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -40,13 +41,16 @@
 							{% if itemBuild.getChampionItemBuilds()|length <= 1 %}
 								<div class="champion-square25 {{ itemBuild.getChampionItemBuilds().getFirst().getChampion().getSlug() }}" >&nbsp;</div>
 							{% else %}
-								<img src="{{asset('images/avatar/anonymous.jpg')}}" alt="image_question" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" data-title="{{itemBuild.getName()}}" data-content="{%for championItemBuild in itemBuild.getChampionItemBuilds() %}<div class='champion-square25 {{championItemBuild.getChampion().getSlug()}}' ></div>{% endfor %}"/>
+								<img src="{{asset('images/avatar/anonymous.jpg')}}" alt="image_question" class="bootstrap-popover" data-placement="right" data-trigger="hover" data-title="{{itemBuild.getName()}}" data-content="<div class='center-content'>{%for championItemBuild in itemBuild.getChampionItemBuilds() %}<div class='champion-square25 {{championItemBuild.getChampion().getSlug()}}' ></div>{% endfor %}</div>"/>
 							{% endif %}
 						</td>
-						<td>{{itemBuild.getName()}}</td>
-						<td>
+						<td class="name">{{itemBuild.getName()}}</td>
+						
+						<td class="game-mode">{{itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel()}}</td>
+						
+						<td class="item">
 							<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem1Id().getRiotCode() ~ '.png' )}}" alt="{{itemBuild.getItemRelatedByItem1Id().getName}} " class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
-								 data-title="<img class='tooltip-item-img pull-left' src='{{asset('images/items/' ~ itemBuild.getItemRelatedByItem1Id().getRiotCode() ~ '.png' )}}'/>{{itemBuild.getItemRelatedByItem1Id().getName()}}" 
+								 data-title="<img class='tooltip-item-img pull-left' src='{{asset('images/items/' ~ itemBuild.getItemRelatedByItem1Id().getRiotCode() ~ '.png' )}}'/> {{itemBuild.getItemRelatedByItem1Id().getName()}}" 
 								 data-content="{%for itemPrimaryEffect in itemBuild.getItemRelatedByItem1Id().getItemPrimaryEffects() %}{{itemPrimaryEffect.getValue()}} {{itemPrimaryEffect.getPrimaryEffect().getLabel()}} {% endfor %}
 											{%for itemSecondaryEffect in itemBuild.getItemRelatedByItem1Id().getItemSecondaryEffects() %}{{itemSecondaryEffect.getDescription()}} {% endfor %}"/>
 							
@@ -74,15 +78,12 @@
 								 data-title="<img class='tooltip-item-img pull-left' src='{{asset('images/items/' ~ itemBuild.getItemRelatedByItem6Id().getRiotCode() ~ '.png' )}}'/>{{itemBuild.getItemRelatedByItem6Id().getName()}}" 
 								 data-content="{%for itemPrimaryEffect in itemBuild.getItemRelatedByItem6Id().getItemPrimaryEffects() %}{{itemPrimaryEffect.getValue()}} {{itemPrimaryEffect.getPrimaryEffect().getLabel()}} {% endfor %}
 											{%for itemSecondaryEffect in itemBuild.getItemRelatedByItem6Id().getItemSecondaryEffects() %}{{itemSecondaryEffect.getDescription()}} {% endfor %}"/>
-							
-						</td>
-						<td>{{itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel()}}</td>
-						<td>
-							<span title="Téléchargements" data-id="dl-count-{{itemBuild.getSlug()}}"><i class="icon-download icon-white"></i> <span class="dl-count">{{itemBuild.getDownload()}}</span></span>
 						</td>
 						
 						<td>
-							<a class="action download-action" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}"><i class="icon-download-alt"></i> Télécharger</a>
+							<a class="action download-action" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}"><i class="icon-download-alt"></i></a>
+							
+							<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>Téléchargé</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> fois</span>
 						</td>
 						
 						<td>{% for championItemBuild in  itemBuild.getChampionItemBuilds()%}{{championItemBuild.getChampion().getName}} {% endfor %}</td>
@@ -92,31 +93,5 @@
 		</table>
 	</div>
 
-	<div id="modal-dl-build" class="modal hide fade">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			<h3>Téléchargement du build : <span id="modal-build-name"></span></h3>
-		</div>
-		<div class="modal-body">
-			<p>
-				Si votre jeu League of Legends ne se trouve pas dans l'un des répertoires suivants : 
-			</p>
-			<ul>
-				<li>C:/Program Files/Riot Games/</li>
-				<li>C:/Program Files/Riot/</li>
-				<li>C:/Riot Games/</li>
-				<li>C:/Riot/</li>
-				<li>C:/Program Files (x86)/Riot Games/</li>
-				<li>C:/Program Files (x86)/Riot/</li>
-			</ul>
-			<p>
-				Veuillez l'indiquer ici :
-				<input type="text" id="modal-lol-path" placeholder="ex : D:/Riot/"/>
-			</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" data-dismiss="modal" class="btn">Annuler</a>
-			<a href="#" id="modal-btn-download" data-target="" class="btn btn-primary"><i class="icon-download-alt"></i> Télécharger</a>
-		</div>
-	</div>
+	{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}
 {% endblock %}
