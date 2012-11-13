@@ -45,6 +45,9 @@
 			<call method="setTemplating">
 				<argument type="service" id="templating" />
 			</call>
+			<call method="setRoleManager">
+				<argument type="service" id="mvnerds.role_manager" />
+			</call>
 		</service>
 
 		<!-- CHAMPION MANAGER SERVICES -->
@@ -116,6 +119,11 @@
 			BBCODE MANAGER SERVICES
 		-->
 		<service id="mvnerds.bbcode_manager" class="MVNerds\CoreBundle\BBCode\BBCodeManager" />
+
+		<!-- 
+			ROLE MANAGER SERVICES
+		-->
+		<service id="mvnerds.role_manager" class="MVNerds\CoreBundle\Role\RoleManager" />
 	</services>
     
 </container>
