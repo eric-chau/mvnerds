@@ -29,6 +29,8 @@ class FrontController extends Controller
 		try {
 			/* @var $news \MVNerds\CoreBundle\Model\News */
 			$news = $this->get('mvnerds.news_manager')->findBySlug($slug);
+			$news->setView($news->getView() + 1);
+			$news->save();
 			$news->setContent($this->get('mvnerds.bbcode_manager')->BBCode2Html($news->getContent()));
 		} catch (\Exception $e) {
 			return $this->redirect($this->generateUrl('front_news_index'));
