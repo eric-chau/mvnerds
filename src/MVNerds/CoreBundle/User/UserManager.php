@@ -45,7 +45,7 @@ class UserManager
 		$user->save();
 		
 		// Assign role process
-		$role = $this->roleManager->assignRoleToUser($user, $this->roleManager->findByUniqueName('ROLE_USER'));
+		$role = $this->roleManager->assignRoleToUser($user, $this->roleManager->findByUniqueName('ROLE_USER')->getId());
 		
 		// Send confirmation mail to user
 		$message = Swift_Message::newInstance()
@@ -160,6 +160,20 @@ class UserManager
 		if (null === $user)
 		{
 			throw new InvalidArgumentException('No user with slug:'.$slug.'!');
+		}
+		
+		return $user;
+	}
+	
+	public function findByUsername($username)
+	{
+		$user = UserQuery::create()
+			->add(UserPeer::USERNAME, $username)
+		->findOne();
+		
+		if (null === $user)
+		{
+			throw new InvalidArgumentException('No user with username:'.$username.'!');
 		}
 		
 		return $user;

@@ -1,0 +1,3 @@
+{% if user is defined %}
+	<li><strong>{{ user.getUsername() }}</strong> <i class="icon-remove" data-username="{{ user.getUsername() }}"></i></li>
+{% endif %}

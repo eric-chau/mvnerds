@@ -1,0 +1,93 @@
+{% extends 'MVNerdsAdminBundle:Role:layout.html.twig' %}
+
+{% block title %}Administration des rôles - MVNerds{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	<style>
+		i.icon-remove {
+			cursor: pointer;
+		}
+	</style>
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-alert.js') }}"></script>
+
+	<script type="text/javascript">
+		var roleId = '{{ role.getId() }}',
+			$userUL = $('div.content-container').find('ul'),
+			$assignUserRoleInput = $('input[type="text"]#add-role-to-user');
+		$(document).ready(function()
+		{
+			$('i.icon-remove').on('click', function()
+			{
+				console.log('coucou');
+				var $this = $(this);
+				$.ajax({
+					url: Routing.generate('admin_roles_remove_role_from_user', {'username': $(this).data('username'), 'roleId': roleId}),
+					type: 'GET',
+					dataType: 'json',
+					success: function(response)
+					{
+						$this.parent().slideUp();
+					}
+				});
+			});
+			
+			$('button.btn-add-role').on('click', function()
+			{
+				var $loader = $('img.loader');
+				if (!$loader.hasClass('hide')) {
+					return false;
+				}
+				
+				var username = $assignUserRoleInput.val();
+				if ('' == username) {
+					return false;
+				}
+				
+				$loader.toggleClass('hide');
+				
+				$.ajax({
+					url: Routing.generate('admin_roles_add_role_to_user', {'username': username, 'roleId': roleId}),
+					type: 'GET',
+					dataType: 'html',
+					success: function(response)
+					{
+						$userUL.html($userUL.html() + response);
+						$loader.toggleClass('hide');
+						$assignUserRoleInput.val('');
+					}
+				});
+			});
+			
+		});
+	</script>
+{% endblock %}
+
+{% block content %}
+	<h1>Détail de rôle : {{ role.getUniqueName() }}</h1>
+
+	<div class="action-buttons right">
+		<a href="{{ path('admin_roles_index') }}" class="btn"><i class="icon-arrow-left"></i> <strong>Retourner à la liste</strong></a>
+		<a href="{{ path('admin_roles_index') }}" class="btn pull-right btn-danger"><strong>Annuler</strong></a>
+	</div>
+	
+	{% autoescape false %}
+		{{ render_success_flash() }}
+	{% endautoescape %}
+	
+	<div class="content-container">
+		<p>Ci-dessous la liste des utilisateurs qui ont le rôle {{ role.getUniqueName() }} :</p>
+		{% include 'MVNerdsAdminBundle:Role:user_role_list.html.twig' with {'users': users} %}
+		
+		<div>
+			<input type="text" id="add-role-to-user" placeholder="Saisissez un nom d'utilisateur" /> <button class="btn-add-role">Confirmer nouvelle assignation</button> 
+			<img src="{{ asset('images/commons/loader16.gif') }}" class="loader hide" />
+		</div>
+	</div>
+{% endblock %}
