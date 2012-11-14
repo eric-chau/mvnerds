@@ -59,6 +59,16 @@ class NewsManager
 		return $news;
 	}
 	
+	public function findAllPublic()
+	{
+		return NewsQuery::create()
+			->joinWithI18n($this->userLocale)
+			->joinWith('NewsCategory')
+			->joinWith('User', \Criteria::LEFT_JOIN)
+			->where(NewsPeer::STATUS . ' LIKE ?', NewsPeer::STATUS_PUBLIC)
+		->find();
+	}
+	
 	public function findAll()
 	{
 		return NewsQuery::create()
@@ -71,14 +81,16 @@ class NewsManager
 	/**
 	 * Récupère les dernieres news
 	 */
-	public function findLatestNews()
+	public function findLatestPublicNews()
 	{
 		$news = NewsQuery::create()
+			->where(NewsPeer::STATUS . ' LIKE ?', NewsPeer::STATUS_PUBLIC)
 			->orderByCreateTime(\Criteria::DESC)
 			->limit(5)
 		->find();
 		
 		$news->populateRelation('User');
+		$news->populateRelation('NewsI18n');
 		$news->populateRelation('NewsCategory');
 		
 		if (null === $news)

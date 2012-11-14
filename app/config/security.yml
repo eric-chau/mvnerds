@@ -46,6 +46,7 @@ security:
             form_login:
                 check_path: /fr/administration/login_check
                 login_path: /fr/administration/login
+                default_target_path: /profil
             logout:
                 path:   /fr/administration/logout
                 target: /

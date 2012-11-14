@@ -17,7 +17,6 @@
 				{% endif %}
 
 				<form action="{{ path('security_summoner_login_check') }}" method="post">
-					<input type="hidden" name="_target_path" value="/profile" />
 					<div>
 						<label for="username_main">Identifiant d'invocateur</label>
 						<input type="text" id="username_main" name="_username" value="{{ last_username }}" />

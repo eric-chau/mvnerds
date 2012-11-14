@@ -242,6 +242,57 @@ function minimizeItem($item, $isotope){
 	return false;
 }
 
+function initWithStoredItemBuild() {
+	
+	var championSlugs = getItemFromLS('storedChampionSlugs').split(',');
+	var gameMode = getItemFromLS('storedGameMode');
+	var itemSlugs = getItemFromLS('storedItemSlugs').split(',');
+	var buildName = getItemFromLS('storedBuildName');
+	
+	for(var i = 0; i < championSlugs.length; i++) {
+		if (championSlugs[i] != '') {
+			$('#champion-isotope-list li.champion#'+championSlugs[i]).addClass('active');
+		}
+	}
+	
+	$('div.game-mode').removeClass('active');
+	$('div.game-mode[data-game-mode="'+gameMode+'"]').addClass('active');
+	
+	for(var i = 0; i < itemSlugs.length; i++) {
+		addItemToList(itemSlugs[i]);
+	}
+	
+	$('#build-name').val(buildName);
+	
+	delete localStorage['storedItemBuild'];
+	delete localStorage['storedChampionSlugs'];
+	delete localStorage['storedGameMode'];
+	delete localStorage['storedItemSlugs'];
+	delete localStorage['storedBuildName'];
+}
+
+function storeItemBuild() {
+	var championSlugs = new Array();
+	$('#champion-isotope-list li.champion.active').each(function(){
+		championSlugs.push($(this).attr('id'));
+	});
+
+	var gameMode = $('div.game-mode-container div.game-mode.active').first().attr('data-game-mode');
+
+	var itemSlugs = new Array();
+	$('#rec-item-sortable li.rec-item.full div.portrait').each(function(){
+		itemSlugs.push($(this).attr('data-slug'));
+	});
+
+	var buildName = $('#build-name').val();
+	
+	saveItemInLS('storedItemBuild', 'true');
+	saveItemInLS('storedChampionSlugs', championSlugs);
+	saveItemInLS('storedGameMode', gameMode);
+	saveItemInLS('storedItemSlugs', itemSlugs);
+	saveItemInLS('storedBuildName', buildName);
+}
+
 $(document).ready(function()
 {
 	$window = $(window);
@@ -255,6 +306,11 @@ $(document).ready(function()
 	processScrollRecItems();
 	
 	$window.on('scroll', processScrollRecItems);
+	
+	//On charge le build depuis le storage s il y en a un
+	if (getItemFromLS('storedItemBuild')) {
+		initWithStoredItemBuild();
+	}
 	
 	// Écoute sur l'événement d'un clique sur un des modes de jeu
 	$('div.game-mode-container').on('click', 'div.game-mode', function() {
@@ -393,6 +449,13 @@ $(document).ready(function()
 	$('#modal-btn-download').click(function(e) {
 		e.preventDefault();
 		generateRecItemBuilder($(this).data('save-build'));
+	});
+	
+	//Si l utilisateur demande a s authentifier ou à s inscrire alors qu'il  est en train de créer un build
+	$('#modal-btn-authentication, #modal-btn-inscription').click(function(e){
+		e.preventDefault();
+		storeItemBuild();
+		window.location = this.href;
 	});
 	
 	//Activation du bouton de vidage de la liste des champions
