@@ -17,5 +17,8 @@ use MVNerds\CoreBundle\Model\om\BaseRole;
  * @package    propel.generator.src.MVNerds.CoreBundle.Model
  */
 class Role extends BaseRole {
-
+	public function isUniqueNameAlreadyInUse()
+	{
+		return RolePeer::isUniqueNameAlreadyInUse($this->getUniqueName(), ($this->getId() == null? null : $this));
+	}
 } // Role

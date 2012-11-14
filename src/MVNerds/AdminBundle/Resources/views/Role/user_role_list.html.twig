@@ -1,0 +1,7 @@
+<ul>
+	{% for user in users %}
+		{% include 'MVNerdsAdminBundle:Role:user_role_row.html.twig' with {'user': user} %}
+	{% else %}
+		<li>Aucun utilisateur ne possède ce rôle pour le moment.</li>
+	{% endfor %}
+</ul>

@@ -1,0 +1,11 @@
+<div class="row-fluid title-line">
+	<div class="span2">Identifiant</div>
+	<div class="span4">Label</div>
+	<div class="span4">Nom unique</div>
+	<div class="span2">Actions</div>
+</div>
+{% for role in roles %}
+	{% include 'MVNerdsAdminBundle:Role:role_row.html.twig' with {'role': role} %}
+{% else %}
+	<i>Aucun rôle enregistré pour le moment, et si vous en ajoutiez un en cliquant sur le bouton "Ajouter un rôle" ?</i>
+{% endfor %}

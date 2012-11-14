@@ -1,0 +1,33 @@
+{% extends 'MVNerdsAdminBundle:Role:layout.html.twig' %}
+
+{% block title %}Administration des rôles - MVNerds{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-alert.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-modal.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-tooltip.js') }}"></script>
+
+	<script type="text/javascript">
+		jQuery(function($) {
+			$('.tooltip-anchor').tooltip();	
+		});
+	</script>
+{% endblock %}
+
+{% block content %}
+	<h1>Les rôles</h1>
+
+	<div class="action-buttons right">
+		<a href="{{ path('admin_role_add') }}" class="btn btn-success btn-large"><i class="icon-plus-sign icon-white"></i> <strong>Ajouter un rôle</strong></a>
+	</div>
+	
+	{% autoescape false %}
+		{{ render_success_flash() }}
+	{% endautoescape %}
+	
+	<div class="content-container">
+		{% include 'MVNerdsAdminBundle:Role:role_list.html.twig' with {'roles': roles } %}
+	</div>
+{% endblock %}
