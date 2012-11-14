@@ -135,6 +135,11 @@ $(document).ready(function() {
 		"oLanguage": langage
 	});
 	
+	//On change filter
+	$('#item-builds-table_wrapper div.dataTables_filter label input').on('change', function(){
+		itemBuildsTable.fnFilter($(this).val());
+	});
+	
 	$('#item-builds-table_length').addClass('pull-left');
 	$('#item-builds-table_filter').addClass('pull-right');
 	
