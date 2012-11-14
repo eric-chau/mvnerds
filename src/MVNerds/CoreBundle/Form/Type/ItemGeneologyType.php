@@ -12,10 +12,7 @@ class ItemGeneologyType extends AbstractType
 	{
 		$builder->add('item_related_by_child_id', 'model', array(
 			'class' => '\MVNerds\CoreBundle\Model\Item',
-			'query' => \MVNerds\CoreBundle\Model\ItemQuery::create()
-				->joinWithI18n()
-				->orderBy('ItemI18n.Name'),
-			'property' => 'name'
+			'property' => 'slug'
 		));
 	}
 	

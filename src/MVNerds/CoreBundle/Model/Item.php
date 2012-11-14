@@ -183,24 +183,4 @@ class Item extends BaseItem {
 		
 		$this->setItemGeneologiesRelatedByParentId($itemGeneologiesRelatedByParentId, $con);
 	}
-	
-	public function getTotalCost() 
-	{
-		$cost = $this->getCost();
-		$itemGeneologies = $this->getItemGeneologiesRelatedByParentId();
-		
-		if ($itemGeneologies && !$itemGeneologies->isEmpty())
-		{
-			foreach ($itemGeneologies as $itemGeneology) 
-			{
-				if ( ($child = $itemGeneology->getItemRelatedByChildId()) )
-				{	
-					$cost += $child->getTotalCost();
-				} else {
-					return $cost;
-				}
-			}
-		}
-		return $cost;
-	}
 } // Item

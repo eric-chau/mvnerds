@@ -121,8 +121,8 @@ $(document).ready(function() {
 	
 	itemBuildsTable = $('#item-builds-table').dataTable({
 		"oSearch" :{"sSearch":  ((filter != undefined) ? filter : '')},
-		"bLengthChange": false,
-		"iDisplayLength": 3,
+        "bLengthChange": false,
+        "iDisplayLength": 3,
 		"aoColumns": [
                       {"bSearchable": false, "bSortable":false},
                       {"bSearchable": false, "bSortable":true},
@@ -133,11 +133,6 @@ $(document).ready(function() {
 		],
 		"sPaginationType": 'bootstrap',
 		"oLanguage": langage
-	});
-	
-	//On change filter
-	$('#item-builds-table_wrapper div.dataTables_filter label input').on('change', function(){
-		itemBuildsTable.fnFilter($(this).val());
 	});
 	
 	$('#item-builds-table_length').addClass('pull-left');
