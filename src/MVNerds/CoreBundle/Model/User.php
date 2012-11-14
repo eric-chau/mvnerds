@@ -68,7 +68,12 @@ class User extends BaseUser  implements AdvancedUserInterface
      */
     public function getRoles()
     {
-        return array('ROLE_ADMIN');
+		$roles = array();
+		foreach($this->getUserRoles() as $userRole) {
+			$roles[] = $userRole->getRole()->getUniqueName();
+		}
+		
+        return $roles;
     }
 
     /**

@@ -42,18 +42,18 @@ security:
             
                 
         secured_area:
-            pattern:    ^/administration
+            pattern:    ^/fr/administration
             form_login:
-                check_path: /administration/login_check
-                login_path: /administration/login
+                check_path: /fr/administration/login_check
+                login_path: /fr/administration/login
             logout:
-                path:   /administration/logout
+                path:   /fr/administration/logout
                 target: /
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
 
     access_control:
-        - { path: ^/administration, roles: ROLE_ADMIN }
+        - { path: ^/fr/administration, roles: ROLE_ADMIN }
         - { path: ^/profile, roles: ROLE_USER }
         #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }

@@ -12,6 +12,8 @@ use MVNerds\LaunchSiteBundle\CustomException\UnknowUserException;
 use MVNerds\LaunchSiteBundle\CustomException\UserAlreadyEnabledException;
 use MVNerds\LaunchSiteBundle\CustomException\WrongActivationCodeException;
 use MVNerds\CoreBundle\Model\Profile;
+use MVNerds\CoreBundle\Model\Role;
+use MVNerds\CoreBundle\Role\RoleManager;
 use MVNerds\CoreBundle\Model\User;
 use MVNerds\CoreBundle\Model\UserPeer;
 use MVNerds\CoreBundle\Model\UserQuery;
@@ -21,6 +23,7 @@ class UserManager
 	private $encoderFactory;
 	private $mailer;
 	private $templating;
+	private $roleManager;
 	
 	public function createUser(array $userParams)
 	{
@@ -40,6 +43,9 @@ class UserManager
 		
 		// Finally
 		$user->save();
+		
+		// Assign role process
+		$role = $this->roleManager->assignRoleToUser($user, $this->roleManager->findByUniqueName('ROLE_USER'));
 		
 		// Send confirmation mail to user
 		$message = Swift_Message::newInstance()
@@ -275,4 +281,10 @@ class UserManager
 	public function setTemplating($templating)
 	{
 		$this->templating = $templating;
-	}}
+	}
+	
+	public function setRoleManager(RoleManager $roleManager)
+	{
+		$this->roleManager = $roleManager;
+	}
+}
