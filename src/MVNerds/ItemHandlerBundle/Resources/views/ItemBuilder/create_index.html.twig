@@ -121,8 +121,8 @@
 		</div>
 		<div class="modal-footer">
 			<a href="#" data-dismiss="modal" class="btn-cancel">Annuler</a>
-			<a href="#" id="modal-btn-authentication" data-target="" class="btn-download">Connexion</a>
-			<a href="{{path('launch_site_summoner_registration')}}" id="modal-btn-inscription" data-target="" class="btn-download">Inscription</a>
+			<a href="{{path('security_summoner_store_redirect_and_forward', {routeName: 'security_summoner_login'})}}" id="modal-btn-authentication" data-target="" class="btn-download">Connexion</a>
+			<a href="{{path('security_summoner_store_redirect_and_forward', {routeName: 'launch_site_summoner_registration'})}}" id="modal-btn-inscription" data-target="" class="btn-download">Inscription</a>
 			<a href="{{path('security_summoner_login')}}" id="modal-btn-only-generate-build" data-target="" class="btn-download"><i class="icon-download-alt"></i> Télécharger uniquement</a>
 		</div>
 	</div>

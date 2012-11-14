@@ -1,6 +1,6 @@
 {% for  new in news %}
 	<div class="item">
-		<a href="{{path('front_news_view', {'slug': new.getSlug()} )}}"><img src="{{asset('images/news/' ~ new.getSlug() ~ '.png')}}" alt="image de la news : {{new.getTitle()}}"></a>
+		<a href="{{path('front_news_view', {'slug': new.getSlug()} )}}"><img src="{{asset('images/news/' ~ new.getImageName())}}" alt="image de la news : {{new.getTitle()}}"></a>
 		<div class="carousel-caption">
 			<h4 class="header"><a href="{{path('front_news_view', {'slug': new.getSlug()} )}}">{{new.getTitle()}}</a></h4>
 			<p class="posted-by"><em>Postée par {{new.getUser().getUsername()}} le {{new.getCreateTime('d/m/Y')}} à {{new.getCreateTime('H:i')}}</em></p><br />

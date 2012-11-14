@@ -1,23 +1,19 @@
-<div id="news-carousel" class="carousel slide">
-	<div class="carousel-inner">
-		{% include 'MVNerdsNewsBundle:Front:carousel_item.html.twig' with {'news': news} %}
+<div id="news-carousel-container" class="span8">
+	<div class="row-fluid">
+		<h2 class="span9">Most Valuable News</h2> <a href="#" class="pull-right span3 btn-green">Toutes les news</a>
 	</div>
-	<a class="left carousel-control" href="#news-carousel" data-slide="prev">‹</a>
-	<a class="right carousel-control" href="#news-carousel" data-slide="next">›</a>
+		
+	<div id="news-carousel" class="carousel slide">
+		<div class="carousel-inner">
+			{% include 'MVNerdsNewsBundle:Front:carousel_item.html.twig' with {'news': news} %}
+		</div>
+		<a class="left carousel-control" href="#news-carousel" data-slide="prev">‹</a>
+		<a class="right carousel-control" href="#news-carousel" data-slide="next">›</a>
+	</div>
 </div>
-
 
 <script type="text/javascript">
 	$(function(){
 		$('#news-carousel div.carousel-inner div.item').first().addClass('active');
 	});
 </script>
-
-<style>
-		#news-carousel{
-			height: 600px;
-		}
-		#news-carousel div.carousel-inner div.item{
-			height: 600px;
-		}
-</style>

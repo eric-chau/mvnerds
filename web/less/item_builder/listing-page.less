@@ -2,11 +2,8 @@
 @import '../mvnerds-variables.less';
 
 div.body-container {
-	background-color: #000;
+
 	color: #fff;
-	padding: 20px;
-	margin-bottom: 20px;
-	min-height: 500px;
 
 	h1 {
 		color: @MVNerdsBlue;
@@ -21,30 +18,116 @@ div.body-container {
 		color: #eee;
 	}
 
-	ul#tabed-builds {
-		font-family: 'Ubuntu', sans-serif;
-		margin: 0;
-		padding: 0;
+	a.btn-red {
+		background-color: darken(@MVNerdsRed, 10%);
+		color: white;
+		display: inline-block;
+		font-size: 1.5em;
+		font-weight: bold;
+		margin: 40px auto 0px auto;
+		padding: 10px 15px;
 
-		li {
-			margin-right: 5px;
+		&:hover {
+			background-color: @MVNerdsRed; .transition(background-color .25s linear);
+		}
+	}
 
-			&.active {
-				a {
-					background-color: @MVNerdsBlue;
+	a.btn-green {
+		background-color: darken(@MVNerdsGreen, 5%);
+		border: 0;
+		color: white;
+		display: block;
+		font-size: 16px;
+		font-weight: bold;
+		margin: 5px auto;
+		padding: 5px 10px;
+
+		&:hover {
+			background-color: @MVNerdsGreen; .transition(background-color .25s linear);
+		}
+	}
+
+	div#pmri-tabed-list {
+
+		background-color: #000;
+		padding: 20px;
+		margin-bottom: 20px;
+		min-height: 435px;
+
+		ul#tabed-builds {
+			font-family: 'Ubuntu', sans-serif;
+			margin: 0;
+			padding: 0;
+
+			li {
+				margin-right: 5px;
+
+				&.active {
+					a {
+						background-color: @MVNerdsBlue;
+						color: white;
+						font-weight: bold;
+					}		
+				}
+			}
+
+			a {
+				.border-radius(0);
+				color: #666;
+
+				&:hover {
+					background-color: darken(@MVNerdsBlue, 15%); .transition(background-color .25s linear);
 					color: white;
-					font-weight: bold;
-				}		
+				}
 			}
 		}
+	}
+	div#champion-benchmark-preview {
+		background-color: #000;
+		padding: 20px;
+		margin-bottom: 20px;
+		min-height: 521px;
 
-		a {
-			.border-radius(0);
-			color: #666;
+		div#champion-benchmark-preview-list {
+			ol {
+				font-family: 'Trebuchet MS', sans-serif;
+				font-weight: bold;
+				margin: 20px auto;
 
-			&:hover {
-				background-color: darken(@MVNerdsBlue, 15%); .transition(background-color .25s linear);
-				color: white;
+				li {
+					margin: 10px auto;
+				}
+			}
+			p.preview {
+				margin: 40px auto 10px auto;
+			}
+		}
+	}
+
+	div#news-carousel-container {
+		background-color: #000;
+		padding: 20px;
+		margin-bottom: 20px;
+
+		#news-carousel{
+			height: 400px;
+			background-color: #111;
+
+			div.carousel-inner div.item{
+				height: 400px;
+				text-align: center;
+				
+				a {
+					display: block;
+					padding: 10px;
+					img{
+						height: 380px;
+					}
+				}
+
+				div.carousel-caption{
+					text-align: left;
+				}
 			}
 		}
 	}

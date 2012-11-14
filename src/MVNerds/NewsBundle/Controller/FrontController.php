@@ -17,7 +17,7 @@ class FrontController extends Controller
 	public function indexAction()
 	{
 		return $this->render('MVNerdsNewsBundle:Front:index.html.twig', array(
-			'news' => $this->get('mvnerds.news_manager')->findLatestNews()
+			'news' => $this->get('mvnerds.news_manager')->findLatestPublicNews()
 		));
 	}
 	

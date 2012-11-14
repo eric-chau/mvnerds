@@ -8,30 +8,13 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use MVNerds\CoreBundle\Model\NewsPeer;
 
-class NewsType extends AbstractType
+class NewsI18nType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options)
-	{
-		$builder->add('news_category', 'model', array(
-			'class' => '\MVNerds\CoreBundle\Model\NewsCategory',
-			'property' => 'label',
-			'label' => 'Catégorie'
-		));
-		
-		$statusSet = NewsPeer::getValueSet(NewsPeer::STATUS);
-		$statusChoice = array();
-		foreach($statusSet as $status) {
-			$statusChoice[$status] = $status;
-		}
-		
-		$builder->add('status', 'choice', array(
-			'choices'   => $statusChoice,
+	{		
+		$builder->add('lang', 'choice', array(
+			'choices'   => array('fr' => 'Français', 'en' => 'English'),
 			'required'  => true,
-		));
-		
-		$builder->add('image_name', 'text', array(
-			'label'		=> 'Image de présentation',
-			'attr'		=> array('placeholder' => 'Ex : mon-image.jpg')
 		));
 		
 		$builder->add('title', 'text', array(
@@ -56,13 +39,13 @@ class NewsType extends AbstractType
 
 	public function getName()
 	{
-		return 'news';
+		return 'news_i18n';
 	}
 
 	public function setDefaultOptions(OptionsResolverInterface $resolver)
 	{
 		$resolver->setDefaults(array(
-			'data_class' => 'MVNerds\CoreBundle\Model\News'
+			'data_class' => 'MVNerds\CoreBundle\Model\NewsI18n'
 		));
 	}
 

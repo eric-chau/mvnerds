@@ -1,0 +1,29 @@
+{{form_label(form.news_category)}}<br />
+{{form_widget(form.news_category)}}<br />
+
+{{form_label(form.status)}}<br />
+{{form_widget(form.status)}}<br />
+
+{{form_label(form.image_name)}}<br />
+{{form_widget(form.image_name)}}<br />
+
+{{form_label(form.title)}}<br />
+{{form_widget(form.title)}}<br />
+
+{{form_label(form.preview)}}<br />
+{{form_widget(form.preview)}}<br />
+
+{{form_label(form.content)}}<br />
+<div id="emoticons">
+	<a href="#" title=":d"><img src="{{ asset('markitup/images/emoticon-happy.png') }}" /></a>
+	<a href="#" title=":("><img src="{{ asset('markitup/images/emoticon-unhappy.png') }}" /></a>
+	<a href="#" title=":o"><img src="{{ asset('markitup/images/emoticon-surprised.png') }}" /></a>
+	<a href="#" title=":p"><img src="{{ asset('markitup/images/emoticon-tongue.png') }}" /></a>
+	<a href="#" title=";)"><img src="{{ asset('markitup/images/emoticon-wink.png') }}" /></a>
+	<a href="#" title=":)"><img src="{{ asset('markitup/images/emoticon-smile.png') }}" /></a>
+</div>
+{{form_widget(form.content)}}
+
+{{form_rest(form)}}
+
+<input type="submit" class="submit-form hide" />

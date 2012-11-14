@@ -44,7 +44,7 @@
 {% block header_footer %}
 	<div class="presentation-container">
 		<div class="content">
-			<div class="overview">
+			{#<div class="overview">
 				<h2>{{'Overview.title'|trans}}</h2>
 
 				<p>{{'Overview.content.p1'|trans}}</p>
@@ -61,17 +61,23 @@
 				</div>
 
 				<p class="secret-msg">{{'Registration.content.p2'|trans}}</p>
-			</div>
+			</div>#}
 		</div>
-		<div class="link registration" data-content-name="registration">{{'Registration.title'|trans}}</div>
-		<div class="link overview" data-content-name="overview">{{'Overview.title'|trans}}</div>
+		{#<div class="link registration" data-content-name="registration">{{'Registration.title'|trans}}</div>
+		<div class="link overview" data-content-name="overview">{{'Overview.title'|trans}}</div>#}
 	</div>
 	<div class="clearfix"></div>
 {% endblock %}
 		
 {% block body_main_content %}	
 	<div class="body-container">
+		<div class="row-fluid">
+			{% include 'MVNerdsNewsBundle:Front:carousel_index.html.twig' with {'news': news} %}
+			
+			{% include 'MVNerdsLaunchSiteBundle:Front:champion_benchmark_preview.html.twig' %}
+		</div>
 		{% include 'MVNerdsItemHandlerBundle:ItemBuilder:tabed_list_index.html.twig' with {'latestBuilds': latestBuilds, 'mostDownloadedBuilds': mostDownloadedBuilds} %}
+		
 		{#<div class="champions-handler-container">
 			{% include 'MVNerdsChampionHandlerBundle:ActionBar:actionbar.html.twig' with {'page': page} %}
 
