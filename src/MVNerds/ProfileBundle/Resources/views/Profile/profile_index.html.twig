@@ -1,0 +1,27 @@
+{% extends 'MVNerdsLaunchSiteBundle::layout.html.twig' %}
+
+{% block title %}Invocateur {{ user.getUsername() }} - Profil | MVNerds{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	<link href="{{ asset('css/profile/profile.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block body_main_content %}
+	<div class="body-container summoner-profile">
+		<img src="{{ asset('images/avatar/ro0ny.jpg') }}" class="avatar" />
+		<h1>{{ user.getUsername() }}</h1>
+		<p>Inscrit depuis le {{ user.getCreatedAt()|date('d/m/Y') }} - Dernière connexion le xx/xx/xxxx</p>
+		<p>Au sein de la communauté MVNerds, {{ user.getUsername() }} est :
+			<ul>
+				{% for role in user.getRoles() %}
+					<li>{{ role }}</li>
+				{% endfor %}
+			</ul>
+		</p>
+		<div class="clearfix"></div>
+		
+		<h2>Mes listes d'objets conseillés personnalisées</h2>
+	</div>
+{% endblock %}

@@ -28,6 +28,12 @@
 div.body-container {
   color: #fff;
 }
+div.body-container.list-item-builder {
+  background-color: #000;
+  padding: 20px;
+  margin-bottom: 20px;
+  min-height: 435px;
+}
 div.body-container h1 {
   color: #19a0df;
   margin-bottom: 50px;
