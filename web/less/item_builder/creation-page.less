@@ -62,6 +62,64 @@ p.module-name {
 	}
 }
 
+.popover {
+	background-color: darken(@MVNerdsBlue, 10%);
+	
+	&.bottom {
+		div.arrow {
+			border-bottom-color: darken(@MVNerdsBlue, 10%) !important;
+		}
+	}
+
+	&.right {
+		div.arrow {
+			border-right-color: darken(@MVNerdsBlue, 10%) !important;
+		}
+	}
+
+	h3.popover-title {
+		background-color: darken(@MVNerdsBlue, 20%);
+		border: 0;
+		color: #222;
+		font-size: 14px;
+		font-weight: bold;
+		line-height: 1.2em;
+		height: 40px;
+		margin: 0;
+		padding: 5px 8px 5px 50px;
+		text-align: right;
+		
+		img {
+			border: 2px solid darken(@MVNerdsBlue, 20%);
+			left: -8px;
+			overflow: hidden;
+			position: absolute;
+			.rotate(-10deg);
+			top: -1px;
+			width: 48px;
+		}
+	}
+
+	div.popover-content {		
+		color: #eee;
+		font-size: 12px;
+		font-family: 'Ubuntu', sans-serif;
+		p {
+			color: #eee;
+			font-size: 12px;
+		}
+
+		div.center-content {
+			text-align: center;
+		}
+
+		div.champion-square25 {
+			display: inline-block;
+			margin-right: 2px;
+		}
+	}
+}
+
 div.body-container {
 	background-color: #000;
 	color: #fff;

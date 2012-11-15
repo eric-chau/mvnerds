@@ -86,11 +86,15 @@ function toggleProgressCursor(toggle, target, cursor){
 //Permet d activer ou de désactiver des boutons sous forme de li
 //Utilisées pour les boutons de clean et d ajout de filtre
 function activateButton($buttonLi) {
-	$buttonLi.removeClass('disabled hide');
-	$buttonLi.find('a').removeClass('disabled');
+	if ($buttonLi) {
+		$buttonLi.removeClass('disabled hide');
+		$buttonLi.find('a').removeClass('disabled');
+	}
 }
 
 function deactivateButton($buttonLi) {
-	$buttonLi.addClass('disabled hide');
-	$buttonLi.find('a').addClass('disabled');
+	if ($buttonLi) {
+		$buttonLi.addClass('disabled hide');
+		$buttonLi.find('a').addClass('disabled');
+	}
 }

@@ -77,6 +77,56 @@ p.module-name {
 p.module-name strong {
   color: #fb9701;
 }
+.popover {
+  background-color: #147fb1;
+}
+.popover.bottom div.arrow {
+  border-bottom-color: #147fb1 !important;
+}
+.popover.right div.arrow {
+  border-right-color: #147fb1 !important;
+}
+.popover h3.popover-title {
+  background-color: #0f5e83;
+  border: 0;
+  color: #222;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.2em;
+  height: 40px;
+  margin: 0;
+  padding: 5px 8px 5px 50px;
+  text-align: right;
+}
+.popover h3.popover-title img {
+  border: 2px solid #0f5e83;
+  left: -8px;
+  overflow: hidden;
+  position: absolute;
+  -webkit-transform: rotate(-10deg);
+  -moz-transform: rotate(-10deg);
+  -ms-transform: rotate(-10deg);
+  -o-transform: rotate(-10deg);
+  transform: rotate(-10deg);
+  top: -1px;
+  width: 48px;
+}
+.popover div.popover-content {
+  color: #eee;
+  font-size: 12px;
+  font-family: 'Ubuntu', sans-serif;
+}
+.popover div.popover-content p {
+  color: #eee;
+  font-size: 12px;
+}
+.popover div.popover-content div.center-content {
+  text-align: center;
+}
+.popover div.popover-content div.champion-square25 {
+  display: inline-block;
+  margin-right: 2px;
+}
 div.body-container {
   background-color: #000;
   color: #fff;
