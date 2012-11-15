@@ -105,6 +105,39 @@ class ItemBuildManager
 		return $itemBuilds;
 	}	
 	
+	public function findByUserId($userId)
+	{
+		$itemBuilds = ItemBuildQuery::create()
+			->joinWith('ChampionItemBuild', \Criteria::LEFT_JOIN)
+			->joinWith('ChampionItemBuild.GameMode', \Criteria::LEFT_JOIN)
+			->joinWith('ChampionItemBuild.Champion chp', \Criteria::LEFT_JOIN)
+			->joinWith('chp.ChampionI18n', \Criteria::LEFT_JOIN)
+			->add(ItemBuildPeer::USER_ID, $userId)
+		->find();
+
+		$items = \MVNerds\CoreBundle\Model\ItemQuery::create()
+				->joinWith('ItemI18n', \Criteria::LEFT_JOIN)
+				->joinWith('ItemPrimaryEffect', \Criteria::LEFT_JOIN)
+				->joinWith('ItemPrimaryEffect.PrimaryEffect', \Criteria::LEFT_JOIN)
+				->joinWith('PrimaryEffect.PrimaryEffectI18n', \Criteria::LEFT_JOIN)
+				->joinWith('ItemSecondaryEffect', \Criteria::LEFT_JOIN)
+				->joinWith('ItemSecondaryEffect.ItemSecondaryEffectI18n', \Criteria::LEFT_JOIN);
+		
+		$itemBuilds->populateRelation('ItemRelatedByItem1Id', $items);
+		$itemBuilds->populateRelation('ItemRelatedByItem2Id', $items);
+		$itemBuilds->populateRelation('ItemRelatedByItem3Id', $items);
+		$itemBuilds->populateRelation('ItemRelatedByItem4Id', $items);
+		$itemBuilds->populateRelation('ItemRelatedByItem5Id', $items);
+		$itemBuilds->populateRelation('ItemRelatedByItem6Id', $items);
+		
+		if (null === $itemBuilds)
+		{
+			throw new InvalidArgumentException('No item build found !');
+		}
+
+		return $itemBuilds;
+	}	
+	
 	/**
 	 * Récupère les builds les plus récents
 	 */
