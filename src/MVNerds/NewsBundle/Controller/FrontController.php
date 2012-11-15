@@ -39,4 +39,15 @@ class FrontController extends Controller
 			'news' => $news
 		));
 	}
+	
+	/**
+	 * 
+	 * @Route("/list", name="front_news_list")
+	 */
+	public function listAction($championSlug) 
+	{
+		return $this->render('MVNerdsNewsBundle:Front:list_index.html.twig', array(
+			'news'	=> $this->get('mvnerds.item_build_manager')->findAllPublic()
+		));
+	}
 }

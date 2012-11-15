@@ -1,0 +1,7 @@
+{%for itemPrimaryEffect in item.getItemPrimaryEffects() %}
+	{{itemPrimaryEffect.getValue()}} {{itemPrimaryEffect.getPrimaryEffect().getLabel()}} 
+{% endfor %}
+
+{%for itemSecondaryEffect in item.getItemSecondaryEffects() %}
+	{{itemSecondaryEffect.getDescription()}} 
+{% endfor %}

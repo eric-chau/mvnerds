@@ -13,7 +13,8 @@ var
 	itemTypeaheadValue, 
 	$itemFilterInput,
 	championTypeaheadValue, 
-	$championFilterInput
+	$championFilterInput,
+	itemPopover
 ;
 
 function setRecItem(slug, recItemId) {
@@ -86,8 +87,6 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 							window.location = Routing.generate('item_builder_download_file', {_locale: locale, itemBuildSlug: data});
 						}
 					}).fail(function(data){
-						console.log(data.responseText);
-						$('#footer').html(data.responseText);
 						displayMessage('Impossible de créer le build.', 'error');
 					})
 				} else {
@@ -199,8 +198,17 @@ function checkRecItemsByMode($gameMode) {
 }
 
 //Retire tous les objets spécifiques a des champions des objets recommandés
-function checkRecItemsByChampionSpecific() {
-	$('ul#rec-item-sortable li.rec-item div.portrait[data-champion!=""]').parent('li.rec-item').removeClass('full').addClass('free').html('<div><i class="icon-question-sign icon-white"></i></div>');
+function checkRecItemsByChampionSpecific(championSlug) {
+	if (championSlug == undefined) {
+		$('ul#rec-item-sortable li.rec-item div.portrait[data-champion!=""]').parent('li.rec-item').removeClass('full').addClass('free').html('<div><i class="icon-question-sign icon-white"></i></div>');
+	} else {
+		var champRelatedItems = $('ul#rec-item-sortable li.rec-item div.portrait[data-champion!=""]');
+		champRelatedItems.each(function(){
+			if ($(this).data('champion') != championSlug) {
+				$(this).parent('li.rec-item').removeClass('full').addClass('free').html('<div><i class="icon-question-sign icon-white"></i></div>');
+			}
+		});
+	}
 }
 
 /******************************************************* Maximisation isotope *************************************************/
@@ -264,6 +272,12 @@ function initWithStoredItemBuild() {
 	
 	$('#build-name').val(buildName);
 	
+	var activeChampions = $('ul#champion-isotope-list li.champion.active');
+	if (activeChampions.length > 0) {
+		activateButton($('li#li-compare-filtered'));
+		$('#btn-clear-champions').removeClass('disabled')
+	}
+	
 	delete localStorage['storedItemBuild'];
 	delete localStorage['storedChampionSlugs'];
 	delete localStorage['storedGameMode'];
@@ -291,6 +305,19 @@ function storeItemBuild() {
 	saveItemInLS('storedGameMode', gameMode);
 	saveItemInLS('storedItemSlugs', itemSlugs);
 	saveItemInLS('storedBuildName', buildName);
+}
+
+//Permet de récupérer le contenu des popover pour les items en AJAX
+function setItemPopoverContent(slug, $item) {
+	$.ajax({
+		type: 'POST',
+		url:  Routing.generate('item_builder_get_item_popover_content', {_locale: locale}),
+		data: {slug: slug},
+		dataType: 'html'
+	}).done(function(data){
+		$item.data('popover').$tip.find(".popover-content").html(data);
+		$item.data('ajax-loaded', true);
+	});
 }
 
 $(document).ready(function()
@@ -329,7 +356,10 @@ $(document).ready(function()
 			timeout = setTimeout(function() {
 				if (!dblClic) {
 					timeout = null;
-					maximizeItem($(that), $itemIsotopeList);
+					//maximizeItem($(that), $itemIsotopeList);
+					if(!$(that).hasClass('item-maxi') && !$(that).hasClass('animating')) {
+						addItemToList($(that).attr('id'));
+					}
 				}
 				else {
 					dblClic = false;
@@ -337,12 +367,47 @@ $(document).ready(function()
 			}, 200);
 		}
 	}).on('dblclick', function() {
-		if(!$(that).hasClass('item-maxi') && !$(that).hasClass('animating')) {
-			clearTimeout(timeout);
-			timeout = null;
-			dblClic = true;
-			addItemToList($(that).attr('id'));
+//		if(!$(that).hasClass('item-maxi') && !$(that).hasClass('animating')) {
+//			clearTimeout(timeout);
+//			timeout = null;
+//			dblClic = true;
+//			addItemToList($(that).attr('id'));
+//		}
+	});
+	
+	//Hover un item
+	var popoverTimer;
+	$('ul#item-isotope-list li.item').hover(function(e) {
+		$(this).data('isHover', true);
+		if(popoverTimer) {
+			clearTimeout(popoverTimer);
+			popoverTimer = null
 		}
+		if($(this).data('popover') == undefined) {
+			
+			var title = "<img class='tooltip-item-img pull-left' src='/images/items/" + $(this).data('code') + ".png'/>" + $(this).data('title');
+			
+			$(this).popover({
+				trigger: 'hover',
+				content:'<p style="text-align: center;"><img src="/images/commons/loader16-bg-blue.gif" alt="loading"/></p>',
+				placement: 'bottom',
+				delay: {show: 1, hide: 1}
+			});
+			$(this).data('popover').options.title = title;
+			$(this).data('popover').options.placement = 'bottom';
+			$(this).popover('show');
+		}
+		
+		if($(this).data('ajax-loaded') == undefined) {
+			var $that = $(this);
+			popoverTimer = setTimeout(function() {
+				if($that.data('isHover')) {
+					setItemPopoverContent($that.attr('id'), $that);
+				}
+			}, 500)
+		}
+	}, function(){
+		$(this).data('isHover', false);
 	});
 	
 	//Lors du clic sur un item maximisé
@@ -420,6 +485,8 @@ $(document).ready(function()
 			} else {
 				$itemIsotopeList.hideChampionSpecificItems();
 			}
+			
+			checkRecItemsByChampionSpecific(championSlug);
 		} else {
 			$('#btn-clear-champions').addClass('disabled');
 			$itemIsotopeList.showChampionSpecificItems();
@@ -448,6 +515,7 @@ $(document).ready(function()
 	});
 	$('#modal-btn-download').click(function(e) {
 		e.preventDefault();
+		$('#modal-dl-build').modal('hide');
 		generateRecItemBuilder($(this).data('save-build'));
 	});
 	
@@ -468,9 +536,8 @@ $(document).ready(function()
 	});
 	
 	//Activation des tooltips
-	$('#champion-isotope-list li.champion').tooltip();
-	$('#item-isotope-list li.item').tooltip();
-	
+	$('#champion-isotope-list li.champion').tooltip({delay:{show:1, hide:0}});
+	$('#champion-isotope-list li.champion').data('tooltip').options.delay = 0;
 	
 	itemIsotopeOptions = {
 		itemSelector: '.item',

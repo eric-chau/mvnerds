@@ -26,35 +26,28 @@
 					
 					<td class="item">
 						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem1Id().getRiotCode() ~ '.png' )}}" alt="{{itemBuild.getItemRelatedByItem1Id().getName}} " class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
-							 data-title="<img class='tooltip-item-img pull-left' src='{{asset('images/items/' ~ itemBuild.getItemRelatedByItem1Id().getRiotCode() ~ '.png' )}}'/>{{itemBuild.getItemRelatedByItem1Id().getName()}}" 
-							 data-content="{%for itemPrimaryEffect in itemBuild.getItemRelatedByItem1Id().getItemPrimaryEffects() %}{{itemPrimaryEffect.getValue()}} {{itemPrimaryEffect.getPrimaryEffect().getLabel()}} {% endfor %}
-										{%for itemSecondaryEffect in itemBuild.getItemRelatedByItem1Id().getItemSecondaryEffects() %}{{itemSecondaryEffect.getDescription()}} {% endfor %}"/>
+							 data-title="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_title.html.twig' with {item: itemBuild.getItemRelatedByItem1Id()} %}" 
+							 data-content="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig' with {item: itemBuild.getItemRelatedByItem1Id()} %}"/>
 
 						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem2Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem2Id().getName}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
-							 data-title="<img class='tooltip-item-img pull-left' src='{{asset('images/items/' ~ itemBuild.getItemRelatedByItem2Id().getRiotCode() ~ '.png' )}}'/>{{itemBuild.getItemRelatedByItem2Id().getName()}}" 
-							 data-content="{%for itemPrimaryEffect in itemBuild.getItemRelatedByItem2Id().getItemPrimaryEffects() %}{{itemPrimaryEffect.getValue()}} {{itemPrimaryEffect.getPrimaryEffect().getLabel()}} {% endfor %}
-										{%for itemSecondaryEffect in itemBuild.getItemRelatedByItem2Id().getItemSecondaryEffects() %}{{itemSecondaryEffect.getDescription()}} {% endfor %}"/>
+							 data-title="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_title.html.twig' with {item: itemBuild.getItemRelatedByItem2Id()} %}" 
+							 data-content="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig' with {item: itemBuild.getItemRelatedByItem2Id()} %}"/>
 
 						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem3Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem3Id().getName}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
-							 data-title="<img class='tooltip-item-img pull-left' src='{{asset('images/items/' ~ itemBuild.getItemRelatedByItem3Id().getRiotCode() ~ '.png' )}}'/>{{itemBuild.getItemRelatedByItem3Id().getName()}}" 
-							 data-content="{%for itemPrimaryEffect in itemBuild.getItemRelatedByItem3Id().getItemPrimaryEffects() %}{{itemPrimaryEffect.getValue()}} {{itemPrimaryEffect.getPrimaryEffect().getLabel()}} {% endfor %}
-										{%for itemSecondaryEffect in itemBuild.getItemRelatedByItem3Id().getItemSecondaryEffects() %}{{itemSecondaryEffect.getDescription()}} {% endfor %}"/>
+							 data-title="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_title.html.twig' with {item: itemBuild.getItemRelatedByItem3Id()} %}" 
+							 data-content="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig' with {item: itemBuild.getItemRelatedByItem3Id()} %}"/>
 
 						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem4Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem4Id().getName}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
-							 data-title="<img class='tooltip-item-img pull-left' src='{{asset('images/items/' ~ itemBuild.getItemRelatedByItem4Id().getRiotCode() ~ '.png' )}}'/>{{itemBuild.getItemRelatedByItem4Id().getName()}}" 
-							 data-content="{%for itemPrimaryEffect in itemBuild.getItemRelatedByItem4Id().getItemPrimaryEffects() %}{{itemPrimaryEffect.getValue()}} {{itemPrimaryEffect.getPrimaryEffect().getLabel()}} {% endfor %}
-										{%for itemSecondaryEffect in itemBuild.getItemRelatedByItem4Id().getItemSecondaryEffects() %}{{itemSecondaryEffect.getDescription()}} {% endfor %}"/>
+							 data-title="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_title.html.twig' with {item: itemBuild.getItemRelatedByItem4Id()} %}" 
+							 data-content="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig' with {item: itemBuild.getItemRelatedByItem4Id()} %}"/>
 
 						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem5Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem5Id().getName}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
-							 data-title="<img class='tooltip-item-img pull-left' src='{{asset('images/items/' ~ itemBuild.getItemRelatedByItem5Id().getRiotCode() ~ '.png' )}}'/>{{itemBuild.getItemRelatedByItem5Id().getName()}}" 
-							 data-content="{%for itemPrimaryEffect in itemBuild.getItemRelatedByItem5Id().getItemPrimaryEffects() %}{{itemPrimaryEffect.getValue()}} {{itemPrimaryEffect.getPrimaryEffect().getLabel()}} {% endfor %}
-										{%for itemSecondaryEffect in itemBuild.getItemRelatedByItem5Id().getItemSecondaryEffects() %}{{itemSecondaryEffect.getDescription()}} {% endfor %}"/>
+							 data-title="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_title.html.twig' with {item: itemBuild.getItemRelatedByItem5Id()} %}" 
+							 data-content="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig' with {item: itemBuild.getItemRelatedByItem5Id()} %}"/>
 
 						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem6Id().getRiotCode()  ~ '.png' )}}" alt="{{itemBuild.getItemRelatedByItem6Id().getName}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
-							 data-title="<img class='tooltip-item-img pull-left' src='{{asset('images/items/' ~ itemBuild.getItemRelatedByItem6Id().getRiotCode() ~ '.png' )}}'/>{{itemBuild.getItemRelatedByItem6Id().getName()}}" 
-							 data-content="{%for itemPrimaryEffect in itemBuild.getItemRelatedByItem6Id().getItemPrimaryEffects() %}{{itemPrimaryEffect.getValue()}} {{itemPrimaryEffect.getPrimaryEffect().getLabel()}} {% endfor %}
-										{%for itemSecondaryEffect in itemBuild.getItemRelatedByItem6Id().getItemSecondaryEffects() %}{{itemSecondaryEffect.getDescription()}} {% endfor %}"/>
-
+							 data-title="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_title.html.twig' with {item: itemBuild.getItemRelatedByItem6Id()} %}" 
+							 data-content="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig' with {item: itemBuild.getItemRelatedByItem6Id()} %}"/>
 					</td>
 					
 					<td>

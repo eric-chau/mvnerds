@@ -30,7 +30,7 @@ class ItemBuilderController extends Controller
 	
 	/**
 	 * 
-	 * @Route("/list/{championSlug}", name="item_builder_list", defaults={"championSlug"=null})
+	 * @Route("/list/{championSlug}", name="item_builder_list", defaults={"championSlug"=null}, options={"expose"=true})
 	 */
 	public function listAction($championSlug) 
 	{
@@ -260,6 +260,28 @@ class ItemBuilderController extends Controller
 			throw new HttpException(500, 'La requête doit être effectuée en AJAX et en method POST !');
 		}
 		return new Response(json_encode($this->get('mvnerds.item_manager')->getItemsName()->toArray()));
+	}
+	
+	/**
+	 * @Route("/get-item-popover-content", name="item_builder_get_item_popover_content", options={"expose"=true})
+	 */
+	public function getItemPopoverContentAction()
+	{
+		$request = $this->getRequest();
+		if  (!$request->isXmlHttpRequest() || !$request->isMethod('POST')) {
+			throw new HttpException(500, 'La requête doit être effectuée en AJAX et en method POST !');
+		}
+		
+		$slug = $request->get('slug');
+		try{
+			$item = $this->get('mvnerds.item_manager')->findBySlug($slug);
+		} catch (\Exception $e) {
+			return new Response(json_encode('Impossible de trouver l\'item'));
+		}
+		
+		return $this->render('MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig', array(
+			'item' => $item
+		));
 	}
 	
 	/**
