@@ -1,3 +1,8 @@
+mv_nerds_profile:
+    resource: "@MVNerdsProfileBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 mv_nerds_news:
     resource: "@MVNerdsNewsBundle/Controller/"
     type:     annotation

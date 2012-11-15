@@ -29,8 +29,8 @@ class SecurityController extends Controller
 		}
 
 		return $this->render('MVNerdsLaunchSiteBundle:Login:login_index.html.twig', array(
-			'last_username' => $session->get(SecurityContext::LAST_USERNAME),
-			'error' => $error,
+			'last_username'				=> $session->get(SecurityContext::LAST_USERNAME),
+			'error'						=> $error
 		));
 	}
 	
