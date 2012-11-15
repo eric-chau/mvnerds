@@ -233,6 +233,7 @@ class ItemManager
 			->joinWith('ItemGameMode', \Criteria::LEFT_JOIN)
 			->joinWith('ItemGameMode.GameMode', \Criteria::LEFT_JOIN)
 			->joinWith('Champion', \Criteria::LEFT_JOIN)
+			->joinWith('ItemGeneologyRelatedByParentId', \Criteria::LEFT_JOIN)
 			->orderBy('ItemI18n.NAME')
 			->orderBy('ItemSecondaryEffect.ID')
 		->find();

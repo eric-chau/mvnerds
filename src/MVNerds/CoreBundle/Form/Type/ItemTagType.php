@@ -12,6 +12,10 @@ class ItemTagType extends AbstractType
 	{
 		$builder->add('tag', 'model', array(
 			'class' => '\MVNerds\CoreBundle\Model\Tag',
+			'query' => \MVNerds\CoreBundle\Model\TagQuery::create()
+				->joinTagType('tt')
+				->addJoinCondition('tt', 'tt.UniqueName = ?', 'BASE_ITEM_PARENT')
+				->orderBy('Slug'),
 			'property' => 'slug'
 		));
 	}
