@@ -18,7 +18,7 @@ mySettings = {
 		{separator:'---------------' },
 		{name:'Picture', key:'P', replaceWith:'[img][![Url]!][/img]'},
 		{name:'Link', key:'L', openWith:'[url=[![Url]!]]', closeWith:'[/url]', placeHolder:'Your text to link here...'},
-		{name:'Movie', replaceWith:'[movie][![Url de la video.\nExemple : http://www.youtube.com/watch?v=2DFtlNGzMIA]!][/movie]'},
+		{name:'Movie', replaceWith:'[movie][![ID de la video youtube.\nExemple : dans le lien http://www.youtube.com/watch?v=Ggfx5kXkeVQ&feature=relmfu\nl\'ID est Ggfx5kXkeVQ \nc\'est à dire la valeur du "v=".]!][/movie]'},
 		{separator:'---------------' },
 		{	name:'Colors', 
 			className:'colors', 

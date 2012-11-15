@@ -44,10 +44,10 @@ class FrontController extends Controller
 	 * 
 	 * @Route("/list", name="front_news_list")
 	 */
-	public function listAction($championSlug) 
+	public function listAction() 
 	{
 		return $this->render('MVNerdsNewsBundle:Front:list_index.html.twig', array(
-			'news'	=> $this->get('mvnerds.item_build_manager')->findAllPublic()
+			'news'	=> $this->get('mvnerds.news_manager')->findAllPublic()
 		));
 	}
 }

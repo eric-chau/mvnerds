@@ -28,11 +28,11 @@
 div.body-container {
   color: #fff;
 }
-div.body-container.list-item-builder {
+div.body-container.list-news {
   background-color: #000;
   padding: 20px;
   margin-bottom: 20px;
-  min-height: 435px;
+  min-height: 500px;
 }
 div.body-container h1 {
   color: #19a0df;
@@ -43,44 +43,6 @@ div.body-container h2 {
 }
 div.body-container p {
   color: #eee;
-}
-div.body-container a.btn-red {
-  background-color: #be3322;
-  color: white;
-  display: inline-block;
-  font-size: 1.5em;
-  font-weight: bold;
-  margin: 40px auto 0px auto;
-  padding: 10px 15px;
-  text-align: center;
-}
-div.body-container a.btn-red.btn-pmri {
-  margin: 0;
-}
-div.body-container a.btn-red:hover {
-  background-color: #db4a38;
-  -webkit-transition: background-color 0.25s linear;
-  -moz-transition: background-color 0.25s linear;
-  -o-transition: background-color 0.25s linear;
-  transition: background-color 0.25s linear;
-}
-div.body-container a.btn-green {
-  background-color: #658816;
-  border: 0;
-  color: white;
-  display: block;
-  font-size: 16px;
-  font-weight: bold;
-  margin: 5px auto;
-  padding: 5px 10px;
-  text-align: center;
-}
-div.body-container a.btn-green:hover {
-  background-color: #759e1a;
-  -webkit-transition: background-color 0.25s linear;
-  -moz-transition: background-color 0.25s linear;
-  -o-transition: background-color 0.25s linear;
-  transition: background-color 0.25s linear;
 }
 div.body-container div#pmri-tabed-list {
   background-color: #000;
@@ -115,55 +77,15 @@ div.body-container div#pmri-tabed-list ul#tabed-builds a:hover {
   transition: background-color 0.25s linear;
   color: white;
 }
-div.body-container div#champion-benchmark-preview {
-  background-color: #000;
-  padding: 20px;
-  margin-bottom: 20px;
-  min-height: 521px;
-}
-div.body-container div#champion-benchmark-preview div#champion-benchmark-preview-list ol {
-  font-family: 'Trebuchet MS', sans-serif;
-  font-weight: bold;
-  margin: 20px auto;
-}
-div.body-container div#champion-benchmark-preview div#champion-benchmark-preview-list ol li {
-  margin: 10px auto;
-}
-div.body-container div#champion-benchmark-preview div#champion-benchmark-preview-list p.preview {
-  margin: 40px auto 10px auto;
-}
-div.body-container div#news-carousel-container {
-  background-color: #000;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-div.body-container div#news-carousel-container #news-carousel {
-  height: 400px;
-  background-color: #111;
-}
-div.body-container div#news-carousel-container #news-carousel div.carousel-inner div.item {
-  height: 400px;
-  text-align: center;
-}
-div.body-container div#news-carousel-container #news-carousel div.carousel-inner div.item a {
-  display: block;
-  padding: 10px;
-}
-div.body-container div#news-carousel-container #news-carousel div.carousel-inner div.item a img {
-  height: 380px;
-}
-div.body-container div#news-carousel-container #news-carousel div.carousel-inner div.item div.carousel-caption {
-  text-align: left;
-}
-table#item-builds-table {
+table#news-table {
   margin: 20px 0 15px 0;
 }
-table#item-builds-table thead tr {
+table#news-table thead tr {
   cursor: pointer;
   height: 30px;
   margin: 40px 0 0 0;
 }
-table#item-builds-table thead tr th {
+table#news-table thead tr th {
   color: #eee;
   cursor: default;
   font-family: 'Trebuchet MS', sans-serif;
@@ -171,52 +93,39 @@ table#item-builds-table thead tr th {
   font-weight: bold;
   text-transform: uppercase;
 }
-table#item-builds-table thead tr th.champions {
-  width: 55px !important;
-}
-table#item-builds-table thead tr th.items {
-  width: 201px !important;
-}
-table#item-builds-table thead tr th.name {
-  width: 300px !important;
-}
-table#item-builds-table thead tr th.game-mode {
-  width: 110px !important;
-}
-table#item-builds-table thead tr th.actions {
-  width: 110px !important;
-}
-table#item-builds-table tbody tr {
+table#news-table tbody tr {
   color: #aaa;
   background-color: #141414;
 }
-table#item-builds-table tbody tr:hover {
+table#news-table tbody tr:hover {
   background-color: #222;
 }
-table#item-builds-table tbody tr td {
+table#news-table tbody tr td {
   border: 0;
   border-bottom: 4px solid #000;
   cursor: default;
   font-family: 'Ubuntu', sans-serif;
   height: 30px;
   line-height: 32px;
-  text-align: center;
-}
-table#item-builds-table tbody tr td.name,
-table#item-builds-table tbody tr td.game-mode {
-  font-size: 14px;
   text-align: left;
 }
-table#item-builds-table tbody tr td div {
+table#news-table tbody tr td div {
   margin: 0 auto;
 }
-table#item-builds-table tbody tr td img {
-  width: 30px;
+table#news-table tbody tr td a {
+  color: #aaa;
 }
-table#item-builds-table tbody tr td span {
+table#news-table tbody tr td a:hover {
+  text-decoration: underline;
+}
+table#news-table tbody tr td a.view-action {
+  text-align: center;
+  text-decoration: none;
+}
+table#news-table tbody tr td span {
   color: #666;
 }
-table#item-builds-table tbody tr td span.dl-count-block {
+table#news-table tbody tr td span.view-count-block {
   display: inline-block;
   font-size: 10px;
   font-weight: bold;
@@ -225,10 +134,10 @@ table#item-builds-table tbody tr td span.dl-count-block {
   position: relative;
   top: 4px;
 }
-table#item-builds-table tbody tr td span.dl-count-block strong {
+table#news-table tbody tr td span.view-count-block strong {
   display: block;
 }
-table#item-builds-table tbody tr td span i {
+table#news-table tbody tr td span i {
   color: #666;
   font-size: 16px;
   margin: 0 5px;
@@ -252,50 +161,6 @@ a.action:hover {
   -moz-transition: background-color 0.25s linear;
   -o-transition: background-color 0.25s linear;
   transition: background-color 0.25s linear;
-}
-div.modal {
-  background: #000000 url('/images/launch_site/modal_bg.jpg') no-repeat top left;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  -webkit-border-radius: 0 !important;
-  -moz-border-radius: 0 !important;
-  border-radius: 0 !important;
-  height: 411px;
-  width: 650px;
-}
-div.modal div.modal-header,
-div.modal div.modal-body,
-div.modal div.modal-footer {
-  border: 0;
-}
-div.modal div.modal-header i,
-div.modal div.modal-body i,
-div.modal div.modal-footer i {
-  color: white;
-}
-div.modal div.modal-footer {
-  background-color: black;
-}
-div.modal div.modal-header h3 {
-  margin-top: 35px;
-  color: #759e1a;
-}
-div.modal div.modal-header button.close {
-  color: white;
-  opacity: .4;
-}
-div.modal div.modal-header button.close:hover {
-  opacity: 1;
-  -webkit-transition: opacity 0.25s linear;
-  -moz-transition: opacity 0.25s linear;
-  -o-transition: opacity 0.25s linear;
-  transition: opacity 0.25s linear;
-}
-div.modal div.modal-body {
-  width: 620px;
-  color: white;
-}
-div.modal div.modal-body p {
-  color: white;
 }
 div.dataTables_info {
   color: #666;
@@ -422,49 +287,4 @@ div.dataTables_paginate ul li a:hover {
   -moz-transition: background-color 0.25s linear;
   -o-transition: background-color 0.25s linear;
   transition: background-color 0.25s linear;
-}
-.popover {
-  background-color: #147fb1;
-}
-.popover.bottom div.arrow {
-  border-bottom-color: #147fb1 !important;
-}
-.popover.right div.arrow {
-  border-right-color: #147fb1 !important;
-}
-.popover h3.popover-title {
-  background-color: #0f5e83;
-  border: 0;
-  color: #222;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 1.2em;
-  height: 40px;
-  margin: 0;
-  padding: 5px 8px 5px 50px;
-  text-align: right;
-}
-.popover h3.popover-title img {
-  border: 2px solid #0f5e83;
-  left: -8px;
-  overflow: hidden;
-  position: absolute;
-  -webkit-transform: rotate(-10deg);
-  -moz-transform: rotate(-10deg);
-  -ms-transform: rotate(-10deg);
-  -o-transform: rotate(-10deg);
-  transform: rotate(-10deg);
-  top: -1px;
-  width: 48px;
-}
-.popover div.popover-content p {
-  color: #eee;
-  font-size: 12px;
-}
-.popover div.popover-content div.center-content {
-  text-align: center;
-}
-.popover div.popover-content div.champion-square25 {
-  display: inline-block;
-  margin-right: 2px;
 }
