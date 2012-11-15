@@ -20,7 +20,10 @@
 
 {% block body_main_content %}
 	<div class="body-container list-item-builder">
-		<h1>Pimp My Recommended Items</h1>
+		<div class="row-fluid">
+			<h1 class="span9">Pimp My Recommended Items</h1><a class="pull-right btn-red btn-pmri span3" href="{{path('item_builder_create')}}">Créer une liste</a>
+		</div>
+		
 		
 		<p>Retrouvez ci-dessous des liste d'objets conseillés personnalisées et partagées par les autres membres MVNerds.</p>
 		
@@ -44,7 +47,10 @@
 								<img src="{{asset('images/avatar/anonymous.jpg')}}" alt="image_question" class="bootstrap-popover" data-placement="right" data-trigger="hover" data-title="{{itemBuild.getName()}}" data-content="<div class='center-content'>{%for championItemBuild in itemBuild.getChampionItemBuilds() %}<div class='champion-square25 {{championItemBuild.getChampion().getSlug()}}' ></div>{% endfor %}</div>"/>
 							{% endif %}
 						</td>
-						<td class="name">{{itemBuild.getName()}}</td>
+						<td class="name">
+							{{itemBuild.getName()}}<br />
+							<span class="created-by">Créé par {{itemBuild.getUser().getUserName()}} le {{itemBuild.getCreateTime('d/m/Y')}}</span>
+						</td>
 						
 						<td class="game-mode">{{itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel()}}</td>
 						

@@ -20,7 +20,10 @@
 						{% endif %}
 					</td>
 					
-					<td class="name">{{itemBuild.getName()}}</td>
+					<td class="name">
+						{{itemBuild.getName()}}<br />
+						<span class="created-by">Créé par {{itemBuild.getUser().getUserName()}} le {{itemBuild.getCreateTime('d/m/Y')}}</span>
+					</td>
 						
 					<td class="game-mode">{{itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel()}}</td>
 					

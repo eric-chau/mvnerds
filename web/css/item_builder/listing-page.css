@@ -202,7 +202,14 @@ table#item-builds-table tbody tr td {
   line-height: 32px;
   text-align: center;
 }
-table#item-builds-table tbody tr td.name,
+table#item-builds-table tbody tr td.name {
+  line-height: 1.4;
+  padding: 4px;
+  text-align: left;
+}
+table#item-builds-table tbody tr td.name span.created-by {
+  font-size: 12px;
+}
 table#item-builds-table tbody tr td.game-mode {
   font-size: 14px;
   text-align: left;
