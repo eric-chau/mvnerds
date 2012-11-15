@@ -93,7 +93,10 @@ div#sidebar.active div.toggle-sidebar:hover i {
   -o-transition: opacity 0.25s linear;
   transition: opacity 0.25s linear;
 }
-div#sidebar.active div#user-container img {
+div#sidebar.active div#user-container a.profile-link {
+  float: left;
+}
+div#sidebar.active div#user-container a.profile-link img {
   border: 1px solid #999;
   display: inline-block;
   float: left;
@@ -101,7 +104,7 @@ div#sidebar.active div#user-container img {
   padding: 2px;
   width: 100px;
 }
-div#sidebar.active div#user-container img.anonymous {
+div#sidebar.active div#user-container a.profile-link img.anonymous {
   display: none;
 }
 div#sidebar.active div#user-container a {

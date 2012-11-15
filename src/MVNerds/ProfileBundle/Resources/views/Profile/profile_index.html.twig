@@ -16,7 +16,7 @@
 		<p>Au sein de la communauté MVNerds, {{ user.getUsername() }} est :
 			<ul>
 				{% for role in user.getRoles() %}
-					<li>{{ role }}</li>
+					<li>{{ role|trans }}</li>
 				{% endfor %}
 			</ul>
 		</p>
