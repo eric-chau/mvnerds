@@ -620,6 +620,12 @@
     background-position: -303px -0px;
 }
 
+.champion-square.zed {
+    background-image: url('/images/champions/zed-square.png');
+    height: 100px;
+    width: 100px;
+}
+
 .champion-square.ziggs {
     width: 100px;
     height: 100px;

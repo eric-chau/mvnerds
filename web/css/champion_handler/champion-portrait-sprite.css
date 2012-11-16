@@ -620,6 +620,12 @@
     background-position: -693px -0px;
 }
 
+.champion-portrait.zed {
+    background-image: url('/images/champions/zed.jpg');
+    height: 419px;
+    width: 230px;
+}
+
 .champion-portrait.ziggs {
     width: 230px;
     height: 419px;
