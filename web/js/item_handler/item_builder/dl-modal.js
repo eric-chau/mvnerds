@@ -1,5 +1,6 @@
-$(function(){
+$(function() {
 	$('a.download-action').click(function() {
+		console.log('coucou');
 		$('#modal-build-name').html($(this).data('name'));
 		$('#modal-dl-build').modal('show');
 		$('#modal-btn-download').attr('data-target', $(this).data('slug'));

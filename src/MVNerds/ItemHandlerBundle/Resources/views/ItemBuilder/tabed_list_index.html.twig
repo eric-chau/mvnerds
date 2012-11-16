@@ -10,10 +10,10 @@
 
 	<div class="tab-content">
 		<div class="tab-pane active" id="tab-newest-builds">
-			{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_table.html.twig' with {'itemBuilds': latestBuilds} %}
+			{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_table.html.twig' with {'item_builds': latest_builds} %}
 		</div>
 		<div class="tab-pane" id="tab-most-downloaded-builds">
-			{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_table.html.twig' with {'itemBuilds': mostDownloadedBuilds} %}
+			{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_table.html.twig' with {'item_builds': most_downloaded_builds} %}
 		</div>
 	</div>
 </div>

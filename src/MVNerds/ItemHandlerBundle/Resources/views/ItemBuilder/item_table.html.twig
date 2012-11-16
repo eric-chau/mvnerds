@@ -5,18 +5,18 @@
 				<th class="champions">Champion</th>
 				<th class="name">Nom</th>
 				<th class="game-mode">Mode de jeu</th>
-				<th class="items">Items</th>
-				<th class="actions">Actions</th>
+				<th class="items">Objets</th>
+				<th class="actions"></th>
 			</tr>
 		</thead>
 		<tbody>
-			{% for itemBuild in itemBuilds%}
+			{% for itemBuild in item_builds %}
 				<tr class="item-build-row" data-target="{{itemBuild.getSlug()}}">
 					<td>
 						{% if itemBuild.getChampionItemBuilds()|length <= 1 %}
 							<div class="champion-square25 {{ itemBuild.getChampionItemBuilds().getFirst().getChampion().getSlug() }}" >&nbsp;</div>
 						{% else %}
-							<img src="{{asset('images/avatar/anonymous.jpg')}}" alt="image_question" class="bootstrap-popover" data-placement="right" data-trigger="hover" data-title="{{itemBuild.getName()}}" data-content="{%for championItemBuild in itemBuild.getChampionItemBuilds() %}<div class='champion-square25 {{championItemBuild.getChampion().getSlug()}}' ></div>{% endfor %}"/>
+							<img src="{{asset('images/avatar/anonymous.jpg')}}" alt="image_question" class="bootstrap-popover" data-placement="right" data-trigger="hover" data-title="{{itemBuild.getName()}}" data-content="<div class='center-content'>{%for championItemBuild in itemBuild.getChampionItemBuilds() %}<div class='champion-square25 {{championItemBuild.getChampion().getSlug()}}' ></div>{% endfor %}</div>"/>
 						{% endif %}
 					</td>
 					

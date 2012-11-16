@@ -39,10 +39,10 @@ class FrontController extends Controller
 				->joinWith('Champion.ChampionI18n');
 		
 		return $this->render('MVNerdsLaunchSiteBundle:Front:index.html.twig', array(
-			'form'				=> $form->createView(),
-			'latestBuilds'		=> $this->get('mvnerds.item_build_manager')->findLatestBuilds($championItemBuildsCriteria, $itemsCriteria),
-			'mostDownloadedBuilds' => $this->get('mvnerds.item_build_manager')->findMostDownloadedBuilds($championItemBuildsCriteria, $itemsCriteria),
-			'news'				=>$this->get('mvnerds.news_manager')->findLatestPublicNews()
+			'form'						=> $form->createView(),
+			'latest_builds'				=> $this->get('mvnerds.item_build_manager')->findLatestBuilds($championItemBuildsCriteria, $itemsCriteria),
+			'most_downloaded_builds'	=> $this->get('mvnerds.item_build_manager')->findMostDownloadedBuilds($championItemBuildsCriteria, $itemsCriteria),
+			'news'						=> $this->get('mvnerds.news_manager')->findLatestPublicNews()
 		));
 	}
 

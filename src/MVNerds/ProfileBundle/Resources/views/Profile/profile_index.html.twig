@@ -6,6 +6,22 @@
 	{{ parent() }}
 
 	<link href="{{ asset('css/profile/profile.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('css/item_builder/listing-page.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('css/item_builder/modal.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('css/champion_handler/champion-square25-sprite.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+	
+{% block javascripts %}
+	{{ parent() }}
+	
+	<script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-popover.js') }}"></script>
+	<script type="text/javascript">
+		$(document).ready(function()
+		{
+			$('.bootstrap-popover').popover();
+		});
+	</script>
+	<script type="text/javascript" src="{{ asset('js/item_handler/item_builder/dl-modal.js') }}"></script>
 {% endblock %}
 
 {% block body_main_content %}
@@ -23,5 +39,12 @@
 		<div class="clearfix"></div>
 		
 		<h2>Mes listes d'objets conseillés personnalisées</h2>
+		{% if user_items_builds|length > 0 %}
+			{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_table.html.twig' with {'item_builds': user_items_builds}  %}
+		{% else %}
+			<p>Cet utilisateur n'a pas encore enregistré de liste d'objet conseillé</p>
+		{% endif %}
+			
+		{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}
 	</div>
 {% endblock %}

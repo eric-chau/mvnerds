@@ -16,8 +16,11 @@ class FrontController extends Controller
 	 */
 	public function loggedSummonerIndexAction()
 	{		
+		$user = $this->getUser();
+		
 		return $this->render('MVNerdsProfileBundle:Profile:profile_index.html.twig', array(
-			'user' => $this->getUser()
+			'user'				=> $user,
+			'user_items_builds' => $this->get('mvnerds.item_build_manager')->findByUserId($user->getId())
 		));
 	}
 	
