@@ -90,7 +90,7 @@ class BBCodeManager
 						 '<em>\1</em>',
 						 '<u>\1</u>',
 						 '<img src="\1" alt="\1" />',
-						 '<iframe width="640" height="360" src="\1" frameborder="0" allowfullscreen></iframe>',
+						 '<iframe width="640" height="360" src="http://www.youtube.com/embed/\1" frameborder="0" allowfullscreen></iframe>',
 						 '<a href="mailto:\1">\1</a>',
 						 '<a href="\1">\2</a>',
 						 '<span style="font-size:\1%">\2</span>',
@@ -114,8 +114,8 @@ class BBCodeManager
 		$text = preg_replace('/<p><ul>(.*?)<\/ul><\/p>/ms', "<ul>\\1</ul>", $text);
 		
 		//Videos
-		$text = str_replace("http://www.youtube.com/watch?v=", "http://www.youtube.com/embed/", $text);
-		$text = preg_replace('/&feature=([a-z0-9-])*"/', '"', $text);
+//		$text = str_replace("http://www.youtube.com/watch?v=", "http://www.youtube.com/embed/", $text);
+//		$text = preg_replace('/&feature=([a-z0-9-])*"/', '"', $text);
 		
 		return $text;
 	}

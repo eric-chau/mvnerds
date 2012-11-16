@@ -1,13 +1,17 @@
 <div id="pmri-tabed-list">
-	<h2>Pimp My Recommended Items</h2>
+	<div class="row-fluid">
+		<h2 class="span9">Pimp My Recommended Items</h2><a href="{{path('item_builder_list')}}" class="pull-right span3 btn-green">Voir toutes les listes</a>
+	</div>
 
-	<ul class="nav nav-pills" id="tabed-builds">
-		<li class="active"><a href="#tab-newest-builds">Nouvelles listes</a></li>
-		<li><a href="#tab-most-downloaded-builds">Listes les plus téléchargées</a></li>
-		<li><a class="clickable" href="{{path('item_builder_create')}}">Créer une liste</a></li>
-		<li><a class="clickable" href="{{path('item_builder_list')}}">Plus de listes</a></li>
-	</ul>
+	<div class="row-fluid">
+		<ul class="nav nav-pills span9" id="tabed-builds">
+			<li class="active"><a href="#tab-newest-builds">Nouvelles listes</a></li>
+			<li><a href="#tab-most-downloaded-builds">Listes les plus téléchargées</a></li>
+		</ul>
 
+		<a class="pull-right btn-red btn-pmri span3" href="{{path('item_builder_create')}}">Créer une liste</a>
+	</div>
+		
 	<div class="tab-content">
 		<div class="tab-pane active" id="tab-newest-builds">
 			{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_table.html.twig' with {'item_builds': latest_builds} %}
@@ -27,7 +31,5 @@
 		});
 		
 		$('.bootstrap-popover').popover();
-		
-		$('a.clickable').off('click');
 	});
 </script>

@@ -4,11 +4,11 @@
 div.body-container {
 	color: #fff;
 
-	&.list-item-builder {
+	&.list-news {
 		background-color: #000;
 		padding: 20px;
 		margin-bottom: 20px;
-		min-height: 435px;
+		min-height: 500px;
 	}
 
 	h1 {
@@ -22,41 +22,6 @@ div.body-container {
 
 	p {
 		color: #eee;
-	}
-
-	a.btn-red {
-		background-color: darken(@MVNerdsRed, 10%);
-		color: white;
-		display: inline-block;
-		font-size: 1.5em;
-		font-weight: bold;
-		margin: 40px auto 0px auto;
-		padding: 10px 15px;
-		text-align: center;
-
-		&.btn-pmri {
-			margin: 0;
-		}
-
-		&:hover {
-			background-color: @MVNerdsRed; .transition(background-color .25s linear);
-		}
-	}
-
-	a.btn-green {
-		background-color: darken(@MVNerdsGreen, 5%);
-		border: 0;
-		color: white;
-		display: block;
-		font-size: 16px;
-		font-weight: bold;
-		margin: 5px auto;
-		padding: 5px 10px;
-		text-align: center;
-
-		&:hover {
-			background-color: @MVNerdsGreen; .transition(background-color .25s linear);
-		}
 	}
 
 	div#pmri-tabed-list {
@@ -93,58 +58,9 @@ div.body-container {
 			}
 		}
 	}
-	div#champion-benchmark-preview {
-		background-color: #000;
-		padding: 20px;
-		margin-bottom: 20px;
-		min-height: 521px;
-
-		div#champion-benchmark-preview-list {
-			ol {
-				font-family: 'Trebuchet MS', sans-serif;
-				font-weight: bold;
-				margin: 20px auto;
-
-				li {
-					margin: 10px auto;
-				}
-			}
-			p.preview {
-				margin: 40px auto 10px auto;
-			}
-		}
-	}
-
-	div#news-carousel-container {
-		background-color: #000;
-		padding: 20px;
-		margin-bottom: 20px;
-
-		#news-carousel{
-			height: 400px;
-			background-color: #111;
-
-			div.carousel-inner div.item{
-				height: 400px;
-				text-align: center;
-				
-				a {
-					display: block;
-					padding: 10px;
-					img{
-						height: 380px;
-					}
-				}
-
-				div.carousel-caption{
-					text-align: left;
-				}
-			}
-		}
-	}
 }
 
-table#item-builds-table {
+table#news-table {
 	margin: 20px 0 15px 0;
 
 	thead {
@@ -160,22 +76,6 @@ table#item-builds-table {
 				font-size: 10px;
 				font-weight: bold;
 				text-transform: uppercase;
-
-				&.champions {
-					width: 55px !important;
-				}
-				&.items {
-					width: 201px !important;
-				}
-				&.name {
-					width: 300px !important;
-				}
-				&.game-mode {
-					width: 110px !important;
-				}
-				&.actions {
-					width: 110px !important;
-				}
 			}
 		}
 	}
@@ -195,34 +95,28 @@ table#item-builds-table {
 			font-family: 'Ubuntu', sans-serif;
 			height: 30px;
 			line-height: 32px;
-			text-align: center;
-
-			&.name {
-				line-height: 1.4;
-				padding: 4px;
-				text-align: left;
-				span.created-by {
-					font-size: 12px;
-				}
-			}
-
-			&.game-mode {
-				font-size: 14px;
-				text-align: left;
-			}
+			text-align: left;
 
 			div {
 				margin: 0 auto;
 			}
 
-			img {
-				width:30px;
+			a {
+				color: #aaa;
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+
+			a.view-action {
+				text-align: center;
+				text-decoration: none;
 			}
 
 			span {
 				color: #666;
 
-				&.dl-count-block {
+				&.view-count-block {
 					display: inline-block;
 					font-size: 10px;
 					font-weight: bold;
@@ -262,50 +156,6 @@ a.action {
 
 	&:hover {
 		background-color: @MVNerdsRed; .transition(background-color .25s linear);
-	}
-}
-
-div.modal {
-	background: black url('/images/launch_site/modal_bg.jpg') no-repeat top left;
-	border: 1px solid rgba(255,255,255,.4);
-	.border-radius(0);
-	height: 411px;
-	width: 650px;
-	
-	div.modal-header, div.modal-body, div.modal-footer {
-		border: 0;
-		i {
-			color: white;
-		}
-	}
-	
-	div.modal-footer {
-		background-color: black;
-	}
-
-	div.modal-header {
-		h3 {
-			margin-top: 35px;
-			color: @MVNerdsGreen;
-		}
-
-		button.close {
-			color: white;
-			opacity: .4;
-
-			&:hover {
-				opacity: 1;
-				.transition(opacity .25s linear);
-			}
-		}
-	}
-
-	div.modal-body {
-		width: 620px;
-		color: white;
-		p {
-			color: white;
-		}
 	}
 }
 
@@ -424,61 +274,6 @@ div.dataTables_paginate {
 
 		&:hover, &:focus {
 			background-color: #333; .transition(background-color .25s linear);
-		}
-	}
-}
-
-.popover {
-	background-color: darken(@MVNerdsBlue, 10%);
-	
-	&.bottom {
-		div.arrow {
-			border-bottom-color: darken(@MVNerdsBlue, 10%) !important;
-		}
-	}
-
-	&.right {
-		div.arrow {
-			border-right-color: darken(@MVNerdsBlue, 10%) !important;
-		}
-	}
-
-	h3.popover-title {
-		background-color: darken(@MVNerdsBlue, 20%);
-		border: 0;
-		color: #222;
-		font-size: 14px;
-		font-weight: bold;
-		line-height: 1.2em;
-		height: 40px;
-		margin: 0;
-		padding: 5px 8px 5px 50px;
-		text-align: right;
-		
-		img {
-			border: 2px solid darken(@MVNerdsBlue, 20%);
-			left: -8px;
-			overflow: hidden;
-			position: absolute;
-			.rotate(-10deg);
-			top: -1px;
-			width: 48px;
-		}
-	}
-
-	div.popover-content {		
-		p {
-			color: #eee;
-			font-size: 12px;
-		}
-
-		div.center-content {
-			text-align: center;
-		}
-
-		div.champion-square25 {
-			display: inline-block;
-			margin-right: 2px;
 		}
 	}
 }
