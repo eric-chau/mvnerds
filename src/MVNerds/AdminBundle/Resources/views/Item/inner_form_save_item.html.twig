@@ -1,0 +1,81 @@
+<div>
+	{{ form_errors(form) }}
+</div>
+
+<fieldset>
+	<legend>Traductions : </legend>
+	{{ form_widget(form.item_i18ns) }}		
+</fieldset>
+
+<fieldset>
+	<legend>Propriétés : </legend>
+	<div style="margin-bottom:9px;">
+		{{ form_label(form.cost) }}
+		{{ form_widget(form.cost) }}
+	</div>
+	<div style="margin-bottom:9px;">
+			{{ form_label(form.sell_value) }}
+			{{ form_widget(form.sell_value) }}
+	</div>
+	<div style="margin-bottom:9px;">
+			{{ form_label(form.riot_code) }}
+			{{ form_widget(form.riot_code) }}
+	</div>
+	<div style="margin-bottom:9px;">
+			{{ form_label(form.stacks) }}
+			{{ form_widget(form.stacks) }}
+	</div>
+	<div style="margin-bottom:9px;">
+			{{ form_label(form.is_obsolete) }}
+			{{ form_widget(form.is_obsolete) }}
+	</div>
+</fieldset>
+
+<fieldset>
+	<legend>Modes de jeu : </legend>
+	{{ form_widget(form.item_game_modes) }}
+</fieldset>
+
+<fieldset>
+	<legend>Effets primaires : </legend>	
+	{{ form_widget(form.item_primary_effects) }}	
+</fieldset>
+
+<fieldset id="item_item_secondary_effects" data-prototype="{{ form_widget(form.item_secondary_effects.vars.prototype) | e }}" data-i18n-prototype="{{ form.item_secondary_effects.vars.attr['data-i18n-prototype']}}">
+	<legend>Effets secondaires : </legend>	
+	<a href="#" class="btn btn-success" id="add-secondary-effects-link"><i class="icon-white icon-plus-sign"></i> Add a secondary effect</a>
+
+
+	{% for ise in form.item_secondary_effects%}
+		<fieldset class="item_item_secondary_effect" style="margin-left:50px">
+			<legend>Effet secondaire {{form_label(ise)}} </legend>
+			<div style="margin-bottom:9px;">
+				{{ form_label(ise.category) }}
+				{{ form_widget(ise.category) }}
+			</div>
+			<div style="margin-bottom:9px;">
+				{{ form_label(ise.is_unique) }}
+				{{ form_widget(ise.is_unique) }}
+			</div>
+			<fieldset class="item_item_secondary_effect_i18n"  style="margin-left:100px;"  data-prototype="{{ form_widget(ise.item_secondary_effect_i18ns.vars.prototype) | e }}">
+				<legend>Traductions de l'effet secondaire : </legend>
+				<a href="#" class="btn btn-success add-secondary-effects-i18n-link"><i class="icon-white icon-plus-sign"></i> Add a secondary effect translation</a>
+				{{ form_widget(ise.item_secondary_effect_i18ns) }}	
+			</fieldset>
+		</fieldset>
+	{% endfor %}
+</fieldset>
+
+<fieldset>
+	<legend>Généalogie : </legend>	
+	{{ form_widget(form.item_geneologies_related_by_parent_id_custom) }}	
+</fieldset>
+
+<fieldset>
+	<legend>Tags : </legend>	
+	{{ form_widget(form.item_tags) }}	
+</fieldset>
+
+{{ form_rest(form) }}
+
+<input type="submit" class="submit-form hide" />

@@ -26,6 +26,20 @@ class ItemManager
 			->OrderBy('name')
 		->find();
 	}
+	
+	/**
+	 * Permet de récupérer le noms des champions de la base dans un tableau
+	 */
+	public function getPublicItemsName()
+	{
+		return ItemQuery::create()
+			->add(ItemPeer::IS_OBSOLETE, '0')
+			->joinI18n($this->userLocale, 'i18n')
+			->withColumn('i18n.name', 'name')
+			->select(array('name'))
+			->OrderBy('name')
+		->find();
+	}
 
 	/**
 	 * Supprime un item en fonction de son id $id
@@ -198,12 +212,16 @@ class ItemManager
 	{
 		return ItemQuery::create()
 			->joinWithI18n($this->userLocale)
-			->joinWith('ItemPrimaryEffect', \Criteria::LEFT_JOIN)
-			->joinWith('ItemPrimaryEffect.PrimaryEffect', \Criteria::LEFT_JOIN)
-			->joinWith('PrimaryEffect.PrimaryEffectI18n', \Criteria::LEFT_JOIN)
-			->joinWith('ItemSecondaryEffect', \Criteria::LEFT_JOIN)
-			->joinWith('ItemSecondaryEffect.ItemSecondaryEffectI18n', \Criteria::LEFT_JOIN)
-			->OrderBy('ItemI18n.NAME')
+				
+			->joinWith('ItemTag', \Criteria::LEFT_JOIN)
+			->joinWith('ItemTag.Tag', \Criteria::LEFT_JOIN)
+			->joinWith('Tag.TagI18n', \Criteria::LEFT_JOIN)
+				
+			->joinWith('ItemGameMode', \Criteria::LEFT_JOIN)
+			->joinWith('ItemGameMode.GameMode', \Criteria::LEFT_JOIN)
+			
+				
+			->orderBy('ItemI18n.NAME')
 		->find();
 	}
 	
@@ -213,14 +231,14 @@ class ItemManager
 	 * @return PropelCollection<MVNerds\CoreBundle\Model\Item> retourne un objet PropelCollection qui contient
 	 * tous les items de la base de données avec leurs tags
 	 */
-	public function findAllWithTags($locale = null)
+	public function findAllActive($locale = null)
 	{		
 		if( $locale == null )
 			$locale = $this->userLocale;
 		
 		return ItemQuery::create()
+			->add(ItemPeer::IS_OBSOLETE, '0')
 			->joinWithI18n($locale)
-				
 				
 			->joinWith('ItemTag', \Criteria::LEFT_JOIN)
 			->joinWith('ItemTag.Tag', \Criteria::LEFT_JOIN)

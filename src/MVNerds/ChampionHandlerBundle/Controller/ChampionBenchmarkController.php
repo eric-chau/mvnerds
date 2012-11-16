@@ -310,7 +310,7 @@ class ChampionBenchmarkController extends Controller
 		$comparisonManager->setReferenceChampion($champion);
 
 		//On redirige vers la comparaison des champions
-		return $this->redirect($this->generateUrl('launch_site_front_compare_champions').'#champion-comparator');
+		return $this->redirect($this->generateUrl('champion_benchmark_compare').'#champion-comparator');
 	}
 
 	/**

@@ -24,7 +24,7 @@ class ItemBuilderController extends Controller
 	{				
 		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:create_index.html.twig', array(
 			'champions' => $this->get('mvnerds.champion_manager')->findAllWithTags(),
-			'items'	=> $this->get('mvnerds.item_manager')->findAllWithTags()
+			'items'	=> $this->get('mvnerds.item_manager')->findAllActive()
 		));
 	}
 	
@@ -37,32 +37,14 @@ class ItemBuilderController extends Controller
 		try {
 			$champion = $this->get('mvnerds.champion_manager')->findBySlug($championSlug);
 			return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:list_index.html.twig', array(
-				'itemBuilds'	=> $this->get('mvnerds.item_build_manager')->findAll(),
+				'itemBuilds'	=> $this->get('mvnerds.item_build_manager')->findAllPublic(),
 				'championSlug'	=> $championSlug
 			));
 		} catch(Exception $e) {
 			return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:list_index.html.twig', array(
-				'itemBuilds'	=> $this->get('mvnerds.item_build_manager')->findAll()
+				'itemBuilds'	=> $this->get('mvnerds.item_build_manager')->findAllPublic()
 			));
 		}
-	}
-	
-	/**
-	 * @Route("/batch", name="item_builder_batch")
-	 */
-	public function batchAction()
-	{
-		/* @var $itemBuildManager \MVNerds\CoreBundle\ItemBuild\ItemBuildManager */
-		$itemBuildManager = $this->get('mvnerds.item_build_manager');
-		
-		$itemBuild = new ItemBuild();
-		$itemBuild = $itemBuildManager->findOneById(1);
-		
-		/* @var $batchManager \MVNerds\CoreBundle\Batch\BatchManager */
-		$batchManager = $this->get('mvnerds.batch_manager');
-		
-		die($batchManager->createRecItemBuilder($itemBuild));
-		
 	}
 	
 	/**
@@ -259,7 +241,7 @@ class ItemBuilderController extends Controller
 		if  (!$request->isXmlHttpRequest() || !$request->isMethod('POST')) {
 			throw new HttpException(500, 'La requête doit être effectuée en AJAX et en method POST !');
 		}
-		return new Response(json_encode($this->get('mvnerds.item_manager')->getItemsName()->toArray()));
+		return new Response(json_encode($this->get('mvnerds.item_manager')->getPublicItemsName()->toArray()));
 	}
 	
 	/**
@@ -315,7 +297,7 @@ class ItemBuilderController extends Controller
 		
 		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:create_index.html.twig', array(
 			'champions'			=> $this->get('mvnerds.champion_manager')->findAllWithTags(),
-			'items'			=> $this->get('mvnerds.item_manager')->findAllWithTags(),
+			'items'			=> $this->get('mvnerds.item_manager')->findAllActive(),
 			'selectedChampions'	=> $selectedChampions,
 			'selectedItems'		=> $selectedItems,
 			'buildName'			=> $itemBuild->getName(),

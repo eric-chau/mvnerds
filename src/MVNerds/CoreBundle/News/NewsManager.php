@@ -81,10 +81,11 @@ class NewsManager
 	/**
 	 * Récupère les dernieres news
 	 */
-	public function findLatestPublicNews()
+	public function findPublicHighlights()
 	{
 		$news = NewsQuery::create()
 			->where(NewsPeer::STATUS . ' LIKE ?', NewsPeer::STATUS_PUBLIC)
+			->add(NewsPeer::IS_HIGHLIGHT, '1')
 			->orderByCreateTime(\Criteria::DESC)
 			->limit(5)
 		->find();

@@ -17,7 +17,7 @@ class FrontController extends Controller
 	public function indexAction()
 	{
 		return $this->render('MVNerdsNewsBundle:Front:index.html.twig', array(
-			'news' => $this->get('mvnerds.news_manager')->findLatestPublicNews()
+			'news' => $this->get('mvnerds.news_manager')->findPublicHighlights()
 		));
 	}
 	
@@ -26,6 +26,7 @@ class FrontController extends Controller
 	 */
 	public function viewAction($slug)
 	{
+		//TODO VERIFIER LES DROITS
 		try {
 			/* @var $news \MVNerds\CoreBundle\Model\News */
 			$news = $this->get('mvnerds.news_manager')->findBySlug($slug);

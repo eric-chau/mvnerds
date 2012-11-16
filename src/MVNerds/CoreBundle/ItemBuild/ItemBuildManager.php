@@ -103,7 +103,40 @@ class ItemBuildManager
 		}
 
 		return $itemBuilds;
-	}	
+	}
+	
+	public function findAllPublic()
+	{
+		$itemBuilds = ItemBuildQuery::create()
+			->add(ItemBuildPeer::STATUS, ItemBuildPeer::STATUS_PUBLIC)
+			->joinWith('ChampionItemBuild', \Criteria::LEFT_JOIN)
+			->joinWith('ChampionItemBuild.GameMode', \Criteria::LEFT_JOIN)
+			->joinWith('ChampionItemBuild.Champion chp', \Criteria::LEFT_JOIN)
+			->joinWith('chp.ChampionI18n', \Criteria::LEFT_JOIN)
+		->find();
+
+		$items = \MVNerds\CoreBundle\Model\ItemQuery::create()
+				->joinWith('ItemI18n', \Criteria::LEFT_JOIN)
+				->joinWith('ItemPrimaryEffect', \Criteria::LEFT_JOIN)
+				->joinWith('ItemPrimaryEffect.PrimaryEffect', \Criteria::LEFT_JOIN)
+				->joinWith('PrimaryEffect.PrimaryEffectI18n', \Criteria::LEFT_JOIN)
+				->joinWith('ItemSecondaryEffect', \Criteria::LEFT_JOIN)
+				->joinWith('ItemSecondaryEffect.ItemSecondaryEffectI18n', \Criteria::LEFT_JOIN);
+		
+		$itemBuilds->populateRelation('ItemRelatedByItem1Id', $items);
+		$itemBuilds->populateRelation('ItemRelatedByItem2Id', $items);
+		$itemBuilds->populateRelation('ItemRelatedByItem3Id', $items);
+		$itemBuilds->populateRelation('ItemRelatedByItem4Id', $items);
+		$itemBuilds->populateRelation('ItemRelatedByItem5Id', $items);
+		$itemBuilds->populateRelation('ItemRelatedByItem6Id', $items);
+		
+		if (null === $itemBuilds)
+		{
+			throw new InvalidArgumentException('No item build found !');
+		}
+
+		return $itemBuilds;
+	}
 	
 	public function findByUserId($userId)
 	{
@@ -144,6 +177,7 @@ class ItemBuildManager
 	public function findLatestBuilds($championItemBuildsCriteria, $itemsCriteria)
 	{
 		$itemBuilds = ItemBuildQuery::create()
+			->add(ItemBuildPeer::STATUS, ItemBuildPeer::STATUS_PUBLIC)
 			->orderById(\Criteria::DESC)
 			->limit(5)
 		->find();
@@ -170,6 +204,7 @@ class ItemBuildManager
 	public function findMostDownloadedBuilds($championItemBuildsCriteria, $itemsCriteria)
 	{
 		$itemBuilds = ItemBuildQuery::create()
+			->add(ItemBuildPeer::STATUS, ItemBuildPeer::STATUS_PUBLIC)
 			->orderByDownload(\Criteria::DESC)
 			->limit(5)
 		->find();
@@ -198,5 +233,29 @@ class ItemBuildManager
 	public function save(Item $item)
 	{
 		$item->save();
+	}
+	
+	/**
+	 * Rends tous les item builds qui contiennent l item ayant pour id $id obsoletes
+	 */
+	public function findByItemId($id)
+	{
+		$itemBuilds = ItemBuildQuery::create()
+				->where(
+					ItemBuildPeer::ITEM1_ID . ' = '. $id . ' OR ' .
+					ItemBuildPeer::ITEM2_ID . ' = '. $id . ' OR ' .
+					ItemBuildPeer::ITEM3_ID . ' = '. $id . ' OR ' .
+					ItemBuildPeer::ITEM4_ID . ' = '. $id . ' OR ' .
+					ItemBuildPeer::ITEM5_ID . ' = '. $id . ' OR ' .
+					ItemBuildPeer::ITEM6_ID . ' = '. $id
+				)
+		->find();
+
+		if (null === $itemBuilds)
+		{
+			throw new InvalidArgumentException('No item build where item id = ' . $id . '!');
+		}
+
+		return $itemBuilds;
 	}
 }
