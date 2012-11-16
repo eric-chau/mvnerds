@@ -19,7 +19,7 @@ class ItemController extends Controller
 	public function indexAction()
 	{
 		return $this->render('MVNerdsAdminBundle:Item:index.html.twig', array(
-			'items' => $this->get('mvnerds.item_manager')->findAllWithTags()
+			'items' => $this->get('mvnerds.item_manager')->findAll()
 		));
 	}
 	
@@ -69,6 +69,8 @@ class ItemController extends Controller
 		}
 		$form = $this->createForm(new ItemType(), $item);
 		
+		$wasObsolete = $item->getIsObsolete();
+		
 		$request = $this->getRequest();
 		if ($request->isMethod('POST'))
 		{
@@ -76,9 +78,39 @@ class ItemController extends Controller
 			if ($form->isValid())
 			{
 				$item = $form->getData();
+				
+				if(!$wasObsolete && $item->getIsObsolete())
+				{
+					$relatedItemBuilds = $this->get('mvnerds.item_build_manager')->findByItemId($item->getId());
+					foreach($relatedItemBuilds as $itemBuild)
+					{
+						$itemBuild->setStatus(\MVNerds\CoreBundle\Model\ItemBuildPeer::STATUS_OBSOLETE);
+						$itemBuild->save();
+					}
+				} 
+				elseif ($wasObsolete && !$item->getIsObsolete())
+				{
+					$relatedItemBuilds = $this->get('mvnerds.item_build_manager')->findByItemId($item->getId());
+					foreach($relatedItemBuilds as $itemBuild)
+					{
+						/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
+						if (
+							!$itemBuild->getItemRelatedByItem1Id()->getIsObsolete() &&
+							!$itemBuild->getItemRelatedByItem2Id()->getIsObsolete() &&
+							!$itemBuild->getItemRelatedByItem3Id()->getIsObsolete() &&
+							!$itemBuild->getItemRelatedByItem4Id()->getIsObsolete() &&
+							!$itemBuild->getItemRelatedByItem5Id()->getIsObsolete() &&
+							!$itemBuild->getItemRelatedByItem6Id()->getIsObsolete()
+						) {
+							$itemBuild->setStatus(\MVNerds\CoreBundle\Model\ItemBuildPeer::STATUS_PUBLIC);
+							$itemBuild->save();
+						}
+					}
+				}
+				
 				// TODO: effectuer au moins la valiation en XML avant de sauvegarder les modifications effectuées sur le champion
 				$this->get('mvnerds.item_manager')->save($item);
-
+				
 				// Ajout d'un message de flash pour notifier que les informations de l'utilisateur ont bien été modifié
 				$this->get('mvnerds.flash_manager')->setSuccessMessage('Les informations de l item ' . $item->getSlug() . ' ont bien été mises à jour.');
 

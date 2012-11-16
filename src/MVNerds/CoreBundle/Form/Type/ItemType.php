@@ -36,6 +36,11 @@ class ItemType extends AbstractType
 			'label'		=> 'Stacks'
 		));
 		
+		$builder->add('is_obsolete', 'checkbox', array(
+			'label' => 'Est obsolete ?',
+			'required'	=> false
+		));
+		
 		$builder->add('item_game_modes', 'collection', array(
 			'type' => new ItemGameModeType(),
 			'allow_add' => true,

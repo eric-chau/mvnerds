@@ -351,6 +351,7 @@
     <column name="sell_value" required="true" type="SMALLINT" />
     <column name="riot_code" required="true" size="5" type="VARCHAR" />
     <column defaultValue="1" name="stacks" required="true" type="INTEGER" />
+    <column defaultValue="0" name="is_obsolete" required="true" type="BOOLEAN" />
     <foreign-key foreignTable="champion">
       <reference foreign="id" local="champion_id" />
     </foreign-key>
@@ -434,17 +435,18 @@
   </table>
   <table name="item_build">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
-    <column name="item1_id" required="true" type="INTEGER" />
-    <column name="item2_id" required="true" type="INTEGER" />
-    <column name="item3_id" required="true" type="INTEGER" />
-    <column name="item4_id" required="true" type="INTEGER" />
-    <column name="item5_id" required="true" type="INTEGER" />
-    <column name="item6_id" required="true" type="INTEGER" />
+    <column name="item1_id" type="INTEGER" />
+    <column name="item2_id" type="INTEGER" />
+    <column name="item3_id" type="INTEGER" />
+    <column name="item4_id" type="INTEGER" />
+    <column name="item5_id" type="INTEGER" />
+    <column name="item6_id" type="INTEGER" />
     <column name="name" required="true" size="255" type="VARCHAR" />
     <column defaultValue="NULL" name="user_id" type="INTEGER" />
     <column defaultValue="0" name="download" required="true" type="INTEGER" />
     <column defaultValue="0" name="view" required="true" type="INTEGER" />
     <column name="description" type="LONGVARCHAR" />
+    <column name="status" required="true" type="ENUM" valueSet="PUBLIC, PRIVATE, OBSOLETE" />
     <foreign-key foreignTable="user">
       <reference foreign="id" local="user_id" />
     </foreign-key>
@@ -537,6 +539,7 @@
     <column name="content" required="true" type="LONGVARCHAR" />
     <column defaultValue="0" name="view" required="true" type="INTEGER" />
     <column name="image_name" required="true" size="255" type="VARCHAR" />
+    <column defaultValue="0" name="is_highlight" required="true" type="BOOLEAN" />
     <foreign-key foreignTable="user">
       <reference foreign="id" local="user_id" />
     </foreign-key>

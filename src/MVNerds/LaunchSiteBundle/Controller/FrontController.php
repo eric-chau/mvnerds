@@ -42,7 +42,7 @@ class FrontController extends Controller
 			'form'						=> $form->createView(),
 			'latest_builds'				=> $this->get('mvnerds.item_build_manager')->findLatestBuilds($championItemBuildsCriteria, $itemsCriteria),
 			'most_downloaded_builds'	=> $this->get('mvnerds.item_build_manager')->findMostDownloadedBuilds($championItemBuildsCriteria, $itemsCriteria),
-			'news'						=> $this->get('mvnerds.news_manager')->findLatestPublicNews()
+			'news'						=> $this->get('mvnerds.news_manager')->findPublicHighlights()
 		));
 	}
 
