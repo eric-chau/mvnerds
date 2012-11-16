@@ -59,6 +59,24 @@ class NewsManager
 		return $news;
 	}
 	
+	public function findPublicBySlug($slug)
+	{
+		$news = NewsQuery::create()
+			->joinWithI18n($this->userLocale)
+			->joinWith('NewsCategory')
+			->joinWith('User', \Criteria::LEFT_JOIN)
+			->add(NewsPeer::SLUG, $slug)
+			->add(NewsPeer::STATUS, NewsPeer::STATUS_PUBLIC)
+		->findOne();
+
+		if (null === $news)
+		{
+			throw new InvalidArgumentException('No news with slug:' . $news . '!');
+		}
+
+		return $news;
+	}
+	
 	public function findAllPublic()
 	{
 		return NewsQuery::create()
@@ -66,6 +84,16 @@ class NewsManager
 			->joinWith('NewsCategory')
 			->joinWith('User', \Criteria::LEFT_JOIN)
 			->where(NewsPeer::STATUS . ' LIKE ?', NewsPeer::STATUS_PUBLIC)
+		->find();
+	}
+	
+	public function findAllNotPrivate()
+	{
+		return NewsQuery::create()
+			->joinWithI18n($this->userLocale)
+			->joinWith('NewsCategory')
+			->joinWith('User', \Criteria::LEFT_JOIN)
+			->where(NewsPeer::STATUS . ' NOT LIKE ?', NewsPeer::STATUS_PRIVATE)
 		->find();
 	}
 	
@@ -79,12 +107,36 @@ class NewsManager
 	}
 	
 	/**
-	 * Récupère les dernieres news
+	 * Récupère les derniers highlights publiques
 	 */
 	public function findPublicHighlights()
 	{
 		$news = NewsQuery::create()
 			->where(NewsPeer::STATUS . ' LIKE ?', NewsPeer::STATUS_PUBLIC)
+			->add(NewsPeer::IS_HIGHLIGHT, '1')
+			->orderByCreateTime(\Criteria::DESC)
+			->limit(5)
+		->find();
+		
+		$news->populateRelation('User');
+		$news->populateRelation('NewsI18n');
+		$news->populateRelation('NewsCategory');
+		
+		if (null === $news)
+		{
+			throw new InvalidArgumentException('No news found !');
+		}
+
+		return $news;
+	}	
+	
+	/**
+	 * Récupère les derniers highlights non privés
+	 */
+	public function findNotPrivateHighlights()
+	{
+		$news = NewsQuery::create()
+			->where(NewsPeer::STATUS . ' NOT LIKE ?', NewsPeer::STATUS_PRIVATE)
 			->add(NewsPeer::IS_HIGHLIGHT, '1')
 			->orderByCreateTime(\Criteria::DESC)
 			->limit(5)

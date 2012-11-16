@@ -124,6 +124,11 @@
 			ROLE MANAGER SERVICES
 		-->
 		<service id="mvnerds.role_manager" class="MVNerds\CoreBundle\Role\RoleManager" />
+		
+		<!-- 
+			STATISTICS MANAGER SERVICE
+		-->
+		<service id="mvnerds.statistics_manager" class="MVNerds\CoreBundle\Statistics\StatisticsManager" />
 	</services>
     
 </container>

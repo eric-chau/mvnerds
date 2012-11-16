@@ -26,10 +26,15 @@ class FrontController extends Controller
 	 */
 	public function viewAction($slug)
 	{
-		//TODO VERIFIER LES DROITS
 		try {
 			/* @var $news \MVNerds\CoreBundle\Model\News */
-			$news = $this->get('mvnerds.news_manager')->findBySlug($slug);
+			if ($this->get('security.context')->isGranted('ROLE_NEWSER'))
+			{
+				$news = $this->get('mvnerds.news_manager')->findBySlug($slug);
+			} else {
+				$news = $this->get('mvnerds.news_manager')->findPublicBySlug($slug);
+			}
+			
 			$news->setView($news->getView() + 1);
 			$news->save();
 			$news->setContent($this->get('mvnerds.bbcode_manager')->BBCode2Html($news->getContent()));
@@ -47,8 +52,15 @@ class FrontController extends Controller
 	 */
 	public function listAction() 
 	{
+		if ($this->get('security.context')->isGranted('ROLE_NEWSER'))
+		{
+			$news = $this->get('mvnerds.news_manager')->findAllNotPrivate();
+		} else {
+			$news = $this->get('mvnerds.news_manager')->findAllPublic();
+		}
+		
 		return $this->render('MVNerdsNewsBundle:Front:list_index.html.twig', array(
-			'news'	=> $this->get('mvnerds.news_manager')->findAllPublic()
+			'news'	=> $news
 		));
 	}
 }

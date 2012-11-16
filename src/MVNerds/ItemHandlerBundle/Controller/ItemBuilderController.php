@@ -228,6 +228,14 @@ class ItemBuilderController extends Controller
 			$response->headers->set('Content-Length', filesize($path));
 
 			@readfile($path);
+			
+			try{
+				$statistic = $this->get('mvnerds.statistics_manager')->findByUniqueName('ITEM_BUILDS_TOTAL_DOWNLOADED');
+				$statistic->setValue($statistic->getValue() + 1);
+				$statistic->save();
+			} catch(\Exception $e) {
+				
+			}
 		}
 		return $response;
 	}

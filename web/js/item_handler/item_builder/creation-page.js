@@ -111,7 +111,7 @@ function initItemFilterList($isotope, $filterButtons) {
 	//Clic sur un bouton de filtrage non selectionné
 	$filterButtons.on('click', ' a.filter-link:not(.selected)', function(){
 		$(this).addClass('selected');
-		$(this).parent('a.dropdown-toggle').addClass('active');
+		$(this).parents('li.dropdown.action').children('a.dropdown-toggle.action-button-link').addClass('active');
 		activateButton($('li#item-li-clean-filter'));
 		$isotope.addFilterValue('.'+$(this).attr('data-option-value'));
 		
@@ -122,6 +122,7 @@ function initItemFilterList($isotope, $filterButtons) {
 		$(this).removeClass('selected');
 		$isotope.removeFilterValue('.'+$(this).attr('data-option-value'));
 		if($(this).parent().find('a.filter-link.selected').size() <= 0) {
+			$(this).parents('li.dropdown.action').children('a.dropdown-toggle.action-button-link').removeClass('active');
 			$(this).parent('a.dropdown-toggle').removeClass('active');
 			if($isotope.filters.name == undefined || $isotope.filters.name == ''){
 				deactivateButton($('li#item-li-clean-filter'));
@@ -147,7 +148,7 @@ function initChampionFilterList($isotope, $filterButtons) {
 	//Clic sur un bouton de filtrage non selectionné
 	$filterButtons.on('click', ' a.filter-link:not(.selected)', function(){
 		$(this).addClass('selected');
-		$(this).parent('a.dropdown-toggle').addClass('active');
+		$(this).parents('li.dropdown.action').children('a.dropdown-toggle.action-button-link').addClass('active');
 		activateButton($('li#li-clean-filter')); 
 		activateButton($('li#li-compare-filtered'));
 		$isotope.addFilterValue('.'+$(this).attr('data-option-value'));
@@ -159,6 +160,7 @@ function initChampionFilterList($isotope, $filterButtons) {
 		$(this).removeClass('selected');
 		$isotope.removeFilterValue('.'+$(this).attr('data-option-value'));
 		if($(this).parent().find('a.filter-link.selected').size() <= 0) {
+			$(this).parents('li.dropdown.action').children('a.dropdown-toggle.action-button-link').removeClass('active');
 			$(this).parent('a.dropdown-toggle').removeClass('active');
 			if($isotope.filters.name == undefined || $isotope.filters.name == ''){
 				deactivateButton($('li#li-clean-filter'));

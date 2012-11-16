@@ -38,11 +38,18 @@ class FrontController extends Controller
 				->joinWith('Champion')
 				->joinWith('Champion.ChampionI18n');
 		
+		if ($this->get('security.context')->isGranted('ROLE_NEWSER'))
+		{
+			$news = $this->get('mvnerds.news_manager')->findNotPrivateHighlights();
+		} else {
+			$news = $this->get('mvnerds.news_manager')->findPublicHighlights();
+		}
+		
 		return $this->render('MVNerdsLaunchSiteBundle:Front:index.html.twig', array(
-			'form'						=> $form->createView(),
-			'latest_builds'				=> $this->get('mvnerds.item_build_manager')->findLatestBuilds($championItemBuildsCriteria, $itemsCriteria),
+			'form'					=> $form->createView(),
+			'latest_builds'			=> $this->get('mvnerds.item_build_manager')->findLatestBuilds($championItemBuildsCriteria, $itemsCriteria),
 			'most_downloaded_builds'	=> $this->get('mvnerds.item_build_manager')->findMostDownloadedBuilds($championItemBuildsCriteria, $itemsCriteria),
-			'news'						=> $this->get('mvnerds.news_manager')->findPublicHighlights()
+			'news'					=> $news
 		));
 	}
 
@@ -196,6 +203,32 @@ class FrontController extends Controller
 	public function legalAction()
 	{
 		return $this->render('MVNerdsLaunchSiteBundle:Front:legal.html.twig');
+	}
+	
+	/**
+	 * 
+	 * @Route("/{_locale}/statistics", name="launch_site_statistics")
+	 */
+	public function statisticsAction()
+	{
+		try{
+			$itemBuildsTotalDownloaded = $this->get('mvnerds.statistics_manager')->findByUniqueName('ITEM_BUILDS_TOTAL_DOWNLOADED')->getValue();
+		} catch(\Exception $e) {
+			$itemBuildsTotalDownloaded = 0;
+		}
+		
+		return $this->render('MVNerdsLaunchSiteBundle:Front:statistics.html.twig', array(
+			'item_builds_total_downloaded'	=> $itemBuildsTotalDownloaded
+		));
+	}
+	
+	/**
+	 * 
+	 * @Route("/{_locale}/about-us", name="launch_site_about_us")
+	 */
+	public function aboutUsAction()
+	{		
+		return $this->render('MVNerdsLaunchSiteBundle:Front:about_us.html.twig');
 	}
 
 }
