@@ -62,11 +62,11 @@ class NewsManager
 	public function findPublicBySlug($slug)
 	{
 		$news = NewsQuery::create()
+			->filterBySlug($slug)
+			->filterByStatus(NewsPeer::STATUS_PUBLIC)
 			->joinWithI18n($this->userLocale)
 			->joinWith('NewsCategory')
 			->joinWith('User', \Criteria::LEFT_JOIN)
-			->add(NewsPeer::SLUG, $slug)
-			->add(NewsPeer::STATUS, NewsPeer::STATUS_PUBLIC)
 		->findOne();
 
 		if (null === $news)

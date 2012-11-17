@@ -39,7 +39,7 @@ class FrontController extends Controller
 			$news->save();
 			$news->setContent($this->get('mvnerds.bbcode_manager')->BBCode2Html($news->getContent()));
 		} catch (\Exception $e) {
-			return $this->redirect($this->generateUrl('front_news_index'));
+			return $this->redirect($this->generateUrl('launch_site_front'));
 		}
 		return $this->render('MVNerdsNewsBundle:Front:view_index.html.twig', array(
 			'news' => $news
