@@ -198,11 +198,20 @@ table#item-builds-table {
 			text-align: center;
 
 			&.name {
-				line-height: 1.4;
-				padding: 4px;
+				line-height: 1em;
+				padding: 7px 4px 4px 4px;
 				text-align: left;
+
 				span.created-by {
 					font-size: 12px;
+
+					a {
+						color: darken(@MVNerdsBlue, 20%);
+
+						&:hover {
+							color: @MVNerdsBlue; .transition(color .25s linear);
+						}
+					}
 				}
 			}
 
@@ -213,10 +222,15 @@ table#item-builds-table {
 
 			div {
 				margin: 0 auto;
+
+				&.champion-square25 {
+					position: relative;
+					top: 6px;
+				}
 			}
 
 			img {
-				width:30px;
+				width: 25px;
 			}
 
 			span {
@@ -240,6 +254,32 @@ table#item-builds-table {
 					color: #666;
 					font-size: 16px;
 					margin: 0 5px;
+				}
+			}
+
+			div.admin-actions {
+				line-height: 1em;
+
+				a {
+					&.edit-action {
+						background-color: darken(@MVNerdsGreen, 5%);
+
+						&:hover {
+							background-color: @MVNerdsGreen; .transition(background-color .25s linear);
+						}
+					}
+
+					&.delete-action {
+						background-color: darken(@MVNerdsBlue, 10%); .transition(background-color .25s linear);
+
+						&:hover {
+							background-color: @MVNerdsBlue;
+						}
+					}
+				}
+
+				strong {
+					display: inline-block;
 				}
 			}
 		}

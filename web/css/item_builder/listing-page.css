@@ -203,12 +203,22 @@ table#item-builds-table tbody tr td {
   text-align: center;
 }
 table#item-builds-table tbody tr td.name {
-  line-height: 1.4;
-  padding: 4px;
+  line-height: 1em;
+  padding: 7px 4px 4px 4px;
   text-align: left;
 }
 table#item-builds-table tbody tr td.name span.created-by {
   font-size: 12px;
+}
+table#item-builds-table tbody tr td.name span.created-by a {
+  color: #0f5e83;
+}
+table#item-builds-table tbody tr td.name span.created-by a:hover {
+  color: #19a0df;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
 }
 table#item-builds-table tbody tr td.game-mode {
   font-size: 14px;
@@ -217,8 +227,12 @@ table#item-builds-table tbody tr td.game-mode {
 table#item-builds-table tbody tr td div {
   margin: 0 auto;
 }
+table#item-builds-table tbody tr td div.champion-square25 {
+  position: relative;
+  top: 6px;
+}
 table#item-builds-table tbody tr td img {
-  width: 30px;
+  width: 25px;
 }
 table#item-builds-table tbody tr td span {
   color: #666;
@@ -239,6 +253,32 @@ table#item-builds-table tbody tr td span i {
   color: #666;
   font-size: 16px;
   margin: 0 5px;
+}
+table#item-builds-table tbody tr td div.admin-actions {
+  line-height: 1em;
+}
+table#item-builds-table tbody tr td div.admin-actions a.edit-action {
+  background-color: #658816;
+}
+table#item-builds-table tbody tr td div.admin-actions a.edit-action:hover {
+  background-color: #759e1a;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+table#item-builds-table tbody tr td div.admin-actions a.delete-action {
+  background-color: #147fb1;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+table#item-builds-table tbody tr td div.admin-actions a.delete-action:hover {
+  background-color: #19a0df;
+}
+table#item-builds-table tbody tr td div.admin-actions strong {
+  display: inline-block;
 }
 a.action {
   background-color: #be3322;

@@ -1,7 +1,13 @@
 {% extends 'MVNerdsLaunchSiteBundle::layout.html.twig' %}
 
-{% block title %}Invocateur {{ user.getUsername() }} - Profil | MVNerds{% endblock %}
-
+{% block title %}
+	{% if user.getId() != app.user.getId() %}
+		{{ user.getUsername() }} - Profil d'invocateur | MVNerds
+	{% else %}
+		Mon profil - {{ user.getUsername() }} | MVNerds
+	{% endif %}
+{% endblock %}
+		
 {% block css %}
 	{{ parent() }}
 
@@ -28,9 +34,9 @@
 	<div class="body-container summoner-profile">
 		<img src="{{ asset('images/avatar/ro0ny.jpg') }}" class="avatar" />
 		<h1>{{ user.getUsername() }}</h1>
-		<p>Inscrit depuis le {{ user.getCreatedAt()|date('d/m/Y') }} - Dernière connexion le xx/xx/xxxx</p>
-		<p>Au sein de la communauté MVNerds, {{ user.getUsername() }} est :
-			<ul>
+		<p class="gray-color">Inscrit depuis le {{ user.getCreatedAt()|date('d/m/Y') }}</p>
+		<p class="gray-color no-margin">Au sein de la communauté MVNerds, {{ user.getUsername() }} est :
+			<ul class="gray-color">
 				{% for role in user.getRoles() %}
 					<li>{{ role|trans }}</li>
 				{% endfor %}
@@ -38,13 +44,26 @@
 		</p>
 		<div class="clearfix"></div>
 		
+		<h2>Mes préférences utilisateurs</h2>
+		<div class="user-custom-parameters-container">
+			<div class="module-block">
+				<h4>PIMP MY RECOMMENDED ITEMS</h4>
+			</div>
+		</div>
+		
 		<h2>Mes listes d'objets conseillés personnalisées</h2>
 		{% if user_items_builds|length > 0 %}
-			{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_table.html.twig' with {'item_builds': user_items_builds}  %}
+			{% if user.getId() != app.user.getId() %}
+				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_table.html.twig' with {'item_builds': user_items_builds}  %}
+			{% else %}
+				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_table.html.twig' with {'item_builds': user_items_builds, 'admin_mode': true}  %}
+			{% endif %}
 		{% else %}
-			<p>Cet utilisateur n'a pas encore enregistré de liste d'objet conseillé</p>
+			<p class="empty-list">{{ user.getUsername() }} n'a pas encore enregistré de liste d'objet conseillé.</p>
 		{% endif %}
 			
 		{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}
+			
+		
 	</div>
 {% endblock %}

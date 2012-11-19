@@ -11,6 +11,8 @@
 		</thead>
 		<tbody>
 			{% for itemBuild in item_builds %}
+				{% set user = itemBuild.getUser() %}
+				
 				<tr class="item-build-row" data-target="{{itemBuild.getSlug()}}">
 					<td>
 						{% if itemBuild.getChampionItemBuilds()|length <= 1 %}
@@ -22,7 +24,7 @@
 					
 					<td class="name">
 						{{itemBuild.getName()}}<br />
-						<span class="created-by">Créé par {{itemBuild.getUser().getUsername()}} le {{itemBuild.getCreateTime('d/m/Y')}}</span>
+						<span class="created-by">Créé par <a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}" title="Consulter le profil de {{ user.getUsername }}"">{{user.getUsername()}}</a> le {{itemBuild.getCreateTime('d/m/Y')}}</span>
 					</td>
 						
 					<td class="game-mode">{{itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel()}}</td>
@@ -54,9 +56,18 @@
 					</td>
 					
 					<td>
-						<a class="action download-action" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}"><i class="icon-download-alt"></i></a>
-
-						<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>Téléchargé</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> fois</span>
+						{% if admin_mode is defined and admin_mode %}
+							<div class="admin-actions">
+								<a class="action download-action" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}"><i class="icon-download-alt"></i></a>
+								<a class="action edit-action" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}"><i class="icon-edit"></i></a>
+								<a class="action delete-action" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}"><i class="icon-remove-sign"></i></a>
+								<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>Téléchargé</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> fois</span>
+							</div>
+						{% else %}
+							<a class="action download-action" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}"><i class="icon-download-alt"></i></a>
+						
+							<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>Téléchargé</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> fois</span>
+						{% endif %}
 					</td>
 				</tr>
 			{% endfor %}

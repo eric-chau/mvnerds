@@ -130,11 +130,10 @@
 			STATISTICS MANAGER SERVICE
 		-->
 		<service id="mvnerds.statistics_manager" class="MVNerds\CoreBundle\Statistics\StatisticsManager" />
-		
+
 		<!-- 
-			USER PREFERENCE MANAGER SERVICE
+			PREFERENCE MANAGER SERVICE
 		-->
-		<service id="mvnerds.user_preference_manager" class="MVNerds\CoreBundle\UserPreference\UserPreferenceManager" />
-	</services>
-    
+		<service id="mvnerds.preference_manager" class="MVNerds\CoreBundle\Preference\PreferenceManager" />    
+	</services>		
 </container>
