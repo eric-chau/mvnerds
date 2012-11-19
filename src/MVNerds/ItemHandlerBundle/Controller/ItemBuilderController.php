@@ -46,7 +46,7 @@ class ItemBuilderController extends Controller
 				}
 			}
 			try{
-				$lolDirPreference = $this->get('mvnerds.user_preference_manager')->findByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
+				$lolDirPreference = $this->get('mvnerds.preference_manager')->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
 				$lolDir = $lolDirPreference->getValue();
 			} catch(\Exception $e) {
 				$lolDir= null;
@@ -107,15 +107,33 @@ class ItemBuilderController extends Controller
 		
 		/* @var $batchManager \MVNerds\CoreBundle\Batch\BatchManager */
 		$batchManager = $this->get('mvnerds.batch_manager');
-		
-		if ((null === $path || '' == $path ) && $this->get('security.context')->isGranted('ROLE_USER')) {
+		if($this->get('security.context')->isGranted('ROLE_USER'))
+		{
 			$user = $this->get('security.context')->getToken()->getUser();
-
-			try{
-				$lolDirectoryPreference = $this->get('mvnerds.preference_manager')->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
-				$path = $lolDirectoryPreference->getValue();
-			}catch(\Exception $e) {
-				$path = null;
+			$preferenceManager = $this->get('mvnerds.preference_manager');
+			if (null === $path || '' == $path ) 
+			{
+				try{
+					$lolDirectoryPreference = $preferenceManager->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
+					$path = $lolDirectoryPreference->getValue();
+				}catch(\Exception $e) {
+					$path = null;
+				}
+			} 
+			else
+			{
+				try{
+					$userPreference = $this->get('mvnerds.preference_manager')->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
+				} catch (\Exception $e) {
+					$userPreference = new UserPreference();
+				}
+				$userPreference->setValue($path);
+				$userPreference->setUserId($user->getId());
+				try{
+					$preference = $preferenceManager->findByUniqueName('LEAGUE_OF_LEGENDS_DIRECTORY');
+					$userPreference->setPreference($preference);
+					$userPreference->save();
+				} catch (\Exception $e) {}
 			}
 		}
 		
@@ -258,11 +276,11 @@ class ItemBuilderController extends Controller
 		if($this->get('security.context')->isGranted('ROLE_USER'))
 		{
 			$user = $this->get('security.context')->getToken()->getUser();
-			
+			$preferenceManager = $this->get('mvnerds.preference_manager');
 			if (null === $path || '' == $path ) 
 			{
 				try{
-					$lolDirectoryPreference = $this->get('mvnerds.preference_manager')->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
+					$lolDirectoryPreference = $preferenceManager->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
 					$path = $lolDirectoryPreference->getValue();
 				}catch(\Exception $e) {
 					$path = null;
@@ -270,14 +288,18 @@ class ItemBuilderController extends Controller
 			} 
 			else
 			{
-				$userPreference = new UserPreference();
+				try{
+					$userPreference = $this->get('mvnerds.preference_manager')->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
+				} catch (\Exception $e) {
+					$userPreference = new UserPreference();
+				}
 				$userPreference->setValue($path);
 				$userPreference->setUserId($user->getId());
-				$preference = \MVNerds\CoreBundle\Model\PreferenceQuery::create()
-					->add(\MVNerds\CoreBundle\Model\PreferencePeer::UNIQUE_NAME, 'LEAGUE_OF_LEGENDS_DIRECTORY', \Criteria::LIKE)
-				->findOne();
-				$userPreference->setPreference($preference);
-				$userPreference->save();
+				try{
+					$preference = $preferenceManager->findByUniqueName('LEAGUE_OF_LEGENDS_DIRECTORY');
+					$userPreference->setPreference($preference);
+					$userPreference->save();
+				} catch (\Exception $e) {}
 			}
 		}
 		
@@ -285,7 +307,7 @@ class ItemBuilderController extends Controller
 		
 		$batchManager->createRecItemBuilder($itemBuild, $path);
 
-		return new Response(json_encode($itemBuild->getSlug()));
+		return new Response(json_encode($newItemBuildSlug));
 	}
 	
 	/**

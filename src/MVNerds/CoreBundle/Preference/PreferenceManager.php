@@ -4,10 +4,10 @@ namespace MVNerds\CoreBundle\Preference;
 
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 
-use MVNerds\CoreBundle\Model\Preference;
 use MVNerds\CoreBundle\Model\PreferenceQuery;
 use MVNerds\CoreBundle\Model\PreferencePeer;
-use MVNerds\CoreBundle\Model\PreferenceI18nPeer;
+use MVNerds\CoreBundle\Model\UserPreferenceQuery;
+use MVNerds\CoreBundle\Model\UserPreferencePeer;
 
 class PreferenceManager
 {

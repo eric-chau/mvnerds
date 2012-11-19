@@ -4,20 +4,7 @@
 		<h3>Téléchargement du build</h3>
 	</div>
 	<div class="modal-body">
-		{% if lol_dir is defined and lol_dir != ''%}
-			<p>
-				Votre dossier contenant le répertoire League of Legends a été détecté dans vos préférences :
-			</p>
-			<ul>
-				<li>{{lol_dir}}</li>
-			</ul>
-			<p>
-				Si vous voulez le modifier veuillez le faire sur votre page de profil.
-			</p>
-		{%else%}
-			<p>
-				Si votre jeu League of Legends ne se trouve pas dans l'un des répertoires suivants : 
-			</p>
+		
 			<ul>
 				<li>C:/Program Files/Riot Games/</li>
 				<li>C:/Program Files/Riot/</li>
@@ -25,12 +12,18 @@
 				<li>C:/Riot/</li>
 				<li>C:/Program Files (x86)/Riot Games/</li>
 				<li>C:/Program Files (x86)/Riot/</li>
+				{% if lol_dir is defined and lol_dir != ''%}
+					<li><span id="lol-dir-preference">{{lol_dir}}</span> | Ceci est le répertoire que vous avez enregistré auparavant et il sera remplacé si vous saisissez une autre valeur ci-dessous.</li>
+				{% else %}
+					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+						<li class="hide"><span id="lol-dir-preference"></span> | Ceci est le répertoire que vous avez enregistré auparavant et il sera remplacé si vous saisissez une autre valeur ci-dessous.</li>
+					{% endif%}
+				{%endif%}
 			</ul>
 			<p>
 				Veuillez l'indiquer ici :
 				<input type="text" id="modal-lol-path" placeholder="ex : D:/Riot/"/>
 			</p>
-		{%endif%}
 	</div>
 	<div class="modal-footer">
 		<a href="#" data-dismiss="modal" class="btn-cancel">Annuler</a>

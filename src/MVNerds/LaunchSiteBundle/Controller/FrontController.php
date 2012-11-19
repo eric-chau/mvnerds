@@ -44,12 +44,24 @@ class FrontController extends Controller
 		} else {
 			$news = $this->get('mvnerds.news_manager')->findPublicHighlights();
 		}
+		$lolDir= null;
+		if ($this->get('security.context')->isGranted('ROLE_USER')) 
+		{
+			try{
+				$user = $this->get('security.context')->getToken()->getUser();
+				$lolDirPreference = $this->get('mvnerds.preference_manager')->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
+				$lolDir = $lolDirPreference->getValue();
+			} catch(\Exception $e) {
+				$lolDir= null;
+			}
+		}
 		
 		return $this->render('MVNerdsLaunchSiteBundle:Front:index.html.twig', array(
 			'form'					=> $form->createView(),
 			'latest_builds'			=> $this->get('mvnerds.item_build_manager')->findLatestBuilds($championItemBuildsCriteria, $itemsCriteria),
 			'most_downloaded_builds'	=> $this->get('mvnerds.item_build_manager')->findMostDownloadedBuilds($championItemBuildsCriteria, $itemsCriteria),
-			'news'					=> $news
+			'news'					=> $news,
+			'lol_dir'				=> $lolDir
 		));
 	}
 
