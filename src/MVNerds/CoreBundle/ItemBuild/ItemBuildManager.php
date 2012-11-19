@@ -258,4 +258,13 @@ class ItemBuildManager
 
 		return $itemBuilds;
 	}
+	
+	public function countNbBuildsByUserId($id)
+	{
+		$nbItemBuilds = ItemBuildQuery::create()
+				->add(ItemBuildPeer::USER_ID, $id)
+		->count();
+
+		return $nbItemBuilds;
+	}
 }

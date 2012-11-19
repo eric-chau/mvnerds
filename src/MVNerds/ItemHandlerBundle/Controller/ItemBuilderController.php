@@ -17,14 +17,32 @@ use MVNerds\CoreBundle\Model\ChampionItemBuild;
 class ItemBuilderController extends Controller
 {
 
+	const MAX_ITEM_BUILDS = 2;
+	
 	/**
 	 * @Route("/create", name="item_builder_create")
 	 */
 	public function createAction()
-	{				
+	{	
+		$canSaveBuild = false;
+		if($this->get('security.context')->isGranted('ROLE_ADMIN'))
+		{
+			$canSaveBuild = true;
+		}
+		elseif ($this->get('security.context')->isGranted('ROLE_USER')) 
+		{
+			$user = $this->get('security.context')->getToken()->getUser();
+			$nbItemBuilds = $this->get('mvnerds.item_build_manager')->countNbBuildsByUserId($user->getId());
+			if ($nbItemBuilds < self::MAX_ITEM_BUILDS)
+			{
+				$canSaveBuild = true;
+			}
+		}
+		
 		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:create_index.html.twig', array(
-			'champions' => $this->get('mvnerds.champion_manager')->findAllWithTags(),
-			'items'	=> $this->get('mvnerds.item_manager')->findAllActive()
+			'champions'		=> $this->get('mvnerds.champion_manager')->findAllWithTags(),
+			'items'		=> $this->get('mvnerds.item_manager')->findAllActive(),
+			'can_save_build'	=> $canSaveBuild
 		));
 	}
 	
@@ -187,8 +205,19 @@ class ItemBuilderController extends Controller
 			
 			if (null != $saveBuild && $saveBuild == 'true' && $this->get('security.context')->isGranted('ROLE_USER')) {
 				$user = $this->get('security.context')->getToken()->getUser();
-				$itemBuild->setUser($user);
-				$itemBuild->save();
+				
+				$nbItemBuilds = $itemBuildManager->countNbBuildsByUserId($user->getId());
+				
+				if($this->get('security.context')->isGranted('ROLE_ADMIN'))
+				{
+					$itemBuild->setUser($user);
+					$itemBuild->save();
+				} 
+				elseif ($nbItemBuilds < self::MAX_ITEM_BUILDS) 
+				{
+					$itemBuild->setUser($user);
+					$itemBuild->save();
+				}
 			}
 		} else {
 			throw new HttpException(500, 'No valid champion given!');
@@ -197,6 +226,8 @@ class ItemBuilderController extends Controller
 		/* @var $batchManager \MVNerds\CoreBundle\Batch\BatchManager */
 		$batchManager = $this->get('mvnerds.batch_manager');
 
+		
+		
 		$batchManager->createRecItemBuilder($itemBuild, $path);
 
 		return new Response(json_encode($itemBuild->getSlug()));

@@ -16,4 +16,5 @@ parameters:
     
     available_languages:	['fr', 'en']
     
+    item_builds_model_path: %kernel.root_dir%/../src/MVNerds/ItemHandlerBundle/Resources/bat/
     item_builds_path: %kernel.root_dir%/../web/builds/

@@ -89,7 +89,11 @@
 		<div class="generate-button-container">
 			{% if itemBuildSlug is not defined %}
 				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-					<a href="#" id="save-and-generate-build" class="main">Sauvegarder & générer</a>
+					{% if can_save_build%}
+						<a href="#" id="save-and-generate-build" class="main">Sauvegarder & générer</a>
+					{% else %}
+						Vous ne pouvez pas enregistrer plus de 7 builds.
+					{% endif %}
 				{% else %}
 					<a href="#" id="save-and-generate-build-not-authenticated" class="main">Sauvegarder & générer</a>
 				{% endif %}

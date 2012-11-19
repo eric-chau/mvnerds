@@ -11,10 +11,12 @@ class BatchManager
 {
 	private $userLocale;
 	private $itemBuildsPath;
+	private $itemBuildsModelPath;
 	
-	public function __construct($itemBuildsPath)
+	public function __construct($itemBuildsPath, $itemBuildsModelPath)
 	{
 		$this->itemBuildsPath = $itemBuildsPath;
+		$this->itemBuildsModelPath = $itemBuildsModelPath;
 	}
 	
 	/**
@@ -26,8 +28,8 @@ class BatchManager
 	 */
 	public function createRecItemBuilder(ItemBuild $itemBuild, $path = null, $locale = null)
 	{
-		$batchReleaseFinder = file_get_contents($this->itemBuildsPath . 'mvnerds.batch.release_finder.txt');
-		$batchHeader = file_get_contents($this->itemBuildsPath . 'mvnerds.batch.header.txt');
+		$batchReleaseFinder = file_get_contents($this->itemBuildsModelPath . 'mvnerds.batch.release_finder.txt');
+		$batchHeader = file_get_contents($this->itemBuildsModelPath . 'mvnerds.batch.header.txt');
 		
 		//Les répertoires les plus courants ou se trouve league of legends
 		$paths = array(
