@@ -12,6 +12,7 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 
 use MVNerds\CoreBundle\Model\ItemBuild;
 use MVNerds\CoreBundle\Model\ChampionItemBuild;
+use MVNerds\CoreBundle\Model\UserPreference;
 
 /**
  * @Route("/pimp-my-recommended-items")
@@ -19,7 +20,7 @@ use MVNerds\CoreBundle\Model\ChampionItemBuild;
 class ItemBuilderController extends Controller
 {
 
-	const MAX_ITEM_BUILDS = 2;
+	const MAX_ITEM_BUILDS = 7;
 	
 	/**
 	 * @Route("/create", name="item_builder_create")
@@ -27,24 +28,36 @@ class ItemBuilderController extends Controller
 	public function createAction()
 	{
 		$canSaveBuild = false;
-		if($this->get('security.context')->isGranted('ROLE_ADMIN'))
-		{
-			$canSaveBuild = true;
-		}
-		elseif ($this->get('security.context')->isGranted('ROLE_USER')) 
+		$lolDir = null;
+		
+		if ($this->get('security.context')->isGranted('ROLE_USER')) 
 		{
 			$user = $this->get('security.context')->getToken()->getUser();
-			$nbItemBuilds = $this->get('mvnerds.item_build_manager')->countNbBuildsByUserId($user->getId());
-			if ($nbItemBuilds < self::MAX_ITEM_BUILDS)
+			if($this->get('security.context')->isGranted('ROLE_ADMIN'))
 			{
 				$canSaveBuild = true;
 			}
-		}
+			else
+			{
+				$nbItemBuilds = $this->get('mvnerds.item_build_manager')->countNbBuildsByUserId($user->getId());
+				if ($nbItemBuilds < self::MAX_ITEM_BUILDS)
+				{
+					$canSaveBuild = true;
+				}
+			}
+			try{
+				$lolDirPreference = $this->get('mvnerds.user_preference_manager')->findByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
+				$lolDir = $lolDirPreference->getValue();
+			} catch(\Exception $e) {
+				$lolDir= null;
+			}
+		}	
 		
 		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:create_index.html.twig', array(
 			'champions'		=> $this->get('mvnerds.champion_manager')->findAllWithTags(),
 			'items'		=> $this->get('mvnerds.item_manager')->findAllActive(),
-			'can_save_build'	=> $canSaveBuild
+			'can_save_build'	=> $canSaveBuild,
+			'lol_dir'		=> $lolDir
 		));
 	}
 	
@@ -242,15 +255,29 @@ class ItemBuilderController extends Controller
 		
 		/* @var $batchManager \MVNerds\CoreBundle\Batch\BatchManager */
 		$batchManager = $this->get('mvnerds.batch_manager');
-
-		if ((null === $path || '' == $path ) && $this->get('security.context')->isGranted('ROLE_USER')) {
+		if($this->get('security.context')->isGranted('ROLE_USER'))
+		{
 			$user = $this->get('security.context')->getToken()->getUser();
-
-			try{
-				$lolDirectoryPreference = $this->get('mvnerds.user_preference_manager')->findByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
-				$path = $lolDirectoryPreference->getValue();
-			}catch(\Exception $e) {
-				$path = null;
+			
+			if (null === $path || '' == $path ) 
+			{
+				try{
+					$lolDirectoryPreference = $this->get('mvnerds.user_preference_manager')->findByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
+					$path = $lolDirectoryPreference->getValue();
+				}catch(\Exception $e) {
+					$path = null;
+				}
+			} 
+			else
+			{
+				$userPreference = new UserPreference();
+				$userPreference->setValue($path);
+				$userPreference->setUserId($user->getId());
+				$preference = \MVNerds\CoreBundle\Model\PreferenceQuery::create()
+					->add(\MVNerds\CoreBundle\Model\PreferencePeer::UNIQUE_NAME, 'LEAGUE_OF_LEGENDS_DIRECTORY', \Criteria::LIKE)
+				->findOne();
+				$userPreference->setPreference($preference);
+				$userPreference->save();
 			}
 		}
 		
