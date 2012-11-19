@@ -11,6 +11,19 @@ use MVNerds\CoreBundle\Model\PreferenceI18nPeer;
 
 class PreferenceManager
 {
+	public function findByUniqueName($uniqueName)
+	{
+		$preference = PreferenceQuery::create()
+			->add(PreferencePeer::UNIQUE_NAME, $uniqueName)
+		->findOne();
+		
+		if (null == $preference) {
+			throw new InvalidArgumentException('Cannot found preference with unique name `'. $uniqueName .'`.');
+		}
+		
+		return $preference;
+	}
+	
 	public function findByUniqueNameAndUserId($uniqueName, $userId)
 	{
 		PreferenceQuery::create()

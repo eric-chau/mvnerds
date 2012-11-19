@@ -33,4 +33,18 @@ class FrontController extends Controller
 			'_locale' => $this->getRequest()->getLocale()
 		)));
 	}
+	
+	/**
+	 * @Route("/{_locale}/profile/{userSlug}", name="summoner_profile_view")
+	 */
+	
+	public function viewProfileAction($userSlug)
+	{
+		$user = $this->get('mvnerds.user_manager')->findBySlug($userSlug);
+		
+		return $this->render('MVNerdsProfileBundle:Profile:profile_index.html.twig', array(
+			'user'				=> $user,
+			'user_items_builds' => $this->get('mvnerds.item_build_manager')->findByUserId($user->getId())
+		));
+	}
 }
