@@ -13,7 +13,7 @@ use MVNerds\CoreBundle\Model\ChampionPeer;
  * @Route("/champ")
  */
 class ChampionController extends Controller
-{	
+{
 	/**
 	 * Liste tous les champions de la base
 	 *

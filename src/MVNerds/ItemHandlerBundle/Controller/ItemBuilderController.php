@@ -7,6 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Exception;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 use MVNerds\CoreBundle\Model\ItemBuild;
 use MVNerds\CoreBundle\Model\ChampionItemBuild;
@@ -23,7 +25,7 @@ class ItemBuilderController extends Controller
 	 * @Route("/create", name="item_builder_create")
 	 */
 	public function createAction()
-	{	
+	{
 		$canSaveBuild = false;
 		if($this->get('security.context')->isGranted('ROLE_ADMIN'))
 		{
@@ -104,6 +106,8 @@ class ItemBuilderController extends Controller
 			}
 		}
 		
+		$itemBuild->setSlug($itemBuildSlug . '__' . $this->get('session')->getId() . '__');
+		
 		$batchManager->createRecItemBuilder($itemBuild, $path);
 		
 		return new Response(json_encode($itemBuildSlug));
@@ -173,7 +177,8 @@ class ItemBuilderController extends Controller
 		
 		$itemBuild->setName($buildName);
 		
-		$itemBuild->setSlug(preg_replace('/[^\w\/]+/u', '-', $buildName));
+		$newItemBuildSlug = preg_replace('/[^\w\/]+/u', '-', $buildName);
+		$itemBuild->setSlug($newItemBuildSlug);
 		$championItemBuilds = new \PropelCollection();
 		
 		/* @var $championManager \MVNerds\CoreBundle\Champion\ChampionManager */
@@ -213,6 +218,8 @@ class ItemBuilderController extends Controller
 				}
 			}
 			
+			
+			
 			if (null != $saveBuild && $saveBuild == 'true' && $this->get('security.context')->isGranted('ROLE_USER')) {
 				$user = $this->get('security.context')->getToken()->getUser();
 				
@@ -247,6 +254,8 @@ class ItemBuilderController extends Controller
 			}
 		}
 		
+		 $itemBuild->setSlug($newItemBuildSlug . '__' . $this->get('session')->getId() . '__');
+		
 		$batchManager->createRecItemBuilder($itemBuild, $path);
 
 		return new Response(json_encode($itemBuild->getSlug()));
@@ -266,14 +275,14 @@ class ItemBuilderController extends Controller
 			//Si le build n est pas trouvé en base de données on ne fait rien
 		}
 		
-		$path = $this->container->getParameter('item_builds_path') . $itemBuildSlug . '.bat';
+		$path = $this->container->getParameter('item_builds_path') . $itemBuildSlug . '__' . $this->get('session')->getId() .'__.bat';
 		
 		$response = new Response();
 		
 		if (file_exists($path))
-		{			
-			$response->headers->set('ContentType', 'application/octetstream');
-			$response->headers->set('Content-Disposition', 'attachment;filename='.basename($path));
+		{
+			$response->headers->set('Content-Type', 'application/octetstream');
+			$response->headers->set('Content-Disposition', 'attachment;filename='.$itemBuildSlug.'.bat');
 			$response->headers->set('Content-Transfer-Encoding', 'binary');
 			$response->headers->set('Content-Length', filesize($path));
 
@@ -326,18 +335,23 @@ class ItemBuilderController extends Controller
 	
 	/**
 	 * @Route("/edit-build/{itemBuildSlug}", name="item_builder_edit_build")
+	 * @Secure(roles="ROLE_USER")
 	 */
 	public function editBuildAction($itemBuildSlug) 
-	{
+	{		
 		/* @var $itemBuildManager \MVNerds\CoreBundle\ItemBuild\ItemBuildManager */
 		$itemBuildManager = $this->get('mvnerds.item_build_manager');
 			
 		try {
 			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
 			$itemBuild = $itemBuildManager->findOneBySlug($itemBuildSlug);
-			//$itemBuild->getI
 		} catch (\Exception $e ) {
 			return $this->redirect($this->generateUrl('item_builder_list'));
+		}
+		
+		if( ! ($this->get('security.context')->getToken()->getUser()->getId() == $itemBuild->getUserId() || $this->get('security.context')->isGranted('ROLE_ADMIN')))
+		{
+			throw new AccessDeniedException();
 		}
 		
 		$selectedChampions = array();
@@ -362,5 +376,29 @@ class ItemBuilderController extends Controller
 			'gameMode'			=> $itemBuild->getChampionItemBuilds()->getFirst()->getGameMode()->getLabel(),
 			'itemBuildSlug'		=> $itemBuildSlug
 		));
+	}
+	
+	/**
+	 * @Route("/delete-build/{itemBuildSlug}", name="item_builder_delete_build")
+	 * @Secure(roles="ROLE_USER")
+	 */
+	public function deleteBuildAction($itemBuildSlug) 
+	{
+		/* @var $itemBuildManager \MVNerds\CoreBundle\ItemBuild\ItemBuildManager */
+		$itemBuildManager = $this->get('mvnerds.item_build_manager');
+			
+		try {
+			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
+			$itemBuild = $itemBuildManager->findOneBySlug($itemBuildSlug);
+		} catch (\Exception $e ) {
+			return $this->redirect($this->generateUrl('summoner_profile_proxy'));
+		}
+		
+		if($this->get('security.context')->getToken()->getUser()->getId() == $itemBuild->getUserId() || $this->get('security.context')->isGranted('ROLE_ADMIN'))
+		{
+			$itemBuild->delete();
+		}
+		
+		return $this->redirect($this->generateUrl('summoner_profile_proxy'));
 	}
 }
