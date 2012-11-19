@@ -92,6 +92,18 @@ class ItemBuilderController extends Controller
 		
 		/* @var $batchManager \MVNerds\CoreBundle\Batch\BatchManager */
 		$batchManager = $this->get('mvnerds.batch_manager');
+		
+		if ((null === $path || '' == $path ) && $this->get('security.context')->isGranted('ROLE_USER')) {
+			$user = $this->get('security.context')->getToken()->getUser();
+
+			try{
+				$lolDirectoryPreference = $this->get('mvnerds.user_preference_manager')->findByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
+				$path = $lolDirectoryPreference->getValue();
+			}catch(\Exception $e) {
+				$path = null;
+			}
+		}
+		
 		$batchManager->createRecItemBuilder($itemBuild, $path);
 		
 		return new Response(json_encode($itemBuildSlug));
@@ -109,8 +121,6 @@ class ItemBuilderController extends Controller
 		{
 			throw new HttpException(500, 'Request must be XmlHttp and POST method!');
 		}
-		
-		
 		
 		$championsSlugs = $request->get('championsSlugs');
 		$itemsSlugs = $request->get('itemsSlugs');
@@ -226,7 +236,16 @@ class ItemBuilderController extends Controller
 		/* @var $batchManager \MVNerds\CoreBundle\Batch\BatchManager */
 		$batchManager = $this->get('mvnerds.batch_manager');
 
-		
+		if ((null === $path || '' == $path ) && $this->get('security.context')->isGranted('ROLE_USER')) {
+			$user = $this->get('security.context')->getToken()->getUser();
+
+			try{
+				$lolDirectoryPreference = $this->get('mvnerds.user_preference_manager')->findByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
+				$path = $lolDirectoryPreference->getValue();
+			}catch(\Exception $e) {
+				$path = null;
+			}
+		}
 		
 		$batchManager->createRecItemBuilder($itemBuild, $path);
 
