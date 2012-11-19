@@ -24,9 +24,19 @@ class PreferenceManager
 		return $preference;
 	}
 	
-	public function findByUniqueNameAndUserId($uniqueName, $userId)
+	public function findUserPreferenceByUniqueNameAndUserId($uniqueName, $userId)
 	{
-		PreferenceQuery::create()
-				->findOne();
+		$userPreference = UserPreferenceQuery::create()
+				->joinWith('Preference')
+				->add(UserPreferencePeer::USER_ID, $userId)
+				->add(\MVNerds\CoreBundle\Model\PreferencePeer::UNIQUE_NAME, $uniqueName)
+		->findOne();
+		
+		if (null === $userPreference)
+		{
+			throw new InvalidArgumentException('No user preference with user id:' . $userId . ' and preference with unique name '.$uniqueName.' !');
+		}
+
+		return $userPreference;
 	}
 }

@@ -99,7 +99,7 @@ class ItemBuilderController extends Controller
 			$user = $this->get('security.context')->getToken()->getUser();
 
 			try{
-				$lolDirectoryPreference = $this->get('mvnerds.user_preference_manager')->findByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
+				$lolDirectoryPreference = $this->get('mvnerds.preference_manager')->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
 				$path = $lolDirectoryPreference->getValue();
 			}catch(\Exception $e) {
 				$path = null;
@@ -247,7 +247,7 @@ class ItemBuilderController extends Controller
 			$user = $this->get('security.context')->getToken()->getUser();
 
 			try{
-				$lolDirectoryPreference = $this->get('mvnerds.user_preference_manager')->findByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
+				$lolDirectoryPreference = $this->get('mvnerds.preference_manager')->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
 				$path = $lolDirectoryPreference->getValue();
 			}catch(\Exception $e) {
 				$path = null;
