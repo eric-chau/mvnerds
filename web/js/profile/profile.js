@@ -20,7 +20,9 @@ $(document).ready(function()
 			return false;
 		}
 
-		$(this).parent().find('input[type="text"]').val('');
+		var $parent = $(this).parent();
+		$parent.find('input[type="text"]').val('');
+		$parent.find('a.save-field').removeClass('disabled');
 		$(this).addClass('disabled');
 	});
 

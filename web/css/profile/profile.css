@@ -93,6 +93,7 @@ div.body-container.summoner-profile div.user-custom-parameters-container div.mod
   -moz-border-radius: 0 !important;
   border-radius: 0 !important;
   margin: 0 5px 0 0;
+  width: 300px;
 }
 div.body-container.summoner-profile div.user-custom-parameters-container div.module-block input[type="text"]:hover,
 div.body-container.summoner-profile div.user-custom-parameters-container div.module-block input[type="text"]:focus {

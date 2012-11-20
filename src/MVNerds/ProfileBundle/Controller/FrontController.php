@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
+use Symfony\Component\HttpFoundation\Response;
 
 use MVNerds\ItemHandlerBundle\Form\Model\ChangeLoLDirectoryModel;
 use MVNerds\ItemHandlerBundle\Form\Type\ChangeLoLDirectoryType;
@@ -56,6 +57,7 @@ class FrontController extends Controller
 	
 	/**
 	 * @Route("/save-summoner-preference", name="summoner_profile_save_preference", options={"expose"=true})
+	 * @Secure(roles="ROLE_USER")
 	 */
 	public function saveSummonerPreferenceAction()
 	{
