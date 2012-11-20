@@ -20,16 +20,14 @@
 
 {% block body_main_content %}
 	<div class="body-container create-item-builder">
-		<h1> Personnaliser la liste d'objets conseillés</h1>
+		<h1>{{'create_item_build.h1' | trans}}</h1>
 		<p class="module-name">Module <strong>Pimp My Recommended Items</strong></p>
-		<p>Bienvenue sur la page de création d'une nouvelle liste d'objets recommandés pour vos champions favoris. Pour être plus précis, nous allons voir comment de manière
-		simple et intuitive on modifier la liste des objets conseillés, celle qui apparaît lorsque vous êtes en jeu et que vous ouvrez la boutique.</p>
+		<p>{{'create_item_build.p.1' | trans}}</p>
 		<p></p>
 		
-		<h2>Etape 1 : choisissez un ou plusieurs champions</h2>
-		<p>Sélectionnez ici le champion dont vous souhaitez éditer sa liste d'objets conseillés.</p>
-		<p class="tip">Astuce : un des avantages à utiliser notre outil est qu'il vous permet de changer en une seule fois les objets recommandés de plusieurs champions, 
-		pratique non ?</p>
+		<h2>{{'create_item_build.h2.1' | trans}}</h2>
+		<p>{{'create_item_build.p.2' | trans}}</p>
+		<p class="tip">{{'create_item_build.tip.1' | trans}}</p>
 		
 		<div class="champion-container">
 			<div id="champion-topbar" class="actionbar">
@@ -41,24 +39,21 @@
 			</div>
 		</div>
 		
-		<h2>Etape 2 : choisissez le mode de jeu</h2>
-		<p>Dans League of Legends, pour chaque champion sa liste d'objets conseillés diffèrent selon le mode de jeu. Vous n'aurez donc pas forcément la même liste 
-		si vous faites une partie sur la carte "Brèche de cristal" (Dominion) ou une partie sur la carte "Faille de l'invocateur" (5 contre 5 - classique).</p>
-		<p class="note">Note : les objets recommandés d'un champion sont identiques pour le mode 5 contre 5 (Faille de l'invocation) et 3 contre 3 (Forêt torturée).</p>
+		<h2>{{'create_item_build.h2.2' | trans}}</h2>
+		<p>{{'create_item_build.p.3' | trans}}</p>
+		<p class="note">{{'create_item_build.tip.2' | trans}}</p>
 		
 		<div class="game-mode-container">
-			<div class="game-mode classic {% if gameMode is defined %} {% if gameMode == 'classic' %}active{%endif %} {% else %}active{% endif %}" data-game-mode="classic"><span class="message">Classique</span></div>
+			<div class="game-mode classic {% if gameMode is defined %} {% if gameMode == 'classic' %}active{%endif %} {% else %}active{% endif %}" data-game-mode="classic"><span class="message">Summoner Rift</span></div>
 			<div class="game-mode twisted-treeline {% if gameMode is defined and gameMode == 'twisted-treeline' %}active{%endif %}" data-game-mode="twisted-treeline"><span class="message">Twisted Treeline</span></div>
 			<div class="game-mode dominion {% if gameMode is defined and gameMode == 'dominion' %}active{%endif %}" data-game-mode="dominion"><span class="message" >Dominion</span></div>
 			<div class="game-mode proving-grounds {% if gameMode is defined and gameMode == 'aram' %}active{%endif %}" data-game-mode="aram"><span class="message" >All Random All Mid (ARAM)</span></div>
 		</div>
 		
-		<h2>Etape 3 : choisissez vos objets</h2>
-		<p>Vous devez sélectionner un à six objets dont vous souhaitez voir apparaître dans la boutique en jeu pour le ou les champions dans le(s) mode(s) de jeu
-		que vous avez sélectionné ci-dessus.</p>
-		<p note="tip">Astuce : les consommables ne disparaissent pas de la liste des objets conseillés même après que vous les ayez acheté.</p>
-		<p class="note">Note : Certains objets ne sont pas disponibles dans tous les modes comme par exemple la "Lantern de Wriggles". Ne soyez donc pas surpris si jamais vous
-		ne retrouvez pas certains objets.</p>
+		<h2>{{'create_item_build.h2.3' | trans}}</h2>
+		<p>{{'create_item_build.p.4' | trans}}</p>
+		<p note="tip">{{'create_item_build.tip.3' | trans}}</p>
+		<p class="note">{{'create_item_build.tip.4' | trans}}</p>
 		
 		<div class="item-container">
 			<div id="item-topbar" class="actionbar">
@@ -70,37 +65,34 @@
 			</div>
 		</div>
 		
-		<h2>Etape 4 : nommez votre liste</h2>
-		<p>C'est presque terminé. Vous devez maintenant nommer votre liste d'objet conseillés. Vous pourrez ensuite si vous le souhaitez, la consulter de nouveau,
-		la récupérer, l'éditer ou encore la partagée avec le reste de la communauté MVNerds.</p>
+		<h2>{{'create_item_build.h2.4' | trans}}</h2>
+		<p>{{'create_item_build.p.5' | trans}}</p>
 		
 		<div class="name-container">
 			<form action="#" method="POST">
-				<input type="text" class="" id="build-name" placeholder="Nom de la liste..." value="{% if buildName is defined %}{{buildName}}{% endif %}"/>
+				<input type="text" class="" id="build-name" placeholder="{{'create_item_build.list_name.placeholder' | trans}}" value="{% if buildName is defined %}{{buildName}}{% endif %}"/>
 			</form>
 		</div>
 		
-		<h2>Dernière étape</h2>
-		<p>Félicitation, vous avez confectionné votre nouvelle liste d'objet conseillé pour les champions <CHAMPION NAME LIST HERE> pour le mode de jeu <GAME MODE HERE>.
-		Vous n'avez plus qu'à cliquer sur le bouton "Sauvegarder et générer" ou "Générer seulement".</p>
-		<p class="note">Note : la sauvegarde d'une liste d'objets conseillés vous permet de la retrouver ultérieurement depuis votre profil. Si vous souhaitez seulement
-		générer la liste, celle-ci ne sera pas récupérable mais sera toutefois mémoriser par notre système.</p>
+		<h2>{{'create_item_build.h2.5' | trans}}</h2>
+		<p>{{'create_item_build.p.6' | trans}}</p>
+		<p class="note">{{'create_item_build.tip.5' | trans}}</p>
 		
 		<div class="generate-button-container">
 			{% if itemBuildSlug is not defined %}
 				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 					{% if can_save_build%}
-						<a href="#" id="save-and-generate-build" class="main">Sauvegarder & générer</a>
+						<a href="#" id="save-and-generate-build" class="main">{{'create_item_build.btn.save_and_generate' | trans}}</a>
 					{% else %}
-						Vous ne pouvez pas enregistrer plus de 7 builds.
+						{{'create_item_build.max_builds_reached' | trans}}
 					{% endif %}
 				{% else %}
-					<a href="#" id="save-and-generate-build-not-authenticated" class="main">Sauvegarder & générer</a>
+					<a href="#" id="save-and-generate-build-not-authenticated" class="main">{{'create_item_build.btn.save_and_generate' | trans}}</a>
 				{% endif %}
 				
-				<a href="#" id="only-generate-build">Générer seulement</a>
+				<a href="#" id="only-generate-build">{{'create_item_build.btn.generate_only' | trans}}</a>
 			{% else %}
-				<a href="#" id="save-build" class="main" data-slug="{{itemBuildSlug}}">Enregistrer</a>
+				<a href="#" id="save-build" class="main" data-slug="{{itemBuildSlug}}">{{'create_item_build.btn.save' | trans}}</a>
 			{% endif %}
 		</div>
 	</div>
@@ -110,25 +102,24 @@
 	<div id="modal-authenticate-build" class="modal hide fade">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			<h3>Enregistrement du build</h3>
+			<h3>{{'create_item_build.modal_authenticate.h3' | trans}}</h3>
 		</div>
 		<div class="modal-body" style="min-height:235px;">
 			<p>
-				Afin de pouvoir profiter de la fonction d'enregistrement de vos builds, vous devez être authentifié.
+				{{'create_item_build.modal_authenticate.p1' | trans}}
 			</p>
 			<p>
-				Si vous n'avez pas encore de compte vous pouvez vous inscrire dès maintenant.
+				{{'create_item_build.modal_authenticate.p2' | trans}}
 			</p>
 			<p>
-				Si vous ne désirez pas vous inscrire pour le moment vous pouvez tout de même télécharger votre build, cependant, 
-				celui-ci ne sera pas enregistré, vous ne pourrez ni le modifier, ni le re-télécharger, ni le supprimer.
+				{{'create_item_build.modal_authenticate.p3' | trans}}
 			</p>
 		</div>
 		<div class="modal-footer">
-			<a href="#" data-dismiss="modal" class="btn-cancel">Annuler</a>
-			<a href="{{path('security_summoner_store_redirect_and_forward', {routeName: 'security_summoner_login'})}}" id="modal-btn-authentication" data-target="" class="btn-download">Connexion</a>
-			<a href="{{path('security_summoner_store_redirect_and_forward', {routeName: 'launch_site_summoner_registration'})}}" id="modal-btn-inscription" data-target="" class="btn-download">Inscription</a>
-			<a href="{{path('security_summoner_login')}}" id="modal-btn-only-generate-build" data-target="" class="btn-download"><i class="icon-download-alt"></i> Télécharger uniquement</a>
+			<a href="#" data-dismiss="modal" class="btn-cancel">{{'create_item_build.modal_authenticate.btn.cancel' | trans}}</a>
+			<a href="{{path('security_summoner_store_redirect_and_forward', {routeName: 'security_summoner_login'})}}" id="modal-btn-authentication" data-target="" class="btn-download">{{'create_item_build.modal_authenticate.btn.confirm' | trans}}</a>
+			<a href="{{path('security_summoner_store_redirect_and_forward', {routeName: 'launch_site_summoner_registration'})}}" id="modal-btn-inscription" data-target="" class="btn-download">{{'create_item_build.modal_authenticate.btn.inscription' | trans}}</a>
+			<a href="{{path('security_summoner_login')}}" id="modal-btn-only-generate-build" data-target="" class="btn-download"><i class="icon-download-alt"></i>{{'create_item_build.modal_authenticate.btn.download_only' | trans}}</a>
 		</div>
 	</div>
 {% endblock %}

@@ -1,11 +1,194 @@
 <?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="file.ext">
-        <body>
-            <trans-unit id="1">
-                <source>Symfony2 is great</source>
-                <target>J'aime Symfony2</target>
-            </trans-unit>
-        </body>
-    </file>
+	<file source-language="en" datatype="plaintext" original="file.ext">
+		<body>
+			<!-- CREATE ITEM BUILD -->
+			<trans-unit id="1">
+				<source>create_item_build.h1</source>
+				<target>Personnaliser la liste d'objets conseillés</target>
+			</trans-unit>
+			<trans-unit id="2">
+				<source>create_item_build.p.1</source>
+				<target>
+					Bienvenue sur la page de création d'une nouvelle liste d'objets recommandés pour vos champions favoris. Pour être plus précis, nous allons voir comment de manière
+					simple et intuitive on modifier la liste des objets conseillés, celle qui apparaît lorsque vous êtes en jeu et que vous ouvrez la boutique.
+				</target>
+			</trans-unit>
+			
+			
+			<trans-unit id="3">
+				<source>create_item_build.h2.1</source>
+				<target>Etape 1 : choisissez un ou plusieurs champions</target>
+			</trans-unit>
+			<trans-unit id="4">
+				<source>create_item_build.p.2</source>
+				<target>Sélectionnez ici le champion dont vous souhaitez éditer sa liste d'objets conseillés.</target>
+			</trans-unit>
+			<trans-unit id="5">
+				<source>create_item_build.tip.1</source>
+				<target>
+					Astuce : un des avantages à utiliser notre outil est qu'il vous permet de changer en une seule fois les objets recommandés de plusieurs champions, 
+					pratique non ?
+				</target>
+			</trans-unit>
+			
+			
+			<trans-unit id="6">
+				<source>create_item_build.h2.2</source>
+				<target>Etape 2 : choisissez le mode de jeu</target>
+			</trans-unit>
+			<trans-unit id="7">
+				<source>create_item_build.p.3</source>
+				<target>
+					Dans League of Legends, pour chaque champion sa liste d'objets conseillés diffèrent selon le mode de jeu. Vous n'aurez donc pas forcément la même liste 
+					si vous faites une partie sur la carte "Brèche de cristal" (Dominion) ou une partie sur la carte "Faille de l'invocateur" (5 contre 5 - classique).
+				</target>
+			</trans-unit>
+			<trans-unit id="8">
+				<source>create_item_build.tip.2</source>
+				<target>
+				</target>
+			</trans-unit>
+			
+			
+			<trans-unit id="9">
+				<source>create_item_build.h2.3</source>
+				<target>Etape 3 : choisissez vos objets</target>
+			</trans-unit>
+			<trans-unit id="10">
+				<source>create_item_build.p.4</source>
+				<target>
+					Vous devez sélectionner un à six objets dont vous souhaitez voir apparaître dans la boutique en jeu pour le ou les champions dans le(s) mode(s) de jeu
+					que vous avez sélectionné ci-dessus.
+				</target>
+			</trans-unit>
+			<trans-unit id="11">
+				<source>create_item_build.tip.3</source>
+				<target>
+					Astuce : les consommables ne disparaissent pas de la liste des objets conseillés même après que vous les ayez acheté.
+				</target>
+			</trans-unit>
+			<trans-unit id="12">
+				<source>create_item_build.tip.4</source>
+				<target>
+					Note : Certains objets ne sont pas disponibles dans tous les modes comme par exemple la "Lantern de Wriggles". Ne soyez donc pas surpris si jamais vous
+					ne retrouvez pas certains objets.
+				</target>
+			</trans-unit>
+			
+			<trans-unit id="13">
+				<source>create_item_build.h2.4</source>
+				<target>Etape 4 : nommez votre liste</target>
+			</trans-unit>
+			<trans-unit id="14">
+				<source>create_item_build.p.5</source>
+				<target>
+					C'est presque terminé. Vous devez maintenant nommer votre liste d'objet conseillés. Vous pourrez ensuite si vous le souhaitez, la consulter de nouveau,
+					la récupérer, l'éditer ou encore la partagée avec le reste de la communauté MVNerds.
+				</target>
+			</trans-unit>
+			<trans-unit id="014">
+				<source>create_item_build.list_name.placeholder</source>
+				<target>Nom de la liste...
+				</target>
+			</trans-unit>
+			
+			<trans-unit id="15">
+				<source>create_item_build.h2.5</source>
+				<target>Dernière étape</target>
+			</trans-unit>
+			<trans-unit id="16">
+				<source>create_item_build.p.6</source>
+				<target>
+					Félicitation, vous avez confectionné votre nouvelle liste d'objet conseillés.
+					Vous n'avez plus qu'à cliquer sur le bouton "Sauvegarder et générer" ou "Générer seulement".
+				</target>
+			</trans-unit>
+			<trans-unit id="016">
+				<source>create_item_build.tip.5</source>
+				<target>
+					
+				</target>
+			</trans-unit>
+			
+			<trans-unit id="17">
+				<source>create_item_build.max_builds_reached</source>
+				<target>
+					Vous ne pouvez pas enregistrer plus de 7 builds.
+				</target>
+			</trans-unit>
+			
+			<trans-unit id="18">
+				<source>create_item_build.btn.save_and_generate</source>
+				<target>
+					Sauvegarder et générer
+				</target>
+			</trans-unit>
+			<trans-unit id="19">
+				<source>create_item_build.btn.generate_only</source>
+				<target>
+					Générer seulement
+				</target>
+			</trans-unit>
+			<trans-unit id="20">
+				<source>create_item_build.btn.save</source>
+				<target>
+					Enregistrer
+				</target>
+			</trans-unit>
+			
+			
+			<trans-unit id="21">
+				<source>create_item_build.modal_authenticate.h3</source>
+				<target>
+					Enregistrement du build
+				</target>
+			</trans-unit>
+			
+			<trans-unit id="22">
+				<source>create_item_build.modal_authenticate.p1</source>
+				<target>
+					Afin de pouvoir profiter de la fonction d'enregistrement de vos builds, vous devez être authentifié.
+				</target>
+			</trans-unit>
+			<trans-unit id="23">
+				<source>create_item_build.modal_authenticate.p2</source>
+				<target>
+					Si vous n'avez pas encore de compte vous pouvez vous inscrire dès maintenant.
+				</target>
+			</trans-unit>
+			<trans-unit id="24">
+				<source>create_item_build.modal_authenticate.p3</source>
+				<target>
+					Si vous ne désirez pas vous inscrire pour le moment vous pouvez tout de même télécharger votre build, cependant, 
+					celui-ci ne sera pas enregistré, vous ne pourrez ni le modifier, ni le re-télécharger, ni le supprimer.
+				</target>
+			</trans-unit>
+			
+			<trans-unit id="25">
+				<source>create_item_build.modal_authenticate.btn.cancel</source>
+				<target>
+					Annuler
+				</target>
+			</trans-unit>
+			<trans-unit id="26">
+				<source>create_item_build.modal_authenticate.btn.confirm</source>
+				<target>
+					Confirmer
+				</target>
+			</trans-unit>
+			<trans-unit id="27">
+				<source>create_item_build.modal_authenticate.btn.inscription</source>
+				<target>
+					Inscription
+				</target>
+			</trans-unit>
+			<trans-unit id="28">
+				<source>create_item_build.modal_authenticate.btn.download_only</source>
+				<target>
+					Télécharger uniquement
+				</target>
+			</trans-unit>
+		</body>
+	</file>
 </xliff>
