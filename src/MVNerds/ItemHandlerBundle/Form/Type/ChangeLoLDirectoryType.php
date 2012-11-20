@@ -12,7 +12,7 @@ class ChangeLoLDirectoryType extends AbstractType
 	{
 		$builder->add('lolDirectory', 'text', array(
 			'label'		=> 'ItemBuilder.ChangeLoLDirectory.label',
-			'required' 	=> true
+			'required' 	=> false
 		));
 	}
 

@@ -5,6 +5,11 @@ namespace MVNerds\ProfileBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
+
+use MVNerds\ItemHandlerBundle\Form\Model\ChangeLoLDirectoryModel;
+use MVNerds\ItemHandlerBundle\Form\Type\ChangeLoLDirectoryType;
 
 class FrontController extends Controller
 {
@@ -20,7 +25,8 @@ class FrontController extends Controller
 		
 		return $this->render('MVNerdsProfileBundle:Profile:profile_index.html.twig', array(
 			'user'				=> $user,
-			'user_items_builds' => $this->get('mvnerds.item_build_manager')->findByUserId($user->getId())
+			'user_items_builds' => $this->get('mvnerds.item_build_manager')->findByUserId($user->getId()),
+			'form'				=> $this->createForm(new ChangeLoLDirectoryType(), new ChangeLoLDirectoryModel($this->get('mvnerds.preference_manager'), $user))->createView()
 		));
 	}
 	
@@ -46,5 +52,33 @@ class FrontController extends Controller
 			'user'				=> $user,
 			'user_items_builds' => $this->get('mvnerds.item_build_manager')->findByUserId($user->getId())
 		));
+	}
+	
+	/**
+	 * @Route("/save-summoner-preference", name="summoner_profile_save_preference", options={"expose"=true})
+	 */
+	public function saveSummonerPreferenceAction()
+	{
+		$request = $this->getRequest();
+		if (!$request->isMethod('POST') || !$request->isXmlHttpRequest()) {
+			throw new HttpException(500, 'XMLHttpRequest and POST method expected!');
+		}
+		
+		$preferenceUniqueName = $request->get('preference_unique_name', null);
+		$preferenceValue = $request->get('preference_value', null);
+		
+		if (null == $preferenceUniqueName || null == $preferenceValue) {
+			throw new HttpException(500, 'preference_unique_name and/or preference_value is/are missing!');
+		}
+		
+		$response = true;
+		try {
+			$this->get('mvnerds.preference_manager')->saveUserPreference($this->getUser(), $preferenceUniqueName, $preferenceValue);
+		}
+		catch(InvalidArgumentException $e) {
+			$response = false;
+		}
+		
+		return new Response(json_enconde($response));
 	}
 }

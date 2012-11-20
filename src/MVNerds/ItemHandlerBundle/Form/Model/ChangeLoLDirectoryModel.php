@@ -2,22 +2,32 @@
 
 namespace MVNerds\ItemHandlerBundle\Form\Model;
 
-use MVNerds\CoreBundle\User\UserManager;
+use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
+
+use MVNerds\CoreBundle\Model\User;
+use MVNerds\CoreBundle\Preference\PreferenceManager;
 
 class ChangeLoLDirectoryModel 
 {
 	private $lolDirectory;
 	
-	private $userManager;
+	private $preferenceManager;
 	
 	private $user;
 	
-	public function __construct(UserManager $userManager, User $user)
+	public function __construct(PreferenceManager $preferenceManager, User $user)
 	{
-		$this->userManager = $userManager;
+		$this->preferenceManager = $preferenceManager;
 		$this->user = $user;
 		
-		
+		// On effectue un try catch car nous ne sommes pas sûr que l'utilisateur ait changé le dossier d'emplacement de son League of legends ou non
+		try {
+			$userPreference = $this->preferenceManager->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $this->user->getId());
+			$this->lolDirectory = $userPreference->getValue();
+		}
+		catch(InvalidArgumentException $e) {
+			
+		}
 	}
 	
 	public function getLolDirectory()
