@@ -118,6 +118,10 @@ class NewsController extends Controller
 	{
 		$request = $this->getRequest();
 		$data = $request->get('data');
-		return new \Symfony\Component\HttpFoundation\Response($this->get('mvnerds.bbcode_manager')->BBCode2Html($data));
+		
+		$style='<link href="/css/news/view.css" rel="stylesheet" type="text/css">
+			<link href="/css/bootstrap.css" rel="stylesheet" type="text/css">';
+		
+		return new \Symfony\Component\HttpFoundation\Response($style . '<div id="news-container">' .$this->get('mvnerds.bbcode_manager')->BBCode2Html($data) . '</div>');
 	}
 }

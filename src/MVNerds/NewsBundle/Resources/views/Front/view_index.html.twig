@@ -1,21 +1,18 @@
 {% extends 'MVNerdsNewsBundle::layout.html.twig' %}
 	
+{% block css %}
+	{{ parent() }}
+
+	<link href="{{ asset('css/news/view.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+	
 {% block body_main_content %}
 
 	<div id="news-container">
-		<h4 class="header"><a href="{{path('front_news_view', {'slug': news.getSlug()} )}}">{{news.getTitle()}}</a></h4>
+		<h1 class="header">{{news.getTitle()}}</h1>
 		
-		<p class="posted-by"><em>Postée par {{news.getUser().getUsername()}} le {{news.getCreateTime('d/m/Y')}} à {{news.getCreateTime('H:i')}}</em></p><br />
+		<p class="posted-by"><em>Postée par {{news.getUser().getUsername()}} le {{news.getCreateTime('d/m/Y')}} à {{news.getCreateTime('H:i')}}</em></p>
 		
-		<p class="content">{{news.getContent() | raw}}</p>
+		<div class="content">{{news.getContent() | raw}}</div>
 	</div>
-	
-	<style>
-			#news-container {
-				background-color: #aaa;
-				min-height: 600px;
-				padding: 20px;
-				margin-bottom: 20px;
-			}
-	</style>
 {% endblock %}

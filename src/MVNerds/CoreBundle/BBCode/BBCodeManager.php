@@ -61,12 +61,12 @@ class BBCodeManager
 						 ';)'
 		);
 		// And replace them by...
-		$out = array(	 '<img alt=":)" src="'.EMOTICONS_DIR.'emoticon-smile.png" />',
-						 '<img alt=":D" src="'.EMOTICONS_DIR.'emoticon-happy.png" />',
-						 '<img alt=":o" src="'.EMOTICONS_DIR.'emoticon-surprised.png" />',
-						 '<img alt=":p" src="'.EMOTICONS_DIR.'emoticon-tongue.png" />',
-						 '<img alt=":(" src="'.EMOTICONS_DIR.'emoticon-unhappy.png" />',
-						 '<img alt=";)" src="'.EMOTICONS_DIR.'emoticon-wink.png" />'
+		$out = array(	 '<img class="smiley" alt=":)" src="'.EMOTICONS_DIR.'emoticon-smile.png" />',
+						 '<img class="smiley" alt=":D" src="'.EMOTICONS_DIR.'emoticon-happy.png" />',
+						 '<img class="smiley" alt=":o" src="'.EMOTICONS_DIR.'emoticon-surprised.png" />',
+						 '<img class="smiley" alt=":p" src="'.EMOTICONS_DIR.'emoticon-tongue.png" />',
+						 '<img class="smiley" alt=":(" src="'.EMOTICONS_DIR.'emoticon-unhappy.png" />',
+						 '<img class="smiley" alt=";)" src="'.EMOTICONS_DIR.'emoticon-wink.png" />'
 		);
 		$text = str_replace($in, $out, $text);
 
@@ -83,7 +83,8 @@ class BBCodeManager
 						 '/\[quote](.*?)\[\/quote\]/ms',
 						 '/\[list\=(.*?)\](.*?)\[\/list\]/ms',
 						 '/\[list\](.*?)\[\/list\]/ms',
-						 '/\[\*\]\s?(.*?)\n/ms'
+						 '/\[\*\]\s?(.*?)\n/ms',
+						 '/\[center](.*?)\[\/center]/ms'
 		);
 		// And replace them by...
 		$out = array(	 '<strong>\1</strong>',
@@ -98,7 +99,8 @@ class BBCodeManager
 						 '<blockquote>\1</blockquote>',
 						 '<ol start="\1">\2</ol>',
 						 '<ul>\1</ul>',
-						 '<li>\1</li>'
+						 '<li>\1</li>',
+						'<div style="text-align: center">\1</div>'
 		);
 		$text = preg_replace($in, $out, $text);
 
