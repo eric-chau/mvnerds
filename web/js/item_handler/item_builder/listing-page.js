@@ -122,7 +122,7 @@ $(document).ready(function() {
 	itemBuildsTable = $('#item-builds-table').dataTable({
 		"oSearch" :{"sSearch":  ((filter != undefined) ? filter : '')},
         "bLengthChange": false,
-        "iDisplayLength": 3,
+        "iDisplayLength": 10,
 		"aoColumns": [
                       {"bSearchable": false, "bSortable":false},
                       {"bSearchable": false, "bSortable":true},

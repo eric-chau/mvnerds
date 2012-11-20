@@ -2,8 +2,8 @@
 
 namespace MVNerds\LaunchSiteBundle\Form\Model;
 
+use MVNerds\CoreBundle\Model\UserPeer;
 use MVNerds\CoreBundle\User\UserManager;
-
 class SummonerModel 
 {
 	private $username;
@@ -75,5 +75,10 @@ class SummonerModel
 	public function isEmailAlreadyInUse()
 	{
 		return $this->userManager->isEmailAvailable($this->email);
+	}
+	
+	public function isUsernameAlreadyInUse()
+	{
+		return UserPeer::isUsernameAlreadyInUse($this->username, null);
 	}
 }

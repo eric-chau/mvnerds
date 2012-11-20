@@ -102,4 +102,24 @@ class User extends BaseUser  implements AdvancedUserInterface
     {
         return $this->is_active;
     }
+	
+	public function getUserRoles($criteria = null, PropelPDO $con = null)
+	{
+		if(null === $this->collUserRoles || null !== $criteria) {
+			if ($this->isNew() && null === $this->collUserRoles) {
+				// return empty collection
+				$this->initUserRoles();
+			} else {
+				$collUserRoles = UserRoleQuery::create(null, $criteria)
+					->joinWith('Role')
+					->filterByUser($this)
+					->find($con);
+				if (null !== $criteria) {
+					return $collUserRoles;
+				}
+				$this->collUserRoles = $collUserRoles;
+			}
+		}
+		return $this->collUserRoles;
+	}
 } // User

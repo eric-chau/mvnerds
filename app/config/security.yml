@@ -25,7 +25,7 @@ security:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        
+                
         user_area:
             pattern: ^/
             anonymous: ~
@@ -35,6 +35,11 @@ security:
             logout:
                 path:   /summoner/logout
                 target: /
+            remember_me:
+                key: "secretfrommvnerdsro0nyhanikiwelovelolandmvnerds"
+                lifetime: 2592000
+                path: /
+                domain: ~
                 
         user_login:
             pattern:  ^/profile
