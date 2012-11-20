@@ -21,12 +21,7 @@
 	{{ parent() }}
 	
 	<script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-popover.js') }}"></script>
-	<script type="text/javascript">
-		$(document).ready(function()
-		{
-			$('.bootstrap-popover').popover();
-		});
-	</script>
+	<script type="text/javascript" src="{{ asset('js/profile/profile.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('js/item_handler/item_builder/dl-modal.js') }}"></script>
 {% endblock %}
 
@@ -44,12 +39,26 @@
 		</p>
 		<div class="clearfix"></div>
 		
-		<h2>Mes préférences utilisateurs</h2>
-		<div class="user-custom-parameters-container">
-			<div class="module-block">
-				<h4>PIMP MY RECOMMENDED ITEMS</h4>
+		{% if app.user.getId() == user.getId() %}
+			<h2>Mes préférences utilisateurs</h2>
+			<div class="user-custom-parameters-container">
+				<div class="module-block">
+					<h4>PIMP MY RECOMMENDED ITEMS</h4>
+
+					<form action="#" method="POST">
+						<div>
+							{{ form_label(form.lolDirectory) }}
+							{{ form_widget(form.lolDirectory) }}
+							<a href="#" class="reset-field"><i class="icon-remove-circle"></i></a>
+							<a href="#" class="save-field disabled" data-preference="LEAGUE_OF_LEGENDS_DIRECTORY"><i class="icon-ok-circle"></i></a>
+							<img src="{{ asset('images/commons/loader16-bg-141414.gif') }}" class="loader hide" />
+						</div>
+
+						{{ form_rest(form) }}
+					</form>
+				</div>
 			</div>
-		</div>
+		{% endif %}
 		
 		<h2>Mes listes d'objets conseillés personnalisées</h2>
 		{% if user_items_builds|length > 0 %}

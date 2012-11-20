@@ -78,3 +78,60 @@ div.body-container.summoner-profile div.user-custom-parameters-container div.mod
 div.body-container.summoner-profile div.user-custom-parameters-container div.module-block h4 {
   color: #955a01;
 }
+div.body-container.summoner-profile div.user-custom-parameters-container div.module-block label {
+  color: #999;
+  display: inline-block;
+  margin-right: 20px;
+  text-align: right;
+  width: 300px;
+}
+div.body-container.summoner-profile div.user-custom-parameters-container div.module-block input[type="text"] {
+  background-color: #333;
+  border: 1px solid #999;
+  color: #19a0df;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  margin: 0 5px 0 0;
+  width: 300px;
+}
+div.body-container.summoner-profile div.user-custom-parameters-container div.module-block input[type="text"]:hover,
+div.body-container.summoner-profile div.user-custom-parameters-container div.module-block input[type="text"]:focus {
+  border-color: #19a0df;
+  background-color: #444;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+div.body-container.summoner-profile div.user-custom-parameters-container div.module-block a.reset-field,
+div.body-container.summoner-profile div.user-custom-parameters-container div.module-block a.save-field {
+  display: inline-block;
+  margin: 0 0 0 5px;
+  position: relative;
+  top: 5px;
+}
+div.body-container.summoner-profile div.user-custom-parameters-container div.module-block a.reset-field i {
+  color: #db4a38;
+}
+div.body-container.summoner-profile div.user-custom-parameters-container div.module-block a.save-field i {
+  color: #759e1a;
+}
+div.body-container.summoner-profile div.user-custom-parameters-container div.module-block a.disabled {
+  cursor: not-allowed;
+}
+div.body-container.summoner-profile div.user-custom-parameters-container div.module-block a.disabled i {
+  color: #444;
+}
+div.body-container.summoner-profile div.user-custom-parameters-container div.module-block a i {
+  font-size: 26px;
+}
+div.body-container.summoner-profile div.user-custom-parameters-container div.module-block img.loader {
+  display: inline-block;
+  left: 4px;
+  position: relative;
+  top: -1px;
+}
+div.body-container.summoner-profile div.user-custom-parameters-container div.module-block img.loader.hide {
+  display: none;
+}

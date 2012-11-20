@@ -64,6 +64,72 @@ div.body-container.summoner-profile {
 			h4 {
 				color: darken(@LoLOrangeAD, 20%);
 			}
+
+			label {
+				color: #999;
+				display: inline-block;
+				margin-right: 20px;
+				text-align: right;
+				width: 300px;
+			}
+
+			input[type="text"] {
+				background-color: #333;
+				border: 1px solid #999;
+				color: @MVNerdsBlue;
+				.border-radius(0);
+				margin: 0 5px 0 0;
+				width: 300px;
+
+				&:hover, &:focus {
+					border-color: @MVNerdsBlue;
+					background-color: #444; .transition(background-color .25s linear);
+				}
+			}
+
+			a {
+				&.reset-field, &.save-field {
+					display: inline-block;
+					margin: 0 0 0 5px;
+					position: relative;
+					top: 5px;
+				}
+
+				&.reset-field {
+					i {
+						color: @MVNerdsRed;
+					}
+				}
+
+				&.save-field {
+					i {
+						color: @MVNerdsGreen;
+					}
+				}
+
+				&.disabled {
+					cursor: not-allowed;
+
+					i {
+						color: #444;
+					}
+				}
+
+				i {
+					font-size: 26px;
+				}
+			}
+
+			img.loader {
+				display: inline-block;
+				left: 4px;
+				position: relative;
+				top: -1px;
+
+				&.hide {
+					display: none;
+				}
+			}
 		}
 	}
 }
