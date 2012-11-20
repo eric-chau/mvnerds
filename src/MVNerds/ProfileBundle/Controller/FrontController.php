@@ -49,7 +49,7 @@ class FrontController extends Controller
 	{
 		$user = $this->get('mvnerds.user_manager')->findBySlug($userSlug);
 		
-		if ($this->getUser()->getId() == $user->getId()) {
+		if (null != $this->getUser() && $this->getUser()->getId() == $user->getId()) {
 			return $this->forward('MVNerdsProfileBundle:Front:loggedSummonerIndex');
 		}
 		

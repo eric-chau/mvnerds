@@ -1,0 +1,77 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+div.carousel div.item div.carousel-caption {
+  background-color: rgba(25, 160, 223, 0.5);
+  top: 347px;
+}
+div.carousel div.item div.carousel-caption h4 a {
+  color: white;
+  display: inline-block !important;
+  margin-bottom: 13px;
+  padding: 0 !important;
+}
+div.carousel div.item div.carousel-caption h4 em {
+  color: black;
+  display: inline-block;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: bold;
+  margin-left: 10px;
+  position: relative;
+  text-align: right;
+  text-transform: uppercase;
+  top: -1px;
+}
+div.carousel div.item div.carousel-caption h4 em a {
+  color: #222;
+}
+div.carousel div.item div.carousel-caption h4 em a:hover {
+  color: #eee;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div.carousel a.carousel-control {
+  top: 50%;
+}
+div.carousel a.carousel-control.right {
+  right: 10px;
+}
+div.carousel a.carousel-control.left {
+  left: 10px;
+}
+div.carousel:hover div.item div.carousel-caption {
+  background-color: rgba(25, 160, 223, 0.8);
+  top: 268px;
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}

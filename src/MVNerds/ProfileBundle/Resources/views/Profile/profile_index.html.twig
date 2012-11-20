@@ -1,7 +1,14 @@
 {% extends 'MVNerdsLaunchSiteBundle::layout.html.twig' %}
 
+{% set admin_mode = false %}
+{% if app.user != null %}
+	{% if user.getId() == app.user.getId() %}
+		{% set admin_mode = true %}
+	{% endif %}
+{% endif %}
+
 {% block title %}
-	{% if user.getId() != app.user.getId() %}
+	{% if admin_mode == false %}
 		{{ user.getUsername() }} - Profil d'invocateur | MVNerds
 	{% else %}
 		Mon profil - {{ user.getUsername() }} | MVNerds
@@ -39,7 +46,7 @@
 		</p>
 		<div class="clearfix"></div>
 		
-		{% if app.user.getId() == user.getId() %}
+		{% if admin_mode %}
 			<h2>Mes préférences utilisateurs</h2>
 			<div class="user-custom-parameters-container">
 				<div class="module-block">
@@ -62,7 +69,7 @@
 		
 		<h2>Listes d'objets conseillés personnalisées</h2>
 		{% if user_items_builds|length > 0 %}
-			{% if user.getId() != app.user.getId() %}
+			{% if admin_mode == false %}
 				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_table.html.twig' with {'item_builds': user_items_builds}  %}
 			{% else %}
 				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_table.html.twig' with {'item_builds': user_items_builds, 'admin_mode': true}  %}
@@ -70,9 +77,7 @@
 		{% else %}
 			<p class="empty-list">{{ user.getUsername() }} n'a pas encore enregistré de liste d'objet conseillé.</p>
 		{% endif %}
-			
-		{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}
-			
 		
+		{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}
 	</div>
 {% endblock %}

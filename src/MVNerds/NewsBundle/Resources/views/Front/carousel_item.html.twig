@@ -2,9 +2,12 @@
 	<div class="item">
 		<a href="{{path('front_news_view', {'slug': new.getSlug()} )}}"><img src="{{asset('images/news/' ~ new.getImageName())}}" alt="image de la news : {{new.getTitle()}}"></a>
 		<div class="carousel-caption">
-			<h4 class="header"><a href="{{path('front_news_view', {'slug': new.getSlug()} )}}">{{new.getTitle()}}</a></h4>
-			<p class="posted-by"><em>Postée par {{new.getUser().getUsername()}} le {{new.getCreateTime('d/m/Y')}} à {{new.getCreateTime('H:i')}}</em></p><br />
-			<p class="preview">{{new.getPreview()}}</p>
+			<h4 class="header">
+				<a href="{{path('front_news_view', {'slug': new.getSlug()} )}}">{{new.getTitle()}}</a>
+				<em>par <a href="{{ path('summoner_profile_view', {'userSlug': new.getUser().getSlug()}) }}" title="Consulter le profil de {{ new.getUser().getUsername }}"">{{new.getUser().getUsername()}}</a> le {{new.getCreateTime('d/m/Y')}} à {{new.getCreateTime('H:i')}}</em>
+			</h4>
+				
+			<p class="preview">{{ new.getPreview() }}</p>
 		</div>
 	</div>
 {% endfor %}
