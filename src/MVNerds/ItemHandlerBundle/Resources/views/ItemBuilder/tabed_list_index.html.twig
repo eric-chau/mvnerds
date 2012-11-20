@@ -1,16 +1,18 @@
 <div id="pmri-tabed-list">
 	<div class="row-fluid">
-		<h2 class="span9">Pimp My Recommended Items</h2><a href="{{path('item_builder_list')}}" class="pull-right span3 btn-green">Voir toutes les listes</a>
+		<div class="span6">
+			<h2>Pimp My Recommended Items</h2>
+		</div>
+		<div class="span6">
+			<a href="{{path('item_builder_list')}}" class="pull-right btn-green">Voir toutes les listes</a>
+			<a class="pull-right btn-create btn-pmri" href="{{path('item_builder_create')}}">Créer une liste</a>
+		</div>
 	</div>
 
-	<div class="row-fluid">
-		<ul class="nav nav-pills span9" id="tabed-builds">
-			<li class="active"><a href="#tab-newest-builds">Nouvelles listes</a></li>
-			<li><a href="#tab-most-downloaded-builds">Listes les plus téléchargées</a></li>
-		</ul>
-
-		<a class="pull-right btn-red btn-pmri span3" href="{{path('item_builder_create')}}">Créer une liste</a>
-	</div>
+	<ul class="nav nav-pills" id="tabed-builds">
+		<li class="active"><a href="#tab-newest-builds">Nouvelles listes</a></li>
+		<li><a href="#tab-most-downloaded-builds">Listes les plus téléchargées</a></li>
+	</ul>
 		
 	<div class="tab-content">
 		<div class="tab-pane active" id="tab-newest-builds">
