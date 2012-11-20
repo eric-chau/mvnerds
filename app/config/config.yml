@@ -17,7 +17,6 @@ framework:
     trust_proxy_headers: false # Whether or not the Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
     session:         
         cookie_lifetime: 3600
-        gc_maxlifetime: 3600
     translator: { fallback: %default_locale% }
 
 # Twig Configuration

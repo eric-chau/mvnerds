@@ -51,4 +51,29 @@ class UserPeer extends BaseUserPeer
 		
 		return $isEmailAlreadyInUse;
 	}
+	
+	public static function isUsernameAlreadyInUse($username, User $user = null)
+	{
+		$isUsernameAlreadyInUse = false;
+		// S'il existe, on récupère l'utilisateur qui a l'adresse mail $email en BDD
+		$u = UserQuery::create()
+			->add(UserPeer::USERNAME, $username)
+		->findOne();
+		
+		// On vérifie si le paramètre $user est fourni
+		if (null != $user) 
+		{
+			// Ici $user != null, on vérifie si l'adresse $email == $user->getEmail(), si oui on renvoi false
+			// Sinon, cela dépend de la valeur de $u
+			$isUsernameAlreadyInUse = ($u == null? false : ($u->getId() == $user->getId()? false : true)); 
+		}
+		else 
+		{
+			// Ici, $user == null
+			// si $u != null, cela signifie que l'adresse email est déjà utilisé, on renvoi alors true
+			$isUsernameAlreadyInUse = null != $u;
+		}
+		
+		return $isUsernameAlreadyInUse;
+	}
 } // UserPeer
