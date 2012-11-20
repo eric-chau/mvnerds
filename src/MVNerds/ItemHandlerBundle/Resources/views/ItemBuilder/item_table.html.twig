@@ -59,10 +59,12 @@
 						{% if admin_mode is defined and admin_mode %}
 							<div class="admin-actions">
 								<a class="action download-action" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}"><i class="icon-download-alt"></i></a>
-								<a class="action edit-action" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}"><i class="icon-edit"></i></a>
-								<a class="action delete-action" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}"><i class="icon-remove-sign"></i></a>
+								<a href="{{ path('item_builder_edit_build', {'itemBuildSlug': itemBuild.getSlug()}) }}" class="action edit-action"><i class="icon-edit"></i></a>
+								<a href="#delete-build-{{ itemBuild.getSlug() }}-modal" class="action delete-action" data-toggle="modal"><i class="icon-remove-sign"></i></a>
 								<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>Téléchargé</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> fois</span>
 							</div>
+							
+							
 						{% else %}
 							<a class="action download-action" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}"><i class="icon-download-alt"></i></a>
 						
@@ -70,6 +72,9 @@
 						{% endif %}
 					</td>
 				</tr>
+				{% if admin_mode is defined and admin_mode %}
+					{% include 'MVNerdsProfileBundle:Profile:delete_item_build_modal.html.twig' with {'item_build': itemBuild} %}
+				{% endif %}
 			{% endfor %}
 		</tbody>
 	</table>

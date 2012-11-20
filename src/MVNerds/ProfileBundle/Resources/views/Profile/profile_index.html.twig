@@ -60,7 +60,7 @@
 			</div>
 		{% endif %}
 		
-		<h2>Mes listes d'objets conseillés personnalisées</h2>
+		<h2>Listes d'objets conseillés personnalisées</h2>
 		{% if user_items_builds|length > 0 %}
 			{% if user.getId() != app.user.getId() %}
 				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_table.html.twig' with {'item_builds': user_items_builds}  %}

@@ -44,10 +44,18 @@ class PreferenceManager
 	
 	public function saveUserPreference(User $user, $preferenceUniqueName, $preferenceValue)
 	{
+		$userPreference = null;
 		$preference = $this->findByUniqueName($preferenceUniqueName);
-		$userPreference = new UserPreference();
-		$userPreference->setUser($user);
-		$userPreference->setPreference($preference);
+		try {
+			$userPreference = $this->findUserPreferenceByUniqueNameAndUserId($preferenceUniqueName, $user->getId());
+		}
+		catch(InvalidArgumentException $e) {
+			$userPreference = new UserPreference();
+			$userPreference->setUser($user);
+			$userPreference->setPreference($preference);
+			
+		}
+		
 		$userPreference->setValue($preferenceValue);
 		
 		// Finally

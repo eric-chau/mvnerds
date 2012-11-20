@@ -49,7 +49,8 @@ $(document).ready(function()
 			$loader = $parent.find('img.loader');
 		$field.addClass('disabled');
 		$loader.toggleClass('hide');
-
+		$this.addClass('disabled');
+		
 		$.ajax({
 			url: Routing.generate('summoner_profile_save_preference'),
 			type: 'POST',
@@ -60,10 +61,8 @@ $(document).ready(function()
 			dataType: 'json',
 			success: function(response)
 			{
-				console.log(response == true);
 				if (response) {
 					$loader.toggleClass('hide');
-					$this.addClass('disabled');
 				}
 			}
 		});

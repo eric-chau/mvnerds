@@ -49,6 +49,10 @@ class FrontController extends Controller
 	{
 		$user = $this->get('mvnerds.user_manager')->findBySlug($userSlug);
 		
+		if ($this->getUser()->getId() == $user->getId()) {
+			return $this->forward('MVNerdsProfileBundle:Front:loggedSummonerIndex');
+		}
+		
 		return $this->render('MVNerdsProfileBundle:Profile:profile_index.html.twig', array(
 			'user'				=> $user,
 			'user_items_builds' => $this->get('mvnerds.item_build_manager')->findByUserId($user->getId())
@@ -69,7 +73,7 @@ class FrontController extends Controller
 		$preferenceUniqueName = $request->get('preference_unique_name', null);
 		$preferenceValue = $request->get('preference_value', null);
 		
-		if (null == $preferenceUniqueName || null == $preferenceValue) {
+		if (null == $preferenceUniqueName) {
 			throw new HttpException(500, 'preference_unique_name and/or preference_value is/are missing!');
 		}
 		
@@ -81,6 +85,6 @@ class FrontController extends Controller
 			$response = false;
 		}
 		
-		return new Response(json_enconde($response));
+		return new Response(json_encode($response));
 	}
 }

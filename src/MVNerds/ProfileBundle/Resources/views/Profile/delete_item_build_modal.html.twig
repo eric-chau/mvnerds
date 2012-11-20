@@ -1,0 +1,13 @@
+<div id="delete-build-{{ item_build.getSlug() }}-modal" class="modal hide fade">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>Suppression d'une liste d'objets conseillés</h3>
+	</div>
+	<div class="modal-body">
+		<p>Vous êtes sur le point de supprimer votre liste d'objets conseillés <strong>{{ item_build.getName() }}</strong>. Êtes-vous sûr de vouloir faire cela ?</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#" data-dismiss="modal" class="btn-cancel">Annuler</a>
+		<a href="{{ path('item_builder_delete_build', {'itemBuildSlug': item_build.getSlug()}) }}" class="btn-download">Confirmer</a>
+	</div>
+</div>

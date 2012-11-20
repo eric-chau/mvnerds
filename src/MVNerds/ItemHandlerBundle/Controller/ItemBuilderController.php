@@ -440,7 +440,7 @@ class ItemBuilderController extends Controller
 			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
 			$itemBuild = $itemBuildManager->findOneBySlug($itemBuildSlug);
 		} catch (\Exception $e ) {
-			return $this->redirect($this->generateUrl('summoner_profile_proxy'));
+			return $this->redirect($this->generateUrl('summoner_profile_index'));
 		}
 		
 		if($this->get('security.context')->getToken()->getUser()->getId() == $itemBuild->getUserId() || $this->get('security.context')->isGranted('ROLE_ADMIN'))
@@ -448,6 +448,6 @@ class ItemBuilderController extends Controller
 			$itemBuild->delete();
 		}
 		
-		return $this->redirect($this->generateUrl('summoner_profile_proxy'));
+		return $this->redirect($this->generateUrl('summoner_profile_index'));
 	}
 }
