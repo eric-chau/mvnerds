@@ -121,7 +121,7 @@ function initItemFilterList($isotope, $filterButtons) {
 	$filterButtons.on('click', 'a.filter-link.selected',function() {
 		$(this).removeClass('selected');
 		$isotope.removeFilterValue('.'+$(this).attr('data-option-value'));
-		if($(this).parent().find('a.filter-link.selected').size() <= 0) {
+		if($(this).parent().parent().find('li a.filter-link.selected').size() <= 0) {console.log('ok');
 			$(this).parents('li.dropdown.action').children('a.dropdown-toggle.action-button-link').removeClass('active');
 			$(this).parent('a.dropdown-toggle').removeClass('active');
 			if($isotope.filters.name == undefined || $isotope.filters.name == ''){
@@ -159,7 +159,7 @@ function initChampionFilterList($isotope, $filterButtons) {
 	$filterButtons.on('click', 'a.filter-link.selected',function() {
 		$(this).removeClass('selected');
 		$isotope.removeFilterValue('.'+$(this).attr('data-option-value'));
-		if($(this).parent().find('a.filter-link.selected').size() <= 0) {
+		if($(this).parent().parent().find('li a.filter-link.selected').size() <= 0) {
 			$(this).parents('li.dropdown.action').children('a.dropdown-toggle.action-button-link').removeClass('active');
 			$(this).parent('a.dropdown-toggle').removeClass('active');
 			if($isotope.filters.name == undefined || $isotope.filters.name == ''){
