@@ -1,6 +1,5 @@
 $(function() {
 	$('a.download-action').click(function() {
-		console.log('coucou');
 		$('#modal-build-name').html($(this).data('name'));
 		$('#modal-dl-build').modal('show');
 		$('#modal-btn-download').attr('data-target', $(this).data('slug'));
@@ -16,8 +15,14 @@ $(function() {
 			url:  Routing.generate('item_builder_generate_rec_item_file_from_slug', {_locale: locale}),
 			data: {itemBuildSlug : target, path: $('#modal-lol-path').val()},
 			dataType: 'json'
-		}).done(function(data){console.log(data);
+		}).done(function(data){
 			dlCount.children('span').html(dlCount.children('span').html() * 1 + 1);
+			var $lolPath = $('#modal-lol-path');
+			if ( $lolPath != undefined && $lolPath.val() != '') {
+				$('#lol-dir-preference').html($('#modal-lol-path').val());
+				$('#lol-dir-preference').parent('li').removeClass('hide');
+				$lolPath.val('');
+			}
 			window.location = Routing.generate('item_builder_download_file', {_locale: locale, itemBuildSlug: data});
 		}).fail(function(data){
 			console.log(data.responseText);
