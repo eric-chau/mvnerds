@@ -1,11 +1,50 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-    <file source-language="en" datatype="plaintext" original="file.ext">
-        <body>
-            <trans-unit id="1">
-                <source>Symfony2 is great</source>
-                <target>J'aime Symfony2</target>
-            </trans-unit>
-        </body>
-    </file>
+	<file source-language="en" datatype="plaintext" original="file.ext">
+		<body>
+			<!-- NEWS LIST -->
+			<trans-unit id="0">
+				<source>news_list.title</source>
+				<target>Most Valuable News</target>
+			</trans-unit>
+			<trans-unit id="1">
+				<source>news_list.p1</source>
+				<target>Retrouvez ci-dessous toutes les news publiées sur MVNerds.</target>
+			</trans-unit>
+			
+			<!-- NEWS TABLE -->
+			<trans-unit id="1000">
+				<source>news_list.table.th.title</source>
+				<target>Titre</target>
+			</trans-unit>
+			<trans-unit id="1001">
+				<source>news_list.table.th.author</source>
+				<target>Auteur</target>
+			</trans-unit>
+			<trans-unit id="1002">
+				<source>news_list.table.th.category</source>
+				<target>Catégorie</target>
+			</trans-unit>
+			<trans-unit id="1003">
+				<source>news_list.table.th.create_date</source>
+				<target>Date de création</target>
+			</trans-unit>
+			<trans-unit id="1004">
+				<source>news_list.table.td.seen</source>
+				<target>Vu</target>
+			</trans-unit>
+			<trans-unit id="1005">
+				<source>news_list.table.td.times</source>
+				<target>fois</target>
+			</trans-unit>
+			<trans-unit id="1006">
+				<source>news_list.table.td.create_the</source>
+				<target>Le</target>
+			</trans-unit>
+			<trans-unit id="1007">
+				<source>news_list.table.td.created_at</source>
+				<target>à</target>
+			</trans-unit>
+		</body>
+	</file>
 </xliff>

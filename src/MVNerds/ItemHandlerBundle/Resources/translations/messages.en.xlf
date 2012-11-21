@@ -5,139 +5,133 @@
 			<!-- CREATE ITEM BUILD -->
 			<trans-unit id="0">
 				<source>create_item_build.title</source>
-				<target>Personnaliser une liste d'objets conseillés pour League of Legends</target>
+				<target>Customize a recommended items list for League of Legends</target>
 			</trans-unit>
 			<trans-unit id="1">
 				<source>create_item_build.h1</source>
-				<target>Personnaliser une liste d'objets conseillés</target>
+				<target>Customize a recommended items list</target>
 			</trans-unit>
 			<trans-unit id="2">
 				<source>create_item_build.p.1</source>
 				<target>
-					Bienvenue sur la page de création d'une nouvelle liste d'objets recommandés pour vos champions favoris. Pour être plus précis, nous allons voir comment de manière
-					simple et intuitive on modifier la liste des objets conseillés, celle qui apparaît lorsque vous êtes en jeu et que vous ouvrez la boutique.
+					Welcome ! Follow the steps to create a new recommended items list for your favourite champions.
 				</target>
 			</trans-unit>
 			
 			
 			<trans-unit id="3">
 				<source>create_item_build.h2.1</source>
-				<target>Etape 1 : choisissez un ou plusieurs champions</target>
+				<target>Step 1 : select one or many champions</target>
 			</trans-unit>
 			<trans-unit id="4">
 				<source>create_item_build.p.2</source>
-				<target>Sélectionnez ici le champion dont vous souhaitez éditer sa liste d'objets conseillés.</target>
+				<target>The new recommended items list will be set for each of the selected champions</target>
 			</trans-unit>
 			<trans-unit id="5">
 				<source>create_item_build.tip.1</source>
 				<target>
-					Astuce : un des avantages à utiliser notre outil est qu'il vous permet de changer en une seule fois les objets recommandés de plusieurs champions, 
-					pratique non ?
+					Tip : you can filter the champions by category and then select all of them to change their recommended items list all at once.
 				</target>
 			</trans-unit>
 			
 			
 			<trans-unit id="6">
 				<source>create_item_build.h2.2</source>
-				<target>Etape 2 : choisissez le mode de jeu</target>
+				<target>Step 2 : select the game mode</target>
 			</trans-unit>
 			<trans-unit id="7">
 				<source>create_item_build.p.3</source>
 				<target>
-					Dans League of Legends, pour chaque champion sa liste d'objets conseillés diffèrent selon le mode de jeu. Vous n'aurez donc pas forcément la même liste 
-					si vous faites une partie sur la carte "Brèche de cristal" (Dominion) ou une partie sur la carte "Faille de l'invocateur" (5 contre 5 - classique).
+					Depending on the League of Legends game mode, the recommended items list for your champions will be different.
 				</target>
 			</trans-unit>
 			<trans-unit id="8">
 				<source>create_item_build.tip.2</source>
 				<target>
+					Note : Only the items authorised in the game mode selected will appear in the list.
 				</target>
 			</trans-unit>
 			
 			
 			<trans-unit id="9">
 				<source>create_item_build.h2.3</source>
-				<target>Etape 3 : choisissez vos objets</target>
+				<target>Step 3 : select your items</target>
 			</trans-unit>
 			<trans-unit id="10">
 				<source>create_item_build.p.4</source>
 				<target>
-					Vous devez sélectionner un à six objets dont vous souhaitez voir apparaître dans la boutique en jeu pour le ou les champions dans le(s) mode(s) de jeu
-					que vous avez sélectionné ci-dessus.
+					You must select the six items that will be displayed in your recommended items list during the game for the above selected game mode.
 				</target>
 			</trans-unit>
 			<trans-unit id="11">
 				<source>create_item_build.tip.3</source>
 				<target>
-					Astuce : les consommables ne disparaissent pas de la liste des objets conseillés même après que vous les ayez acheté.
+					Tip : consumable items will not disappear after you purchased them.
 				</target>
 			</trans-unit>
 			<trans-unit id="12">
 				<source>create_item_build.tip.4</source>
 				<target>
-					Note : Certains objets ne sont pas disponibles dans tous les modes comme par exemple la "Lantern de Wriggles". Ne soyez donc pas surpris si jamais vous
-					ne retrouvez pas certains objets.
 				</target>
 			</trans-unit>
 			
 			<trans-unit id="13">
 				<source>create_item_build.h2.4</source>
-				<target>Etape 4 : nommez votre liste</target>
+				<target>Step 4 : name your list</target>
 			</trans-unit>
 			<trans-unit id="14">
 				<source>create_item_build.p.5</source>
 				<target>
-					C'est presque terminé. Vous devez maintenant nommer votre liste d'objet conseillés. Vous pourrez ensuite si vous le souhaitez, la consulter de nouveau,
-					la récupérer, l'éditer ou encore la partagée avec le reste de la communauté MVNerds.
+					You now have to name your recommended items list. If your are registered on mvnerds.com you will be able to save your list and download it again in the future or edit it.
 				</target>
 			</trans-unit>
 			<trans-unit id="014">
 				<source>create_item_build.list_name.placeholder</source>
-				<target>Nom de la liste...
+				<target>Name of the list...
 				</target>
 			</trans-unit>
 			
 			<trans-unit id="15">
 				<source>create_item_build.h2.5</source>
-				<target>Dernière étape</target>
+				<target>Last step</target>
 			</trans-unit>
 			<trans-unit id="16">
 				<source>create_item_build.p.6</source>
 				<target>
-					Félicitation, vous avez confectionné votre nouvelle liste d'objet conseillés.
-					Vous n'avez plus qu'à cliquer sur le bouton "Sauvegarder et générer" ou "Générer seulement".
+					Congratulations, you just made a new recommended items list.
+					You can now "Save and Generate" or "Generate only".
 				</target>
 			</trans-unit>
 			<trans-unit id="016">
 				<source>create_item_build.tip.5</source>
 				<target>
-					
+					Note : If you use "Generate Only" the build will not be saved but you will be able to downloaded it anyway.
 				</target>
 			</trans-unit>
 			
 			<trans-unit id="17">
 				<source>create_item_build.max_builds_reached</source>
 				<target>
-					Vous ne pouvez pas enregistrer plus de 7 builds.
+					You can't save more than 7 builds.
 				</target>
 			</trans-unit>
 			
 			<trans-unit id="18">
 				<source>create_item_build.btn.save_and_generate</source>
 				<target>
-					Sauvegarder et générer
+					Save and Generate
 				</target>
 			</trans-unit>
 			<trans-unit id="19">
 				<source>create_item_build.btn.generate_only</source>
 				<target>
-					Générer seulement
+					Generate Only
 				</target>
 			</trans-unit>
 			<trans-unit id="20">
 				<source>create_item_build.btn.save</source>
 				<target>
-					Enregistrer
+					Save
 				</target>
 			</trans-unit>
 			
@@ -145,81 +139,80 @@
 			<trans-unit id="21">
 				<source>create_item_build.modal_authenticate.h3</source>
 				<target>
-					Enregistrement du build
+					Saving the build...
 				</target>
 			</trans-unit>
 			
 			<trans-unit id="22">
 				<source>create_item_build.modal_authenticate.p1</source>
 				<target>
-					Afin de pouvoir profiter de la fonction d'enregistrement de vos builds, vous devez être authentifié.
+					You have to be authenticated to be allowed to use the "Save" functionality. Registering or authenticating will not erase your current build, it will be stored temporarily
 				</target>
 			</trans-unit>
 			<trans-unit id="23">
 				<source>create_item_build.modal_authenticate.p2</source>
 				<target>
-					Si vous n'avez pas encore de compte vous pouvez vous inscrire dès maintenant.
+					If you are registered yet, you can create an accout now.
 				</target>
 			</trans-unit>
 			<trans-unit id="24">
 				<source>create_item_build.modal_authenticate.p3</source>
 				<target>
-					Si vous ne désirez pas vous inscrire pour le moment vous pouvez tout de même télécharger votre build, cependant, 
-					celui-ci ne sera pas enregistré, vous ne pourrez ni le modifier, ni le re-télécharger, ni le supprimer.
+					If you do not want to create an account now, you can just download your item build, however, you won't be able to edit it, download it again or delete it.
 				</target>
 			</trans-unit>
 			
 			<trans-unit id="25">
 				<source>create_item_build.modal_authenticate.btn.cancel</source>
 				<target>
-					Annuler
+					Cancel
 				</target>
 			</trans-unit>
 			<trans-unit id="26">
 				<source>create_item_build.modal_authenticate.btn.confirm</source>
 				<target>
-					Confirmer
+					Confirm
 				</target>
 			</trans-unit>
 			<trans-unit id="27">
 				<source>create_item_build.modal_authenticate.btn.inscription</source>
 				<target>
-					Inscription
+					Registration
 				</target>
 			</trans-unit>
 			<trans-unit id="28">
 				<source>create_item_build.modal_authenticate.btn.download_only</source>
 				<target>
-					Télécharger uniquement
+					Download Only
 				</target>
 			</trans-unit>
-
 
 			<trans-unit id="29">
 				<source>create_item_build.modal_dl_build.h3</source>
 				<target>
-					Téléchargement de la liste d'objets recommandés
+					Recommended items list download
 				</target>
 			</trans-unit>
 			
 			<trans-unit id="30">
 				<source>create_item_build.modal_dl_build.p1</source>
 				<target>
-					Si votre dossier "League of Legends" n'apparaît pas dans cette liste :
+					If your "League of Legends" directory does not figure in this list :
 				</target>
 			</trans-unit>
 			<trans-unit id="31">
 				<source>create_item_build.modal_dl_build.li_info</source>
 				<target>
-					 | Ceci est le répertoire que vous avez enregistré auparavant et il sera remplacé si vous saisissez une autre valeur ci-dessous.
+					 | This is the directory you saved before and it will be replaced if you specify a new value below.
 				</target>
 			</trans-unit>
 			<trans-unit id="32">
 				<source>create_item_build.modal_dl_build.p2</source>
 				<target>
-					Veuillez l'indiquer ici : 
+					Please enter it here : 
 				</target>
 			</trans-unit>
+			
 			<trans-unit id="33">
 				<source>create_item_build.modal_dl_build.btn.cancel</source>
 				<target>
@@ -227,45 +220,43 @@
 				</target>
 			</trans-unit>
 			<trans-unit id="34">
-				<source>create_item_build.modal_dl_build.btn.downlad</source>
+				<source>create_item_build.modal_dl_build.btn.download</source>
 				<target>
 					Download
 				</target>
 			</trans-unit>
 			<trans-unit id="35">
 				<source>create_item_build.modal_dl_build.input.placeholder</source>
-				<target>
-					ex : D:/Riot/
-				</target>
+				<target>ex : D:/Riot/</target>
 			</trans-unit>
 
 			<!-- TABED LIST INDEX -->
 			<trans-unit id="1000">
 				<source>tabed_list.btn.all_lists</source>
 				<target>
-					Toutes les listes
+					All lists
 				</target>
 			</trans-unit>
 			<trans-unit id="1001">
 				<source>tabed_list.btn.create_list</source>
 				<target>
-					Créer une liste
+					Create a list
 				</target>
 			</trans-unit>
 			<trans-unit id="1002">
 				<source>tabed_list.btn.new_lists</source>
 				<target>
-					Nouvelles listes
+					New lists
 				</target>
 			</trans-unit>
 			<trans-unit id="1003">
 				<source>tabed_list.btn.most_downloaded_lists</source>
 				<target>
-					Listes les plus téléchargées
+					Most downloaded lists
 				</target>
 			</trans-unit>
 
-			<!-- ITEM TABLE INDEX -->
+			<!-- ITEM TABLE  -->
 			<trans-unit id="2000">
 				<source>item_table.th.champion</source>
 				<target>
@@ -275,56 +266,56 @@
 			<trans-unit id="2001">
 				<source>item_table.th.name</source>
 				<target>
-					Nom
+					Name
 				</target>
 			</trans-unit>
 			<trans-unit id="2002">
 				<source>item_table.th.game_mode</source>
 				<target>
-					Mode de jeu
+					Game mode
 				</target>
 			</trans-unit>
 			<trans-unit id="2003">
 				<source>item_table.th.items</source>
 				<target>
-					Objets
+					Items
 				</target>
 			</trans-unit>
 			<trans-unit id="2004">
 				<source>item_table.td.created_by</source>
 				<target>
-					Créé par
+					Created by
 				</target>
 			</trans-unit>
 			<trans-unit id="2005">
 				<source>item_table.td.consult_profile_of</source>
-				<target>Consulter le profil de</target>
+				<target>Consult profile of</target>
 			</trans-unit>
 			<trans-unit id="2006">
 				<source>item_table.td.created_the</source>
-				<target>le</target>
+				<target>the</target>
 			</trans-unit>
 			<trans-unit id="2007">
 				<source>item_table.td.downloaded</source>
 				<target>
-					Téléchargé
+					Downloaded
 				</target>
 			</trans-unit>
 			<trans-unit id="2008">
 				<source>item_table.td.times</source>
 				<target>
-					fois
+					times
 				</target>
 			</trans-unit>
 
 			<!-- All lists -->
 			<trans-unit id="3000">
 				<source>item_build_list_index.btn.create_list</source>
-				<target>Créer une liste</target>
+				<target>Create a list</target>
 			</trans-unit>
 			<trans-unit id="3001">
 				<source>item_build_list_index.p1</source>
-				<target>Retrouvez ci-dessous les listes d'items recommandés partagées par les membres de MVNerds.</target>
+				<target>Find below recommended items lists shared by the members of MVNerds.</target>
 			</trans-unit>
 			<trans-unit id="3002">
 				<source>item_build_list_index.title</source>

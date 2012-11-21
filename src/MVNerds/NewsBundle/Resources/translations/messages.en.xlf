@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="file.ext">
+		<body>
+			<!-- NEWS LIST -->
+			<trans-unit id="0">
+				<source>news_list.title</source>
+				<target>Most Valuable News</target>
+			</trans-unit>
+			<trans-unit id="1">
+				<source>news_list.p1</source>
+				<target>Find below all the news published on MVNerds.</target>
+			</trans-unit>
+			
+			<!-- NEWS TABLE -->
+			<trans-unit id="1000">
+				<source>news_list.table.th.title</source>
+				<target>Title</target>
+			</trans-unit>
+			<trans-unit id="1001">
+				<source>news_list.table.th.author</source>
+				<target>Author</target>
+			</trans-unit>
+			<trans-unit id="1002">
+				<source>news_list.table.th.category</source>
+				<target>Category</target>
+			</trans-unit>
+			<trans-unit id="1003">
+				<source>news_list.table.th.create_date</source>
+				<target>Creation date</target>
+			</trans-unit>
+			<trans-unit id="1004">
+				<source>news_list.table.td.seen</source>
+				<target>Views :</target>
+			</trans-unit>
+			<trans-unit id="1005">
+				<source>news_list.table.td.times</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="1006">
+				<source>news_list.table.td.create_the</source>
+				<target>The</target>
+			</trans-unit>
+			<trans-unit id="1007">
+				<source>news_list.table.td.created_at</source>
+				<target>at</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

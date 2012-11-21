@@ -1,9 +1,13 @@
 <div id="modal-dl-build" class="modal hide fade">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h3>Téléchargement du build</h3>
+		<h3>{{'create_item_build.modal_dl_build.h3'|trans}}</h3>
 	</div>
 	<div class="modal-body">
+		
+			<p>
+				{{'create_item_build.modal_dl_build.p1'|trans}}
+			</p>
 		
 			<ul>
 				<li>C:/Program Files/Riot Games/</li>
@@ -13,20 +17,20 @@
 				<li>C:/Program Files (x86)/Riot Games/</li>
 				<li>C:/Program Files (x86)/Riot/</li>
 				{% if lol_dir is defined and lol_dir != ''%}
-					<li><span id="lol-dir-preference">{{lol_dir}}</span> | Ceci est le répertoire que vous avez enregistré auparavant et il sera remplacé si vous saisissez une autre valeur ci-dessous.</li>
+					<li><span id="lol-dir-preference">{{lol_dir}}</span>{{'create_item_build.modal_dl_build.li_info'|trans}}</li>
 				{% else %}
 					{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-						<li class="hide"><span id="lol-dir-preference"></span> | Ceci est le répertoire que vous avez enregistré auparavant et il sera remplacé si vous saisissez une autre valeur ci-dessous.</li>
+						<li class="hide"><span id="lol-dir-preference"></span>{{'create_item_build.modal_dl_build.li_info'|trans}}</li>
 					{% endif%}
 				{%endif%}
 			</ul>
 			<p>
-				Veuillez l'indiquer ici :
-				<input type="text" id="modal-lol-path" placeholder="ex : D:/Riot/"/>
+				{{'create_item_build.modal_dl_build.p2'|trans}}
+				<input type="text" id="modal-lol-path" placeholder="{{'create_item_build.modal_dl_build.input.placeholder'|trans}}"/>
 			</p>
 	</div>
 	<div class="modal-footer">
-		<a href="#" data-dismiss="modal" class="btn-cancel">Annuler</a>
-		<a href="#" id="modal-btn-download" data-target="" class="btn-download"><i class="icon-download-alt"></i> Télécharger</a>
+		<a href="#" data-dismiss="modal" class="btn-cancel">{{'create_item_build.modal_dl_build.btn.cancel'|trans}}</a>
+		<a href="#" id="modal-btn-download" data-target="" class="btn-download"><i class="icon-download-alt"></i> {{'create_item_build.modal_dl_build.btn.download'|trans}}</a>
 	</div>
 </div>

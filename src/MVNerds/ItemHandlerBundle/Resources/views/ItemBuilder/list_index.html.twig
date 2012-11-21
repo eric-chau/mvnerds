@@ -17,28 +17,32 @@
 	<script src="{{ asset('js/item_handler/item_builder/dl-modal.js') }}"></script>
 	<script src="{{ asset('js/launch_site/alerts-ajax-handler.js') }}"></script>
 {% endblock %}
+{% block title %}
+	{{'item_build_list_index.title'|trans}}
+{% endblock %}
 
 {% block body_main_content %}
 	<div class="body-container list-item-builder">
 		<div class="row-fluid">
-			<h1 class="span9">Pimp My Recommended Items</h1><a class="pull-right btn-red btn-pmri" href="{{path('item_builder_create')}}">Créer une liste</a>
+			<h1 class="span9">Pimp My Recommended Items</h1><a class="pull-right btn-red btn-pmri" href="{{path('item_builder_create')}}">{{'item_build_list_index.btn.create_list'|trans}}</a>
 		</div>
 		
 		
-		<p>Retrouvez ci-dessous des liste d'objets conseillés personnalisées et partagées par les autres membres MVNerds.</p>
+		<p>{{'item_build_list_index.p1'|trans}}</p>
 		
 		<table id="item-builds-table" class="table data-table" data-filter="{% if championSlug is defined %}{{championSlug}}{% endif %}">
 			<thead>
 				<tr>
-					<th class="champions">Champion</th>
-					<th class="name">Nom</th>
-					<th class="game-mode">Mode de jeu</th>
-					<th class="items">Items</th>
+					<th class="champions">{{'item_table.th.champion'|trans}}</th>
+					<th class="name">{{'item_table.th.name'|trans}}</th>
+					<th class="game-mode">{{'item_table.th.game_mode'|trans}}</th>
+					<th class="items">{{'item_table.th.items'|trans}}</th>
 					<th class="actions"></th>
 				</tr>
 			</thead>
 			<tbody>
 				{% for itemBuild in itemBuilds%}
+					{% set user = itemBuild.getUser() %}
 					<tr class="item-build-row" data-target="{{itemBuild.getSlug()}}">
 						<td>
 							{% if itemBuild.getChampionItemBuilds()|length <= 1 %}
@@ -49,7 +53,7 @@
 						</td>
 						<td class="name">
 							{{itemBuild.getName()}}<br />
-							<span class="created-by">Créé par {{itemBuild.getUser().getUserName()}} le {{itemBuild.getCreateTime('d/m/Y')}}</span>
+							<span class="created-by">{{'item_table.td.created_by'|trans}} <a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}" title="{{'item_table.td.consult_profile_of'|trans}} {{ user.getUsername }}">{{user.getUsername()}}</a> {{'item_table.td.created_the'|trans}} {{itemBuild.getCreateTime('d/m/Y')}}</span>
 						</td>
 						
 						<td class="game-mode">{{itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel()}}</td>
@@ -89,7 +93,7 @@
 						<td>
 							<a class="action download-action" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}"><i class="icon-download-alt"></i></a>
 							
-							<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>Téléchargé</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> fois</span>
+							<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>{{'item_table.td.downloaded'|trans}}</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> {{'item_table.td.times'|trans}}</span>
 						</td>
 						
 						<td>{% for championItemBuild in  itemBuild.getChampionItemBuilds()%}{{championItemBuild.getChampion().getName}} {% endfor %}</td>
