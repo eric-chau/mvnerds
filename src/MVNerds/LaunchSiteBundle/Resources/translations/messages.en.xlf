@@ -207,9 +207,17 @@
 			</trans-unit>
 			<trans-unit id="5018">
 				<source>Actionsbar.Filter.Dropdown.compare_filtered</source>
-				<target>Add filtered champions to the comparison list</target>
+				<target>Add filtered champions to the list</target>
 			</trans-unit>
-			
+			<trans-unit id="5019">
+				<source>Actionsbar.CleanSelection.title</source>
+				<target>Clean the selection</target>
+			</trans-unit>
+			<trans-unit id="5020">
+				<source>Actionsbar.Item.Filter.Dropdown.title</source>
+				<target>Filter items by tags</target>
+			</trans-unit>
+
 			<!--  CHAMPION PREVIEW -->
 			<trans-unit id="6000">
 				<source>Champion_preview.stat.bonus_per_level.label</source>
@@ -365,6 +373,14 @@
 				<source>Footer.links.legal</source>
 				<target>Legal</target>
 			</trans-unit>
+			<trans-unit id="9007">
+				<source>Footer.links.statistics</source>
+				<target>Statistics</target>
+			</trans-unit>
+			<trans-unit id="9008">
+				<source>Footer.links.about_us</source>
+				<target>About us</target>
+			</trans-unit>
 
 			<!--  PRIVACY POLICY -->
 			<trans-unit id="10000">
@@ -504,6 +520,30 @@
 			<trans-unit id="16003">
 				<source>Comment_ie.4</source>
 				<target>to better experience this site.</target>
+			</trans-unit>
+
+			<!--  CHAMPION BENCHMARK PREVIEW -->
+			<trans-unit id="17000">
+				<source>champion_benchmark_preview.ol.li1</source>
+				<target>An original champions list</target>
+			</trans-unit>
+			<trans-unit id="17001">
+				<source>champion_benchmark_preview.ol.li2</source>
+				<target>An effective filtering system</target>
+			</trans-unit>
+			<trans-unit id="17002">
+				<source>champion_benchmark_preview.ol.li3</source>
+				<target>An efficient comparison tool</target>
+			</trans-unit>
+			<trans-unit id="17003">
+				<source>champion_benchmark_preview.btn.try_it</source>
+				<target>Try it now !</target>
+			</trans-unit>
+
+			<!-- CAROUSEL INDEX -->
+			<trans-unit id="18000">
+				<source>carousel_index.btn.all_news</source>
+				<target>All news</target>
 			</trans-unit>
 		</body>
 	</file>

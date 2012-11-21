@@ -207,9 +207,17 @@
 			</trans-unit>
 			<trans-unit id="5018">
 				<source>Actionsbar.Filter.Dropdown.compare_filtered</source>
-				<target>Ajouter les champions filtrés à la liste de comparaison</target>
+				<target>Ajouter les champions filtrés à la liste</target>
 			</trans-unit>
-			
+			<trans-unit id="5019">
+				<source>Actionsbar.CleanSelection.title</source>
+				<target>Nettoyer la sélection</target>
+			</trans-unit>
+			<trans-unit id="5020">
+				<source>Actionsbar.Item.Filter.Dropdown.title</source>
+				<target>Filtrer les items par tags</target>
+			</trans-unit>
+
 			<!--  CHAMPION PREVIEW -->
 			<trans-unit id="6000">
 				<source>Champion_preview.stat.bonus_per_level.label</source>
@@ -365,6 +373,14 @@
 				<source>Footer.links.legal</source>
 				<target>Mentions légales</target>
 			</trans-unit>
+			<trans-unit id="9007">
+				<source>Footer.links.statistics</source>
+				<target>Statistiques</target>
+			</trans-unit>
+			<trans-unit id="9008">
+				<source>Footer.links.about_us</source>
+				<target>A propos de nous</target>
+			</trans-unit>
 
 			<!--  PRIVACY POLICY -->
 			<trans-unit id="10000">
@@ -504,6 +520,30 @@
 			<trans-unit id="16003">
 				<source>Comment_ie.4</source>
 				<target>afin de mieux apprécier ce site.</target>
+			</trans-unit>
+
+			<!--  CHAMPION BENCHMARK PREVIEW -->
+			<trans-unit id="17000">
+				<source>champion_benchmark_preview.ol.li1</source>
+				<target>Une liste de champions originale</target>
+			</trans-unit>
+			<trans-unit id="17001">
+				<source>champion_benchmark_preview.ol.li2</source>
+				<target>Un système de filtrage efficace</target>
+			</trans-unit>
+			<trans-unit id="17002">
+				<source>champion_benchmark_preview.ol.li3</source>
+				<target>Un outil de comparaison performant</target>
+			</trans-unit>
+			<trans-unit id="17003">
+				<source>champion_benchmark_preview.btn.try_it</source>
+				<target>Testez-le maintenant !</target>
+			</trans-unit>
+
+			<!-- CAROUSEL INDEX -->
+			<trans-unit id="18000">
+				<source>carousel_index.btn.all_news</source>
+				<target>Toutes les news</target>
 			</trans-unit>
 		</body>
 	</file>

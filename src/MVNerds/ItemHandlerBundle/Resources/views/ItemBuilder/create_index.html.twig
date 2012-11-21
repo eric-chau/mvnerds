@@ -80,7 +80,7 @@
 		
 		<div class="generate-button-container">
 			{% if itemBuildSlug is not defined %}
-				{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+				{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 					{% if can_save_build%}
 						<a href="#" id="save-and-generate-build" class="main">{{'create_item_build.btn.save_and_generate' | trans}}</a>
 					{% else %}

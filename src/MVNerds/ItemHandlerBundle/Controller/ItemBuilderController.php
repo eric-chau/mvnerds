@@ -372,7 +372,7 @@ class ItemBuilderController extends Controller
 		
 		$slug = $request->get('slug');
 		try{
-			$item = $this->get('mvnerds.item_manager')->findBySlug($slug);
+			$item = $this->get('mvnerds.item_manager')->findBySlugForPopover($slug);
 		} catch (\Exception $e) {
 			return new Response(json_encode('Impossible de trouver l\'item'));
 		}

@@ -2,10 +2,10 @@
 	<table id="item-builds-table" class="table">
 		<thead>
 			<tr>
-				<th class="champions">Champion</th>
-				<th class="name">Nom</th>
-				<th class="game-mode">Mode de jeu</th>
-				<th class="items">Objets</th>
+				<th class="champions">{{'item_table.th.champion'|trans}}</th>
+				<th class="name">{{'item_table.th.name'|trans}}</th>
+				<th class="game-mode">{{'item_table.th.game_mode'|trans}}</th>
+				<th class="items">{{'item_table.th.items'|trans}}</th>
 				<th class="actions"></th>
 			</tr>
 		</thead>
@@ -24,33 +24,33 @@
 					
 					<td class="name">
 						{{itemBuild.getName()}}<br />
-						<span class="created-by">Créé par <a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}" title="Consulter le profil de {{ user.getUsername }}"">{{user.getUsername()}}</a> le {{itemBuild.getCreateTime('d/m/Y')}}</span>
+						<span class="created-by">{{'item_table.td.created_by'|trans}} <a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}" title="{{'item_table.td.consult_profile_of'|trans}} {{ user.getUsername }}">{{user.getUsername()}}</a> {{'item_table.td.created_the'|trans}} {{itemBuild.getCreateTime('d/m/Y')}}</span>
 					</td>
 						
 					<td class="game-mode">{{itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel()}}</td>
 					
 					<td class="item">
-						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem1Id().getRiotCode() ~ '.png' )}}" alt="{{itemBuild.getItemRelatedByItem1Id().getName}} " class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
+						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem1Id().getRiotCode() ~ '.png' )}}" alt="{{itemBuild.getItemRelatedByItem1Id().getName()}} " class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
 							 data-title="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_title.html.twig' with {item: itemBuild.getItemRelatedByItem1Id()} %}" 
 							 data-content="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig' with {item: itemBuild.getItemRelatedByItem1Id()} %}"/>
 
-						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem2Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem2Id().getName}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
+						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem2Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem2Id().getName()}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
 							 data-title="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_title.html.twig' with {item: itemBuild.getItemRelatedByItem2Id()} %}" 
 							 data-content="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig' with {item: itemBuild.getItemRelatedByItem2Id()} %}"/>
 
-						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem3Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem3Id().getName}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
+						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem3Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem3Id().getName()}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
 							 data-title="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_title.html.twig' with {item: itemBuild.getItemRelatedByItem3Id()} %}" 
 							 data-content="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig' with {item: itemBuild.getItemRelatedByItem3Id()} %}"/>
 
-						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem4Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem4Id().getName}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
+						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem4Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem4Id().getName()}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
 							 data-title="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_title.html.twig' with {item: itemBuild.getItemRelatedByItem4Id()} %}" 
 							 data-content="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig' with {item: itemBuild.getItemRelatedByItem4Id()} %}"/>
 
-						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem5Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem5Id().getName}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
+						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem5Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem5Id().getName()}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
 							 data-title="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_title.html.twig' with {item: itemBuild.getItemRelatedByItem5Id()} %}" 
 							 data-content="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig' with {item: itemBuild.getItemRelatedByItem5Id()} %}"/>
 
-						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem6Id().getRiotCode()  ~ '.png' )}}" alt="{{itemBuild.getItemRelatedByItem6Id().getName}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
+						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem6Id().getRiotCode()  ~ '.png' )}}" alt="{{itemBuild.getItemRelatedByItem6Id().getName()}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
 							 data-title="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_title.html.twig' with {item: itemBuild.getItemRelatedByItem6Id()} %}" 
 							 data-content="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig' with {item: itemBuild.getItemRelatedByItem6Id()} %}"/>
 					</td>
@@ -61,14 +61,14 @@
 								<a class="action download-action" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}"><i class="icon-download-alt"></i></a>
 								<a href="{{ path('item_builder_edit_build', {'itemBuildSlug': itemBuild.getSlug()}) }}" class="action edit-action"><i class="icon-edit"></i></a>
 								<a href="#delete-build-{{ itemBuild.getSlug() }}-modal" class="action delete-action" data-toggle="modal"><i class="icon-remove-sign"></i></a>
-								<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>Téléchargé</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> fois</span>
+								<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>{{'item_table.td.downloaded'|trans}}</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> {{'item_table.td.times'|trans}}</span>
 							</div>
 							
 							
 						{% else %}
 							<a class="action download-action" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}"><i class="icon-download-alt"></i></a>
 						
-							<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>Téléchargé</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> fois</span>
+							<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>{{'item_table.td.downloaded'|trans}}</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> {{'item_table.td.times'|trans}}</span>
 						{% endif %}
 					</td>
 				</tr>

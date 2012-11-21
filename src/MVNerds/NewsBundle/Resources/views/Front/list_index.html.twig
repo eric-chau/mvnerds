@@ -18,15 +18,15 @@
 	<div class="body-container list-news">
 		<h1>Most Valuable News</h1>
 		
-		<p>Retrouvez ci-dessous toutes les news publiées sur MVNerds.</p>
+		<p>{{'news_list.p1'|trans}}</p>
 		
 		<table id="news-table" class="table data-table">
 			<thead>
 				<tr>
-					<th class="title">Titre</th>
-					<th class="author">Auteur</th>
-					<th class="category">Catégorie</th>
-					<th class="creation-date">Date de création</th>
+					<th class="title">{{'news_list.table.th.title'|trans}}</th>
+					<th class="author">{{'news_list.table.th.author'|trans}}</th>
+					<th class="category">{{'news_list.table.th.category'|trans}}</th>
+					<th class="creation-date">{{'news_list.table.th.create_date'|trans}}</th>
 					<th class="actions"></th>
 				</tr>
 			</thead>
@@ -39,12 +39,12 @@
 						
 						<td>{{new.getNewsCategory().getLabel()}}</td>
 						
-						<td>Le {{new.getCreateTime('d/m/Y')}} à {{new.getCreateTime('H:i:s')}}</td>
+						<td>{{'news_list.table.td.create_the'|trans}} {{new.getCreateTime('d/m/Y')}} {{'news_list.table.td.created_at'|trans}} {{new.getCreateTime('H:i:s')}}</td>
 						
 						<td>
 							<a class="action view-action" href="{{path('front_news_view', {slug: new.getSlug()})}}"><i class="icon-share"></i></a>
 							
-							<span class="view-count-block"><strong>Vu</strong> <span class="view-count">{{new.getView()}}</span> fois</span>
+							<span class="view-count-block"><strong>{{'news_list.table.td.seen'|trans}}</strong> <span class="view-count">{{new.getView()}}</span> {{'news_list.table.td.times'|trans}}</span>
 						</td>
 					</tr>
 				{% endfor %}

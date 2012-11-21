@@ -4,14 +4,14 @@
 			<h2>Pimp My Recommended Items</h2>
 		</div>
 		<div class="span6">
-			<a href="{{path('item_builder_list')}}" class="pull-right btn-green">Voir toutes les listes</a>
-			<a class="pull-right btn-create btn-pmri" href="{{path('item_builder_create')}}">Créer une liste</a>
+			<a href="{{path('item_builder_list')}}" class="pull-right btn-green">{{'tabed_list.btn.all_lists'|trans}}</a>
+			<a class="pull-right btn-create btn-pmri" href="{{path('item_builder_create')}}">{{'tabed_list.btn.create_list'|trans}}</a>
 		</div>
 	</div>
 
 	<ul class="nav nav-pills" id="tabed-builds">
-		<li class="active"><a href="#tab-newest-builds">Nouvelles listes</a></li>
-		<li><a href="#tab-most-downloaded-builds">Listes les plus téléchargées</a></li>
+		<li class="active"><a href="#tab-newest-builds">{{'tabed_list.btn.new_lists'|trans}}</a></li>
+		<li><a href="#tab-most-downloaded-builds">{{'tabed_list.btn.most_downloaded_lists'|trans}}</a></li>
 	</ul>
 		
 	<div class="tab-content">

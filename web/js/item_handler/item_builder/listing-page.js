@@ -97,25 +97,46 @@ $(document).ready(function() {
 	
 	filter = $('#item-builds-table').data('filter');
 	
-	//Traduction datatable
-	var langage = {
-		"sProcessing":     "Traitement en cours...",
-		"sLengthMenu":     "Afficher _MENU_ builds par page",
-		"sZeroRecords":    "Aucun build à afficher",
-		"sInfo":           "Affichage des builds de _START_ à _END_ sur un total de _TOTAL_ builds",
-		"sInfoEmpty":      "Affichage du build 0 à 0 sur 0 builds",
-		"sInfoFiltered":   "(filtré de _MAX_ builds au total)",
-		"sInfoPostFix":    "",
-		"sSearch":         "<i class='icon-search icon-white'></i>",
-		"sLoadingRecords": "Chargement...",
-		"sUrl":            "",
-		"oPaginate": {
-			"sFirst":    "Premier",
-			"sPrevious": "Précédent",
-			"sNext":     "Suivant",
-			"sLast":     "Dernier"
-		}
-	};
+	var langage;
+	if(locale != undefined && locale == 'en') {
+		langage = {
+			"sProcessing":     "Processing...",
+			"sLengthMenu":     "Show _MENU_ lists per page",
+			"sZeroRecords":    "There is no lists to show",
+			"sInfo":           "Showing lists from _START_ to _END_ on a total of _TOTAL_ lists",
+			"sInfoEmpty":      "Empty list",
+			"sInfoFiltered":   "(filtered from a total of _MAX_ lists)",
+			"sInfoPostFix":    "",
+			"sSearch":         "<i class='icon-search icon-white'></i>",
+			"sLoadingRecords": "Loading...",
+			"sUrl":            "",
+			"oPaginate": {
+				"sFirst":    "First",
+				"sPrevious": "Previous",
+				"sNext":     "Next",
+				"sLast":     "Last"
+			}
+		};
+	} else {
+		langage = {
+			"sProcessing":     "Traitement en cours...",
+			"sLengthMenu":     "Afficher _MENU_ builds par page",
+			"sZeroRecords":    "Aucun build à afficher",
+			"sInfo":           "Affichage des builds de _START_ à _END_ sur un total de _TOTAL_ builds",
+			"sInfoEmpty":      "Affichage du build 0 à 0 sur 0 builds",
+			"sInfoFiltered":   "(filtré de _MAX_ builds au total)",
+			"sInfoPostFix":    "",
+			"sSearch":         "<i class='icon-search icon-white'></i>",
+			"sLoadingRecords": "Chargement...",
+			"sUrl":            "",
+			"oPaginate": {
+				"sFirst":    "Premier",
+				"sPrevious": "Précédent",
+				"sNext":     "Suivant",
+				"sLast":     "Dernier"
+			}
+		};
+	}
 	
 	$('.bootstrap-popover').popover();
 	
@@ -150,7 +171,13 @@ $(document).ready(function() {
 	//CHAMP DE RECHERCHE
 	$('#item-builds-table_filter label').addClass('search-box');
 	$('#item-builds-table_filter label input').attr('data-provide', 'typeahead');
-	$('#item-builds-table_filter label input').attr('placeholder', 'Rechercher par champion');
+	
+	if(locale != undefined && locale == 'en') {
+		$('#item-builds-table_filter label input').attr('placeholder', 'Search by champion');
+	} else {
+		$('#item-builds-table_filter label input').attr('placeholder', 'Rechercher par champion');
+	}
+	
 	$.ajax({
 		type: 'POST',
 		url:  Routing.generate('champion_handler_front_get_champions_name', {_locale: locale}), 

@@ -25,19 +25,6 @@ class FrontController extends Controller
 			$form->bind($request);
 		}
 		
-		$itemsCriteria = \MVNerds\CoreBundle\Model\ItemQuery::create()
-				->joinWith('ItemI18n', \Criteria::LEFT_JOIN)
-				->joinWith('ItemPrimaryEffect', \Criteria::LEFT_JOIN)
-				->joinWith('ItemPrimaryEffect.PrimaryEffect', \Criteria::LEFT_JOIN)
-				->joinWith('PrimaryEffect.PrimaryEffectI18n', \Criteria::LEFT_JOIN)
-				->joinWith('ItemSecondaryEffect', \Criteria::LEFT_JOIN)
-				->joinWith('ItemSecondaryEffect.ItemSecondaryEffectI18n', \Criteria::LEFT_JOIN);
-		
-		$championItemBuildsCriteria = \MVNerds\CoreBundle\Model\ChampionItemBuildQuery::create()
-				->joinWith('GameMode')
-				->joinWith('Champion')
-				->joinWith('Champion.ChampionI18n');
-		
 		if ($this->get('security.context')->isGranted('ROLE_NEWSER'))
 		{
 			$news = $this->get('mvnerds.news_manager')->findNotPrivateHighlights();
@@ -58,8 +45,8 @@ class FrontController extends Controller
 		
 		return $this->render('MVNerdsLaunchSiteBundle:Front:index.html.twig', array(
 			'form'					=> $form->createView(),
-			'latest_builds'			=> $this->get('mvnerds.item_build_manager')->findLatestBuilds($championItemBuildsCriteria, $itemsCriteria),
-			'most_downloaded_builds'	=> $this->get('mvnerds.item_build_manager')->findMostDownloadedBuilds($championItemBuildsCriteria, $itemsCriteria),
+			'latest_builds'			=> $this->get('mvnerds.item_build_manager')->findLatestBuilds(),
+			'most_downloaded_builds'	=> $this->get('mvnerds.item_build_manager')->findMostDownloadedBuilds(),
 			'news'					=> $news,
 			'lol_dir'				=> $lolDir
 		));

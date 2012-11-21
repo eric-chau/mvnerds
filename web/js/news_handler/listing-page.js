@@ -95,8 +95,28 @@ $.extend( $.fn.dataTableExt.oPagination, {
 
 $(document).ready(function() {
 	
-	//Traduction datatable
-	var langage = {
+	var langage;
+	if(locale != undefined && locale == 'en') {
+		langage = {
+			"sProcessing":     "Processing...",
+			"sLengthMenu":     "Show _MENU_ news per page",
+			"sZeroRecords":    "There is no news to show",
+			"sInfo":           "Showing news from _START_ to _END_ on a total of _TOTAL_ news",
+			"sInfoEmpty":      "Empty list",
+			"sInfoFiltered":   "(filtered from a total of _MAX_ news)",
+			"sInfoPostFix":    "",
+			"sSearch":         "<i class='icon-search icon-white'></i>",
+			"sLoadingRecords": "Loading...",
+			"sUrl":            "",
+			"oPaginate": {
+				"sFirst":    "First",
+				"sPrevious": "Previous",
+				"sNext":     "Next",
+				"sLast":     "Last"
+			}
+		};
+	} else {
+		langage = {
 		"sProcessing":     "Traitement en cours...",
 		"sLengthMenu":     "Afficher _MENU_ news par page",
 		"sZeroRecords":    "Aucune news à afficher",
@@ -114,6 +134,7 @@ $(document).ready(function() {
 			"sLast":     "Dernier"
 		}
 	};
+	}
 	
 	newsTable = $('#news-table').dataTable({
 		"bLengthChange": false,
@@ -134,5 +155,11 @@ $(document).ready(function() {
 	
 	//CHAMP DE RECHERCHE
 	$('#news-table_filter label').addClass('search-box');
-	$('#news-table_filter label input').attr('placeholder', 'Rechercher dans le titre');
+	
+	if(locale != undefined && locale == 'en') {
+		$('#news-table_filter label input').attr('placeholder', 'Search in the title');
+	} else {
+		$('#news-table_filter label input').attr('placeholder', 'Rechercher dans le titre');
+	}
+	
 });

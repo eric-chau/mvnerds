@@ -12,6 +12,8 @@ use MVNerds\CoreBundle\Model\ItemBuildPeer;
 
 class ItemBuildManager
 {
+	private $userLocale;
+	
 	/**
 	 * Récupère un objet ItemBuild à partir de son identifiant $id 
 	 * 
@@ -116,7 +118,7 @@ class ItemBuildManager
 		->find();
 
 		$items = \MVNerds\CoreBundle\Model\ItemQuery::create()
-				->joinWith('ItemI18n', \Criteria::LEFT_JOIN)
+				->joinWithI18n($this->userLocale, \Criteria::LEFT_JOIN)
 				->joinWith('ItemPrimaryEffect', \Criteria::LEFT_JOIN)
 				->joinWith('ItemPrimaryEffect.PrimaryEffect', \Criteria::LEFT_JOIN)
 				->joinWith('PrimaryEffect.PrimaryEffectI18n', \Criteria::LEFT_JOIN)
@@ -174,13 +176,28 @@ class ItemBuildManager
 	/**
 	 * Récupère les builds les plus récents
 	 */
-	public function findLatestBuilds($championItemBuildsCriteria, $itemsCriteria)
+	public function findLatestBuilds()
 	{
 		$itemBuilds = ItemBuildQuery::create()
 			->add(ItemBuildPeer::STATUS, ItemBuildPeer::STATUS_PUBLIC)
 			->orderById(\Criteria::DESC)
 			->limit(5)
 		->find();
+		
+		$itemsCriteria = \MVNerds\CoreBundle\Model\ItemQuery::create()
+				->joinWithI18n($this->userLocale, \Criteria::LEFT_JOIN)
+				->joinWith('ItemPrimaryEffect ipe', \Criteria::LEFT_JOIN)
+				->joinWith('ipe.PrimaryEffect pe', \Criteria::LEFT_JOIN)
+				->joinWith('pe.PrimaryEffectI18n pei', \Criteria::LEFT_JOIN)
+				->joinWith('ItemSecondaryEffect ise', \Criteria::LEFT_JOIN)
+				->joinWith('ise.ItemSecondaryEffectI18n isei', \Criteria::LEFT_JOIN)
+				->addJoinCondition('isei', 'isei.Lang = ?', $this->userLocale)
+				->addJoinCondition('pei', 'pei.Lang = ?', $this->userLocale);
+		
+		$championItemBuildsCriteria = \MVNerds\CoreBundle\Model\ChampionItemBuildQuery::create()
+				->joinWith('GameMode')
+				->joinWith('Champion')
+				->joinWith('Champion.ChampionI18n');
 		
 		$itemBuilds->populateRelation('ChampionItemBuild', $championItemBuildsCriteria);
 		$itemBuilds->populateRelation('ItemRelatedByItem1Id', $itemsCriteria);
@@ -194,20 +211,32 @@ class ItemBuildManager
 		{
 			throw new InvalidArgumentException('No item build found !');
 		}
-
 		return $itemBuilds;
 	}	
 	
 	/**
 	 * Récupère les builds les plus téléchargés
 	 */
-	public function findMostDownloadedBuilds($championItemBuildsCriteria, $itemsCriteria)
+	public function findMostDownloadedBuilds()
 	{
 		$itemBuilds = ItemBuildQuery::create()
 			->add(ItemBuildPeer::STATUS, ItemBuildPeer::STATUS_PUBLIC)
 			->orderByDownload(\Criteria::DESC)
 			->limit(5)
 		->find();
+		
+		$itemsCriteria = \MVNerds\CoreBundle\Model\ItemQuery::create()
+				->joinWithI18n($this->userLocale, \Criteria::LEFT_JOIN)
+				->joinWith('ItemPrimaryEffect', \Criteria::LEFT_JOIN)
+				->joinWith('ItemPrimaryEffect.PrimaryEffect', \Criteria::LEFT_JOIN)
+				->joinWith('PrimaryEffect.PrimaryEffectI18n', \Criteria::LEFT_JOIN)
+				->joinWith('ItemSecondaryEffect', \Criteria::LEFT_JOIN)
+				->joinWith('ItemSecondaryEffect.ItemSecondaryEffectI18n', \Criteria::LEFT_JOIN);
+		
+		$championItemBuildsCriteria = \MVNerds\CoreBundle\Model\ChampionItemBuildQuery::create()
+				->joinWith('GameMode')
+				->joinWith('Champion')
+				->joinWith('Champion.ChampionI18n');
 		
 		$itemBuilds->populateRelation('ChampionItemBuild', $championItemBuildsCriteria);
 		$itemBuilds->populateRelation('ItemRelatedByItem1Id', $itemsCriteria);
@@ -266,5 +295,11 @@ class ItemBuildManager
 		->count();
 
 		return $nbItemBuilds;
+	}
+	
+	public function setUserLocale(Session $session)
+	{
+		$locale = $session->get('locale', null);
+		$this->userLocale = null === $locale? 'fr' : $locale;
 	}
 }
