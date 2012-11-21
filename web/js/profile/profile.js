@@ -113,6 +113,7 @@ $(document).ready(function()
 				if (response) {
 					$('div#user-container img, div.current-avatar img.avatar').attr('src', '/images/avatar/'+ newAvatarName +'.jpg');
 					$this.attr('data-current-avatar-name', newAvatarName);
+					currentAvatarName = newAvatarName;
 				}
 			}
 		});
