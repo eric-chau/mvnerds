@@ -3,6 +3,10 @@
 	<file source-language="en" datatype="plaintext" original="file.ext">
 		<body>
 			<!-- CREATE ITEM BUILD -->
+			<trans-unit id="0">
+				<source>create_item_build.title</source>
+				<target>Customize a recommended items list for League of Legends</target>
+			</trans-unit>
 			<trans-unit id="1">
 				<source>create_item_build.h1</source>
 				<target>Customize a recommended items list</target>
@@ -312,6 +316,10 @@
 			<trans-unit id="3001">
 				<source>item_build_list_index.p1</source>
 				<target>Find below recommended items lists shared by the members of MVNerds.</target>
+			</trans-unit>
+			<trans-unit id="3002">
+				<source>item_build_list_index.title</source>
+				<target>Pimp My Recommended Items | PMRI</target>
 			</trans-unit>
 		</body>
 	</file>

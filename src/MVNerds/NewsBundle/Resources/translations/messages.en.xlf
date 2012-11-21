@@ -3,6 +3,10 @@
 	<file source-language="en" datatype="plaintext" original="file.ext">
 		<body>
 			<!-- NEWS LIST -->
+			<trans-unit id="0">
+				<source>news_list.title</source>
+				<target>Most Valuable News</target>
+			</trans-unit>
 			<trans-unit id="1">
 				<source>news_list.p1</source>
 				<target>Find below all the news published on MVNerds.</target>

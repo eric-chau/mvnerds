@@ -545,6 +545,15 @@
 				<source>carousel_index.btn.all_news</source>
 				<target>Toutes les news</target>
 			</trans-unit>
+
+			<trans-unit id="19000">
+				<source>index_page.h1</source>
+				<target>Guides, Builds, et Outils pour League of Legends</target>
+			</trans-unit>
+			<trans-unit id="19001">
+				<source>index_page.title</source>
+				<target>Guides, Builds, et Outils pour League of Legends</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

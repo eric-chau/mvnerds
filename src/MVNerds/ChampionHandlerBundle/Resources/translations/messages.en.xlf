@@ -4,7 +4,7 @@
 		<body>
 			<trans-unit id="0">
 				<source>champion_list.title</source>
-				<target>Champions League of Legends</target>
+				<target>League of Legends Champions</target>
 			</trans-unit>
 			<trans-unit id="1">
 				<source>champion_list.h1</source>
@@ -12,7 +12,7 @@
 			</trans-unit>
 			<trans-unit id="2">
 				<source>champions_benchmark.title</source>
-				<target>Champions Benchmark pour League of Legends</target>
+				<target>Champions Benchmark for League of Legends</target>
 			</trans-unit>
 			<trans-unit id="3">
 				<source>champions_benchmark.h1</source>

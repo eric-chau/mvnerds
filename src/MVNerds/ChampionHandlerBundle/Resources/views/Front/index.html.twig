@@ -31,9 +31,15 @@
 		<script type="text/javascript" src="{{ asset('/js/champion_handler/guide-tour-fr.js') }}"></script>
 	{% else %}
 		<script type="text/javascript" src="{{ asset('/js/champion_handler/guide-tour.js') }}"></script>
+	{% endif %}	
+{% endblock %}
+		
+{% block title %}
+	{% if page == 'champions'%}
+		{{'champion_list.title'|trans}}
+	{% elseif page == 'compare' %}
+		{{'champions_benchmark.title'|trans}}
 	{% endif %}
-
-	
 {% endblock %}
 		
 {% block body_main_content %}	

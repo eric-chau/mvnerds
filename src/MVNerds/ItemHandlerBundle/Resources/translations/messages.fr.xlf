@@ -3,6 +3,10 @@
 	<file source-language="en" datatype="plaintext" original="file.ext">
 		<body>
 			<!-- CREATE ITEM BUILD -->
+			<trans-unit id="0">
+				<source>create_item_build.title</source>
+				<target>Personnaliser une liste d'objets conseillés pour League of Legends</target>
+			</trans-unit>
 			<trans-unit id="1">
 				<source>create_item_build.h1</source>
 				<target>Personnaliser une liste d'objets conseillés</target>
@@ -311,6 +315,20 @@
 				<target>
 					fois
 				</target>
+			</trans-unit>
+
+			<!-- All lists -->
+			<trans-unit id="3000">
+				<source>item_build_list_index.btn.create_list</source>
+				<target>Créer une liste</target>
+			</trans-unit>
+			<trans-unit id="3001">
+				<source>item_build_list_index.p1</source>
+				<target>Retrouvez ci-dessous les listes d'items recommandés partagées par les membres de MVNerds.</target>
+			</trans-unit>
+			<trans-unit id="3002">
+				<source>item_build_list_index.title</source>
+				<target>Pimp My Recommended Items | PMRI</target>
 			</trans-unit>
 		</body>
 	</file>
