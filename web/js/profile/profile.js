@@ -67,4 +67,54 @@ $(document).ready(function()
 			}
 		});
 	});
+
+
+	var $saveAvatarBtn = $('a.btn-save-avatar'),
+		currentAvatarName = $saveAvatarBtn.data('current-avatar-name');
+
+	$('img.avatar-choice').on('click', function()
+	{
+		if ($(this).hasClass('selected')) {
+			return false;
+		}
+
+		$('img.avatar-choice.selected').toggleClass('selected');
+		$(this).toggleClass('selected');
+
+		if (currentAvatarName != $(this).data('avatar-name')) {
+			$saveAvatarBtn.removeClass('disabled');
+		}
+		else {
+			$saveAvatarBtn.addClass('disabled');
+		}
+	});
+
+	$saveAvatarBtn.on('click', function()
+	{
+		var $this = $(this);
+		if ($this.hasClass('disabled')) {
+			return false;
+		}
+
+		var newAvatarName = $('img.avatar-choice.selected').data('avatar-name'),
+			$loader = $this.parent().find('img.loader');
+		$loader.toggle('hide');
+		$this.addClass('disabled');
+		$.ajax({
+			url: Routing.generate('summoner_profile_save_avatar'),
+			type: 'POST',
+			data: {
+				'new_avatar_name': newAvatarName
+			},
+			dataType: 'json',
+			success: function(response)
+			{
+				$loader.toggle('hide');
+				if (response) {
+					$('div#user-container img, div.current-avatar img.avatar').attr('src', '/images/avatar/'+ newAvatarName +'.jpg');
+					$this.attr('data-current-avatar-name', newAvatarName);
+				}
+			}
+		});
+	});
 });

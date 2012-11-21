@@ -27,7 +27,8 @@ class FrontController extends Controller
 		return $this->render('MVNerdsProfileBundle:Profile:profile_index.html.twig', array(
 			'user'				=> $user,
 			'user_items_builds' => $this->get('mvnerds.item_build_manager')->findByUserId($user->getId()),
-			'form'				=> $this->createForm(new ChangeLoLDirectoryType(), new ChangeLoLDirectoryModel($this->get('mvnerds.preference_manager'), $user))->createView()
+			'form'				=> $this->createForm(new ChangeLoLDirectoryType(), new ChangeLoLDirectoryModel($this->get('mvnerds.preference_manager'), $user))->createView(),
+			'avatars'		=> $this->get('mvnerds.profile_manager')->findAvatarByUserRoles($user)
 		));
 	}
 	
@@ -86,5 +87,24 @@ class FrontController extends Controller
 		}
 		
 		return new Response(json_encode($response));
+	}
+	
+	/**
+	 * @Route("/save-new-avatar", name="summoner_profile_save_avatar", options={"expose"=true})
+	 * @Secure(roles="ROLE_USER")
+	 */
+	public function saveSummonerAvatarAction()
+	{
+		$request = $this->getRequest();
+		if (!$request->isMethod('POST') || !$request->isXmlHttpRequest()) {
+			throw new HttpException(500, 'XMLHttpRequest and POST method expected!');
+		}
+		
+		$newAvatarName = $request->get('new_avatar_name', null);
+		if (null == $newAvatarName) {
+			throw new HttpException(500, 'preference_unique_name and/or preference_value is/are missing!');
+		}
+		
+		return new Response(json_encode($this->get('mvnerds.profile_manager')->saveAvatarIfValid($this->getUser(), $newAvatarName)));
 	}
 }

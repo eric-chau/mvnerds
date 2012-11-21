@@ -135,5 +135,10 @@
 			PREFERENCE MANAGER SERVICE
 		-->
 		<service id="mvnerds.preference_manager" class="MVNerds\CoreBundle\Preference\PreferenceManager" />    
+
+		<!-- 
+			PROFILE MANAGER SERVICE
+		-->
+		<service id="mvnerds.profile_manager" class="MVNerds\CoreBundle\Profile\ProfileManager" />    
 	</services>		
 </container>

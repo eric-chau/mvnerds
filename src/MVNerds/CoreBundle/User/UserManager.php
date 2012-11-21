@@ -39,7 +39,9 @@ class UserManager
 		// Generate unique activation code
 		$user->setActivationCode(md5(uniqid(rand(), true)));
 		$user->setPlainPassword($userParams['password']);
-		$user->setProfile(new Profile());
+		$profile = new Profile();
+		$profile->setAvatarId(10);
+		$user->setProfile($profile);
 		
 		// Finally
 		$user->save();

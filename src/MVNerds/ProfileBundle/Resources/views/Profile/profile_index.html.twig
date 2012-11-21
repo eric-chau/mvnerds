@@ -34,17 +34,42 @@
 
 {% block body_main_content %}
 	<div class="body-container summoner-profile">
-		<img src="{{ asset('images/avatar/ro0ny.jpg') }}" class="avatar" />
-		<h1>{{ user.getUsername() }}</h1>
-		<p class="gray-color">Inscrit depuis le {{ user.getCreatedAt()|date('d/m/Y') }}</p>
-		<p class="gray-color no-margin">Au sein de la communauté MVNerds, {{ user.getUsername() }} est :
-			<ul class="gray-color">
+		{% set current_avatar_name = user.getProfile().getAvatar().getName() %}
+		{% if admin_mode %}
+			<h1>Administration de mon profil - {{ user.getUsername() }}</h1>
+			<p>
+				Je suis inscrit depuis le {{ user.getCreatedAt()|date('d/m/Y') }}. Actuellement, je possède les rôles 
 				{% for role in user.getRoles() %}
-					<li>{{ role|trans }}</li>
+					<strong>{{ role|trans|lower }}</strong>{% if loop.index + 1 == loop.length %} et {% else %}{% if loop.index == loop.length %}.{% else %},{% endif %}{% endif %}
 				{% endfor %}
-			</ul>
-		</p>
-		<div class="clearfix"></div>
+			</p>
+			<h2>Personnaliser mon avatar</h2>
+			<div class="user-custom-avatar-container">
+				<div class="row-fluid">
+					<div class="span3 current-avatar">
+						<strong>Avatar courant</strong>
+						<img src="{{ asset('images/avatar/'~ current_avatar_name ~'.jpg') }}" class="avatar" />
+						<a href="#" class="btn-save-avatar disabled" data-current-avatar-name="{{ current_avatar_name }}">Enregistrer mon nouvel avatar</a> <img src="{{ asset('images/commons/loader16-bg-141414.gif') }}" class="loader hide" />
+					</div>
+					<div class="span9 avatar-selection">
+						{% for avatar in avatars %}
+							<img src="{{ asset('images/avatar/'~ avatar.getName() ~'.jpg') }}" class="avatar-choice {% if avatar.getName() == current_avatar_name %} selected{% endif %}" data-avatar-name="{{ avatar.getName() }}" />
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		{% else %}
+			<img src="{{ asset('images/avatar/'~ current_avatar_name ~'.jpg') }}" class="avatar" />
+			<h1>{{ user.getUsername() }}</h1>
+			<p class="gray-color">{{ user.getUsername() }} est inscrit depuis le {{ user.getCreatedAt()|date('d/m/Y') }}. Au sein de la communauté MVNerds, il / elle est :
+				<ul class="gray-color">
+					{% for role in user.getRoles() %}
+						<li>{{ role|trans }}</li>
+					{% endfor %}
+				</ul>
+			</p>
+			<div class="clearfix"></div>
+		{% endif %}
 		
 		{% if admin_mode %}
 			<h2>Mes préférences utilisateurs</h2>

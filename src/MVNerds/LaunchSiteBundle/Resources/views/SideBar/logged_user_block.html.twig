@@ -1,5 +1,5 @@
 <a href="{{ path('summoner_profile_index') }}" class="profile-link">
-	<img src="{{ asset('images/avatar/ro0ny.jpg') }}" class="sidebar-tooltip-anchor" rel="tooltip" data-placement="right" data-original-title="<span class='sidebar-tooltip'>Accèdez à votre profil</span>" />
+	<img src="{{ asset('images/avatar/'~ app.user.getProfile().getAvatar().getName() ~'.jpg') }}" class="sidebar-tooltip-anchor" rel="tooltip" data-placement="right" data-original-title="<span class='sidebar-tooltip'>Accèdez à votre profil</span>" />
 </a>
 <p class="item only-active-show nickname">{{ app.user.getUsername() }}</p>
 <p class="item only-active-show team">Most Valuable Nerds</p>

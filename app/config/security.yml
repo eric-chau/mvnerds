@@ -16,11 +16,7 @@ security:
             propel:
                 class: MVNerds\CoreBundle\Model\User
                 property: username
-        in_memory:
-            memory:
-                users:
-                    adminop: { password: ro0nyhanikisuperadminopmvnerds, roles: [ 'ROLE_ADMIN' ] }
-
+                
     firewalls:
         dev:
             pattern:  ^/(_(profiler|wdt)|css|images|js)/

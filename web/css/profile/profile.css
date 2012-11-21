@@ -29,16 +29,17 @@ div.body-container.summoner-profile {
   background-color: #000;
   padding: 20px;
   margin-bottom: 20px;
+  min-height: 528px;
 }
 div.body-container.summoner-profile .gray-color {
-  color: #555;
+  color: #777;
 }
 div.body-container.summoner-profile .no-margin {
   margin: 0;
 }
 div.body-container.summoner-profile h1 {
   color: #19a0df;
-  margin-bottom: 5px;
+  margin-bottom: 30px;
   position: relative;
   top: -4px;
 }
@@ -66,6 +67,60 @@ div.body-container.summoner-profile img.avatar {
   margin: 0 20px 20px 0;
   padding: 5px;
   width: 150px;
+}
+div.body-container.summoner-profile div.user-custom-avatar-container div.row-fluid {
+  margin-bottom: 40px;
+}
+div.body-container.summoner-profile div.user-custom-avatar-container div.row-fluid div {
+  background-color: #141414;
+  min-height: 266px;
+  padding: 10px 0;
+  text-align: center;
+}
+div.body-container.summoner-profile div.user-custom-avatar-container div.row-fluid div.current-avatar strong {
+  color: #955a01;
+  display: block;
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 12px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+div.body-container.summoner-profile div.user-custom-avatar-container div.row-fluid div.current-avatar img.avatar {
+  border: 1px solid #fb9701;
+  float: none;
+  margin: 0;
+}
+div.body-container.summoner-profile div.user-custom-avatar-container div.row-fluid div.current-avatar a {
+  background-color: #658816;
+  color: white;
+  display: inline-block;
+  font-size: 12px;
+  font-family: 'Ubuntu', sans-serif;
+  margin-top: 20px;
+  padding: 5px 10px;
+}
+div.body-container.summoner-profile div.user-custom-avatar-container div.row-fluid div.current-avatar a:hover {
+  background-color: #759e1a;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+div.body-container.summoner-profile div.user-custom-avatar-container div.row-fluid div.current-avatar a.disabled {
+  background-color: #666;
+  color: #999;
+  cursor: not-allowed;
+}
+div.body-container.summoner-profile div.user-custom-avatar-container div.row-fluid div.avatar-selection img.avatar-choice {
+  border: 1px solid #444;
+  cursor: pointer;
+  margin: 5px;
+  padding: 5px;
+  width: 60px;
+}
+div.body-container.summoner-profile div.user-custom-avatar-container div.row-fluid div.avatar-selection img.avatar-choice.selected {
+  border: 1px solid #19a0df;
+  cursor: default;
 }
 div.body-container.summoner-profile div.user-custom-parameters-container {
   margin: 0 0 40px 0;

@@ -69,38 +69,6 @@
       <parameter name="permanent" value="false" />
     </behavior>
   </table>
-  <table name="old_item">
-    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
-    <column name="label" required="true" size="255" type="VARCHAR" />
-    <column defaultValue="0" name="bonus_damage" required="true" type="SMALLINT" />
-    <column defaultValue="0" name="bonus_ability_power" required="true" type="SMALLINT" />
-    <column defaultValue="0" name="bonus_health" required="true" type="SMALLINT" />
-    <column defaultValue="0" name="bonus_health_regen" required="true" type="SMALLINT" />
-    <column defaultValue="0" name="bonus_mana" required="true" type="SMALLINT" />
-    <column defaultValue="0" name="bonus_mana_regen" required="true" type="SMALLINT" />
-    <column defaultValue="0" name="bonus_armor" required="true" type="SMALLINT" />
-    <column defaultValue="0" name="bonus_magic_resist" required="true" type="SMALLINT" />
-    <column defaultValue="0" name="bonus_armor_penetration" required="true" type="SMALLINT" />
-    <column defaultValue="0" name="bonus_armor_penetration_percent" required="true" type="TINYINT" />
-    <column defaultValue="0" name="bonus_magic_penetration" required="true" type="SMALLINT" />
-    <column defaultValue="0" name="bonus_magic_penetration_percent" required="true" type="TINYINT" />
-    <column defaultValue="0" name="price" required="true" type="SMALLINT" />
-    <column defaultValue="0" name="bonus_move_speed" required="true" type="TINYINT" />
-    <column defaultValue="0" name="bonus_move_speed_percent" required="true" type="TINYINT" />
-    <column defaultValue="0" name="bonus_attack_speed_percent" required="true" type="TINYINT" />
-    <column defaultValue="0" name="bonus_critical_chance_percent" required="true" type="TINYINT" />
-    <column defaultValue="0" name="bonus_critical_damage_percent" required="true" type="TINYINT" />
-    <column name="sell_value" required="true" type="SMALLINT" />
-    <column name="item_code" required="true" size="4" type="VARCHAR" />
-  </table>
-  <table name="old_item_extra_property">
-    <column name="id" primaryKey="true" required="true" type="INTEGER" />
-    <column name="item_id" required="true" type="INTEGER" />
-    <column defaultValue="0" name="is_passive_property" required="true" type="BOOLEAN" />
-    <foreign-key foreignTable="old_item">
-      <reference foreign="id" local="item_id" />
-    </foreign-key>
-  </table>
   <table name="tournament">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
     <column name="name" required="true" size="100" type="VARCHAR" />
@@ -515,10 +483,13 @@
   </table>
   <table name="profile">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
-    <column defaultValue="0" description="pour le moment avatar_id vaut un entier qui correspond au nom de fichier d une image dans le dossier web avatars" name="avatar_id" required="true" type="INTEGER" />
+    <column defaultValue="1" name="avatar_id" required="true" type="INTEGER" />
     <column name="team_id" type="INTEGER" />
     <foreign-key foreignTable="team">
       <reference foreign="id" local="team_id" />
+    </foreign-key>
+    <foreign-key foreignTable="avatar">
+      <reference foreign="id" local="avatar_id" />
     </foreign-key>
   </table>
   <table name="vote">
@@ -620,5 +591,13 @@
       <parameter name="create_column" value="create_time" />
       <parameter name="update_column" value="update_time" />
     </behavior>
+  </table>
+  <table name="avatar">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="name" size="45" type="VARCHAR" />
+    <column name="role_id" required="true" type="INTEGER" />
+    <foreign-key foreignTable="role">
+      <reference foreign="id" local="role_id" />
+    </foreign-key>
   </table>
 </database>
