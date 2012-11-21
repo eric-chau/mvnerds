@@ -8,9 +8,17 @@
 			{% include 'MVNerdsLaunchSiteBundle:SideBar:anonymous_user_block.html.twig' %}
 		{% endif %}
 	</div>
-
+	
 	<ul class="first-ul">
-		 <a href="#">
+		 <a href="{{ path('news_index') }}">
+			 <li class="header sidebar-tooltip-anchor" rel="tooltip" data-placement="right" data-original-title="<span class='sidebar-tooltip'>Accèder au module Most Valuable News</span>">
+				 <i class="icon-file"></i> <span class="only-active-show">Most Valuable News</span>
+			 </li>
+		 </a>
+	</ul>
+	
+	<ul>
+		 <a href="{{ path('champion_handler_front_index') }}">
 			 <li class="header sidebar-tooltip-anchor" rel="tooltip" data-placement="right" data-original-title="<span class='sidebar-tooltip'>Accèder au module Champion Benchmark</span>">
 				 <i class="icon-random"></i> <span class="only-active-show">Champions Benchmark</span>
 			 </li>

@@ -12,17 +12,24 @@ class FrontController extends Controller
 {
 
 	/**
-	 * @Route("/", name="front_news_index")
+	 * @Route("/", name="news_index")
 	 */
 	public function indexAction()
 	{
-		return $this->render('MVNerdsNewsBundle:Front:index.html.twig', array(
-			'news' => $this->get('mvnerds.news_manager')->findPublicHighlights()
+		if ($this->get('security.context')->isGranted('ROLE_NEWSER'))
+		{
+			$news = $this->get('mvnerds.news_manager')->findAllNotPrivate();
+		} else {
+			$news = $this->get('mvnerds.news_manager')->findAllPublic();
+		}
+		
+		return $this->render('MVNerdsNewsBundle:Front:list_index.html.twig', array(
+			'news'	=> $news
 		));
 	}
 	
 	/**
-	 * @Route("/{slug}/view", name="front_news_view")
+	 * @Route("/{slug}", name="news_detail")
 	 */
 	public function viewAction($slug)
 	{
@@ -43,24 +50,6 @@ class FrontController extends Controller
 		}
 		return $this->render('MVNerdsNewsBundle:Front:view_index.html.twig', array(
 			'news' => $news
-		));
-	}
-	
-	/**
-	 * 
-	 * @Route("/list", name="front_news_list")
-	 */
-	public function listAction() 
-	{
-		if ($this->get('security.context')->isGranted('ROLE_NEWSER'))
-		{
-			$news = $this->get('mvnerds.news_manager')->findAllNotPrivate();
-		} else {
-			$news = $this->get('mvnerds.news_manager')->findAllPublic();
-		}
-		
-		return $this->render('MVNerdsNewsBundle:Front:list_index.html.twig', array(
-			'news'	=> $news
 		));
 	}
 }

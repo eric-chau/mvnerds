@@ -33,7 +33,7 @@
 			<tbody>
 				{% for new in news%}
 					<tr class="news-row">
-						<td><a href="{{path('front_news_view', {slug: new.getSlug()})}}">{{new.getTitle()}}</a></td>
+						<td><a href="{{path('news_detail', {slug: new.getSlug()})}}">{{new.getTitle()}}</a></td>
 						
 						<td><a href="#">{{new.getUser().getUsername()}}</a></td>
 						
@@ -42,7 +42,7 @@
 						<td>Le {{new.getCreateTime('d/m/Y')}} à {{new.getCreateTime('H:i:s')}}</td>
 						
 						<td>
-							<a class="action view-action" href="{{path('front_news_view', {slug: new.getSlug()})}}"><i class="icon-share"></i></a>
+							<a class="action view-action" href="{{path('news_detail', {slug: new.getSlug()})}}"><i class="icon-share"></i></a>
 							
 							<span class="view-count-block"><strong>Vu</strong> <span class="view-count">{{new.getView()}}</span> fois</span>
 						</td>

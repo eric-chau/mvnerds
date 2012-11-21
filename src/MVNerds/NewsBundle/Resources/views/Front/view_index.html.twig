@@ -9,10 +9,18 @@
 {% block body_main_content %}
 
 	<div id="news-container">
-		<h1 class="header">{{news.getTitle()}}</h1>
+		<h1 class="header">
+			{{news.getTitle()}}
+			<em>par <a href="{{ path('summoner_profile_view', {'userSlug': news.getUser().getSlug()}) }}" title="Consulter le profil de {{ news.getUser().getUsername }}"">{{news.getUser().getUsername()}}</a> le {{news.getCreateTime('d/m/Y')}} à {{news.getCreateTime('H:i')}}</em>
+		</h1>
+		<div class="clearflix"></div>
+		<p class="module-name">Module <strong>Most Valuable News</strong></p>
+		{#<p class="posted-by"><em>Postée par {{news.getUser().getUsername()}} le {{news.getCreateTime('d/m/Y')}} à {{news.getCreateTime('H:i')}}</em></p>#}
 		
-		<p class="posted-by"><em>Postée par {{news.getUser().getUsername()}} le {{news.getCreateTime('d/m/Y')}} à {{news.getCreateTime('H:i')}}</em></p>
+		<div class="content">{{news.getContent()|raw}}</div>
 		
-		<div class="content">{{news.getContent() | raw}}</div>
+		<div class="news-footer">
+			<p><a href="{{ path('news_index') }}"><i class="icon-chevron-left"></i> Retourner à la liste des news</a></p>
+		</div>
 	</div>
 {% endblock %}
