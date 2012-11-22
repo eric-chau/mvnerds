@@ -438,7 +438,6 @@ div.body-container div.item-container div.elements-grid {
   margin: auto;
   margin-top: 30px;
   margin-bottom: 15px;
-  width: 900px;
 }
 div.body-container div.champion-container div.elements-grid ul,
 div.body-container div.item-container div.elements-grid ul {
@@ -500,6 +499,51 @@ div.body-container div.item-container div.elements-grid ul li.item div.portrait,
 div.body-container div.champion-container div.elements-grid ul li.champion div.portrait,
 div.body-container div.item-container div.elements-grid ul li.champion div.portrait {
   padding: 7px;
+}
+div.body-container div.champion-container div#item-sidebar-blocks,
+div.body-container div.item-container div#item-sidebar-blocks {
+  margin: 0;
+  text-align: center;
+}
+div.body-container div.champion-container div#item-sidebar-blocks ul#item_sidebar_blocks_list,
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list {
+  list-style: none;
+  padding: 0;
+  max-height: 585px;
+  overflow-y: auto;
+}
+div.body-container div.champion-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li,
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li {
+  border: 1px solid #19A0DF;
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  min-height: 100px;
+  background-color: #000;
+}
+div.body-container div.champion-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div,
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div {
+  min-height: 62px;
+  text-align: left;
+}
+div.body-container div.champion-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.indication,
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.indication {
+  text-align: center;
+  font-size: 13px;
+  padding: 20px;
+  border: 1px dashed #999;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  border-radius: 5px !important;
+  color: #999;
+  font-style: italic;
+}
+div.body-container div.champion-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.portrait,
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.portrait {
+  text-align: left;
+  width: 25px;
+  cursor: pointer;
+  margin: 3px;
 }
 div.body-container div.champion-container div#champion-topbar div#champion-topbar-container {
   padding: 5px;

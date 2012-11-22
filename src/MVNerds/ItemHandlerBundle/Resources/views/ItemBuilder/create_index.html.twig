@@ -63,9 +63,14 @@
 			<div id="item-topbar" class="actionbar">
 				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_topbar.html.twig' %}
 			</div>
-				
-			<div id="item-list" class="elements-grid">
-				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_grid.html.twig' %}
+			
+			<div class="row-fluid">
+				<div id="item-list" class="elements-grid span9">
+					{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_grid.html.twig' %}
+				</div>
+				<div id="item-sidebar-blocks" class="span3">
+					{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_sidebar_blocks.html.twig' %}
+				</div>
 			</div>
 		</div>
 		

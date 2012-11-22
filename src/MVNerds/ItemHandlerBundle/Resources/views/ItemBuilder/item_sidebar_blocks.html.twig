@@ -1,0 +1,39 @@
+<a href="#" id="btn-add-item-block" class="btn btn-success">Ajouter un bloc</a>
+<ul id="item_sidebar_blocks_list">
+	<li class="item-sidebar-block-li" id="__starting__item-block-li">
+		<input type="text" class="item_sidebar_block_input span9" value="starting"/> <a href="#" class="btn-delete-block-item btn btn-danger btn-small">X</a>
+		<div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div>
+	</li>
+	<li class="item-sidebar-block-li" id="__essential__item-block-li">
+		<input type="text" class="item_sidebar_block_input span9" value="essential"/> <a href="#" class="btn-delete-block-item btn btn-danger btn-small">X</a>
+		<div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div>
+	</li>
+	<li class="item-sidebar-block-li" id="__offensive__item-block-li">
+		<input type="text" class="item_sidebar_block_input span9" value="offensive"/> <a href="#" class="btn-delete-block-item btn btn-danger btn-small">X</a>
+		<div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div>
+	</li>
+	<li class="item-sidebar-block-li" id="__defensive__item-block-li">
+		<input type="text" class="item_sidebar_block_input span9" value="defensive"/> <a href="#" class="btn-delete-block-item btn btn-danger btn-small">X</a>
+		<div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div>
+	</li>
+</ul>
+
+<div id="modal-add-item-block" class="modal hide fade">
+	<div class="modal-header">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h3>Ajout d'un nouveau block d'objets</h3>
+	</div>
+	<div class="modal-body">
+			<p>
+				Saississez ci-dessous le nom du block que vous désirez ajouter. Celui-ci ne peut contenir que des chiffres, des lettres sans accents ou des éspaces:
+			</p>
+			<p>
+				<input type="text" id="modal-item-block-name" placeholder="Nom du block"/> <br />
+				<span id="modal-add-item-block-error" style="color: red;"></span>
+			</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#" data-dismiss="modal" class="btn-cancel">{{'create_item_build.modal_dl_build.btn.cancel'|trans}}</a>
+		<a href="#" id="modal-add-item-block-save" data-target="" class="btn-download">Valider</a>
+	</div>
+</div>

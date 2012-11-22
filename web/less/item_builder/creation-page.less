@@ -384,7 +384,7 @@ div.body-container {
 			margin: auto;
 			margin-top: 30px;
 			margin-bottom: 15px;
-			width: 900px;
+			//width: 900px;
 
 			ul {
 				margin: 0;
@@ -420,6 +420,53 @@ div.body-container {
 
 					div.portrait {
 						padding: 7px;
+					}
+				}
+			}
+		}
+
+		div#item-sidebar-blocks {
+			margin: 0;
+			text-align: center;
+
+			ul#item_sidebar_blocks_list {
+				list-style: none;
+				padding: 0;
+				max-height: 585px;
+				overflow-y: auto;
+
+				li.item-sidebar-block-li {
+					border: 1px solid #19A0DF;
+					padding: 5px;
+					margin-bottom: 5px;
+					margin-right: 5px;
+					min-height: 100px;
+					background-color: #000;
+
+					input {
+						
+					}
+					a.btn-delete-block-item {
+
+					}
+					div.item-sidebar-block-div {
+						min-height: 62px;
+						text-align: left;
+						div.indication {
+							text-align: center;
+							font-size: 13px;
+							padding: 20px;
+							border: 1px dashed #999;
+							.border-radius(5px);	
+							color: #999;
+							font-style: italic;
+						}
+						div.portrait{
+							text-align: left;
+							width: 25px;
+							cursor: pointer;
+							margin: 3px;
+						}
 					}
 				}
 			}

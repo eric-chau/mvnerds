@@ -13,6 +13,7 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 use MVNerds\CoreBundle\Model\ItemBuild;
 use MVNerds\CoreBundle\Model\ChampionItemBuild;
 use MVNerds\CoreBundle\Model\UserPreference;
+use  MVNerds\CoreBundle\Model\ItemBuildItems;
 
 /**
  * @Route("/pimp-my-recommended-items")
@@ -190,21 +191,37 @@ class ItemBuilderController extends Controller
 		}
 		
 		$i = 1;
-		foreach ($itemsSlugs as $itemSlug)
+		
+		$itemBuilditemsCollection = new \PropelCollection();
+		foreach ($itemsSlugs as $itemBlock)
 		{
-			try {
-				$item = $itemManager->findBySlug($itemSlug);
-			} catch (\Exception $e) {
-				throw new HttpException(500, 'Invalid recommended items : item not found!');
-			}
-			if (strpos($item->getGameModesToString(), 'shared') === false && strpos($item->getGameModesToString(), $gameMode) === false) {
-				throw new HttpException(500, 'Invalid recommended items : game mode!');
-			}
+			$itemBlockName = $itemBlock['name'];
+			$items = $itemBlock['items'];
 			
-			$method = 'setItem'.$i.'Id';
-			$itemBuild->$method($item->getId());
+			$itemBlockName = preg_replace('/[^a-zA-Z0-9 ]+/','',$itemBlockName);
+			$itemBlockName = preg_replace('/ +/','',$itemBlockName);
+			
+			foreach ($items as $itemSlug)
+			{
+				try {
+					$item = $itemManager->findBySlug($itemSlug);
+				} catch (\Exception $e) {
+					throw new HttpException(500, 'Invalid recommended items : item not found! slug given : '.$itemSlug);
+				}
+				if (strpos($item->getGameModesToString(), 'shared') === false && strpos($item->getGameModesToString(), $gameMode) === false) {
+					throw new HttpException(500, 'Invalid recommended items : game mode!');
+				}
+				$itemBuildItems = new ItemBuildItems();
+				$itemBuildItems->setItemId($item->getId());
+				$itemBuildItems->setType($itemBlockName);
+				$itemBuildItems->setPosition($i);
+				$itemBuildItems->setCount(1);
+
+				$itemBuilditemsCollection->append($itemBuildItems);
+			}
 			$i ++;
 		}
+		$itemBuild->setItemBuildItemss($itemBuilditemsCollection);
 		
 		$itemBuild->setName($buildName);
 		
@@ -232,11 +249,11 @@ class ItemBuilderController extends Controller
 		if($championItemBuilds->count() > 0) {
 			$itemBuild->setChampionItemBuilds($championItemBuilds);
 			
-			//On vérifie qu il n y a pas d items spécifiques a un champion qui ne devrait pas etre la
-			for ($i = 1; $i <=6; $i++) {
-				$method = 'getItemRelatedByItem'.$i.'Id';
-				/* @var $item \MVNerds\CoreBundle\Model\Item */
-				$item = $itemBuild->$method();
+			foreach ($itemBuilditemsCollection as $itemBuildItems)
+			{
+				/* @var $itemBuildItems ItemBuildItems */
+				$item = $itemBuildItems->getItem();
+				
 				//Si l item est associé a un champion
 				if ($item->getChampionId() != null) {
 					//S il y a plus d un champion dans la liste c est que c est une erreur
