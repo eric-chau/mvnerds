@@ -1,0 +1,17 @@
+{% for itemBlock in itemBlocks %}
+	<div class="item-container">
+		<div class="elements-grid">
+			<h3>{{itemBlock['type']}}</h3>
+
+			<ul>
+				{% for item in itemBlock['items'] %}
+					<li class="item"data-placement="right" data-name="{{ item.getName() | lower }}" data-title="{{ item.getName()}}">
+						<div class="portrait">
+							<img draggable="false" class="item-image" src="{{ asset('images/items/' ~ item.getRiotCode() ~ '.png') }}" alt="image de l'item {{ item.getName() }}" />
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{%endfor%}

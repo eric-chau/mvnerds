@@ -82,6 +82,39 @@ class ItemBuilderController extends Controller
 	}
 	
 	/**
+	 * 
+	 * @Route("/view/{itemBuildSlug}", name="item_builder_view")
+	 */
+	public function viewAction($itemBuildSlug) 
+	{
+		try{
+			$itemBuild = $this->get('mvnerds.item_build_manager')->findOneBySlug($itemBuildSlug);
+		} catch (\Exception $e) {
+			return $this->redirect($this->generateUrl('item_builder_list'));
+		}
+		$itemBuildItemsCollection = $itemBuild->getItemBuildItemss();
+		$itemBlocks = array();
+		foreach ($itemBuildItemsCollection as $itemBuildItems)
+		{
+			$item = $itemBuildItems->getItem();
+			$type = $itemBuildItems->getType();
+			$position = $itemBuildItems->getPosition();
+			$ecapedName = preg_replace('/ +/', '_', $type);
+			if (! isset($itemBlocks[$position]))
+			{
+				$itemBlocks[$position] = array('type' => $type, 'escaped' => $ecapedName, 'items' => array());
+			}
+
+			$itemBlocks[$position]['items'][] = $item;
+		}
+		
+		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:view_index.html.twig', array(
+				'itemBuild'	=> $itemBuild,
+				'itemBlocks'	=> $itemBlocks
+		));
+	}
+	
+	/**
 	 * Re-génération d'un build déjà éxistant avec les nouveaux chemins $path
 	 * 
 	 * @Route("/generate-rec-items-from-slug", name="item_builder_generate_rec_item_file_from_slug", options={"expose"=true})
@@ -199,7 +232,6 @@ class ItemBuilderController extends Controller
 			$items = $itemBlock['items'];
 			
 			$itemBlockName = preg_replace('/[^a-zA-Z0-9 ]+/','',$itemBlockName);
-			$itemBlockName = preg_replace('/ +/','',$itemBlockName);
 			
 			foreach ($items as $itemSlug)
 			{
@@ -426,11 +458,21 @@ class ItemBuilderController extends Controller
 			$selectedChampions[] = $championItemBuild->getChampion()->getSlug();
 		}
 		
+		$itemBuildItemsCollection = $itemBuild->getItemBuildItemss();
 		$selectedItems = array();
-		for ($i = 1; $i <= 6; $i++) 
+		foreach ($itemBuildItemsCollection as $itemBuildItems)
 		{
-			$method = 'getItemRelatedByItem'.$i.'Id';
-			$selectedItems[] = $itemBuild->$method();
+			$item = $itemBuildItems->getItem();
+			$type = $itemBuildItems->getType();
+			$position = $itemBuildItems->getPosition();
+			$count = $itemBuildItems->getCount();
+			$ecapedName = preg_replace('/ +/', '_', $type);
+			if (! isset($selectedItems[$position]))
+			{
+				$selectedItems[$position] = array('type' => $type, 'escaped' => $ecapedName, 'items' => array());
+			}
+
+			$selectedItems[$position]['items'][] = $item;
 		}
 		
 		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:create_index.html.twig', array(

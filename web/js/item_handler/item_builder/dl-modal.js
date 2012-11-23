@@ -26,6 +26,7 @@ $(function() {
 			window.location = Routing.generate('item_builder_download_file', {_locale: locale, itemBuildSlug: data});
 		}).fail(function(data){
 			console.log(data.responseText);
+			$('#footer').html(data.responseText).css('text-align', 'left');
 			displayMessage('Impossible de créer le build.', 'error');
 		});
 	});

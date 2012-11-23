@@ -69,11 +69,6 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 						championsSlugs.push($(this).attr('id'));
 					});
 
-//					itemsSlugs = new Array();
-//					$items.each(function(){
-//						itemsSlugs.push($(this).find('div.portrait').data('slug'));
-//					});
-
 					var itemsSlugs = new Array();
 					$itemSidebarList.find('li.item-sidebar-block-li').each(function () {
 						var blockName = $(this).find('input.item_sidebar_block_input').val();
@@ -330,7 +325,7 @@ function setItemPopoverContent(slug, $item) {
 		url:  Routing.generate('item_builder_get_item_popover_content', {_locale: locale}),
 		data: {slug: slug},
 		dataType: 'html'
-	}).done(function(data){
+	}).done(function(data){console.log(data);
 		$item.data('popover').$tip.find(".popover-content").html(data);
 		$item.data('ajax-loaded', true);
 	});
