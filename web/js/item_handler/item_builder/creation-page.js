@@ -31,10 +31,6 @@ function addRecItem(slug, liBlockId) {
 		displayMessage('Cet item est déjà présent dans le bloc.', 'error');
 	}
 }
-//Ajoute un item grace a son slug au premier emplacement d objets recommandés libre
-function addItemToList(slug) {
-	setRecItem(slug,$('li.rec-item.free').first().attr('id'));
-}
 
  //Fixation de la liste d objets recommandés
 function processScrollRecItems() {
@@ -78,7 +74,7 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 //						itemsSlugs.push($(this).find('div.portrait').data('slug'));
 //					});
 
-					itemsSlugs = new Array();
+					var itemsSlugs = new Array();
 					$itemSidebarList.find('li.item-sidebar-block-li').each(function () {
 						var blockName = $(this).find('input.item_sidebar_block_input').val();
 						if(! (blockName in itemsSlugs)) {
@@ -114,8 +110,8 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 						}
 					}).fail(function(data){
 						displayMessage('Impossible de créer le build.', 'error');
-						console.log(data.responseText);
-						$('#footer').html(data.responseText).css('text-align', 'left');
+//						console.log(data.responseText);
+//						$('#footer').html(data.responseText).css('text-align', 'left');
 					})
 				} else {
 					displayMessage('Veuillez saisir un nom pour votre build.', 'error');
@@ -241,6 +237,7 @@ function checkRecItemsByChampionSpecific(championSlug) {
 	}
 }
 
+/******************************** LOCAL STORAGE **************************************/
 function initWithStoredItemBuild() {
 	
 	var championSlugs = getItemFromLS('storedChampionSlugs').split(',');
@@ -256,9 +253,14 @@ function initWithStoredItemBuild() {
 	
 	$('div.game-mode').removeClass('active');
 	$('div.game-mode[data-game-mode="'+gameMode+'"]').addClass('active');
-	
-	for(var i = 0; i < itemSlugs.length; i++) {
-		addItemToList(itemSlugs[i]);
+	console.log(itemSlugs);
+	for(i = 0; i < itemSlugs.length; i++) {
+		var blockName = itemSlugs[i]['name'];console.log(blockName);
+		blockName = blockName.replace(/ +/g, '_');
+		var items = itemSlugs[i]['items'];
+		for (var j = 0; j < items; j++) {
+			addRecItem(items[j], '__'+blockName + '__item-block-li');
+		}
 	}
 	
 	$('#build-name').val(buildName);
@@ -288,6 +290,20 @@ function storeItemBuild() {
 	$('#rec-item-sortable li.rec-item.full div.portrait').each(function(){
 		itemSlugs.push($(this).attr('data-slug'));
 	});
+	
+	var itemsSlugs = new Array();
+	$itemSidebarList.find('li.item-sidebar-block-li').each(function () {
+		var blockName = $(this).find('input.item_sidebar_block_input').val();
+		if(! (blockName in itemsSlugs)) {
+			var blockArray = new Array();
+			$(this).find('div.item-sidebar-block-div div.portrait').each(function() {
+				blockArray.push($(this).data('slug'));
+			});
+			if (blockArray.length > 0) {
+				itemsSlugs.push({name:blockName, items:blockArray});
+			}
+		}
+	});
 
 	var buildName = $('#build-name').val();
 	
@@ -297,6 +313,7 @@ function storeItemBuild() {
 	saveItemInLS('storedItemSlugs', itemSlugs);
 	saveItemInLS('storedBuildName', buildName);
 }
+/*************** FIN LOCAL STORAGE ****************/
 
 //Permet de récupérer le contenu des popover pour les items en AJAX
 function setItemPopoverContent(slug, $item) {
@@ -330,6 +347,7 @@ function initItemDraggable() {
 		});
 	});
 }
+
 function initItemDroppable($divs) {
 	$divs.droppable({
 		accept: '#item-isotope-list li.item',
