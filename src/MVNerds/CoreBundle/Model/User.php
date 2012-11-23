@@ -122,4 +122,9 @@ class User extends BaseUser  implements AdvancedUserInterface
 		}
 		return $this->collUserRoles;
 	}
+	
+	public function getUserAvatarName()
+	{
+		return $this->getProfile()->getAvatarName();
+	}
 } // User

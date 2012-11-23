@@ -1,0 +1,22 @@
+{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+	<form action="#" method="POST" class="leave-comment-form">
+		<div class="row-fluid">
+			<div class="span2"></div>
+				<div class="span2 avatar-container">
+					<img src="{{ asset('images/avatar/' ~ app.user.getUserAvatarName() ~ '.jpg') }}" class="user-avatar" />
+				</div>
+				<div class="span6 comment-form-container">
+					<textarea placeholder="Écrire un commentaire" class="comment-msg" rows="2"></textarea>
+					<div class="comment-actions">
+						<p>
+							(<span class="char-count">0</span> / 500 caractères maximum) <img src="{{ asset('images/commons/comment-loader16.gif') }}" class="loader hide" /> 
+							<a href="#" class="btn-send-comment disabled">Commenter</a>
+						</p>
+					</div>
+				</div>
+			<div class="span2"></div>
+		</div>
+	</form>
+{% else %}
+
+{% endif %}

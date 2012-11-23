@@ -2,8 +2,8 @@
 
 namespace MVNerds\CoreBundle\Model;
 
+use MVNerds\CoreBundle\Comment\IComment;
 use MVNerds\CoreBundle\Model\om\BaseNews;
-
 
 /**
  * Skeleton subclass for representing a row from the 'news' table.
@@ -16,6 +16,6 @@ use MVNerds\CoreBundle\Model\om\BaseNews;
  *
  * @package    propel.generator.src.MVNerds.CoreBundle.Model
  */
-class News extends BaseNews {
+class News extends BaseNews implements IComment {
 
 } // News

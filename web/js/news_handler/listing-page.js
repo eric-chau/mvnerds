@@ -138,13 +138,13 @@ $(document).ready(function() {
 	
 	newsTable = $('#news-table').dataTable({
 		"bLengthChange": false,
-		"iDisplayLength": 3,
+		"iDisplayLength": 10,
 		"aoColumns": [
                       {"bSearchable": true, "bSortable":false},
-                      {"bSearchable": false, "bSortable":false},
-                      {"bSearchable": false, "bSortable":false},
-                      {"bSearchable": false, "bSortable":false},
-                      {"bSearchable": false, "bSortable":false}
+                      {"bSearchable": false, "bSortable":false}//,
+                      //{"bSearchable": false, "bSortable":false},
+                      //{"bSearchable": false, "bSortable":false},
+                      //{"bSearchable": false, "bSortable":false}
 		],
 		"sPaginationType": 'bootstrap',
 		"oLanguage": langage

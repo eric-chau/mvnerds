@@ -1,0 +1,9 @@
+<div class="comments-container">
+	<h2>Vos réactions ({{ comments|length }})</h2>
+
+	{% include 'MVNerdsCommentBundle:Common:comments_list.html.twig' with {'comments': comments} %}
+
+	{% include 'MVNerdsCommentBundle:Common:add_comment_block.html.twig' %}
+</div>
+
+<script type="text/javascript" src="{{ asset('js/comment/comment.js') }}"></script>

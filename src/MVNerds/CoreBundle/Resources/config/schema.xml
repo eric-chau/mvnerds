@@ -512,6 +512,7 @@
     <column defaultValue="0" name="view" required="true" type="INTEGER" />
     <column name="image_name" required="true" size="255" type="VARCHAR" />
     <column defaultValue="0" name="is_highlight" required="true" type="BOOLEAN" />
+    <column defaultValue="0" name="comment_count" required="true" type="INTEGER" />
     <foreign-key foreignTable="user">
       <reference foreign="id" local="user_id" />
     </foreign-key>
@@ -539,10 +540,11 @@
     </behavior>
   </table>
   <table name="comment">
-    <column autoIncrement="true" name="object_id" primaryKey="true" required="true" type="INTEGER" />
-    <column name="object_namespace" primaryKey="true" required="true" size="255" type="VARCHAR" />
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="object_id" required="true" type="INTEGER" />
+    <column name="object_namespace" required="true" size="255" type="VARCHAR" />
     <column name="user_id" required="true" type="INTEGER" />
-    <column name="title" required="true" size="255" type="VARCHAR" />
+    <column name="title" size="255" type="VARCHAR" />
     <column name="content" required="true" type="LONGVARCHAR" />
     <foreign-key foreignTable="user">
       <reference foreign="id" local="user_id" />
