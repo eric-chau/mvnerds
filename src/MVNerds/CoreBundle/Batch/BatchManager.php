@@ -97,32 +97,28 @@ class BatchManager
 			}
 			
 			//Récupération du mode de jeu
-			$fileName='RecItems';	
+			$fileName='0_RecItems_MVNerds.json';	
 			$gameMode = $championItemBuild->getGameMode()->getLabel();
 			
 			$jsonGameMode = '';
 			$jsonMap = '';
 			if ($gameMode == 'dominion')
 			{
-				$fileName .= 'ODIN.ini';
 				$jsonGameMode = 'ODIN';
 				$jsonMap = '8';
 			}
 			elseif ($gameMode == 'aram')
 			{
-				$fileName .= 'ARAM.ini';
 				$jsonGameMode = 'ARAM';
 				$jsonMap = '3';
 			}
 			elseif ($gameMode == 'twisted-treeline')
 			{
-				$fileName .= 'CLASSICMap10.ini';
 				$jsonGameMode = 'CLASSIC';
 				$jsonMap = '10';
 			}
 			else
 			{
-				$fileName .= 'CLASSIC.ini';
 				$jsonGameMode = 'CLASSIC';
 				$jsonMap = '1';
 			}
@@ -181,7 +177,7 @@ class BatchManager
 				{
 					fwrite($batFile, "echo \t\t\t\t{ >> ".$fileName."\n");
 					fwrite($batFile, "echo \t\t\t\t\t \"id\":\"".$item->code."\", >> ".$fileName."\n");
-					fwrite($batFile, "echo \t\t\t\t\t \"count\":\"".$item->count."\" >> ".$fileName."\n");
+					fwrite($batFile, "echo \t\t\t\t\t \"count\":".$item->count." >> ".$fileName."\n");
 					
 					if ($k >= $nbItems)
 					{
@@ -194,13 +190,15 @@ class BatchManager
 					$k++;
 				}
 				
+				fwrite($batFile, "echo \t\t\t] >> ".$fileName."\n");
+				
 				if ($itemTab[$maxPosition]['type'] == $blockName)
 				{
-					fwrite($batFile, "echo \t\t }, >> ".$fileName."\n");
+					fwrite($batFile, "echo \t\t } >> ".$fileName."\n");					
 				}
 				else 
 				{
-					fwrite($batFile, "echo \t\t } >> ".$fileName."\n");
+					fwrite($batFile, "echo \t\t }, >> ".$fileName."\n");
 				}
 			}
 			

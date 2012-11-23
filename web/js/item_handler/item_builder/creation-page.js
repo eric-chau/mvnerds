@@ -110,6 +110,7 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 							displayMessage('Les modifications ont bien été enregistrées.', 'success');
 						} else {
 							window.location = Routing.generate('item_builder_download_file', {_locale: locale, itemBuildSlug: data});
+							displayMessage('Le fichier a bien été généré.', 'success');
 						}
 					}).fail(function(data){
 						displayMessage('Impossible de créer le build.', 'error');
