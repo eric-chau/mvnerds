@@ -21,7 +21,7 @@ var
 	$blockNameInputs
 ;
 
-function addRecItem(slug, liBlockId) {
+function addRecItem(slug, liBlockId) {console.log('add slug : '+slug+' | id : '+liBlockId);
 	$liBlock = $('#'+liBlockId);
 	if ($liBlock.children('div.item-sidebar-block-div').find('div.portrait[data-slug="'+slug+'"]').length == 0) {
 		$portrait = $('#'+slug).find('div.portrait').clone();
@@ -245,21 +245,29 @@ function initWithStoredItemBuild() {
 	var itemSlugs = getItemFromLS('storedItemSlugs').split(',');
 	var buildName = getItemFromLS('storedBuildName');
 	
+	itemSlugs = JSON.parse(itemSlugs);
+	
 	for(var i = 0; i < championSlugs.length; i++) {
 		if (championSlugs[i] != '') {
 			$('#champion-isotope-list li.champion#'+championSlugs[i]).addClass('active');
 		}
 	}
-	
+	$itemSidebarList.html('');
 	$('div.game-mode').removeClass('active');
 	$('div.game-mode[data-game-mode="'+gameMode+'"]').addClass('active');
-	console.log(itemSlugs);
+	
 	for(i = 0; i < itemSlugs.length; i++) {
-		var blockName = itemSlugs[i]['name'];console.log(blockName);
-		blockName = blockName.replace(/ +/g, '_');
-		var items = itemSlugs[i]['items'];
-		for (var j = 0; j < items; j++) {
-			addRecItem(items[j], '__'+blockName + '__item-block-li');
+		var block = itemSlugs[i];
+		var blockName = block.name;
+		var blockNameEscaped = blockName.replace(/ +/g, '_');
+		var items = block.items;
+		for (var j = 0; j < items.length; j++) {
+			var name = blockName;
+			if ( isItemBlockNameFree(name) ) {
+				$itemSidebarList.append('<li class="item-sidebar-block-li" id="__'+blockNameEscaped+'__item-block-li"><input type="text" class="item_sidebar_block_input span9" value="'+name+'"/> <a href="#" class="btn-delete-block-item btn btn-danger btn-small">X</a><div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div></li>')
+				initItemDroppable($itemSidebarList.find('li:last div.item-sidebar-block-div'));
+			}
+			addRecItem(items[j], '__'+blockNameEscaped + '__item-block-li');
 		}
 	}
 	
@@ -285,22 +293,22 @@ function storeItemBuild() {
 	});
 
 	var gameMode = $('div.game-mode-container div.game-mode.active').first().attr('data-game-mode');
-
-	var itemSlugs = new Array();
-	$('#rec-item-sortable li.rec-item.full div.portrait').each(function(){
-		itemSlugs.push($(this).attr('data-slug'));
-	});
+//
+//	var itemSlugs = new Array();
+//	$('#rec-item-sortable li.rec-item.full div.portrait').each(function(){
+//		itemSlugs.push($(this).attr('data-slug'));
+//	});
 	
-	var itemsSlugs = new Array();
+	var itemSlugs = new Array();
 	$itemSidebarList.find('li.item-sidebar-block-li').each(function () {
 		var blockName = $(this).find('input.item_sidebar_block_input').val();
-		if(! (blockName in itemsSlugs)) {
+		if(! (blockName in itemSlugs)) {
 			var blockArray = new Array();
 			$(this).find('div.item-sidebar-block-div div.portrait').each(function() {
 				blockArray.push($(this).data('slug'));
 			});
 			if (blockArray.length > 0) {
-				itemsSlugs.push({name:blockName, items:blockArray});
+				itemSlugs.push({name:blockName, items:blockArray});
 			}
 		}
 	});
@@ -310,7 +318,7 @@ function storeItemBuild() {
 	saveItemInLS('storedItemBuild', 'true');
 	saveItemInLS('storedChampionSlugs', championSlugs);
 	saveItemInLS('storedGameMode', gameMode);
-	saveItemInLS('storedItemSlugs', itemSlugs);
+	saveItemInLS('storedItemSlugs', JSON.stringify(itemSlugs));
 	saveItemInLS('storedBuildName', buildName);
 }
 /*************** FIN LOCAL STORAGE ****************/
@@ -396,7 +404,8 @@ function initItemAddBlock() {
 		if (name != undefined && name != '' && !regex.test(name)) {
 			name = name.replace(/ +/g, ' ');
 			if ( isItemBlockNameFree(name) ) {
-				$itemSidebarList.append('<li class="item-sidebar-block-li" id="'+name+'-item-block-li"><input type="text" class="item_sidebar_block_input span9" value="'+name+'"/> <a href="#" class="btn-delete-block-item btn btn-danger btn-small">X</a><div class="item-sidebar-block-div" id="'+name+'-item-block-div"><div class="indication">Faites glissez vos items ici</div></div></li>')
+				var escapedName = name.replace(/ +/g, '_');
+				$itemSidebarList.append('<li class="item-sidebar-block-li" id="__'+escapedName+'__item-block-li"><input type="text" class="item_sidebar_block_input span9" value="'+name+'"/> <a href="#" class="btn-delete-block-item btn btn-danger btn-small">X</a><div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div></li>')
 				$modalError.html('');
 				$name.val('');
 				initItemDroppable($itemSidebarList.find('li:last div.item-sidebar-block-div'));
