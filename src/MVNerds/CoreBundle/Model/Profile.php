@@ -17,5 +17,9 @@ use MVNerds\CoreBundle\Model\om\BaseProfile;
  * @package    propel.generator.src.MVNerds.CoreBundle.Model
  */
 class Profile extends BaseProfile {
-
+	
+	public function getAvatarName()
+	{
+		return $this->getAvatar()->getName();
+	}
 } // Profile

@@ -1,0 +1,123 @@
+@import '../bootstrap/mixins.less';
+@import '../mvnerds-variables.less';
+
+div.comments-container {
+	background-color: #141414;
+	padding: 10px;
+
+	h2 {
+		border-bottom: 2px solid darken(@LoLOrangeAD, 5%);
+		color: darken(@LoLOrangeAD, 5%);
+		font-size: 1.4em;
+		margin: 0 0 30px 0;
+	}
+
+	div.comments-list {
+		margin: 0 0 30px 0;
+
+		div.span8 {
+			width: 607px;
+		}
+
+		div.no-comment {
+			p {
+				border: 1px dashed #666;
+				color: #666 !important;
+				font-size: 14px;
+				font-style: italic;
+				margin: 0;
+				padding: 20px;
+				text-align: center;
+			}
+		}
+	}	
+
+	form.leave-comment-form {
+		
+		div.avatar-container, div.comment-form-container {
+			background-color: darken(@MVNerdsBlue, 40%);
+			border-top: 2px solid @MVNerdsBlue;
+			margin-bottom: 10px;
+			padding: 10px;
+		}
+
+		div.avatar-container {
+			text-align: center;
+			width: 115px !important;
+
+			img.user-avatar {
+				border: 1px solid #666;
+				display: inline-block;
+				padding: 2px;
+				width: 88px;
+			}
+		}
+
+		div.comment-form-container {			
+			p.username {
+				color: @LoLOrangeAD !important;
+				font-size: 14px;
+				font-weight: bold;
+				margin: 0;
+			}
+
+			div.comment-actions {
+				margin: 10px 0 0 0;
+				
+				p {
+					color: #666 !important;
+					font-size: 12px;
+					margin: 0;
+					text-align: right;
+
+					img.loader {
+						display: inline-block;
+						margin-left: 5px !important;
+						position: relative;
+						top: -1px;
+
+						&.hide {
+							display: none !important;
+						}
+
+					}
+
+					a.btn-send-comment {
+						background-color: darken(@MVNerdsGreen, 5%);
+						color: white;
+						display: inline-block;
+						font-size: 14px;
+						font-weight: bold;
+						margin: 0 0 0 10px;
+						padding: 5px 7px;
+
+						&.disabled {
+							background-color: #666;
+							color: #999;
+							cursor: not-allowed;
+
+							&:focus, &:hover {
+								background-color: #666;
+							}
+						}
+
+						&:focus, &:hover {
+							background-color: @MVNerdsGreen; .transition(background-color .25s linear);
+						}
+					}
+				}
+			}
+
+			textarea.comment-msg {
+				background-color: #eee;
+				.border-radius(0);
+				color: #444;
+				display: block;
+				font-family: 'Ubuntu', sans-serif;
+				line-height: 1.5em;
+				resize: none;
+				width: 438px;
+			}
+		}
+	}
+}

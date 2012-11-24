@@ -1,0 +1,13 @@
+<div class="comments-list">
+	{% for comment in comments %}
+
+	{% else %}
+		<div class="row-fluid">
+				<div class="span2"></div>
+				<div class="span8 no-comment">
+					<p>Aucune réaction n'a été laissé pour le moment. Soyez le premier !</p>
+				</div>
+				<div class="span2"></div>
+			</div>
+	{% endfor %}
+</div>

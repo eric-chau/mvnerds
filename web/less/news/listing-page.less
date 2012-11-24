@@ -6,9 +6,9 @@ div.body-container {
 
 	&.list-news {
 		background-color: #000;
-		padding: 20px;
 		margin-bottom: 20px;
 		min-height: 500px;
+		padding: 20px;
 	}
 
 	h1 {
@@ -16,126 +16,133 @@ div.body-container {
 		margin-bottom: 50px;
 	}
 
-	h2 {
-		color: @LoLOrangeAD;
-	}
-
 	p {
 		color: #eee;
-	}
-
-	div#pmri-tabed-list {
-		background-color: #000;
-		padding: 20px;
-		margin-bottom: 20px;
-		min-height: 435px;
-
-		ul#tabed-builds {
-			font-family: 'Ubuntu', sans-serif;
-			margin: 0;
-			padding: 0;
-
-			li {
-				margin-right: 5px;
-
-				&.active {
-					a {
-						background-color: @MVNerdsBlue;
-						color: white;
-						font-weight: bold;
-					}		
-				}
-			}
-
-			a {
-				.border-radius(0);
-				color: #666;
-
-				&:hover {
-					background-color: darken(@MVNerdsBlue, 15%); .transition(background-color .25s linear);
-					color: white;
-				}
-			}
-		}
+		margin: 0;
 	}
 }
 
 table#news-table {
-	margin: 20px 0 15px 0;
+	margin: 0;
 
 	thead {
-		tr {
-			cursor: pointer;
-			height: 30px;
-			margin: 40px 0 0 0;
-
-			th {
-				color: #eee;
-				cursor: default;
-				font-family: 'Trebuchet MS', sans-serif;
-				font-size: 10px;
-				font-weight: bold;
-				text-transform: uppercase;
-			}
-		}
+		height: 10px;
 	}
 
-	tbody tr {
-		color: #aaa;
-		background-color: #141414;
+	tr {
+		display: inline-block;
+		margin-bottom: 10px;
+		vertical-align: top;
+		width: 487px;
+
+		&.odd {
+			margin-right: 10px;
+		}
 
 		&:hover {
-			background-color: #222;
+			td {
+				background-color: #222; 
+				border-right-color: @MVNerdsRed; .transition(all .25s linear);
+
+				&.header h2 a {
+					color: @LoLOrangeAD; .transition(color .25s linear);
+				}
+
+				&.content p.preview {
+					color: #eee; .transition(color .25s linear);
+				}
+			}
 		}
 
 		td {
+			background-color: #141414;
 			border: 0;
-			border-bottom: 4px solid #000;
-			cursor: default;
-			font-family: 'Ubuntu', sans-serif;
-			height: 30px;
-			line-height: 32px;
-			text-align: left;
+			border-right: 3px solid darken(@MVNerdsRed, 10%);
+			display: block;
+			padding: 0 10px;
 
-			div {
-				margin: 0 auto;
-			}
+			&.header {
+				padding-top: 10px;
 
-			a {
-				color: #aaa;
-				&:hover {
-					text-decoration: underline;
-				}
-			}
-
-			a.view-action {
-				text-align: center;
-				text-decoration: none;
-			}
-
-			span {
-				color: #666;
-
-				&.view-count-block {
-					display: inline-block;
-					font-size: 10px;
-					font-weight: bold;
+				h2 {
 					line-height: 1em;
-					margin-left: 10px;
-					position: relative;
-					top: 4px;
+					margin: 0;
 
-					strong {
-						display: block;
+					a {
+						color: darken(@LoLOrangeAD, 15%);
+						font-size: 20px;
 					}
 				}
-
-				i {
-					color: #666;
-					font-size: 16px;
-					margin: 0 5px;
-				}
 			}
+
+			&.content {
+				min-height: 461px;
+				padding-bottom: 10px;
+				position: relative;
+
+				p {
+					cursor: default;
+
+					&.subtitle {
+						color: #666;
+						font-size: 12px;
+						margin: 0;
+
+						a {
+							color: darken(@MVNerdsBlue, 15%);
+
+							&:hover {
+								color: @MVNerdsBlue; .transition(color .25s linear);
+							}
+						}
+
+						strong {
+							color: darken(@MVNerdsGreen, 10%);
+						}
+					}
+
+					&.image-preview {
+						margin-top: 30px;
+						text-align: center;
+
+						img {
+							border: 1px solid #666;
+							display: inline-block;
+							padding: 2px;
+							height: 250px;
+						}
+					}
+
+					&.preview {
+						color: #aaa;
+						font-size: 14px;
+						margin-top: 20px;
+					} 
+
+					&.actions {
+						bottom: 15px;
+						color: #999;
+						font-size: 12px;
+						margin: 0;
+						position: absolute;
+						right: 15px;
+
+						a.btn-read-more {
+							background-color: darken(@MVNerdsGreen, 5%);
+							color: white;
+							display: inline-block;
+							font-weight: bold;
+							margin-left: 10px;
+							padding: 10px 15px;
+							text-transform: uppercase;
+
+							&:hover {
+								background-color: @MVNerdsGreen; .transition(background-color .25s linear);
+							}
+						}
+					}
+				}// Fin p
+			} // Fin .content
 		}
 	}
 }
@@ -253,8 +260,6 @@ div.dataTables_paginate {
 		}
 	}
 }
-
-
 
 .search-box {
 	i {

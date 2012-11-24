@@ -44,6 +44,8 @@ iframe.markItUpPreviewFrame html body {
 #news-container h1,
 iframe.markItUpPreviewFrame html body h1 {
   border-bottom: 1px solid #7c4b00;
+  color: #19a0df;
+  margin: 0;
   padding: 0 0 5px 0;
 }
 #news-container h1 em,
@@ -100,7 +102,7 @@ iframe.markItUpPreviewFrame html body div.media-ressource {
 #news-container div.news-footer,
 iframe.markItUpPreviewFrame html body div.news-footer {
   border-top: 1px solid #7c4b00;
-  margin: 40px 0 0 0;
+  margin: 10px 0 0 0;
   text-align: right;
 }
 #news-container div.news-footer p,
@@ -137,8 +139,16 @@ iframe.markItUpPreviewFrame html body ol {
 iframe.markItUpPreviewFrame html body blockquote {
   color: #eee;
 }
-#news-container h1,
-iframe.markItUpPreviewFrame html body h1 {
-  color: #19A0DF;
-  margin-bottom: 0;
+#news-container div.prev-next-news,
+iframe.markItUpPreviewFrame html body div.prev-next-news {
+  margin: 40px 0 0 0;
+}
+#news-container div.prev-next-news div.news,
+iframe.markItUpPreviewFrame html body div.prev-next-news div.news {
+  border: 1px solid #444;
+  padding: 10px;
+}
+#news-container div.prev-next-news div.news.next,
+iframe.markItUpPreviewFrame html body div.prev-next-news div.news.next {
+  text-align: right;
 }

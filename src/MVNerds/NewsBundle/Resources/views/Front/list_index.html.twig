@@ -21,30 +21,21 @@
 		<p>{{'news_list.p1'|trans}}</p>
 		
 		<table id="news-table" class="table data-table">
-			<thead>
-				<tr>
-					<th class="title">{{'news_list.table.th.title'|trans}}</th>
-					<th class="author">{{'news_list.table.th.author'|trans}}</th>
-					<th class="category">{{'news_list.table.th.category'|trans}}</th>
-					<th class="creation-date">{{'news_list.table.th.create_date'|trans}}</th>
-					<th class="actions"></th>
-				</tr>
-			</thead>
 			<tbody>
-				{% for new in news%}
-					<tr class="news-row">
-						<td><a href="{{path('news_detail', {slug: new.getSlug()})}}">{{new.getTitle()}}</a></td>
+				{% for new in news %}
+					<tr>
+						<td class="header">
+							<h2><a href="{{path('news_detail', {slug: new.getSlug()})}}">{{new.getTitle()}}</a></h2>
+						</td>
 						
-						<td><a href="#">{{new.getUser().getUsername()}}</a></td>
-						
-						<td>{{new.getNewsCategory().getLabel()}}</td>
-						
-						<td>{{'news_list.table.td.create_the'|trans}} {{new.getCreateTime('d/m/Y')}} {{'news_list.table.td.created_at'|trans}} {{new.getCreateTime('H:i:s')}}</td>
-						
-						<td>
-							<a class="action view-action" href="{{path('news_detail', {slug: new.getSlug()})}}"><i class="icon-share"></i></a>
-							
-							<span class="view-count-block"><strong>{{'news_list.table.td.seen'|trans}}</strong> <span class="view-count">{{new.getView()}}</span> {{'news_list.table.td.times'|trans}}</span>
+						<td class="content">
+							<p class="subtitle"><strong>Catégorie {{new.getNewsCategory().getLabel()}}</strong> - Par <a href="#">{{new.getUser().getUsername()}}</a> le {{'news_list.table.td.create_the'|trans}} {{new.getCreateTime('d/m/Y')}}</p>
+							<p class="image-preview"><img src="{{ asset('images/news/'~ new.getImageName()) }}" /></p>
+							<p class="preview">{{ new.getPreview() }}</p>
+							<p class="actions">
+								{{ new.getCommentCount() }} commentaire{% if new.getCommentCount() > 0 %}s{% endif %}
+								<a href="{{path('news_detail', {slug: new.getSlug()})}}" class="btn-read-more">Lire plus</a>
+							</p>
 						</td>
 					</tr>
 				{% endfor %}

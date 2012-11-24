@@ -144,5 +144,10 @@
 			PROFILE MANAGER SERVICE
 		-->
 		<service id="mvnerds.profile_manager" class="MVNerds\CoreBundle\Profile\ProfileManager" />    
+
+		<!-- 
+			COMMENT MANAGER SERVICE
+		-->
+		<service id="mvnerds.comment_manager" class="MVNerds\CoreBundle\Comment\CommentManager" />    
 	</services>		
 </container>

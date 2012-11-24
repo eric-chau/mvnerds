@@ -20,6 +20,8 @@ p.module-name {
 
 	h1 {
 		border-bottom: 1px solid darken(@LoLOrangeAD, 25%);
+		color: @MVNerdsBlue;
+		margin: 0;
 		padding: 0 0 5px 0;
 
 		em {
@@ -70,7 +72,7 @@ p.module-name {
 
 		&.news-footer {
 			border-top: 1px solid darken(@LoLOrangeAD, 25%);
-			margin: 40px 0 0 0;
+			margin: 10px 0 0 0;
 			text-align: right;
 
 			p {
@@ -103,8 +105,18 @@ p.module-name {
 		color: #eee;
 	}
 
-	h1 {
-		color: #19A0DF;
-		margin-bottom: 0;
+	div.prev-next-news {
+		margin: 40px 0 0 0;
+
+		div {
+			&.news {
+				border: 1px solid #444;
+				padding: 10px;
+
+				&.next {
+					text-align: right;
+				}
+			}
+		}
 	}
 }
