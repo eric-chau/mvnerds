@@ -2,27 +2,6 @@
 	<ul id="item-actions" class="actions-list">
 		<li class="rec-item-list">
 			<ul id="rec-item-sortable">
-			{#	{% if selectedItems is not defined %}
-					<li class="rec-item free" data-original-position="1" id="rec-item-1"><div><i class="icon-question-sign icon-white"></i></div></li>
-					<li class="rec-item free" data-original-position="2" id="rec-item-2"><div><i class="icon-question-sign icon-white"></i></div></li>
-					<li class="rec-item free" data-original-position="3" id="rec-item-3"><div><i class="icon-question-sign icon-white"></i></div></li>
-					<li class="rec-item free" data-original-position="4" id="rec-item-4"><div><i class="icon-question-sign icon-white"></i></div></li>
-					<li class="rec-item free" data-original-position="5" id="rec-item-5"><div><i class="icon-question-sign icon-white"></i></div></li>
-					<li class="rec-item free" data-original-position="6" id="rec-item-6"><div><i class="icon-question-sign icon-white"></i></div></li>
-				{% else %}
-					{% for i in range(0,5) %}
-						{% set item = selectedItems[i] %}
-						{% if item.getIsObsolete() %}
-							<li class="rec-item free" data-original-position="{{i+1}}" id="rec-item-{{i+1}}"><div><i class="icon-question-sign icon-white"></i></div></li>
-						{% else %}
-							<li class="rec-item full" data-original-position="{{i + 1}}" id="rec-item-{{i + 1}}">
-								<div class="portrait" data-slug="{{item.getSlug()}}" data-game-modes="{{item.getGameModesToString()}}" data-champion="{% if item.getChampion() %}{{item.getChampion.getSlug()}}{% endif %}">
-									<img draggable="false" class="item-image" src="{{ asset('images/items/' ~ item.getRiotCode() ~ '.png') }}" alt="image de l'item {{ item.getName() }}" />
-								</div>
-							</li>
-						{% endif %}
-					{% endfor %}
-				{% endif %}#}
 			</ul>
 		</li>
 		{# Bouton d'action qui permet de filtrer les champions #}

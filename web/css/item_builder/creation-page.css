@@ -68,9 +68,6 @@ h1 {
   color: #19a0df;
   margin: 0;
 }
-h3 {
-  color: #759E1A;
-}
 p.module-name {
   font-size: 12px;
   margin-bottom: 40px;
@@ -442,6 +439,10 @@ div.body-container div.item-container div.elements-grid {
   margin-top: 30px;
   margin-bottom: 15px;
 }
+div.body-container div.champion-container div.elements-grid#champion-list,
+div.body-container div.item-container div.elements-grid#champion-list {
+  width: 900px;
+}
 div.body-container div.champion-container div.elements-grid ul,
 div.body-container div.item-container div.elements-grid ul {
   margin: 0;
@@ -503,51 +504,6 @@ div.body-container div.champion-container div.elements-grid ul li.champion div.p
 div.body-container div.item-container div.elements-grid ul li.champion div.portrait {
   padding: 7px;
 }
-div.body-container div.champion-container div#item-sidebar-blocks,
-div.body-container div.item-container div#item-sidebar-blocks {
-  margin: 0;
-  text-align: center;
-}
-div.body-container div.champion-container div#item-sidebar-blocks ul#item_sidebar_blocks_list,
-div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list {
-  list-style: none;
-  padding: 0;
-  max-height: 585px;
-  overflow-y: auto;
-}
-div.body-container div.champion-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li,
-div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li {
-  border: 1px solid #19A0DF;
-  padding: 5px;
-  margin-bottom: 5px;
-  margin-right: 5px;
-  min-height: 100px;
-  background-color: #000;
-}
-div.body-container div.champion-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div,
-div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div {
-  min-height: 62px;
-  text-align: left;
-}
-div.body-container div.champion-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.indication,
-div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.indication {
-  text-align: center;
-  font-size: 13px;
-  padding: 20px;
-  border: 1px dashed #999;
-  -webkit-border-radius: 5px !important;
-  -moz-border-radius: 5px !important;
-  border-radius: 5px !important;
-  color: #999;
-  font-style: italic;
-}
-div.body-container div.champion-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.portrait,
-div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.portrait {
-  text-align: left;
-  width: 25px;
-  cursor: pointer;
-  margin: 3px;
-}
 div.body-container div.champion-container div#champion-topbar div#champion-topbar-container {
   padding: 5px;
   position: relative;
@@ -594,72 +550,170 @@ div.body-container div.game-mode-container .game-mode span.message {
   margin-top: 124px;
   text-align: right;
 }
+div.body-container div.item-container {
+  margin: 0;
+  text-align: center;
+}
 div.body-container div.item-container.fixed div#item-list {
   margin-top: 90px;
 }
-div.body-container div.item-container div#item-topbar.fixed {
-  left: 0;
-  margin-top: 0;
-  min-width: 1064px;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 1000;
-}
-div.body-container div.item-container div#item-topbar.fixed div#item-topbar-container {
-  background-color: black;
-  width: 974px;
-  margin: 0 auto;
-}
-div.body-container div.item-container div#item-topbar.fixed div#item-topbar-container ul#item-actions li.rec-item-list {
-  width: 664px;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container {
-  padding: 5px 5px 8px 5px;
-  position: relative;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions {
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list {
   position: static;
+  padding: 2px;
 }
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li#filters-block {
-  position: static;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable {
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li {
   list-style: none;
-  margin: 0;
-  padding: 0;
+  margin: 5px!important;
 }
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item {
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  display: inline-block;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item.free {
-  height: 64px;
-  position: relative;
-  text-align: center;
-  top: 2px;
-  width: 64px;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item.free i {
-  position: relative;
-  top: 5px;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item.full:hover {
-  border-color: red;
-  -webkit-transition: border-color 0.25s linear;
-  -moz-transition: border-color 0.25s linear;
-  -o-transition: border-color 0.25s linear;
-  transition: border-color 0.25s linear;
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action {
+  width: 147px!important;
+  background-color: rgba(25, 160, 223, 0.7);
   cursor: pointer;
+  display: inline-block;
+  line-height: 26px;
+  margin: 0;
+  margin-right: 1px;
+  padding: 3px 6px 0 4px;
 }
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item.hold-rec-item-place {
-  border: 1px dashed #FB9701;
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action.disabled {
+  cursor: not-allowed;
+  opacity: .65;
 }
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item div {
-  padding: 7px;
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action.disabled a:hover {
+  cursor: not-allowed;
 }
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item div i {
-  font-size: 30px;
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action.link {
+  margin-left: 9px!important
+							padding: 3px 6px 0 4px;
+  width: 147px!important;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action.link a.action-button-link {
+  display: block;
+  padding: 3px 6px 0 2px;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action.link a.action-button-link.active {
+  color: #fb9701;
+  -webkit-transition: color 0.15s linear;
+  -moz-transition: color 0.15s linear;
+  -o-transition: color 0.15s linear;
+  transition: color 0.15s linear;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action.link a.action-button-link.active i {
+  color: #fb9701;
+  -webkit-transition: color 0.15s linear;
+  -moz-transition: color 0.15s linear;
+  -o-transition: color 0.15s linear;
+  transition: color 0.15s linear;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action a,
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action a:visited,
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action a:hover {
+  color: white;
+  display: block;
+  text-decoration: none;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action i {
+  display: inline-block;
+  font-size: 22px;
+  line-height: 22px;
+  margin: 0 0 0 0;
+  position: relative;
+  top: 1px;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action span.action-label {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  position: relative;
+  top: -2px;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action:hover {
+  background-color: #19a0df;
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action:hover span.action-label {
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action:hover input[type="text"] {
+  background-color: #19a0df;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action:hover input[type="text"]:-moz-placeholder {
+  color: #cccccc;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action:hover input[type="text"]:-ms-input-placeholder {
+  color: #cccccc;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action:hover input[type="text"]::-webkit-input-placeholder {
+  color: #cccccc;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action input[type="text"] {
+  border: 0;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  background-color: #11709c;
+  color: white;
+  font-size: 14px;
+  line-height: 1.5em;
+  margin: 0 0 2px 0;
+  padding: 1px 5px;
+  position: relative;
+  top: -2px;
+  width: 100px;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action input[type="text"]:-moz-placeholder {
+  color: #cccccc;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action input[type="text"]:-ms-input-placeholder {
+  color: #cccccc;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action input[type="text"]::-webkit-input-placeholder {
+  color: #cccccc;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list {
+  list-style: none;
+  padding: 0;
+  max-height: 585px;
+  overflow-y: auto;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li {
+  border: 1px solid #19A0DF;
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  min-height: 100px;
+  background-color: #000;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div {
+  min-height: 62px;
+  text-align: left;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.indication {
+  text-align: center;
+  font-size: 13px;
+  padding: 20px;
+  border: 1px dashed #999;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  border-radius: 5px !important;
+  color: #999;
+  font-style: italic;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.portrait {
+  text-align: left;
+  width: 25px;
+  cursor: pointer;
+  margin: 3px;
 }
 div.body-container div.item-container div#item-list li.item:hover {
   cursor: pointer;
@@ -676,27 +730,6 @@ div.body-container div.item-container div#item-list li.item:hover div.item-name 
   -moz-transition: all 0.25s linear;
   -o-transition: all 0.25s linear;
   transition: all 0.25s linear;
-}
-div.body-container div.item-container div#item-list li.item.animate-item-portrait {
-  height: 50px;
-  -webkit-transition: all 0.3s linear;
-  -moz-transition: all 0.3s linear;
-  -o-transition: all 0.3s linear;
-  transition: all 0.3s linear;
-  width: 50px;
-}
-div.body-container div.item-container div#item-list li.item.item-maxi {
-  background: #000000 url('/images/launch_site/champion_preview_bg.png') no-repeat top left;
-  border: 1px solid #fb9701;
-  cursor: default;
-  height: 498px;
-  -webkit-transition: all 0.3s linear;
-  -moz-transition: all 0.3s linear;
-  -o-transition: all 0.3s linear;
-  transition: all 0.3s linear;
-  width: 470px;
-  z-index: 900;
-  margin-bottom: 4px;
 }
 div.body-container div.item-container div#item-list li.item div.item-name {
   background-color: rgba(0, 0, 0, 0.3);
@@ -716,86 +749,6 @@ div.body-container div.item-container div#item-list li.item div.loader {
   position: relative;
   text-align: center;
   top: -142px;
-}
-div.body-container div.item-container div#item-list li.item div.preview {
-  color: #eee;
-  font-size: 12px;
-  padding: 10px 10px;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.preview-header {
-  background-image: url('/images/launch_site/preview_header_fr.png');
-  background-repeat: no-repeat;
-  cursor: pointer;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.preview-header h3 {
-  color: #fb9701;
-  font-size: 18px;
-  line-height: 49px;
-  margin: 0 10px;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.preview-header:hover {
-  background-image: url('/images/launch_site/preview_header_fr_hover.png');
-  -webkit-transition: background-image 0.25s linear;
-  -moz-transition: background-image 0.25s linear;
-  -o-transition: background-image 0.25s linear;
-  transition: background-image 0.25s linear;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.preview-header.en {
-  background-image: url('/images/launch_site/preview_header_en.png');
-}
-div.body-container div.item-container div#item-list li.item div.preview div.preview-header.en:hover {
-  background-image: url('/images/launch_site/preview_header_en_hover.png');
-}
-div.body-container div.item-container div#item-list li.item div.preview div.preview-header p {
-  line-height: 49px;
-  margin: 0 10px;
-  text-align: right;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.preview-header p strong {
-  color: #fb9701;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.row-fluid div.span9,
-div.body-container div.item-container div#item-list li.item div.preview div.row-fluid div.span3 {
-  margin: 10px 0;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.row-fluid div.span9 ul {
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 14px;
-  list-style: none;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.row-fluid div.span9 ul li {
-  margin: 0 0 3px 0;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.right-side div.item-portrait {
-  margin-top: 7px;
-  opacity: 0.7;
-  text-align: center;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.right-side a.btn-action-item-preview {
-  background-color: rgba(0, 0, 0, 0.3);
-  border: 1px solid #999;
-  color: white;
-  display: block;
-  font-family: 'Ubuntu', sans-serif;
-  line-height: 1em;
-  margin: 30px auto;
-  opacity: .5;
-  padding: 7px 5px;
-  text-align: center;
-  width: 75%;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.right-side a.btn-action-item-preview:hover {
-  background-color: #000000;
-  border: 1px solid #fb9701;
-  color: #fb9701;
-  opacity: 1;
-  -webkit-transition: all 0.25s linear;
-  -moz-transition: all 0.25s linear;
-  -o-transition: all 0.25s linear;
-  transition: all 0.25s linear;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.right-side a.btn-action-item-preview strong {
-  display: block;
 }
 div.body-container div.name-container input[type="text"] {
   -webkit-border-radius: 0 !important;

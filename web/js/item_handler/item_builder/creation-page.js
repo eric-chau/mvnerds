@@ -386,31 +386,8 @@ function initItemBlocksSortable() {
 
 function initItemAddBlock() {
 	$('#btn-add-item-block').click(function() {
-		$addItemBlockModal.modal('show');
-		return false;
-	});
-	$addItemBlockModal.find('#modal-add-item-block-save').click(function() {
-		var $name = $addItemBlockModal.find('#modal-item-block-name');
-		var name = $.trim($name.val());
-		var $modalError = $('#modal-add-item-block-error');
-		
-		var regex = new RegExp("[^a-zA-Z0-9 ]");
-		
-		if (name != undefined && name != '' && !regex.test(name)) {
-			name = name.replace(/ +/g, ' ');
-			if ( isItemBlockNameFree(name) ) {
-				var escapedName = name.replace(/ +/g, '_');
-				$itemSidebarList.append('<li class="item-sidebar-block-li" id="__'+escapedName+'__item-block-li"><input type="text" class="item_sidebar_block_input span9" value="'+name+'"/> <a href="#" class="btn-delete-block-item btn btn-danger btn-small">X</a><div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div></li>')
-				$modalError.html('');
-				$name.val('');
-				initItemDroppable($itemSidebarList.find('li:last div.item-sidebar-block-div'));
-				$addItemBlockModal.modal('hide');
-			} else {
-				$modalError.html('Ce nom est déjà utilisé');
-			}
-		} else {
-			$modalError.html('Ce nom est invalide');
-		}
+		$itemSidebarList.append('<li class="item-sidebar-block-li" id="___item-block-li"><input type="text" class="item_sidebar_block_input span9" value=""/> <a href="#" class="btn-delete-block-item btn btn-danger btn-small">X</a><div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div></li>')
+		initItemDroppable($itemSidebarList.find('li:last div.item-sidebar-block-div'));
 		return false;
 	});
 }

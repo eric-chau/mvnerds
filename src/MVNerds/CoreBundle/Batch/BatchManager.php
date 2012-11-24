@@ -97,7 +97,7 @@ class BatchManager
 			}
 			
 			//Récupération du mode de jeu
-			$fileName='0_RecItems_MVNerds.json';	
+			$fileName='0_RecItems_MVNerds';	
 			$gameMode = $championItemBuild->getGameMode()->getLabel();
 			
 			$jsonGameMode = '';
@@ -106,21 +106,25 @@ class BatchManager
 			{
 				$jsonGameMode = 'ODIN';
 				$jsonMap = '8';
+				$fileName .= '_Dominion.json';
 			}
 			elseif ($gameMode == 'aram')
 			{
 				$jsonGameMode = 'ARAM';
 				$jsonMap = '3';
+				$fileName .= '_ARAM.json';
 			}
 			elseif ($gameMode == 'twisted-treeline')
 			{
 				$jsonGameMode = 'CLASSIC';
 				$jsonMap = '10';
+				$fileName .= '_TwistedTreeline.json';
 			}
 			else
 			{
 				$jsonGameMode = 'CLASSIC';
 				$jsonMap = '1';
+				$fileName .= '_SummonerRift.json';
 			}
 			
 			$recommendedDir = 'Recommended';
