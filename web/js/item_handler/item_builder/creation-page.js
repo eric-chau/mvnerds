@@ -386,7 +386,7 @@ function initItemBlocksSortable() {
 
 function initItemAddBlock() {
 	$('#btn-add-item-block').click(function() {
-		$itemSidebarList.append('<li class="item-sidebar-block-li" id="___item-block-li"><input type="text" class="item_sidebar_block_input span9" value=""/> <a href="#" class="btn-delete-block-item btn btn-danger btn-small">X</a><div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div></li>')
+		$itemSidebarList.append('<li class="item-sidebar-block-li" id="___item-block-li"><input type="text" class="item_sidebar_block_input span9" value=""/> <a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a><div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div></li>')
 		initItemDroppable($itemSidebarList.find('li:last div.item-sidebar-block-div'));
 		return false;
 	});
@@ -665,4 +665,11 @@ $(document).ready(function()
 	initChampionFilterList($championIsotopeList, $('ul#filters-list li'));
 	initChampionCleanAction($championIsotopeList, $championFilterInput);
 	initChampionAddFilteredAction($championIsotopeList);
+	
+	//CustomScrollBar
+	$itemSidebarList.parent('li').mCustomScrollbar({
+		advanced:{
+			updateOnContentResize: Boolean
+		}
+	});
 });

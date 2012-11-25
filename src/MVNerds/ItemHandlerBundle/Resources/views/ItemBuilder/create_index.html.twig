@@ -6,16 +6,20 @@
 	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square36-sprite.css') }}">
 	<link href="{{ asset('css/item_builder/creation-page.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/item_builder/modal.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('css/jquery.mCustomScrollbar.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 	
 {% block javascripts %}
 	{{ parent() }}
 
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 	<script src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
 	<script src="{{ asset('js/jquery.isotope.min.js') }}"></script>
 	<script src="{{ asset('js/launch_site/alerts-ajax-handler.js') }}"></script>
 	<script src="{{ asset('js/launch_site/isotope-filter.js') }}"></script>
 	<script src="{{ asset('js/item_handler/item_builder/creation-page.js') }}"></script>
+	<script src="{{ asset('js/jquery.mCustomScrollBar.js') }}"></script>
+	<script src="{{ asset('js/jquery.mousewheel.min.js') }}"></script>
 {% endblock %}
 
 {% block title %}

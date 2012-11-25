@@ -127,6 +127,127 @@ p.module-name strong {
   display: inline-block;
   margin-right: 2px;
 }
+ul.dropdown-menu {
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid #19a0df;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  text-align: left;
+}
+ul.dropdown-menu:not(.typeahead) {
+  left: 50%;
+  width: 984px;
+  margin-left: -492px;
+  position: absolute;
+}
+ul.dropdown-menu:not(.typeahead) div.row-filters div.span6 {
+  padding: 5px 20px;
+}
+ul.dropdown-menu:not(.typeahead) li.list-header {
+  color: #19a0df;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+ul.dropdown-menu:not(.typeahead) h4 {
+  color: #666;
+}
+ul.dropdown-menu:not(.typeahead) ul.tags-group {
+  float: left;
+  list-style: none;
+  margin: 0 20px 0 0;
+  padding: 0;
+  width: 200px;
+}
+ul.dropdown-menu:not(.typeahead) ul.tags-group li.nav-header {
+  color: #fb9701;
+  text-shadow: none;
+}
+ul.dropdown-menu:not(.typeahead) ul.tags-group a {
+  font-family: 'Ubuntu', sans-serif;
+  padding: 3px 10px 3px 20px;
+}
+ul.dropdown-menu:not(.typeahead) ul.tags-group a i {
+  color: black;
+  display: inline-block;
+  font-size: 18px;
+  margin: 0 10px 0 0;
+}
+ul.dropdown-menu:not(.typeahead) ul.tags-group a.selected {
+  color: #fb9701;
+  font-weight: bold;
+}
+ul.dropdown-menu:not(.typeahead) ul.tags-group a.selected i {
+  color: #fb9701;
+}
+ul.dropdown-menu:not(.typeahead) ul.tags-group a:hover {
+  color: white;
+}
+ul.dropdown-menu:not(.typeahead) ul.tags-group a:hover i {
+  color: white;
+}
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons {
+  min-height: 0;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 12px;
+  position: relative;
+  top: 6px;
+  left: 0;
+}
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span12 i,
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span6 i,
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span12 a,
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span6 a {
+  color: #666;
+}
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span12:hover a,
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span6:hover a,
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span12:hover i,
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span6:hover i {
+  color: white;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span12 i,
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span6 i {
+  display: inline-block;
+  font-size: 14px;
+  left: 3px;
+  position: relative;
+}
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span12 li {
+  border-top: 1px dashed rgba(255, 255, 255, 0.3);
+}
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span6 {
+  margin: 0;
+  width: 50%;
+}
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span6.div-left li {
+  border-right: 1px dashed rgba(255, 255, 255, 0.3);
+  border-top: 1px dashed rgba(255, 255, 255, 0.3);
+  text-align: left;
+}
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span6.div-right li {
+  text-align: right;
+  border-top: 1px dashed rgba(255, 255, 255, 0.3);
+}
+ul.dropdown-menu.typeahead {
+  margin-top: 5px;
+  margin-left: -46px;
+}
+ul.dropdown-menu.typeahead li a {
+  color: #bbb;
+}
+ul.dropdown-menu.typeahead li a strong {
+  color: #fff;
+}
 div.body-container {
   background-color: #000;
   color: #fff;
@@ -135,6 +256,9 @@ div.body-container {
 }
 div.body-container h2 {
   color: #db4a38;
+}
+div.body-container h3 {
+  color: #759E1A;
 }
 div.body-container div.game-mode-container,
 div.body-container div.generate-button-container,
@@ -145,7 +269,7 @@ div.body-container div.name-container {
 div.body-container div.champion-container,
 div.body-container div.item-container {
   background-color: #111;
-  margin: 20px 0 40px 0;
+  margin: 20px 0 40px 0!important;
   padding: 15px;
 }
 div.body-container div.champion-container div.actionbar ul.actions-list,
@@ -297,147 +421,12 @@ div.body-container div.champion-container div.actionbar ul.actions-list li.actio
 div.body-container div.item-container div.actionbar ul.actions-list li.action input[type="text"]::-webkit-input-placeholder {
   color: #cccccc;
 }
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu {
-  background-color: rgba(0, 0, 0, 0.8);
-  border: 1px solid #19a0df;
-  -webkit-border-radius: 0 !important;
-  -moz-border-radius: 0 !important;
-  border-radius: 0 !important;
-  left: 50%;
-  margin-left: -492px;
-  position: absolute;
-  text-align: left;
-  width: 984px;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.row-filters div.span6,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.row-filters div.span6 {
-  padding: 5px 20px;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu li.list-header,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu li.list-header {
-  color: #19a0df;
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 11px;
-  font-weight: bold;
-  line-height: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-  text-transform: uppercase;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu h4,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu h4 {
-  color: #666;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group {
-  float: left;
-  list-style: none;
-  margin: 0 20px 0 0;
-  padding: 0;
-  width: 200px;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group li.nav-header,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group li.nav-header {
-  color: #fb9701;
-  text-shadow: none;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a {
-  font-family: 'Ubuntu', sans-serif;
-  padding: 3px 10px 3px 20px;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a i,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a i {
-  color: black;
-  display: inline-block;
-  font-size: 18px;
-  margin: 0 10px 0 0;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a.selected,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a.selected {
-  color: #fb9701;
-  font-weight: bold;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a.selected i,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a.selected i {
-  color: #fb9701;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a:hover,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a:hover {
-  color: white;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a:hover i,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a:hover i {
-  color: white;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons {
-  min-height: 0;
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 12px;
-  position: relative;
-  top: 6px;
-  left: 0;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 i,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 i,
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 i,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 i,
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 a,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 a,
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 a,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 a {
-  color: #666;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12:hover a,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12:hover a,
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6:hover a,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6:hover a,
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12:hover i,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12:hover i,
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6:hover i,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6:hover i {
-  color: white;
-  -webkit-transition: color 0.25s linear;
-  -moz-transition: color 0.25s linear;
-  -o-transition: color 0.25s linear;
-  transition: color 0.25s linear;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 i,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 i,
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 i,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 i {
-  display: inline-block;
-  font-size: 14px;
-  left: 3px;
-  position: relative;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 li,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 li {
-  border-top: 1px dashed rgba(255, 255, 255, 0.3);
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 {
-  margin: 0;
-  width: 50%;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6.div-left li,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6.div-left li {
-  border-right: 1px dashed rgba(255, 255, 255, 0.3);
-  border-top: 1px dashed rgba(255, 255, 255, 0.3);
-  text-align: left;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6.div-right li,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6.div-right li {
-  text-align: right;
-  border-top: 1px dashed rgba(255, 255, 255, 0.3);
-}
 div.body-container div.champion-container div.elements-grid,
 div.body-container div.item-container div.elements-grid {
   margin: auto;
   margin-top: 30px;
   margin-bottom: 15px;
+  text-align: left;
 }
 div.body-container div.champion-container div.elements-grid#champion-list,
 div.body-container div.item-container div.elements-grid#champion-list {
@@ -566,7 +555,7 @@ div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_li
   margin: 5px!important;
 }
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action {
-  width: 147px!important;
+  width: 190px!important;
   background-color: rgba(25, 160, 223, 0.7);
   cursor: pointer;
   display: inline-block;
@@ -583,9 +572,9 @@ div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_li
   cursor: not-allowed;
 }
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action.link {
-  margin-left: 9px!important
-							padding: 3px 6px 0 4px;
-  width: 147px!important;
+  margin-left: 9px!important;
+  padding: 3px 6px 0 4px;
+  width: 190px!important;
 }
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action.link a.action-button-link {
   display: block;
@@ -605,6 +594,12 @@ div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_li
   -o-transition: color 0.15s linear;
   transition: color 0.15s linear;
 }
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action.help-action {
+  background-color: rgba(117, 158, 26, 0.7);
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action.help-action:hover {
+  background-color: #759e1a;
+}
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action a,
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action a:visited,
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action a:hover {
@@ -619,6 +614,8 @@ div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_li
   margin: 0 0 0 0;
   position: relative;
   top: 1px;
+  float: left;
+  padding-left: 10px;
 }
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action span.action-label {
   font-family: 'Ubuntu', sans-serif;
@@ -669,7 +666,7 @@ div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_li
   padding: 1px 5px;
   position: relative;
   top: -2px;
-  width: 100px;
+  width: 130px!important;
 }
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action input[type="text"]:-moz-placeholder {
   color: #cccccc;
@@ -680,11 +677,17 @@ div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_li
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action input[type="text"]::-webkit-input-placeholder {
   color: #cccccc;
 }
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li#item_sidebar_blocks_li {
+  height: 540px!important;
+  overflow: auto;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li#item_sidebar_blocks_li div.mCSB_container {
+  margin: 0 10px 0 0;
+}
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list {
   list-style: none;
   padding: 0;
-  max-height: 585px;
-  overflow-y: auto;
+  margin-top: 0;
 }
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li {
   border: 1px solid #19A0DF;
@@ -693,6 +696,31 @@ div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_li
   margin-right: 5px;
   min-height: 100px;
   background-color: #000;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li input {
+  background-color: #333;
+  border: 1px solid #999;
+  color: #19A0DF;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li input:focus {
+  border-color: #19A0DF;
+  background-color: #444;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li a.btn-delete-block-item.reset-field {
+  display: inline-block;
+  margin: 0 ;
+  position: relative;
+  top: 5px;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li a.btn-delete-block-item.reset-field i {
+  color: #666;
+  font-size: 25px;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li a.btn-delete-block-item.reset-field:hover i {
+  color: #db4a38;
 }
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div {
   min-height: 62px;
@@ -714,6 +742,11 @@ div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_li
   width: 25px;
   cursor: pointer;
   margin: 3px;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul.dropdown-menu {
+  width: 746px;
+  top: -10%;
+  left: -179%;
 }
 div.body-container div.item-container div#item-list li.item:hover {
   cursor: pointer;
@@ -749,6 +782,12 @@ div.body-container div.item-container div#item-list li.item div.loader {
   position: relative;
   text-align: center;
   top: -142px;
+}
+div.body-container div.view-item-container {
+  display: inline-block;
+}
+div.body-container div.view-item-container div.elements-grid {
+  margin: 0;
 }
 div.body-container div.name-container input[type="text"] {
   -webkit-border-radius: 0 !important;

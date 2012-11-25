@@ -44,6 +44,9 @@ div.body-container h2 {
 div.body-container p {
   color: #eee;
 }
+div.body-container h3 {
+  color: #759E1A;
+}
 div.body-container a.btn-red {
   background-color: #be3322;
   color: white;
