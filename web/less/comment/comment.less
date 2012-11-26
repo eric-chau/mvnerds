@@ -16,7 +16,44 @@ div.comments-container {
 		margin: 0 0 30px 0;
 
 		div.span8 {
+			margin-left: 35px;
 			width: 607px;
+
+			&.comment-block {
+				background-color: darken(@LoLOrangeAD, 45%);
+				border: 2px solid @LoLOrangeAD;
+				margin-bottom: 10px;
+				padding: 10px;
+
+				div {
+					&.span2 {
+						img {
+							border: 1px solid #444;
+							display: block !important;
+							margin: auto;
+							padding: 2px;
+							width: 64px;
+						}
+					}
+
+					&.span10 {
+						margin-left: 10px;
+						width: 485px;
+
+						p.posted-by {
+							color: #666 !important;
+							font-size: 12px;
+							margin-top: 10px;
+							text-align: right;
+						}
+					}
+
+					p {
+						font-size: 14px;
+						margin: 0;
+					}
+				}
+			}
 		}
 
 		div.no-comment {
@@ -33,7 +70,6 @@ div.comments-container {
 	}	
 
 	form.leave-comment-form {
-		
 		div.avatar-container, div.comment-form-container {
 			background-color: darken(@MVNerdsBlue, 40%);
 			border-top: 2px solid @MVNerdsBlue;
@@ -42,6 +78,7 @@ div.comments-container {
 		}
 
 		div.avatar-container {
+			margin-left: 35px;
 			text-align: center;
 			width: 115px !important;
 

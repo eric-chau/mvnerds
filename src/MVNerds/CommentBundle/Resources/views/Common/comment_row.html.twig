@@ -1,0 +1,18 @@
+<div class="row-fluid">
+	<div class="span2"></div>
+	<div class="span8 comment-block">
+		<div class="row-fluid">
+			<div class="span2">
+				<p>
+					<img src="{{ asset('images/avatar/' ~ comment.getUser().getUserAvatarName() ~ '.jpg') }}" />
+				</p>
+			</div>
+			<div class="span10">
+				<p>{{ comment.getContent() }}</p>
+				<p class="posted-by">Posté par <strong>{{ comment.getUser().getUsername() }}</strong> il y a ...</p>
+			</div>
+		</div>
+
+	</div>
+	<div class="span2"></div>
+</div>

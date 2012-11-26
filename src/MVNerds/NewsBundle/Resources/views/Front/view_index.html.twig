@@ -6,6 +6,37 @@
 	<link href="{{ asset('css/news/view.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/comment/comment.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
+
+{% block javascripts %}
+		{{ parent() }}
+	
+		<script type="text/javascript">
+			var $commentsList = $('div.comments-container div.comments-list');
+			function addCommentCustomMethod()
+			{
+				$.ajax({
+					url: Routing.generate('news_leave_comment', {'_locale': locale}),
+					data: {
+						'news_slug': '{{ news.getSlug() }}',
+						'user_slug': '{{ app.user.getSlug() }}',
+						'comment_msg': $('textarea.comment-msg').val()
+					},
+					type: 'POST',
+					dataType: 'html',
+					success: function(response)
+					{
+						var $content = $('<div class="hide"></div>').html(response),
+							$commentMsg = $('textarea.comment-msg');
+						$content.prependTo($commentsList);
+						$content.slideDown();
+						$commentMsg.parent().find('img.loader').addClass('hide');
+						$commentMsg.removeAttr('disabled');
+						$commentMsg.val('');
+					}
+				});
+			}
+		</script>
+{% endblock %}
 	
 {% block body_main_content %}
 
@@ -30,6 +61,7 @@
 				<h6>Actualité suivante : NEWS_TITLE</h6>
 			</div>
 		</div>#}
+
 		{% render 'MVNerdsCommentBundle:Comment:renderLightComments' with {'object': news} %}
 		
 		<div class="news-footer">

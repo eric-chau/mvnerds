@@ -4,6 +4,8 @@ namespace MVNerds\NewsBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
  * @Route("/news")
@@ -25,6 +27,42 @@ class FrontController extends Controller
 		
 		return $this->render('MVNerdsNewsBundle:Front:list_index.html.twig', array(
 			'news'	=> $news
+		));
+	}
+	
+	/**
+	 * @Route("/leave-comment", name="news_leave_comment", options={"expose"=true})
+	 */
+	public function leaveCommentAction()
+	{
+		$request = $this->getRequest();
+		if (!$request->isXmlHttpRequest() || !$request->isMethod('POST'))
+		{
+			throw new HttpException(500, 'Request must be AJAX and POST method');
+		}
+		
+		$newsSlug = $request->get('news_slug', null);
+		$userSlug = $request->get('user_slug', null);
+		$commentMsg = $request->get('comment_msg', null);
+		if (null == $newsSlug || null == $userSlug || null == $commentMsg) {
+			throw new HttpException(500, 'news_slug | user_slug | comment_msg is/are missing!');
+		}
+		
+		if (0 != strcmp($userSlug, $this->getUser()->getSlug())) {
+			throw new AccessDeniedException();
+		}
+		
+		try {
+			$news = $this->get('mvnerds.news_manager')->findBySlug($newsSlug);
+		}
+		catch(Exception $e) {
+			throw new InvalidArgumentException('News not found for slug:`'. $newsSlug .'`');
+		}
+		
+		return $this->forward('MVNerdsCommentBundle:Comment:leaveComment', array(
+			'object'		=> $news,
+			'user'			=> $this->getUser(),
+			'commentMsg'	=> $commentMsg
 		));
 	}
 	
