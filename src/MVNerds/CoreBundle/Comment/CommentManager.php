@@ -21,6 +21,8 @@ class CommentManager
 		
 		// Finally
 		$comment->save();
+		
+		return $comment;
 	}
 	
 	public function countCommentForUser(User $user)
@@ -38,6 +40,8 @@ class CommentManager
 			->joinWith('Profile.Avatar')
 			->add(CommentPeer::OBJECT_NAMESPACE, get_class($object))
 			->add(CommentPeer::OBJECT_ID, $object->getId())
+			->orderBy(CommentPeer::CREATE_TIME, 'desc')
+			->limit(5)
 		->find();
 	}
 	

@@ -33,7 +33,7 @@
 							<p class="image-preview"><img src="{{ asset('images/news/'~ new.getImageName()) }}" /></p>
 							<p class="preview">{{ new.getPreview() }}</p>
 							<p class="actions">
-								{{ new.getCommentCount() }} commentaire{% if new.getCommentCount() > 0 %}s{% endif %}
+								{{ new.getCommentCount() }} commentaire{% if new.getCommentCount() > 1 %}s{% endif %}
 								<a href="{{path('news_detail', {slug: new.getSlug()})}}" class="btn-read-more">Lire plus</a>
 							</p>
 						</td>

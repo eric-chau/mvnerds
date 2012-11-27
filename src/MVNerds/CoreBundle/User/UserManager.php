@@ -12,7 +12,6 @@ use MVNerds\LaunchSiteBundle\CustomException\UnknowUserException;
 use MVNerds\LaunchSiteBundle\CustomException\UserAlreadyEnabledException;
 use MVNerds\LaunchSiteBundle\CustomException\WrongActivationCodeException;
 use MVNerds\CoreBundle\Model\Profile;
-use MVNerds\CoreBundle\Model\Role;
 use MVNerds\CoreBundle\Role\RoleManager;
 use MVNerds\CoreBundle\Model\User;
 use MVNerds\CoreBundle\Model\UserPeer;
