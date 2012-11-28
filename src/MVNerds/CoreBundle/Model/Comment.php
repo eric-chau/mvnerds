@@ -3,7 +3,7 @@
 namespace MVNerds\CoreBundle\Model;
 
 use MVNerds\CoreBundle\Model\om\BaseComment;
-
+use MVNerds\CoreBundle\Model\User;
 
 /**
  * Skeleton subclass for representing a row from the 'comment' table.
@@ -17,5 +17,14 @@ use MVNerds\CoreBundle\Model\om\BaseComment;
  * @package    propel.generator.src.MVNerds.CoreBundle.Model
  */
 class Comment extends BaseComment {
-
+	public function didIReportThisComment(User $user)
+	{
+		foreach ($this->getUserReportComments() as $userReportComment) {
+			if ($user->getId() == $userReportComment->getUserId()) {
+				return true;
+			}
+		}
+		
+		return false;
+	}
 } // Comment

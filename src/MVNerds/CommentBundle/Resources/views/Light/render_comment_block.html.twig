@@ -1,5 +1,5 @@
 <div class="comments-container">
-	<h2>Vos réactions ({{ comments|length }})</h2>
+	<h2>Vos réactions (<span class="comment-count">{{ comments|length }}</span>)</h2>
 
 	{% include 'MVNerdsCommentBundle:Common:comments_list.html.twig' with {'comments': comments} %}
 

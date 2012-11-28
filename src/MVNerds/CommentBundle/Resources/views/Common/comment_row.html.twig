@@ -8,8 +8,21 @@
 				</p>
 			</div>
 			<div class="span10">
-				<p>{{ comment.getContent() }}</p>
-				<p class="posted-by">Posté par <strong>{{ comment.getUser().getUsername() }}</strong> il y a ...</p>
+				{% if comment.getUserReportComments()|length > 0 %}
+					<p class="reported-comment"><a href="#">Ce commentaire est masqué car il a été reporté plusieurs fois. Cliquez ici pour l'afficher...</a></p>
+					<p class="reported hide">{{ comment.getContent() }}</p>
+				{% else %}
+					<p>{{ comment.getContent() }}</p>
+				{% endif %}
+				<p class="posted-by">
+					<span class="report-container">
+						{% if comment.didIReportThisComment(app.user) %}
+							{% include 'MVNerdsCommentBundle:Common:report_success.html.twig' %}
+						{% else %}
+							<a href="#" class="report" data-comment-id="{{ comment.getId() }}">Signaler ce message</a>
+						{% endif %}
+					</span>
+					| Posté par <strong><a href="{{ path('summoner_profile_view', {'userSlug': comment.getUser().getSlug()}) }}" title="Consulter le profil de {{ comment.getUser().getUsername }}">{{ comment.getUser().getUsername() }}</a></strong> il y a ...</p>
 			</div>
 		</div>
 

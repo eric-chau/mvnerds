@@ -553,6 +553,11 @@
       <parameter name="create_column" value="create_time" />
       <parameter name="update_column" value="update_time" />
     </behavior>
+    <behavior name="aggregate_column">
+      <parameter name="name" value="report_count" />
+      <parameter name="foreign_table" value="user_report_comment" />
+      <parameter name="expression" value="count(comment_id)" />
+    </behavior>
   </table>
   <table name="news_category">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -600,6 +605,16 @@
     <column name="role_id" required="true" type="INTEGER" />
     <foreign-key foreignTable="role">
       <reference foreign="id" local="role_id" />
+    </foreign-key>
+  </table>
+  <table name="user_report_comment">
+    <column name="user_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="comment_id" primaryKey="true" required="true" type="INTEGER" />
+    <foreign-key foreignTable="user">
+      <reference foreign="id" local="user_id" />
+    </foreign-key>
+    <foreign-key foreignTable="comment">
+      <reference foreign="id" local="comment_id" />
     </foreign-key>
   </table>
 </database>
