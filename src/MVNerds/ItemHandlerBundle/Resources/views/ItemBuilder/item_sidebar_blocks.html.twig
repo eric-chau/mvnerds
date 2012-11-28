@@ -4,26 +4,30 @@
 		<i class="icon-search icon-white"></i> <input id="item-filter-input" type="text" class="input-mini" placeholder="{{'Actionsbar.Search.placeholder'|trans}}" data-provide="typeahead"/>
 	</li>
 	<li class="action help-action">
-		<a href="#" id="btn-add-item-block" class="action-button-link" role="button"><i class="icon-plus-sign icon-white"></i> <span class="action-label">Ajouter un bloc</span></a>
+		<a href="#" id="btn-add-item-block" class="action-button-link" role="button"><i class="icon-plus-sign icon-white"></i> <span class="action-label">{{'create_item_build.sidebar.button.add_block'|trans}}</span></a>
 	</li>
 	<li id="item_sidebar_blocks_li">
 		<ul id="item_sidebar_blocks_list">
 			{% if selectedItems is not defined %}
 				<li class="item-sidebar-block-li" id="__starting__item-block-li">
 					<input type="text" class="item_sidebar_block_input span9" value="starting"/> <a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a>
-					<div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div>
+					<div class="item-sidebar-block-div"><div class="indication">{{'create_item_build.sidebar.item_box.indication'|trans}}</div></div>
 				</li>
 				<li class="item-sidebar-block-li" id="__essential__item-block-li">
 					<input type="text" class="item_sidebar_block_input span9" value="essential"/> <a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a>
-					<div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div>
+					<div class="item-sidebar-block-div"><div class="indication">{{'create_item_build.sidebar.item_box.indication'|trans}}</div></div>
 				</li>
 				<li class="item-sidebar-block-li" id="__offensive__item-block-li">
 					<input type="text" class="item_sidebar_block_input span9" value="offensive"/> <a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a>
-					<div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div>
+					<div class="item-sidebar-block-div"><div class="indication">{{'create_item_build.sidebar.item_box.indication'|trans}}</div></div>
 				</li>
 				<li class="item-sidebar-block-li" id="__defensive__item-block-li">
 					<input type="text" class="item_sidebar_block_input span9" value="defensive"/> <a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a>
-					<div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div>
+					<div class="item-sidebar-block-div"><div class="indication">{{'create_item_build.sidebar.item_box.indication'|trans}}</div></div>
+				</li>
+				<li class="item-sidebar-block-li" id="__consumable__item-block-li">
+					<input type="text" class="item_sidebar_block_input span9" value="consumable"/> <a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a>
+					<div class="item-sidebar-block-div"><div class="indication">{{'create_item_build.sidebar.item_box.indication'|trans}}</div></div>
 				</li>
 			{% else %}
 				{% for itemBlock in selectedItems%}

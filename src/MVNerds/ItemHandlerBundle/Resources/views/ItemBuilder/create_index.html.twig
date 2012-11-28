@@ -12,6 +12,7 @@
 {% block javascripts %}
 	{{ parent() }}
 
+	<script src="{{ asset('js/item_handler/item-popover.js') }}"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 	<script src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
 	<script src="{{ asset('js/jquery.isotope.min.js') }}"></script>
@@ -121,16 +122,16 @@
 			<p>
 				{{'create_item_build.modal_authenticate.p1' | trans}}
 			</p>
-			<p>
+			{#<p>
 				{{'create_item_build.modal_authenticate.p2' | trans}}
-			</p>
+			</p>#}
 			<p>
 				{{'create_item_build.modal_authenticate.p3' | trans}}
 			</p>
 		</div>
 		<div class="modal-footer">
 			<a href="#" data-dismiss="modal" class="btn-cancel">{{'create_item_build.modal_authenticate.btn.cancel' | trans}}</a>
-			<a href="{{path('security_summoner_store_redirect_and_forward', {routeName: 'security_summoner_login'})}}" id="modal-btn-authentication" data-target="" class="btn-download">{{'create_item_build.modal_authenticate.btn.confirm' | trans}}</a>
+			<a href="{{path('security_summoner_store_redirect_and_forward', {routeName: 'security_summoner_login'})}}" id="modal-btn-authentication" data-target="" class="btn-download">{{'create_item_build.modal_authenticate.btn.sign_in' | trans}}</a>
 			<a href="{{path('security_summoner_store_redirect_and_forward', {routeName: 'launch_site_summoner_registration'})}}" id="modal-btn-inscription" data-target="" class="btn-download">{{'create_item_build.modal_authenticate.btn.inscription' | trans}}</a>
 			<a href="{{path('security_summoner_login')}}" id="modal-btn-only-generate-build" data-target="" class="btn-download"><i class="icon-download-alt"></i>{{'create_item_build.modal_authenticate.btn.download_only' | trans}}</a>
 		</div>

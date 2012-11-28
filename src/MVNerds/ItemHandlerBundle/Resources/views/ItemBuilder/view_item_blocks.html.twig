@@ -5,7 +5,7 @@
 
 			<ul>
 				{% for item in itemBlock['items'] %}
-					<li class="item"data-placement="right" data-name="{{ item.getName() | lower }}" data-title="{{ item.getName()}}">
+					<li class="item"data-placement="right" data-name="{{ item.getName() | lower }}" data-title="{{ item.getName()}}" id="{{ item.getSlug() }}" data-code="{{ item.getRiotCode()}}">
 						<div class="portrait">
 							<img draggable="false" class="item-image" src="{{ asset('images/items/' ~ item.getRiotCode() ~ '.png') }}" alt="image de l'item {{ item.getName() }}" />
 						</div>

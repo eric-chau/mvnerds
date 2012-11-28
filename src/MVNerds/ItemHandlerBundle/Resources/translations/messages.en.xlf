@@ -14,7 +14,7 @@
 			<trans-unit id="2">
 				<source>create_item_build.p.1</source>
 				<target>
-					Welcome ! Follow the steps to create a new recommended items list for your favourite champions.
+					Welcome! Follow the steps to create a new recommended items list for your favourite champions. This list will be displayed in your League of Legends game.
 				</target>
 			</trans-unit>
 			
@@ -60,18 +60,20 @@
 			<trans-unit id="10">
 				<source>create_item_build.p.4</source>
 				<target>
-					You must select the six items that will be displayed in your recommended items list during the game for the above selected game mode.
+					You must now select the items that will form your list. Drag and drop those items into the blocks placed on the right of your screen.
+					You can create many blocks, rename them, delete them, or sort them.
 				</target>
 			</trans-unit>
 			<trans-unit id="11">
 				<source>create_item_build.tip.3</source>
 				<target>
-					Tip : consumable items will not disappear after you purchased them.
+					Tip : use the filtering system to find easily your items.
 				</target>
 			</trans-unit>
 			<trans-unit id="12">
 				<source>create_item_build.tip.4</source>
 				<target>
+					Note : Blocks left empty won't be used for the recommended items list.
 				</target>
 			</trans-unit>
 			
@@ -152,7 +154,7 @@
 			<trans-unit id="23">
 				<source>create_item_build.modal_authenticate.p2</source>
 				<target>
-					If you are registered yet, you can create an accout now.
+					If you are not registered yet, you can create an accout now.
 				</target>
 			</trans-unit>
 			<trans-unit id="24">
@@ -161,7 +163,7 @@
 					If you do not want to create an account now, you can just download your item build, however, you won't be able to edit it, download it again or delete it.
 				</target>
 			</trans-unit>
-			
+
 			<trans-unit id="25">
 				<source>create_item_build.modal_authenticate.btn.cancel</source>
 				<target>
@@ -169,9 +171,9 @@
 				</target>
 			</trans-unit>
 			<trans-unit id="26">
-				<source>create_item_build.modal_authenticate.btn.confirm</source>
+				<source>create_item_build.modal_authenticate.btn.sign_in</source>
 				<target>
-					Confirm
+					Sign in
 				</target>
 			</trans-unit>
 			<trans-unit id="27">
@@ -197,7 +199,7 @@
 			<trans-unit id="30">
 				<source>create_item_build.modal_dl_build.p1</source>
 				<target>
-					If your "League of Legends" directory does not figure in this list :
+					If your "League of Legends" directory does not figure in one of the directories present in this list :
 				</target>
 			</trans-unit>
 			<trans-unit id="31">
@@ -209,7 +211,7 @@
 			<trans-unit id="32">
 				<source>create_item_build.modal_dl_build.p2</source>
 				<target>
-					Please enter it here : 
+					Please enter yours here : 
 				</target>
 			</trans-unit>
 			
@@ -228,6 +230,19 @@
 			<trans-unit id="35">
 				<source>create_item_build.modal_dl_build.input.placeholder</source>
 				<target>ex : D:/Riot/</target>
+			</trans-unit>
+
+			<trans-unit id="36">
+				<source>create_item_build.sidebar.item_box.indication</source>
+				<target>
+					Drop your items here
+				</target>
+			</trans-unit>
+			<trans-unit id="37">
+				<source>create_item_build.sidebar.button.add_block</source>
+				<target>
+					Add a bloc
+				</target>
 			</trans-unit>
 
 			<!-- TABED LIST INDEX -->
@@ -320,6 +335,56 @@
 			<trans-unit id="3002">
 				<source>item_build_list_index.title</source>
 				<target>Pimp My Recommended Items | PMRI</target>
+			</trans-unit>
+
+			<!-- VIEW INDEX -->
+			<trans-unit id="4000">
+				<source>item_build_view_index.title</source>
+				<target>Recommended items list</target>
+			</trans-unit>
+			<trans-unit id="4001">
+				<source>item_build_view_index.h1</source>
+				<target>Recommended items list</target>
+			</trans-unit>
+			<trans-unit id="4002">
+				<source>item_build_view_index.created_by</source>
+				<target>Created by</target>
+			</trans-unit>
+			<trans-unit id="4004">
+				<source>item_build_view_index.champions.h2</source>
+				<target>Champions</target>
+			</trans-unit>
+			<trans-unit id="4005">
+				<source>item_build_view_index.champions.p1</source>
+				<target>Those are the champions that will be affected by the recommended items list</target>
+			</trans-unit>
+			<trans-unit id="4006">
+				<source>item_build_view_index.game_mode.h2</source>
+				<target>Game mode</target>
+			</trans-unit>
+			<trans-unit id="4007">
+				<source>item_build_view_index.game_mode.p1</source>
+				<target>This list is made for the following game mode</target>
+			</trans-unit>
+			<trans-unit id="4008">
+				<source>item_build_view_index.items.h2</source>
+				<target>Items</target>
+			</trans-unit>
+			<trans-unit id="4009">
+				<source>item_build_view_index.items.p1</source>
+				<target>These are the blocks and the items that will be set for the recommended items list</target>
+			</trans-unit>
+			<trans-unit id="4010">
+				<source>item_build_view_index.download.h2</source>
+				<target>Download</target>
+			</trans-unit>
+			<trans-unit id="4011">
+				<source>item_build_view_index.download.p1</source>
+				<target>Download this list if you want to try it.</target>
+			</trans-unit>
+			<trans-unit id="4012">
+				<source>item_build_view_index.download.btn</source>
+				<target>Download</target>
 			</trans-unit>
 		</body>
 	</file>

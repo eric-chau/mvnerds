@@ -208,19 +208,13 @@ class ItemBuildManager
 	}
 	
 	/**
-	 * Rends tous les item builds qui contiennent l item ayant pour id $id obsoletes
+	 * Rends tous les item builds qui contiennent l item ayant pour id $id 
 	 */
 	public function findByItemId($id)
 	{
 		$itemBuilds = ItemBuildQuery::create()
-				->where(
-					ItemBuildPeer::ITEM1_ID . ' = '. $id . ' OR ' .
-					ItemBuildPeer::ITEM2_ID . ' = '. $id . ' OR ' .
-					ItemBuildPeer::ITEM3_ID . ' = '. $id . ' OR ' .
-					ItemBuildPeer::ITEM4_ID . ' = '. $id . ' OR ' .
-					ItemBuildPeer::ITEM5_ID . ' = '. $id . ' OR ' .
-					ItemBuildPeer::ITEM6_ID . ' = '. $id
-				)
+				->joinWithItemBuildItems()
+				->add(\MVNerds\CoreBundle\Model\ItemBuildItemsPeer::ITEM_ID, $id)
 		->find();
 
 		if (null === $itemBuilds)
@@ -229,6 +223,20 @@ class ItemBuildManager
 		}
 
 		return $itemBuilds;
+	}
+	
+	public function findItemBuildItemsByItemId($id)
+	{
+		$itemBuildItems = \MVNerds\CoreBundle\Model\ItemBuildItemsQuery::create()
+				->add(\MVNerds\CoreBundle\Model\ItemBuildItemsPeer::ITEM_ID, $id)
+		->find();
+
+		if (null === $itemBuildItems)
+		{
+			throw new InvalidArgumentException('No item build items where item id = ' . $id . '!');
+		}
+
+		return $itemBuildItems;
 	}
 	
 	public function countNbBuildsByUserId($id)

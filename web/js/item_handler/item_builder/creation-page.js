@@ -318,19 +318,6 @@ function storeItemBuild() {
 }
 /*************** FIN LOCAL STORAGE ****************/
 
-//Permet de récupérer le contenu des popover pour les items en AJAX
-function setItemPopoverContent(slug, $item) {
-	$.ajax({
-		type: 'POST',
-		url:  Routing.generate('item_builder_get_item_popover_content', {_locale: locale}),
-		data: {slug: slug},
-		dataType: 'html'
-	}).done(function(data){console.log(data);
-		$item.data('popover').$tip.find(".popover-content").html(data);
-		$item.data('ajax-loaded', true);
-	});
-}
-
 function initItemDraggable() {
 	$itemIsotopeList.on('mouseover', 'li.item', function() {
 		$(this).draggable({
@@ -373,7 +360,13 @@ function initItemClickInBlock() {
 		$parent = $(this).parent();
 		if($parent.find('div.portrait').length == 1) {
 			$(this).remove();
-			$parent.html('<div class="indication">Faites glissez vos items ici</div>');
+			var indication;
+			if(locale == 'en') {
+				indication = 'Drop your items here';
+			} else {
+				indication = 'Déposez vos objets ici';
+			}
+			$parent.html('<div class="indication">'+indication+'</div>');
 		} else {
 			$(this).remove();
 		}
@@ -386,7 +379,13 @@ function initItemBlocksSortable() {
 
 function initItemAddBlock() {
 	$('#btn-add-item-block').click(function() {
-		$itemSidebarList.append('<li class="item-sidebar-block-li" id="___item-block-li"><input type="text" class="item_sidebar_block_input span9" value=""/> <a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a><div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div></li>')
+		var indication;
+		if(locale == 'en') {
+			indication = 'Drop your items here';
+		} else {
+			indication = 'Déposez vos objets ici';
+		}
+		$itemSidebarList.append('<li class="item-sidebar-block-li" id="___item-block-li"><input type="text" class="item_sidebar_block_input span9" value=""/> <a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a><div class="item-sidebar-block-div"><div class="indication">'+indication+'</div></div></li>')
 		initItemDroppable($itemSidebarList.find('li:last div.item-sidebar-block-div'));
 		return false;
 	});
@@ -409,42 +408,6 @@ function initGameMode() {
 		$(this).addClass('active');
 		$itemIsotopeList.setGameModeFilter($(this).data('game-mode'));
 		checkRecItemsByMode($itemIsotopeList.filters.gameMode);
-	});
-}
-
-function initPopoverItem() {
-	var popoverTimer;
-	$('ul#item-isotope-list li.item').hover(function(e) {
-		$(this).data('isHover', true);
-		if(popoverTimer) {
-			clearTimeout(popoverTimer);
-			popoverTimer = null
-		}
-		if($(this).data('popover') == undefined) {
-			
-			var title = "<img class='tooltip-item-img pull-left' src='/images/items/" + $(this).data('code') + ".png'/>" + $(this).data('title');
-			
-			$(this).popover({
-				trigger: 'hover',
-				content:'<p style="text-align: center;"><img src="/images/commons/loader16-bg-blue.gif" alt="loading"/></p>',
-				placement: 'bottom',
-				delay: {show: 1, hide: 1}
-			});
-			$(this).data('popover').options.title = title;
-			$(this).data('popover').options.placement = 'bottom';
-			$(this).popover('show');
-		}
-		
-		if($(this).data('ajax-loaded') == undefined) {
-			var $that = $(this);
-			popoverTimer = setTimeout(function() {
-				if($that.data('isHover')) {
-					setItemPopoverContent($that.attr('id'), $that);
-				}
-			}, 500)
-		}
-	}, function(){
-		$(this).data('isHover', false);
 	});
 }
 
@@ -527,7 +490,7 @@ $(document).ready(function()
 	initGameMode();
 	
 	//Hover un item
-	initPopoverItem();
+	initPopoverItem($itemIsotopeList);
 	
 	//On rends chaque item draggable
 	initItemDraggable();

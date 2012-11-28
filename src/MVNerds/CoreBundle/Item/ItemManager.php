@@ -144,17 +144,19 @@ class ItemManager
 			->joinWith('ItemPrimaryEffect ipe', \Criteria::LEFT_JOIN)
 			->joinWith('ipe.PrimaryEffect pe', \Criteria::LEFT_JOIN)
 			->joinWith('pe.PrimaryEffectI18n pei', \Criteria::LEFT_JOIN)
+			->addJoinCondition('pei', 'pei.Lang LIKE ?', $this->userLocale)
 			->joinWith('ItemSecondaryEffect ise', \Criteria::LEFT_JOIN)
 			->joinWith('ise.ItemSecondaryEffectI18n isei', \Criteria::LEFT_JOIN)
+			->addJoinCondition('isei', 'isei.Lang LIKE ?', $this->userLocale)
 			->add(ItemPeer::SLUG, $slug)
-		->findOne();
+		->find();
 
 		if (null === $item)
 		{
 			throw new InvalidArgumentException('No item with slug:' . $slug . '!');
 		}
 
-		return $item;
+		return $item[0];
 	}
 	
 	/**
@@ -238,7 +240,7 @@ class ItemManager
 	public function findAll()
 	{
 		return ItemQuery::create()
-			->joinWithI18n($this->userLocale)
+			->joinWithI18n('en')
 				
 			->joinWith('ItemTag', \Criteria::LEFT_JOIN)
 			->joinWith('ItemTag.Tag', \Criteria::LEFT_JOIN)
