@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <database defaultIdMethod="native" name="default" namespace="MVNerds\CoreBundle\Model">
   <table name="champion">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -595,6 +594,16 @@
     </foreign-key>
     <foreign-key foreignTable="item">
       <reference foreign="id" local="item_id" />
+    </foreign-key>
+  </table>
+  <table name="user_report_comment">
+    <column name="user_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="comment_id" primaryKey="true" required="true" type="INTEGER" />
+    <foreign-key foreignTable="user">
+      <reference foreign="id" local="user_id" />
+    </foreign-key>
+    <foreign-key foreignTable="comment">
+      <reference foreign="id" local="comment_id" />
     </foreign-key>
   </table>
 </database>
