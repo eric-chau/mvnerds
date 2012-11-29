@@ -20,7 +20,7 @@ $(document).ready(function()
 		addCommentCustomMethod();
 	});
 
-	$commentMsg.on('keyup click', function()
+	$commentMsg.on('keyup click change', function()
 	{
 		$commentCharCount.html($commentMsg.val().length);
 		
@@ -30,5 +30,40 @@ $(document).ready(function()
 		else {
 			$commentBtn.addClass('disabled');
 		}
+	});
+
+	$commentMsg.on('keyup change', function()
+	{
+		$(this).val($(this).val().slice(0, 500));
+	});
+
+	$('a.report').on('click', function(event)
+	{
+		event.preventDefault();
+		if ($(this).hasClass('wip')) {
+			return false;
+		}
+
+		$(this).addClass('wip');
+		var $reportContainer = $(this).parent();
+		$.ajax({
+			url: Routing.generate('comment_report'),
+			data: {
+				'comment_id': $(this).data('comment-id')
+			},
+			type: 'POST',
+			dataType: 'html',
+			success: function(response)
+			{
+				$reportContainer.html(response);
+			}
+		});
+	});
+
+	$('p.reported-comment a').on('click', function(event)
+	{
+		event.preventDefault();
+		$(this).parent().parent().find('p.hide').slideDown();
+		$(this).addClass('hide');
 	});
 });

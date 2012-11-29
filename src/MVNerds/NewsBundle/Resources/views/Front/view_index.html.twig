@@ -11,7 +11,8 @@
 		{{ parent() }}
 	
 		<script type="text/javascript">
-			var $commentsList = $('div.comments-container div.comments-list');
+			var $commentsList = $('div.comments-container div.comments-list'),
+				$commentCount = $('span.comment-count');
 			function addCommentCustomMethod()
 			{
 				$.ajax({
@@ -28,10 +29,12 @@
 						var $content = $('<div class="hide"></div>').html(response),
 							$commentMsg = $('textarea.comment-msg');
 						$content.prependTo($commentsList);
+						$commentsList.find('div.no-comment').remove();
 						$content.slideDown();
 						$commentMsg.parent().find('img.loader').addClass('hide');
 						$commentMsg.removeAttr('disabled');
 						$commentMsg.val('');
+						$commentCount.html(parseInt($commentCount.html()) + 1);
 					}
 				});
 			}

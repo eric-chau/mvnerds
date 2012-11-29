@@ -21,7 +21,7 @@ div.comments-container {
 
 			&.comment-block {
 				background-color: darken(@LoLOrangeAD, 45%);
-				border: 2px solid @LoLOrangeAD;
+				border: 2px solid darken(@LoLOrangeAD, 5%);
 				margin-bottom: 10px;
 				padding: 10px;
 
@@ -40,11 +40,38 @@ div.comments-container {
 						margin-left: 10px;
 						width: 485px;
 
+						p.reported-comment a {
+							color: #666;
+							font-style: italic;
+
+							&:hover {
+								color: #999; .transition(color .25s linear);
+							}
+						}
+
 						p.posted-by {
 							color: #666 !important;
 							font-size: 12px;
 							margin-top: 10px;
 							text-align: right;
+
+							a {
+								color: darken(@MVNerdsBlue, 30%);
+
+								&:hover {
+									color: @MVNerdsBlue; .transition(color .25s linear);
+								}
+							}
+
+							strong {
+								a {
+									color: darken(@MVNerdsGreen, 10%);
+
+									&:hover {
+										color: @MVNerdsGreen; .transition(color .25s linear);
+									}
+								}
+							}
 						}
 					}
 
