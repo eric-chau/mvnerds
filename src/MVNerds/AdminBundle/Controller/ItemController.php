@@ -67,7 +67,7 @@ class ItemController extends Controller
 		} catch (\Exception $e) {
 			return $this->redirect($this->generateUrl('admin_items_index'));
 		}
-		$form = $this->createForm(new ItemType(), $item);
+		$form = $this->createForm(new ItemType(), $item, array('attr' => array('lang' =>$this->get('session')->get('locale'))));
 		
 		$wasObsolete = $item->getIsObsolete();
 		

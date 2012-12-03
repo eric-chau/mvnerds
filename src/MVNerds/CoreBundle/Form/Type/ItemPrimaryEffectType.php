@@ -10,6 +10,13 @@ class ItemPrimaryEffectType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options) 
 	{
+		if (isset($options['attr']['lang']))
+		{
+			$locale = $options['attr']['lang'];
+		} else {
+			$locale = 'fr';
+		}
+		
 		$builder->add('value', 'text', array(
 			'label' => 'valeur',
 			'required' => true
@@ -17,6 +24,9 @@ class ItemPrimaryEffectType extends AbstractType
 		
 		$builder->add('primary_effect', 'model', array(
 			'class' => '\MVNerds\CoreBundle\Model\PrimaryEffect',
+			'query' => \MVNerds\CoreBundle\Model\PrimaryEffectQuery::create()
+				->joinWithI18n($locale)
+				->orderBy('PrimaryEffectI18n.Lang'),
 			'property' => 'label'
 		));
 	}

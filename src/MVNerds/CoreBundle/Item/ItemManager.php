@@ -240,7 +240,7 @@ class ItemManager
 	public function findAll()
 	{
 		return ItemQuery::create()
-			->joinWithI18n('en')
+			->joinWithI18n($this->userLocale)
 				
 			->joinWith('ItemTag', \Criteria::LEFT_JOIN)
 			->joinWith('ItemTag.Tag', \Criteria::LEFT_JOIN)

@@ -10,10 +10,17 @@ class ItemGeneologyType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options) 
 	{
+		if (isset($options['attr']['lang']))
+		{
+			$locale = $options['attr']['lang'];
+		} else {
+			$locale = 'fr';
+		}
+		
 		$builder->add('item_related_by_child_id', 'model', array(
 			'class' => '\MVNerds\CoreBundle\Model\Item',
 			'query' => \MVNerds\CoreBundle\Model\ItemQuery::create()
-				->joinWithI18n()
+				->joinWithI18n($locale)
 				->orderBy('ItemI18n.Name'),
 			'property' => 'name'
 		));

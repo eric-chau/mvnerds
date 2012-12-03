@@ -11,6 +11,13 @@ class ItemType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options) 
 	{
+		if (isset($options['attr']['lang']))
+		{
+			$locale = $options['attr']['lang'];
+		} else {
+			$locale = 'fr';
+		}
+		
 		$builder->add('item_i18ns', 'collection', array(
 			'type' => new ItemI18nType(),
 			'allow_add' => true,
@@ -52,7 +59,8 @@ class ItemType extends AbstractType
 			'type' => new ItemPrimaryEffectType(),
 			'allow_add' => true,
 			'allow_delete' => true,
-			'by_reference' => false
+			'by_reference' => false,
+			'options' => array('attr' => array('lang' => $locale))
 		));
 		
 		$builder->add('item_secondary_effects', 'collection', array(
@@ -67,14 +75,16 @@ class ItemType extends AbstractType
 			'type' => new ItemGeneologyType(),
 			'allow_add' => true,
 			'allow_delete' => true,
-			'by_reference' => false
+			'by_reference' => false,
+			'options' => array('attr' => array('lang' => $locale))
 		));
 		
 		$builder->add('item_tags', 'collection', array(
 			'type' => new ItemTagType(),
 			'allow_add' => true,
 			'allow_delete' => true,
-			'by_reference' => false
+			'by_reference' => false,
+			'options' => array('attr' => array('lang' => $locale))
 		));
 	}
 	
