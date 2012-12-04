@@ -30,7 +30,7 @@ class ItemController extends Controller
 	 */
 	public function addItemAction()
 	{
-		$form = $this->createForm(new ItemType());
+		$form = $this->createForm(new ItemType(), null, array('attr' => array('lang' =>$this->get('session')->get('locale'))));
 
 		$request = $this->getRequest();
 		if ($request->isMethod('POST'))

@@ -26,7 +26,7 @@ class ItemPrimaryEffectType extends AbstractType
 			'class' => '\MVNerds\CoreBundle\Model\PrimaryEffect',
 			'query' => \MVNerds\CoreBundle\Model\PrimaryEffectQuery::create()
 				->joinWithI18n($locale)
-				->orderBy('PrimaryEffectI18n.Lang'),
+				->orderBy('PrimaryEffectI18n.Label'),
 			'property' => 'label'
 		));
 	}
