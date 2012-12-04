@@ -109,6 +109,9 @@ div.comments-container div.comments-list div.no-comment p {
   padding: 20px;
   text-align: center;
 }
+div.comments-container form.leave-comment-form {
+  margin: 0 0 30px 0;
+}
 div.comments-container form.leave-comment-form div.avatar-container,
 div.comments-container form.leave-comment-form div.comment-form-container {
   background-color: #041c28;
@@ -188,4 +191,41 @@ div.comments-container form.leave-comment-form div.comment-form-container textar
   line-height: 1.5em;
   resize: none;
   width: 438px;
+}
+div.comments-container div.anonymous-actions p {
+  text-align: center;
+}
+div.comments-container div.anonymous-actions p.note {
+  font-size: 14px;
+  font-style: italic;
+  padding: 0 40px;
+}
+div.comments-container div.anonymous-actions p.buttons {
+  border-bottom: 2px solid #222;
+  padding: 0 0 20px 0;
+}
+div.comments-container div.anonymous-actions p a {
+  background-color: #658816;
+  color: white;
+  display: inline-block;
+  font-weight: bold;
+  margin: 0 10px;
+  padding: 10px 15px;
+}
+div.comments-container div.anonymous-actions p a:hover {
+  background-color: #759e1a;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+div.comments-container div.anonymous-actions p a.registration {
+  background-color: #be3322;
+}
+div.comments-container div.anonymous-actions p a.registration:hover {
+  background-color: #db4a38;
+}
+div.comments-container div.more-comments-loader div.span8 p {
+  opacity: .7;
+  text-align: center;
 }

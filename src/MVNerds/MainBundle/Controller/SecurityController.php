@@ -35,12 +35,23 @@ class SecurityController extends Controller
 	}
 	
 	/**
-	 * @Route("/summoner/store-redirect-and-forward/{routeName}", name="security_summoner_store_redirect_and_forward")
+	 * @Route("/summoner/redirect-to-login", name="security_store_current_route_and_redirect_to_login")
 	 */
-	public function storeRedirectionAndForwardAction($routeName)
+	public function storeCurrentRouteAndRedirectToLoginAction()
 	{
-		$this->get('session')->set('_security.user_area.target_path', $this->generateUrl('item_builder_create'));
-		return $this->redirect($this->generateUrl($routeName));
+		$this->get('session')->set('_security.user_area.target_path', $this->getRequest()->headers->get('referer'));
+		
+		return $this->redirect($this->generateUrl('security_summoner_login'));
+	}
+	
+	/**
+	 * @Route("/summoner/redirect-to-registration", name="security_store_current_route_and_redirect_to_registration")
+	 */
+	public function storeCurrentRouteAndRedirectToRegistrationAction()
+	{
+		$this->get('session')->set('_security.user_area.target_path', $this->getRequest()->headers->get('referer'));
+		
+		return $this->redirect($this->generateUrl('launch_site_summoner_registration'));
 	}
 
 	/**

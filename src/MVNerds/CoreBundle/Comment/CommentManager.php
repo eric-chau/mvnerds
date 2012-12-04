@@ -15,6 +15,8 @@ use MVNerds\CoreBundle\Model\UserReportCommentQuery;
 
 class CommentManager
 {
+	const COMMENT_PER_PAGE = 2;
+	
 	public function addComment(IComment $object, User $user, $commentString)
 	{
 		$comment = new Comment();
@@ -37,7 +39,7 @@ class CommentManager
 		->count();
 	}
 	
-	public function findByObject(IComment $object)
+	public function findByObject(IComment $object, $page = 0)
 	{
 		$comments = CommentQuery::create()
 			->joinWith('User')
@@ -46,7 +48,25 @@ class CommentManager
 			->add(CommentPeer::OBJECT_NAMESPACE, get_class($object))
 			->add(CommentPeer::OBJECT_ID, $object->getId())
 			->orderBy(CommentPeer::CREATE_TIME, 'desc')
-			->limit(5)
+			->offset($page * self::COMMENT_PER_PAGE)
+			->limit(self::COMMENT_PER_PAGE)
+		->find();
+		
+		$comments->populateRelation('UserReportComment');
+		
+		return $comments;
+	}
+	
+	public function getLastestComments(IComment $object, $lastCommentID)
+	{
+		$comments = CommentQuery::create()
+			->joinWith('User')
+			->joinWith('User.Profile')
+			->joinWith('Profile.Avatar')
+			->add(CommentPeer::OBJECT_NAMESPACE, get_class($object))
+			->add(CommentPeer::OBJECT_ID, $object->getId())
+			->where(CommentPeer::ID . '> ?', $lastCommentID)
+			->orderBy(CommentPeer::CREATE_TIME, 'desc')
 		->find();
 		
 		$comments->populateRelation('UserReportComment');

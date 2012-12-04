@@ -1,0 +1,3 @@
+{% for comment in comments %}
+	{% include 'MVNerdsCommentBundle:Common:comment_row.html.twig' with {'comment': comment} %}
+{% endfor %}

@@ -97,6 +97,8 @@ div.comments-container {
 	}	
 
 	form.leave-comment-form {
+		margin: 0 0 30px 0;
+
 		div.avatar-container, div.comment-form-container {
 			background-color: darken(@MVNerdsBlue, 40%);
 			border-top: 2px solid @MVNerdsBlue;
@@ -182,6 +184,51 @@ div.comments-container {
 				resize: none;
 				width: 438px;
 			}
+		}
+	}
+
+	div.anonymous-actions {
+		p {
+			text-align: center;
+
+			&.note {
+				font-size: 14px;
+				font-style: italic;
+				padding: 0 40px;
+			}
+
+			&.buttons {
+				border-bottom: 2px solid #222;
+				padding: 0 0 20px 0;
+			}
+
+			a {
+				background-color: darken(@MVNerdsGreen, 5%);
+				color: white;
+				display: inline-block;
+				font-weight: bold;
+				margin: 0 10px;
+				padding: 10px 15px;
+
+				&:hover {
+					background-color: @MVNerdsGreen; .transition(background-color .25s linear);
+				}
+
+				&.registration {
+					background-color: darken(@MVNerdsRed, 10%);
+
+					&:hover {
+						background-color: @MVNerdsRed;
+					}
+				}
+			}
+		}
+	}
+
+	div.more-comments-loader {
+		div.span8 p {
+			opacity: .7;
+			text-align: center;
 		}
 	}
 }

@@ -9,35 +9,16 @@
 
 {% block javascripts %}
 		{{ parent() }}
-	
+		
 		<script type="text/javascript">
-			var $commentsList = $('div.comments-container div.comments-list'),
-				$commentCount = $('span.comment-count');
-			function addCommentCustomMethod()
-			{
-				$.ajax({
-					url: Routing.generate('news_leave_comment', {'_locale': locale}),
-					data: {
-						'news_slug': '{{ news.getSlug() }}',
-						'user_slug': '{{ app.user.getSlug() }}',
-						'comment_msg': $('textarea.comment-msg').val()
-					},
-					type: 'POST',
-					dataType: 'html',
-					success: function(response)
-					{
-						var $content = $('<div class="hide"></div>').html(response),
-							$commentMsg = $('textarea.comment-msg');
-						$content.prependTo($commentsList);
-						$commentsList.find('div.no-comment').remove();
-						$content.slideDown();
-						$commentMsg.parent().find('img.loader').addClass('hide');
-						$commentMsg.removeAttr('disabled');
-						$commentMsg.val('');
-						$commentCount.html(parseInt($commentCount.html()) + 1);
-					}
-				});
-			}
+			var loadMoreCommentRoute = 'news_load_more_comment',
+				leaveCommentRoute = 'news_leave_comment',					
+				objectSlug = '{{ news.getSlug() }}',
+				userSlug = '';
+				
+			{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+				userSlug = '{{ app.user.getSlug() }}';
+			{% endif %}
 		</script>
 {% endblock %}
 	
@@ -53,18 +34,6 @@
 				
 		<div class="content">{{news.getContent()|raw}}</div>
 		
-		{#<div class="row-fluid prev-next-news">
-			<div class="span5 news prev">
-				<i class="icon-chevron-left"></i>
-				<h6>Actualité précédente : NEWS_TITLE</h6>
-			</div>
-			<div class="span2"></div>
-			<div class="span5 news next">
-				<i class="icon-chevron-right"></i>
-				<h6>Actualité suivante : NEWS_TITLE</h6>
-			</div>
-		</div>#}
-
 		{% render 'MVNerdsCommentBundle:Comment:renderLightComments' with {'object': news} %}
 		
 		<div class="news-footer">

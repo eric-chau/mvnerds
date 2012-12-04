@@ -41,9 +41,10 @@ class FrontController extends Controller
 			throw new HttpException(500, 'Request must be AJAX and POST method');
 		}
 		
-		$newsSlug = $request->get('news_slug', null);
+		$newsSlug = $request->get('object_slug', null);
 		$userSlug = $request->get('user_slug', null);
 		$commentMsg = $request->get('comment_msg', null);
+		$lastCommentID = $request->get('last_comment_id', null);
 		if (null == $newsSlug || null == $userSlug || null == $commentMsg) {
 			throw new HttpException(500, 'news_slug | user_slug | comment_msg is/are missing!');
 		}
@@ -62,7 +63,38 @@ class FrontController extends Controller
 		return $this->forward('MVNerdsCommentBundle:Comment:leaveComment', array(
 			'object'		=> $news,
 			'user'			=> $this->getUser(),
-			'commentMsg'	=> $commentMsg
+			'commentMsg'	=> $commentMsg,
+			'lastCommentID' => $lastCommentID
+		));
+	}
+	
+	/**
+	 * @Route("/load-more-comment", name="news_load_more_comment", options={"expose"=true})
+	 */
+	public function loadMoreCommentAction()
+	{
+		$request = $this->getRequest();
+		if (!$request->isXmlHttpRequest() || !$request->isMethod('POST'))
+		{
+			throw new HttpException(500, 'Request must be AJAX and POST method');
+		}
+		
+		$newsSlug = $request->get('object_slug', null);
+		$page = $request->get('page', null);
+		if (null == $newsSlug || null == $page) {
+			throw new HttpException(500, 'news_slug | page is/are missing!');
+		}
+		
+		try {
+			$news = $this->get('mvnerds.news_manager')->findBySlug($newsSlug);
+		}
+		catch(Exception $e) {
+			throw new InvalidArgumentException('News not found for slug:`'. $newsSlug .'`');
+		}
+		
+		return $this->forward('MVNerdsCommentBundle:Comment:loadMoreComment', array(
+			'object'	=> $news,
+			'page'		=> $page
 		));
 	}
 	

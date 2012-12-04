@@ -1,9 +1,21 @@
 <div class="comments-container">
-	<h2>Vos réactions (<span class="comment-count">{{ comments|length }}</span>)</h2>
-
+	<h2>Vos réactions (<span class="comment-count">{{ object.getCommentCount() }}</span>)</h2>
+	
+	{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+		{% include 'MVNerdsCommentBundle:Common:add_comment_block.html.twig' %}
+	{% else %}
+		<div class="anonymous-actions">
+			<p class="note">Vous devez être connecté à votre compte MVNerds pour pouvoir laisser un commentaire. Que voulez-vous faire ?</p>
+			<p class="buttons">
+				<a href="{{ path('security_store_current_route_and_redirect_to_login') }}">Je me connecte</a> 
+				<a href="{{ path('launch_site_summoner_registration') }}" class="registration">Je m'inscris</a>
+			</p>
+		</div>
+	{% endif %}
+	
 	{% include 'MVNerdsCommentBundle:Common:comments_list.html.twig' with {'comments': comments} %}
-
-	{% include 'MVNerdsCommentBundle:Common:add_comment_block.html.twig' %}
+	
+	
 </div>
 
 <script type="text/javascript" src="{{ asset('js/comment/comment.js') }}"></script>

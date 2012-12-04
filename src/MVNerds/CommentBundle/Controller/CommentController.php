@@ -13,28 +13,32 @@ class CommentController extends Controller
 {
     public function renderLightCommentsAction($object)
     {
-		$comments = $this->get('mvnerds.comment_manager')->findByObject($object, $this->getUser());
+		$comments = $this->get('mvnerds.comment_manager')->findByObject($object);
 		
         return $this->render('MVNerdsCommentBundle:Light:render_comment_block.html.twig', array(
-			'comments' => $comments
+			'object'	=> $object,
+			'comments'	=> $comments
 		));
     }
 	
 	/**
 	 * @Secure(roles="ROLE_USER")
 	 */
-	public function leaveCommentAction(IComment $object, User $user, $commentMsg)
+	public function leaveCommentAction(IComment $object, User $user, $commentMsg, $lastCommentID)
 	{
-		$comment = $this->get('mvnerds.comment_manager')->addComment($object, $user, $commentMsg);
+		$commentManager = $this->get('mvnerds.comment_manager');
+		$commentManager->addComment($object, $user, $commentMsg);
 		
-		return $this->render('MVNerdsCommentBundle:Common:comment_row.html.twig', array(
-			'comment' => $comment
+		$comments = $commentManager->getLastestComments($object, $lastCommentID / 47);
+		
+		return $this->render('MVNerdsCommentBundle:Common:load_more_comments_list.html.twig', array(
+			'comments' => $comments
 		));
 	}
 	
 	/**
 	 * @Route("/comment/report", name="comment_report", options={"expose"=true})
-	 * Secure(roles="ROLE_USER")
+	 * @Secure(roles="ROLE_USER")
 	 */
 	public function reportCommentAction()
 	{
@@ -52,5 +56,14 @@ class CommentController extends Controller
 		$this->get('mvnerds.comment_manager')->doReportComment($this->getUser(), $commentID);
 		
 		return $this->render('MVNerdsCommentBundle:Common:report_success.html.twig');
+	}
+	
+	public function loadMoreCommentAction(IComment $object, $page)
+	{
+		$comments = $this->get('mvnerds.comment_manager')->findByObject($object, $page);
+		
+		return $this->render('MVNerdsCommentBundle:Common:load_more_comments_list.html.twig', array(
+			'comments' => $comments
+		));
 	}
 }
