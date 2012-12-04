@@ -4,20 +4,19 @@ function initPopoverItem($container) {
 		$(this).data('isHover', true);
 		if(popoverTimer) {
 			clearTimeout(popoverTimer);
-			popoverTimer = null
+			popoverTimer = null;
 		}
 		if($(this).data('popover') == undefined) {
-			
 			var title = "<img class='tooltip-item-img pull-left' src='/images/items/" + $(this).data('code') + ".png'/>" + $(this).data('title');
 			
 			$(this).popover({
 				trigger: 'hover',
-				content:'<p style="text-align: center;"><img src="/images/commons/loader16-bg-blue.gif" alt="loading"/></p>',
 				placement: 'bottom',
 				delay: {show: 1, hide: 1}
 			});
 			$(this).data('popover').options.title = title;
 			$(this).data('popover').options.placement = 'bottom';
+			$(this).data('popover').options.content = '<p style="text-align: center;"><img src="/images/commons/loader16-bg-blue.gif" alt="loading"/></p>';
 			$(this).popover('show');
 		}
 		

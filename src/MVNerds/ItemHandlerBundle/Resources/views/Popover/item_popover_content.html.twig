@@ -5,3 +5,6 @@
 {%for itemSecondaryEffect in item.getItemSecondaryEffects() %}
 	{{itemSecondaryEffect.getDescription()}} 
 {% endfor %}
+<br />
+<br />
+{{'item_popover_cost'|trans}} : {{item.getTotalCost()}} ({{item.getCost()}})

@@ -7,6 +7,10 @@
 				<source>create_item_build.title</source>
 				<target>Personnaliser une liste d'objets conseillés pour League of Legends</target>
 			</trans-unit>
+			<trans-unit id="00">
+				<source>item_popover_cost</source>
+				<target>Coût</target>
+			</trans-unit>
 			<trans-unit id="1">
 				<source>create_item_build.h1</source>
 				<target>Personnaliser une liste d'objets conseillés</target>
