@@ -404,12 +404,6 @@
   </table>
   <table name="item_build">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
-    <column name="item1_id" required="true" type="INTEGER" />
-    <column name="item2_id" required="true" type="INTEGER" />
-    <column name="item3_id" required="true" type="INTEGER" />
-    <column name="item4_id" required="true" type="INTEGER" />
-    <column name="item5_id" required="true" type="INTEGER" />
-    <column name="item6_id" required="true" type="INTEGER" />
     <column name="name" required="true" size="255" type="VARCHAR" />
     <column defaultValue="NULL" name="user_id" type="INTEGER" />
     <column defaultValue="0" name="download" required="true" type="INTEGER" />
@@ -418,24 +412,6 @@
     <column name="status" required="true" type="ENUM" valueSet="PUBLIC, PRIVATE, OBSOLETE" />
     <foreign-key foreignTable="user">
       <reference foreign="id" local="user_id" />
-    </foreign-key>
-    <foreign-key foreignTable="item">
-      <reference foreign="id" local="item1_id" />
-    </foreign-key>
-    <foreign-key foreignTable="item">
-      <reference foreign="id" local="item2_id" />
-    </foreign-key>
-    <foreign-key foreignTable="item">
-      <reference foreign="id" local="item3_id" />
-    </foreign-key>
-    <foreign-key foreignTable="item">
-      <reference foreign="id" local="item4_id" />
-    </foreign-key>
-    <foreign-key foreignTable="item">
-      <reference foreign="id" local="item5_id" />
-    </foreign-key>
-    <foreign-key foreignTable="item">
-      <reference foreign="id" local="item6_id" />
     </foreign-key>
     <behavior name="sluggable">
       <parameter name="slug_column" value="slug" />
@@ -502,7 +478,7 @@
     </foreign-key>
   </table>
   <table name="news">
-    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="id" primaryKey="true" required="true" type="INTEGER" />
     <column name="user_id" required="true" type="INTEGER" />
     <column name="news_category_id" required="true" type="INTEGER" />
     <column name="title" required="true" size="255" type="VARCHAR" />
@@ -605,6 +581,19 @@
     <column name="role_id" required="true" type="INTEGER" />
     <foreign-key foreignTable="role">
       <reference foreign="id" local="role_id" />
+    </foreign-key>
+  </table>
+  <table name="item_build_items">
+    <column name="item_build_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="item_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="type" primaryKey="true" required="true" size="255" type="VARCHAR" />
+    <column defaultValue="1" name="position" primaryKey="true" required="true" type="INTEGER" />
+    <column defaultValue="1" name="count" required="true" type="INTEGER" />
+    <foreign-key foreignTable="item_build">
+      <reference foreign="id" local="item_build_id" />
+    </foreign-key>
+    <foreign-key foreignTable="item">
+      <reference foreign="id" local="item_id" />
     </foreign-key>
   </table>
   <table name="user_report_comment">

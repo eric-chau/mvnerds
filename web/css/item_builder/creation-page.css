@@ -127,6 +127,127 @@ p.module-name strong {
   display: inline-block;
   margin-right: 2px;
 }
+ul.dropdown-menu {
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid #19a0df;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  text-align: left;
+}
+ul.dropdown-menu:not(.typeahead) {
+  left: 50%;
+  width: 984px;
+  margin-left: -492px;
+  position: absolute;
+}
+ul.dropdown-menu:not(.typeahead) div.row-filters div.span6 {
+  padding: 5px 20px;
+}
+ul.dropdown-menu:not(.typeahead) li.list-header {
+  color: #19a0df;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  text-transform: uppercase;
+}
+ul.dropdown-menu:not(.typeahead) h4 {
+  color: #666;
+}
+ul.dropdown-menu:not(.typeahead) ul.tags-group {
+  float: left;
+  list-style: none;
+  margin: 0 20px 0 0;
+  padding: 0;
+  width: 200px;
+}
+ul.dropdown-menu:not(.typeahead) ul.tags-group li.nav-header {
+  color: #fb9701;
+  text-shadow: none;
+}
+ul.dropdown-menu:not(.typeahead) ul.tags-group a {
+  font-family: 'Ubuntu', sans-serif;
+  padding: 3px 10px 3px 20px;
+}
+ul.dropdown-menu:not(.typeahead) ul.tags-group a i {
+  color: black;
+  display: inline-block;
+  font-size: 18px;
+  margin: 0 10px 0 0;
+}
+ul.dropdown-menu:not(.typeahead) ul.tags-group a.selected {
+  color: #fb9701;
+  font-weight: bold;
+}
+ul.dropdown-menu:not(.typeahead) ul.tags-group a.selected i {
+  color: #fb9701;
+}
+ul.dropdown-menu:not(.typeahead) ul.tags-group a:hover {
+  color: white;
+}
+ul.dropdown-menu:not(.typeahead) ul.tags-group a:hover i {
+  color: white;
+}
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons {
+  min-height: 0;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 12px;
+  position: relative;
+  top: 6px;
+  left: 0;
+}
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span12 i,
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span6 i,
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span12 a,
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span6 a {
+  color: #666;
+}
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span12:hover a,
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span6:hover a,
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span12:hover i,
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span6:hover i {
+  color: white;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span12 i,
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span6 i {
+  display: inline-block;
+  font-size: 14px;
+  left: 3px;
+  position: relative;
+}
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span12 li {
+  border-top: 1px dashed rgba(255, 255, 255, 0.3);
+}
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span6 {
+  margin: 0;
+  width: 50%;
+}
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span6.div-left li {
+  border-right: 1px dashed rgba(255, 255, 255, 0.3);
+  border-top: 1px dashed rgba(255, 255, 255, 0.3);
+  text-align: left;
+}
+ul.dropdown-menu:not(.typeahead) div.div-action-buttons div.span6.div-right li {
+  text-align: right;
+  border-top: 1px dashed rgba(255, 255, 255, 0.3);
+}
+ul.dropdown-menu.typeahead {
+  margin-top: 5px;
+  margin-left: -46px;
+}
+ul.dropdown-menu.typeahead li a {
+  color: #bbb;
+}
+ul.dropdown-menu.typeahead li a strong {
+  color: #fff;
+}
 div.body-container {
   background-color: #000;
   color: #fff;
@@ -135,6 +256,9 @@ div.body-container {
 }
 div.body-container h2 {
   color: #db4a38;
+}
+div.body-container h3 {
+  color: #759E1A;
 }
 div.body-container div.game-mode-container,
 div.body-container div.generate-button-container,
@@ -145,7 +269,7 @@ div.body-container div.name-container {
 div.body-container div.champion-container,
 div.body-container div.item-container {
   background-color: #111;
-  margin: 20px 0 40px 0;
+  margin: 20px 0 40px 0!important;
   padding: 15px;
 }
 div.body-container div.champion-container div.actionbar ul.actions-list,
@@ -297,147 +421,15 @@ div.body-container div.champion-container div.actionbar ul.actions-list li.actio
 div.body-container div.item-container div.actionbar ul.actions-list li.action input[type="text"]::-webkit-input-placeholder {
   color: #cccccc;
 }
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu {
-  background-color: rgba(0, 0, 0, 0.8);
-  border: 1px solid #19a0df;
-  -webkit-border-radius: 0 !important;
-  -moz-border-radius: 0 !important;
-  border-radius: 0 !important;
-  left: 50%;
-  margin-left: -492px;
-  position: absolute;
-  text-align: left;
-  width: 984px;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.row-filters div.span6,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.row-filters div.span6 {
-  padding: 5px 20px;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu li.list-header,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu li.list-header {
-  color: #19a0df;
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 11px;
-  font-weight: bold;
-  line-height: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-  text-transform: uppercase;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu h4,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu h4 {
-  color: #666;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group {
-  float: left;
-  list-style: none;
-  margin: 0 20px 0 0;
-  padding: 0;
-  width: 200px;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group li.nav-header,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group li.nav-header {
-  color: #fb9701;
-  text-shadow: none;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a {
-  font-family: 'Ubuntu', sans-serif;
-  padding: 3px 10px 3px 20px;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a i,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a i {
-  color: black;
-  display: inline-block;
-  font-size: 18px;
-  margin: 0 10px 0 0;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a.selected,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a.selected {
-  color: #fb9701;
-  font-weight: bold;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a.selected i,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a.selected i {
-  color: #fb9701;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a:hover,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a:hover {
-  color: white;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a:hover i,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu ul.tags-group a:hover i {
-  color: white;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons {
-  min-height: 0;
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 12px;
-  position: relative;
-  top: 6px;
-  left: 0;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 i,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 i,
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 i,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 i,
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 a,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 a,
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 a,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 a {
-  color: #666;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12:hover a,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12:hover a,
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6:hover a,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6:hover a,
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12:hover i,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12:hover i,
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6:hover i,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6:hover i {
-  color: white;
-  -webkit-transition: color 0.25s linear;
-  -moz-transition: color 0.25s linear;
-  -o-transition: color 0.25s linear;
-  transition: color 0.25s linear;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 i,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 i,
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 i,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 i {
-  display: inline-block;
-  font-size: 14px;
-  left: 3px;
-  position: relative;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 li,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span12 li {
-  border-top: 1px dashed rgba(255, 255, 255, 0.3);
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6 {
-  margin: 0;
-  width: 50%;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6.div-left li,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6.div-left li {
-  border-right: 1px dashed rgba(255, 255, 255, 0.3);
-  border-top: 1px dashed rgba(255, 255, 255, 0.3);
-  text-align: left;
-}
-div.body-container div.champion-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6.div-right li,
-div.body-container div.item-container div.actionbar ul.actions-list ul.dropdown-menu div.div-action-buttons div.span6.div-right li {
-  text-align: right;
-  border-top: 1px dashed rgba(255, 255, 255, 0.3);
-}
 div.body-container div.champion-container div.elements-grid,
 div.body-container div.item-container div.elements-grid {
   margin: auto;
   margin-top: 30px;
   margin-bottom: 15px;
+  text-align: left;
+}
+div.body-container div.champion-container div.elements-grid#champion-list,
+div.body-container div.item-container div.elements-grid#champion-list {
   width: 900px;
 }
 div.body-container div.champion-container div.elements-grid ul,
@@ -547,72 +539,218 @@ div.body-container div.game-mode-container .game-mode span.message {
   margin-top: 124px;
   text-align: right;
 }
+div.body-container div.item-container {
+  margin: 0;
+  text-align: center;
+}
 div.body-container div.item-container.fixed div#item-list {
   margin-top: 90px;
 }
-div.body-container div.item-container div#item-topbar.fixed {
-  left: 0;
-  margin-top: 0;
-  min-width: 1064px;
-  position: fixed;
-  right: 0;
-  top: 0;
-  z-index: 1000;
-}
-div.body-container div.item-container div#item-topbar.fixed div#item-topbar-container {
-  background-color: black;
-  width: 974px;
-  margin: 0 auto;
-}
-div.body-container div.item-container div#item-topbar.fixed div#item-topbar-container ul#item-actions li.rec-item-list {
-  width: 664px;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container {
-  padding: 5px 5px 8px 5px;
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list {
+  position: static;
+  padding: 2px;
   position: relative;
 }
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions {
-  position: static;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions li#filters-block {
-  position: static;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable {
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li {
   list-style: none;
-  margin: 0;
-  padding: 0;
+  margin: 5px!important;
 }
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item {
-  border: 1px solid rgba(255, 255, 255, 0.2);
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.filters-block {
+  position: static;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action {
+  width: 190px!important;
+  background-color: rgba(25, 160, 223, 0.7);
+  cursor: pointer;
   display: inline-block;
+  line-height: 26px;
+  margin: 0;
+  margin-right: 1px;
+  padding: 3px 6px 0 4px;
 }
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item.free {
-  height: 64px;
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action.disabled {
+  cursor: not-allowed;
+  opacity: .65;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action.disabled a:hover {
+  cursor: not-allowed;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action.link {
+  margin-left: 9px!important;
+  padding: 3px 6px 0 4px;
+  width: 190px!important;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action.link a.action-button-link {
+  display: block;
+  padding: 3px 6px 0 2px;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action.link a.action-button-link.active {
+  color: #fb9701;
+  -webkit-transition: color 0.15s linear;
+  -moz-transition: color 0.15s linear;
+  -o-transition: color 0.15s linear;
+  transition: color 0.15s linear;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action.link a.action-button-link.active i {
+  color: #fb9701;
+  -webkit-transition: color 0.15s linear;
+  -moz-transition: color 0.15s linear;
+  -o-transition: color 0.15s linear;
+  transition: color 0.15s linear;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action.help-action {
+  background-color: rgba(117, 158, 26, 0.7);
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action.help-action:hover {
+  background-color: #759e1a;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action a,
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action a:visited,
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action a:hover {
+  color: white;
+  display: block;
+  text-decoration: none;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action i {
+  display: inline-block;
+  font-size: 22px;
+  line-height: 22px;
+  margin: 0 0 0 0;
   position: relative;
-  text-align: center;
-  top: 2px;
-  width: 64px;
+  top: 1px;
+  float: left;
+  padding-left: 10px;
 }
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item.free i {
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action span.action-label {
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 14px;
+  font-weight: normal;
+  position: relative;
+  top: -2px;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action:hover {
+  background-color: #19a0df;
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action:hover span.action-label {
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action:hover input[type="text"] {
+  background-color: #19a0df;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action:hover input[type="text"]:-moz-placeholder {
+  color: #cccccc;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action:hover input[type="text"]:-ms-input-placeholder {
+  color: #cccccc;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action:hover input[type="text"]::-webkit-input-placeholder {
+  color: #cccccc;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action input[type="text"] {
+  border: 0;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  background-color: #11709c;
+  color: white;
+  font-size: 14px;
+  line-height: 1.5em;
+  margin: 0 0 2px 0;
+  padding: 1px 5px;
+  position: relative;
+  top: -2px;
+  width: 130px!important;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action input[type="text"]:-moz-placeholder {
+  color: #cccccc;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action input[type="text"]:-ms-input-placeholder {
+  color: #cccccc;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li.action input[type="text"]::-webkit-input-placeholder {
+  color: #cccccc;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li#item_sidebar_blocks_li {
+  height: 540px!important;
+  overflow: auto;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li#item_sidebar_blocks_li div.mCSB_container {
+  margin: 0 10px 0 0;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list {
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li {
+  border: 1px solid #19A0DF;
+  padding: 5px;
+  margin-bottom: 5px;
+  margin-right: 5px;
+  min-height: 100px;
+  background-color: #000;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li input {
+  background-color: #333;
+  border: 1px solid #999;
+  color: #19A0DF;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li input:focus {
+  border-color: #19A0DF;
+  background-color: #444;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li a.btn-delete-block-item.reset-field {
+  display: inline-block;
+  margin: 0 ;
   position: relative;
   top: 5px;
 }
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item.full:hover {
-  border-color: red;
-  -webkit-transition: border-color 0.25s linear;
-  -moz-transition: border-color 0.25s linear;
-  -o-transition: border-color 0.25s linear;
-  transition: border-color 0.25s linear;
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li a.btn-delete-block-item.reset-field i {
+  color: #666;
+  font-size: 25px;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li a.btn-delete-block-item.reset-field:hover i {
+  color: #db4a38;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div {
+  min-height: 62px;
+  text-align: left;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.indication {
+  text-align: center;
+  font-size: 13px;
+  padding: 20px;
+  border: 1px dashed #999;
+  -webkit-border-radius: 5px !important;
+  -moz-border-radius: 5px !important;
+  border-radius: 5px !important;
+  color: #999;
+  font-style: italic;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.portrait {
+  text-align: left;
+  width: 25px;
   cursor: pointer;
+  margin: 3px;
 }
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item.hold-rec-item-place {
-  border: 1px dashed #FB9701;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item div {
-  padding: 7px;
-}
-div.body-container div.item-container div#item-topbar div#item-topbar-container ul#item-actions ul#rec-item-sortable li.rec-item div i {
-  font-size: 30px;
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul.dropdown-menu {
+  width: 746px;
+  top: -5%;
+  left: -130%;
 }
 div.body-container div.item-container div#item-list li.item:hover {
   cursor: pointer;
@@ -629,27 +767,6 @@ div.body-container div.item-container div#item-list li.item:hover div.item-name 
   -moz-transition: all 0.25s linear;
   -o-transition: all 0.25s linear;
   transition: all 0.25s linear;
-}
-div.body-container div.item-container div#item-list li.item.animate-item-portrait {
-  height: 50px;
-  -webkit-transition: all 0.3s linear;
-  -moz-transition: all 0.3s linear;
-  -o-transition: all 0.3s linear;
-  transition: all 0.3s linear;
-  width: 50px;
-}
-div.body-container div.item-container div#item-list li.item.item-maxi {
-  background: #000000 url('/images/launch_site/champion_preview_bg.png') no-repeat top left;
-  border: 1px solid #fb9701;
-  cursor: default;
-  height: 498px;
-  -webkit-transition: all 0.3s linear;
-  -moz-transition: all 0.3s linear;
-  -o-transition: all 0.3s linear;
-  transition: all 0.3s linear;
-  width: 470px;
-  z-index: 900;
-  margin-bottom: 4px;
 }
 div.body-container div.item-container div#item-list li.item div.item-name {
   background-color: rgba(0, 0, 0, 0.3);
@@ -670,85 +787,11 @@ div.body-container div.item-container div#item-list li.item div.loader {
   text-align: center;
   top: -142px;
 }
-div.body-container div.item-container div#item-list li.item div.preview {
-  color: #eee;
-  font-size: 12px;
-  padding: 10px 10px;
+div.body-container div.view-item-container {
+  display: inline-block;
 }
-div.body-container div.item-container div#item-list li.item div.preview div.preview-header {
-  background-image: url('/images/launch_site/preview_header_fr.png');
-  background-repeat: no-repeat;
-  cursor: pointer;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.preview-header h3 {
-  color: #fb9701;
-  font-size: 18px;
-  line-height: 49px;
-  margin: 0 10px;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.preview-header:hover {
-  background-image: url('/images/launch_site/preview_header_fr_hover.png');
-  -webkit-transition: background-image 0.25s linear;
-  -moz-transition: background-image 0.25s linear;
-  -o-transition: background-image 0.25s linear;
-  transition: background-image 0.25s linear;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.preview-header.en {
-  background-image: url('/images/launch_site/preview_header_en.png');
-}
-div.body-container div.item-container div#item-list li.item div.preview div.preview-header.en:hover {
-  background-image: url('/images/launch_site/preview_header_en_hover.png');
-}
-div.body-container div.item-container div#item-list li.item div.preview div.preview-header p {
-  line-height: 49px;
-  margin: 0 10px;
-  text-align: right;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.preview-header p strong {
-  color: #fb9701;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.row-fluid div.span9,
-div.body-container div.item-container div#item-list li.item div.preview div.row-fluid div.span3 {
-  margin: 10px 0;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.row-fluid div.span9 ul {
-  font-family: 'Ubuntu', sans-serif;
-  font-size: 14px;
-  list-style: none;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.row-fluid div.span9 ul li {
-  margin: 0 0 3px 0;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.right-side div.item-portrait {
-  margin-top: 7px;
-  opacity: 0.7;
-  text-align: center;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.right-side a.btn-action-item-preview {
-  background-color: rgba(0, 0, 0, 0.3);
-  border: 1px solid #999;
-  color: white;
-  display: block;
-  font-family: 'Ubuntu', sans-serif;
-  line-height: 1em;
-  margin: 30px auto;
-  opacity: .5;
-  padding: 7px 5px;
-  text-align: center;
-  width: 75%;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.right-side a.btn-action-item-preview:hover {
-  background-color: #000000;
-  border: 1px solid #fb9701;
-  color: #fb9701;
-  opacity: 1;
-  -webkit-transition: all 0.25s linear;
-  -moz-transition: all 0.25s linear;
-  -o-transition: all 0.25s linear;
-  transition: all 0.25s linear;
-}
-div.body-container div.item-container div#item-list li.item div.preview div.right-side a.btn-action-item-preview strong {
-  display: block;
+div.body-container div.view-item-container div.elements-grid {
+  margin: 0;
 }
 div.body-container div.name-container input[type="text"] {
   -webkit-border-radius: 0 !important;

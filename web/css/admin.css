@@ -101,6 +101,9 @@ div.content-container form input[type="text"],
 div.content-container form textarea {
   width: 277px;
 }
+textarea {
+  height: 100px!important;
+}
 div.content-container form label {
   font-size: 16px;
   font-weight: bold;

@@ -14,17 +14,22 @@ var
 	$itemFilterInput,
 	championTypeaheadValue, 
 	$championFilterInput,
-	itemPopover
+	itemPopover,
+	$itemSidebarBlockDivs,
+	$itemSidebarList,
+	$addItemBlockModal,
+	$blockNameInputs
 ;
 
-function setRecItem(slug, recItemId) {
-	$recItem = $('#'+recItemId);
-	$portrait = $('#'+slug).find('div.portrait').clone();
-	$recItem.html($portrait.css('display', 'inline-block')).removeClass('free').addClass('full');
-}
-//Ajoute un item grace a son slug au premier emplacement d objets recommandés libre
-function addItemToList(slug) {
-	setRecItem(slug,$('li.rec-item.free').first().attr('id'));
+function addRecItem(slug, liBlockId) {console.log('add slug : '+slug+' | id : '+liBlockId);
+	$liBlock = $('#'+liBlockId);
+	if ($liBlock.children('div.item-sidebar-block-div').find('div.portrait[data-slug="'+slug+'"]').length == 0) {
+		$portrait = $('#'+slug).find('div.portrait').clone();
+		$liBlock.find('div.item-sidebar-block-div div.indication').remove();
+		$liBlock.children('div.item-sidebar-block-div').append($portrait.css('display', 'inline-block'));
+	} else {
+		displayMessage('Cet item est déjà présent dans le bloc.', 'error');
+	}
 }
 
  //Fixation de la liste d objets recommandés
@@ -48,23 +53,34 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 	saveBuild = saveBuild == undefined ? false : saveBuild;
 	
 	$champions = $('div.champion-container li.champion.active');
-	$items = $('#item-topbar li.rec-item.full');
+	
 	gameMode = $('div.game-mode-container div.game-mode.active').first().data('game-mode');
 	buildName = $('input#build-name').val();
 	path = $('#modal-lol-path').val();
 	
+	$items = $itemSidebarList.find('li div div.portrait');
+	
 	if($champions.length >= 1) {
 		if(gameModesArray.indexOf(gameMode) >=0 ) {
-			if ( $items.length == 6 ) {
+			if ( $items.length > 0 ) {
 				if (buildName.length > 0) {
 					championsSlugs = new Array();
 					$champions.each(function(){
 						championsSlugs.push($(this).attr('id'));
 					});
 
-					itemsSlugs = new Array();
-					$items.each(function(){
-						itemsSlugs.push($(this).find('div.portrait').data('slug'));
+					var itemsSlugs = new Array();
+					$itemSidebarList.find('li.item-sidebar-block-li').each(function () {
+						var blockName = $(this).find('input.item_sidebar_block_input').val();
+						if(! (blockName in itemsSlugs)) {
+							var blockArray = new Array();
+							$(this).find('div.item-sidebar-block-div div.portrait').each(function() {
+								blockArray.push($(this).data('slug'));
+							});
+							if (blockArray.length > 0) {
+								itemsSlugs.push({name:blockName, items:blockArray});
+							}
+						}
 					});
 
 					var data =  {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName, path: path};
@@ -85,15 +101,18 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 							displayMessage('Les modifications ont bien été enregistrées.', 'success');
 						} else {
 							window.location = Routing.generate('item_builder_download_file', {_locale: locale, itemBuildSlug: data});
+							displayMessage('Le fichier a bien été généré.', 'success');
 						}
 					}).fail(function(data){
 						displayMessage('Impossible de créer le build.', 'error');
+//						console.log(data.responseText);
+//						$('#footer').html(data.responseText).css('text-align', 'left');
 					})
 				} else {
 					displayMessage('Veuillez saisir un nom pour votre build.', 'error');
 				}
 			} else {
-				displayMessage('Il faut sélectionner vos 6 objets recommandés !', 'error');
+				displayMessage('Il faut sélectionner au moins un objet !', 'error');
 			}
 		} else {
 			displayMessage('Le mode de jeu sélectionné est incorrect', 'error');
@@ -213,45 +232,7 @@ function checkRecItemsByChampionSpecific(championSlug) {
 	}
 }
 
-/******************************************************* Maximisation isotope *************************************************/
-function maximizeItem($item, $isotope){	
-	//Si on trouve un autre champion déjà maximisé on le referme
-	var $maxiItem = $isotope.find('li.item-maxi');
-	if($maxiItem != undefined){
-		minimizeItem($maxiItem, $isotope);
-	}
-	
-	$item.find('div.portrait').fadeOut(250);
-	$item.addClass('item-maxi');
-	setTimeout(function() {
-		$item.find('div.preview').fadeIn(250);
-		$item.find('div.item-portrait').fadeIn(250);
-		
-		$isotope.isotope( 'reLayout');
-	},
-	320);
-
-	return false;
-}
-
-function minimizeItem($item, $isotope){
-	$item.find('div.item-portrait').fadeOut(150);
-	$item.find('div.preview').fadeOut(150);
-	setTimeout(function() {
-		$item.find('div.portrait').fadeIn(300);
-		
-		$item.toggleClass('animate-item-portrait item-maxi');
-		setTimeout(function() {
-			$isotope.isotope( 'reLayout');
-			$item.removeClass('animate-item-portrait');
-		},
-		320);
-	},
-	150);
-
-	return false;
-}
-
+/******************************** LOCAL STORAGE **************************************/
 function initWithStoredItemBuild() {
 	
 	var championSlugs = getItemFromLS('storedChampionSlugs').split(',');
@@ -259,17 +240,30 @@ function initWithStoredItemBuild() {
 	var itemSlugs = getItemFromLS('storedItemSlugs').split(',');
 	var buildName = getItemFromLS('storedBuildName');
 	
+	itemSlugs = JSON.parse(itemSlugs);
+	
 	for(var i = 0; i < championSlugs.length; i++) {
 		if (championSlugs[i] != '') {
 			$('#champion-isotope-list li.champion#'+championSlugs[i]).addClass('active');
 		}
 	}
-	
+	$itemSidebarList.html('');
 	$('div.game-mode').removeClass('active');
 	$('div.game-mode[data-game-mode="'+gameMode+'"]').addClass('active');
 	
-	for(var i = 0; i < itemSlugs.length; i++) {
-		addItemToList(itemSlugs[i]);
+	for(i = 0; i < itemSlugs.length; i++) {
+		var block = itemSlugs[i];
+		var blockName = block.name;
+		var blockNameEscaped = blockName.replace(/ +/g, '_');
+		var items = block.items;
+		for (var j = 0; j < items.length; j++) {
+			var name = blockName;
+			if ( isItemBlockNameFree(name) ) {
+				$itemSidebarList.append('<li class="item-sidebar-block-li" id="__'+blockNameEscaped+'__item-block-li"><input type="text" class="item_sidebar_block_input span9" value="'+name+'"/> <a href="#" class="btn-delete-block-item btn btn-danger btn-small">X</a><div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div></li>')
+				initItemDroppable($itemSidebarList.find('li:last div.item-sidebar-block-div'));
+			}
+			addRecItem(items[j], '__'+blockNameEscaped + '__item-block-li');
+		}
 	}
 	
 	$('#build-name').val(buildName);
@@ -294,10 +288,24 @@ function storeItemBuild() {
 	});
 
 	var gameMode = $('div.game-mode-container div.game-mode.active').first().attr('data-game-mode');
-
+//
+//	var itemSlugs = new Array();
+//	$('#rec-item-sortable li.rec-item.full div.portrait').each(function(){
+//		itemSlugs.push($(this).attr('data-slug'));
+//	});
+	
 	var itemSlugs = new Array();
-	$('#rec-item-sortable li.rec-item.full div.portrait').each(function(){
-		itemSlugs.push($(this).attr('data-slug'));
+	$itemSidebarList.find('li.item-sidebar-block-li').each(function () {
+		var blockName = $(this).find('input.item_sidebar_block_input').val();
+		if(! (blockName in itemSlugs)) {
+			var blockArray = new Array();
+			$(this).find('div.item-sidebar-block-div div.portrait').each(function() {
+				blockArray.push($(this).data('slug'));
+			});
+			if (blockArray.length > 0) {
+				itemSlugs.push({name:blockName, items:blockArray});
+			}
+		}
 	});
 
 	var buildName = $('#build-name').val();
@@ -305,125 +313,12 @@ function storeItemBuild() {
 	saveItemInLS('storedItemBuild', 'true');
 	saveItemInLS('storedChampionSlugs', championSlugs);
 	saveItemInLS('storedGameMode', gameMode);
-	saveItemInLS('storedItemSlugs', itemSlugs);
+	saveItemInLS('storedItemSlugs', JSON.stringify(itemSlugs));
 	saveItemInLS('storedBuildName', buildName);
 }
+/*************** FIN LOCAL STORAGE ****************/
 
-//Permet de récupérer le contenu des popover pour les items en AJAX
-function setItemPopoverContent(slug, $item) {
-	$.ajax({
-		type: 'POST',
-		url:  Routing.generate('item_builder_get_item_popover_content', {_locale: locale}),
-		data: {slug: slug},
-		dataType: 'html'
-	}).done(function(data){
-		$item.data('popover').$tip.find(".popover-content").html(data);
-		$item.data('ajax-loaded', true);
-	});
-}
-
-$(document).ready(function()
-{
-	$window = $(window);
-	$recItemList = $('#item-topbar');
-	$itemIsotopeList = $('#item-isotope-list');
-	$championIsotopeList = $('#champion-isotope-list');
-	$recItems = $('li.rec-item');
-	recItemsTop = $recItemList.length && $recItemList.offset().top;
-	$championContainer = $('div.champion-container');
-	
-	processScrollRecItems();
-	
-	$window.on('scroll', processScrollRecItems);
-	
-	//On charge le build depuis le storage s il y en a un
-	if (getItemFromLS('storedItemBuild')) {
-		initWithStoredItemBuild();
-	}
-	
-	// Écoute sur l'événement d'un clique sur un des modes de jeu
-	$('div.game-mode-container').on('click', 'div.game-mode', function() {
-		$('div.game-mode-container div.game-mode').removeClass('active');
-		$(this).addClass('active');
-		$itemIsotopeList.setGameModeFilter($(this).data('game-mode'));
-		checkRecItemsByMode($itemIsotopeList.filters.gameMode);
-	});
-	
-	//Lors du clic ou du double clic sur un item
-	var timeout, dblClic = false, that;
-	$('ul#item-isotope-list').on('click', 'li.item:not(.item-maxi)', function(e) {
-		that = this;
-		if(!$(that).hasClass('animating')) {
-			e.preventDefault();
-			timeout = setTimeout(function() {
-				if (!dblClic) {
-					timeout = null;
-					//maximizeItem($(that), $itemIsotopeList);
-					if(!$(that).hasClass('item-maxi') && !$(that).hasClass('animating')) {
-						addItemToList($(that).attr('id'));
-					}
-				}
-				else {
-					dblClic = false;
-				}
-			}, 200);
-		}
-	}).on('dblclick', function() {
-//		if(!$(that).hasClass('item-maxi') && !$(that).hasClass('animating')) {
-//			clearTimeout(timeout);
-//			timeout = null;
-//			dblClic = true;
-//			addItemToList($(that).attr('id'));
-//		}
-	});
-	
-	//Hover un item
-	var popoverTimer;
-	$('ul#item-isotope-list li.item').hover(function(e) {
-		$(this).data('isHover', true);
-		if(popoverTimer) {
-			clearTimeout(popoverTimer);
-			popoverTimer = null
-		}
-		if($(this).data('popover') == undefined) {
-			
-			var title = "<img class='tooltip-item-img pull-left' src='/images/items/" + $(this).data('code') + ".png'/>" + $(this).data('title');
-			
-			$(this).popover({
-				trigger: 'hover',
-				content:'<p style="text-align: center;"><img src="/images/commons/loader16-bg-blue.gif" alt="loading"/></p>',
-				placement: 'bottom',
-				delay: {show: 1, hide: 1}
-			});
-			$(this).data('popover').options.title = title;
-			$(this).data('popover').options.placement = 'bottom';
-			$(this).popover('show');
-		}
-		
-		if($(this).data('ajax-loaded') == undefined) {
-			var $that = $(this);
-			popoverTimer = setTimeout(function() {
-				if($that.data('isHover')) {
-					setItemPopoverContent($that.attr('id'), $that);
-				}
-			}, 500)
-		}
-	}, function(){
-		$(this).data('isHover', false);
-	});
-	
-	//Lors du clic sur un item maximisé
-	$itemIsotopeList.on('click', 'li.item-maxi div.preview-header', function(){
-		return minimizeItem($('#'+$(this).attr('data-dissmiss')), $itemIsotopeList);
-	});
-	
-	//Lors du clic sur le bouton add-to-list d'un item maximisé'
-	$itemIsotopeList.on('click', 'li.item-maxi a.btn-add-to-list', function(){
-		addItemToList($(this).data('item-slug'));
-		return false;
-	});
-	
-	//On rends chaque item draggable
+function initItemDraggable() {
 	$itemIsotopeList.on('mouseover', 'li.item', function() {
 		$(this).draggable({
 			disabled: false,
@@ -434,40 +329,89 @@ $(document).ready(function()
 			opacity: 1,
 			distance: 20,
 			start: function(){
-				$recItemList.find('li.rec-item.free').css('border-color', '#FB9701')
+				$itemSidebarList.find('li div div.indication').css('border-color', '#FB9701');
 			},
 			stop: function(){
-				$recItemList.find('li.rec-item.free').css('border-color', 'rgba(255, 255, 255, .2)')
+				$itemSidebarList.find('li div div.indication').css('border-color', '#999');
 			}
 		});
 	});
-	
-	//On rends la rec item list capable d accepter les items
-	$recItems.droppable({
+}
+
+function initItemDroppable($divs) {
+	$divs.droppable({
 		accept: '#item-isotope-list li.item',
 		over: function() {
-			$(this).css('border-color', 'red');
+			$(this).find('div.indication').css('border-color', 'red');
 		},
 		out: function() {
-			$(this).css('border-color', '#FB9701');
+			$(this).find('div.indication').css('border-color', '#FB9701');
 		},
 		drop: function( event, ui ) {
-			setRecItem(ui.draggable.context.id, $(this).attr('id'));
-			$(this).css('border-color', 'rgba(255, 255, 255, .2)')
+			addRecItem(ui.draggable.context.id, $(this).parent().attr('id'));
+			$(this).css('border-color', '#FB9701')
 		}
 	});
-	
-	//Lors du clic sur un objet recommendé rempli
-	$recItemList.on('click', 'li.rec-item.full', function() {
-		$(this).removeClass('full').addClass('free').html('<div><i class="icon-question-sign icon-white"></i></div>');
+}
+
+//Lors du clic sur un item présent dans un block
+function initItemClickInBlock() {
+	$itemSidebarList.on('click', 'li div div.portrait', function() {
+		$parent = $(this).parent();
+		if($parent.find('div.portrait').length == 1) {
+			$(this).remove();
+			var indication;
+			if(locale == 'en') {
+				indication = 'Drop your items here';
+			} else {
+				indication = 'Déposez vos objets ici';
+			}
+			$parent.html('<div class="indication">'+indication+'</div>');
+		} else {
+			$(this).remove();
+		}
 	});
-	
-	//On active le module sortable pour la liste d'objets recommandés'
-	 $('#rec-item-sortable').sortable({
-		placeholder: 'rec-item hold-rec-item-place'
+}
+
+function initItemBlocksSortable() {
+	$itemSidebarList.sortable();
+}
+
+function initItemAddBlock() {
+	$('#btn-add-item-block').click(function() {
+		var indication;
+		if(locale == 'en') {
+			indication = 'Drop your items here';
+		} else {
+			indication = 'Déposez vos objets ici';
+		}
+		$itemSidebarList.append('<li class="item-sidebar-block-li" id="___item-block-li"><input type="text" class="item_sidebar_block_input span9" value=""/> <a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a><div class="item-sidebar-block-div"><div class="indication">'+indication+'</div></div></li>')
+		initItemDroppable($itemSidebarList.find('li:last div.item-sidebar-block-div'));
+		return false;
 	});
-	
-	//Lors du clic sur un champion
+}
+
+function initItemRemoveBlock() {
+	$itemSidebarList.on('click', '.btn-delete-block-item',function() {
+		$(this).parent().remove();
+		return false;
+	});
+}
+
+function isItemBlockNameFree(name) {
+	return $itemSidebarList.find('li.item-sidebar-block-li input[value="'+name+'"]').length <= 0;
+}
+
+function initGameMode() {
+	$('div.game-mode-container').on('click', 'div.game-mode', function() {
+		$('div.game-mode-container div.game-mode').removeClass('active');
+		$(this).addClass('active');
+		$itemIsotopeList.setGameModeFilter($(this).data('game-mode'));
+		checkRecItemsByMode($itemIsotopeList.filters.gameMode);
+	});
+}
+
+function initChampionClick() {
 	$championContainer.on('click', 'li.champion', function() {
 		//On rend actif le champion
 		$(this).toggleClass('active');
@@ -494,6 +438,83 @@ $(document).ready(function()
 			$itemIsotopeList.showChampionSpecificItems();
 		}
 	});
+}
+
+function initBlockInputName() {
+	$itemSidebarList.on('focusin', 'li input.item_sidebar_block_input', function() {
+		var oldName = $.trim($(this).val());
+		
+		$(this).focusout(function() {
+			var newName = $.trim($(this).val());
+			var regex = new RegExp("[^a-zA-Z0-9 ]");
+			
+			if ( ! (newName != '' && !regex.test(newName))) {
+				$(this).val(oldName);
+				displayMessage('Le nom saisi n\'est pas valide.', 'error')
+			} else {
+				newName = newName.replace(/ +/g, ' ');
+				oldName = newName;
+				$(this).attr('value', newName)
+				$(this).val(oldName);
+				newName = newName.replace(/ +/g, '_');
+				$(this).parent('li').attr('id', '__' + newName + '__item-block-li')
+			}
+		})
+	});
+}
+
+$(document).ready(function()
+{
+	$window = $(window);
+	$recItemList = $('#item-topbar');
+	$itemIsotopeList = $('#item-isotope-list');
+	$championIsotopeList = $('#champion-isotope-list');
+	$recItems = $('li.rec-item');
+	recItemsTop = $recItemList.length && $recItemList.offset().top;
+	$championContainer = $('div.champion-container');
+	$itemSidebarBlockDivs = $('div.item-sidebar-block-div');
+	$itemSidebarList = $('ul#item_sidebar_blocks_list');
+	$addItemBlockModal = $('#modal-add-item-block');
+	$blockNameInputs = $('input.item_sidebar_block_input');
+	
+	processScrollRecItems();
+	
+	$window.on('scroll', processScrollRecItems);
+	
+	//On charge le build depuis le storage s il y en a un
+	if (getItemFromLS('storedItemBuild')) {
+		initWithStoredItemBuild();
+	}
+	
+	// Écoute sur l'événement d'un clique sur un des modes de jeu
+	initGameMode();
+	
+	//Hover un item
+	initPopoverItem($itemIsotopeList);
+	
+	//On rends chaque item draggable
+	initItemDraggable();
+	
+	//On rends la rec item list capable d accepter les items
+	initItemDroppable($itemSidebarBlockDivs);
+	
+	//Lors du clic sur un item présent dans un block
+	initItemClickInBlock();
+	
+	//On active le module sortable pour les blocks d items
+	initItemBlocksSortable();
+	
+	//Lors du clic sur le bouton ajouter un block
+	initItemAddBlock();
+	
+	//Lors du clic sur un bouton de suppression de block
+	initItemRemoveBlock();
+	
+	//Lors du clic sur un champion
+	initChampionClick();
+	
+	//Lors de la prise de focus par les input des block dédiés a l edition des noms des bocks
+	initBlockInputName();
 	
 	//Bouton de generation du build uniquement
 	$('#only-generate-build, #modal-btn-only-generate-build').click(function(e){
@@ -607,4 +628,11 @@ $(document).ready(function()
 	initChampionFilterList($championIsotopeList, $('ul#filters-list li'));
 	initChampionCleanAction($championIsotopeList, $championFilterInput);
 	initChampionAddFilteredAction($championIsotopeList);
+	
+	//CustomScrollBar
+	$itemSidebarList.parent('li').mCustomScrollbar({
+		advanced:{
+			updateOnContentResize: Boolean
+		}
+	});
 });

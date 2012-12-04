@@ -13,6 +13,7 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 use MVNerds\CoreBundle\Model\ItemBuild;
 use MVNerds\CoreBundle\Model\ChampionItemBuild;
 use MVNerds\CoreBundle\Model\UserPreference;
+use  MVNerds\CoreBundle\Model\ItemBuildItems;
 
 /**
  * @Route("/pimp-my-recommended-items")
@@ -78,6 +79,39 @@ class ItemBuilderController extends Controller
 				'itemBuilds'	=> $this->get('mvnerds.item_build_manager')->findAllPublic()
 			));
 		}
+	}
+	
+	/**
+	 * 
+	 * @Route("/view/{itemBuildSlug}", name="item_builder_view")
+	 */
+	public function viewAction($itemBuildSlug) 
+	{
+		try{
+			$itemBuild = $this->get('mvnerds.item_build_manager')->findOneBySlug($itemBuildSlug);
+		} catch (\Exception $e) {
+			return $this->redirect($this->generateUrl('item_builder_list'));
+		}
+		$itemBuildItemsCollection = $itemBuild->getItemBuildItemss();
+		$itemBlocks = array();
+		foreach ($itemBuildItemsCollection as $itemBuildItems)
+		{
+			$item = $itemBuildItems->getItem();
+			$type = $itemBuildItems->getType();
+			$position = $itemBuildItems->getPosition();
+			$ecapedName = preg_replace('/ +/', '_', $type);
+			if (! isset($itemBlocks[$position]))
+			{
+				$itemBlocks[$position] = array('type' => $type, 'escaped' => $ecapedName, 'items' => array());
+			}
+
+			$itemBlocks[$position]['items'][] = $item;
+		}
+		
+		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:view_index.html.twig', array(
+				'itemBuild'	=> $itemBuild,
+				'itemBlocks'	=> $itemBlocks
+		));
 	}
 	
 	/**
@@ -190,21 +224,36 @@ class ItemBuilderController extends Controller
 		}
 		
 		$i = 1;
-		foreach ($itemsSlugs as $itemSlug)
+		
+		$itemBuilditemsCollection = new \PropelCollection();
+		foreach ($itemsSlugs as $itemBlock)
 		{
-			try {
-				$item = $itemManager->findBySlug($itemSlug);
-			} catch (\Exception $e) {
-				throw new HttpException(500, 'Invalid recommended items : item not found!');
-			}
-			if (strpos($item->getGameModesToString(), 'shared') === false && strpos($item->getGameModesToString(), $gameMode) === false) {
-				throw new HttpException(500, 'Invalid recommended items : game mode!');
-			}
+			$itemBlockName = $itemBlock['name'];
+			$items = $itemBlock['items'];
 			
-			$method = 'setItem'.$i.'Id';
-			$itemBuild->$method($item->getId());
+			$itemBlockName = preg_replace('/[^a-zA-Z0-9 ]+/','',$itemBlockName);
+			
+			foreach ($items as $itemSlug)
+			{
+				try {
+					$item = $itemManager->findBySlug($itemSlug);
+				} catch (\Exception $e) {
+					throw new HttpException(500, 'Invalid recommended items : item not found! slug given : '.$itemSlug);
+				}
+				if (strpos($item->getGameModesToString(), 'shared') === false && strpos($item->getGameModesToString(), $gameMode) === false) {
+					throw new HttpException(500, 'Invalid recommended items : game mode!');
+				}
+				$itemBuildItems = new ItemBuildItems();
+				$itemBuildItems->setItemId($item->getId());
+				$itemBuildItems->setType($itemBlockName);
+				$itemBuildItems->setPosition($i);
+				$itemBuildItems->setCount(1);
+
+				$itemBuilditemsCollection->append($itemBuildItems);
+			}
 			$i ++;
 		}
+		$itemBuild->setItemBuildItemss($itemBuilditemsCollection);
 		
 		$itemBuild->setName($buildName);
 		
@@ -232,11 +281,11 @@ class ItemBuilderController extends Controller
 		if($championItemBuilds->count() > 0) {
 			$itemBuild->setChampionItemBuilds($championItemBuilds);
 			
-			//On vérifie qu il n y a pas d items spécifiques a un champion qui ne devrait pas etre la
-			for ($i = 1; $i <=6; $i++) {
-				$method = 'getItemRelatedByItem'.$i.'Id';
-				/* @var $item \MVNerds\CoreBundle\Model\Item */
-				$item = $itemBuild->$method();
+			foreach ($itemBuilditemsCollection as $itemBuildItems)
+			{
+				/* @var $itemBuildItems ItemBuildItems */
+				$item = $itemBuildItems->getItem();
+				
 				//Si l item est associé a un champion
 				if ($item->getChampionId() != null) {
 					//S il y a plus d un champion dans la liste c est que c est une erreur
@@ -409,11 +458,21 @@ class ItemBuilderController extends Controller
 			$selectedChampions[] = $championItemBuild->getChampion()->getSlug();
 		}
 		
+		$itemBuildItemsCollection = $itemBuild->getItemBuildItemss();
 		$selectedItems = array();
-		for ($i = 1; $i <= 6; $i++) 
+		foreach ($itemBuildItemsCollection as $itemBuildItems)
 		{
-			$method = 'getItemRelatedByItem'.$i.'Id';
-			$selectedItems[] = $itemBuild->$method();
+			$item = $itemBuildItems->getItem();
+			$type = $itemBuildItems->getType();
+			$position = $itemBuildItems->getPosition();
+			$count = $itemBuildItems->getCount();
+			$ecapedName = preg_replace('/ +/', '_', $type);
+			if (! isset($selectedItems[$position]))
+			{
+				$selectedItems[$position] = array('type' => $type, 'escaped' => $ecapedName, 'items' => array());
+			}
+
+			$selectedItems[$position]['items'][] = $item;
 		}
 		
 		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:create_index.html.twig', array(

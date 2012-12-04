@@ -44,7 +44,7 @@ mv_nerds_did_you_know:
 MVNerdsAdminBundle_homepage:
     resource: "@MVNerdsAdminBundle/Controller/"
     type:     annotation
-    prefix:   /fr/administration
+    prefix:   /{_locale}/administration
 
 mv_nerds_core:
     resource: "@MVNerdsCoreBundle/Controller/"

@@ -30,7 +30,7 @@ class ItemController extends Controller
 	 */
 	public function addItemAction()
 	{
-		$form = $this->createForm(new ItemType());
+		$form = $this->createForm(new ItemType(), null, array('attr' => array('lang' =>$this->get('session')->get('locale'))));
 
 		$request = $this->getRequest();
 		if ($request->isMethod('POST'))
@@ -67,7 +67,7 @@ class ItemController extends Controller
 		} catch (\Exception $e) {
 			return $this->redirect($this->generateUrl('admin_items_index'));
 		}
-		$form = $this->createForm(new ItemType(), $item);
+		$form = $this->createForm(new ItemType(), $item, array('attr' => array('lang' =>$this->get('session')->get('locale'))));
 		
 		$wasObsolete = $item->getIsObsolete();
 		
@@ -81,32 +81,32 @@ class ItemController extends Controller
 				
 				if(!$wasObsolete && $item->getIsObsolete())
 				{
-					$relatedItemBuilds = $this->get('mvnerds.item_build_manager')->findByItemId($item->getId());
-					foreach($relatedItemBuilds as $itemBuild)
+					$relatedItemBuildItems = $this->get('mvnerds.item_build_manager')->findItemBuildItemsByItemId($item->getId());
+					foreach($relatedItemBuildItems as $itemBuildItems)
 					{
-						$itemBuild->setStatus(\MVNerds\CoreBundle\Model\ItemBuildPeer::STATUS_OBSOLETE);
-						$itemBuild->save();
+						/* @var $itemBuildItems \MVNerds\CoreBundle\Model\ItemBuildItems */
+						$itemBuildItems->delete();
 					}
 				} 
-				elseif ($wasObsolete && !$item->getIsObsolete())
-				{
-					$relatedItemBuilds = $this->get('mvnerds.item_build_manager')->findByItemId($item->getId());
-					foreach($relatedItemBuilds as $itemBuild)
-					{
-						/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
-						if (
-							!$itemBuild->getItemRelatedByItem1Id()->getIsObsolete() &&
-							!$itemBuild->getItemRelatedByItem2Id()->getIsObsolete() &&
-							!$itemBuild->getItemRelatedByItem3Id()->getIsObsolete() &&
-							!$itemBuild->getItemRelatedByItem4Id()->getIsObsolete() &&
-							!$itemBuild->getItemRelatedByItem5Id()->getIsObsolete() &&
-							!$itemBuild->getItemRelatedByItem6Id()->getIsObsolete()
-						) {
-							$itemBuild->setStatus(\MVNerds\CoreBundle\Model\ItemBuildPeer::STATUS_PUBLIC);
-							$itemBuild->save();
-						}
-					}
-				}
+//				elseif ($wasObsolete && !$item->getIsObsolete())
+//				{
+//					$relatedItemBuilds = $this->get('mvnerds.item_build_manager')->findByItemId($item->getId());
+//					foreach($relatedItemBuilds as $itemBuild)
+//					{
+//						/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
+//						if (
+//							!$itemBuild->getItemRelatedByItem1Id()->getIsObsolete() &&
+//							!$itemBuild->getItemRelatedByItem2Id()->getIsObsolete() &&
+//							!$itemBuild->getItemRelatedByItem3Id()->getIsObsolete() &&
+//							!$itemBuild->getItemRelatedByItem4Id()->getIsObsolete() &&
+//							!$itemBuild->getItemRelatedByItem5Id()->getIsObsolete() &&
+//							!$itemBuild->getItemRelatedByItem6Id()->getIsObsolete()
+//						) {
+//							$itemBuild->setStatus(\MVNerds\CoreBundle\Model\ItemBuildPeer::STATUS_PUBLIC);
+//							$itemBuild->save();
+//						}
+//					}
+//				}
 				
 				// TODO: effectuer au moins la valiation en XML avant de sauvegarder les modifications effectuées sur le champion
 				$this->get('mvnerds.item_manager')->save($item);

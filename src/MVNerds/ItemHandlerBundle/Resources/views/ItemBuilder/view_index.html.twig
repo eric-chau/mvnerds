@@ -1,0 +1,78 @@
+{% extends 'MVNerdsLaunchSiteBundle::layout.html.twig' %}
+
+{% block css %}
+	{{ parent() }}
+
+	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square36-sprite.css') }}">
+	<link href="{{ asset('css/item_builder/creation-page.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('css/item_builder/modal.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+	
+{% block javascripts %}
+	{{ parent() }}
+	<script src="{{ asset('js/item_handler/item-popover.js') }}"></script>
+	<script src="{{ asset('js/launch_site/alerts-ajax-handler.js') }}"></script>
+	<script src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
+	<script src="{{ asset('js/bootstrap/bootstrap-tooltip.js') }}"></script>
+	<script src="{{ asset('js/item_handler/item_builder/dl-modal.js') }}"></script>
+	<script src="{{ asset('js/item_handler/item_builder/view-page.js') }}"></script>
+{% endblock %}
+
+{% block title %}
+	{{'item_build_view_index.title'|trans}} : {{itemBuild.getName()}}
+{% endblock %}
+	
+{% block body_main_content %}
+	<div class="body-container create-item-builder">
+		<div class="row-fluid">
+			<h1 class="span9">{{'item_build_view_index.h1'|trans}} : {{itemBuild.getName()}}</h1>
+			<div class="generate-button-container span3" style="margin-top: 0">
+				<a href="#" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}" class="main download-action pull-right">{{'item_build_view_index.download.btn'|trans}}</a>
+			</div>
+		</div>
+		<p class="module-name">{{'item_build_view_index.created_by'|trans}} <strong>{{itemBuild.getUser().getUserName()}}</strong></p>
+		
+		<div class="row-fluid">
+			<div class="span8">
+				<h2>{{'item_build_view_index.champions.h2'|trans}}</h2>
+
+				<div class="champion-container">
+					<div id="champion-list" class="elements-grid">
+						{% include 'MVNerdsItemHandlerBundle:ItemBuilder:view_champion_grid.html.twig' %}
+					</div>
+				</div>
+			</div>
+
+			<div class="span4">
+				<h2>{{'item_build_view_index.game_mode.h2'|trans}}</h2>
+
+				<div class="game-mode-container">
+					{% set gameMode = itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel() %}
+
+					{% if gameMode == 'classic' %}
+						<div class="game-mode classic"><span class="message">Summoner Rift</span></div>
+					{% elseif gameMode == 'twisted-treeline' %}
+						<div class="game-mode twisted-treeline"><span class="message">Twisted Treeline</span></div>
+					{% elseif gameMode == 'dominion' %}
+						<div class="game-mode dominion"><span class="message" >Dominion</span></div>
+					{% elseif gameMode == 'aram' %}
+						<div class="game-mode proving-grounds"><span class="message" >All Random All Mid (ARAM)</span></div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+		
+		<h2>{{'item_build_view_index.items.h2'|trans}}</h2>
+		
+		
+		{% include 'MVNerdsItemHandlerBundle:ItemBuilder:view_item_blocks.html.twig' %}
+		
+		<h2>{{'item_build_view_index.download.h2'|trans}}</h2>
+		
+		<div class="generate-button-container">
+			<a href="#" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}" class="main download-action">{{'item_build_view_index.download.btn'|trans}}</a>
+		</div>
+	</div>
+	
+	{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}
+{% endblock %}

@@ -36,7 +36,7 @@
 					<th class="champions">{{'item_table.th.champion'|trans}}</th>
 					<th class="name">{{'item_table.th.name'|trans}}</th>
 					<th class="game-mode">{{'item_table.th.game_mode'|trans}}</th>
-					<th class="items">{{'item_table.th.items'|trans}}</th>
+					{#<th class="items">{{'item_table.th.items'|trans}}</th>#}
 					<th class="actions"></th>
 				</tr>
 			</thead>
@@ -58,7 +58,7 @@
 						
 						<td class="game-mode">{{itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel()}}</td>
 						
-						<td class="item">
+						{#<td class="item">
 							<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem1Id().getRiotCode() ~ '.png' )}}" alt="{{itemBuild.getItemRelatedByItem1Id().getName}} " class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
 								 data-title="<img class='tooltip-item-img pull-left' src='{{asset('images/items/' ~ itemBuild.getItemRelatedByItem1Id().getRiotCode() ~ '.png' )}}'/> {{itemBuild.getItemRelatedByItem1Id().getName()}}" 
 								 data-content="{%for itemPrimaryEffect in itemBuild.getItemRelatedByItem1Id().getItemPrimaryEffects() %}{{itemPrimaryEffect.getValue()}} {{itemPrimaryEffect.getPrimaryEffect().getLabel()}} {% endfor %}
@@ -88,9 +88,11 @@
 								 data-title="<img class='tooltip-item-img pull-left' src='{{asset('images/items/' ~ itemBuild.getItemRelatedByItem6Id().getRiotCode() ~ '.png' )}}'/>{{itemBuild.getItemRelatedByItem6Id().getName()}}" 
 								 data-content="{%for itemPrimaryEffect in itemBuild.getItemRelatedByItem6Id().getItemPrimaryEffects() %}{{itemPrimaryEffect.getValue()}} {{itemPrimaryEffect.getPrimaryEffect().getLabel()}} {% endfor %}
 											{%for itemSecondaryEffect in itemBuild.getItemRelatedByItem6Id().getItemSecondaryEffects() %}{{itemSecondaryEffect.getDescription()}} {% endfor %}"/>
-						</td>
+						</td>#}
 						
 						<td>
+							<a class="action view-action" href="{{path('item_builder_view', {itemBuildSlug: itemBuild.getSlug()})}}"><i class="icon-share"></i></a>
+							
 							<a class="action download-action" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}"><i class="icon-download-alt"></i></a>
 							
 							<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>{{'item_table.td.downloaded'|trans}}</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> {{'item_table.td.times'|trans}}</span>

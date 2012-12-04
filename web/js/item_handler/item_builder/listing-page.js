@@ -148,7 +148,6 @@ $(document).ready(function() {
                       {"bSearchable": false, "bSortable":false},
                       {"bSearchable": false, "bSortable":true},
                       {"bSearchable": false, "bSortable":false},
-                      {"bSearchable": false, "bSortable":true},
                       {"bSearchable": false, "bSortable":false},
                       {"bVisible": false, "bSearchable": true, "bSortable":false}
 		],

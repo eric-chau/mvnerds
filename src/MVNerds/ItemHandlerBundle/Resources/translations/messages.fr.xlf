@@ -7,6 +7,10 @@
 				<source>create_item_build.title</source>
 				<target>Personnaliser une liste d'objets conseillés pour League of Legends</target>
 			</trans-unit>
+			<trans-unit id="00">
+				<source>item_popover_cost</source>
+				<target>Coût</target>
+			</trans-unit>
 			<trans-unit id="1">
 				<source>create_item_build.h1</source>
 				<target>Personnaliser une liste d'objets conseillés</target>
@@ -14,8 +18,7 @@
 			<trans-unit id="2">
 				<source>create_item_build.p.1</source>
 				<target>
-					Bienvenue sur la page de création d'une nouvelle liste d'objets recommandés pour vos champions favoris. Pour être plus précis, nous allons voir comment de manière
-					simple et intuitive on modifier la liste des objets conseillés, celle qui apparaît lorsque vous êtes en jeu et que vous ouvrez la boutique.
+					Bienvenue ! Suivez les étapes pour créer une nouvelle liste d'objets conseillés. Cette liste apparaîtra en jeu dans la boutique.
 				</target>
 			</trans-unit>
 			
@@ -26,13 +29,12 @@
 			</trans-unit>
 			<trans-unit id="4">
 				<source>create_item_build.p.2</source>
-				<target>Sélectionnez ici le champion dont vous souhaitez éditer sa liste d'objets conseillés.</target>
+				<target>Sélectionnez ici tous les champions qui seront affectés par le changement de liste d'objets recommandés.</target>
 			</trans-unit>
 			<trans-unit id="5">
 				<source>create_item_build.tip.1</source>
 				<target>
-					Astuce : un des avantages à utiliser notre outil est qu'il vous permet de changer en une seule fois les objets recommandés de plusieurs champions, 
-					pratique non ?
+					Astuce : Vous pouvez filtrer les champions par catégorie pour ensuite tous les sélectionner simultanément.
 				</target>
 			</trans-unit>
 			
@@ -44,13 +46,13 @@
 			<trans-unit id="7">
 				<source>create_item_build.p.3</source>
 				<target>
-					Dans League of Legends, pour chaque champion sa liste d'objets conseillés diffèrent selon le mode de jeu. Vous n'aurez donc pas forcément la même liste 
-					si vous faites une partie sur la carte "Brèche de cristal" (Dominion) ou une partie sur la carte "Faille de l'invocateur" (5 contre 5 - classique).
+					En fonction du mode de jeu choisi, la liste d'objets recommandés pour vos champions sera différente.
 				</target>
 			</trans-unit>
 			<trans-unit id="8">
 				<source>create_item_build.tip.2</source>
 				<target>
+					Seuls les objets autorisés dans le mode de jeu sélectionné apparaitront dans la liste.
 				</target>
 			</trans-unit>
 			
@@ -62,21 +64,20 @@
 			<trans-unit id="10">
 				<source>create_item_build.p.4</source>
 				<target>
-					Vous devez sélectionner un à six objets dont vous souhaitez voir apparaître dans la boutique en jeu pour le ou les champions dans le(s) mode(s) de jeu
-					que vous avez sélectionné ci-dessus.
+					Vous devez maintenant sélectionner les objets qui vont composer votre liste. Glissez ceux-ci depuis la liste ci-dessous vers les blocs situés à droite.
+					Vous povez créer plusieurs blocs, les renommer, les supprimer ou encore les trier.
 				</target>
 			</trans-unit>
 			<trans-unit id="11">
 				<source>create_item_build.tip.3</source>
 				<target>
-					Astuce : les consommables ne disparaissent pas de la liste des objets conseillés même après que vous les ayez acheté.
+					Astuce : Servez vous du système de filtrage pour trouver plus facilement vos objets.
 				</target>
 			</trans-unit>
 			<trans-unit id="12">
 				<source>create_item_build.tip.4</source>
 				<target>
-					Note : Certains objets ne sont pas disponibles dans tous les modes comme par exemple la "Lantern de Wriggles". Ne soyez donc pas surpris si jamais vous
-					ne retrouvez pas certains objets.
+					Info : Les blocs laissés vide seront ignorés dans la création de la liste.
 				</target>
 			</trans-unit>
 			
@@ -87,8 +88,8 @@
 			<trans-unit id="14">
 				<source>create_item_build.p.5</source>
 				<target>
-					C'est presque terminé. Vous devez maintenant nommer votre liste d'objet conseillés. Vous pourrez ensuite si vous le souhaitez, la consulter de nouveau,
-					la récupérer, l'éditer ou encore la partagée avec le reste de la communauté MVNerds.
+					Vous devez maintenant nommer votre liste d'objet conseillés. Vous pourrez ensuite si vous le souhaitez, la consulter de nouveau,
+					la récupérer, l'éditer ou encore la partager avec le reste de la communauté MVNerds.
 				</target>
 			</trans-unit>
 			<trans-unit id="014">
@@ -152,7 +153,8 @@
 			<trans-unit id="22">
 				<source>create_item_build.modal_authenticate.p1</source>
 				<target>
-					Afin de pouvoir profiter de la fonction d'enregistrement de vos builds, vous devez être authentifié.
+					Afin de pouvoir profiter de la fonction d'enregistrement de vos builds, vous devez être authentifié. 
+					Vous inscrire, ou vous connecter n'effacera pas votre liste d'objets recommandés en cours de création, celle-ci sera enregistrée temporairement.
 				</target>
 			</trans-unit>
 			<trans-unit id="23">
@@ -176,9 +178,9 @@
 				</target>
 			</trans-unit>
 			<trans-unit id="26">
-				<source>create_item_build.modal_authenticate.btn.confirm</source>
+				<source>create_item_build.modal_authenticate.btn.sign_in</source>
 				<target>
-					Confirmer
+					Connexion
 				</target>
 			</trans-unit>
 			<trans-unit id="27">
@@ -205,7 +207,7 @@
 			<trans-unit id="30">
 				<source>create_item_build.modal_dl_build.p1</source>
 				<target>
-					Si votre dossier "League of Legends" n'apparaît pas dans cette liste :
+					Si votre dossier "League of Legends" n'est présent dans aucun des dossier de cette liste :
 				</target>
 			</trans-unit>
 			<trans-unit id="31">
@@ -217,25 +219,36 @@
 			<trans-unit id="32">
 				<source>create_item_build.modal_dl_build.p2</source>
 				<target>
-					Veuillez l'indiquer ici : 
+					Veuillez indiquer le votre ici : 
 				</target>
 			</trans-unit>
 			<trans-unit id="33">
 				<source>create_item_build.modal_dl_build.btn.cancel</source>
 				<target>
-					Cancel
+					Annuler
 				</target>
 			</trans-unit>
 			<trans-unit id="34">
-				<source>create_item_build.modal_dl_build.btn.downlad</source>
+				<source>create_item_build.modal_dl_build.btn.download</source>
 				<target>
-					Download
+					Télécharger
 				</target>
 			</trans-unit>
 			<trans-unit id="35">
 				<source>create_item_build.modal_dl_build.input.placeholder</source>
+				<target>ex : D:/Riot/</target>
+			</trans-unit>
+
+			<trans-unit id="36">
+				<source>create_item_build.sidebar.item_box.indication</source>
 				<target>
-					ex : D:/Riot/
+					Déposez vos objets ici
+				</target>
+			</trans-unit>
+			<trans-unit id="37">
+				<source>create_item_build.sidebar.button.add_block</source>
+				<target>
+					Ajouter un bloc
 				</target>
 			</trans-unit>
 
@@ -329,6 +342,56 @@
 			<trans-unit id="3002">
 				<source>item_build_list_index.title</source>
 				<target>Pimp My Recommended Items | PMRI</target>
+			</trans-unit>
+			
+			<!-- VIEW INDEX -->
+			<trans-unit id="4000">
+				<source>item_build_view_index.title</source>
+				<target>Liste d'items recommandés</target>
+			</trans-unit>
+			<trans-unit id="4001">
+				<source>item_build_view_index.h1</source>
+				<target>Liste d'items recommandés</target>
+			</trans-unit>
+			<trans-unit id="4002">
+				<source>item_build_view_index.created_by</source>
+				<target>Réalisée par</target>
+			</trans-unit>
+			<trans-unit id="4004">
+				<source>item_build_view_index.champions.h2</source>
+				<target>Champions</target>
+			</trans-unit>
+			<trans-unit id="4005">
+				<source>item_build_view_index.champions.p1</source>
+				<target>Les champions concernés par cette liste d'items recommandés sont les suivants</target>
+			</trans-unit>
+			<trans-unit id="4006">
+				<source>item_build_view_index.game_mode.h2</source>
+				<target>Mode de jeu</target>
+			</trans-unit>
+			<trans-unit id="4007">
+				<source>item_build_view_index.game_mode.p1</source>
+				<target>Cette liste d'items recommandés est dédiée au mode de jeu suivant</target>
+			</trans-unit>
+			<trans-unit id="4008">
+				<source>item_build_view_index.items.h2</source>
+				<target>Objets</target>
+			</trans-unit>
+			<trans-unit id="4009">
+				<source>item_build_view_index.items.p1</source>
+				<target>Les objets affectés à cette liste d'objets recommandés sont les suivants</target>
+			</trans-unit>
+			<trans-unit id="4010">
+				<source>item_build_view_index.download.h2</source>
+				<target>Télécharger</target>
+			</trans-unit>
+			<trans-unit id="4011">
+				<source>item_build_view_index.download.p1</source>
+				<target>Téléchargez cette liste si vous désirez l'essayer.</target>
+			</trans-unit>
+			<trans-unit id="4012">
+				<source>item_build_view_index.download.btn</source>
+				<target>Télécharger</target>
 			</trans-unit>
 		</body>
 	</file>

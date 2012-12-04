@@ -33,12 +33,14 @@ class BatchManager
 		
 		//Les répertoires les plus courants ou se trouve league of legends
 		$paths = array(
-			"C:/Program Files/Riot Games/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
-			"C:/Program Files/Riot/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
-			"C:/Riot Games/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
-			"C:/Riot/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
-			"C:/Program Files (x86)/Riot Games/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
-			"C:/Program Files (x86)/Riot/League of Legends/RADS/solutions/lol_game_client_sln/releases/"
+//			"C:/Program Files/Riot Games/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
+//			"C:/Program Files/Riot Games/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
+//			"C:/Program Files/Riot/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
+//			"C:/Riot Games/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
+//			"C:/Riot/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
+//			"C:/Program Files (x86)/Riot Games/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
+//			"C:/Program Files (x86)/Riot/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
+			"D:/LOLPBE/LOLPBE/RADS/solutions/lol_game_client_sln/releases/"
 		);
 		
 		//Si la locale n est pas définie lors de l appel on prend la locale de la session
@@ -59,7 +61,7 @@ class BatchManager
 		//Ecriture des chemins d acces au dossier de league of legends
 		foreach ($paths as $path)
 		{
-			fwrite($batFile, 'cd "'.$path."\"\n");
+			fwrite($batFile, 'cd /d "'.$path."\"\n");
 		}
 		
 		//Ecriture de l operation permettant de retrouver le dernier repertoire de release de LoL
@@ -73,14 +75,13 @@ class BatchManager
 		}
 		
 		$champNames=array();
-		$itemNames = array(
-			$itemBuild->getItemRelatedByItem1Id()->setLocale('en')->getName(),
-			$itemBuild->getItemRelatedByItem2Id()->setLocale('en')->getName(),
-			$itemBuild->getItemRelatedByItem3Id()->setLocale('en')->getName(),
-			$itemBuild->getItemRelatedByItem4Id()->setLocale('en')->getName(),
-			$itemBuild->getItemRelatedByItem5Id()->setLocale('en')->getName(),
-			$itemBuild->getItemRelatedByItem6Id()->setLocale('en')->getName()
-		);
+		
+		$itemBuildItemsCollection = $itemBuild->getItemBuildItemss();
+		$itemNames = array();
+		foreach ($itemBuildItemsCollection as $itemBuildItems)
+		{
+			$itemNames[] = $itemBuildItems->getItem()->setLocale('en')->getName();
+		}
 		
 		foreach ($championItemBuilds as $championItemBuild)
 		{
@@ -96,37 +97,119 @@ class BatchManager
 			}
 			
 			//Récupération du mode de jeu
-			$fileName='RecItems';	
+			$fileName='0_RecItems_MVNerds';	
 			$gameMode = $championItemBuild->getGameMode()->getLabel();
+			
+			$jsonGameMode = '';
+			$jsonMap = '';
 			if ($gameMode == 'dominion')
 			{
-				$fileName .= 'ODIN.ini';
+				$jsonGameMode = 'ODIN';
+				$jsonMap = '8';
+				$fileName .= '_Dominion.json';
 			}
 			elseif ($gameMode == 'aram')
 			{
-				$fileName .= 'ARAM.ini';
+				$jsonGameMode = 'ARAM';
+				$jsonMap = '3';
+				$fileName .= '_ARAM.json';
 			}
 			elseif ($gameMode == 'twisted-treeline')
 			{
-				$fileName .= 'CLASSICMap10.ini';
+				$jsonGameMode = 'CLASSIC';
+				$jsonMap = '10';
+				$fileName .= '_TwistedTreeline.json';
 			}
 			else
 			{
-				$fileName .= 'CLASSIC.ini';
+				$jsonGameMode = 'CLASSIC';
+				$jsonMap = '1';
+				$fileName .= '_SummonerRift.json';
 			}
+			
+			$recommendedDir = 'Recommended';
 			
 			fwrite($batFile, 'md "'.$escapedChampName."\"\n");
 			fwrite($batFile, 'cd "'.$escapedChampName."\"\n");
-			fwrite($batFile, 'echo [ItemSet1] > '.$fileName."\n");		
-			fwrite($batFile, 'echo SetName=Set1 >> '.$fileName."\n");		
-			fwrite($batFile, 'echo RecItem1='. $itemBuild->getItemRelatedByItem1Id()->getRiotCode() .' >> '.$fileName."\n");	
-			fwrite($batFile, 'echo RecItem2='. $itemBuild->getItemRelatedByItem2Id()->getRiotCode() .' >> '.$fileName."\n");	
-			fwrite($batFile, 'echo RecItem3='. $itemBuild->getItemRelatedByItem3Id()->getRiotCode() .' >> '.$fileName."\n");	
-			fwrite($batFile, 'echo RecItem4='. $itemBuild->getItemRelatedByItem4Id()->getRiotCode() .' >> '.$fileName."\n");	
-			fwrite($batFile, 'echo RecItem5='. $itemBuild->getItemRelatedByItem5Id()->getRiotCode() .' >> '.$fileName."\n");	
-			fwrite($batFile, 'echo RecItem6='. $itemBuild->getItemRelatedByItem6Id()->getRiotCode() .' >> '.$fileName."\n");	
+			fwrite($batFile, 'md "'.$recommendedDir."\"\n");
+			fwrite($batFile, 'cd "'.$recommendedDir."\"\n");
+			fwrite($batFile, 'echo { > '.$fileName."\n");		
+			fwrite($batFile, "echo \t\"champion\":\"". $escapedChampName ."\", >> ".$fileName."\n");		
+			fwrite($batFile, "echo \t\"title\":\"default\", >> ".$fileName."\n");	
+			fwrite($batFile, "echo \t\"type\":\"mvnerds\", >> ".$fileName."\n");
+			fwrite($batFile, "echo \t\"map\":\"". $jsonMap ."\", >> ".$fileName."\n");
+			fwrite($batFile, "echo \t\"mode\":\"". $jsonGameMode ."\", >> ".$fileName."\n");
+			fwrite($batFile, "echo \t\"priority\":\"true\", >> ".$fileName."\n");
+			fwrite($batFile, "echo \t\"blocks\":[ >> ".$fileName."\n");
+			
+			$itemTab = array();
+			$maxPosition = 0;
+			foreach ($itemBuildItemsCollection as $itemBuildItems)
+			{
+				$item = $itemBuildItems->getItem();
+				$type = $itemBuildItems->getType();
+				$position = $itemBuildItems->getPosition();
+				$count = $itemBuildItems->getCount();
+				
+				if (! isset($itemTab[$position]))
+				{
+					$itemTab[$position] = array('type' =>$type, 'items' => array());
+				}
+				
+				$stdItem = new \stdClass();
+				$stdItem->code = $item->getRiotCode();
+				$stdItem->count = $count;
+				
+				$itemTab[$position]['items'][] = $stdItem;
+				
+				if ($position > $maxPosition)
+				{
+					$maxPosition = $position;
+				}
+			}
+			
+			foreach($itemTab as $itemBlock)
+			{
+				$blockName = $itemBlock['type'];
+				fwrite($batFile, "echo \t\t { >> ".$fileName."\n");
+				fwrite($batFile, "echo \t\t\t \"type\":\"". $blockName ."\", >> ".$fileName."\n");
+				fwrite($batFile, "echo \t\t\t \"items\":[ >> ".$fileName."\n");
+				
+				$nbItems = count($itemBlock['items']);
+				$k = 1;
+				foreach($itemBlock['items'] as $item)
+				{
+					fwrite($batFile, "echo \t\t\t\t{ >> ".$fileName."\n");
+					fwrite($batFile, "echo \t\t\t\t\t \"id\":\"".$item->code."\", >> ".$fileName."\n");
+					fwrite($batFile, "echo \t\t\t\t\t \"count\":".$item->count." >> ".$fileName."\n");
+					
+					if ($k >= $nbItems)
+					{
+						fwrite($batFile, "echo \t\t\t\t} >> ".$fileName."\n");
+					}
+					else
+					{
+						fwrite($batFile, "echo \t\t\t\t}, >> ".$fileName."\n");
+					}
+					$k++;
+				}
+				
+				fwrite($batFile, "echo \t\t\t] >> ".$fileName."\n");
+				
+				if ($itemTab[$maxPosition]['type'] == $blockName)
+				{
+					fwrite($batFile, "echo \t\t } >> ".$fileName."\n");					
+				}
+				else 
+				{
+					fwrite($batFile, "echo \t\t }, >> ".$fileName."\n");
+				}
+			}
+			
+			fwrite($batFile, "echo \t] >> ".$fileName."\n");
+			fwrite($batFile, "echo } >> ".$fileName."\n");
 			fwrite($batFile, "\n\n");	
-			fwrite($batFile, 'cd "../"'."\n\n");
+			fwrite($batFile, 'cd "../../"'."\n\n");
 		}
 		
 		fwrite($batFile, "Cls\necho Les fichiers ont bien ete crees, a bientot sur mvnerds.com\n");

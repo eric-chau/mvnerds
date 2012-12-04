@@ -6,16 +6,21 @@
 	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square36-sprite.css') }}">
 	<link href="{{ asset('css/item_builder/creation-page.css') }}" rel="stylesheet" type="text/css">
 	<link href="{{ asset('css/item_builder/modal.css') }}" rel="stylesheet" type="text/css">
+	<link href="{{ asset('css/jquery.mCustomScrollbar.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 	
 {% block javascripts %}
 	{{ parent() }}
 
+	<script src="{{ asset('js/item_handler/item-popover.js') }}"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 	<script src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
 	<script src="{{ asset('js/jquery.isotope.min.js') }}"></script>
 	<script src="{{ asset('js/launch_site/alerts-ajax-handler.js') }}"></script>
 	<script src="{{ asset('js/launch_site/isotope-filter.js') }}"></script>
 	<script src="{{ asset('js/item_handler/item_builder/creation-page.js') }}"></script>
+	<script src="{{ asset('js/jquery.mCustomScrollBar.js') }}"></script>
+	<script src="{{ asset('js/jquery.mousewheel.min.js') }}"></script>
 {% endblock %}
 
 {% block title %}
@@ -60,12 +65,17 @@
 		<p class="note">{{'create_item_build.tip.4' | trans}}</p>
 		
 		<div class="item-container">
-			<div id="item-topbar" class="actionbar">
+			{#<div id="item-topbar" class="actionbar">
 				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_topbar.html.twig' %}
-			</div>
-				
-			<div id="item-list" class="elements-grid">
-				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_grid.html.twig' %}
+			</div>#}
+			
+			<div class="row-fluid">
+				<div id="item-list" class="elements-grid span9">
+					{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_grid.html.twig' %}
+				</div>
+				<div id="item-sidebar-blocks" class="span3">
+					{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_sidebar_blocks.html.twig' %}
+				</div>
 			</div>
 		</div>
 		
@@ -112,9 +122,9 @@
 			<p>
 				{{'create_item_build.modal_authenticate.p1' | trans}}
 			</p>
-			<p>
+			{#<p>
 				{{'create_item_build.modal_authenticate.p2' | trans}}
-			</p>
+			</p>#}
 			<p>
 				{{'create_item_build.modal_authenticate.p3' | trans}}
 			</p>
