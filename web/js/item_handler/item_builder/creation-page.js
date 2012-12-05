@@ -389,7 +389,13 @@ function initItemAddBlock() {
 			placeholder = 'Nom du bloc'
 		}
 		$itemSidebarList.append('<li class="item-sidebar-block-li" id="___item-block-li"><input type="text" placeholder="'+placeholder+'" class="item_sidebar_block_input span9" value=""/> <a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a><div class="item-sidebar-block-div"><div class="indication">'+indication+'</div></div></li>')
+		$('.item-sidebar-block-li').last().children('input').focus();
 		initItemDroppable($itemSidebarList.find('li:last div.item-sidebar-block-div'));
+		setTimeout(function(){
+				$('#item_sidebar_blocks_li').mCustomScrollbar("scrollTo","bottom");
+			},
+			300
+		);
 		return false;
 	});
 }
