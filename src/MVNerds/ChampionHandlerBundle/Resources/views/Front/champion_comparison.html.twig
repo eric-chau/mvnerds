@@ -1,5 +1,4 @@
 <div class="data-scrollable" id="champion-comparison-center">
-
 	<div id="champion-list">
 		{% include 'MVNerdsChampionHandlerBundle:Front:champion_grid.html.twig' %}
 	</div>
@@ -20,8 +19,17 @@
 	});
 </script>
 
-<script type="text/javascript" src="{{ asset('/js/launch_site/isotope-filter.js') }}"></script>
-<script type="text/javascript" src="{{ asset('/js/champion_handler/champion_handler.js') }}"></script>
 {% if app.environment != 'dev' %}
-	<script type="text/javascript" src="{{ asset('/js/google_analytics.js') }}"></script>
+	{% javascripts
+		'js/launch_site/isotope-filter.js'
+		'js/champion_handler/champion_handler.js'
+		'js/google_analytics.js'
+		output='js/compiled/champion-handler-champion-comparison.js'
+		filter='yui_js'
+	%}
+	<script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+{% else %}
+	<script type="text/javascript" src="{{ asset('js/launch_site/isotope-filter.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/champion_handler/champion_handler.js') }}"></script>
 {% endif %}

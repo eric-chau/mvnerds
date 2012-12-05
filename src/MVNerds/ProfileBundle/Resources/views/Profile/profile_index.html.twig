@@ -18,18 +18,43 @@
 {% block css %}
 	{{ parent() }}
 
-	<link href="{{ asset('css/profile/profile.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('css/item_builder/listing-page.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('css/item_builder/modal.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('css/champion_handler/champion-square25-sprite.css') }}" rel="stylesheet" type="text/css">
+	{% if app.environment != 'dev' %}
+		{% stylesheets 
+			'css/profile/profile.css'
+			'css/item_builder/listing-page.css'
+			'css/item_builder/modal.css'
+			'css/champion_handler/champion-square25-sprite.css'
+			output='css/compiled/profile-index.css'
+			filter='yui_css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
+	{% else %}
+		<link href="{{ asset('css/profile/profile.css') }}" rel="stylesheet" type="text/css">
+		<link href="{{ asset('css/item_builder/listing-page.css') }}" rel="stylesheet" type="text/css">
+		<link href="{{ asset('css/item_builder/modal.css') }}" rel="stylesheet" type="text/css">
+		<link href="{{ asset('css/champion_handler/champion-square25-sprite.css') }}" rel="stylesheet" type="text/css">
+	{% endif %}
 {% endblock %}
 	
 {% block javascripts %}
 	{{ parent() }}
 	
-	<script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-popover.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/profile/profile.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/item_handler/item_builder/dl-modal.js') }}"></script>
+	{% if app.environment != 'dev' %}
+		{% javascripts
+			'js/bootstrap/bootstrap-popover.js'
+			'js/profile/profile.js'
+			'js/item_handler/item_builder/dl-modal.js'
+			output='js/compiled/profile-index.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	{% else %}
+		<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/profile/profile.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/item_handler/item_builder/dl-modal.js') }}"></script>
+	{% endif %}
 {% endblock %}
 
 {% block body_main_content %}

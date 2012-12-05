@@ -6,17 +6,28 @@
 
 {% block css %}
 	{{ parent() }}
-
-	<link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('css/normalize.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('css/main.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('css/launch_site/front.css') }}" rel="stylesheet" type="text/css">
+	
+	{% if app.environment != 'dev' %}
+		{% stylesheets 
+			'css/bootstrap.css'
+			'css/normalize.css'
+			'css/main.css'
+			'css/launch_site/front.css'
+			filter='yui_css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
+	{% else %}
+		<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/main.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/launch_site/front.css') }}">
+	{% endif %}
 {% endblock %}
 
 {% block javascripts %}
 	{{ parent() }}
 
-	<script type="text/javascript" src="{{ asset('js/launch_site/countdown.js') }}"></script>
 	{% if app.environment != 'dev' %}
 		<script type="text/javascript" src="{{ asset('/js/google_analytics.js') }}"></script>
 	{% endif %}
@@ -40,14 +51,8 @@
 					</div>
 					
 					<div class="span7">
-						<div class="launch-date-msg">{{'Countdown.message'|trans}}</div> 
-						
-						<div class="countdown">
-							<div class="days"></div>
-							<div class="hours"></div>
-							<div class="minutes"></div>
-							<div class="seconds"></div>
-						</div>
+						<h4>{{ 'Champion.rotate'|trans }} ({{ 'Champion.rotate.preseason'|trans }} - {{ 'Champion.rotate.week'|trans }} 3)</h4>
+						<img src="{{ asset('images/free_champion_rotation/preseason_3_week_3.png') }}" />
 					</div>
 				</div>	
 				
@@ -77,6 +82,4 @@
 			</div>
 		</div>
 	</div>
-	
-	
 {% endblock %}

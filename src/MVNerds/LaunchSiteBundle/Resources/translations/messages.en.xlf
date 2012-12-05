@@ -503,6 +503,18 @@
 				<source>Go_back_home.2</source>
 				<target>to home</target>
 			</trans-unit>
+			<trans-unit id="15002">
+				<source>Champion.rotate</source>
+				<target>Free champion rotation</target>
+			</trans-unit>
+			<trans-unit id="15003">
+				<source>Champion.rotate.preseason</source>
+				<target>Preseason</target>
+			</trans-unit>
+			<trans-unit id="15004">
+				<source>Champion.rotate.week</source>
+				<target>Week</target>
+			</trans-unit>
 
 			<!--  COMMENT IE -->
 			<trans-unit id="16000">

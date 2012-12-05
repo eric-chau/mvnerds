@@ -3,24 +3,54 @@
 {% block css %}
 	{{ parent() }}
 
-	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square36-sprite.css') }}">
-	<link href="{{ asset('css/item_builder/creation-page.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('css/item_builder/modal.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('css/jquery.mCustomScrollbar.css') }}" rel="stylesheet" type="text/css">
+	{% if app.environment != 'dev' %}
+		{% stylesheets 
+			'css/champion_handler/champion-square36-sprite.css'
+			'css/item_builder/creation-page.css'
+			'css/item_builder/modal.css'
+			'css/jquery.mCustomScrollbar.css'
+			output='css/compiled/pmri-create.css'
+			filter='yui_css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
+	{% else %}
+		<link rel="stylesheet" href="{{ asset('css/champion_handler/champion-square36-sprite.css') }}">
+		<link href="{{ asset('css/item_builder/creation-page.css') }}" rel="stylesheet" type="text/css">
+		<link href="{{ asset('css/item_builder/modal.css') }}" rel="stylesheet" type="text/css">
+		<link href="{{ asset('css/jquery.mCustomScrollbar.css') }}" rel="stylesheet" type="text/css">
+	{% endif %}
 {% endblock %}
 	
 {% block javascripts %}
 	{{ parent() }}
-
-	<script src="{{ asset('js/item_handler/item-popover.js') }}"></script>
+	
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-	<script src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
-	<script src="{{ asset('js/jquery.isotope.min.js') }}"></script>
-	<script src="{{ asset('js/launch_site/alerts-ajax-handler.js') }}"></script>
-	<script src="{{ asset('js/launch_site/isotope-filter.js') }}"></script>
-	<script src="{{ asset('js/item_handler/item_builder/creation-page.js') }}"></script>
-	<script src="{{ asset('js/jquery.mCustomScrollBar.js') }}"></script>
-	<script src="{{ asset('js/jquery.mousewheel.min.js') }}"></script>
+	{% if app.environment != 'dev' %}
+		{% javascripts
+			'js/item_handler/item-popover.js'
+			'js/bootstrap/bootstrap-popover.js'
+			'js/jquery.isotope.min.js'
+			'js/launch_site/alerts-ajax-handler.js'
+			'js/launch_site/isotope-filter.js'
+			'js/item_handler/item_builder/creation-page.js'
+			'js/jquery.mCustomScrollBar.js'
+			'js/jquery.mousewheel.min.js'
+			output='js/compiled/pmri-create.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	{% else %}
+		<script src="{{ asset('js/item_handler/item-popover.js') }}"></script>
+		<script src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
+		<script src="{{ asset('js/jquery.isotope.min.js') }}"></script>
+		<script src="{{ asset('js/launch_site/alerts-ajax-handler.js') }}"></script>
+		<script src="{{ asset('js/launch_site/isotope-filter.js') }}"></script>
+		<script src="{{ asset('js/item_handler/item_builder/creation-page.js') }}"></script>
+		<script src="{{ asset('js/jquery.mCustomScrollBar.js') }}"></script>
+		<script src="{{ asset('js/jquery.mousewheel.min.js') }}"></script>
+	{% endif %}
 {% endblock %}
 
 {% block title %}

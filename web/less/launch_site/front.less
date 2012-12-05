@@ -136,38 +136,24 @@ div.header-container {
 		}
 	}
 
-	div.launch-date-msg {
-		color: #999;
-		display: inline-block;
-		font-family: 'Trebuchet MS', sans-serif;
-		font-size: 28px;
-		font-weight: bold;
-		margin: 20px 0 5px 0;
-		text-transform: uppercase;
-	}
+	div.span7 {
+		opacity: .5;
+		padding-left: 50px;
 
-	div.countdown {
-		div {
-			border: 1px solid rgba(0,0,0,0.1);
-			.border-radius(10px);
-			display: inline-block;
-			font-size: 22px;
-			line-height: 1em;
-			padding: 8px 0;
-			margin-right: 6px;
-			text-align: center;
-			width: 120px;
-
-			strong {
-				color: @MVNerdsBlue;
-				display: block;
-				font-size: 28px;
-				font-weight: bold;
-				line-height: 1em;
-				margin-bottom: 5px;
-			}
+		&:hover {
+			opacity: 1; .transition(opacity .25s linear);
 		}
-	}
+
+		h4 {
+			text-transform: uppercase;
+			margin: 5px 0 10px 0;
+		}
+
+		img {
+			display: inline-block;
+			margin-left: 30px;
+		}
+	}	
 
 	div.switch-language-container {
 		float: right;

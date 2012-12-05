@@ -3,29 +3,63 @@
 {% block css %}
 	{{ parent() }}
 
-	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/main.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/launch_site/front.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/guide-tour.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/launch_site/front-compare.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/launch_site/data-scroll.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square-sprite.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-portrait-sprite.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square25-sprite.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square36-sprite.css') }}">
+	{% if app.environment != 'dev' %}
+		{% stylesheets 
+			'css/bootstrap.css'
+			'css/normalize.css'
+			'css/main.css'
+			'css/launch_site/front.css'
+			'css/guide-tour.css'
+			'css/launch_site/front-compare.css'
+			'css/launch_site/data-scroll.css'
+			'css/champion_handler/champion-square-sprite.css'
+			'css/champion_handler/champion-portrait-sprite.css'
+			'css/champion_handler/champion-square25-sprite.css'
+			'css/champion_handler/champion-square36-sprite.css'
+			output='css/compiled/champion-handler-main.css'
+			filter='yui_css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
+	{% else %}
+		<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/main.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/launch_site/front.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/guide-tour.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/launch_site/front-compare.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/launch_site/data-scroll.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/champion_handler/champion-square-sprite.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/champion_handler/champion-portrait-sprite.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/champion_handler/champion-square25-sprite.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/champion_handler/champion-square36-sprite.css') }}">
+	{% endif %}
 {% endblock %}
 
 {% block javascripts %}
 	{{ parent() }}
 	
-	<script type="text/javascript" src="{{ asset('/js/launch_site/countdown.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/launch_site/front.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/champion_handler/shortcut.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/launch_site/alerts-ajax-handler.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/launch_site/data-scroll.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/champion_handler/sort.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/champion_handler/common-guide-tour.js') }}"></script>
+	{% if app.environment != 'dev' %}
+		{% javascripts
+			'js/launch_site/front.js'
+			'js/champion_handler/shortcut.js'
+			'js/launch_site/alerts-ajax-handler.js'
+			'js/launch_site/data-scroll.js'
+			'js/champion_handler/sort.js'
+			'js/champion_handler/common-guide-tour.js'
+			output='js/compiled/champion-handler-main.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	{% else %}
+		<script type="text/javascript" src="{{ asset('js/launch_site/front.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/champion_handler/shortcut.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/launch_site/alerts-ajax-handler.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/launch_site/data-scroll.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/champion_handler/sort.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/champion_handler/common-guide-tour.js') }}"></script>
+	{% endif %}
 		
 	{% if locale == 'fr' %}
 		<script type="text/javascript" src="{{ asset('/js/champion_handler/guide-tour-fr.js') }}"></script>

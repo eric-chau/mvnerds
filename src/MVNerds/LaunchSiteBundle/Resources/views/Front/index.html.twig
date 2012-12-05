@@ -2,45 +2,60 @@
 
 {% block css %}
 	{{ parent() }}
-
-	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/main.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/launch_site/front.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/guide-tour.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/launch_site/front-compare.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/launch_site/data-scroll.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square-sprite.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-portrait-sprite.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square25-sprite.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square36-sprite.css') }}">
-	<link href="{{ asset('css/item_builder/listing-page.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('css/item_builder/modal.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('css/news/carousel.css') }}" rel="stylesheet" type="text/css">
+	
+	{% if app.environment != 'dev' %}
+		{% stylesheets 
+			'css/bootstrap.css'
+			'css/normalize.css'
+			'css/main.css'
+			'css/launch_site/front.css'
+			'css/champion_handler/champion-square25-sprite.css'
+			'css/champion_handler/champion-square36-sprite.css'
+			'css/item_builder/listing-page.css'
+			'css/item_builder/modal.css'
+			'css/news/carousel.css'
+			output='css/compiled/launch-site-index.css'
+			filter='yui_css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
+	{% else %}
+		<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/main.css') }}">
+		<link rel="stylesheet" href="{{ asset('/css/launch_site/front.css') }}">
+		<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square25-sprite.css') }}">
+		<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square36-sprite.css') }}">
+		<link href="{{ asset('css/item_builder/listing-page.css') }}" rel="stylesheet" type="text/css">
+		<link href="{{ asset('css/item_builder/modal.css') }}" rel="stylesheet" type="text/css">
+		<link href="{{ asset('css/news/carousel.css') }}" rel="stylesheet" type="text/css">
+	{% endif %}
 {% endblock %}
 
 {% block javascripts %}
 	{{ parent() }}
 	
-	<script type="text/javascript" src="{{ asset('/js/launch_site/countdown.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/launch_site/front.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/champion_handler/shortcut.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/launch_site/alerts-ajax-handler.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/launch_site/data-scroll.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/champion_handler/sort.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/champion_handler/common-guide-tour.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-tab.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('/js/bootstrap/bootstrap-popover.js') }}"></script>
-	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-carousel.js') }}"></script>
-	<script src="{{ asset('js/item_handler/item_builder/dl-modal.js') }}"></script>
-	
-	{% if locale == 'fr' %}
-		<script type="text/javascript" src="{{ asset('/js/champion_handler/guide-tour-fr.js') }}"></script>
+	{% if app.environment != 'dev' %}
+		{% javascripts
+			'js/launch_site/front.js'
+			'js/champion_handler/sort.js'
+			'js/bootstrap/bootstrap-tab.js'
+			'js/bootstrap/bootstrap-popover.js'
+			'js/bootstrap/bootstrap-carousel.js'
+			'js/item_handler/item_builder/dl-modal.js'
+			output='js/compiled/launch-site-index.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
 	{% else %}
-		<script type="text/javascript" src="{{ asset('/js/champion_handler/guide-tour.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/launch_site/front.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/champion_handler/sort.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-tab.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-carousel.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('js/item_handler/item_builder/dl-modal.js') }}"></script>
 	{% endif %}
-
-	
 {% endblock %}
 		
 {% block title %}
@@ -50,36 +65,15 @@
 {% block header_footer %}
 	<div class="presentation-container">
 		<div class="content">
-			{#<div class="overview">
-				<h2>{{'Overview.title'|trans}}</h2>
-
-				<p>{{'Overview.content.p1'|trans}}</p>
-
-				<p>{{'Overview.content.p2'|trans}}</p>
-			</div>
-			<div class="registration">
-				<h2>{{'Registration.title'|trans}}</h2>
-
-				<p>{{'Registration.content.p1'|trans}}</p>
-
-				<div id="leave-email-form-container">
-					{% include 'MVNerdsLaunchSiteBundle:Front:leave_email_form.html.twig' with {'form': form} %}
-				</div>
-
-				<p class="secret-msg">{{'Registration.content.p2'|trans}}</p>
-			</div>#}
+			
 		</div>
-		{#<div class="link registration" data-content-name="registration">{{'Registration.title'|trans}}</div>
-		<div class="link overview" data-content-name="overview">{{'Overview.title'|trans}}</div>#}
+		
 	</div>
 	<div class="clearfix"></div>
 {% endblock %}
 		
 {% block body_main_content %}	
 	<div class="body-container">
-		
-		{#<h1 style="background-color: #000;padding: 10px;margin:20px auto;">{{'index_page.h1'|trans}}</h1>#}
-		
 		<div class="row-fluid">
 			{% include 'MVNerdsNewsBundle:Front:carousel_index.html.twig' with {'news': news} %}
 			

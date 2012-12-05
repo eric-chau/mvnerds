@@ -2,9 +2,20 @@
 	
 {% block css %}
 	{{ parent() }}
-
-	<link href="{{ asset('css/news/view.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('css/comment/comment.css') }}" rel="stylesheet" type="text/css">
+	
+	{% if app.environment != 'dev' %}
+		{% stylesheets 
+			'css/news/view.css'
+			'css/comment/comment.css'
+			output='css/compiled/news-detail.css'
+			filter='yui_css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
+	{% else %}
+		<link href="{{ asset('css/news/view.css') }}" rel="stylesheet" type="text/css">
+		<link href="{{ asset('css/comment/comment.css') }}" rel="stylesheet" type="text/css">
+	{% endif %}
 {% endblock %}
 
 {% block javascripts %}

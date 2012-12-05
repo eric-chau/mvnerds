@@ -2,21 +2,44 @@
 
 {% block css %}
 	{{ parent() }}
-
-	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square25-sprite.css') }}">
-	<link href="{{ asset('css/item_builder/listing-page.css') }}" rel="stylesheet" type="text/css">
-	<link href="{{ asset('css/item_builder/modal.css') }}" rel="stylesheet" type="text/css">
+	
+	{% if app.environment != 'dev' %}
+		{% stylesheets 
+			'css/champion_handler/champion-square25-sprite.css'
+			'css/item_builder/listing-page.css'
+			output='css/compiled/pmri-list.css'
+			filter='yui_css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
+	{% else %}
+		<link rel="stylesheet" href="{{ asset('css/champion_handler/champion-square25-sprite.css') }}">
+		<link href="{{ asset('css/item_builder/listing-page.css') }}" rel="stylesheet" type="text/css">
+	{% endif %}
 {% endblock %}
 	
 {% block javascripts %}
 	{{ parent() }}
-
-	<script src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
-	<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
-	<script src="{{ asset('js/item_handler/item_builder/listing-page.js') }}"></script>
-	<script src="{{ asset('js/item_handler/item_builder/dl-modal.js') }}"></script>
-	<script src="{{ asset('js/launch_site/alerts-ajax-handler.js') }}"></script>
+		
+	{% if app.environment != 'dev' %}
+		{% javascripts
+			'js/bootstrap/bootstrap-popover.js'
+			'js/jquery.dataTables.min.js'
+			'js/item_handler/item_builder/listing-page.js'
+			'js/launch_site/alerts-ajax-handler.js'
+			output='js/compiled/pmri-list.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	{% else %}
+		<script src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
+		<script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+		<script src="{{ asset('js/item_handler/item_builder/listing-page.js') }}"></script>
+		<script src="{{ asset('js/launch_site/alerts-ajax-handler.js') }}"></script>
+	{% endif %}
 {% endblock %}
+	
 {% block title %}
 	{{'item_build_list_index.title'|trans}}
 {% endblock %}

@@ -5,20 +5,36 @@
 {% block css %}
 	{{ parent() }}
 
-	<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
-	<link rel="stylesheet" href="{{ asset('css/main.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/launch_site/front.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square-sprite.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-portrait-sprite.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square25-sprite.css') }}">
-	<link rel="stylesheet" href="{{ asset('/css/champion_handler/champion-square36-sprite.css') }}">
+	{% if app.environment != 'dev' %}
+		{% stylesheets 
+			'css/bootstrap.css'
+			'css/normalize.css'
+			'css/main.css'
+			'css/launch_site/front.css'
+			'css/champion_handler/champion-square-sprite.css'
+			'css/champion_handler/champion-portrait-sprite.css'
+			'css/champion_handler/champion-square25-sprite.css'
+			'css/champion_handler/champion-square36-sprite.css'
+			output='css/compiled/champion-handler-champion-detail.css'
+			filter='yui_css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
+	{% else %}
+		<link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/normalize.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/main.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/launch_site/front.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/champion_handler/champion-square-sprite.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/champion_handler/champion-portrait-sprite.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/champion_handler/champion-square25-sprite.css') }}">
+		<link rel="stylesheet" href="{{ asset('css/champion_handler/champion-square36-sprite.css') }}">
+	{% endif %}
 {% endblock %}
 
 {% block javascripts %}
 	{{ parent() }}
 	
-	<script type="text/javascript" src="{{ asset('/js/launch_site/countdown.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('/js/launch_site/front.js') }}"></script>	
 {% endblock %}
 				

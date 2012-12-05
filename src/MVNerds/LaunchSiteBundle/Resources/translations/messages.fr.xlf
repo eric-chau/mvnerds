@@ -503,6 +503,18 @@
 				<source>Go_back_home.2</source>
 				<target>à l'accueil</target>
 			</trans-unit>
+			<trans-unit id="15002">
+				<source>Champion.rotate</source>
+				<target>Rotation de champion</target>
+			</trans-unit>
+			<trans-unit id="15003">
+				<source>Champion.rotate.preseason</source>
+				<target>Présaison</target>
+			</trans-unit>
+			<trans-unit id="15004">
+				<source>Champion.rotate.week</source>
+				<target>Semaine</target>
+			</trans-unit>
 
 			<!--  COMMENT IE -->
 			<trans-unit id="16000">
