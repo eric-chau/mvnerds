@@ -42,6 +42,30 @@
 				<source>Profil.consult_profile</source>
 				<target>Consulter le profil de</target>
 			</trans-unit>
+			<trans-unit id="11">
+				<source>news_view.back_to_list</source>
+				<target>Retourner à la liste des news</target>
+			</trans-unit>
+			<trans-unit id="12">
+				<source>Comment.loading.old.comment</source>
+				<target>Chargement des commentaires précédents en cours...</target>
+			</trans-unit>
+			<trans-unit id="13">
+				<source>Comment.title</source>
+				<target>Vos réactions</target>
+			</trans-unit>
+			<trans-unit id="14">
+				<source>Comment.not_authenticated</source>
+				<target>Vous devez être connecté à votre compte MVNerds pour pouvoir laisser un commentaire. Que voulez-vous faire ?</target>
+			</trans-unit>
+			<trans-unit id="15">
+				<source>Comment.signin</source>
+				<target>Je me connecte</target>
+			</trans-unit>
+			<trans-unit id="16">
+				<source>Comment.registration</source>
+				<target>Je m'inscris</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

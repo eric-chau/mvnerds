@@ -46,6 +46,26 @@
 				<source>news_view.back_to_list</source>
 				<target>Back to news list</target>
 			</trans-unit>
+			<trans-unit id="12">
+				<source>Comment.loading.old.comment</source>
+				<target>Loading previous comments...</target>
+			</trans-unit>
+			<trans-unit id="13">
+				<source>Comment.title</source>
+				<target>Comments</target>
+			</trans-unit>
+			<trans-unit id="14">
+				<source>Comment.not_authenticated</source>
+				<target>You must be authenticated to leave a comment. Select one of the following options.</target>
+			</trans-unit>
+			<trans-unit id="15">
+				<source>Comment.signin</source>
+				<target>Sign in</target>
+			</trans-unit>
+			<trans-unit id="16">
+				<source>Comment.registration</source>
+				<target>Register</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

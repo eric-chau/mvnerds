@@ -5,7 +5,7 @@
 		<div class="row-fluid">
 			<div class="span2"></div>
 			<div class="span8 no-comment">
-				<p>Aucune réaction n'a été laissé pour le moment. Soyez le premier !</p>
+				<p>{{ 'Comments.no_reactions'|trans }}</p>
 			</div>
 			<div class="span2"></div>
 		</div>
@@ -15,7 +15,7 @@
 <div class="row-fluid more-comments-loader hide">
 	<div class="span2"></div>
 	<div class="span8">
-		<p><img src="{{ asset('images/commons/loader32-bg-141414.gif') }}" /> Chargement des commentaires précédents en cours...</p>
+		<p><img src="{{ asset('images/commons/loader32-bg-141414.gif') }}" /> {{ 'Comments.no_reactions'|trans }}</p>
 	</div>
 	<div class="span2"></div>
 </div>
