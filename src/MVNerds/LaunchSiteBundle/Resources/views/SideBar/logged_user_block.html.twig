@@ -1,7 +1,7 @@
 <a href="{{ path('summoner_profile_index') }}" class="profile-link">
-	<img src="{{ asset('images/avatar/'~ app.user.getProfile().getAvatar().getName() ~'.jpg') }}" class="sidebar-tooltip-anchor" rel="tooltip" data-placement="right" data-original-title="<span class='sidebar-tooltip'>Accèdez à votre profil</span>" />
+	<img src="{{ asset('images/avatar/'~ app.user.getProfile().getAvatar().getName() ~'.jpg') }}" class="sidebar-tooltip-anchor" rel="tooltip" data-placement="right" data-original-title="<span class='sidebar-tooltip'>{{"Sidebar.anonymous_user.tooltip.title"|trans}}</span>" />
 </a>
 <p class="item only-active-show nickname">{{ app.user.getUsername() }}</p>
 <p class="item only-active-show team">Most Valuable Nerds</p>
-<p class="item only-active-show"><a href="#"><i class="icon-cog"></i> Administrer mon profil</a></p>
-<p class="item only-active-show"><a href="{{ path('security_summoner_logout') }}"><i class="icon-off"></i> Me déconnecter</a></p>
+<p class="item only-active-show"><a href="#"><i class="icon-cog"></i> {{'Sidebar.administer_profile'|trans}}</a></p>
+<p class="item only-active-show"><a href="{{ path('security_summoner_logout') }}"><i class="icon-off"></i> {{'Sidebar.log_off'|trans}}</a></p>

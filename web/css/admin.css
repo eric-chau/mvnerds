@@ -101,7 +101,7 @@ div.content-container form input[type="text"],
 div.content-container form textarea {
   width: 277px;
 }
-textarea {
+textarea:not(.markItUpEditor) {
   height: 100px!important;
 }
 div.content-container form label {

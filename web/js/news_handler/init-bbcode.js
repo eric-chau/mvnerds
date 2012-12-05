@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	mySettings.previewParserPath = Routing.generate('bbcode_parse');
+	mySettings.previewParserPath = Routing.generate('bbcode_parse', {'_locale':locale});
 
 	$('#news_content').markItUp(mySettings);
 
