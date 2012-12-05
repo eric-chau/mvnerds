@@ -554,6 +554,93 @@
 				<source>index_page.title</source>
 				<target>Guides, Builds, and Tools for League of Legends</target>
 			</trans-unit>
+
+			<trans-unit id="20000">
+				<source>registration_success.h1</source>
+				<target>Registration is over - Thank you !</target>
+			</trans-unit>
+			<trans-unit id="20001">
+				<source>registration_success.p1</source>
+				<target>Summoner %username%, your registration is successfull. You will soon receive a mail to the following address, %usermail%. The mail contains a link wich will allow you to activate your MVNerds account.</target>
+			</trans-unit>
+			<trans-unit id="20002">
+				<source>registration_success.p2</source>
+				<target>If you made an error when you entered you e-mail address, please inform us with the contact form. We will do what has to be done for the changes as soon as possible.</target>
+			</trans-unit>
+			
+			<trans-unit id="20100">
+				<source>Registration.User.username</source>
+				<target>Username</target>
+			</trans-unit>
+			<trans-unit id="20101">
+				<source>Registration.User.pwd</source>
+				<target>Password</target>
+			</trans-unit>
+			<trans-unit id="20102">
+				<source>Registration.User.pwd_confirm</source>
+				<target>Confirm password</target>
+			</trans-unit>
+			<trans-unit id="20103">
+				<source>Registration.User.email</source>
+				<target>E-Mail</target>
+			</trans-unit>
+
+			<trans-unit id="20200">
+				<source>account_activation.h1</source>
+				<target>Your account is now active</target>
+			</trans-unit>
+			<trans-unit id="20201">
+				<source>account_activation.p1</source>
+				<target>Summoner %username%, you are now a member of the MVNerds community! You can, from now on, access to your personal profile and edit your preferences.	</target>
+			</trans-unit>
+			<trans-unit id="20202">
+				<source>account_activation.p2</source>
+				<target>All the MVNerds team thanks you !</target>
+			</trans-unit>
+			<trans-unit id="20203">
+				<source>account_activation.a.profile</source>
+				<target>See my profile</target>
+			</trans-unit>
+			<trans-unit id="20204">
+				<source>account_activation.a.index</source>
+				<target>Home</target>
+			</trans-unit>
+			<trans-unit id="20205">
+				<source>account_activation_fail.h1</source>
+				<target>The activation operation failed</target>
+			</trans-unit>
+			<trans-unit id="20206">
+				<source>account_activation_fail.p1</source>
+				<target>You tried to activate %slug% summoner accout wwith the following code %activationcode%.
+						The operation has failed, the account name and / or the activation code are not correct.</target>
+			</trans-unit>
+			<trans-unit id="20207">
+				<source>account_activation_fail.p2</source>
+				<target>We invite you to follow the link provided in the mail we sent you at the address you specified when you registered yourself. If the problem persists
+					, send us a mail explaining your manipulations, we will try to help you as soon as possible.
+				</target>
+			</trans-unit>
+			<trans-unit id="20208">
+				<source>account_activation_fail.p3</source>
+				<target>Summoner %username%, your account is already activated. You don't have to do this operation again.</target>
+			</trans-unit>
+			<trans-unit id="20209">
+				<source>account_activation_fail.p4</source>
+				<target>The MVNerds team</target>
+			</trans-unit>
+
+			<trans-unit id="20300">
+				<source>Validation.User.username.already_in_use</source>
+				<target>This user name is already used.</target>
+			</trans-unit>
+			<trans-unit id="20301">
+				<source>Validation.User.password.miss_match</source>
+				<target>The two passwords do not match.</target>
+			</trans-unit>
+			<trans-unit id="20302">
+				<source>Validation.User.email.already_in_use</source>
+				<target>This e-mail address is already in use.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

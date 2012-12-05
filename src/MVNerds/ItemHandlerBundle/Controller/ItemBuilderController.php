@@ -103,9 +103,10 @@ class ItemBuilderController extends Controller
 			{
 				$itemBlocks[$position] = array('type' => $type, 'escaped' => $ecapedName, 'items' => array());
 			}
-
+			
 			$itemBlocks[$position]['items'][] = $item;
 		}
+		ksort($itemBlocks);
 		
 		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:view_index.html.twig', array(
 				'itemBuild'	=> $itemBuild,

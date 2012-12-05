@@ -554,6 +554,96 @@
 				<source>index_page.title</source>
 				<target>Guides, Builds, et Outils pour League of Legends</target>
 			</trans-unit>
+
+			<trans-unit id="20000">
+				<source>registration_success.h1</source>
+				<target>Enregistrement terminé - Merci !</target>
+			</trans-unit>
+			<trans-unit id="20001">
+				<source>registration_success.p1</source>
+				<target>Invocateur %username%, votre enregistrement s'est déroulé avec succès. Vous allez recevoir dans les prochaines minutes un email à 
+					l'adresse email que vous avez renseigné, %usermail%. L'email comporte un lien de confirmation qui vous permet d'activer votre compte MVNerds.</target>
+			</trans-unit>
+			<trans-unit id="20002">
+				<source>registration_success.p2</source>
+				<target>Si vous remarquez une erreur de frappe lors de la saisie de votre adresse email, veuillez nous faire parvenir un message par le biais du formulaire 
+					de contact. Nous ferons le nécessaire pour opérer les changements aussi rapidement que possible.</target>
+			</trans-unit>
+			
+			<trans-unit id="20100">
+				<source>Registration.User.username</source>
+				<target>Pseudo</target>
+			</trans-unit>
+			<trans-unit id="20101">
+				<source>Registration.User.pwd</source>
+				<target>Mot de passe</target>
+			</trans-unit>
+			<trans-unit id="20102">
+				<source>Registration.User.pwd_confirm</source>
+				<target>Confirmation du MDP</target>
+			</trans-unit>
+			<trans-unit id="20103">
+				<source>Registration.User.email</source>
+				<target>E-Mail</target>
+			</trans-unit>
+
+			<trans-unit id="20200">
+				<source>account_activation.h1</source>
+				<target>Votre compte est actif</target>
+			</trans-unit>
+			<trans-unit id="20201">
+				<source>account_activation.p1</source>
+				<target>Invocateur %username%, vous êtes maintenant membre de la communauté MVNerds ! Vous disposez dès à présent d'une page profil que vous pouvez
+					personnaliser à souhait. Nous prendrons également le soin d'enregistrer vos préférences d'utilisations sur le site (votre avis vous sera toujours
+					demandé avant toute opération de mémorisation). N'hésitez pas à revenir, beaucoup de nouveautés vont arriver pour récompenser votre fidélité.</target>
+			</trans-unit>
+			<trans-unit id="20202">
+				<source>account_activation.p2</source>
+				<target>Toute l'équipe MVNerds vous remercie !</target>
+			</trans-unit>
+			<trans-unit id="20203">
+				<source>account_activation.a.profile</source>
+				<target>Aller sur mon profil</target>
+			</trans-unit>
+			<trans-unit id="20204">
+				<source>account_activation.a.index</source>
+				<target>Retourner à l'accueil</target>
+			</trans-unit>
+			<trans-unit id="20205">
+				<source>account_activation_fail.h1</source>
+				<target>L'opération d'activation a échoué</target>
+			</trans-unit>
+			<trans-unit id="20206">
+				<source>account_activation_fail.p1</source>
+				<target>Vous avez tenter d'activer le compte d'invocateur %slug% avec le code d'activation %activationcode%.
+						L'opération a échoué, le nom du compte et / ou le code activation ne sont pas corrects.</target>
+			</trans-unit>
+			<trans-unit id="20207">
+				<source>account_activation_fail.p2</source>
+				<target>Pour une question de pratique, nous vous invitons à suivre le lien qui vous ait parvenu par email à l'adresse que vous avez renseigné. Si le problème
+						persiste, n'hésitez pas à nous faire parvenir un email détaillant les manipulations que vous avez effectué, merci.</target>
+			</trans-unit>
+			<trans-unit id="20208">
+				<source>account_activation_fail.p3</source>
+				<target>Invocateur %username%, votre compte est déjà activé. Vous n'avez plus besoin d'effectuer cette manipulation avant de vous connecter.</target>
+			</trans-unit>
+			<trans-unit id="20209">
+				<source>account_activation_fail.p4</source>
+				<target>L'équipe MVNerds</target>
+			</trans-unit>
+
+			<trans-unit id="20300">
+				<source>Validation.User.username.already_in_use</source>
+				<target>Ce nom d'utilisateur est déjà utilisé.</target>
+			</trans-unit>
+			<trans-unit id="20301">
+				<source>Validation.User.password.miss_match</source>
+				<target>Les deux mots de passe ne correspondent pas.</target>
+			</trans-unit>
+			<trans-unit id="20302">
+				<source>Validation.User.email.already_in_use</source>
+				<target>Cette adresse e-mail est déjà utilisée.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -1,0 +1,11 @@
+Congratulations summoner {{ user.getUsername() }},
+
+all the MVNerds community is glad to welcome you ! One last step must be accomplished. Clic on this link to activate your account :
+
+{{ url('launch_site_account_activation', {'slug': user.getSlug(), 'activationCode': user.getActivationCode(), '_locale': 'en'}) }}
+
+See you soon on MVNerds.com,
+
+With all the best,
+
+The MVNerds team.
