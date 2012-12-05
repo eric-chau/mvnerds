@@ -54,6 +54,7 @@ class ItemBuildManager
 	public function findOneBySlug($slug)
 	{
 		$itemBuild = ItemBuildQuery::create()
+			->joinWith('User', \Criteria::LEFT_JOIN)
 			->joinWith('ChampionItemBuild', \Criteria::LEFT_JOIN)
 			->joinWith('ChampionItemBuild.GameMode', \Criteria::LEFT_JOIN)
 			->joinWith('ChampionItemBuild.Champion', \Criteria::LEFT_JOIN)

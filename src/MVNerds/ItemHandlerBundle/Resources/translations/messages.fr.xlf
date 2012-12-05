@@ -351,7 +351,7 @@
 			</trans-unit>
 			<trans-unit id="4001">
 				<source>item_build_view_index.h1</source>
-				<target>Liste d'items recommandés</target>
+				<target>Liste</target>
 			</trans-unit>
 			<trans-unit id="4002">
 				<source>item_build_view_index.created_by</source>

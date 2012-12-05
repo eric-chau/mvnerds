@@ -307,6 +307,9 @@ table#item-builds-table tbody tr td div.admin-actions a.delete-action {
 table#item-builds-table tbody tr td div.admin-actions a.delete-action:hover {
   background-color: #19a0df;
 }
+table#item-builds-table tbody tr td div.admin-actions a i {
+  margin: 0;
+}
 table#item-builds-table tbody tr td div.admin-actions strong {
   display: inline-block;
 }
