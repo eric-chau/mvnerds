@@ -23,37 +23,11 @@
 					</td>
 					
 					<td class="name">
-						{{itemBuild.getName()}}<br />
+						<a href="{{path('item_builder_view', {itemBuildSlug: itemBuild.getSlug()})}}">{{itemBuild.getName()}}</a><br />
 						<span class="created-by">{{'item_table.td.created_by'|trans}} <a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}" title="{{'item_table.td.consult_profile_of'|trans}} {{ user.getUsername }}">{{user.getUsername()}}</a> {{'item_table.td.created_the'|trans}} {{itemBuild.getCreateTime('d/m/Y')}}</span>
 					</td>
 						
 					<td class="game-mode">{{itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel()}}</td>
-					
-					{#<td class="item">
-						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem1Id().getRiotCode() ~ '.png' )}}" alt="{{itemBuild.getItemRelatedByItem1Id().getName()}} " class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
-							 data-title="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_title.html.twig' with {item: itemBuild.getItemRelatedByItem1Id()} %}" 
-							 data-content="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig' with {item: itemBuild.getItemRelatedByItem1Id()} %}"/>
-
-						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem2Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem2Id().getName()}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
-							 data-title="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_title.html.twig' with {item: itemBuild.getItemRelatedByItem2Id()} %}" 
-							 data-content="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig' with {item: itemBuild.getItemRelatedByItem2Id()} %}"/>
-
-						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem3Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem3Id().getName()}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
-							 data-title="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_title.html.twig' with {item: itemBuild.getItemRelatedByItem3Id()} %}" 
-							 data-content="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig' with {item: itemBuild.getItemRelatedByItem3Id()} %}"/>
-
-						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem4Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem4Id().getName()}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
-							 data-title="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_title.html.twig' with {item: itemBuild.getItemRelatedByItem4Id()} %}" 
-							 data-content="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig' with {item: itemBuild.getItemRelatedByItem4Id()} %}"/>
-
-						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem5Id().getRiotCode() ~ '.png'  )}}" alt="{{itemBuild.getItemRelatedByItem5Id().getName()}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
-							 data-title="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_title.html.twig' with {item: itemBuild.getItemRelatedByItem5Id()} %}" 
-							 data-content="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig' with {item: itemBuild.getItemRelatedByItem5Id()} %}"/>
-
-						<img src="{{asset('images/items/' ~ itemBuild.getItemRelatedByItem6Id().getRiotCode()  ~ '.png' )}}" alt="{{itemBuild.getItemRelatedByItem6Id().getName()}}" class="bootstrap-popover" data-placement="bottom" data-trigger="hover" 
-							 data-title="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_title.html.twig' with {item: itemBuild.getItemRelatedByItem6Id()} %}" 
-							 data-content="{% include 'MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig' with {item: itemBuild.getItemRelatedByItem6Id()} %}"/>
-					</td>#}
 					
 					<td>
 						{% if admin_mode is defined and admin_mode %}
@@ -66,10 +40,8 @@
 							
 							
 						{% else %}
-							<a class="action view-action" href="{{path('item_builder_view', {itemBuildSlug: itemBuild.getSlug()})}}"><i class="icon-share"></i></a>
+							<a class="action view-action" href="{{path('item_builder_view', {itemBuildSlug: itemBuild.getSlug()})}}"><i class="icon-share"></i> Voir</a>
 							
-							<a class="action download-action" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}"><i class="icon-download-alt"></i></a>
-						
 							<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>{{'item_table.td.downloaded'|trans}}</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> {{'item_table.td.times'|trans}}</span>
 						{% endif %}
 					</td>

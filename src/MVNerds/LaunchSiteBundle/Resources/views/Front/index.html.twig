@@ -78,7 +78,7 @@
 {% block body_main_content %}	
 	<div class="body-container">
 		
-		<h1 style="background-color: #000;padding: 10px;margin:20px auto;">{{'index_page.h1'|trans}}</h1>
+		{#<h1 style="background-color: #000;padding: 10px;margin:20px auto;">{{'index_page.h1'|trans}}</h1>#}
 		
 		<div class="row-fluid">
 			{% include 'MVNerdsNewsBundle:Front:carousel_index.html.twig' with {'news': news} %}
@@ -86,19 +86,5 @@
 			{% include 'MVNerdsLaunchSiteBundle:Front:champion_benchmark_preview.html.twig' %}
 		</div>
 		{% include 'MVNerdsItemHandlerBundle:ItemBuilder:tabed_list_index.html.twig' with {'latest_builds': latest_builds, 'most_downloaded_builds': most_downloaded_builds} %}
-		
-		{#<div class="champions-handler-container">
-			{% include 'MVNerdsChampionHandlerBundle:ActionBar:actionbar.html.twig' with {'page': page} %}
-
-			<div class="content">
-				<div id="champion-comparison">
-					{% if page == 'champions'%}
-						{% render 'MVNerdsChampionHandlerBundle:Front:championComparison' %}
-					{% elseif page == 'compare' %}
-						{% include 'MVNerdsChampionHandlerBundle:Comparison:compare_index.html.twig' %}
-					{% endif %}
-				</div>
-			</div>
-		</div>#}
 	</div>	
 {% endblock %}
