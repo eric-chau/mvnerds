@@ -687,7 +687,7 @@
 				<target>Nouveau sur MVNerds ? Inscrivez-vous</target>
 			</trans-unit>
 			<trans-unit id="21407">
-				<source>Sidebar.login.administer_profile</source>
+				<source>Sidebar.administer_profile</source>
 				<target>Administrer mon profil</target>
 			</trans-unit>
 			<trans-unit id="21408">
