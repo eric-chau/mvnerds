@@ -312,7 +312,7 @@
 			</trans-unit>
 			<trans-unit id="2006">
 				<source>item_table.td.created_the</source>
-				<target>the</target>
+				<target>,</target>
 			</trans-unit>
 			<trans-unit id="2007">
 				<source>item_table.td.downloaded</source>

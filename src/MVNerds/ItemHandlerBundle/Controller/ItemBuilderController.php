@@ -28,6 +28,10 @@ class ItemBuilderController extends Controller
 	 */
 	public function createAction()
 	{
+		$tab = array('2' => 'abc', '1' => 'bcd');
+		ksort($tab);
+		die(var_dump($tab));
+		
 		$canSaveBuild = false;
 		$lolDir = null;
 		

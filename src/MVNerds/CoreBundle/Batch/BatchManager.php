@@ -77,7 +77,7 @@ class BatchManager
 		//Ecriture de l operation permettant de retrouver le dernier repertoire de release de LoL
 		fwrite($batFile, $batchReleaseFinder);
 		
-		//Parcours de chaque champion
+		
 		$championItemBuilds = $itemBuild->getChampionItemBuildsJoinChampion();
 		if ($championItemBuilds->count() <= 0)
 		{
@@ -87,11 +87,6 @@ class BatchManager
 		$champNames=array();
 		
 		$itemBuildItemsCollection = $itemBuild->getItemBuildItemss();
-		$itemNames = array();
-		foreach ($itemBuildItemsCollection as $itemBuildItems)
-		{
-			$itemNames[] = $itemBuildItems->getItem()->setLocale('en')->getName();
-		}
 		
 		foreach ($championItemBuilds as $championItemBuild)
 		{
@@ -163,7 +158,7 @@ class BatchManager
 				
 				if (! isset($itemTab[$position]))
 				{
-					$itemTab[$position] = array('type' =>$type, 'items' => array());
+					$itemTab[$position] = array('type' =>$type, 'items' => array(), 'position' => $position);
 				}
 				
 				$stdItem = new \stdClass();
@@ -171,13 +166,14 @@ class BatchManager
 				$stdItem->count = $count;
 				$stdItem->name = $item->getName();
 				
-				$itemTab[$position]['items'][] = $stdItem;
+				$itemTab[$position * 1]['items'][] = $stdItem;
 				
 				if ($position > $maxPosition)
 				{
 					$maxPosition = $position;
 				}
 			}
+			ksort($itemTab);
 			
 			if($this->userLocale == 'en')
 			{
