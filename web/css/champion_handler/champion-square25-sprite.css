@@ -1,645 +1,652 @@
 .champion-square25 {
 	background-image: url('/images/champions/square25-sprite.jpg');
+	height: 25px;
+	width: 25px;   
 }
 
+
 .champion-square25.ahri {
-    width: 25px;
-    height: 25px;
-    background-position: -260px -130px;
+    background-position: -260px -182px;
 }
 
 .champion-square25.akali {
-    width: 25px;
-    height: 25px;
-    background-position: -260px -104px;
+    
+    
+    background-position: -260px -156px;
 }
 
 .champion-square25.alistar {
-    width: 25px;
-    height: 25px;
-    background-position: -260px -78px;
+    
+    
+    background-position: -260px -130px;
 }
 
 .champion-square25.amumu {
-    width: 25px;
-    height: 25px;
-    background-position: -260px -52px;
+    
+    
+    background-position: -260px -104px;
 }
 
 .champion-square25.anivia {
-    width: 25px;
-    height: 25px;
-    background-position: -260px -26px;
+    
+    
+    background-position: -260px -78px;
 }
 
 .champion-square25.annie {
-    width: 25px;
-    height: 25px;
-    background-position: -260px -0px;
+    
+    
+    background-position: -260px -52px;
 }
 
 .champion-square25.ashe {
-    width: 25px;
-    height: 25px;
-    background-position: -234px -234px;
+    
+    
+    background-position: -260px -26px;
 }
 
 .champion-square25.blitzcrank {
-    width: 25px;
-    height: 25px;
-    background-position: -208px -234px;
+    
+    
+    background-position: -260px -0px;
 }
 
 .champion-square25.brand {
-    width: 25px;
-    height: 25px;
-    background-position: -182px -234px;
+    
+    
+    background-position: -234px -234px;
 }
 
 .champion-square25.caitlyn {
-    width: 25px;
-    height: 25px;
-    background-position: -156px -234px;
+    
+    
+    background-position: -208px -234px;
 }
 
 .champion-square25.cassiopeia {
-    width: 25px;
-    height: 25px;
-    background-position: -130px -234px;
+    
+    
+    background-position: -182px -234px;
 }
 
 .champion-square25.chogath {
-    width: 25px;
-    height: 25px;
-    background-position: -104px -234px;
+    
+    
+    background-position: -156px -234px;
 }
 
 .champion-square25.corki {
-    width: 25px;
-    height: 25px;
-    background-position: -78px -234px;
+    
+    
+    background-position: -130px -234px;
 }
 
 .champion-square25.darius {
-    width: 25px;
-    height: 25px;
-    background-position: -52px -234px;
+    
+    
+    background-position: -104px -234px;
 }
 
 .champion-square25.diana {
-    width: 25px;
-    height: 25px;
-    background-position: -26px -234px;
+    
+    
+    background-position: -78px -234px;
 }
 
 .champion-square25.dr-mundo {
-    width: 25px;
-    height: 25px;
-    background-position: -0px -234px;
+    
+    
+    background-position: -52px -234px;
 }
 
 .champion-square25.draven {
-    width: 25px;
-    height: 25px;
-    background-position: -234px -208px;
+    
+    
+    background-position: -26px -234px;
 }
 
 .champion-square25.elise {
-    width: 25px;
-    height: 25px;
-    background-position: -234px -182px;
+    
+    
+    background-position: -0px -234px;
 }
 
 .champion-square25.evelynn {
-    width: 25px;
-    height: 25px;
-    background-position: -234px -156px;
+    
+    
+    background-position: -234px -208px;
 }
 
 .champion-square25.ezreal {
-    width: 25px;
-    height: 25px;
-    background-position: -234px -130px;
-}
-
-.champion-square25.fiddlesticks {
-    width: 25px;
-    height: 25px;
-    background-position: -234px -104px;
-}
-
-.champion-square25.fiora {
-    width: 25px;
-    height: 25px;
-    background-position: -234px -78px;
-}
-
-.champion-square25.fizz {
-    width: 25px;
-    height: 25px;
-    background-position: -234px -52px;
-}
-
-.champion-square25.galio {
-    width: 25px;
-    height: 25px;
-    background-position: -234px -26px;
-}
-
-.champion-square25.gangplank {
-    width: 25px;
-    height: 25px;
-    background-position: -234px -0px;
-}
-
-.champion-square25.garen {
-    width: 25px;
-    height: 25px;
+    
+    
     background-position: -208px -208px;
 }
 
-.champion-square25.gragas {
-    width: 25px;
-    height: 25px;
+.champion-square25.fiddlesticks {
+    
+    
     background-position: -182px -208px;
 }
 
-.champion-square25.graves {
-    width: 25px;
-    height: 25px;
+.champion-square25.fiora {
+    
+    
     background-position: -156px -208px;
 }
 
-.champion-square25.hecarim {
-    width: 25px;
-    height: 25px;
+.champion-square25.fizz {
+    
+    
     background-position: -130px -208px;
 }
 
-.champion-square25.heimerdinger {
-    width: 25px;
-    height: 25px;
+.champion-square25.galio {
+    
+    
     background-position: -104px -208px;
 }
 
-.champion-square25.irelia {
-    width: 25px;
-    height: 25px;
+.champion-square25.gangplank {
+    
+    
     background-position: -78px -208px;
 }
 
-.champion-square25.janna {
-    width: 25px;
-    height: 25px;
+.champion-square25.garen {
+    
+    
     background-position: -52px -208px;
 }
 
-.champion-square25.jarvan-iv {
-    width: 25px;
-    height: 25px;
+.champion-square25.gragas {
+    
+    
     background-position: -26px -208px;
 }
 
-.champion-square25.jax {
-    width: 25px;
-    height: 25px;
+.champion-square25.graves {
+    
+    
     background-position: -0px -208px;
 }
 
-.champion-square25.jayce {
-    width: 25px;
-    height: 25px;
+.champion-square25.hecarim {
+    
+    
+    background-position: -234px -182px;
+}
+
+.champion-square25.heimerdinger {
+    
+    
     background-position: -208px -182px;
 }
 
-.champion-square25.karma {
-    width: 25px;
-    height: 25px;
+.champion-square25.irelia {
+    
+    
     background-position: -182px -182px;
 }
 
-.champion-square25.karthus {
-    width: 25px;
-    height: 25px;
+.champion-square25.janna {
+    
+    
     background-position: -156px -182px;
 }
 
-.champion-square25.kassadin {
-    width: 25px;
-    height: 25px;
+.champion-square25.jarvan-iv {
+    
+    
     background-position: -130px -182px;
 }
 
-.champion-square25.katarina {
-    width: 25px;
-    height: 25px;
+.champion-square25.jax {
+    
+    
     background-position: -104px -182px;
 }
 
-.champion-square25.kayle {
-    width: 25px;
-    height: 25px;
+.champion-square25.jayce {
+    
+    
     background-position: -78px -182px;
 }
 
-.champion-square25.kennen {
-    width: 25px;
-    height: 25px;
+.champion-square25.karma {
+    
+    
     background-position: -52px -182px;
 }
 
-.champion-square25.khazix {
-    width: 25px;
-    height: 25px;
+.champion-square25.karthus {
+    
+    
     background-position: -26px -182px;
 }
 
-.champion-square25.kogmaw {
-    width: 25px;
-    height: 25px;
+.champion-square25.kassadin {
+    
+    
     background-position: -0px -182px;
 }
 
-.champion-square25.leblanc {
-    width: 25px;
-    height: 25px;
+.champion-square25.katarina {
+    
+    
+    background-position: -234px -156px;
+}
+
+.champion-square25.kayle {
+    
+    
     background-position: -208px -156px;
 }
 
-.champion-square25.lee-sin {
-    width: 25px;
-    height: 25px;
+.champion-square25.kennen {
+    
+    
     background-position: -182px -156px;
 }
 
-.champion-square25.leona {
-    width: 25px;
-    height: 25px;
+.champion-square25.khazix {
+    
+    
     background-position: -156px -156px;
 }
 
-.champion-square25.lulu {
-    width: 25px;
-    height: 25px;
+.champion-square25.kogmaw {
+    
+    
     background-position: -130px -156px;
 }
 
-.champion-square25.lux {
-    width: 25px;
-    height: 25px;
+.champion-square25.leblanc {
+    
+    
     background-position: -104px -156px;
 }
 
-.champion-square25.maitre-yi {
-    width: 25px;
-    height: 25px;
+.champion-square25.lee-sin {
+    
+    
     background-position: -78px -156px;
 }
 
-.champion-square25.malphite {
-    width: 25px;
-    height: 25px;
+.champion-square25.leona {
+    
+    
     background-position: -52px -156px;
 }
 
-.champion-square25.malzahar {
-    width: 25px;
-    height: 25px;
+.champion-square25.lulu {
+    
+    
     background-position: -26px -156px;
 }
 
-.champion-square25.maokai {
-    width: 25px;
-    height: 25px;
+.champion-square25.lux {
+    
+    
     background-position: -0px -156px;
 }
 
-.champion-square25.miss-fortune {
-    width: 25px;
-    height: 25px;
+.champion-square25.maitre-yi {
+    
+    
+    background-position: -234px -130px;
+}
+
+.champion-square25.malphite {
+    
+    
     background-position: -208px -130px;
 }
 
-.champion-square25.mordekaiser {
-    width: 25px;
-    height: 25px;
+.champion-square25.malzahar {
+    
+    
     background-position: -182px -130px;
 }
 
-.champion-square25.morgana {
-    width: 25px;
-    height: 25px;
+.champion-square25.maokai {
+    
+    
     background-position: -156px -130px;
 }
 
-.champion-square25.nasus {
-    width: 25px;
-    height: 25px;
+.champion-square25.miss-fortune {
+    
+    
     background-position: -130px -130px;
 }
 
-.champion-square25.nautilus {
-    width: 25px;
-    height: 25px;
+.champion-square25.mordekaiser {
+    
+    
     background-position: -104px -130px;
 }
 
-.champion-square25.nidalee {
-    width: 25px;
-    height: 25px;
+.champion-square25.morgana {
+    
+    
     background-position: -78px -130px;
 }
 
-.champion-square25.nocturne {
-    width: 25px;
-    height: 25px;
+.champion-square25.nami {
+    
+    
     background-position: -52px -130px;
 }
 
-.champion-square25.nunu {
-    width: 25px;
-    height: 25px;
+.champion-square25.nasus {
+    
+    
     background-position: -26px -130px;
 }
 
-.champion-square25.olaf {
-    width: 25px;
-    height: 25px;
+.champion-square25.nautilus {
+    
+    
     background-position: -0px -130px;
 }
 
-.champion-square25.orianna {
-    width: 25px;
-    height: 25px;
+.champion-square25.nidalee {
+    
+    
+    background-position: -234px -104px;
+}
+
+.champion-square25.nocturne {
+    
+    
     background-position: -208px -104px;
 }
 
-.champion-square25.pantheon {
-    width: 25px;
-    height: 25px;
+.champion-square25.nunu {
+    
+    
     background-position: -182px -104px;
 }
 
-.champion-square25.poppy {
-    width: 25px;
-    height: 25px;
+.champion-square25.olaf {
+    
+    
     background-position: -156px -104px;
 }
 
-.champion-square25.rammus {
-    width: 25px;
-    height: 25px;
+.champion-square25.orianna {
+    
+    
     background-position: -130px -104px;
 }
 
-.champion-square25.renekton {
-    width: 25px;
-    height: 25px;
+.champion-square25.pantheon {
+    
+    
     background-position: -104px -104px;
 }
 
-.champion-square25.rengar {
-    width: 25px;
-    height: 25px;
+.champion-square25.poppy {
+    
+    
     background-position: -78px -104px;
 }
 
-.champion-square25.riven {
-    width: 25px;
-    height: 25px;
+.champion-square25.rammus {
+    
+    
     background-position: -52px -104px;
 }
 
-.champion-square25.rumble {
-    width: 25px;
-    height: 25px;
+.champion-square25.renekton {
+    
+    
     background-position: -26px -104px;
 }
 
-.champion-square25.ryze {
-    width: 25px;
-    height: 25px;
+.champion-square25.rengar {
+    
+    
     background-position: -0px -104px;
 }
 
-.champion-square25.sejuani {
-    width: 25px;
-    height: 25px;
+.champion-square25.riven {
+    
+    
+    background-position: -234px -78px;
+}
+
+.champion-square25.rumble {
+    
+    
     background-position: -208px -78px;
 }
 
-.champion-square25.shaco {
-    width: 25px;
-    height: 25px;
+.champion-square25.ryze {
+    
+    
     background-position: -182px -78px;
 }
 
-.champion-square25.shen {
-    width: 25px;
-    height: 25px;
+.champion-square25.sejuani {
+    
+    
     background-position: -156px -78px;
 }
 
-.champion-square25.shyvana {
-    width: 25px;
-    height: 25px;
+.champion-square25.shaco {
+    
+    
     background-position: -130px -78px;
 }
 
-.champion-square25.singed {
-    width: 25px;
-    height: 25px;
+.champion-square25.shen {
+    
+    
     background-position: -104px -78px;
 }
 
-.champion-square25.sion {
-    width: 25px;
-    height: 25px;
+.champion-square25.shyvana {
+    
+    
     background-position: -78px -78px;
 }
 
-.champion-square25.sivir {
-    width: 25px;
-    height: 25px;
+.champion-square25.singed {
+    
+    
     background-position: -52px -78px;
 }
 
-.champion-square25.skarner {
-    width: 25px;
-    height: 25px;
+.champion-square25.sion {
+    
+    
     background-position: -26px -78px;
 }
 
-.champion-square25.sona {
-    width: 25px;
-    height: 25px;
+.champion-square25.sivir {
+    
+    
     background-position: -0px -78px;
 }
 
-.champion-square25.soraka {
-    width: 25px;
-    height: 25px;
+.champion-square25.skarner {
+    
+    
+    background-position: -234px -52px;
+}
+
+.champion-square25.sona {
+    
+    
     background-position: -208px -52px;
 }
 
-.champion-square25.swain {
-    width: 25px;
-    height: 25px;
+.champion-square25.soraka {
+    
+    
     background-position: -182px -52px;
 }
 
-.champion-square25.syndra {
-    width: 25px;
-    height: 25px;
+.champion-square25.swain {
+    
+    
     background-position: -156px -52px;
 }
 
-.champion-square25.talon {
-    width: 25px;
-    height: 25px;
+.champion-square25.syndra {
+    
+    
     background-position: -130px -52px;
 }
 
-.champion-square25.taric {
-    width: 25px;
-    height: 25px;
+.champion-square25.talon {
+    
+    
     background-position: -104px -52px;
 }
 
-.champion-square25.teemo {
-    width: 25px;
-    height: 25px;
+.champion-square25.taric {
+    
+    
     background-position: -78px -52px;
 }
 
-.champion-square25.tristana {
-    width: 25px;
-    height: 25px;
+.champion-square25.teemo {
+    
+    
     background-position: -52px -52px;
 }
 
-.champion-square25.trundle {
-    width: 25px;
-    height: 25px;
+.champion-square25.tristana {
+    
+    
     background-position: -26px -52px;
 }
 
-.champion-square25.tryndamere {
-    width: 25px;
-    height: 25px;
+.champion-square25.trundle {
+    
+    
     background-position: -0px -52px;
 }
 
+.champion-square25.tryndamere {
+    
+    
+    background-position: -234px -26px;
+}
+
 .champion-square25.twisted-fate {
-    width: 25px;
-    height: 25px;
+    
+    
     background-position: -208px -26px;
 }
 
 .champion-square25.twitch {
-    width: 25px;
-    height: 25px;
+    
+    
     background-position: -182px -26px;
 }
 
 .champion-square25.udyr {
-    width: 25px;
-    height: 25px;
+    
+    
     background-position: -156px -26px;
 }
 
 .champion-square25.urgot {
-    width: 25px;
-    height: 25px;
+    
+    
     background-position: -130px -26px;
 }
 
 .champion-square25.varus {
-    width: 25px;
-    height: 25px;
+    
+    
     background-position: -104px -26px;
 }
 
 .champion-square25.vayne {
-    width: 25px;
-    height: 25px;
+    
+    
     background-position: -78px -26px;
 }
 
 .champion-square25.veigar {
-    width: 25px;
-    height: 25px;
+    
+    
     background-position: -52px -26px;
 }
 
 .champion-square25.viktor {
-    width: 25px;
-    height: 25px;
+    
+    
     background-position: -26px -26px;
 }
 
 .champion-square25.vladimir {
-    width: 25px;
-    height: 25px;
+    
+    
     background-position: -0px -26px;
 }
 
 .champion-square25.volibear {
-    width: 25px;
-    height: 25px;
-    background-position: -208px -0px;
+    
+    
+    background-position: -234px -0px;
 }
 
 .champion-square25.warwick {
-    width: 25px;
-    height: 25px;
-    background-position: -182px -0px;
+    
+    
+    background-position: -208px -0px;
 }
 
 .champion-square25.wukong {
-    width: 25px;
-    height: 25px;
-    background-position: -156px -0px;
+    
+    
+    background-position: -182px -0px;
 }
 
 .champion-square25.xerath {
-    width: 25px;
-    height: 25px;
-    background-position: -130px -0px;
+    
+    
+    background-position: -156px -0px;
 }
 
 .champion-square25.xin-zhao {
-    width: 25px;
-    height: 25px;
-    background-position: -104px -0px;
+    
+    
+    background-position: -130px -0px;
 }
 
 .champion-square25.yorick {
-    width: 25px;
-    height: 25px;
-    background-position: -78px -0px;
+    
+    
+    background-position: -104px -0px;
 }
 
 .champion-square25.zed {
-    background-image: url('/images/champions/zed25.png');
-    height: 25px;
-    width: 25px;
+    
+    
+    background-position: -78px -0px;
 }
 
 .champion-square25.ziggs {
-    width: 25px;
-    height: 25px;
+    
+    
     background-position: -52px -0px;
 }
 
 .champion-square25.zilean {
-    width: 25px;
-    height: 25px;
+    
+    
     background-position: -26px -0px;
 }
 
 .champion-square25.zyra {
-    width: 25px;
-    height: 25px;
+    
+    
     background-position: -0px -0px;
 }
