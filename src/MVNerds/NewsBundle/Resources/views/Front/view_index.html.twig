@@ -27,7 +27,7 @@
 	<div id="news-container">
 		<h1 class="header">
 			{{news.getTitle()}}
-			<em>par <a href="{{ path('summoner_profile_view', {'userSlug': news.getUser().getSlug()}) }}" title="Consulter le profil de {{ news.getUser().getUsername }}"">{{news.getUser().getUsername()}}</a> le {{news.getCreateTime('d/m/Y')}} à {{news.getCreateTime('H:i')}}</em>
+			<em>par <a href="{{ path('summoner_profile_view', {'userSlug': news.getUser().getSlug()}) }}" title="Consulter le profil de {{ news.getUser().getUsername }}">{{news.getUser().getUsername()}}</a> le {{news.getCreateTime('d/m/Y')}} à {{news.getCreateTime('H:i')}}</em>
 		</h1>
 		<div class="clearflix"></div>
 		<p class="module-name">Module <strong>Most Valuable News</strong></p>

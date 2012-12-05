@@ -5,6 +5,7 @@
 			<h4 class="header">
 				<a href="{{path('news_detail', {'slug': new.getSlug()} )}}">{{new.getTitle()}}</a>
 				<em>par <a href="{{ path('summoner_profile_view', {'userSlug': new.getUser().getSlug()}) }}" title="Consulter le profil de {{ new.getUser().getUsername }}"">{{new.getUser().getUsername()}}</a> le {{new.getCreateTime('d/m/Y')}} à {{new.getCreateTime('H:i')}}</em>
+				<span class="comment-counter">{{ new.getCommentCount() }} <i class="icon-comment"></i></span>
 			</h4>
 				
 			<p class="preview">{{ new.getPreview() }}</p>
