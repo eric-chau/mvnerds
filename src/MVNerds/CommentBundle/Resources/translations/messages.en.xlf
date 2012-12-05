@@ -1,46 +1,50 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
 	<file source-language="en" datatype="plaintext" original="file.ext">
 		<body>
 			<trans-unit id="1">
 				<source>Comments.write_comment</source>
-				<target>Écrire un commentaire</target>
+				<target>Write a comment</target>
 			</trans-unit>
 			<trans-unit id="2">
 				<source>Comments.comment</source>
-				<target>Commenter</target>
+				<target>Comment</target>
 			</trans-unit>
 			<trans-unit id="3">
 				<source>Comments.max_char</source>
-				<target>charactères maximum</target>
+				<target>maximum characters</target>
 			</trans-unit>
 			<trans-unit id="4">
 				<source>Comments.no_reactions</source>
-				<target>Aucune réaction n'a été laissé pour le moment. Soyez le premier !</target>
+				<target>No reaction has been left yet. Be the first !</target>
 			</trans-unit>
 			<trans-unit id="5">
 				<source>Comments.signal</source>
-				<target>Signaler ce message</target>
+				<target>Report this message</target>
 			</trans-unit>
 			<trans-unit id="6">
 				<source>Comments.posted_by</source>
-				<target>Posté par</target>
+				<target>Posted by</target>
 			</trans-unit>
 			<trans-unit id="7">
 				<source>Comments.today</source>
-				<target>Aujourd'hui</target>
+				<target>Today</target>
 			</trans-unit>
 			<trans-unit id="8">
 				<source>Comments.yesterday</source>
-				<target>Hier</target>
+				<target>Yesterday</target>
 			</trans-unit>
 			<trans-unit id="9">
 				<source>Comments.masked</source>
-				<target>Ce commentaire a été masqué car il a été signalé de nombreuses fois. Cliquez pour le voir.</target>
+				<target>This comment has been masked because it was reported many times. Clic to see it.</target>
 			</trans-unit>
 			<trans-unit id="10">
 				<source>Profil.consult_profile</source>
-				<target>Consulter le profil de</target>
+				<target>Check the profile of</target>
+			</trans-unit>
+			<trans-unit id="11">
+				<source>news_view.back_to_list</source>
+				<target>Back to news list</target>
 			</trans-unit>
 		</body>
 	</file>

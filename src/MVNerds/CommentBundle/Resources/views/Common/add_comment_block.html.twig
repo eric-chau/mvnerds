@@ -6,11 +6,11 @@
 					<img src="{{ asset('images/avatar/' ~ app.user.getUserAvatarName() ~ '.jpg') }}" class="user-avatar" />
 				</div>
 				<div class="span6 comment-form-container">
-					<textarea placeholder="Écrire un commentaire" class="comment-msg" rows="2"></textarea>
+					<textarea placeholder="{{'Comments.write_comment'|trans}}" class="comment-msg" rows="2"></textarea>
 					<div class="comment-actions">
 						<p>
-							(<span class="char-count">0</span> / 500 caractères maximum) <img src="{{ asset('images/commons/comment-loader16.gif') }}" class="loader hide" /> 
-							<a href="#" class="btn-send-comment disabled">Commenter</a>
+							(<span class="char-count">0</span> / 500 {{'Comments.max_char'|trans}}) <img src="{{ asset('images/commons/comment-loader16.gif') }}" class="loader hide" /> 
+							<a href="#" class="btn-send-comment disabled">{{'Comments.comment'|trans}}</a>
 						</p>
 					</div>
 				</div>
