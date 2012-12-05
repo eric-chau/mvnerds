@@ -11,6 +11,30 @@
 				<source>news_list.p1</source>
 				<target>Find below all the news published on MVNerds.</target>
 			</trans-unit>
+			<trans-unit id="2">
+				<source>news_carousel.btn.all_news</source>
+				<target>All news</target>
+			</trans-unit>
+			<trans-unit id="3">
+				<source>news_carousel.title.by</source>
+				<target>BY</target>
+			</trans-unit>
+			<trans-unit id="4">
+				<source>news_carousel.title.the</source>
+				<target>,</target>
+			</trans-unit>
+			<trans-unit id="5">
+				<source>news_carousel.title.at</source>
+				<target>at</target>
+			</trans-unit>
+			<trans-unit id="6">
+				<source>news_list.category</source>
+				<target>Category</target>
+			</trans-unit>
+			<trans-unit id="7">
+				<source>news_list.read_more</source>
+				<target>Read more</target>
+			</trans-unit>
 			
 			<!-- NEWS TABLE -->
 			<trans-unit id="1000">
