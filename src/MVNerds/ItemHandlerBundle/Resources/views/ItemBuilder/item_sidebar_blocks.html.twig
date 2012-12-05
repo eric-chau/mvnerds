@@ -36,7 +36,7 @@
 					{% set escapedBlockName = itemBlock['escaped'] %}
 
 					<li class="item-sidebar-block-li" id="__{{escapedBlockName}}__item-block-li">
-						<input type="text" class="item_sidebar_block_input span9" value="{{blockName}}"/> <a href="#" class="btn-delete-block-item btn btn-danger btn-small">X</a>
+						<input type="text" class="item_sidebar_block_input span9" value="{{blockName}}"/> <a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a>
 						<div class="item-sidebar-block-div">
 							{% for item in items %}
 								{% if not item.getIsObsolete() %}

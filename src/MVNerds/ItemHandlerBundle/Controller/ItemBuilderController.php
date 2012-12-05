@@ -27,11 +27,7 @@ class ItemBuilderController extends Controller
 	 * @Route("/create", name="item_builder_create")
 	 */
 	public function createAction()
-	{
-		$tab = array('2' => 'abc', '1' => 'bcd');
-		ksort($tab);
-		die(var_dump($tab));
-		
+	{		
 		$canSaveBuild = false;
 		$lolDir = null;
 		
