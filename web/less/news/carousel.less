@@ -1,4 +1,6 @@
 @import '../bootstrap/mixins.less';
+@import '../mvnerds-variables.less';
+
 div.carousel {
 	div.item {
 		div.carousel-caption {
@@ -6,6 +8,8 @@ div.carousel {
 			top: 347px;
 
 			h4 {
+				position: relative;
+
 				a {
 					color: white;
 					display: inline-block !important;
@@ -32,6 +36,18 @@ div.carousel {
 						&:hover {
 							color: #eee; .transition(color .25s linear);
 						}
+					}
+				}
+
+				span.comment-counter {
+					color: @MVNerdsRed;
+					font-size: 12px;
+					position: absolute;
+					right: 0;
+
+					i {
+						color: @MVNerdsRed;
+						font-size: 12px;
 					}
 				}
 			}

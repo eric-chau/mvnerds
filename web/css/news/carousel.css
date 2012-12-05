@@ -29,6 +29,9 @@ div.carousel div.item div.carousel-caption {
   background-color: rgba(25, 160, 223, 0.5);
   top: 347px;
 }
+div.carousel div.item div.carousel-caption h4 {
+  position: relative;
+}
 div.carousel div.item div.carousel-caption h4 a {
   color: white;
   display: inline-block !important;
@@ -57,6 +60,16 @@ div.carousel div.item div.carousel-caption h4 em a:hover {
   -moz-transition: color 0.25s linear;
   -o-transition: color 0.25s linear;
   transition: color 0.25s linear;
+}
+div.carousel div.item div.carousel-caption h4 span.comment-counter {
+  color: #db4a38;
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+}
+div.carousel div.item div.carousel-caption h4 span.comment-counter i {
+  color: #db4a38;
+  font-size: 12px;
 }
 div.carousel a.carousel-control {
   top: 50%;

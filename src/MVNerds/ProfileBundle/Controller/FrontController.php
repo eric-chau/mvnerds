@@ -107,4 +107,15 @@ class FrontController extends Controller
 		
 		return new Response(json_encode($this->get('mvnerds.profile_manager')->saveAvatarIfValid($this->getUser(), $newAvatarName)));
 	}
+	
+	/**
+	 * @Route("/change-password", name="summoner_profile_change_password", options={"expose"=true})
+	 * @Secure(roles="ROLE_USER")
+	 */
+	public function changeSummonerPasswordAction()
+	{
+		$this->get('mvnerds.user_manager')->initForgotPasswordProcess($this->getUser());
+		
+		return new Response(json_encode(true));
+	}
 }

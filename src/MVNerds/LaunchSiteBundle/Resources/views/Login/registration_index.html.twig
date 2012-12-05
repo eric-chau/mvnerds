@@ -27,7 +27,35 @@
 				</ul>
 				
 				<form id="" action="{{ path('launch_site_summoner_registration') }}" method="POST" {{ form_enctype(form) }}>
-					{{ form_widget(form) }}
+					<div class="form-errors">
+						{{ form_errors(form) }}
+					</div>
+						
+					<div>
+						{{ form_label(form.username) }}
+						{{ form_widget(form.username) }}
+						{{ form_errors(form.username) }}
+					</div>
+					
+					<div>
+						{{ form_label(form.password) }}
+						{{ form_widget(form.password) }}
+						{{ form_errors(form.password) }}
+					</div>
+					
+					<div>
+						{{ form_label(form.passwordConfirm) }}
+						{{ form_widget(form.passwordConfirm) }}
+						{{ form_errors(form.passwordConfirm) }}
+					</div>
+					
+					<div>
+						{{ form_label(form.email) }}
+						{{ form_widget(form.email) }}
+						{{ form_errors(form.email) }}
+					</div>
+						
+					{{ form_rest(form) }}
 					
 					<button>Inscription</button>
 				</form>

@@ -606,4 +606,8 @@
       <reference foreign="id" local="comment_id" />
     </foreign-key>
   </table>
+  <table name="pioneer_user">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="email" required="true" size="100" type="VARCHAR" />
+  </table>
 </database>

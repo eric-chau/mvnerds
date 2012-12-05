@@ -33,6 +33,38 @@ div.body-container.summoner-profile {
 			color: #999;
 			font-style: italic;
 		}
+
+		&.change-password {
+			font-weight: bold;
+
+			a.btn-change-password {
+				background-color: darken(@MVNerdsRed, 10%);
+				color: white;
+				display: inline-block;
+				margin-left: 10px;
+				padding: 5px 8px;
+
+				&:hover {
+					background-color: @MVNerdsRed; .transition(background-color .25s linear);
+				}
+			}
+
+			img.loader {
+				display: inline-block;
+				position: relative;
+				left: 5px;
+				top: -2px;
+
+				&.hide {
+					display: none;
+				}
+			}
+
+			span.process-ok {
+				color: @MVNerdsGreen;
+				font-weight: normal;
+			}
+		}
 	}
 
 	p, ul {

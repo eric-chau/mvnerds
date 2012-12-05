@@ -689,7 +689,7 @@
 			</trans-unit>
 			<trans-unit id="21408">
 				<source>Sidebar.log_off</source>
-				<target>Log off</target>
+				<target>Log me out</target>
 			</trans-unit>
 		</body>
 	</file>

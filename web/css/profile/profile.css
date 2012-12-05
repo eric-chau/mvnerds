@@ -51,6 +51,36 @@ div.body-container.summoner-profile p.empty-list {
   color: #999;
   font-style: italic;
 }
+div.body-container.summoner-profile p.change-password {
+  font-weight: bold;
+}
+div.body-container.summoner-profile p.change-password a.btn-change-password {
+  background-color: #be3322;
+  color: white;
+  display: inline-block;
+  margin-left: 10px;
+  padding: 5px 8px;
+}
+div.body-container.summoner-profile p.change-password a.btn-change-password:hover {
+  background-color: #db4a38;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+div.body-container.summoner-profile p.change-password img.loader {
+  display: inline-block;
+  position: relative;
+  left: 5px;
+  top: -2px;
+}
+div.body-container.summoner-profile p.change-password img.loader.hide {
+  display: none;
+}
+div.body-container.summoner-profile p.change-password span.process-ok {
+  color: #759e1a;
+  font-weight: normal;
+}
 div.body-container.summoner-profile p,
 div.body-container.summoner-profile ul {
   font-size: 14px;

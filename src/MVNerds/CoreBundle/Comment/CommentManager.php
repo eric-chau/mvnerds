@@ -15,7 +15,7 @@ use MVNerds\CoreBundle\Model\UserReportCommentQuery;
 
 class CommentManager
 {
-	const COMMENT_PER_PAGE = 2;
+	const COMMENT_PER_PAGE = 10;
 	
 	public function addComment(IComment $object, User $user, $commentString)
 	{

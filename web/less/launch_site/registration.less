@@ -23,6 +23,12 @@ div.summoner-registration {
 		margin: 40px auto;
 		width: 69%;
 
+		div {
+			background-color: #141414;
+			margin-bottom: 5px;
+			padding: 10px 10px 5px 10px;
+		}
+
 		label {
 			color: #eee;
 			display: inline-block;
@@ -30,6 +36,7 @@ div.summoner-registration {
 			text-align: right;
 			width: 200px;
 		}
+
 		input[type="text"], input[type="password"], input[type="email"], button {
 			.border-radius(0);
 			font-family: 'Ubuntu', sans-serif;
@@ -47,6 +54,21 @@ div.summoner-registration {
 
 			&:hover {
 				background-color: @MVNerdsGreen; .transition(background-color .25s linear);
+			}
+		}
+
+		ul {
+			margin: 0 0 0 214px;
+			padding: 0;
+
+			li {
+				color: @MVNerdsRed;
+			}
+		}
+
+		div.form-errors {
+			ul {
+				margin: 0;
 			}
 		}
 	}

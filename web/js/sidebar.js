@@ -5,6 +5,12 @@ $(document).ready(function()
 		$sidebarTooltipAnchor = $('.sidebar-tooltip-anchor'),
 		$rememberMeElements = $('div#user-container form label, input#remember_me');
 
+	// Si c'est la première fois que l'utilisateur se connecte, la sidebar doit être déroulé
+	if (getItemFromLS('is-first-visit') != 'false') {
+		saveItemInLS('is-first-visit', false);
+		$('div#sidebar').addClass('active');
+	}
+	
 	$sidebarTooltipAnchor.tooltip();
 
 	$('div#sidebar ul a').on('click', function(event)
