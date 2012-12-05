@@ -11,7 +11,7 @@
 	
 	<ul class="first-ul">
 		 <a href="{{ path('news_index') }}">
-			 <li class="header sidebar-tooltip-anchor" rel="tooltip" data-placement="right" data-original-title="<span class='sidebar-tooltip'>Accèder au module Most Valuable News</span>">
+			 <li class="header sidebar-tooltip-anchor" rel="tooltip" data-placement="right" data-original-title="<span class='sidebar-tooltip'>{{'Sidebar.most_valuable_news.tooltip.access_module'|trans}} Most Valuable News</span>">
 				 <i class="icon-file"></i> <span class="only-active-show">Most Valuable News</span>
 			 </li>
 		 </a>
@@ -19,7 +19,7 @@
 	
 	<ul>
 		 <a href="{{ path('champion_handler_front_index') }}">
-			 <li class="header sidebar-tooltip-anchor" rel="tooltip" data-placement="right" data-original-title="<span class='sidebar-tooltip'>Accèder au module Champion Benchmark</span>">
+			 <li class="header sidebar-tooltip-anchor" rel="tooltip" data-placement="right" data-original-title="<span class='sidebar-tooltip'>{{'Sidebar.most_valuable_news.tooltip.access_module'|trans}} Champion Benchmark</span>">
 				 <i class="icon-random"></i> <span class="only-active-show">Champions Benchmark</span>
 			 </li>
 		 </a>
@@ -27,12 +27,12 @@
 
 	<ul>
 		<a href="{{ path('item_builder_list') }}">
-			<li class="header sidebar-tooltip-anchor" rel="tooltip" data-placement="right" data-original-title="<span class='sidebar-tooltip'>Accèder au module Item Builder</span>">
+			<li class="header sidebar-tooltip-anchor" rel="tooltip" data-placement="right" data-original-title="<span class='sidebar-tooltip'>{{'Sidebar.most_valuable_news.tooltip.access_module'|trans}} Pimp My Recommended Items</span>">
 				<i class="icon-wrench"></i> <span class="only-active-show">Pimp My Recommended Items</span>
 			</li>
 		</a>
-		<li class="only-active-show"><a href="{{ path('item_builder_create') }}"><i class="icon-stop"></i> Personnaliser la liste d'objets conseillés</a></li>
-		<li class="only-active-show"><a href="{{ path('item_builder_list') }}" ><i class="icon-stop"></i> Consulter les listes d'objets publiques</a></li>
+		<li class="only-active-show"><a href="{{ path('item_builder_create') }}"><i class="icon-stop"></i> {{'Sidebar.pmri.create_list'|trans}}</a></li>
+		<li class="only-active-show"><a href="{{ path('item_builder_list') }}" ><i class="icon-stop"></i> {{'Sidebar.pmri.view_list'|trans}}</a></li>
 	</ul>
 	
 	{# <ul>

@@ -641,6 +641,56 @@
 				<source>Validation.User.email.already_in_use</source>
 				<target>This e-mail address is already in use.</target>
 			</trans-unit>
+
+			<trans-unit id="21000">
+				<source>Sidebar.most_valuable_news.tooltip.access_module</source>
+				<target>Access to the module :</target>
+			</trans-unit>
+			<trans-unit id="21300">
+				<source>Sidebar.pmri.create_list</source>
+				<target>Customize your recommended items lists</target>
+			</trans-unit>
+			<trans-unit id="21301">
+				<source>Sidebar.pmri.view_list</source>
+				<target>Community recommended items lists</target>
+			</trans-unit>
+
+			<trans-unit id="21400">
+				<source>Sidebar.anonymous_user.tooltip.title</source>
+				<target>Access your profile</target>
+			</trans-unit>
+			<trans-unit id="21401">
+				<source>Sidebar.anonymous.h2</source>
+				<target>Sign in</target>
+			</trans-unit>
+			<trans-unit id="21402">
+				<source>Sidebar.login.username.placeholder</source>
+				<target>Username</target>
+			</trans-unit>
+			<trans-unit id="21403">
+				<source>Sidebar.login.password.placeholder</source>
+				<target>Password</target>
+			</trans-unit>
+			<trans-unit id="21404">
+				<source>Sidebar.login.remember_me.label</source>
+				<target>Remember me</target>
+			</trans-unit>
+			<trans-unit id="21405">
+				<source>Sidebar.login.forgot</source>
+				<target>Forgot your password ?</target>
+			</trans-unit>
+			<trans-unit id="21406">
+				<source>Sidebar.register</source>
+				<target>New on MVNerds ? Register</target>
+			</trans-unit>
+			<trans-unit id="21407">
+				<source>Sidebar.administer_profile</source>
+				<target>Manage my profile</target>
+			</trans-unit>
+			<trans-unit id="21408">
+				<source>Sidebar.log_off</source>
+				<target>Log off</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
