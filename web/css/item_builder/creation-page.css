@@ -275,6 +275,16 @@ div.body-container div.item-container {
   margin: 20px 0 40px 0!important;
   padding: 15px;
 }
+div.body-container div.champion-container .item,
+div.body-container div.item-container .item {
+  height: 50px;
+  width: 50px;
+  list-style: none;
+}
+div.body-container div.champion-container .item div.portrait,
+div.body-container div.item-container .item div.portrait {
+  padding: 7px;
+}
 div.body-container div.champion-container div.actionbar ul.actions-list,
 div.body-container div.item-container div.actionbar ul.actions-list {
   list-style: none;

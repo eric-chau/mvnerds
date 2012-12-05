@@ -32,6 +32,7 @@
 					<td>
 						{% if admin_mode is defined and admin_mode %}
 							<div class="admin-actions">
+								<a class="action view-action" href="{{path('item_builder_view', {itemBuildSlug: itemBuild.getSlug()})}}"><i class="icon-share"></i></a>
 								<a class="action download-action" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}"><i class="icon-download-alt"></i></a>
 								<a href="{{ path('item_builder_edit_build', {'itemBuildSlug': itemBuild.getSlug()}) }}" class="action edit-action"><i class="icon-edit"></i></a>
 								<a href="#delete-build-{{ itemBuild.getSlug() }}-modal" class="action delete-action" data-toggle="modal"><i class="icon-remove-sign"></i></a>

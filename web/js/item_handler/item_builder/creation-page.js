@@ -21,7 +21,7 @@ var
 	$blockNameInputs
 ;
 
-function addRecItem(slug, liBlockId) {console.log('add slug : '+slug+' | id : '+liBlockId);
+function addRecItem(slug, liBlockId) {
 	$liBlock = $('#'+liBlockId);
 	if ($liBlock.children('div.item-sidebar-block-div').find('div.portrait[data-slug="'+slug+'"]').length == 0) {
 		$portrait = $('#'+slug).find('div.portrait').clone();
@@ -321,6 +321,7 @@ function storeItemBuild() {
 function initItemDraggable() {
 	$itemIsotopeList.on('mouseover', 'li.item', function() {
 		$(this).draggable({
+			appendTo: 'div.item-container',
 			disabled: false,
 			helper: 'clone',
 			revert: 'invalid',
@@ -379,13 +380,15 @@ function initItemBlocksSortable() {
 
 function initItemAddBlock() {
 	$('#btn-add-item-block').click(function() {
-		var indication;
+		var indication,placeholder;
 		if(locale == 'en') {
 			indication = 'Drop your items here';
+			placeholder = 'Block name'
 		} else {
 			indication = 'Déposez vos objets ici';
+			placeholder = 'Nom du bloc'
 		}
-		$itemSidebarList.append('<li class="item-sidebar-block-li" id="___item-block-li"><input type="text" class="item_sidebar_block_input span9" value=""/> <a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a><div class="item-sidebar-block-div"><div class="indication">'+indication+'</div></div></li>')
+		$itemSidebarList.append('<li class="item-sidebar-block-li" id="___item-block-li"><input type="text" placeholder="'+placeholder+'" class="item_sidebar_block_input span9" value=""/> <a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a><div class="item-sidebar-block-div"><div class="indication">'+indication+'</div></div></li>')
 		initItemDroppable($itemSidebarList.find('li:last div.item-sidebar-block-div'));
 		return false;
 	});
