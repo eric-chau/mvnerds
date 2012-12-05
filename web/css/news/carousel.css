@@ -65,7 +65,7 @@ div.carousel div.item div.carousel-caption h4 span.comment-counter {
   color: #db4a38;
   font-size: 12px;
   position: absolute;
-  right: 15px;
+  right: 0;
 }
 div.carousel div.item div.carousel-caption h4 span.comment-counter i {
   color: #db4a38;

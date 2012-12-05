@@ -43,6 +43,13 @@
 					<strong>{{ role|trans|lower }}</strong>{% if loop.index + 1 == loop.length %} et {% else %}{% if loop.index == loop.length %}.{% else %},{% endif %}{% endif %}
 				{% endfor %}
 			</p>
+			
+			<p class="change-password">
+				Vous souhaitez changer votre mot de passe ? <a href="#" class="btn-change-password">Démarrer la procédure</a> 
+				<img src="{{ asset('images/commons/loader16-bg-141414.gif') }}" class="loader hide" />
+				<span class="process-ok hide">Nous avons bien pris en compte votre demande, vous allez recevoir un email vous détaillant la démarche à suivre.</span>
+			</p>
+			
 			<h2>Personnaliser mon avatar</h2>
 			<div class="user-custom-avatar-container">
 				<div class="row-fluid">

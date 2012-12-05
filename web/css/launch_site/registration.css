@@ -43,6 +43,11 @@ div.summoner-registration form {
   margin: 40px auto;
   width: 69%;
 }
+div.summoner-registration form div {
+  background-color: #141414;
+  margin-bottom: 5px;
+  padding: 10px 10px 5px 10px;
+}
 div.summoner-registration form label {
   color: #eee;
   display: inline-block;
@@ -75,4 +80,14 @@ div.summoner-registration form button:hover {
   -moz-transition: background-color 0.25s linear;
   -o-transition: background-color 0.25s linear;
   transition: background-color 0.25s linear;
+}
+div.summoner-registration form ul {
+  margin: 0 0 0 214px;
+  padding: 0;
+}
+div.summoner-registration form ul li {
+  color: #db4a38;
+}
+div.summoner-registration form div.form-errors ul {
+  margin: 0;
 }

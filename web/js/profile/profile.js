@@ -118,4 +118,26 @@ $(document).ready(function()
 			}
 		});
 	});
+
+	$('a.btn-change-password').on('click', function()
+	{
+		var $this = $(this),
+			$loader = $this.parent().find('img.loader');
+		$loader.show();
+
+		$.ajax({
+			url: Routing.generate('summoner_profile_change_password'),
+			type: 'GET',
+			dataType: 'json',
+			success: function(response)
+			{
+				if (response) {
+					$loader.hide();
+					$this.hide();
+					$this.parent().find('span').show();
+					$this.remove();
+				}
+			}
+		})
+	});
 });
