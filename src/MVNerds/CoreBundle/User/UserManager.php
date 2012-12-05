@@ -11,6 +11,8 @@ use MVNerds\LaunchSiteBundle\CustomException\DisabledUserException;
 use MVNerds\LaunchSiteBundle\CustomException\UnknowUserException;
 use MVNerds\LaunchSiteBundle\CustomException\UserAlreadyEnabledException;
 use MVNerds\LaunchSiteBundle\CustomException\WrongActivationCodeException;
+use MVNerds\CoreBundle\Model\PioneerUserPeer;
+use MVNerds\CoreBundle\Model\PioneerUserQuery;
 use MVNerds\CoreBundle\Model\Profile;
 use MVNerds\CoreBundle\Role\RoleManager;
 use MVNerds\CoreBundle\Model\User;
@@ -46,7 +48,12 @@ class UserManager
 		$user->save();
 		
 		// Assign role process
-		$role = $this->roleManager->assignRoleToUser($user, $this->roleManager->findByUniqueName('ROLE_USER')->getId());
+		$this->roleManager->assignRoleToUser($user, $this->roleManager->findByUniqueName('ROLE_USER')->getId());
+		
+		// Check if is pioneer user or not
+		if (null != PioneerUserQuery::create()->add(PioneerUserPeer::EMAIL, $user->getEmail())->findOne()) {
+			$this->roleManager->assignRoleToUser($user, $this->roleManager->findByUniqueName('ROLE_PIONEER')->getId());
+		}
 		
 		// Send confirmation mail to user
 		$message = Swift_Message::newInstance()
