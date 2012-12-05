@@ -4,16 +4,14 @@
 	<div class="presentation-container">
 		<div class="content">
 			<div class="overview custom">
-				<h1>Enregistrement terminé - Merci !</h1>
+				<h1>{{'registration_success.h1'|trans}}</h1>
 
 				<p>
-					Invocateur {{ user.getUsername() }}, votre enregistrement s'est déroulé avec succès. Vous allez recevoir dans les prochaines minutes un email à 
-					l'adresse email que vous avez renseigné, {{ user.getEmail() }}. L'email comporte un lien de confirmation qui vous permet d'activer votre compte MVNerds.
+					{{'registration_success.p1'|trans({'%username%':user.getUsername(), '%usermail%':user.getEmail()})}}
 				</p>
 				
 				<p>
-					Si vous remarquez une erreur de frappe lors de la saisie de votre adresse email, veuillez nous faire parvenir un message par le biais du formulaire 
-					de contact. Nous ferons le nécessaire pour opérer les changements aussi rapidement que possible.
+					{{'registration_success.p2'|trans}}
 				</p>
 			</div>
 		</div>

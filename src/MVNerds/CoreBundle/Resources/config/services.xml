@@ -49,6 +49,9 @@
 			<call method="setRoleManager">
 				<argument type="service" id="mvnerds.role_manager" />
 			</call>
+			<call method="setUserLocale">
+				<argument type="service" id="session" />
+			</call>
 		</service>
 
 		<!-- CHAMPION MANAGER SERVICES -->

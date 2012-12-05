@@ -6,6 +6,7 @@ use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use Swift_Message;
 use Exception;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 use MVNerds\LaunchSiteBundle\CustomException\DisabledUserException;
 use MVNerds\LaunchSiteBundle\CustomException\UnknowUserException;
@@ -23,6 +24,7 @@ class UserManager
 	private $mailer;
 	private $templating;
 	private $roleManager;
+	private $userLocale;
 	
 	public function createUser(array $userParams)
 	{
@@ -48,12 +50,19 @@ class UserManager
 		// Assign role process
 		$role = $this->roleManager->assignRoleToUser($user, $this->roleManager->findByUniqueName('ROLE_USER')->getId());
 		
+		if ($this->userLocale == 'en') {
+			$mailSubject  = 'Summoner, you are now registered on MVNerds.com';
+			$mailTemplate = 'MVNerdsLaunchSiteBundle:Login:confirmation_mail_en.txt.twig';
+		} else {
+			$mailSubject = 'Invocateur, vous êtes inscrit sur MVNerds.com !';
+			$mailTemplate = 'MVNerdsLaunchSiteBundle:Login:confirmation_mail.txt.twig';
+		}
 		// Send confirmation mail to user
-		$message = Swift_Message::newInstance()
-			->setSubject('Invocateur, vous êtes inscrit sur MVNerds.com !') // Utiliser le service de traduction
+		$message = Swift_Message::newInstance($mailSubject)
+			->setSubject($mailSubject)
 			->setFrom('registration@mvnerds.com')
 			->setTo($user->getEmail())
-			->setBody($this->templating->render('MVNerdsLaunchSiteBundle:Login:confirmation_mail.txt.twig', array(
+			->setBody($this->templating->render($mailTemplate, array(
 				'user' => $user
 			)), 'text/plain');
 		$this->mailer->send($message);
@@ -236,11 +245,19 @@ class UserManager
 		$user->setActivationCode(md5(uniqid(rand(), true)));
 		$user->save();
 		
+		if ($this->userLocale == 'en') {
+			$mailSubject  = 'Reset your MVNerds password!';
+			$mailTemplate = 'MVNerdsLaunchSiteBundle:Login:forgot_password_mail_en.txt.twig';
+		} else {
+			$mailSubject = 'Réinitialiser votre mot de passe MVNerds !';
+			$mailTemplate = 'MVNerdsLaunchSiteBundle:Login:forgot_password_mail.txt.twig';
+		}
+		
 		$message = Swift_Message::newInstance()
-			->setSubject('Réinitialiser votre mot de passe MVNerds !') // Utiliser le service de traduction
+			->setSubject($mailSubject)
 			->setFrom('noreply@mvnerds.com')
 			->setTo($user->getEmail())
-			->setBody($this->templating->render('MVNerdsLaunchSiteBundle:Login:forgot_password_mail.txt.twig', array(
+			->setBody($this->templating->render($mailTemplate, array(
 				'user' => $user
 			)), 'text/plain');
 		$this->mailer->send($message);
@@ -301,5 +318,11 @@ class UserManager
 	public function setRoleManager(RoleManager $roleManager)
 	{
 		$this->roleManager = $roleManager;
+	}
+	
+	public function setUserLocale(Session $session)
+	{
+		$locale = $session->get('locale', null);
+		$this->userLocale = null === $locale? 'fr' : $locale;
 	}
 }
