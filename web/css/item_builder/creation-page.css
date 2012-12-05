@@ -162,7 +162,7 @@ ul.dropdown-menu:not(.typeahead) ul.tags-group {
   list-style: none;
   margin: 0 20px 0 0;
   padding: 0;
-  width: 200px;
+  width: 240px;
 }
 ul.dropdown-menu:not(.typeahead) ul.tags-group li.nav-header {
   color: #fb9701;
@@ -176,7 +176,10 @@ ul.dropdown-menu:not(.typeahead) ul.tags-group a i {
   color: black;
   display: inline-block;
   font-size: 18px;
+  left: -5px;
   margin: 0 10px 0 0;
+  position: relative;
+  top: 0 !important;
 }
 ul.dropdown-menu:not(.typeahead) ul.tags-group a.selected {
   color: #fb9701;
@@ -704,14 +707,15 @@ div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_li
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li input {
   background-color: #333;
   border: 1px solid #999;
-  color: #19A0DF;
   -webkit-border-radius: 0 !important;
   -moz-border-radius: 0 !important;
   border-radius: 0 !important;
+  color: #19A0DF;
+  width: 145px;
 }
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li input:focus {
-  border-color: #19A0DF;
   background-color: #444;
+  border-color: #19A0DF;
 }
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li a.btn-delete-block-item.reset-field {
   display: inline-block;
@@ -721,25 +725,26 @@ div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_li
 }
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li a.btn-delete-block-item.reset-field i {
   color: #666;
-  font-size: 25px;
+  font-size: 23px;
 }
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li a.btn-delete-block-item.reset-field:hover i {
   color: #db4a38;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
 }
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div {
   min-height: 62px;
   text-align: left;
 }
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.indication {
-  text-align: center;
+  border: 1px dashed #666;
+  color: #666;
   font-size: 13px;
-  padding: 20px;
-  border: 1px dashed #999;
-  -webkit-border-radius: 5px !important;
-  -moz-border-radius: 5px !important;
-  border-radius: 5px !important;
-  color: #999;
   font-style: italic;
+  padding: 20px;
+  text-align: center;
 }
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.portrait {
   text-align: left;

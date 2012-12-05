@@ -156,7 +156,7 @@ ul.dropdown-menu {
 			list-style: none;
 			margin: 0 20px 0 0;
 			padding: 0;
-			width: 200px;
+			width: 240px;
 
 			li.nav-header {
 				color: @LoLOrangeAD;
@@ -171,7 +171,10 @@ ul.dropdown-menu {
 					color: black;
 					display: inline-block;
 					font-size: 18px;
+					left: -5px;
 					margin: 0 10px 0 0;
+					position: relative;
+					top: 0 !important;
 				}
 
 				&.selected {
@@ -664,14 +667,16 @@ div.body-container {
 							input {
 								background-color: #333;
 								border: 1px solid #999;
-								color: #19A0DF;
 								.border-radius(0);
+								color: #19A0DF;
+								width: 145px;
 								
 								&:focus {	
-									border-color: #19A0DF;
 									background-color: #444;
+									border-color: #19A0DF;
 								}
 							}
+
 							a.btn-delete-block-item {
 								&.reset-field {
 									display: inline-block;
@@ -681,28 +686,31 @@ div.body-container {
 									
 									i {
 										color: #666;
-										font-size: 25px;
+										font-size: 23px;
 									}
+
 									&:hover {
 										i {
-											color: @MVNerdsRed;
+											color: @MVNerdsRed; .transition(color .25s linear);
 										}
 									}
 								}
 							}
+
 							div.item-sidebar-block-div {
 								min-height: 62px;
 								text-align: left;
+
 								div.indication {
-									text-align: center;
+									border: 1px dashed #666;
+									color: #666;
 									font-size: 13px;
-									padding: 20px;
-									border: 1px dashed #999;
-									.border-radius(5px);	
-									color: #999;
 									font-style: italic;
+									padding: 20px;
+									text-align: center;
 								}
-								div.portrait{
+
+								div.portrait {
 									text-align: left;
 									width: 25px;
 									cursor: pointer;

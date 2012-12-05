@@ -227,6 +227,16 @@ table#item-builds-table tbody tr td.name {
   padding: 7px 4px 4px 4px;
   text-align: left;
 }
+table#item-builds-table tbody tr td.name a {
+  color: #999;
+}
+table#item-builds-table tbody tr td.name a:hover {
+  color: #19a0df;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
 table#item-builds-table tbody tr td.name span.created-by {
   font-size: 12px;
 }

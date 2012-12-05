@@ -10,7 +10,6 @@ use Exception;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use JMS\SecurityExtraBundle\Annotation\Secure;
 
-use MVNerds\CoreBundle\Model\ItemBuild;
 use MVNerds\CoreBundle\Model\ChampionItemBuild;
 use MVNerds\CoreBundle\Model\UserPreference;
 use  MVNerds\CoreBundle\Model\ItemBuildItems;
