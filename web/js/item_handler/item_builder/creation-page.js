@@ -98,27 +98,56 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 						dataType: 'json'
 					}).done(function(data){
 						if(itemBuildSlug != undefined) {
-							displayMessage('Les modifications ont bien été enregistrées.', 'success');
+							if (locale == 'en') {
+								displayMessage('Modifications have been saved successfully.', 'success');
+							}else {
+								displayMessage('Les modifications ont bien été enregistrées.', 'success');
+							}
 						} else {
 							window.location = Routing.generate('item_builder_download_file', {_locale: locale, itemBuildSlug: data});
-							displayMessage('Le fichier a bien été généré.', 'success');
+							if (locale == 'en') {
+								displayMessage('The file has been successfully generated.', 'success');
+							}else {
+								displayMessage('Le fichier a bien été généré.', 'success');
+							}
+							
 						}
 					}).fail(function(data){
-						displayMessage('Impossible de créer le build.', 'error');
+						if (locale == 'en') {
+							displayMessage('Impossible to create the build.', 'success');
+						}else {
+							displayMessage('Impossible de créer le build.', 'error');
+						}
 //						console.log(data.responseText);
 //						$('#footer').html(data.responseText).css('text-align', 'left');
 					})
 				} else {
-					displayMessage('Veuillez saisir un nom pour votre build.', 'error');
+					if (locale == 'en') {
+						displayMessage('Please set a name for your build.', 'success');
+					}else {
+						displayMessage('Veuillez saisir un nom pour votre build.', 'error');
+					}
 				}
 			} else {
-				displayMessage('Il faut sélectionner au moins un objet !', 'error');
+				if (locale == 'en') {
+					displayMessage('You have to select at least one item!.', 'success');
+				}else {
+					displayMessage('Il faut sélectionner au moins un objet !', 'error');
+				}
 			}
 		} else {
-			displayMessage('Le mode de jeu sélectionné est incorrect', 'error');
+			if (locale == 'en') {
+				displayMessage('The selected game mode is not valid.', 'success');
+			}else {
+				displayMessage('Le mode de jeu sélectionné est incorrect', 'error');
+			}
 		}
 	} else {
-		displayMessage('Pas assez de champions sélectionnés !', 'error');
+		if (locale == 'en') {
+			displayMessage('Not enough champions selected.', 'success');
+		}else {
+			displayMessage('Pas assez de champions sélectionnés !', 'error');
+		}
 	}
 	
 	return false;
@@ -459,7 +488,11 @@ function initBlockInputName() {
 			
 			if ( ! (newName != '' && !regex.test(newName))) {
 				$(this).val(oldName);
-				displayMessage('Le nom saisi n\'est pas valide.', 'error')
+				if (locale == 'en') {
+					displayMessage('The given name is not valid.', 'success');
+				}else {
+					displayMessage('Le nom saisi n\'est pas valide.', 'error')
+				}
 			} else {
 				newName = newName.replace(/ +/g, ' ');
 				oldName = newName;

@@ -9,9 +9,9 @@
 
 {% block title %}
 	{% if admin_mode == false %}
-		{{ user.getUsername() }} - Profil d'invocateur | MVNerds
+		{{ user.getUsername() }} {{'Profile_index.title'|trans}}
 	{% else %}
-		Mon profil - {{ user.getUsername() }} | MVNerds
+		{{'Profile_index.title.admin_mode'|trans}} {{ user.getUsername() }} | MVNerds
 	{% endif %}
 {% endblock %}
 		
@@ -36,20 +36,20 @@
 	<div class="body-container summoner-profile">
 		{% set current_avatar_name = user.getProfile().getAvatar().getName() %}
 		{% if admin_mode %}
-			<h1>Administration de mon profil - {{ user.getUsername() }}</h1>
+			<h1>{{'Profile_index.h1'|trans}} {{ user.getUsername() }}</h1>
 			<p>
-				Je suis inscrit depuis le {{ user.getCreatedAt()|date('d/m/Y') }}. Actuellement, je possède les rôles 
+				{{'Profile_index.p1'|trans({'%date%':user.getCreatedAt()|date('d/m/Y')})}}
 				{% for role in user.getRoles() %}
-					<strong>{{ role|trans|lower }}</strong>{% if loop.index + 1 == loop.length %} et {% else %}{% if loop.index == loop.length %}.{% else %},{% endif %}{% endif %}
+					<strong>{{ (role)|trans|lower }}</strong>{% if loop.index + 1 == loop.length %} {{'General.and'|trans}} {% else %}{% if loop.index == loop.length %}.{% else %},{% endif %}{% endif %}
 				{% endfor %}
 			</p>
-			<h2>Personnaliser mon avatar</h2>
+			<h2>{{'Profile_index.avatar.h2'|trans}}</h2>
 			<div class="user-custom-avatar-container">
 				<div class="row-fluid">
 					<div class="span3 current-avatar">
-						<strong>Avatar courant</strong>
+						<strong>{{'Profile_index.avatar.current_avatar'|trans}}</strong>
 						<img src="{{ asset('images/avatar/'~ current_avatar_name ~'.jpg') }}" class="avatar" />
-						<a href="#" class="btn-save-avatar disabled" data-current-avatar-name="{{ current_avatar_name }}">Enregistrer mon nouvel avatar</a> <img src="{{ asset('images/commons/loader16-bg-141414.gif') }}" class="loader hide" />
+						<a href="#" class="btn-save-avatar disabled" data-current-avatar-name="{{ current_avatar_name }}">{{'Profile_index.avatar.save_new_avatar'|trans}}</a> <img src="{{ asset('images/commons/loader16-bg-141414.gif') }}" class="loader hide" />
 					</div>
 					<div class="span9 avatar-selection">
 						{% for avatar in avatars %}
@@ -61,10 +61,10 @@
 		{% else %}
 			<img src="{{ asset('images/avatar/'~ current_avatar_name ~'.jpg') }}" class="avatar" />
 			<h1>{{ user.getUsername() }}</h1>
-			<p class="gray-color">{{ user.getUsername() }} est inscrit depuis le {{ user.getCreatedAt()|date('d/m/Y') }}. Au sein de la communauté MVNerds, il / elle est :
+			<p class="gray-color">{{ user.getUsername() }} {{'Profile_index.avatar.admin_mode.registered_since'|trans({'%date%':user.getCreatedAt()|date('d/m/Y')})}}
 				<ul class="gray-color">
 					{% for role in user.getRoles() %}
-						<li>{{ role|trans }}</li>
+						<li>{{ (role)|trans }}</li>
 					{% endfor %}
 				</ul>
 			</p>
@@ -72,7 +72,7 @@
 		{% endif %}
 		
 		{% if admin_mode %}
-			<h2>Mes préférences utilisateurs</h2>
+			<h2>{{'Profile_index.avatar.admin_mode.preferences.h2'|trans}}</h2>
 			<div class="user-custom-parameters-container">
 				<div class="module-block">
 					<h4>PIMP MY RECOMMENDED ITEMS</h4>
@@ -92,7 +92,7 @@
 			</div>
 		{% endif %}
 		
-		<h2>Listes d'objets conseillés personnalisées</h2>
+		<h2>{{'ItemBuilder.pmri.h2'|trans}}</h2>
 		{% if user_items_builds|length > 0 %}
 			{% if admin_mode == false %}
 				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_table.html.twig' with {'item_builds': user_items_builds}  %}
@@ -100,7 +100,7 @@
 				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_table.html.twig' with {'item_builds': user_items_builds, 'admin_mode': true}  %}
 			{% endif %}
 		{% else %}
-			<p class="empty-list">{{ user.getUsername() }} n'a pas encore enregistré de liste d'objet conseillé.</p>
+			<p class="empty-list">{{ user.getUsername() }} {{'ItemBuilder.pmri.p1'|trans}}</p>
 		{% endif %}
 		
 		{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}

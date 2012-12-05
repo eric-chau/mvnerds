@@ -1,67 +1,67 @@
-﻿<?xml version="1.0"?>
+<?xml version="1.0"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
 	<file source-language="en" datatype="plaintext" original="file.ext">
 		<body>
 			<trans-unit id="0">
 				<source>Profile_index.title</source>
-				<target>- Profil d'invocateur | MVNerds</target>
+				<target>- Summoner's profile | MVNerds</target>
 			</trans-unit>
 			<trans-unit id="1">
 				<source>Profile_index.title.admin_mode</source>
-				<target>Mon profil -</target>
+				<target>My profile -</target>
 			</trans-unit>
 			<trans-unit id="2">
 				<source>Profile_index.h1</source>
-				<target>Administration de mon profil -</target>
+				<target>Administration of my profile -</target>
 			</trans-unit>
 			<trans-unit id="3">
 				<source>Profile_index.p1</source>
-				<target>Je suis inscrit depuis le %date%. Actuellement, je possède les rôles </target>
+				<target>I am registered since the %date%. Actually i have the roles </target>
 			</trans-unit>
 			<trans-unit id="4">
 				<source>Profile_index.avatar.h2</source>
-				<target>Personnaliser mon avatar</target>
+				<target>Personalize my avatar</target>
 			</trans-unit>
 			<trans-unit id="5">
 				<source>Profile_index.avatar.current_avatar</source>
-				<target>Avatar courant</target>
+				<target>Current avatar</target>
 			</trans-unit>
 			<trans-unit id="6">
 				<source>Profile_index.avatar.save_new_avatar</source>
-				<target>Enregistrer mon nouvel avatar</target>
+				<target>Save my new avatar</target>
 			</trans-unit>
 			<trans-unit id="7">
 				<source>Profile_index.avatar.admin_mode.registered_since</source>
-				<target>est inscrit depuis le %date%. Au sein de la communauté MVNerds, il / elle est :</target>
+				<target>is registered since the %date%. Within the MVNerds community, he / she is :</target>
 			</trans-unit>
 			<trans-unit id="8">
 				<source>Profile_index.avatar.admin_mode.preferences.h2</source>
-				<target>Mes préférences utilisateurs</target>
+				<target>My user preferences</target>
 			</trans-unit>
 			<trans-unit id="9">
 				<source>ItemBuilder.ChangeLoLDirectory.label</source>
-				<target>Emplacement du répertoire League of Legends</target>
+				<target>League of Legends directory placement</target>
 			</trans-unit>
 			<trans-unit id="10">
 				<source>ItemBuilder.pmri.h2</source>
-				<target>Listes des objets conseillés personnalisées</target>
+				<target>Custom recommended items lists</target>
 			</trans-unit>
 			<trans-unit id="11">
 				<source>ItemBuilder.pmri.p1</source>
-				<target>n'a pas encore enregistré de liste d'objet conseillé.</target>
+				<target>didn't save any recommended items list yet.</target>
 			</trans-unit>
-			
+
 			<trans-unit id="100">
 				<source>ROLE_NEWSER</source>
 				<target>Newser</target>
 			</trans-unit>
 			<trans-unit id="101">
 				<source>ROLE_USER</source>
-				<target>Membre</target>
+				<target>Member</target>
 			</trans-unit>
 			<trans-unit id="102">
 				<source>ROLE_ADMIN</source>
-				<target>Administrateur</target>
+				<target>Administrator</target>
 			</trans-unit>
 		</body>
 	</file>
