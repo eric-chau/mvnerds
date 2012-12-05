@@ -17,3 +17,6 @@ src/MVNerds/CoreBundle/Model/map/*
 *.orig
 
 web/builds/*.bat
+
+web/js/compiled/
+web/css/compiled/

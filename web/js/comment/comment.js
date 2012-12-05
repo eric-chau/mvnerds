@@ -61,7 +61,7 @@ $(document).ready(function()
 		$(this).val($(this).val().slice(0, 500));
 	});
 
-	$('a.report').on('click', function(event)
+	$('div.comments-list').on('click', 'a.report', function(event)
 	{
 		event.preventDefault();
 		if ($(this).hasClass('wip')) {
