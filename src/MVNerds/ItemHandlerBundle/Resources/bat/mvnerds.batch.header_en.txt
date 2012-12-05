@@ -1,0 +1,12 @@
+@echo off
+
+echo ###############################################################################################
+echo #                       Most Valuable Nerds Item Builder                                      #
+echo #                                                                                             #
+echo # This file will allow you to create recommended items lists for your champions               #
+echo #                                                                                             #
+echo ###############################################################################################
+
+
+
+

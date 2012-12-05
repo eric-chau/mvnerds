@@ -29,18 +29,24 @@ class BatchManager
 	public function createRecItemBuilder(ItemBuild $itemBuild, $path = null, $locale = null)
 	{
 		$batchReleaseFinder = file_get_contents($this->itemBuildsModelPath . 'mvnerds.batch.release_finder.txt');
-		$batchHeader = file_get_contents($this->itemBuildsModelPath . 'mvnerds.batch.header.txt');
+		if($this->userLocale == 'en')
+		{
+			$batchHeader = file_get_contents($this->itemBuildsModelPath . 'mvnerds.batch.header_en.txt');
+		}
+		else
+		{
+			$batchHeader = file_get_contents($this->itemBuildsModelPath . 'mvnerds.batch.header.txt');
+		}
 		
 		//Les répertoires les plus courants ou se trouve league of legends
 		$paths = array(
-//			"C:/Program Files/Riot Games/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
-//			"C:/Program Files/Riot Games/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
-//			"C:/Program Files/Riot/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
-//			"C:/Riot Games/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
-//			"C:/Riot/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
-//			"C:/Program Files (x86)/Riot Games/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
-//			"C:/Program Files (x86)/Riot/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
-			"D:/LOLPBE/LOLPBE/RADS/solutions/lol_game_client_sln/releases/"
+			"C:/Program Files/Riot Games/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
+			"C:/Program Files/Riot Games/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
+			"C:/Program Files/Riot/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
+			"C:/Riot Games/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
+			"C:/Riot/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
+			"C:/Program Files (x86)/Riot Games/League of Legends/RADS/solutions/lol_game_client_sln/releases/",
+			"C:/Program Files (x86)/Riot/League of Legends/RADS/solutions/lol_game_client_sln/releases/"
 		);
 		
 		//Si la locale n est pas définie lors de l appel on prend la locale de la session
@@ -52,6 +58,10 @@ class BatchManager
 		//Si le chemin du repertoire de riot est défini par l'utilisateur on l ajoute en fin de la liste des repertoires
 		if (null != $path)
 		{
+			if (strrpos($path, '/') != strlen($path) || strrpos($path, '\\') != strlen($path))
+			{
+				$path .= '/';
+			}
 			$paths[] = $path . 'League of Legends/RADS/solutions/lol_game_client_sln/releases/';
 		}
 		$batFileName = $this->itemBuildsPath . $itemBuild->getSlug() . '.bat';
@@ -159,6 +169,7 @@ class BatchManager
 				$stdItem = new \stdClass();
 				$stdItem->code = $item->getRiotCode();
 				$stdItem->count = $count;
+				$stdItem->name = $item->getName();
 				
 				$itemTab[$position]['items'][] = $stdItem;
 				
@@ -168,9 +179,21 @@ class BatchManager
 				}
 			}
 			
+			if($this->userLocale == 'en')
+			{
+				$tmpHeader= "echo This item build : \n";
+			}
+			else
+			{
+				$tmpHeader= "echo Le build suivant : \n";
+			}
+			
 			foreach($itemTab as $itemBlock)
 			{
 				$blockName = $itemBlock['type'];
+				
+				$tmpHeader .= "echo     " .$blockName . "\n";
+				
 				fwrite($batFile, "echo \t\t { >> ".$fileName."\n");
 				fwrite($batFile, "echo \t\t\t \"type\":\"". $blockName ."\", >> ".$fileName."\n");
 				fwrite($batFile, "echo \t\t\t \"items\":[ >> ".$fileName."\n");
@@ -179,6 +202,8 @@ class BatchManager
 				$k = 1;
 				foreach($itemBlock['items'] as $item)
 				{
+					$tmpHeader .= "echo         " . $item->name . "\n";
+					
 					fwrite($batFile, "echo \t\t\t\t{ >> ".$fileName."\n");
 					fwrite($batFile, "echo \t\t\t\t\t \"id\":\"".$item->code."\", >> ".$fileName."\n");
 					fwrite($batFile, "echo \t\t\t\t\t \"count\":".$item->count." >> ".$fileName."\n");
@@ -212,17 +237,27 @@ class BatchManager
 			fwrite($batFile, 'cd "../../"'."\n\n");
 		}
 		
-		fwrite($batFile, "Cls\necho Les fichiers ont bien ete crees, a bientot sur mvnerds.com\n");
+		if($this->userLocale == 'en')
+		{
+			fwrite($batFile, "Cls\necho Files have been created, see you soon on mvnerds.com\n");
+		}
+		else
+		{
+			fwrite($batFile, "Cls\necho Les fichiers ont bien ete crees, a bientot sur mvnerds.com\n");
+		}
 		fwrite($batFile, 'pause');
 		
 		fclose($batFile);
 		
-		$tmpHeader= "echo Le build suivant : \n";
-		for($i = 1; $i <= count($itemNames); $i++)
+		if($this->userLocale == 'en')
 		{
-			$tmpHeader .= "echo \tItem $i : ".$itemNames[$i-1]."\n";
+			$tmpHeader.="echo will be affected to those champions : \n";
 		}
-		$tmpHeader.="echo va etre affecte aux champions suivants : \n";
+		else
+		{
+			$tmpHeader.="echo va etre affecte aux champions suivants : \n";
+		}
+		
 		foreach($champNames as $championName)
 		{
 			$tmpHeader .= "echo \t".$championName."\n";
