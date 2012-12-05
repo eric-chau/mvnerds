@@ -4,7 +4,7 @@
 		<div class="carousel-caption">
 			<h4 class="header">
 				<a href="{{path('news_detail', {'slug': new.getSlug()} )}}">{{new.getTitle()}}</a>
-				<em>par <a href="{{ path('summoner_profile_view', {'userSlug': new.getUser().getSlug()}) }}" title="Consulter le profil de {{ new.getUser().getUsername }}"">{{new.getUser().getUsername()}}</a> le {{new.getCreateTime('d/m/Y')}} à {{new.getCreateTime('H:i')}}</em>
+				<em>{{'news_carousel.title.by'|trans}} <a href="{{ path('summoner_profile_view', {'userSlug': new.getUser().getSlug()}) }}" title="{{'Profil.consult_profile'|trans}} {{ new.getUser().getUsername }}">{{new.getUser().getUsername()}}</a> {{'news_carousel.title.the'|trans}} {{new.getCreateTime('d/m/Y')}} {{'news_carousel.title.at'|trans}} {{new.getCreateTime('H:i')}}</em>
 				<span class="comment-counter">{{ new.getCommentCount() }} <i class="icon-comment"></i></span>
 			</h4>
 				

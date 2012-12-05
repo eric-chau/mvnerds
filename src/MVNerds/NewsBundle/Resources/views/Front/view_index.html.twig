@@ -38,7 +38,7 @@
 	<div id="news-container">
 		<h1 class="header">
 			{{news.getTitle()}}
-			<em>par <a href="{{ path('summoner_profile_view', {'userSlug': news.getUser().getSlug()}) }}" title="Consulter le profil de {{ news.getUser().getUsername }}">{{news.getUser().getUsername()}}</a> le {{news.getCreateTime('d/m/Y')}} à {{news.getCreateTime('H:i')}}</em>
+			<em>{{'Comments.posted_by'|trans}} <a href="{{ path('summoner_profile_view', {'userSlug': news.getUser().getSlug()}) }}" title="{{'Profil.consult_profile'|trans}} {{ news.getUser().getUsername }}">{{news.getUser().getUsername()}}</a> {{'news_carousel.title.the'|trans}} {{news.getCreateTime('d/m/Y')}} {{'news_carousel.title.at'|trans}} {{news.getCreateTime('H:i')}}</em>
 		</h1>
 		<div class="clearflix"></div>
 		<p class="module-name">Module <strong>Most Valuable News</strong></p>
@@ -48,7 +48,7 @@
 		{% render 'MVNerdsCommentBundle:Comment:renderLightComments' with {'object': news} %}
 		
 		<div class="news-footer">
-			<p><a href="{{ path('news_index') }}"><i class="icon-chevron-left"></i> Retourner à la liste des news</a></p>
+			<p><a href="{{ path('news_index') }}"><i class="icon-chevron-left"></i> {{'news_view.back_to_list'|trans}}</a></p>
 		</div>
 	</div>
 {% endblock %}

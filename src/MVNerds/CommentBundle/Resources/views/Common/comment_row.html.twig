@@ -16,7 +16,7 @@
 				{% if show_comment %}
 					<p>{{ comment.getContent()|nl2br }}</p>
 				{% else %}
-					<p class="reported-comment"><a href="#">Ce commentaire est masqué car il a été reporté plusieurs fois. Cliquez ici pour l'afficher.</a></p>
+					<p class="reported-comment"><a href="#">{{'Comments.masked'|trans}}</a></p>
 					<p class="reported hide">{{ comment.getContent()|nl2br }}</p>
 				{% endif %}
 				<p class="posted-by">
@@ -25,21 +25,21 @@
 							{% if comment.didIReportThisComment(app.user) %}
 								{% include 'MVNerdsCommentBundle:Common:report_success.html.twig' %}
 							{% else %}
-								<a href="#" class="report{% if show_comment == false %} hide{% endif %}" data-comment-id="{{ comment.getId() }}">Signaler ce message</a>
+								<a href="#" class="report{% if show_comment == false %} hide{% endif %}" data-comment-id="{{ comment.getId() }}">{{'Comments.signal'|trans}}</a>
 							{% endif %}
 						</span> |
 					{% endif %}
-					Posté par <strong><a href="{{ path('summoner_profile_view', {'userSlug': comment.getUser().getSlug()}) }}" title="Consulter le profil de {{ comment.getUser().getUsername }}">{{ comment.getUser().getUsername() }}</a></strong>,
+					{{'Comments.posted_by'|trans}} <strong><a href="{{ path('summoner_profile_view', {'userSlug': comment.getUser().getSlug()}) }}" title="{{'Check the profile of'|trans}} {{ comment.getUser().getUsername }}">{{ comment.getUser().getUsername() }}</a></strong>,
 					{% if comment.getCreateTime('d/m/Y') == date().format('d/m/Y') %}
-						Aujourd'hui
+						{{'Comments.today'|trans}}
 					{% else %}
 						{% if comment.getCreateTime('d/m/Y') == date('-1day').format('d/m/Y') %}
-							Hier
+							{{'Comments.yesterday'|trans}}
 						{%else %}
-							le {{ comment.getCreateTime('d/m/Y') }}
+							{{'news_carousel.title.the'|trans}} {{ comment.getCreateTime('d/m/Y') }}
 						{%endif %}
 					{% endif %}
-					 à {{ comment.getCreateTime('H:i') }}
+					 {{'news_carousel.title.at'|trans}} {{ comment.getCreateTime('H:i') }}
 				</p>
 			</div>
 		</div>
