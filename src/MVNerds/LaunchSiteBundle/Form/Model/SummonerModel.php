@@ -13,9 +13,12 @@ class SummonerModel
 	
 	private $userManager;
 	
-	public function __construct(UserManager $userManager)
+	public function __construct(UserManager $userManager, $pioneerEmail = null)
 	{
 		$this->userManager = $userManager;
+		if (null != $pioneerEmail) {
+			$this->email = $pioneerEmail;
+		}
 	}
 	
 	public function getUsername()

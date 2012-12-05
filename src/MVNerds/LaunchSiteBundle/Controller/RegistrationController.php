@@ -10,6 +10,8 @@ use MVNerds\LaunchSiteBundle\CustomException\DisabledUserException;
 use MVNerds\LaunchSiteBundle\CustomException\UnknowUserException;
 use MVNerds\LaunchSiteBundle\CustomException\UserAlreadyEnabledException;
 use MVNerds\LaunchSiteBundle\CustomException\WrongActivationCodeException;
+use MVNerds\CoreBundle\Model\PioneerUserPeer;
+use MVNerds\CoreBundle\Model\PioneerUserQuery;
 use MVNerds\LaunchSiteBundle\Form\Model\SummonerModel;
 use MVNerds\LaunchSiteBundle\Form\Type\SummonerType;
 use MVNerds\LaunchSiteBundle\Form\Model\ForgotPasswordModel;
@@ -27,7 +29,19 @@ class RegistrationController extends Controller
 	 */
 	public function indexAction()
 	{
-		$form = $this->createForm(new SummonerType(), new SummonerModel($this->get('mvnerds.user_manager')));
+		$emailFromRequest = $this->getRequest()->get('email', null);
+		$isValidPioneerUser = false;
+		if (null != $emailFromRequest) {
+			$pioneerUser = PioneerUserQuery::create()
+				->add(PioneerUserPeer::EMAIL, $emailFromRequest)
+			->findOne();
+			
+			if (null != $pioneerUser) {
+				$isValidPioneerUser = true;
+			}
+		}
+		
+		$form = $this->createForm(new SummonerType(), new SummonerModel($this->get('mvnerds.user_manager'), $isValidPioneerUser? $emailFromRequest : null));
 		$request = $this->getRequest();
 		if ($request->isMethod('POST')) {
 			$form->bind($request);
@@ -41,7 +55,7 @@ class RegistrationController extends Controller
 		}
 		
 		return $this->render('MVNerdsLaunchSiteBundle:Login:registration_index.html.twig', array(
-			'form' => $form->createView(),
+			'form' => $form->createView()
 		));
 	}
 	
