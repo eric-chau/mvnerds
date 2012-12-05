@@ -59,7 +59,7 @@
 						<td class="game-mode">{{itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel()}}</td>
 						
 						<td>
-							<a class="action view-action" href="{{path('item_builder_view', {itemBuildSlug: itemBuild.getSlug()})}}"><i class="icon-share"></i> Voir</a>
+							<a class="action view-action" href="{{path('item_builder_view', {itemBuildSlug: itemBuild.getSlug()})}}"><i class="icon-share"></i> {{'General.watch'|trans}}</a>
 							
 							<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>{{'item_table.td.downloaded'|trans}}</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> {{'item_table.td.times'|trans}}</span>
 						</td>

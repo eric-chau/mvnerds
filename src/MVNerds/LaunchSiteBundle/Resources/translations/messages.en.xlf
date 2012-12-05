@@ -36,6 +36,10 @@
 				<source>General.send</source>
 				<target>Send</target>
 			</trans-unit>
+			<trans-unit id="9">
+				<source>General.watch</source>
+				<target>Watch</target>
+			</trans-unit>
 
 			<!--  COUNTDOWN -->
 			<trans-unit id="1000">
