@@ -478,7 +478,7 @@
     </foreign-key>
   </table>
   <table name="news">
-    <column name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
     <column name="user_id" required="true" type="INTEGER" />
     <column name="news_category_id" required="true" type="INTEGER" />
     <column name="title" required="true" size="255" type="VARCHAR" />
