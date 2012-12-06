@@ -28,7 +28,7 @@
 				console.log('coucou');
 				var $this = $(this);
 				$.ajax({
-					url: Routing.generate('admin_roles_remove_role_from_user', {'username': $(this).data('username'), 'roleId': roleId}),
+					url: Routing.generate('admin_roles_remove_role_from_user', {'_locale': locale, 'username': $(this).data('username'), 'roleId': roleId}),
 					type: 'GET',
 					dataType: 'json',
 					success: function(response)
@@ -53,7 +53,7 @@
 				$loader.toggleClass('hide');
 				
 				$.ajax({
-					url: Routing.generate('admin_roles_add_role_to_user', {'username': username, 'roleId': roleId}),
+					url: Routing.generate('admin_roles_add_role_to_user', {'_locale': locale, 'username': username, 'roleId': roleId}),
 					type: 'GET',
 					dataType: 'html',
 					success: function(response)
