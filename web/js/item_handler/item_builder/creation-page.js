@@ -74,9 +74,24 @@ function isBuildValid() {
 	
 	if($champions.length >= 1) {
 		if(gameModesArray.indexOf(gameMode) >=0 ) {
-			if ( $items.length > 0 ) {
+			if ( $items.length > 0 ) {				
 				if (buildName.length > 0) {
-					return true;				
+					var isValid = true;
+					$('li.item-sidebar-block-li').each(function() {
+						if($(this).children('input.item_sidebar_block_input').val() == '') {
+							if ($(this).find('div.item-sidebar-block-div div.portrait').length > 0) {
+								if (locale == 'en') {
+									displayMessage('Please name all of your created blocks.', 'success');
+								}else {
+									displayMessage('Veuillez saisir un nom pour tous vos blocs créés.', 'error');
+								}
+								isValid = false;
+								return false;
+							}
+						}
+						return true;
+					});	console.log('isValid : '+isValid);
+					return isValid;
 				} else {
 					if (locale == 'en') {
 						displayMessage('Please set a name for your build.', 'success');
@@ -130,7 +145,7 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 		var itemsSlugs = new Array();
 		$itemSidebarList.find('li.item-sidebar-block-li').each(function () {
 			var blockName = $(this).find('input.item_sidebar_block_input').val();
-			if(! (blockName in itemsSlugs)) {
+			if(blockName != undefined && blockName != '' && ! (blockName in itemsSlugs)) {
 				var blockArray = new Array();
 				$(this).find('div.item-sidebar-block-div div.portrait').each(function() {
 					blockArray.push($(this).data('slug'));

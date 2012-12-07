@@ -213,10 +213,12 @@ class ItemBuilderController extends Controller
 		$saveBuild = $request->get('saveBuild');
 		$path = $request->get('path');
 		$itemBuildSlug = $request->get('itemBuildSlug');
+		$isEdition = false;
 		
 		if ($itemBuildSlug != null) {
 			try {
 				$itemBuild = $itemBuildManager->findOneBySlug($itemBuildSlug);
+				$isEdition = true;
 			} catch(\Exception $e) {
 				throw new HttpException(500, 'Unable to find item build with slug '.$itemBuildSlug.'!');
 			}
@@ -320,7 +322,12 @@ class ItemBuilderController extends Controller
 				
 				$nbItemBuilds = $itemBuildManager->countNbBuildsByUserId($user->getId());
 				
-				if($this->get('security.context')->isGranted('ROLE_ADMIN'))
+				if ($isEdition) 
+				{
+					$itemBuild->setUser($user);
+					$itemBuild->save();
+				}
+				elseif($this->get('security.context')->isGranted('ROLE_ADMIN'))
 				{
 					$itemBuild->setUser($user);
 					$itemBuild->save();
