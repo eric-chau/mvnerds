@@ -63,6 +63,10 @@
 				<source>ROLE_ADMIN</source>
 				<target>Administrateur</target>
 			</trans-unit>
+			<trans-unit id="103">
+				<source>ROLE_PIONEER</source>
+				<target>Pionnier</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

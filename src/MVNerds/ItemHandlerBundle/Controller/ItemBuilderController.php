@@ -82,9 +82,9 @@ class ItemBuilderController extends Controller
 	
 	/**
 	 * 
-	 * @Route("/view/{itemBuildSlug}", name="item_builder_view")
+	 * @Route("/view/{itemBuildSlug}/{dl}", name="item_builder_view", defaults={"dl"=null}, options={"expose"=true})
 	 */
-	public function viewAction($itemBuildSlug) 
+	public function viewAction($itemBuildSlug, $dl)
 	{
 		try{
 			$itemBuild = $this->get('mvnerds.item_build_manager')->findOneBySlug($itemBuildSlug);
@@ -108,10 +108,25 @@ class ItemBuilderController extends Controller
 		}
 		ksort($itemBlocks);
 		
-		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:view_index.html.twig', array(
+		try{
+			if ($this->get('security.context')->isGranted('ROLE_USER'))
+			{
+				$user = $this->get('security.context')->getToken()->getUser();
+				$lolDirPreference = $this->get('mvnerds.preference_manager')->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
+				$lolDir = $lolDirPreference->getValue();
+			}
+		} catch(\Exception $e) {
+			$lolDir= null;
+		}
+		$params = array(
 				'itemBuild'	=> $itemBuild,
-				'itemBlocks'	=> $itemBlocks
-		));
+				'itemBlocks'	=> $itemBlocks,
+				'lol_dir'	=>$lolDir
+		);
+		if($dl != null && $dl == 'dl') {
+			$params['start_dl'] = 'true';
+		}
+		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:view_index.html.twig', $params);
 	}
 	
 	/**
@@ -257,7 +272,7 @@ class ItemBuilderController extends Controller
 		
 		$itemBuild->setName($buildName);
 		
-		$newItemBuildSlug = preg_replace('/[^\w\/]+/u', '-', $buildName);
+		$newItemBuildSlug = preg_replace('/[^\w]+/u', '-', $buildName);
 		$itemBuild->setSlug($newItemBuildSlug);
 		$championItemBuilds = new \PropelCollection();
 		
@@ -379,12 +394,12 @@ class ItemBuilderController extends Controller
 		
 		if (file_exists($path))
 		{
-			$response->headers->set('Content-Type', 'application/octetstream');
-			$response->headers->set('Content-Disposition', 'attachment;filename='.$itemBuildSlug.'.bat');
+			$response->headers->set('Content-Type', 'application/octet-stream');
+			$response->headers->set('Content-Disposition', 'attachment;filename="'.$itemBuildSlug.'.bat"');
 			$response->headers->set('Content-Transfer-Encoding', 'binary');
 			$response->headers->set('Content-Length', filesize($path));
-
-			@readfile($path);
+			//$response->sendHeaders();
+			$response->setContent(readfile($path));
 			
 			try{
 				$statistic = $this->get('mvnerds.statistics_manager')->findByUniqueName('ITEM_BUILDS_TOTAL_DOWNLOADED');
@@ -474,7 +489,7 @@ class ItemBuilderController extends Controller
 
 			$selectedItems[$position]['items'][] = $item;
 		}
-		
+		ksort($selectedItems);
 		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:create_index.html.twig', array(
 			'champions'			=> $this->get('mvnerds.champion_manager')->findAllWithTags(),
 			'items'			=> $this->get('mvnerds.item_manager')->findAllActive(),

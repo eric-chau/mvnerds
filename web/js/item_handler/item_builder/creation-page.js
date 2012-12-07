@@ -47,11 +47,23 @@ function processScrollRecItems() {
 	}
 }
 
-//Permet de generer le build
-function generateRecItemBuilder(saveBuild, itemBuildSlug) {
-	
-	saveBuild = saveBuild == undefined ? false : saveBuild;
-	
+function simulateClickDownload(linkEl) {console.log('simul');
+	if (HTMLElement.prototype.click) {console.log('proto');
+		// You'll want to create a new element so you don't alter the page element's
+		// attributes, unless of course the target attr is already _blank
+		// or you don't need to alter anything
+		var linkElCopy = $.extend(true, Object.create(linkEl), linkEl);
+		$(linkElCopy).attr('target', '_blank');
+		console.log($(linkElCopy));
+		console.log(linkElCopy);
+		linkElCopy.click();
+	} else {console.log('else');
+		// As Daniel Doezema had said
+		window.open($(linkEl).attr('href'));
+	}
+};
+
+function isBuildValid() {
 	$champions = $('div.champion-container li.champion.active');
 	
 	gameMode = $('div.game-mode-container div.game-mode.active').first().data('game-mode');
@@ -64,63 +76,7 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 		if(gameModesArray.indexOf(gameMode) >=0 ) {
 			if ( $items.length > 0 ) {
 				if (buildName.length > 0) {
-					championsSlugs = new Array();
-					$champions.each(function(){
-						championsSlugs.push($(this).attr('id'));
-					});
-
-					var itemsSlugs = new Array();
-					$itemSidebarList.find('li.item-sidebar-block-li').each(function () {
-						var blockName = $(this).find('input.item_sidebar_block_input').val();
-						if(! (blockName in itemsSlugs)) {
-							var blockArray = new Array();
-							$(this).find('div.item-sidebar-block-div div.portrait').each(function() {
-								blockArray.push($(this).data('slug'));
-							});
-							if (blockArray.length > 0) {
-								itemsSlugs.push({name:blockName, items:blockArray});
-							}
-						}
-					});
-
-					var data =  {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName, path: path};
-					if (saveBuild) {
-						data.saveBuild = 'true';
-					}					
-					if(itemBuildSlug != undefined) {
-						data.itemBuildSlug = itemBuildSlug;
-					}
-					
-					$.ajax({
-						type: 'POST',
-						url:  Routing.generate('item_builder_generate_rec_item_file', {_locale: locale}),
-						data: data,
-						dataType: 'json'
-					}).done(function(data){
-						if(itemBuildSlug != undefined) {
-							if (locale == 'en') {
-								displayMessage('Modifications have been saved successfully.', 'success');
-							}else {
-								displayMessage('Les modifications ont bien été enregistrées.', 'success');
-							}
-						} else {
-							window.location = Routing.generate('item_builder_download_file', {_locale: locale, itemBuildSlug: data});
-							if (locale == 'en') {
-								displayMessage('The file has been successfully generated.', 'success');
-							}else {
-								displayMessage('Le fichier a bien été généré.', 'success');
-							}
-							
-						}
-					}).fail(function(data){
-						if (locale == 'en') {
-							displayMessage('Impossible to create the build.', 'success');
-						}else {
-							displayMessage('Impossible de créer le build.', 'error');
-						}
-//						console.log(data.responseText);
-//						$('#footer').html(data.responseText).css('text-align', 'left');
-					})
+					return true;				
 				} else {
 					if (locale == 'en') {
 						displayMessage('Please set a name for your build.', 'success');
@@ -148,6 +104,83 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 		}else {
 			displayMessage('Pas assez de champions sélectionnés !', 'error');
 		}
+	}
+	return false;
+}
+
+//Permet de generer le build
+function generateRecItemBuilder(saveBuild, itemBuildSlug) {
+	
+	saveBuild = saveBuild == undefined ? false : saveBuild;
+	
+	$champions = $('div.champion-container li.champion.active');
+	
+	gameMode = $('div.game-mode-container div.game-mode.active').first().data('game-mode');
+	buildName = $('input#build-name').val();
+	path = $('#modal-lol-path').val();
+	
+	$items = $itemSidebarList.find('li div div.portrait');
+	
+	if (isBuildValid()) {
+		championsSlugs = new Array();
+		$champions.each(function(){
+			championsSlugs.push($(this).attr('id'));
+		});
+
+		var itemsSlugs = new Array();
+		$itemSidebarList.find('li.item-sidebar-block-li').each(function () {
+			var blockName = $(this).find('input.item_sidebar_block_input').val();
+			if(! (blockName in itemsSlugs)) {
+				var blockArray = new Array();
+				$(this).find('div.item-sidebar-block-div div.portrait').each(function() {
+					blockArray.push($(this).data('slug'));
+				});
+				if (blockArray.length > 0) {
+					itemsSlugs.push({name:blockName, items:blockArray});
+				}
+			}
+		});
+
+		var data =  {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName, path: path};
+		if (saveBuild) {
+			data.saveBuild = 'true';
+		}					
+		if(itemBuildSlug != undefined) {
+			data.itemBuildSlug = itemBuildSlug;
+		}
+
+		$.ajax({
+			type: 'POST',
+			url:  Routing.generate('item_builder_generate_rec_item_file', {_locale: locale}),
+			data: data,
+			dataType: 'json'
+		}).done(function(data){
+			if(itemBuildSlug != undefined) {
+				if (locale == 'en') {
+					displayMessage('Modifications have been saved successfully.', 'success');
+				}else {
+					displayMessage('Les modifications ont bien été enregistrées.', 'success');
+				}
+				window.location = Routing.generate('item_builder_view', {_locale: locale, itemBuildSlug: data});
+			} else {
+				if (!saveBuild) {
+					window.location = Routing.generate('item_builder_download_file', {_locale: locale, itemBuildSlug: data});
+					if (locale == 'en') {
+						displayMessage('The file has been successfully generated.', 'success');
+					}else {
+						displayMessage('Le fichier a bien été généré.', 'success');
+					}
+				} else {
+					window.location = Routing.generate('item_builder_view', {_locale: locale, itemBuildSlug: data, dl: 'dl'});
+				}
+			}
+		}).fail(function(data){
+			if (locale == 'en') {
+				displayMessage('Impossible to create the build.', 'success');
+			}else {
+				displayMessage('Impossible de créer le build.', 'error');
+			}
+		})
 	}
 	
 	return false;
@@ -288,7 +321,7 @@ function initWithStoredItemBuild() {
 		for (var j = 0; j < items.length; j++) {
 			var name = blockName;
 			if ( isItemBlockNameFree(name) ) {
-				$itemSidebarList.append('<li class="item-sidebar-block-li" id="__'+blockNameEscaped+'__item-block-li"><input type="text" class="item_sidebar_block_input span9" value="'+name+'"/> <a href="#" class="btn-delete-block-item btn btn-danger btn-small">X</a><div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div></li>')
+				$itemSidebarList.append('<li class="item-sidebar-block-li" id="__'+blockNameEscaped+'__item-block-li"><input type="text" class="item_sidebar_block_input span9" value="'+name+'"/> <a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a><div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div></li>')
 				initItemDroppable($itemSidebarList.find('li:last div.item-sidebar-block-div'));
 			}
 			addRecItem(items[j], '__'+blockNameEscaped + '__item-block-li');
@@ -561,18 +594,23 @@ $(document).ready(function()
 	//Bouton de generation du build uniquement
 	$('#only-generate-build, #modal-btn-only-generate-build').click(function(e){
 		e.preventDefault();
-		$('#modal-authenticate-build').modal('hide');
-		$('#modal-btn-download').attr('data-save-build', 'false');
-		$('#modal-dl-build').modal('show');
+		if(isBuildValid()) {
+			$('#modal-authenticate-build').modal('hide');
+			$('#modal-btn-download').attr('data-save-build', 'false');
+			$('#modal-dl-build').modal('show');
+		}
 	});
 	$('#save-and-generate-build').click(function(e) {
 		e.preventDefault();
-		$('#modal-btn-download').attr('data-save-build', 'true');
-		$('#modal-dl-build').modal('show');
+//		$('#modal-btn-download').attr('data-save-build', 'true');
+//		$('#modal-dl-build').modal('show');
+		generateRecItemBuilder(true);
 	});
 	$('#save-and-generate-build-not-authenticated').click(function(e) {
 		e.preventDefault();
-		$('#modal-authenticate-build').modal('show');
+		if(isBuildValid()) {
+			$('#modal-authenticate-build').modal('show');
+		}
 	});
 	$('#save-build').click(function(e) {
 		e.preventDefault();

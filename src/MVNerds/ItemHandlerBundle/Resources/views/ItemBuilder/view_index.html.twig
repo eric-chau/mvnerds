@@ -53,7 +53,7 @@
 		<div class="row-fluid">
 			<h1 class="span9">{{'item_build_view_index.h1'|trans}} "{{itemBuild.getName()}}"</h1>
 			<div class="generate-button-container span3" style="margin-top: 0">
-				<a href="#" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}" class="main download-action pull-right">{{'item_build_view_index.download.btn'|trans}}</a>
+				<a href="#" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}" class="main download-action pull-right {%if start_dl is defined and start_dl == 'true'%}start-dl{%endif%}">{{'item_build_view_index.download.btn'|trans}}</a>
 			</div>
 		</div>
 		<p class="module-name">Module <strong>Pimp My Recommended Items</strong> | {{'item_build_view_index.created_by'|trans}} <strong><a href="{{ path('summoner_profile_view', {'userSlug': itemBuild.getUser().getSlug()}) }}" title="Consulter le profil de {{ itemBuild.getUser().getUsername }}"">{{itemBuild.getUser().getUserName()}}</a></strong></p>
