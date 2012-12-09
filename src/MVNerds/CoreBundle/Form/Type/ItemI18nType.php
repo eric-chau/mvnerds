@@ -29,7 +29,7 @@ class ItemI18nType extends AbstractType
 	public function setDefaultOptions(OptionsResolverInterface $resolver) 
 	{
 		$resolver->setDefaults(array(
-			'data_class' => 'MVnerds\CoreBundle\Model\ItemI18n'
+			'data_class' => 'MVNerds\CoreBundle\Model\ItemI18n'
 		));
 	}
 }

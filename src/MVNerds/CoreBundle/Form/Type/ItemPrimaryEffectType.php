@@ -39,7 +39,7 @@ class ItemPrimaryEffectType extends AbstractType
 	public function setDefaultOptions(OptionsResolverInterface $resolver) 
 	{
 		$resolver->setDefaults(array(
-			'data_class' => 'MVnerds\CoreBundle\Model\ItemPrimaryEffect'
+			'data_class' => 'MVNerds\CoreBundle\Model\ItemPrimaryEffect'
 		));
 	}
 }

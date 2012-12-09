@@ -24,7 +24,7 @@ class ItemGameModeType extends AbstractType
 	public function setDefaultOptions(OptionsResolverInterface $resolver) 
 	{
 		$resolver->setDefaults(array(
-			'data_class' => 'MVnerds\CoreBundle\Model\ItemGameMode'
+			'data_class' => 'MVNerds\CoreBundle\Model\ItemGameMode'
 		));
 	}
 }
