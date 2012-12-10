@@ -399,7 +399,7 @@
 			</trans-unit>
 			<trans-unit id="4013">
 				<source>item_build_view_index.copy.btn</source>
-				<target>Copier</target>
+				<target>Créer une liste à partir de celle-ci</target>
 			</trans-unit>
 			<trans-unit id="4014">
 				<source>item_build_view_index.copy.tooltip</source>

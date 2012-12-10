@@ -263,6 +263,10 @@ div.body-container {
 	}
 
 	div.generate-button-container {
+		margin-top: 0;
+		text-align: right;
+		vertical-align: top;
+
 		a {
 			background-color: #333;
 			color: #999;
@@ -287,6 +291,42 @@ div.body-container {
 					background-color: @MVNerdsRed;
 				}
 			}
+
+			&.download-action {
+				left: -2px;
+				position: relative;
+				top: -3px;
+			}
+
+			&.copy-action {
+				background-color: darken(@MVNerdsBlue, 10%);
+				padding: 10px 10px;
+
+				p {
+					cursor: pointer;
+					font-size: 12px;
+					line-height: 1em;
+					margin: 0;
+					padding: 0;
+					text-align: center;
+					width: 120px;
+				}
+
+				&:hover {
+					background-color: @MVNerdsBlue;
+				}
+			}
+		}
+	}
+
+	div.item-build-social-actions {
+		margin: 20px 0 0 0;
+		text-align: center;
+
+		iframe.twitter-share-button {
+			left: 3px;
+			position: relative;
+			top: 2px;
 		}
 	}
 }
