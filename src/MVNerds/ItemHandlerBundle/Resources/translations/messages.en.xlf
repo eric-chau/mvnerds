@@ -392,7 +392,7 @@
 			</trans-unit>
 			<trans-unit id="4013">
 				<source>item_build_view_index.copy.btn</source>
-				<target>Copy</target>
+				<target>Create new list based on this one</target>
 			</trans-unit>
 			<trans-unit id="4014">
 				<source>item_build_view_index.copy.tooltip</source>
