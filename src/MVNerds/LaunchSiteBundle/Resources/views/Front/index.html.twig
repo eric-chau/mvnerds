@@ -74,11 +74,12 @@
 		
 {% block body_main_content %}	
 	<div class="body-container">
+		{% include 'MVNerdsItemHandlerBundle:ItemBuilder:tabed_list_index.html.twig' with {'latest_builds': latest_builds, 'most_downloaded_builds': most_downloaded_builds} %}
+		
 		<div class="row-fluid">
 			{% include 'MVNerdsNewsBundle:Front:carousel_index.html.twig' with {'news': news} %}
 			
 			{% include 'MVNerdsLaunchSiteBundle:Front:champion_benchmark_preview.html.twig' %}
 		</div>
-		{% include 'MVNerdsItemHandlerBundle:ItemBuilder:tabed_list_index.html.twig' with {'latest_builds': latest_builds, 'most_downloaded_builds': most_downloaded_builds} %}
 	</div>	
 {% endblock %}
