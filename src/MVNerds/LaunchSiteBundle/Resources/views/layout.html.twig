@@ -23,6 +23,14 @@
 		<link rel="stylesheet" href="{{ asset('css/main.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/launch_site/front.css') }}">
 	{% endif %}
+	
+	<style>
+		iframe.twitter-follow-button {
+			position: absolute;
+			top: 195px;
+			margin-left: 160px;
+		}
+	</style>
 {% endblock %}
 
 {% block javascripts %}
@@ -31,6 +39,25 @@
 	{% if app.environment != 'dev' %}
 		<script type="text/javascript" src="{{ asset('/js/google_analytics.js') }}"></script>
 	{% endif %}
+		
+	{# Facebook #}
+	<script>
+		(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) 
+			return;
+		js = d.createElement(s); js.id = id;
+		if (locale == 'en') {
+			js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+		} else {
+			js.src = "//connect.facebook.net/fr_FR/all.js#xfbml=1";
+		}
+		fjs.parentNode.insertBefore(js, fjs);
+	  }(document, 'script', 'facebook-jssdk'));
+	  </script>
+	  
+	  {#Twitter #}
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 {% endblock %}
 	 
 {% block body %}
@@ -68,7 +95,10 @@
 				</div>
 				<div class="clearfix"></div>
 				
+				<fb:like href="https://www.facebook.com/mvnerds" send="true" width="520" height="26" show_faces="false" font="trebuchet ms" style="position: absolute;top: 195px;display:inline-block;" data-layout="button_count"></fb:like>
+				<a href="https://twitter.com/MVNerds" class="twitter-follow-button" data-show-count="true" data-lang="{{locale}}" style="display: inline-block"></a>
 				<div class="social-container">
+					<p></p>
 					<p> {{'Social.follow_us_on'|trans}} <a href="https://twitter.com/MVNerds" target="_blank" class="twitter">Twitter <i class="icon-twitter"></i></a> {{'General.and'|trans}} <a href="http://www.facebook.com/mvnerds" target="_blank" class="facebook">Facebook <i class="icon-facebook-sign"></i></a>.</p>
 				</div>
 				
@@ -82,4 +112,5 @@
 			</div>
 		</div>
 	</div>
+	<div id="fb-root"></div>
 {% endblock %}

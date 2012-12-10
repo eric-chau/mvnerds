@@ -1,7 +1,7 @@
 <ul>
 	{% for championItemBuild in itemBuild.getChampionItemBuilds() %}
 		{% set champion = championItemBuild.getChampion() %}
-		<li class="champion" data-placement="top" data-title="{{ champion.getName()}}">
+		<li class="champion" data-placement="top" data-title="{{ champion.getName()}}" id="{{champion.getSlug()}}">
 			<div class="portrait">
 				<div class="champion-square36 {{ champion.getSlug() }}"></div>
 			</div>

@@ -23,7 +23,7 @@ class ItemBuilderController extends Controller
 	const MAX_ITEM_BUILDS = 7;
 	
 	/**
-	 * @Route("/create", name="item_builder_create")
+	 * @Route("/create", name="item_builder_create", options={"expose"=true})
 	 */
 	public function createAction()
 	{		
@@ -405,7 +405,7 @@ class ItemBuilderController extends Controller
 			$response->headers->set('Content-Disposition', 'attachment;filename="'.$itemBuildSlug.'.bat"');
 			$response->headers->set('Content-Transfer-Encoding', 'binary');
 			$response->headers->set('Content-Length', filesize($path));
-			//$response->sendHeaders();
+			$response->sendHeaders();
 			$response->setContent(readfile($path));
 			
 			try{
