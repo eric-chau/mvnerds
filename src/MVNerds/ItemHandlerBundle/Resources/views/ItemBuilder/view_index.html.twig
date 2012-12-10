@@ -1,5 +1,15 @@
 {% extends 'MVNerdsLaunchSiteBundle::layout.html.twig' %}
 
+{% block metas %}
+	<meta property="og:title" content="MVNerds - Pimp My Recommended Items" />
+	<meta property="og:description" content="Liste d'objets recommandés : {{itemBuild.getName()}}" />
+	<meta property="og:type" content="activity" />
+	<meta property="og:url" content="http://www.mvnerds.com{{path('item_builder_view', {'itemBuildSlug':itemBuild.getSlug()})}}" />
+	<meta property="og:image" content="http://www.mvnerds.com/images/news/maj-saison-3-mini.png" />
+	<meta property="og:site_name" content="MVNerds" />
+	<meta property="fb:admins" content="1317459591" />
+{% endblock %}
+
 {% block css %}
 	{{ parent() }}
 
@@ -18,6 +28,14 @@
 		<link href="{{ asset('css/item_builder/item-build-detail.css') }}" rel="stylesheet" type="text/css">
 		<link href="{{ asset('css/item_builder/modal.css') }}" rel="stylesheet" type="text/css">
 	{% endif %}
+	
+	{# Twitter #}
+	<style>
+		iframe.twitter-share-button {
+			position: absolute;
+			top: 296px;
+		}
+	</style>
 {% endblock %}
 	
 {% block javascripts %}
@@ -51,12 +69,23 @@
 {% block body_main_content %}
 	<div class="body-container create-item-builder">
 		<div class="row-fluid">
+			<div class="row-fluid">
 			<h1 class="span9">{{'item_build_view_index.h1'|trans}} "{{itemBuild.getName()}}"</h1>
 			<div class="generate-button-container span3" style="margin-top: 0">
+				<fb:like class="" href="{{path('item_builder_view', {'itemBuildSlug':itemBuild.getSlug()})}}" send="false" layout="button_count" width="450" show_faces="true" font="trebuchet ms" data-colorscheme="dark" style="position:absolute;top:323px;"></fb:like>
+				<a href="https://twitter.com/share" class="twitter-share-button" data-text="Pimp My Recommended Items list : {{itemBuild.getName()}}
+http://www.mvnerds.com{{path('item_builder_view', {'itemBuildSlug':itemBuild.getSlug()})}}" data-lang="{{locale}}" data-url="{{path('item_builder_view', {'itemBuildSlug':itemBuild.getSlug()})}}"></a>
 				<a href="#" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}" class="main download-action pull-right {%if start_dl is defined and start_dl == 'true'%}start-dl{%endif%}">{{'item_build_view_index.download.btn'|trans}}</a>
 			</div>
+			</div>
 		</div>
-		<p class="module-name">Module <strong>Pimp My Recommended Items</strong> | {{'item_build_view_index.created_by'|trans}} <strong><a href="{{ path('summoner_profile_view', {'userSlug': itemBuild.getUser().getSlug()}) }}" title="Consulter le profil de {{ itemBuild.getUser().getUsername }}"">{{itemBuild.getUser().getUserName()}}</a></strong></p>
+		
+		<p class="module-name">
+			Module <strong>Pimp My Recommended Items</strong> | {{'item_build_view_index.created_by'|trans}} <strong><a href="{{ path('summoner_profile_view', {'userSlug': itemBuild.getUser().getSlug()}) }}" title="Consulter le profil de {{ itemBuild.getUser().getUsername }}"">{{itemBuild.getUser().getUserName()}}</a></strong>
+			<div class="generate-button-container">
+				<a href="#" class="main copy-action pull-right">{{'item_build_view_index.copy.btn'|trans}}</a>
+			</div>
+		</p>
 		
 		<div class="row-fluid">
 			<div class="span8">
@@ -76,13 +105,13 @@
 					{% set gameMode = itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel() %}
 
 					{% if gameMode == 'classic' %}
-						<div class="game-mode classic"><span class="message">Summoner Rift</span></div>
+						<div class="game-mode classic" data-game-mode="classic"><span class="message">Summoner Rift</span></div>
 					{% elseif gameMode == 'twisted-treeline' %}
-						<div class="game-mode twisted-treeline"><span class="message">Twisted Treeline</span></div>
+						<div class="game-mode twisted-treeline" data-game-mode="twisted-treeline"><span class="message">Twisted Treeline</span></div>
 					{% elseif gameMode == 'dominion' %}
-						<div class="game-mode dominion"><span class="message" >Dominion</span></div>
+						<div class="game-mode dominion" data-game-mode="dominion"><span class="message" >Dominion</span></div>
 					{% elseif gameMode == 'aram' %}
-						<div class="game-mode proving-grounds"><span class="message" >All Random All Mid (ARAM)</span></div>
+						<div class="game-mode proving-grounds" data-game-mode="aram"><span class="message" >All Random All Mid (ARAM)</span></div>
 					{% endif %}
 				</div>
 			</div>

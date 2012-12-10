@@ -390,6 +390,14 @@
 				<source>item_build_view_index.download.btn</source>
 				<target>Download</target>
 			</trans-unit>
+			<trans-unit id="4013">
+				<source>item_build_view_index.copy.btn</source>
+				<target>Copy</target>
+			</trans-unit>
+			<trans-unit id="4014">
+				<source>item_build_view_index.copy.tooltip</source>
+				<target>Create a new items lists based on this one</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -393,6 +393,14 @@
 				<source>item_build_view_index.download.btn</source>
 				<target>Télécharger</target>
 			</trans-unit>
+			<trans-unit id="4013">
+				<source>item_build_view_index.copy.btn</source>
+				<target>Copier</target>
+			</trans-unit>
+			<trans-unit id="4014">
+				<source>item_build_view_index.copy.tooltip</source>
+				<target>Créer une nouvelle liste d'objets recommandés basé sur celle-ci</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
