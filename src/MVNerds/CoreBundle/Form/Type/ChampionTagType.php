@@ -24,7 +24,7 @@ class ChampionTagType extends AbstractType
 	public function setDefaultOptions(OptionsResolverInterface $resolver) 
 	{
 		$resolver->setDefaults(array(
-			'data_class' => 'MVnerds\CoreBundle\Model\ChampionTag'
+			'data_class' => 'MVNerds\CoreBundle\Model\ChampionTag'
 		));
 	}
 }

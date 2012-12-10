@@ -62,6 +62,7 @@ class ItemBuildManager
 			->joinWith('ItemBuildItems', \Criteria::LEFT_JOIN)
 			->joinWith('ItemBuildItems.Item', \Criteria::LEFT_JOIN)
 			->joinWith('Item.ItemI18n', \Criteria::LEFT_JOIN)
+			->addJoinCondition('ItemI18n', 'ItemI18n.Lang = ?', $this->userLocale)
 			->add(ItemBuildPeer::SLUG, $slug)
 		->find();
 
