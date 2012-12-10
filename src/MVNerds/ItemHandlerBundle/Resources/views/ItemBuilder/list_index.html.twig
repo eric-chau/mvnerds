@@ -59,8 +59,7 @@
 					<th class="champions">{{'item_table.th.champion'|trans}}</th>
 					<th class="name">{{'item_table.th.name'|trans}}</th>
 					<th class="game-mode">{{'item_table.th.game_mode'|trans}}</th>
-					{#<th class="items">{{'item_table.th.items'|trans}}</th>#}
-					<th class="actions"></th>
+					<th class="actions">{{'item_table.th.downloads'|trans}}</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -88,6 +87,8 @@
 						</td>
 						
 						<td>{% for championItemBuild in  itemBuild.getChampionItemBuilds()%}{{championItemBuild.getChampion().getName}} {% endfor %}</td>
+						
+						<td>{{itemBuild.getDownload()}}</td>
 					</tr>
 				{% endfor %}
 			</tbody>

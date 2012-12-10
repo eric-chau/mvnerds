@@ -142,14 +142,16 @@ $(document).ready(function() {
 	
 	itemBuildsTable = $('#item-builds-table').dataTable({
 		"oSearch" :{"sSearch":  ((filter != undefined) ? filter : '')},
-        "bLengthChange": false,
-        "iDisplayLength": 10,
+		"bLengthChange": false,
+		"aaSorting": [],
+		"iDisplayLength": 10,
 		"aoColumns": [
                       {"bSearchable": false, "bSortable":false},
                       {"bSearchable": false, "bSortable":true},
                       {"bSearchable": false, "bSortable":false},
-                      {"bSearchable": false, "bSortable":false},
-                      {"bVisible": false, "bSearchable": true, "bSortable":false}
+                      {"bSearchable": false, "bSortable":true, "iDataSort": 5},
+                      {"bVisible": false, "bSearchable": true, "bSortable":false},
+                      {"bVisible": false, "bSearchable": false, "bSortable":false}
 		],
 		"sPaginationType": 'bootstrap',
 		"oLanguage": langage

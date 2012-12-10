@@ -120,6 +120,7 @@ class ItemBuildManager
 			->joinWith('ChampionItemBuild.GameMode', \Criteria::LEFT_JOIN)
 			->joinWith('ChampionItemBuild.Champion chp', \Criteria::LEFT_JOIN)
 			->joinWith('chp.ChampionI18n', \Criteria::LEFT_JOIN)
+			->orderByCreateTime('Desc')
 		->find();
 		
 		if (null === $itemBuilds)

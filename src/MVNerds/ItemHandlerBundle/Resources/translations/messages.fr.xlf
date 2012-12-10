@@ -329,6 +329,10 @@
 					fois
 				</target>
 			</trans-unit>
+			<trans-unit id="2009">
+				<source>item_table.th.downloads</source>
+				<target>Téléchargements</target>
+			</trans-unit>
 
 			<!-- All lists -->
 			<trans-unit id="3000">
