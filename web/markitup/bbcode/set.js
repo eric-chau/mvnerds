@@ -28,12 +28,12 @@ mySettings = {
 			closeWith:'[/color]', 
 				dropMenu: [
 					{name:'Yellow',	openWith:'[color=yellow]', 	closeWith:'[/color]', className:"col1-1" },
-					{name:'Orange',	openWith:'[color=orange]', 	closeWith:'[/color]', className:"col1-2" },
-					{name:'Red', 	openWith:'[color=red]', 	closeWith:'[/color]', className:"col1-3" },
+					{name:'Orange',	openWith:'[color=#FB9701]', 	closeWith:'[/color]', className:"col1-2" },
+					{name:'Red', 	openWith:'[color=#BE3322]', 	closeWith:'[/color]', className:"col1-3" },
 					
-					{name:'Blue', 	openWith:'[color=blue]', 	closeWith:'[/color]', className:"col2-1" },
+					{name:'Blue', 	openWith:'[color=#19A0DF]', 	closeWith:'[/color]', className:"col2-1" },
 					{name:'Purple', openWith:'[color=purple]', 	closeWith:'[/color]', className:"col2-2" },
-					{name:'Green', 	openWith:'[color=green]', 	closeWith:'[/color]', className:"col2-3" },
+					{name:'Green', 	openWith:'[color=#759E1A]', 	closeWith:'[/color]', className:"col2-3" },
 					
 					{name:'White', 	openWith:'[color=white]', 	closeWith:'[/color]', className:"col3-1" },
 					{name:'Gray', 	openWith:'[color=gray]', 	closeWith:'[/color]', className:"col3-2" },
