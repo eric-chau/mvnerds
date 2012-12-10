@@ -108,6 +108,7 @@ class ItemBuilderController extends Controller
 		}
 		ksort($itemBlocks);
 		
+		$lolDir= null;
 		try{
 			if ($this->get('security.context')->isGranted('ROLE_USER'))
 			{
