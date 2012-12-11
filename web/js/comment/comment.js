@@ -20,7 +20,7 @@ $(document).ready(function()
 		
 		// Méthode que l'on doit implémenter manuellement notamment dû à l'ID de l'utilisateur et de l'objet
 		$.ajax({
-			url: Routing.generate('news_leave_comment', {'_locale': locale}),
+			url: Routing.generate(leaveCommentRoute, {'_locale': locale}),
 			data: {
 				'object_slug': objectSlug,
 				'user_slug': userSlug,

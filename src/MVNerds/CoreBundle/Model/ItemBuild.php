@@ -3,7 +3,7 @@
 namespace MVNerds\CoreBundle\Model;
 
 use MVNerds\CoreBundle\Model\om\BaseItemBuild;
-
+use MVNerds\CoreBundle\Comment\IComment;
 
 /**
  * Skeleton subclass for representing a row from the 'item_build' table.
@@ -16,6 +16,6 @@ use MVNerds\CoreBundle\Model\om\BaseItemBuild;
  *
  * @package    propel.generator.src.MVNerds.CoreBundle.Model
  */
-class ItemBuild extends BaseItemBuild {
+class ItemBuild extends BaseItemBuild implements IComment {
 
 } // ItemBuild
