@@ -145,6 +145,7 @@ $(document).ready(function() {
 		"bLengthChange": false,
 		"aaSorting": [],
 		"iDisplayLength": 10,
+		"sDom": "lfrtip",
 		"aoColumns": [
                       {"bSearchable": false, "bSortable":false},
                       {"bSearchable": false, "bSortable":true},
@@ -155,6 +156,15 @@ $(document).ready(function() {
 		],
 		"sPaginationType": 'bootstrap',
 		"oLanguage": langage
+	});
+	
+	itemBuildsTable.before('<select id="filter-dropdown"></select>');console.log($selectFilter);
+	var $selectFilter = $('#filter-dropdown');
+	$selectFilter.append('<option value="1">Nom</option>');
+	$selectFilter.append('<option value="3">Téléchargements</option>');
+	
+	$selectFilter.on('change', function(){console.log('change');
+		itemBuildsTable.fnSort([[$(this).val(), 'desc']]);
 	});
 	
 	//On change filter
