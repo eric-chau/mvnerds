@@ -327,7 +327,7 @@ div.body-container div.generate-button-container a.copy-action:hover {
   background-color: #19a0df;
 }
 div.body-container div.item-build-social-actions {
-  margin: 20px 0 0 0;
+  margin: 20px 0 30px 0;
   text-align: center;
 }
 div.body-container div.item-build-social-actions iframe.twitter-share-button {

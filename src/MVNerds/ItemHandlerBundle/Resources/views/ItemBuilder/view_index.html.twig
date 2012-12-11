@@ -18,6 +18,7 @@
 			'css/champion_handler/champion-square36-sprite.css'
 			'css/item_builder/item-build-detail.css'
 			'css/item_builder/modal.css'
+			'css/comment/comment.css'
 			output='css/compiled/pmri-view.css'
 			filter='yui_css'
 		%}
@@ -27,6 +28,7 @@
 		<link rel="stylesheet" href="{{ asset('css/champion_handler/champion-square36-sprite.css') }}">
 		<link href="{{ asset('css/item_builder/item-build-detail.css') }}" rel="stylesheet" type="text/css">
 		<link href="{{ asset('css/item_builder/modal.css') }}" rel="stylesheet" type="text/css">
+		<link href="{{ asset('css/comment/comment.css') }}" rel="stylesheet" type="text/css">
 	{% endif %}
 {% endblock %}
 	
@@ -52,6 +54,17 @@
 		<script src="{{ asset('js/item_handler/item_builder/dl-modal.js') }}"></script>
 		<script src="{{ asset('js/item_handler/item_builder/view-page.js') }}"></script>
 	{% endif %}
+		
+	<script type="text/javascript">
+		var loadMoreCommentRoute = 'item_build_load_more_comment',
+			leaveCommentRoute = 'item_build_leave_comment',					
+			objectSlug = '{{ itemBuild.getSlug() }}',
+			userSlug = '';
+
+		{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+			userSlug = '{{ app.user.getSlug() }}';
+		{% endif %}
+	</script>
 {% endblock %}
 
 {% block title %}
@@ -113,6 +126,8 @@
 			<a href="https://twitter.com/share" class="twitter-share-button" data-text="Pimp My Recommended Items list : {{itemBuild.getName()}}
 			http://www.mvnerds.com{{path('item_builder_view', {'itemBuildSlug':itemBuild.getSlug()})}}" data-lang="{{locale}}" data-url="{{path('item_builder_view', {'itemBuildSlug':itemBuild.getSlug()})}}"></a>
 		</div>
+		
+		{% render 'MVNerdsCommentBundle:Comment:renderLightComments' with {'object': itemBuild} %}
 	</div>
 	
 	{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}

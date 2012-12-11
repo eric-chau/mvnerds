@@ -532,4 +532,72 @@ class ItemBuilderController extends Controller
 		
 		return $this->redirect($this->generateUrl('summoner_profile_index'));
 	}
+	
+	/**
+	 * @Route("/leave-comment", name="item_build_leave_comment", options={"expose"=true})
+	 */
+	public function leaveCommentAction()
+	{
+		$request = $this->getRequest();
+		if (!$request->isXmlHttpRequest() || !$request->isMethod('POST'))
+		{
+			throw new HttpException(500, 'Request must be AJAX and POST method');
+		}
+		
+		$itemBuildSlug = $request->get('object_slug', null);
+		$userSlug = $request->get('user_slug', null);
+		$commentMsg = $request->get('comment_msg', null);
+		$lastCommentID = $request->get('last_comment_id', null);
+		if (null == $itemBuildSlug || null == $userSlug || null == $commentMsg) {
+			throw new HttpException(500, 'object_slug | user_slug | comment_msg is/are missing!');
+		}
+		
+		if (0 != strcmp($userSlug, $this->getUser()->getSlug())) {
+			throw new AccessDeniedException();
+		}
+		
+		try {
+			$itemBuild = $this->get('mvnerds.item_build_manager')->findOneBySlug($itemBuildSlug);
+		}
+		catch(Exception $e) {
+			throw new InvalidArgumentException('Item build not found for slug:`'. $itemBuildSlug .'`');
+		}
+		
+		return $this->forward('MVNerdsCommentBundle:Comment:leaveComment', array(
+			'object'		=> $itemBuild,
+			'user'			=> $this->getUser(),
+			'commentMsg'	=> $commentMsg,
+			'lastCommentID' => $lastCommentID
+		));
+	}
+	
+	/**
+	 * @Route("/load-more-comment", name="item_build_load_more_comment", options={"expose"=true})
+	 */
+	public function loadMoreCommentAction()
+	{
+		$request = $this->getRequest();
+		if (!$request->isXmlHttpRequest() || !$request->isMethod('POST'))
+		{
+			throw new HttpException(500, 'Request must be AJAX and POST method');
+		}
+		
+		$itemBuildSlug = $request->get('object_slug', null);
+		$page = $request->get('page', null);
+		if (null == $itemBuildSlug || null == $page) {
+			throw new HttpException(500, 'object_slug | page is/are missing!');
+		}
+		
+		try {
+			$itemBuild = $this->get('mvnerds.item_build_manager')->findOneBySlug($itemBuildSlug);
+		}
+		catch(Exception $e) {
+			throw new InvalidArgumentException('Item build not found for slug:`'. $itemBuildSlug .'`');
+		}
+
+		return $this->forward('MVNerdsCommentBundle:Comment:loadMoreComment', array(
+			'object'	=> $itemBuild,
+			'page'		=> $page
+		));
+	}
 }
