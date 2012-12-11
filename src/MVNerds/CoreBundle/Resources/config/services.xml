@@ -152,5 +152,10 @@
 			COMMENT MANAGER SERVICE
 		-->
 		<service id="mvnerds.comment_manager" class="MVNerds\CoreBundle\Comment\CommentManager" />    
+		
+		<!-- 
+			VOTE MANAGER SERVICE
+		-->
+		<service id="mvnerds.vote_manager" class="MVNerds\CoreBundle\Vote\VoteManager" />    
 	</services>		
 </container>
