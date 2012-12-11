@@ -207,7 +207,7 @@
 			<trans-unit id="30">
 				<source>create_item_build.modal_dl_build.p1</source>
 				<target>
-					Si votre dossier "League of Legends" n'est présent dans aucun des dossier de cette liste :
+					Si votre dossier "League of Legends" n'est présent dans aucun des dossiers de cette liste :
 				</target>
 			</trans-unit>
 			<trans-unit id="31">

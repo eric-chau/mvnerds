@@ -26,7 +26,7 @@
   box-sizing: border-box;
 }
 div.modal {
-  height: 385px !important;
+  min-height: 410px !important;
   width: 650px !important;
 }
 div.modal div.modal-header,
@@ -57,7 +57,7 @@ div.modal div.modal-header button.close:hover {
 div.modal div.modal-body {
   width: 620px;
   color: #eee;
-  min-height: 237px;
+  min-height: 280px;
   padding: 10px;
 }
 div.modal div.modal-body p {
@@ -78,7 +78,7 @@ div.modal div.modal-body ul {
   margin-bottom: 1.4em;
 }
 div.modal div.modal-footer {
-  background-color: initial;
+  background-color: black;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
