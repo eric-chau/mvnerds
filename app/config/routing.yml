@@ -1,3 +1,8 @@
+mv_nerds_vote:
+    resource: "@MVNerdsVoteBundle/Controller/"
+    type:		annotation
+    prefix:   /{_locale}
+
 mv_nerds_comment:
     resource: "@MVNerdsCommentBundle/Controller/"
     type:     annotation

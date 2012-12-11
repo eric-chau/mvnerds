@@ -31,6 +31,7 @@ class AppKernel extends Kernel
             new MVNerds\NewsBundle\MVNerdsNewsBundle(),
             new MVNerds\ProfileBundle\MVNerdsProfileBundle(),
             new MVNerds\CommentBundle\MVNerdsCommentBundle(),
+            new MVNerds\VoteBundle\MVNerdsVoteBundle(),
 		);
 
 		if (in_array($this->getEnvironment(), array('dev', 'test')))
