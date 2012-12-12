@@ -2,6 +2,8 @@ $(document).ready(function()
 {
 	$('.bootstrap-popover').popover();
 
+	$('.tooltip-anchor').tooltip();
+
 	$('a.reset-field').each(function()
 	{
 		if ($(this).parent().find('input[type="text"]').val() == '') {

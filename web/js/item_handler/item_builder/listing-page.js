@@ -237,4 +237,38 @@ $(document).ready(function() {
 	}).fail(function() {
 		console.log('error');
 	});
+
+	var $championFilterInput = $('input#champion-filter-input'),
+		$authorFilterInput = $('input#author-filter-input'),
+		$titleFilterInput = $('input#title-filter-input'),
+		$moreFilterIcon = $('li.more-filters-button').find('i');
+
+	var $moreFilterMsg = 'Plus de filtres', 
+		$lessFilterMsg = 'Moins de filtres';
+
+	if (locale == 'en') {
+		$moreFilterMsg = 'Show filters';
+		$lessFilterMsg = 'Hide filters';
+	}
+
+	// Toggle du bouton "+ Plus de filtres"
+	$('li.more-filters-button').on('click', function()
+	{
+		if ($.trim($championFilterInput.val()) == '' && $.trim($authorFilterInput.val()) == '' && $.trim($titleFilterInput.val()) == '') {
+			$(this).removeClass('active');
+		}
+		else {
+			$(this).addClass('active');
+		}
+
+		if ($moreFilterIcon.hasClass('icon-plus-sign')) {
+			$(this).find('span.more-filter-msg').html($lessFilterMsg);
+		}
+		else {
+			$(this).find('span.more-filter-msg').html($moreFilterMsg);
+		}
+		
+		$moreFilterIcon.toggleClass('icon-plus-sign icon-minus-sign');
+		$('ul.filters-list.more-filter').slideToggle();
+	});
 });

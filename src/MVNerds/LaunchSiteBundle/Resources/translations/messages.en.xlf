@@ -583,6 +583,10 @@
 				<source>registration_success.p2</source>
 				<target>If you made an error when you entered you e-mail address, please inform us with the contact form. We will do what has to be done for the changes as soon as possible.</target>
 			</trans-unit>
+			<trans-unit id="20003">
+				<source>registration_success.warning</source>
+				<target>Hotmail users, the confirmation email may be considered as spam.</target>
+			</trans-unit>
 			
 			<trans-unit id="20100">
 				<source>Registration.User.username</source>
@@ -598,7 +602,7 @@
 			</trans-unit>
 			<trans-unit id="20103">
 				<source>Registration.User.email</source>
-				<target>E-Mail</target>
+				<target>E-mail</target>
 			</trans-unit>
 
 			<trans-unit id="20200">

@@ -124,7 +124,7 @@
 			</div>
 		{% endif %}
 		
-		<h2>{{'ItemBuilder.pmri.h2'|trans}}</h2>
+		<h2 id="summoner-pmri-list">{{'ItemBuilder.pmri.h2'|trans}}</h2>
 		{% if user_items_builds|length > 0 %}
 			{% if admin_mode == false %}
 				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_table.html.twig' with {'item_builds': user_items_builds}  %}

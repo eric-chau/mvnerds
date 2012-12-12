@@ -5,7 +5,6 @@
 				<th class="champions">{{'item_table.th.champion'|trans}}</th>
 				<th class="name">{{'item_table.th.name'|trans}}</th>
 				<th class="game-mode">{{'item_table.th.game_mode'|trans}}</th>
-				{#<th class="items">{{'item_table.th.items'|trans}}</th>#}
 				<th class="actions"></th>
 			</tr>
 		</thead>
@@ -32,10 +31,10 @@
 					<td>
 						{% if admin_mode is defined and admin_mode %}
 							<div class="admin-actions">
-								<a class="action view-action" href="{{path('item_builder_view', {itemBuildSlug: itemBuild.getSlug()})}}"><i class="icon-share"></i></a>
-								<a class="action download-action" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}"><i class="icon-download-alt"></i></a>
-								<a href="{{ path('item_builder_edit_build', {'itemBuildSlug': itemBuild.getSlug()}) }}" class="action edit-action"><i class="icon-edit"></i></a>
-								<a href="#delete-build-{{ itemBuild.getSlug() }}-modal" class="action delete-action" data-toggle="modal"><i class="icon-remove-sign"></i></a>
+								<a class="action view-action tooltip-anchor" href="{{path('item_builder_view', {itemBuildSlug: itemBuild.getSlug()})}}" rel="tooltip" data-placement="top" data-original-title="{{ 'item_table.admin.view'|trans }}"><i class="icon-share"></i></a>
+								<a class="action download-action tooltip-anchor" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}" rel="tooltip" data-placement="top" data-original-title="{{ 'item_table.admin.download'|trans }}"><i class="icon-download-alt"></i></a>
+								<a href="{{ path('item_builder_edit_build', {'itemBuildSlug': itemBuild.getSlug()}) }}" class="action edit-action tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="{{ 'item_table.admin.edit'|trans }}"><i class="icon-edit"></i></a>
+								<a href="#delete-build-{{ itemBuild.getSlug() }}-modal" class="action delete-action tooltip-anchor" data-toggle="modal" rel="tooltip" data-placement="top" data-original-title="{{ 'item_table.admin.delete'|trans }}"><i class="icon-remove-sign"></i></a>
 								{#<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>{{'item_table.td.downloaded'|trans}}</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> {{'item_table.td.times'|trans}}</span>#}
 							</div>
 							

@@ -332,7 +332,7 @@
 			</trans-unit>
 			<trans-unit id="2010">
 				<source>item_table.td.updated_the</source>
-				<target>updated</target>
+				<target>last update</target>
 			</trans-unit>
 			<trans-unit id="2011">
 				<source>classic</source>
@@ -349,6 +349,34 @@
 			<trans-unit id="2014">
 				<source>aram</source>
 				<target>Proving Grounds</target>
+			</trans-unit>
+			<trans-unit id="2015">
+				<source>item_table.td.icon.title.comment</source>
+				<target>Comments</target>
+			</trans-unit>
+			<trans-unit id="2016">
+				<source>item_table.td.icon.title.download</source>
+				<target>Downloads</target>
+			</trans-unit>
+			<trans-unit id="2017">
+				<source>item_table.td.icon.title.view</source>
+				<target>Views</target>
+			</trans-unit>
+			<trans-unit id="2018">
+				<source>item_table.admin.view</source>
+				<target>Learn more</target>
+			</trans-unit>
+			<trans-unit id="2019">
+				<source>item_table.admin.download</source>
+				<target>Download</target>
+			</trans-unit>
+			<trans-unit id="2020">
+				<source>item_table.admin.edit</source>
+				<target>Edit</target>
+			</trans-unit>
+			<trans-unit id="2021">
+				<source>item_table.admin.delete</source>
+				<target>Delete</target>
 			</trans-unit>
 
 			<!-- All lists -->

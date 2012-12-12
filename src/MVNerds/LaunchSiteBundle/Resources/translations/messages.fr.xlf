@@ -585,6 +585,10 @@
 				<target>Si vous remarquez une erreur de frappe lors de la saisie de votre adresse email, veuillez nous faire parvenir un message par le biais du formulaire 
 					de contact. Nous ferons le nécessaire pour opérer les changements aussi rapidement que possible.</target>
 			</trans-unit>
+			<trans-unit id="20003">
+				<source>registration_success.warning</source>
+				<target>si vous utilisez la messagerie d'Hotmail, l'email de confirmation est parfois considéré comme un spam.</target>
+			</trans-unit>
 			
 			<trans-unit id="20100">
 				<source>Registration.User.username</source>
@@ -596,11 +600,11 @@
 			</trans-unit>
 			<trans-unit id="20102">
 				<source>Registration.User.pwd_confirm</source>
-				<target>Confirmation du MDP</target>
+				<target>Confirmation du mot de passe</target>
 			</trans-unit>
 			<trans-unit id="20103">
 				<source>Registration.User.email</source>
-				<target>E-Mail</target>
+				<target>E-mail</target>
 			</trans-unit>
 
 			<trans-unit id="20200">
