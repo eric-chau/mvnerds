@@ -12,7 +12,13 @@ function storeItemBuildForCopy() {
 		if(! (blockName in itemSlugs)) {
 			var blockArray = new Array();
 			$(this).find('ul li.item div.portrait').each(function() {
-				blockArray.push($(this).data('slug'));
+				var $itemCount = $(this).find('span.item-count');
+				var itemCount = 1;
+				if ($itemCount.length > 0) {
+					itemCount = $itemCount.html() *1;
+					itemCount = itemCount >= 1 ? itemCount : 1;
+				}
+				blockArray.push({slug: $(this).data('slug'), count: itemCount});
 			});
 			if (blockArray.length > 0) {
 				itemSlugs.push({name:blockName, items:blockArray});

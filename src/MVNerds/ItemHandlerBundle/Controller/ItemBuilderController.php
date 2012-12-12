@@ -26,7 +26,7 @@ class ItemBuilderController extends Controller
 	 * @Route("/create", name="item_builder_create", options={"expose"=true})
 	 */
 	public function createAction()
-	{		
+	{
 		$canSaveBuild = false;
 		$lolDir = null;
 		
@@ -106,7 +106,7 @@ class ItemBuilderController extends Controller
 				$itemBlocks[$position] = array('type' => $type, 'escaped' => $ecapedName, 'items' => array());
 			}
 			
-			$itemBlocks[$position]['items'][] = $item;
+			$itemBlocks[$position]['items'][] = array('item' => $item, 'count' => $itemBuildItems->getCount());
 		}
 		ksort($itemBlocks);
 		
@@ -253,8 +253,11 @@ class ItemBuilderController extends Controller
 			
 			$itemBlockName = preg_replace('/[^a-zA-Z0-9 ]+/','',$itemBlockName);
 			
-			foreach ($items as $itemSlug)
+			foreach ($items as $item)
 			{
+				$itemSlug = $item['slug'];
+				$itemCount = $item['count'];
+				$itemCount = $itemCount >= 1 ? $itemCount : 1;
 				try {
 					$item = $itemManager->findBySlug($itemSlug);
 				} catch (\Exception $e) {
@@ -267,7 +270,7 @@ class ItemBuilderController extends Controller
 				$itemBuildItems->setItemId($item->getId());
 				$itemBuildItems->setType($itemBlockName);
 				$itemBuildItems->setPosition($i);
-				$itemBuildItems->setCount(1);
+				$itemBuildItems->setCount($itemCount);
 
 				$itemBuilditemsCollection->append($itemBuildItems);
 			}
@@ -497,7 +500,7 @@ class ItemBuilderController extends Controller
 				$selectedItems[$position] = array('type' => $type, 'escaped' => $ecapedName, 'items' => array());
 			}
 
-			$selectedItems[$position]['items'][] = $item;
+			$selectedItems[$position]['items'][] = array('item' => $item, 'count' => $count);
 		}
 		ksort($selectedItems);
 		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:create_index.html.twig', array(

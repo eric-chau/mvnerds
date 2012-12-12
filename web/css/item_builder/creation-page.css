@@ -283,6 +283,7 @@ div.body-container div.item-container .item {
 }
 div.body-container div.champion-container .item div.portrait,
 div.body-container div.item-container .item div.portrait {
+  position: relative;
   padding: 7px;
 }
 div.body-container div.champion-container div.actionbar ul.actions-list,
@@ -761,6 +762,14 @@ div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_li
   width: 25px;
   cursor: pointer;
   margin: 3px;
+  position: relative;
+}
+div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.portrait span.item-count {
+  top: 8px;
+  color: #fff;
+  font-size: 13px;
+  right: 1px;
+  position: absolute;
 }
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul.dropdown-menu {
   width: 746px;

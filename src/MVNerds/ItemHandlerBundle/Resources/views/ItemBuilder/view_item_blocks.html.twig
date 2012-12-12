@@ -4,10 +4,14 @@
 			<h3>{{itemBlock['type']}}</h3>
 
 			<ul>
-				{% for item in itemBlock['items'] %}
+				{% for itemTab in itemBlock['items'] %}
+					{% set item = itemTab['item']%}
 					<li class="item"data-placement="right" data-name="{{ item.getName() | lower }}" data-title="{{ item.getName()}}" id="{{ item.getSlug() }}" data-code="{{ item.getRiotCode()}}">
 						<div class="portrait" data-slug="{{item.getSlug()}}">
 							<img draggable="false" class="item-image" src="{{ asset('images/items/' ~ item.getRiotCode() ~ '.png') }}" alt="image de l'item {{ item.getName() }}" />
+							{% if (itemTab['count'] > 1) %}
+								<span class="item-count">{{itemTab['count']}}</span>
+							{% endif %}
 						</div>
 					</li>
 				{% endfor %}
