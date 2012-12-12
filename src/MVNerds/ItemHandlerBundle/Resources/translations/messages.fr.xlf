@@ -112,7 +112,13 @@
 			<trans-unit id="016">
 				<source>create_item_build.tip.5</source>
 				<target>
-					
+					Vous pouvez sauvegarder un maximum de 7 listes en tant que membre mais vous pouvez en générer autant que vous voulez !
+				</target>
+			</trans-unit>
+			<trans-unit id="017">
+				<source>create_item_build.tip.6</source>
+				<target>
+					N'oubliez pas d'exécuter le fichier une fois téléchargé afin que celui-ci puisse placer les listes d'objets aux bons endroits.
 				</target>
 			</trans-unit>
 			

@@ -111,7 +111,13 @@
 			<trans-unit id="016">
 				<source>create_item_build.tip.5</source>
 				<target>
-					Note : If you use "Generate Only" the build will not be saved but you will be able to downloaded it anyway.
+					You are allowed to save a maximum of 7 lists as a member but yout can generate as many as you want!
+				</target>
+			</trans-unit>
+			<trans-unit id="017">
+				<source>create_item_build.tip.6</source>
+				<target>
+					Don't forget to execute the downloaded file in order to place the items lists at the right places.
 				</target>
 			</trans-unit>
 			
