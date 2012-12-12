@@ -24,13 +24,27 @@ var
 ;
 
 function addRecItem(slug, liBlockId) {
-	$liBlock = $('#'+liBlockId);
-	if ($liBlock.children('div.item-sidebar-block-div').find('div.portrait[data-slug="'+slug+'"]').length == 0) {
+	var $liBlock = $('#'+liBlockId);
+	var $item = $liBlock.children('div.item-sidebar-block-div').find('div.portrait[data-slug="'+slug+'"]');
+	if ($item.length == 0) {
 		$portrait = $('#'+slug).find('div.portrait').clone();
 		$liBlock.find('div.item-sidebar-block-div div.indication').remove();
 		$liBlock.children('div.item-sidebar-block-div').append($portrait.css('display', 'inline-block'));
 	} else {
-		displayMessage('Cet item est déjà présent dans le bloc.', 'error');
+		var $itemCount = $item.find('span.item-count');
+		if ($itemCount.length == 0) {
+			$item.append('<span class="item-count">2</span>')
+		} else {
+			$itemCount.html($itemCount.html()*1 + 1);
+		}
+		//displayMessage('Cet item est déjà présent dans le bloc.', 'error');
+	}
+}
+
+//Utilisé pour charger le build depuis le llocal storage
+function addManyRecItems(slug, liBlockId, count) {
+	for (var i = 0; i < count; i++) {
+		addRecItem(slug, liBlockId);
 	}
 }
 
@@ -155,7 +169,13 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 				if(blockName != undefined && blockName != '' && ! (blockName in itemsSlugs)) {
 					var blockArray = new Array();
 					$(this).find('div.item-sidebar-block-div div.portrait').each(function() {
-						blockArray.push($(this).data('slug'));
+						var $itemCount = $(this).find('span.item-count');
+						var itemCount = 1;
+						if ($itemCount.length > 0) {
+							itemCount = $itemCount.html() *1;
+							itemCount = itemCount >= 1 ? itemCount : 1;
+						}
+						blockArray.push({slug: $(this).data('slug'), count: itemCount});
 					});
 					if (blockArray.length > 0) {
 						itemsSlugs.push({name:blockName, items:blockArray});
@@ -336,8 +356,8 @@ function initWithStoredItemBuild() {
 	var itemSlugs = getItemFromLS('storedItemSlugs').split(',');
 	var buildName = getItemFromLS('storedBuildName');
 	
-	itemSlugs = JSON.parse(itemSlugs);
-	
+	itemSlugs = JSON.parse(getItemFromLS('storedItemSlugs'));
+	console.log(itemSlugs);
 	for(var i = 0; i < championSlugs.length; i++) {
 		if (championSlugs[i] != '') {
 			$('#champion-isotope-list li.champion#'+championSlugs[i]).addClass('active');
@@ -358,7 +378,7 @@ function initWithStoredItemBuild() {
 				$itemSidebarList.append('<li class="item-sidebar-block-li" id="__'+blockNameEscaped+'__item-block-li"><input type="text" class="item_sidebar_block_input span9" value="'+name+'"/> <a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a><div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div></li>')
 				initItemDroppable($itemSidebarList.find('li:last div.item-sidebar-block-div'));
 			}
-			addRecItem(items[j], '__'+blockNameEscaped + '__item-block-li');
+			addManyRecItems(items[j]['slug'], '__'+blockNameEscaped + '__item-block-li', items[j]['count']);
 		}
 	}
 	
@@ -396,7 +416,13 @@ function storeItemBuild() {
 		if(! (blockName in itemSlugs)) {
 			var blockArray = new Array();
 			$(this).find('div.item-sidebar-block-div div.portrait').each(function() {
-				blockArray.push($(this).data('slug'));
+				var $itemCount = $(this).find('span.item-count');
+				var itemCount = 1;
+				if ($itemCount.length > 0) {
+					itemCount = $itemCount.html() *1;
+					itemCount = itemCount >= 1 ? itemCount : 1;
+				}
+				blockArray.push({slug: $(this).data('slug'), count: itemCount});
 			});
 			if (blockArray.length > 0) {
 				itemSlugs.push({name:blockName, items:blockArray});
@@ -454,9 +480,22 @@ function initItemDroppable($divs) {
 //Lors du clic sur un item présent dans un block
 function initItemClickInBlock() {
 	$itemSidebarList.on('click', 'li div div.portrait', function() {
-		$parent = $(this).parent();
-		if($parent.find('div.portrait').length == 1) {
+		var $parent = $(this).parent();
+		
+		var $itemCount = $(this).find('span.item-count');
+		if ($itemCount.length > 0) {
+			var itemCount = $itemCount.html() * 1;
+			if (itemCount > 2) {
+				$itemCount.html($itemCount.html()*1 -1);
+			} else if (itemCount == 2){
+				$itemCount.remove();
+			}
+		} else {
 			$(this).remove();
+		}
+		
+		if($parent.find('div.portrait').length == 0) {
+			
 			var indication;
 			if(locale == 'en') {
 				indication = 'Drop your items here';
@@ -464,8 +503,6 @@ function initItemClickInBlock() {
 				indication = 'Déposez vos objets ici';
 			}
 			$parent.html('<div class="indication">'+indication+'</div>');
-		} else {
-			$(this).remove();
 		}
 	});
 }
