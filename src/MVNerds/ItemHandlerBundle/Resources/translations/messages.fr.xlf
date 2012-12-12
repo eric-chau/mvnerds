@@ -294,7 +294,7 @@
 			<trans-unit id="2002">
 				<source>item_table.th.game_mode</source>
 				<target>
-					Mode de jeu
+					Carte
 				</target>
 			</trans-unit>
 			<trans-unit id="2003">
@@ -333,6 +333,26 @@
 				<source>item_table.th.downloads</source>
 				<target>Téléchargements</target>
 			</trans-unit>
+			<trans-unit id="2010">
+				<source>item_table.td.updated_the</source>
+				<target>mis à jour le</target>
+			</trans-unit>
+			<trans-unit id="2011">
+				<source>classic</source>
+				<target>Faille de l'Invocateur</target>
+			</trans-unit>
+			<trans-unit id="2012">
+				<source>dominion</source>
+				<target>Brèche de Cristal</target>
+			</trans-unit>
+			<trans-unit id="2013">
+				<source>twisted-treeline</source>
+				<target>Forêt Torturée</target>
+			</trans-unit>
+			<trans-unit id="2014">
+				<source>aram</source>
+				<target>Centre d'Entraînement</target>
+			</trans-unit>
 
 			<!-- All lists -->
 			<trans-unit id="3000">
@@ -346,6 +366,58 @@
 			<trans-unit id="3002">
 				<source>item_build_list_index.title</source>
 				<target>Pimp My Recommended Items | PMRI</target>
+			</trans-unit>
+			<trans-unit id="3003">
+				<source>item_build_list_index.sort</source>
+				<target>Trier</target>
+			</trans-unit>
+			<trans-unit id="3004">
+				<source>item_build_list_index.sort.name-asc</source>
+				<target>Nom par ordre croissant</target>
+			</trans-unit>
+			<trans-unit id="3005">
+				<source>item_build_list_index.sort.name-desc</source>
+				<target>Nom par ordre décroissant</target>
+			</trans-unit>
+			<trans-unit id="3006">
+				<source>item_build_list_index.sort.most-downloaded</source>
+				<target>Les plus téléchargés</target>
+			</trans-unit>
+			<trans-unit id="3007">
+				<source>item_build_list_index.sort.less-downloaded</source>
+				<target>Les moins téléchargés</target>
+			</trans-unit>
+			<trans-unit id="3008">
+				<source>item_build_list_index.sort.oldest</source>
+				<target>Les plus anciens</target>
+			</trans-unit>
+			<trans-unit id="3009">
+				<source>item_build_list_index.sort.newest</source>
+				<target>Les plus récents</target>
+			</trans-unit>
+			<trans-unit id="3010">
+				<source>item_build_list_index.sort.updated</source>
+				<target>Les dernières mises à jour</target>
+			</trans-unit>
+			<trans-unit id="3011">
+				<source>item_build_list_index.sort.most-commented</source>
+				<target>Les plus commentées</target>
+			</trans-unit>
+			<trans-unit id="3012">
+				<source>item_build_list_index.sort.filter-by-champion</source>
+				<target>Filtrer par champion</target>
+			</trans-unit>
+			<trans-unit id="3013">
+				<source>item_build_list_index.sort.filter-by-author</source>
+				<target>Filtrer par auteur</target>
+			</trans-unit>
+			<trans-unit id="3014">
+				<source>item_build_list_index.sort.filter-by-title</source>
+				<target>Filtrer par titre</target>
+			</trans-unit>
+			<trans-unit id="3015">
+				<source>item_build_list_index.sort.views</source>
+				<target>Les plus vus</target>
 			</trans-unit>
 			
 			<!-- VIEW INDEX -->

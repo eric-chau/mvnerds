@@ -53,13 +53,42 @@
 		
 		<p>{{'item_build_list_index.p1'|trans}}</p>
 		
+		<ul class="filters-list">
+			<li id="sort-box" class="dropdown action link">
+				<a class="dropdown-toggle action-button-link" data-toggle="dropdown" id="drop-sort-list" role="button"><i class="icon-sort icon-white"></i><span class="action-label"> {{'item_build_list_index.sort'|trans}}</span></a>
+				<ul id="sort-list" class="dropdown-menu" role="menu" aria-labelledby="drop-sort-list">
+					<li><a href="#" class="sort-link" data-option-value="0"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.name-asc'|trans}}</a></li>
+					<li><a href="#" class="sort-link" data-option-value="1"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.name-desc'|trans}}</a></li>
+					<li><a href="#" class="sort-link" data-option-value="2"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.most-downloaded'|trans}}</a></li>
+					<li><a href="#" class="sort-link" data-option-value="3"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.less-downloaded'|trans}}</a></li>
+					<li><a href="#" class="sort-link" data-option-value="4"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.oldest'|trans}}</a></li>
+					<li><a href="#" class="sort-link selected" data-option-value="5"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.newest'|trans}}</a></li>
+					<li><a href="#" class="sort-link" data-option-value="6"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.updated'|trans}}</a></li>
+					<li><a href="#" class="sort-link" data-option-value="7"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.most-commented'|trans}}</a></li>
+					<li><a href="#" class="sort-link" data-option-value="8"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.views'|trans}}</a></li>
+				</ul>
+			</li>
+			<li id="filter-champion" class="action filter-action">
+				<i class="icon-search icon-white"></i>
+				<input placeholder="{{'item_build_list_index.sort.filter-by-champion'|trans}}" type="text" id="champion-filter-input" class="input-mini" data-provide="typeahead"/>
+			</li>
+			<li id="filter-author" class="action filter-action">
+				<i class="icon-search icon-white"></i>
+				<input placeholder="{{'item_build_list_index.sort.filter-by-author'|trans}}" type="text" id="author-filter-input" class="input-mini"/>
+			</li>
+			<li id="filter-title" class="action filter-action">
+				<i class="icon-search icon-white"></i>
+				<input placeholder="{{'item_build_list_index.sort.filter-by-title'|trans}}" type="text" id="title-filter-input" class="input-mini"/>
+			</li>
+		</ul>
+		
 		<table id="item-builds-table" class="table data-table" data-filter="{% if championSlug is defined %}{{championSlug}}{% endif %}">
 			<thead>
 				<tr>
 					<th class="champions">{{'item_table.th.champion'|trans}}</th>
 					<th class="name">{{'item_table.th.name'|trans}}</th>
 					<th class="game-mode">{{'item_table.th.game_mode'|trans}}</th>
-					<th class="actions">{{'item_table.th.downloads'|trans}}</th>
+					<th class="actions"></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -75,20 +104,26 @@
 						</td>
 						<td class="name">
 							<a href="{{path('item_builder_view', {itemBuildSlug: itemBuild.getSlug()})}}">{{itemBuild.getName()}}</a><br />
-							<span class="created-by">{{'item_table.td.created_by'|trans}} <a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}" title="{{'item_table.td.consult_profile_of'|trans}} {{ user.getUsername }}">{{user.getUsername()}}</a> {{'item_table.td.created_the'|trans}} {{itemBuild.getCreateTime('d/m/Y')}}</span>
+							<span class="created-by">{{'item_table.td.created_by'|trans}} <a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}" title="{{'item_table.td.consult_profile_of'|trans}} {{ user.getUsername }}">{{user.getUsername()}}</a> {{'item_table.td.updated_the'|trans}} {{itemBuild.getUpdateTime('d/m/Y')}} <i class="icon-comments icon-white" title="comments"></i>{{itemBuild.getCommentCount()}} <i class="icon-download-alt icon-white" title="downloads"></i>{{itemBuild.getDownload()}} <i class="icon-eye-open icon-white" title="views"></i>{{itemBuild.getView()}}</span>
 						</td>
 						
-						<td class="game-mode">{{itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel()}}</td>
+						<td class="game-mode">{{itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel() | trans}}</td>
 						
 						<td>
 							<a class="action view-action" href="{{path('item_builder_view', {itemBuildSlug: itemBuild.getSlug()})}}"><i class="icon-share"></i> {{'General.watch'|trans}}</a>
 							
-							<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>{{'item_table.td.downloaded'|trans}}</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> {{'item_table.td.times'|trans}}</span>
+							{#<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>{{'item_table.td.downloaded'|trans}}</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> {{'item_table.td.times'|trans}}</span>#}
 						</td>
 						
 						<td>{% for championItemBuild in  itemBuild.getChampionItemBuilds()%}{{championItemBuild.getChampion().getName}} {% endfor %}</td>
 						
 						<td>{{itemBuild.getDownload()}}</td>
+						<td>{{itemBuild.getUpdateTime('YmdHims')}}</td>
+						<td>{{itemBuild.getUser().getUsername()}}</td>
+						<td>{{itemBuild.getCreateTime('YmdHims')}}</td>
+						<td>{{itemBuild.getCommentCount()}}</td>
+						<td>{{itemBuild.getName()}}</td>
+						<td>{{itemBuild.getView()}}</td>
 					</tr>
 				{% endfor %}
 			</tbody>

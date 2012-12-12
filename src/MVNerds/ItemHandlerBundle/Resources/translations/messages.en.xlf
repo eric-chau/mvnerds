@@ -291,7 +291,7 @@
 			<trans-unit id="2002">
 				<source>item_table.th.game_mode</source>
 				<target>
-					Game mode
+					Map
 				</target>
 			</trans-unit>
 			<trans-unit id="2003">
@@ -330,6 +330,26 @@
 				<source>item_table.th.downloads</source>
 				<target>Downloads</target>
 			</trans-unit>
+			<trans-unit id="2010">
+				<source>item_table.td.updated_the</source>
+				<target>updated</target>
+			</trans-unit>
+			<trans-unit id="2011">
+				<source>classic</source>
+				<target>Summoner Rift</target>
+			</trans-unit>
+			<trans-unit id="2012">
+				<source>dominion</source>
+				<target>Crystal Scar</target>
+			</trans-unit>
+			<trans-unit id="2013">
+				<source>twisted-treeline</source>
+				<target>Twisted Treeline</target>
+			</trans-unit>
+			<trans-unit id="2014">
+				<source>aram</source>
+				<target>Proving Grounds</target>
+			</trans-unit>
 
 			<!-- All lists -->
 			<trans-unit id="3000">
@@ -343,6 +363,58 @@
 			<trans-unit id="3002">
 				<source>item_build_list_index.title</source>
 				<target>Pimp My Recommended Items | PMRI</target>
+			</trans-unit>
+			<trans-unit id="3003">
+				<source>item_build_list_index.sort</source>
+				<target>Sort</target>
+			</trans-unit>
+			<trans-unit id="3004">
+				<source>item_build_list_index.sort.name-asc</source>
+				<target>Name ascendent</target>
+			</trans-unit>
+			<trans-unit id="3005">
+				<source>item_build_list_index.sort.name-desc</source>
+				<target>Name descendent</target>
+			</trans-unit>
+			<trans-unit id="3006">
+				<source>item_build_list_index.sort.most-downloaded</source>
+				<target>Most downloaded</target>
+			</trans-unit>
+			<trans-unit id="3007">
+				<source>item_build_list_index.sort.less-downloaded</source>
+				<target>Less downloaded</target>
+			</trans-unit>
+			<trans-unit id="3008">
+				<source>item_build_list_index.sort.oldest</source>
+				<target>Oldest</target>
+			</trans-unit>
+			<trans-unit id="3009">
+				<source>item_build_list_index.sort.newest</source>
+				<target>Newest</target>
+			</trans-unit>
+			<trans-unit id="3010">
+				<source>item_build_list_index.sort.updated</source>
+				<target>Updated</target>
+			</trans-unit>
+			<trans-unit id="3011">
+				<source>item_build_list_index.sort.most-commented</source>
+				<target>Most commented</target>
+			</trans-unit>
+			<trans-unit id="3012">
+				<source>item_build_list_index.sort.filter-by-champion</source>
+				<target>Filter by champion</target>
+			</trans-unit>
+			<trans-unit id="3013">
+				<source>item_build_list_index.sort.filter-by-author</source>
+				<target>Filter by author</target>
+			</trans-unit>
+			<trans-unit id="3014">
+				<source>item_build_list_index.sort.filter-by-title</source>
+				<target>Filter by title</target>
+			</trans-unit>
+			<trans-unit id="3015">
+				<source>item_build_list_index.sort.views</source>
+				<target>Views</target>
 			</trans-unit>
 
 			<!-- VIEW INDEX -->

@@ -160,6 +160,160 @@ div.body-container {
 	}
 }
 
+ul.filters-list {
+	li.action {
+		//background-color: rgba(25,160,223,.7);
+		background-color: #759E1A;
+		cursor: pointer;
+		display: inline-block;
+		line-height: 26px;
+		margin: 0;
+		margin-right: 1px;
+		padding: 3px 6px 0 4px;
+		min-width: 80px;
+		text-align: center;
+
+		&.disabled {
+			cursor: not-allowed;
+			opacity: .65;
+
+			a:hover {
+				cursor: not-allowed;
+			}
+		}
+
+		&.link {
+			padding: 0;
+
+			a.action-button-link {
+				display: block;
+				padding: 3px 6px 0 2px;
+
+				&.active {
+					color: @LoLOrangeAD;
+					.transition(color .15s linear);
+
+					i {
+						color: @LoLOrangeAD;
+						.transition(color .15s linear);
+					}
+				}
+			}					
+		}
+
+		a, a:visited, a:hover {
+			color: white;
+			display: block;
+			text-decoration: none;
+		}
+
+		i {
+			display: inline-block;
+			font-size: 22px;
+			line-height: 22px;
+			margin: 0 0 0 0;
+			position: relative;
+			top: 1px;
+		}
+
+		span.action-label {
+			font-family: 'Ubuntu', sans-serif;
+			font-size: 14px;
+			font-weight: normal;
+			position: relative;
+			top: -2px;
+		}
+
+		&:hover {
+			//background-color: rgba(25,160,223,1);
+			background-color: #95BE3A;
+			.transition(all .25s linear);
+
+			span.action-label {
+				.transition(all .25s linear);
+			}
+			input[type="text"] {
+				background-color: #759E1A;
+				.placeholder(#ccc);
+				.transition(background-color .25s linear);
+			}
+		}
+		
+		input[type="text"] {
+			border: 0;
+			.border-radius(0);
+			//background-color: #11709c;
+			background-color: #658E0A;
+			color: white;
+			font-size: 14px;
+			line-height: 1.5em;
+			margin: 0 0 2px 0;
+			padding: 1px 5px;
+			.placeholder(#ccc);
+			position: relative;
+			top: -2px;
+			width: 130px!important;
+		}
+	}
+}
+
+ul.dropdown-menu {
+	background-color: rgba(0,0,0,0.8);
+	//border: 1px solid @MVNerdsBlue;
+	border: 1px solid #759E1A;
+	text-align: left;
+	padding: 5px 5px;
+	.border-radius(0);
+
+	&:not(.typeahead) {
+		li {
+			&:hover {
+				background-color: #759E1A!important;
+			}
+			a {
+				font-family: 'Ubuntu', sans-serif;
+				padding: 3px 10px 3px 20px;
+
+				i {
+					color: black;
+					display: inline-block;
+					font-size: 18px;
+					left: -5px;
+					margin: 0 10px 0 0;
+					position: relative;
+					top: 0 !important;
+				}
+
+				&.selected {
+					color: @LoLOrangeAD;
+					font-weight: bold;
+					i {
+						color: @LoLOrangeAD;
+					}
+				}
+
+				&:hover {
+					background-color: #759E1A!important;
+					color: white;
+					i {
+						color: white;
+					}
+				}
+			}//End a
+		}
+	}
+	&.typeahead {
+		li {
+			a {
+				color: #bbb;
+				strong {
+					color: #fff;
+				}
+			}
+		}
+	}
+}
+
 table#item-builds-table {
 	margin: 20px 0 15px 0;
 

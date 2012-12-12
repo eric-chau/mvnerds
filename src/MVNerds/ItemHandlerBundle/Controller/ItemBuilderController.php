@@ -88,6 +88,8 @@ class ItemBuilderController extends Controller
 	{
 		try{
 			$itemBuild = $this->get('mvnerds.item_build_manager')->findOneBySlug($itemBuildSlug);
+			$itemBuild->setView($itemBuild->getView() + 1);
+			$itemBuild->save();
 		} catch (\Exception $e) {
 			return $this->redirect($this->generateUrl('item_builder_list'));
 		}

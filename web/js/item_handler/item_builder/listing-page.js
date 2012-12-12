@@ -145,31 +145,69 @@ $(document).ready(function() {
 		"bLengthChange": false,
 		"aaSorting": [],
 		"iDisplayLength": 10,
-		"sDom": "lfrtip",
+		"sDom": "lrtip",
 		"aoColumns": [
-                      {"bSearchable": false, "bSortable":false},
-                      {"bSearchable": false, "bSortable":true},
-                      {"bSearchable": false, "bSortable":false},
-                      {"bSearchable": false, "bSortable":true, "iDataSort": 5},
-                      {"bVisible": false, "bSearchable": true, "bSortable":false},
-                      {"bVisible": false, "bSearchable": false, "bSortable":false}
+                      {"bSearchable": false, "bSortable":false},//Champions
+                      {"bSearchable": false, "bSortable":true},//Nom du build
+                      {"bSearchable": false, "bSortable":false},//Mode de jeu
+                      {"bSearchable": false, "bSortable":true, "iDataSort": 5},//Téléchargements
+                      {"bVisible": false, "bSearchable": true, "bSortable":false},//Champions
+                      {"bVisible": false, "bSearchable": false, "bSortable":false},//Downloads
+                      {"bVisible": false, "bSearchable": false, "bSortable":true},//Update Time
+                      {"bVisible": false, "bSearchable": true, "bSortable":true},//Auteur
+                      {"bVisible": false, "bSearchable": false, "bSortable":true},//Date de creation
+                      {"bVisible": false, "bSearchable": false, "bSortable":true},//Comment count
+                      {"bVisible": false, "bSearchable": false, "bSortable":true},//Build Name
+                      {"bVisible": false, "bSearchable": false, "bSortable":true},//Views
 		],
 		"sPaginationType": 'bootstrap',
 		"oLanguage": langage
 	});
 	
-	itemBuildsTable.before('<select id="filter-dropdown"></select>');console.log($selectFilter);
-	var $selectFilter = $('#filter-dropdown');
-	$selectFilter.append('<option value="1">Nom</option>');
-	$selectFilter.append('<option value="3">Téléchargements</option>');
+	var sortTable = [
+		[1, 'asc'],//Nom croissant
+		[1, 'desc'],//Nom décroissant
+		[5, 'desc'],//Les + DL
+		[5, 'asc'],//Les - DL
+		[8, 'asc'],//Les + anciens
+		[8, 'desc'],//Les + récents
+		[6, 'asc'],//Les dernières MAJ
+		[9, 'desc'],//Les + commentées
+		[11, 'desc'],//Les + vues
+	];
 	
-	$selectFilter.on('change', function(){console.log('change');
-		itemBuildsTable.fnSort([[$(this).val(), 'desc']]);
+	//SORTING
+//	itemBuildsTable.before('<select id="filter-dropdown"></select>');console.log($selectFilter);
+//	var $selectFilter = $('#filter-dropdown');
+//	$selectFilter.append('<option value="0">Nom par ordre croissant</option>');
+//	$selectFilter.append('<option value="1">Nom par ordre décroissant</option>');
+//	$selectFilter.append('<option value="2">Les plus téléchargés</option>');
+//	$selectFilter.append('<option value="3">Les moins téléchargés</option>');
+//	$selectFilter.append('<option value="4">Les plus anciens</option>');
+//	$selectFilter.append('<option value="5" selected="selected">Les plus récents</option>');
+//	$selectFilter.append('<option value="6">Les dèrnières mises a jour</option>');
+//	$selectFilter.append('<option value="7">Les plus commentés</option>');
+//	$selectFilter.on('change', function(){
+//		itemBuildsTable.fnSort([sortTable[$(this).val()]]);
+//	});
+
+	var $dropdownSort = $('ul#sort-list');
+	$dropdownSort.find('li a.sort-link').on('click', function(e){
+		e.preventDefault();
+		$dropdownSort.find('li a.sort-link').removeClass('selected');
+		$(this).addClass('selected');
+		itemBuildsTable.fnSort([sortTable[$(this).attr('data-option-value')]]);
 	});
 	
-	//On change filter
-	$('#item-builds-table_wrapper div.dataTables_filter label input').on('change', function(){
-		itemBuildsTable.fnFilter($(this).val());
+	//On change filter input
+	$('#champion-filter-input').on('keyup change', function(){
+		itemBuildsTable.fnFilter($(this).val(), 4);
+	});
+	$('#author-filter-input').on('keyup change', function(){
+		itemBuildsTable.fnFilter($(this).val(), 7);
+	});
+	$('#title-filter-input').on('keyup change', function(){
+		itemBuildsTable.fnFilter($(this).val(), 10);
 	});
 	
 	$('#item-builds-table_length').addClass('pull-left');
@@ -189,12 +227,13 @@ $(document).ready(function() {
 		$('#item-builds-table_filter label input').attr('placeholder', 'Rechercher par champion');
 	}
 	
+	//Auto complete champions
 	$.ajax({
 		type: 'POST',
 		url:  Routing.generate('champion_handler_front_get_champions_name', {_locale: locale}), 
 		dataType: 'html'
 	}).done(function(data){
-		$('#item-builds-table_filter label input').attr('data-source', data);
+		$('#champion-filter-input').attr('data-source', data);
 	}).fail(function() {
 		console.log('error');
 	});
