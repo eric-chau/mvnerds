@@ -122,9 +122,9 @@
 		{% include 'MVNerdsItemHandlerBundle:ItemBuilder:view_item_blocks.html.twig' %}
 		
 		<div class="item-build-social-actions">
-			<fb:like class="" href="{{path('item_builder_view', {'itemBuildSlug':itemBuild.getSlug()})}}" send="false" layout="button_count" width="450" show_faces="true" font="trebuchet ms" data-colorscheme="dark"></fb:like>
+			<fb:like class="" href="{{url('item_builder_view', {'itemBuildSlug':itemBuild.getSlug()})}}" send="false" layout="button_count" width="450" show_faces="true" font="trebuchet ms" data-colorscheme="dark"></fb:like>
 			<a href="https://twitter.com/share" class="twitter-share-button" data-text="Pimp My Recommended Items list : {{itemBuild.getName()}}
-			http://www.mvnerds.com{{path('item_builder_view', {'itemBuildSlug':itemBuild.getSlug()})}}" data-lang="{{locale}}" data-url="{{path('item_builder_view', {'itemBuildSlug':itemBuild.getSlug()})}}"></a>
+			{{url('item_builder_view', {'itemBuildSlug':itemBuild.getSlug()})}}" data-lang="{{locale}}" data-url="{{url('item_builder_view', {'itemBuildSlug':itemBuild.getSlug()})}}"></a>
 		</div>
 		
 		{% render 'MVNerdsCommentBundle:Comment:renderLightComments' with {'object': itemBuild} %}
