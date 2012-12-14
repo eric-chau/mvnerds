@@ -100,7 +100,7 @@ $(document).ready(function() {
 	var langage;
 	if(locale != undefined && locale == 'en') {
 		langage = {
-			"sProcessing":     "Processing...",
+			"sProcessing":     "",
 			"sLengthMenu":     "Show _MENU_ lists per page",
 			"sZeroRecords":    "There is no lists to show",
 			"sInfo":           "Showing lists from _START_ to _END_ on a total of _TOTAL_ lists",
@@ -108,7 +108,7 @@ $(document).ready(function() {
 			"sInfoFiltered":   "(filtered from a total of _MAX_ lists)",
 			"sInfoPostFix":    "",
 			"sSearch":         "<i class='icon-search icon-white'></i>",
-			"sLoadingRecords": "Loading...",
+			"sLoadingRecords": "<img src='/images/commons/loader-16-bg-gray.gif' alt='chargement'/> Loading...",
 			"sUrl":            "",
 			"oPaginate": {
 				"sFirst":    "First",
@@ -119,7 +119,7 @@ $(document).ready(function() {
 		};
 	} else {
 		langage = {
-			"sProcessing":     "Traitement en cours...",
+			"sProcessing":     "",
 			"sLengthMenu":     "Afficher _MENU_ builds par page",
 			"sZeroRecords":    "Aucun build à afficher",
 			"sInfo":           "Affichage des builds de _START_ à _END_ sur un total de _TOTAL_ builds",
@@ -127,7 +127,7 @@ $(document).ready(function() {
 			"sInfoFiltered":   "(filtré de _MAX_ builds au total)",
 			"sInfoPostFix":    "",
 			"sSearch":         "<i class='icon-search icon-white'></i>",
-			"sLoadingRecords": "Chargement...",
+			"sLoadingRecords": "<img src='/images/commons/loader-16-bg-gray.gif' alt='chargement'/> Chargement...",
 			"sUrl":            "",
 			"oPaginate": {
 				"sFirst":    "Premier",
@@ -137,8 +137,6 @@ $(document).ready(function() {
 			}
 		};
 	}
-	
-	$('.bootstrap-popover').popover();
 	
 	itemBuildsTable = $('#item-builds-table').dataTable({
 		"bProcessing": true,
@@ -150,7 +148,7 @@ $(document).ready(function() {
 		"sDom": "lrtip",
 		"aoColumns": [
                       {"bSearchable": false, "bSortable":false},//Champions
-                      {"bSearchable": false, "bSortable":true},//Nom du build
+                      {"bSearchable": false, "bSortable":true, 'sClass': 'name'},//Nom du build
                       {"bSearchable": false, "bSortable":false},//Mode de jeu
                       {"bSearchable": false, "bSortable":true, "iDataSort": 5},//Téléchargements
                       {"bVisible": false, "bSearchable": true, "bSortable":false},//Champions
@@ -163,7 +161,10 @@ $(document).ready(function() {
                       {"bVisible": false, "bSearchable": false, "bSortable":true},//Views
 		],
 		"sPaginationType": 'bootstrap',
-		"oLanguage": langage
+		"oLanguage": langage,
+		"fnInitComplete": function() {
+			$('.bootstrap-popover').popover();
+		}
 	});
 	
 	var sortTable = [
