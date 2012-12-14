@@ -1,5 +1,15 @@
-{% extends 'MVNerdsNewsBundle::layout.html.twig' %}
+{% extends 'MVNerdsLaunchSiteBundle::layout.html.twig' %}
 	
+{% block metas %}
+	<meta property="og:title" content="MVNerds - Most Valuable News" />
+	<meta property="og:description" content="Article : {{news.getTitle()}}" />
+	<meta property="og:type" content="activity" />
+	<meta property="og:url" content="{{news.getPreview()}}" />
+	<meta property="og:image" content="http://www.mvnerds.com/images/news/most-valuable-news-mini.png" />
+	<meta property="og:site_name" content="MVNerds" />
+	<meta property="fb:admins" content="1317459591" />
+{% endblock %}
+
 {% block css %}
 	{{ parent() }}
 	
@@ -16,6 +26,13 @@
 		<link href="{{ asset('css/news/view.css') }}" rel="stylesheet" type="text/css">
 		<link href="{{ asset('css/comment/comment.css') }}" rel="stylesheet" type="text/css">
 	{% endif %}
+		
+	<style>
+		iframe.twitter-share-button {
+			position: relative;
+			bottom: -3px;
+		}
+	</style>
 {% endblock %}
 
 {% block javascripts %}
@@ -31,6 +48,10 @@
 				userSlug = '{{ app.user.getSlug() }}';
 			{% endif %}
 		</script>
+{% endblock %}
+		
+{% block title %}
+	Most Valuable News - {{news.getTitle()}}
 {% endblock %}
 	
 {% block body_main_content %}
@@ -52,7 +73,14 @@
 		{% render 'MVNerdsCommentBundle:Comment:renderLightComments' with {'object': news} %}
 		
 		<div class="news-footer">
-			<p><a href="{{ path('news_index') }}"><i class="icon-chevron-left"></i> {{'news_view.back_to_list'|trans}}</a></p>
+			<div class="news-build-social-actions pull-left">
+				<fb:like class="" href="{{url('news_detail', {'slug':news.getSlug()})}}" send="false" layout="button_count" width="450" show_faces="true" font="trebuchet ms" data-colorscheme="dark"></fb:like>
+				<a href="https://twitter.com/share" class="twitter-share-button" data-text="Most Valuable News : {{news.getTitle()}} {{news.getPreview()}}" data-url="{{url('news_detail', {'slug':news.getSlug()})}}"></a>
+				
+			</div>
+			<p>
+				<a href="{{ path('news_index') }}"><i class="icon-chevron-left"></i> {{'news_view.back_to_list'|trans}}</a>
+			</p>
 		</div>
 	</div>
 {% endblock %}

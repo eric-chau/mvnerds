@@ -138,6 +138,7 @@ $(document).ready(function() {
 	
 	newsTable = $('#news-table').dataTable({
 		"bLengthChange": false,
+		"aaSorting": [],
 		"iDisplayLength": 10,
 		"aoColumns": [
                       {"bSearchable": true, "bSortable":false},

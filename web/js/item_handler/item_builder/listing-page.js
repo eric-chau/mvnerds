@@ -141,6 +141,7 @@ $(document).ready(function() {
 	$('.bootstrap-popover').popover();
 	
 	itemBuildsTable = $('#item-builds-table').dataTable({
+		"sAjaxSource": Routing.generate('item_builder_list_ajax', {_locale: locale}),
 		"oSearch" :{"sSearch":  ((filter != undefined) ? filter : '')},
 		"bLengthChange": false,
 		"aaSorting": [],

@@ -80,6 +80,7 @@ class NewsManager
 	public function findAllPublic()
 	{
 		return NewsQuery::create()
+			->orderByCreateTime('desc')
 			->joinWithI18n($this->userLocale)
 			->joinWith('NewsCategory')
 			->joinWith('User', \Criteria::LEFT_JOIN)
@@ -90,6 +91,7 @@ class NewsManager
 	public function findAllNotPrivate()
 	{
 		return NewsQuery::create()
+			->orderByCreateTime('desc')
 			->joinWithI18n($this->userLocale)
 			->joinWith('NewsCategory')
 			->joinWith('User', \Criteria::LEFT_JOIN)

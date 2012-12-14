@@ -642,6 +642,9 @@ $(document).ready(function()
 	//Hover un item
 	initPopoverItem($itemIsotopeList);
 	
+	//Clic sur un item
+	initModalItem($itemIsotopeList);
+	
 	//On rends chaque item draggable
 	initItemDraggable();
 	
