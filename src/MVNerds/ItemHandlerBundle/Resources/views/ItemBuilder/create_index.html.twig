@@ -28,10 +28,11 @@
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 	{% if app.environment != 'dev' %}
 		{% javascripts
+			'js/launch_site/alerts-ajax-handler.js'
 			'js/item_handler/item-popover.js'
+			'js/item_handler/item-modal.js'
 			'js/bootstrap/bootstrap-popover.js'
 			'js/jquery.isotope.min.js'
-			'js/launch_site/alerts-ajax-handler.js'
 			'js/launch_site/isotope-filter.js'
 			'js/item_handler/item_builder/creation-page.js'
 			'js/jquery.mCustomScrollbar.js'
@@ -42,10 +43,11 @@
 		<script src="{{ asset_url }}"></script>
 		{% endjavascripts %}
 	{% else %}
+		<script src="{{ asset('js/launch_site/alerts-ajax-handler.js') }}"></script>
 		<script src="{{ asset('js/item_handler/item-popover.js') }}"></script>
+		<script src="{{ asset('js/item_handler/item-modal.js') }}"></script>
 		<script src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
 		<script src="{{ asset('js/jquery.isotope.min.js') }}"></script>
-		<script src="{{ asset('js/launch_site/alerts-ajax-handler.js') }}"></script>
 		<script src="{{ asset('js/launch_site/isotope-filter.js') }}"></script>
 		<script src="{{ asset('js/item_handler/item_builder/creation-page.js') }}"></script>
 		<script src="{{ asset('js/jquery.mCustomScrollbar.js') }}"></script>
@@ -143,6 +145,7 @@
 	</div>
 	
 	{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}
+	{% include 'MVNerdsItemHandlerBundle:Modal:item_modal.html.twig' %}
 	
 	<div id="modal-authenticate-build" class="modal hide fade">
 		<div class="modal-header">

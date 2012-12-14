@@ -82,6 +82,30 @@ class ItemBuilderController extends Controller
 	
 	/**
 	 * 
+	 * @Route("/list-ajax", name="item_builder_list_ajax", options={"expose"=true})
+	 */
+	public function listAjaxAction() 
+	{
+		if (!$request->isXmlHttpRequest() || !$request->isMethod('POST'))
+		{
+			throw new HttpException(500, 'Request must be AJAX and POST method');
+		}
+		
+		try {
+			$itemBuilds = $this->get('mvnerds.item_build_manager')->findAllPublic();
+			$jsonItemBuilds = array('aaData');
+			$jsonItemBuilds['aaData'] = array();
+			foreach($itemBuilds as $itemBuild)
+			{
+				$jsonItemBuilds['aaData'][] = array();
+			}
+			return new Response(json_encode());
+		} catch(Exception $e) {
+		}
+	}
+	
+	/**
+	 * 
 	 * @Route("/view/{itemBuildSlug}/{dl}", name="item_builder_view", defaults={"dl"=null}, options={"expose"=true})
 	 */
 	public function viewAction($itemBuildSlug, $dl)
@@ -95,8 +119,12 @@ class ItemBuilderController extends Controller
 		}
 		$itemBuildItemsCollection = $itemBuild->getItemBuildItemss();
 		$itemBlocks = array();
-		foreach ($itemBuildItemsCollection as $itemBuildItems)
+		
+		$length = count($itemBuildItemsCollection);		
+		for ($i = 0; $i < $length; $i++)
 		{
+			$itemBuildItems = $itemBuildItemsCollection[$i];
+			
 			$item = $itemBuildItems->getItem();
 			$type = $itemBuildItems->getType();
 			$position = $itemBuildItems->getPosition();
@@ -379,12 +407,12 @@ class ItemBuilderController extends Controller
 				} catch (\Exception $e) {}
 			}
 		}
-		
-		 $itemBuild->setSlug($newItemBuildSlug . '__' . $this->get('session')->getId() . '__');
+		$finalSlug = $itemBuild->getSlug();
+		$itemBuild->setSlug($itemBuild->getSlug() . '__' . $this->get('session')->getId() . '__');
 		
 		$batchManager->createRecItemBuilder($itemBuild, $path);
 
-		return new Response(json_encode($newItemBuildSlug));
+		return new Response(json_encode($finalSlug));
 	}
 	
 	/**
@@ -457,6 +485,33 @@ class ItemBuilderController extends Controller
 		return $this->render('MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig', array(
 			'item' => $item
 		));
+	}
+	
+	/**
+	 * @Route("/get-item-modal-content", name="item_builder_get_item_modal_content", options={"expose"=true})
+	 */
+	public function getItemModalContentAction()
+	{
+		$request = $this->getRequest();
+		if  (!$request->isXmlHttpRequest() || !$request->isMethod('POST')) {
+			throw new HttpException(500, 'La requête doit être effectuée en AJAX et en method POST !');
+		}
+		
+		$slug = $request->get('slug');
+		try{
+			$item = $this->get('mvnerds.item_manager')->findBySlugForPopover($slug);
+		} catch (\Exception $e) {
+			return new Response(json_encode('Impossible de trouver l\'item'));
+		}
+		
+		$stdItem = new \stdClass();
+		$stdItem->slug = $item->getSlug();
+		$stdItem->name = $item->getName();
+		$stdItem->totalCost = $item->getTotalCost();
+		$stdItem->cost = $item->getCost();
+		$stdItem->code = $item->getRiotCode();
+		
+		return new Response(json_encode($stdItem));
 	}
 	
 	/**
