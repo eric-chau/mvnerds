@@ -5,6 +5,8 @@ namespace MVNerds\CommentBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Symfony\Component\HttpFoundation\Response;
+
 use MVNerds\CoreBundle\Comment\IComment;
 use MVNerds\CoreBundle\Model\User;
 
@@ -16,9 +18,9 @@ class CommentController extends Controller
 		$comments = $this->get('mvnerds.comment_manager')->findByObject($object);
 
 		return $this->render('MVNerdsCommentBundle:Light:render_comment_block.html.twig', array(
-					'object' => $object,
-					'comments' => $comments
-				));
+			'object'	=> $object,
+			'comments'	=> $comments
+		));
 	}
 
 	/**
