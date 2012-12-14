@@ -18,4 +18,13 @@ use MVNerds\CoreBundle\Comment\IComment;
  */
 class ItemBuild extends BaseItemBuild implements IComment {
 
+	public function getChampionsNamesToString()
+	{
+		$toString = '';
+		foreach($this->getChampionItemBuilds() as $championItemBuild)
+		{
+			$toString .= $championItemBuild->getChampion()->getName();
+		}
+		return $toString;
+	}
 } // ItemBuild

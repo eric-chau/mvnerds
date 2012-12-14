@@ -109,45 +109,20 @@
 				</tr>
 			</thead>
 			<tbody>
-				{% for itemBuild in itemBuilds%}
+				{#{% for itemBuild in itemBuilds%}
 					{% set user = itemBuild.getUser() %}
 					<tr class="item-build-row" data-target="{{itemBuild.getSlug()}}">
 						<td>
-							{% if itemBuild.getChampionItemBuilds()|length <= 1 %}
-								<div class="champion-square25 {{ itemBuild.getChampionItemBuilds().getFirst().getChampion().getSlug() }}" >&nbsp;</div>
-							{% else %}
-								<img src="{{asset('images/avatar/anonymous.jpg')}}" alt="image_question" class="bootstrap-popover" data-placement="right" data-trigger="hover" data-title="{{itemBuild.getName()}}" data-content="<div class='center-content'>{%for championItemBuild in itemBuild.getChampionItemBuilds() %}<div class='champion-square25 {{championItemBuild.getChampion().getSlug()}}' ></div>{% endfor %}</div>"/>
-							{% endif %}
+							{% include 'MVNerdsItemHandlerBundle:ItemBuilder:list_column_champion.html.twig' %}
 						</td>
 						<td class="name">
-							<a href="{{path('item_builder_view', {itemBuildSlug: itemBuild.getSlug()})}}">{{itemBuild.getName()}}</a><br />
-							<span class="created-by">{{'item_table.td.created_by'|trans}} <a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}" title="{{'item_table.td.consult_profile_of'|trans}} {{ user.getUsername }}">{{user.getUsername()}}</a>,
-							{{'item_table.td.updated_the'|trans}} 
-							
-							
-							{% if itemBuild.getCreateTime('d/m/Y') == date().format('d/m/Y') %}
-								<strong>{{'Comments.today'|trans}}</strong>
-							{% else %}
-								{% if itemBuild.getCreateTime('d/m/Y') == date('-1day').format('d/m/Y') %}
-									<strong>{{'Comments.yesterday'|trans}}</strong>
-								{%else %}
-									{% if locale == 'fr' %} le {% else %} the {% endif %}
-									{% if itemBuild.getCreateTime().getTimestamp() > date('-5days').getTimestamp() %}
-										 <strong>{{ itemBuild.getUpdateTime('d/m/Y') }}</strong>
-									{% else %}
-										 {{ itemBuild.getUpdateTime('d/m/Y') }}
-									{% endif %}
-								{%endif %}
-							{% endif %}
-							<i class="icon-comments icon-white" title="{{ 'item_table.td.icon.title.comment'|trans }}"></i>{{itemBuild.getCommentCount()}} <i class="icon-download-alt icon-white" title="{{ 'item_table.td.icon.title.download'|trans }}"></i>{{itemBuild.getDownload()}} <i class="icon-eye-open icon-white" title="{{ 'item_table.td.icon.title.view'|trans }}"></i>{{itemBuild.getView()}}</span>
+							{% include 'MVNerdsItemHandlerBundle:ItemBuilder:list_column_name.html.twig' %}
 						</td>
 						
 						<td class="game-mode">{{itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel() | trans}}</td>
 						
 						<td>
-							<a class="action view-action" href="{{path('item_builder_view', {itemBuildSlug: itemBuild.getSlug()})}}"><i class="icon-share"></i> {{'General.watch'|trans}}</a>
-							
-							{#<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>{{'item_table.td.downloaded'|trans}}</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> {{'item_table.td.times'|trans}}</span>#}
+							{% include 'MVNerdsItemHandlerBundle:ItemBuilder:list_column_actions.html.twig' %}
 						</td>
 						
 						<td>{% for championItemBuild in  itemBuild.getChampionItemBuilds()%}{{championItemBuild.getChampion().getName}} {% endfor %}</td>
@@ -160,7 +135,7 @@
 						<td>{{itemBuild.getName()}}</td>
 						<td>{{itemBuild.getView()}}</td>
 					</tr>
-				{% endfor %}
+				{% endfor %}#}
 			</tbody>
 		</table>
 	</div>
