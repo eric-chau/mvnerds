@@ -70,12 +70,14 @@ class ItemBuilderController extends Controller
 		try {
 			$champion = $this->get('mvnerds.champion_manager')->findBySlug($championSlug);
 			return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:list_index.html.twig', array(
-				'itemBuilds'	=> $this->get('mvnerds.item_build_manager')->findAllPublic(),
+				//'itemBuilds'	=> $this->get('mvnerds.item_build_manager')->findAllPublic(),
+				'itemBuilds'	=> null,
 				'championSlug'	=> $championSlug
 			));
 		} catch(Exception $e) {
 			return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:list_index.html.twig', array(
-				'itemBuilds'	=> $this->get('mvnerds.item_build_manager')->findAllPublic()
+				//'itemBuilds'	=> $this->get('mvnerds.item_build_manager')->findAllPublic()
+				'itemBuilds'	=> null
 			));
 		}
 	}
@@ -86,22 +88,33 @@ class ItemBuilderController extends Controller
 	 */
 	public function listAjaxAction() 
 	{
-		if (!$request->isXmlHttpRequest() || !$request->isMethod('POST'))
+		$request = $this->getRequest();
+		if (!$request->isXmlHttpRequest())
 		{
-			throw new HttpException(500, 'Request must be AJAX and POST method');
+			throw new HttpException(500, 'Request must be AJAX');
 		}
-		
-		try {
-			$itemBuilds = $this->get('mvnerds.item_build_manager')->findAllPublic();
-			$jsonItemBuilds = array('aaData');
-			$jsonItemBuilds['aaData'] = array();
-			foreach($itemBuilds as $itemBuild)
-			{
-				$jsonItemBuilds['aaData'][] = array();
-			}
-			return new Response(json_encode());
-		} catch(Exception $e) {
+		$translator = $this->get('translator');
+		$itemBuilds = $this->get('mvnerds.item_build_manager')->findAllPublic();
+		$jsonItemBuilds = array('aaData');
+		$jsonItemBuilds['aaData'] = array();
+		foreach($itemBuilds as $itemBuild)
+		{
+			$jsonItemBuilds['aaData'][] = array(
+				$this->renderView('MVNerdsItemHandlerBundle:ItemBuilder:list_column_champion.html.twig', array('itemBuild' => $itemBuild)),
+				$this->renderView('MVNerdsItemHandlerBundle:ItemBuilder:list_column_name.html.twig', array('itemBuild' => $itemBuild, 'user' => $itemBuild->getuser())),
+				$translator->trans($itemBuild->getChampionItemBuilds()->getFirst()->getGameMode()->getLabel()),
+				$this->renderView('MVNerdsItemHandlerBundle:ItemBuilder:list_column_actions.html.twig', array('itemBuild' => $itemBuild)),
+				$itemBuild->getChampionsNamesToString(),
+				$itemBuild->getDownload(),
+				$itemBuild->getUpdateTime('YmdHims'),
+				$itemBuild->getUser()->getUsername(),
+				$itemBuild->getCreateTime('YmdHims'),
+				$itemBuild->getCommentCount(),
+				$itemBuild->getName(),
+				$itemBuild->getView()
+			);
 		}
+		return new Response(json_encode($jsonItemBuilds));
 	}
 	
 	/**
