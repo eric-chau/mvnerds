@@ -151,7 +151,7 @@ class ItemBuilderController extends Controller
 		}
 		ksort($itemBlocks);
 		
-		$lolDir= null;
+		$lolDir = null;
 		try{
 			if ($this->get('security.context')->isGranted('ROLE_USER'))
 			{
@@ -162,14 +162,16 @@ class ItemBuilderController extends Controller
 		} catch(\Exception $e) {
 			$lolDir= null;
 		}
+		
 		$params = array(
-				'itemBuild'	=> $itemBuild,
-				'itemBlocks'	=> $itemBlocks,
-				'lol_dir'	=>$lolDir
+			'itemBuild'		=> $itemBuild,
+			'itemBlocks'	=> $itemBlocks,
+			'lol_dir'		=> $lolDir
 		);
-		if($dl != null && $dl == 'dl') {
+		if ($dl != null && $dl == 'dl') {
 			$params['start_dl'] = 'true';
 		}
+		
 		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:view_index.html.twig', $params);
 	}
 	

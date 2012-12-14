@@ -114,15 +114,15 @@ class NewsManager
 	public function findPublicHighlights()
 	{
 		$news = NewsQuery::create()
+			->joinWith('User')
+			->joinWith('NewsCategory')
 			->where(NewsPeer::STATUS . ' LIKE ?', NewsPeer::STATUS_PUBLIC)
 			->add(NewsPeer::IS_HIGHLIGHT, '1')
 			->orderByCreateTime(\Criteria::DESC)
 			->limit(5)
 		->find();
-		
-		$news->populateRelation('User');
+
 		$news->populateRelation('NewsI18n');
-		$news->populateRelation('NewsCategory');
 		
 		if (null === $news)
 		{
@@ -138,15 +138,15 @@ class NewsManager
 	public function findNotPrivateHighlights()
 	{
 		$news = NewsQuery::create()
+			->joinWith('User')
+			->joinWith('NewsCategory')
 			->where(NewsPeer::STATUS . ' NOT LIKE ?', NewsPeer::STATUS_PRIVATE)
 			->add(NewsPeer::IS_HIGHLIGHT, '1')
 			->orderByCreateTime(\Criteria::DESC)
 			->limit(5)
 		->find();
 		
-		$news->populateRelation('User');
 		$news->populateRelation('NewsI18n');
-		$news->populateRelation('NewsCategory');
 		
 		if (null === $news)
 		{

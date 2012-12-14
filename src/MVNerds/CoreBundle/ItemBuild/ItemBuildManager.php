@@ -89,6 +89,7 @@ class ItemBuildManager
 	public function findLatestBuilds()
 	{
 		$itemBuilds = ItemBuildQuery::create()
+			->joinWith('User')
 			->add(ItemBuildPeer::STATUS, ItemBuildPeer::STATUS_PUBLIC)
 			->orderById(\Criteria::DESC)
 			->limit(5)
@@ -100,8 +101,7 @@ class ItemBuildManager
 				->joinWith('Champion.ChampionI18n');
 		
 		$itemBuilds->populateRelation('ChampionItemBuild', $championItemBuildsCriteria);
-		$itemBuilds->populateRelation('User');
-		
+				
 		if (null === $itemBuilds)
 		{
 			throw new InvalidArgumentException('No item build found !');
@@ -115,6 +115,7 @@ class ItemBuildManager
 	public function findMostDownloadedBuilds()
 	{
 		$itemBuilds = ItemBuildQuery::create()
+			->joinWith('User')
 			->add(ItemBuildPeer::STATUS, ItemBuildPeer::STATUS_PUBLIC)
 			->orderByDownload(\Criteria::DESC)
 			->limit(5)
@@ -126,7 +127,6 @@ class ItemBuildManager
 				->joinWith('Champion.ChampionI18n');
 		
 		$itemBuilds->populateRelation('ChampionItemBuild', $championItemBuildsCriteria);
-		$itemBuilds->populateRelation('User');
 		
 		if (null === $itemBuilds)
 		{
