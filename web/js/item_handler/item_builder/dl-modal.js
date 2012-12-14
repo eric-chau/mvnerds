@@ -7,6 +7,7 @@ $(function() {
 	});
 	$('#modal-btn-download').on('click', function(e) {
 		e.preventDefault();
+		$('#modal-dl-loading-img').removeClass('hide');
 		var dlCount = $('span[data-id='+$(this).data('dl-count')+']');
 		var target = $(this).attr('data-target');
 		
@@ -24,8 +25,10 @@ $(function() {
 				$lolPath.val('');
 			}
 			window.location = Routing.generate('item_builder_download_file', {_locale: locale, itemBuildSlug: data});
+			$('#modal-dl-loading-img').addClass('hide');
 			$('#modal-dl-build').modal('hide');
 		}).fail(function(data){
+			$('#modal-dl-loading-img').addClass('hide');
 			$('#modal-dl-build').modal('hide');
 			displayMessage('Impossible de créer le build.', 'error');
 		});
