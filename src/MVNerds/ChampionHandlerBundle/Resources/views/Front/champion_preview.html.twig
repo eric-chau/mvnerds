@@ -22,7 +22,7 @@
 			<dt>{{'Champion_preview.stat.health_regen'|trans}}</dt>
 			<dd>{{ champion.getBaseHealthRegen() * 5 }}</dd>
 			<dt class="bonus">{{'Champion_preview.stat.bonus_per_level.label'|trans}}</dt>
-			<dd class="bonus">{{ champion.getBonusHealthRegenPerLevel() }}</dd>  
+			<dd class="bonus">{{ champion.getBonusHealthRegenPerLevel() * 5 }}</dd>  
 
 			<dt>{{'Champion_preview.stat.mana'|trans}}</dt>
 			<dd>{{ champion.getBaseMana() }}</dd>	
@@ -32,7 +32,7 @@
 			<dt>{{'Champion_preview.stat.mana_regen'|trans}}</dt>
 			<dd>{{ champion.getBaseManaRegen() * 5 }}</dd>
 			<dt class="bonus">{{'Champion_preview.stat.bonus_per_level.label'|trans}}</dt>
-			<dd class="bonus">{{ champion.getBonusManaRegenPerLevel() }}</dd>
+			<dd class="bonus">{{ champion.getBonusManaRegenPerLevel() * 5 }}</dd>
 
 			<dt>{{'Champion_preview.stat.armor'|trans}}</dt>
 			<dd>{{ champion.getBaseArmor() }}</dd>
