@@ -26,7 +26,7 @@ class ItemBuilderController extends Controller
 	 * @Route("/create", name="item_builder_create", options={"expose"=true})
 	 */
 	public function createAction()
-	{
+	{		
 		$canSaveBuild = false;
 		$lolDir = null;
 		
@@ -93,10 +93,78 @@ class ItemBuilderController extends Controller
 		{
 			throw new HttpException(500, 'Request must be AJAX');
 		}
+		
+		$aColumns = array(
+			'',
+			'',
+			'',
+			'',
+			'Champions',
+			'Download',
+			'UpdateTime',
+			'user.USERNAME',
+			'CreateTime',
+			'CommentCount',
+			'Name',
+			'View'
+		);
+		
+		$limitStart = 0;
+		$limitLength = -1;
+		//Pagination
+		if ( isset( $_GET['iDisplayStart'] ) && $_GET['iDisplayLength'] != '-1' )
+		{
+			$limitStart = $_GET['iDisplayStart'];
+			$limitLength = $_GET['iDisplayLength'];
+		}
+		//Tri
+		$orderArr = array();
+		
+		$championName = null;
+		if ( isset( $_GET['iSortCol_0'] ) )
+		{
+			for ( $i=0 ; $i<intval( $_GET['iSortingCols'] ) ; $i++ )
+			{
+				if ( $_GET[ 'bSortable_'.intval($_GET['iSortCol_'.$i]) ] == "true" )
+				{
+					$orderArr[$aColumns[intval($_GET['iSortCol_'.$i])]] = mysql_real_escape_string($_GET['sSortDir_'.$i]);
+				}
+			}
+		}
+		if (count($orderArr) <= 0) {
+			$orderArr = array('CreateTime' => 'desc');
+		}
+		
+		//Recherche par colonne
+		$whereArr = array();
+		for ( $i=0 ; $i<count($aColumns) ; $i++ )
+		{
+			if ( isset($_GET['bSearchable_'.$i]) && $_GET['bSearchable_'.$i] == "true" && $_GET['sSearch_'.$i] != '' )
+			{
+				if ($aColumns[$i] == 'user.USERNAME' || $aColumns[$i] == 'Name')
+				{
+					$whereArr[$aColumns[$i]] = mysql_real_escape_string($_GET['sSearch_'.$i]);
+				} 
+				else if ($aColumns[$i] == 'Champions')
+				{
+					$championName = mysql_real_escape_string($_GET['sSearch_'.$i]);
+				}
+			}
+		}
+		
 		$translator = $this->get('translator');
-		$itemBuilds = $this->get('mvnerds.item_build_manager')->findAllPublic();
-		$jsonItemBuilds = array('aaData');
-		$jsonItemBuilds['aaData'] = array();
+		$itemBuildManager = $this->get('mvnerds.item_build_manager');
+		
+		$itemBuilds = $itemBuildManager->findAllPublicAjax($limitStart, $limitLength, $orderArr, $whereArr, $championName);
+		
+		$jsonItemBuilds = array(
+			"tab" => $itemBuilds->count(),
+			"sEcho" => intval($_GET['sEcho']),
+			"iTotalRecords" => $itemBuildManager->countAllPublic(),
+			"iTotalDisplayRecords" => $itemBuildManager->countAllPublicAjax($whereArr, $championName),
+			'aaData' => array()
+		);
+		
 		foreach($itemBuilds as $itemBuild)
 		{
 			$jsonItemBuilds['aaData'][] = array(

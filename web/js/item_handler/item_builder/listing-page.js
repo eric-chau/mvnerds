@@ -100,7 +100,7 @@ $(document).ready(function() {
 	var langage;
 	if(locale != undefined && locale == 'en') {
 		langage = {
-			"sProcessing":     "",
+			"sProcessing":     "<img src='/images/commons/loader2.gif' alt='loading' style='position:absolute;top:-41px;left:23%;'/>",
 			"sLengthMenu":     "Show _MENU_ lists per page",
 			"sZeroRecords":    "There is no lists to show",
 			"sInfo":           "Showing lists from _START_ to _END_ on a total of _TOTAL_ lists",
@@ -119,7 +119,7 @@ $(document).ready(function() {
 		};
 	} else {
 		langage = {
-			"sProcessing":     "",
+			"sProcessing":     "<img src='/images/commons/loader2.gif' alt='chargement' style='position:absolute;top:-41px;left:23%;'/>",
 			"sLengthMenu":     "Afficher _MENU_ builds par page",
 			"sZeroRecords":    "Aucun build à afficher",
 			"sInfo":           "Affichage des builds de _START_ à _END_ sur un total de _TOTAL_ builds",
@@ -140,6 +140,7 @@ $(document).ready(function() {
 	
 	itemBuildsTable = $('#item-builds-table').dataTable({
 		"bProcessing": true,
+		"bServerSide": true,
 		"sAjaxSource": Routing.generate('item_builder_list_ajax', {_locale: locale}),
 		"oSearch" :{"sSearch":  ((filter != undefined) ? filter : '')},
 		"bLengthChange": false,
@@ -152,29 +153,33 @@ $(document).ready(function() {
                       {"bSearchable": false, "bSortable":false},//Mode de jeu
                       {"bSearchable": false, "bSortable":true, "iDataSort": 5},//Téléchargements
                       {"bVisible": false, "bSearchable": true, "bSortable":false},//Champions
-                      {"bVisible": false, "bSearchable": false, "bSortable":false},//Downloads
+                      {"bVisible": false, "bSearchable": false, "bSortable":true},//Downloads
                       {"bVisible": false, "bSearchable": false, "bSortable":true},//Update Time
                       {"bVisible": false, "bSearchable": true, "bSortable":true},//Auteur
                       {"bVisible": false, "bSearchable": false, "bSortable":true},//Date de creation
                       {"bVisible": false, "bSearchable": false, "bSortable":true},//Comment count
-                      {"bVisible": false, "bSearchable": false, "bSortable":true},//Build Name
+                      {"bVisible": false, "bSearchable": true, "bSortable":true},//Build Name
                       {"bVisible": false, "bSearchable": false, "bSortable":true},//Views
 		],
 		"sPaginationType": 'bootstrap',
 		"oLanguage": langage,
 		"fnInitComplete": function() {
-			$('.bootstrap-popover').popover();
+			$('#item-builds-table_wrapper').on('hover', '.bootstrap-popover', function(){
+				$(this).popover();
+			});
 		}
 	});
 	
+	$('#item-builds-table_wrapper').css('position', 'relative');
+	
 	var sortTable = [
-		[1, 'asc'],//Nom croissant
-		[1, 'desc'],//Nom décroissant
+		[10, 'asc'],//Nom croissant
+		[10, 'desc'],//Nom décroissant
 		[5, 'desc'],//Les + DL
 		[5, 'asc'],//Les - DL
 		[8, 'asc'],//Les + anciens
 		[8, 'desc'],//Les + récents
-		[6, 'asc'],//Les dernières MAJ
+		[6, 'desc'],//Les dernières MAJ
 		[9, 'desc'],//Les + commentées
 		[11, 'desc'],//Les + vues
 	];

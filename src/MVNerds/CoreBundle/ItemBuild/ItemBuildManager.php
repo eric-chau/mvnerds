@@ -64,6 +64,87 @@ class ItemBuildManager
 		return $itemBuilds;
 	}
 	
+	public function findAllPublicAjax($limitStart = 0, $limitLength = 2, $orderArr = array('CreateTime' => 'desc'), $whereArr = array(), $championName = null)
+	{
+		$itemBuildsQuery = ItemBuildQuery::create()
+			->offset($limitStart)
+			->limit($limitLength)
+			->add(ItemBuildPeer::STATUS, ItemBuildPeer::STATUS_PUBLIC)
+			->joinWith('User', \Criteria::LEFT_JOIN);
+		
+		foreach($orderArr as $orderCol => $orderDir)
+		{
+			$itemBuildsQuery->orderBy($orderCol, $orderDir);
+		}
+		foreach($whereArr as $whereCol => $whereVal)
+		{
+			$itemBuildsQuery->add($whereCol, '%' . $whereVal . '%', \Criteria::LIKE);
+		}
+		
+		if ($championName && $championName != '') 
+		{
+			$championsIds = \MVNerds\CoreBundle\Model\ChampionQuery::create()
+				->select(array('ChampionI18n.Id'))
+				->joinWithI18n()
+				->add(\MVNerds\CoreBundle\Model\ChampionI18nPeer::NAME, '%'.$championName.'%', \Criteria::LIKE)
+			->find()->toArray();
+			
+			$itemBuildsQuery->join('ChampionItemBuild')->addJoinCondition('ChampionItemBuild', 'ChampionItemBuild.ChampionId IN ?', $championsIds)->distinct();
+		}
+		
+		$itemBuilds = $itemBuildsQuery->find();
+		
+		$championItemBuildsCriteria = \MVNerds\CoreBundle\Model\ChampionItemBuildQuery::create()
+				->joinWith('GameMode')
+				->joinWith('Champion')
+				->joinWith('Champion.ChampionI18n');
+		
+		
+		
+		$itemBuilds->populateRelation('ChampionItemBuild', $championItemBuildsCriteria);
+		
+		if (null === $itemBuilds)
+		{
+			throw new InvalidArgumentException('No item build found !');
+		}
+
+		return $itemBuilds;
+	}
+	
+	public function countAllPublic()
+	{
+		$itemBuildsCount = ItemBuildQuery::create()
+			->add(ItemBuildPeer::STATUS, ItemBuildPeer::STATUS_PUBLIC)
+		->count();
+		
+		return $itemBuildsCount;
+	}
+	
+	public function countAllPublicAjax($whereArr = array(), $championName = null)
+	{
+		$itemBuildsQuery = ItemBuildQuery::create()
+			->add(ItemBuildPeer::STATUS, ItemBuildPeer::STATUS_PUBLIC)
+			->joinWith('User', \Criteria::LEFT_JOIN);
+	
+		foreach($whereArr as $whereCol => $whereVal)
+		{
+			$itemBuildsQuery->add($whereCol, '%' . $whereVal . '%', \Criteria::LIKE);
+		}
+		
+		if ($championName && $championName != '') 
+		{
+			$championsIds = \MVNerds\CoreBundle\Model\ChampionQuery::create()
+				->select(array('ChampionI18n.Id'))
+				->joinWithI18n()
+				->add(\MVNerds\CoreBundle\Model\ChampionI18nPeer::NAME, '%'.$championName.'%', \Criteria::LIKE)
+			->find()->toArray();
+			
+			$itemBuildsQuery->join('ChampionItemBuild')->addJoinCondition('ChampionItemBuild', 'ChampionItemBuild.ChampionId IN ?', $championsIds)->distinct();
+		}
+		
+		return $itemBuildsQuery->count();
+	}
+	
 	public function findByUserId($userId)
 	{
 		$itemBuilds = ItemBuildQuery::create()
