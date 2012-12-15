@@ -235,6 +235,9 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 				}
 				saveInProgress = false;
 			})
+		} else {
+			$('#loading-save-build').remove();
+			saveInProgress = false;
 		}
 	}
 	return false;
