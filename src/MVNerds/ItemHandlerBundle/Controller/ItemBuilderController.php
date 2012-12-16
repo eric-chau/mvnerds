@@ -120,6 +120,8 @@ class ItemBuilderController extends Controller
 		//Tri
 		$orderArr = array();
 		
+		$con = \Propel::getConnection();
+		
 		$championName = null;
 		if ( isset( $_GET['iSortCol_0'] ) )
 		{
@@ -127,7 +129,7 @@ class ItemBuilderController extends Controller
 			{
 				if ( $_GET[ 'bSortable_'.intval($_GET['iSortCol_'.$i]) ] == "true" )
 				{
-					$orderArr[$aColumns[intval($_GET['iSortCol_'.$i])]] = mysql_real_escape_string($_GET['sSortDir_'.$i]);
+					$orderArr[$aColumns[intval($_GET['iSortCol_'.$i])]] = ($_GET['sSortDir_'.$i]);
 				}
 			}
 		}
@@ -143,11 +145,11 @@ class ItemBuilderController extends Controller
 			{
 				if ($aColumns[$i] == 'user.USERNAME' || $aColumns[$i] == 'Name')
 				{
-					$whereArr[$aColumns[$i]] = mysql_real_escape_string($_GET['sSearch_'.$i]);
+					$whereArr[$aColumns[$i]] = ($_GET['sSearch_'.$i]);
 				} 
 				else if ($aColumns[$i] == 'Champions')
 				{
-					$championName = mysql_real_escape_string($_GET['sSearch_'.$i]);
+					$championName = ($_GET['sSearch_'.$i]);
 				}
 			}
 		}
