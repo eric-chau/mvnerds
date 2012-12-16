@@ -97,6 +97,9 @@
 				<i class="icon-search icon-white"></i>
 				<input placeholder="{{'item_build_list_index.sort.filter-by-title'|trans}}" type="text" id="title-filter-input" class="input-mini"/>
 			</li>
+			<li id="filter-search" class="action filter-action">
+				<a href="#" class="btn-red" id="search-filter-btn"><i class="icon-search icon-white"></i>Rechercher</a>
+			</li>
 		</ul>
 		
 		<table id="item-builds-table" class="table data-table" data-filter="{% if championSlug is defined %}{{championSlug}}{% endif %}">

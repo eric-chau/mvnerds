@@ -161,7 +161,7 @@ $(document).ready(function() {
                       {"bVisible": false, "bSearchable": true, "bSortable":true},//Build Name
                       {"bVisible": false, "bSearchable": false, "bSortable":true},//Views
 		],
-		"sPaginationType": 'bootstrap',
+		"sPaginationType": 'full_numbers',
 		"oLanguage": langage,
 		"fnInitComplete": function() {
 			$('#item-builds-table_wrapper').on('hover', '.bootstrap-popover', function(){
@@ -184,21 +184,6 @@ $(document).ready(function() {
 		[11, 'desc'],//Les + vues
 	];
 	
-	//SORTING
-//	itemBuildsTable.before('<select id="filter-dropdown"></select>');console.log($selectFilter);
-//	var $selectFilter = $('#filter-dropdown');
-//	$selectFilter.append('<option value="0">Nom par ordre croissant</option>');
-//	$selectFilter.append('<option value="1">Nom par ordre décroissant</option>');
-//	$selectFilter.append('<option value="2">Les plus téléchargés</option>');
-//	$selectFilter.append('<option value="3">Les moins téléchargés</option>');
-//	$selectFilter.append('<option value="4">Les plus anciens</option>');
-//	$selectFilter.append('<option value="5" selected="selected">Les plus récents</option>');
-//	$selectFilter.append('<option value="6">Les dèrnières mises a jour</option>');
-//	$selectFilter.append('<option value="7">Les plus commentés</option>');
-//	$selectFilter.on('change', function(){
-//		itemBuildsTable.fnSort([sortTable[$(this).val()]]);
-//	});
-
 	var $dropdownSort = $('ul#sort-list');
 	$dropdownSort.find('li a.sort-link').on('click', function(e){
 		e.preventDefault();
@@ -208,14 +193,32 @@ $(document).ready(function() {
 	});
 	
 	//On change filter input
-	$('#champion-filter-input').on('keyup change', function(){
-		itemBuildsTable.fnFilter($(this).val(), 4);
+	$('#champion-filter-input').on('keyup', function(e){
+		if (e.keyCode == 13 || e.keyCode == 8) {
+			itemBuildsTable.fnFilter($(this).val(), 4);
+		}
 	});
-	$('#author-filter-input').on('keyup change', function(){
-		itemBuildsTable.fnFilter($(this).val(), 7);
+	$('#author-filter-input').on('keyup change', function(e){
+		if (e.keyCode == 13 || e.keyCode == 8) {
+			itemBuildsTable.fnFilter($(this).val(), 7);
+		}
 	});
-	$('#title-filter-input').on('keyup change', function(){
-		itemBuildsTable.fnFilter($(this).val(), 10);
+	$('#title-filter-input').on('keyup change', function(e){
+		if (e.keyCode == 13 || e.keyCode == 8) {
+			itemBuildsTable.fnFilter($(this).val(), 10);
+		}
+	});
+	$('#search-filter-btn').on('click', function(e){
+		e.preventDefault();
+		if ($('#champion-filter-input').val() != '') {
+			itemBuildsTable.fnFilter($('#champion-filter-input').val(), 4);
+		}
+		if ($('#author-filter-input').val() != '') {
+			itemBuildsTable.fnFilter($('#author-filter-input').val(), 7);
+		}
+		if ($('#title-filter-input').val() != '') {
+			itemBuildsTable.fnFilter($('#title-filter-input').val(), 10);
+		}
 	});
 	
 	$('#item-builds-table_length').addClass('pull-left');
