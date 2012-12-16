@@ -3,14 +3,14 @@
 {{'item_table.td.updated_the'|trans}} 
 
 
-{% if itemBuild.getCreateTime('d/m/Y') == date().format('d/m/Y') %}
+{% if itemBuild.getUpdateTime('d/m/Y') == date().format('d/m/Y') %}
 	<strong>{{'Comments.today'|trans}}</strong>
 {% else %}
-	{% if itemBuild.getCreateTime('d/m/Y') == date('-1day').format('d/m/Y') %}
+	{% if itemBuild.getUpdateTime('d/m/Y') == date('-1day').format('d/m/Y') %}
 		<strong>{{'Comments.yesterday'|trans}}</strong>
 	{%else %}
 		 {{'item_table.td.created_the'|trans}} 
-		{% if itemBuild.getCreateTime().getTimestamp() > date('-5days').getTimestamp() %}
+		{% if itemBuild.getUpdateTime().getTimestamp() > date('-5days').getTimestamp() %}
 			 <strong>{{ itemBuild.getUpdateTime('d/m/Y') }}</strong>
 		{% else %}
 			 {{ itemBuild.getUpdateTime('d/m/Y') }}
