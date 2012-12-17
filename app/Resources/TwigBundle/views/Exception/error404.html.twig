@@ -1,0 +1,32 @@
+{% extends 'MVNerdsLaunchSiteBundle::layout.html.twig' %}
+
+{% block title %}
+	{{ 'error404.page_not_found' | trans}}
+{% endblock %}
+		
+{% block css %}
+	{{ parent() }}
+
+	<style>
+		div.body-container {
+			min-height: 600px;
+			padding: 20px;
+			margin-bottom: 20px;
+			background-color: #000;
+			color: #fff;
+		}
+		div.body-container h1 {
+			color: #19A0DF;
+		}
+		div.body-container h2 {
+			color: #FB9701;
+		}
+	</style>
+{% endblock %}
+
+{% block body_main_content %}
+	<div class="body-container">
+		<h1>{{ 'error.oops' | trans}}</h1>
+		<h2>{{ 'error404.page_not_found' | trans}}</h2>
+	</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="file.ext">
+		<body>
+			<trans-unit id="1">
+				<source>error.error_occured</source>
+				<target>An Error Occurred</target>
+			</trans-unit>
+			<trans-unit id="2">
+				<source>error.oops</source>
+				<target>Oops! An Error Occurred</target>
+			</trans-unit>
+			<trans-unit id="3">
+				<source>error.server_returned</source>
+				<target>The server returned a</target>
+			</trans-unit>
+			<trans-unit id="4">
+				<source>error.div</source>
+				<target></target>
+			</trans-unit>
+			<trans-unit id="5">
+				<source>error404.page_not_found</source>
+				<target>Page not found.</target>
+			</trans-unit>
+			<trans-unit id="6">
+				<source>error403.forbidden</source>
+				<target>You are not allowed to access this page.</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

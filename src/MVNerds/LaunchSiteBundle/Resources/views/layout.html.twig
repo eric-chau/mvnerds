@@ -26,9 +26,9 @@
 	
 	<style>
 		iframe.twitter-follow-button {
-			position: absolute;
-			top: 195px;
-			margin-left: 160px;
+			width: 200px!important;
+			position: relative;
+			top: 2px;
 		}
 	</style>
 {% endblock %}
@@ -95,11 +95,10 @@
 				</div>
 				<div class="clearfix"></div>
 				
-				<fb:like href="https://www.facebook.com/mvnerds" send="true" width="520" height="26" show_faces="false" font="trebuchet ms" style="position: absolute;top: 195px;display:inline-block;" data-layout="button_count"></fb:like>
-				<a href="https://twitter.com/MVNerds" class="twitter-follow-button" data-show-count="true" data-lang="{{locale}}" style="display: inline-block"></a>
-				<div class="social-container">
-					<p></p>
-					<p> {{'Social.follow_us_on'|trans}} <a href="https://twitter.com/MVNerds" target="_blank" class="twitter">Twitter <i class="icon-twitter"></i></a> {{'General.and'|trans}} <a href="http://www.facebook.com/mvnerds" target="_blank" class="facebook">Facebook <i class="icon-facebook-sign"></i></a>.</p>
+				
+				<div class="social-container" style="text-align:right;position:relative;">
+					<fb:like href="https://www.facebook.com/mvnerds" send="true" width="520" height="26" show_faces="false" font="trebuchet ms" style="top:-1px;" data-layout="button_count"></fb:like>
+					<a href="https://twitter.com/MVNerds" class="twitter-follow-button" data-show-count="true" data-lang="{{locale}}"></a>
 				</div>
 				
 				{% block header_footer %}{% endblock %}
