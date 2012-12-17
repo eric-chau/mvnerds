@@ -63,23 +63,11 @@ class ItemBuilderController extends Controller
 	
 	/**
 	 * 
-	 * @Route("/list/{championSlug}", name="item_builder_list", defaults={"championSlug"=null}, options={"expose"=true})
+	 * @Route("/list", name="item_builder_list", options={"expose"=true})
 	 */
-	public function listAction($championSlug) 
+	public function listAction() 
 	{
-		try {
-			$champion = $this->get('mvnerds.champion_manager')->findBySlug($championSlug);
-			return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:list_index.html.twig', array(
-				//'itemBuilds'	=> $this->get('mvnerds.item_build_manager')->findAllPublic(),
-				'itemBuilds'	=> null,
-				'championSlug'	=> $championSlug
-			));
-		} catch(Exception $e) {
-			return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:list_index.html.twig', array(
-				//'itemBuilds'	=> $this->get('mvnerds.item_build_manager')->findAllPublic()
-				'itemBuilds'	=> null
-			));
-		}
+		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:list_index.html.twig');
 	}
 	
 	/**

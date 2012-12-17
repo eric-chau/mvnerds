@@ -97,6 +97,11 @@ $(document).ready(function() {
 	
 	filter = $('#item-builds-table').data('filter');
 	
+	var $championFilterInput = $('input#champion-filter-input'),
+		$authorFilterInput = $('input#author-filter-input'),
+		$titleFilterInput = $('input#title-filter-input'),
+		$moreFilterIcon = $('li.more-filters-button').find('i');
+	
 	var langage;
 	if(locale != undefined && locale == 'en') {
 		langage = {
@@ -138,6 +143,15 @@ $(document).ready(function() {
 		};
 	}
 	
+	//Recherche par défaut
+	var defaultSearch = '';
+	if (location.hash != '') {
+		$('#champion-filter-input').val(location.hash.slice(1));
+		$moreFilterIcon.toggleClass('icon-plus-sign icon-minus-sign');
+		$('ul.filters-list.more-filter').slideToggle();
+		defaultSearch = $('#champion-filter-input').val();
+	}
+	
 	itemBuildsTable = $('#item-builds-table').dataTable({
 		"bProcessing": true,
 		"bServerSide": true,
@@ -160,6 +174,13 @@ $(document).ready(function() {
                       {"bVisible": false, "bSearchable": false, "bSortable":true},//Comment count
                       {"bVisible": false, "bSearchable": true, "bSortable":true},//Build Name
                       {"bVisible": false, "bSearchable": false, "bSortable":true},//Views
+		],
+		"aoSearchCols": [
+			null,
+			null,
+			null,
+			null,
+			{'sSearch' : defaultSearch}
 		],
 		"sPaginationType": 'full_numbers',
 		"oLanguage": langage,
@@ -248,11 +269,6 @@ $(document).ready(function() {
 	}).fail(function() {
 		console.log('error');
 	});
-
-	var $championFilterInput = $('input#champion-filter-input'),
-		$authorFilterInput = $('input#author-filter-input'),
-		$titleFilterInput = $('input#title-filter-input'),
-		$moreFilterIcon = $('li.more-filters-button').find('i');
 
 	var $moreFilterMsg = 'Plus de filtres', 
 		$lessFilterMsg = 'Moins de filtres';
