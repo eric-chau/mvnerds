@@ -3,6 +3,7 @@
 
 div.body-container {
 	color: #fff;
+	position: relative;
 
 	&.list-item-builder {
 		background-color: #000;
@@ -179,15 +180,40 @@ ul.filters-list {
 
 		li.action {
 			background-color: #141414;
-			margin-right: 40px;
+			color: #eee;
+			cursor: default;
+			font-family: 'Ubuntu', sans-serif;
+			font-size: 14px;
+			margin-right: 15px;
 
 			&:hover {
 				background-color: #141414;
 			}
 
+			&#filter-search {
+				background-color: darken(@MVNerdsRed, 10%);
+				display: block;
+				margin: 30px auto 0 auto;
+				padding: 5px 0;
+				width: 140px;
+
+				&:hover {
+					background-color: @MVNerdsRed; .transition(background-color .25s linear);
+				}
+
+				i {
+					left: 3px;
+					position: relative;
+				}
+			}
+
 			input[type="text"] {
+				display: inline-block;
 				background-color: #333;
+				margin: 0 0 0 6px;
 				padding: 5px 10px;
+				position: relative;
+				top: 1px;
 
 				&:hover, &:focus {
 					background-color: #444; .transition(background-color .25s linear);
@@ -538,6 +564,12 @@ a.action {
 	}
 }
 
+div#item-builds-table_processing {
+	left: 257px;
+	position: absolute;
+	top: 158px;
+}
+
 div.modal {
 	background: black url('/images/launch_site/modal_bg.jpg') no-repeat top left;
 	border: 1px solid rgba(255,255,255,.4);
@@ -591,86 +623,54 @@ div.dataTables_info {
 }
 
 div.dataTables_paginate {
+	margin: 30px 0 0 0;
 	text-align: center;
 
-	ul {
-		border: 0;
-		color: white;
-		font-family: 'Ubuntu', sans-serif;
-		font-size: 14px !important;
-		margin: 0;
-		padding: 0;
-
-		li {
-			border: 0;
+	a {
+		&.paginate_button, &.paginate_active {
+			color: darken(@MVNerdsGreen, 5%);
+			cursor: pointer;
 			display: inline-block;
-			height: 29px;
+			font-family: 'Ubuntu', sans-serif;
+			font-size: 14px !important;
 			margin: 0 4px;
-			position: relative;
-			top: -1px;
+			padding: 5px 7px;
 
-			&.active {
-				a {
-					background-color: darken(@MVNerdsGreen, 5%);
-					color: #fff;
-					font-weight: bold;
-
-					&:hover {
-						background-color: @MVNerdsGreen; .transition(background-color .25s linear);
-					}
-				}
-			}
-
-			&.prev, &.next {
-				top: 0;
+			&.previous, &.next, &.first, &.last {
 				border: 1px solid darken(@MVNerdsGreen, 5%);
+				padding: 5px 15px;
 
-				&.disabled {
+				&.paginate_button_disabled {
 					border: 1px solid #333;
+					color: #333;
 
 					&:hover {
 						border-color: #333;
-
-						a {
-							color: #333;
-						}
-					}
-
-					a {
 						color: #333;
 					}
 				}
 
 				&:hover {
-
-					border-color: @MVNerdsGreen; .transition(border-color .25s linear);
-
-					a {
-						background-color: black;
-						color: @MVNerdsGreen; .transition(color .25s linear);
-					}
-				}
-
-				a {
-					color: darken(@MVNerdsGreen, 10%);
-					padding: 5px 4px;
-					text-align: center;
-					width: 94px;
+					border-color: @MVNerdsGreen;
+					color: @MVNerdsGreen; .transition(ALL .25s linear);
 				}
 			}
+		}
+	}
 
-			a {
-				background-color: #000;
-				border: 0;
-				.border-radius(0);
-				color: @MVNerdsGreen;
-				display: block;
-				font-size: 14px;
-				line-height: 1.4em;
-				padding: 5px 7px;
+	span {
+		a {
+			&:hover {
+				background-color: #222; .transition(background-color .25s linear);
+			}
+
+			&.paginate_active {
+				background-color: darken(@MVNerdsGreen, 5%);
+				color: #fff;
+				font-weight: bold;
 
 				&:hover {
-					background-color: #222; .transition(background-color .25s linear);
+					background-color: @MVNerdsGreen; .transition(background-color .25s linear);
 				}
 			}
 		}

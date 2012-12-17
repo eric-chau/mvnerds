@@ -27,6 +27,7 @@
 }
 div.body-container {
   color: #fff;
+  position: relative;
 }
 div.body-container.list-item-builder {
   background-color: #000;
@@ -192,14 +193,40 @@ ul.filters-list.more-filter {
 }
 ul.filters-list.more-filter li.action {
   background-color: #141414;
-  margin-right: 40px;
+  color: #eee;
+  cursor: default;
+  font-family: 'Ubuntu', sans-serif;
+  font-size: 14px;
+  margin-right: 15px;
 }
 ul.filters-list.more-filter li.action:hover {
   background-color: #141414;
 }
+ul.filters-list.more-filter li.action#filter-search {
+  background-color: #be3322;
+  display: block;
+  margin: 30px auto 0 auto;
+  padding: 5px 0;
+  width: 140px;
+}
+ul.filters-list.more-filter li.action#filter-search:hover {
+  background-color: #db4a38;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+ul.filters-list.more-filter li.action#filter-search i {
+  left: 3px;
+  position: relative;
+}
 ul.filters-list.more-filter li.action input[type="text"] {
+  display: inline-block;
   background-color: #333;
+  margin: 0 0 0 6px;
   padding: 5px 10px;
+  position: relative;
+  top: 1px;
 }
 ul.filters-list.more-filter li.action input[type="text"]:hover,
 ul.filters-list.more-filter li.action input[type="text"]:focus {
@@ -329,9 +356,6 @@ ul.dropdown-menu {
   -webkit-border-radius: 0 !important;
   -moz-border-radius: 0 !important;
   border-radius: 0 !important;
-}
-ul.dropdown-menu:not(.typeahead) li {
-  display: block;
 }
 ul.dropdown-menu:not(.typeahead) li:hover {
   background-color: #759E1A!important;
@@ -534,6 +558,11 @@ a.action:hover {
   -o-transition: background-color 0.25s linear;
   transition: background-color 0.25s linear;
 }
+div#item-builds-table_processing {
+  left: 257px;
+  position: absolute;
+  top: 158px;
+}
 div.modal {
   background: #000000 url('/images/launch_site/modal_bg.jpg') no-repeat top left;
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -586,95 +615,81 @@ div.dataTables_info {
   text-align: right;
 }
 div.dataTables_paginate {
+  margin: 30px 0 0 0;
   text-align: center;
 }
-div.dataTables_paginate ul {
-  border: 0;
-  color: white;
+div.dataTables_paginate a.paginate_button,
+div.dataTables_paginate a.paginate_active {
+  color: #658816;
+  cursor: pointer;
+  display: inline-block;
   font-family: 'Ubuntu', sans-serif;
   font-size: 14px !important;
-  margin: 0;
-  padding: 0;
-}
-div.dataTables_paginate ul li {
-  border: 0;
-  display: inline-block;
-  height: 29px;
   margin: 0 4px;
-  position: relative;
-  top: -1px;
+  padding: 5px 7px;
 }
-div.dataTables_paginate ul li.active a {
-  background-color: #658816;
-  color: #fff;
-  font-weight: bold;
+div.dataTables_paginate a.paginate_button.previous,
+div.dataTables_paginate a.paginate_active.previous,
+div.dataTables_paginate a.paginate_button.next,
+div.dataTables_paginate a.paginate_active.next,
+div.dataTables_paginate a.paginate_button.first,
+div.dataTables_paginate a.paginate_active.first,
+div.dataTables_paginate a.paginate_button.last,
+div.dataTables_paginate a.paginate_active.last {
+  border: 1px solid #658816;
+  padding: 5px 15px;
 }
-div.dataTables_paginate ul li.active a:hover {
-  background-color: #759e1a;
+div.dataTables_paginate a.paginate_button.previous.paginate_button_disabled,
+div.dataTables_paginate a.paginate_active.previous.paginate_button_disabled,
+div.dataTables_paginate a.paginate_button.next.paginate_button_disabled,
+div.dataTables_paginate a.paginate_active.next.paginate_button_disabled,
+div.dataTables_paginate a.paginate_button.first.paginate_button_disabled,
+div.dataTables_paginate a.paginate_active.first.paginate_button_disabled,
+div.dataTables_paginate a.paginate_button.last.paginate_button_disabled,
+div.dataTables_paginate a.paginate_active.last.paginate_button_disabled {
+  border: 1px solid #333;
+  color: #333;
+}
+div.dataTables_paginate a.paginate_button.previous.paginate_button_disabled:hover,
+div.dataTables_paginate a.paginate_active.previous.paginate_button_disabled:hover,
+div.dataTables_paginate a.paginate_button.next.paginate_button_disabled:hover,
+div.dataTables_paginate a.paginate_active.next.paginate_button_disabled:hover,
+div.dataTables_paginate a.paginate_button.first.paginate_button_disabled:hover,
+div.dataTables_paginate a.paginate_active.first.paginate_button_disabled:hover,
+div.dataTables_paginate a.paginate_button.last.paginate_button_disabled:hover,
+div.dataTables_paginate a.paginate_active.last.paginate_button_disabled:hover {
+  border-color: #333;
+  color: #333;
+}
+div.dataTables_paginate a.paginate_button.previous:hover,
+div.dataTables_paginate a.paginate_active.previous:hover,
+div.dataTables_paginate a.paginate_button.next:hover,
+div.dataTables_paginate a.paginate_active.next:hover,
+div.dataTables_paginate a.paginate_button.first:hover,
+div.dataTables_paginate a.paginate_active.first:hover,
+div.dataTables_paginate a.paginate_button.last:hover,
+div.dataTables_paginate a.paginate_active.last:hover {
+  border-color: #759e1a;
+  color: #759e1a;
+  -webkit-transition: ALL 0.25s linear;
+  -moz-transition: ALL 0.25s linear;
+  -o-transition: ALL 0.25s linear;
+  transition: ALL 0.25s linear;
+}
+div.dataTables_paginate span a:hover {
+  background-color: #222;
   -webkit-transition: background-color 0.25s linear;
   -moz-transition: background-color 0.25s linear;
   -o-transition: background-color 0.25s linear;
   transition: background-color 0.25s linear;
 }
-div.dataTables_paginate ul li.prev,
-div.dataTables_paginate ul li.next {
-  top: 0;
-  border: 1px solid #658816;
+div.dataTables_paginate span a.paginate_active {
+  background-color: #658816;
+  color: #fff;
+  font-weight: bold;
 }
-div.dataTables_paginate ul li.prev.disabled,
-div.dataTables_paginate ul li.next.disabled {
-  border: 1px solid #333;
-}
-div.dataTables_paginate ul li.prev.disabled:hover,
-div.dataTables_paginate ul li.next.disabled:hover {
-  border-color: #333;
-}
-div.dataTables_paginate ul li.prev.disabled:hover a,
-div.dataTables_paginate ul li.next.disabled:hover a {
-  color: #333;
-}
-div.dataTables_paginate ul li.prev.disabled a,
-div.dataTables_paginate ul li.next.disabled a {
-  color: #333;
-}
-div.dataTables_paginate ul li.prev:hover,
-div.dataTables_paginate ul li.next:hover {
-  border-color: #759e1a;
-  -webkit-transition: border-color 0.25s linear;
-  -moz-transition: border-color 0.25s linear;
-  -o-transition: border-color 0.25s linear;
-  transition: border-color 0.25s linear;
-}
-div.dataTables_paginate ul li.prev:hover a,
-div.dataTables_paginate ul li.next:hover a {
-  background-color: black;
-  color: #759e1a;
-  -webkit-transition: color 0.25s linear;
-  -moz-transition: color 0.25s linear;
-  -o-transition: color 0.25s linear;
-  transition: color 0.25s linear;
-}
-div.dataTables_paginate ul li.prev a,
-div.dataTables_paginate ul li.next a {
-  color: #557213;
-  padding: 5px 4px;
-  text-align: center;
-  width: 94px;
-}
-div.dataTables_paginate ul li a {
-  background-color: #000;
-  border: 0;
-  -webkit-border-radius: 0 !important;
-  -moz-border-radius: 0 !important;
-  border-radius: 0 !important;
-  color: #759e1a;
-  display: block;
-  font-size: 14px;
-  line-height: 1.4em;
-  padding: 5px 7px;
-}
-div.dataTables_paginate ul li a:hover {
-  background-color: #222;
+div.dataTables_paginate span a.paginate_active:hover {
+  background-color: #759e1a;
   -webkit-transition: background-color 0.25s linear;
   -moz-transition: background-color 0.25s linear;
   -o-transition: background-color 0.25s linear;

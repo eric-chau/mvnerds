@@ -100,7 +100,7 @@ $(document).ready(function() {
 	var langage;
 	if(locale != undefined && locale == 'en') {
 		langage = {
-			"sProcessing":     "<img src='/images/commons/loader2.gif' alt='loading' style='position:absolute;top:-41px;left:23%;'/>",
+			"sProcessing":     "<img src='/images/commons/loader2.gif' alt='loading' />",
 			"sLengthMenu":     "Show _MENU_ lists per page",
 			"sZeroRecords":    "There is no lists to show",
 			"sInfo":           "Showing lists from _START_ to _END_ on a total of _TOTAL_ lists",
@@ -119,7 +119,7 @@ $(document).ready(function() {
 		};
 	} else {
 		langage = {
-			"sProcessing":     "<img src='/images/commons/loader2.gif' alt='chargement' style='position:absolute;top:-41px;left:23%;'/>",
+			"sProcessing":     "<img src='/images/commons/loader2.gif' alt='chargement' />",
 			"sLengthMenu":     "Afficher _MENU_ builds par page",
 			"sZeroRecords":    "Aucun build à afficher",
 			"sInfo":           "Affichage des builds de _START_ à _END_ sur un total de _TOTAL_ builds",
@@ -169,8 +169,6 @@ $(document).ready(function() {
 			});
 		}
 	});
-	
-	$('#item-builds-table_wrapper').css('position', 'relative');
 	
 	var sortTable = [
 		[10, 'asc'],//Nom croissant
