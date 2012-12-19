@@ -1,0 +1,108 @@
+// Twitter Bootstraps imports
+@import "bootstrap/mixins.less";
+
+// MVNerds imports
+@import "mvnerds-variables.less";
+@import "mvnerds-buttons.less";
+
+body {
+	background-color: @bodyMainBGColor;
+	margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Cabin', sans-serif;
+	line-height: 1.4em;
+	margin: 0 0 20px 0;
+	padding: 0;
+}
+
+h1 {
+	font-size: 2em;
+}
+
+h2 {
+	font-size: 1.8em;
+}
+
+h3 {
+	font-size: 1.7em;
+}
+
+h4 {
+	font-size: 1.5em;
+}
+
+a, p, label, ul, li {
+	color: @MVNerdsMainTextColor;
+	font-family: 'Source Sans Pro', sans-serif;
+	font-size: 14px;
+	line-height: 1.4em;
+}
+
+a, a:focus, a:hover, a:visited {
+	color: inherit;
+	text-decoration: none;
+	.transition(color .2s linear);
+}
+
+p {
+	margin: 0 0 1.4em 0;
+}
+
+ul {
+	list-style: square;
+	list-style-position: inside;
+	margin: 0;
+}
+
+div.container.header {
+	border-bottom: 1px solid #999;
+	padding: 65px 10px 5px 10px;
+	position: relative;
+
+	div.location-infos, div.slogan {
+		display: inline-block;
+
+		p {
+			display: inline-block;
+			line-height: 1em;
+			margin: 0;
+			padding: 0;
+		}
+	}
+
+	div.location-infos {
+		p {
+			span.location {
+				color: @MVNerdsBlue;
+				font-weight: bold;
+			}
+		}
+	}
+
+	div.slogan {
+		opacity: .5;
+		position: absolute;
+		right: 0;
+
+		&:hover {
+			opacity: .9; .transition(opacity .3s linear);
+		}
+
+		img {
+			display: inline-block;
+			margin: 0 0 0 5px;
+			vertical-align: top;
+		}
+
+		p {
+			text-align: right;
+		}
+	}
+}
+
+div.container.main-container {
+	border-top: 1px solid #fff;
+	padding: 10px;
+}

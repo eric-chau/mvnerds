@@ -1,0 +1,183 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.btn,
+.mvnerds-btn {
+  display: inline-block;
+  margin: 0 2px;
+}
+.btn:hover,
+.mvnerds-btn:hover,
+.btn:focus,
+.mvnerds-btn:focus {
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.btn {
+  background-color: #147fb1;
+  color: #ffffff !important;
+  padding: 7px 10px;
+}
+.btn:hover,
+.btn:focus {
+  background-color: #19a0df;
+}
+.btn.green {
+  background-color: #658816;
+}
+.btn.green:hover,
+.btn.green:focus {
+  background-color: #759e1a;
+}
+.btn.red {
+  background-color: #be3322;
+}
+.btn.red:hover,
+.btn.red:focus {
+  background-color: #db4a38;
+}
+.mvnerds-btn {
+  border-bottom: 3px solid #ddd;
+  padding: 10px 5px;
+}
+.mvnerds-btn:hover,
+.mvnerds-btn:focus,
+.mvnerds-btn.active {
+  border-bottom-color: #19a0df;
+}
+.mvnerds-btn.green:hover,
+.mvnerds-btn.green:focus,
+.mvnerds-btn.green.active {
+  border-bottom-color: #759e1a;
+}
+.mvnerds-btn.red:hover,
+.mvnerds-btn.red:focus,
+.mvnerds-btn.red.active {
+  border-bottom-color: #db4a38;
+}
+body {
+  background-color: #e4e6e5;
+  margin: 0;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Cabin', sans-serif;
+  line-height: 1.4em;
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+h1 {
+  font-size: 2em;
+}
+h2 {
+  font-size: 1.8em;
+}
+h3 {
+  font-size: 1.7em;
+}
+h4 {
+  font-size: 1.5em;
+}
+a,
+p,
+label,
+ul,
+li {
+  color: #111111;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 14px;
+  line-height: 1.4em;
+}
+a,
+a:focus,
+a:hover,
+a:visited {
+  color: inherit;
+  text-decoration: none;
+  -webkit-transition: color 0.2s linear;
+  -moz-transition: color 0.2s linear;
+  -o-transition: color 0.2s linear;
+  transition: color 0.2s linear;
+}
+p {
+  margin: 0 0 1.4em 0;
+}
+ul {
+  list-style: square;
+  list-style-position: inside;
+  margin: 0;
+}
+div.container.header {
+  border-bottom: 1px solid #999;
+  padding: 65px 10px 5px 10px;
+  position: relative;
+}
+div.container.header div.location-infos,
+div.container.header div.slogan {
+  display: inline-block;
+}
+div.container.header div.location-infos p,
+div.container.header div.slogan p {
+  display: inline-block;
+  line-height: 1em;
+  margin: 0;
+  padding: 0;
+}
+div.container.header div.location-infos p span.location {
+  color: #19a0df;
+  font-weight: bold;
+}
+div.container.header div.slogan {
+  opacity: .5;
+  position: absolute;
+  right: 0;
+}
+div.container.header div.slogan:hover {
+  opacity: .9;
+  -webkit-transition: opacity 0.3s linear;
+  -moz-transition: opacity 0.3s linear;
+  -o-transition: opacity 0.3s linear;
+  transition: opacity 0.3s linear;
+}
+div.container.header div.slogan img {
+  display: inline-block;
+  margin: 0 0 0 5px;
+  vertical-align: top;
+}
+div.container.header div.slogan p {
+  text-align: right;
+}
+div.container.main-container {
+  border-top: 1px solid #fff;
+  padding: 10px;
+}
