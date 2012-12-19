@@ -185,8 +185,11 @@ $(document).ready(function() {
 		"sPaginationType": 'full_numbers',
 		"oLanguage": langage,
 		"fnInitComplete": function() {
-			$('#item-builds-table_wrapper').on('hover', '.bootstrap-popover', function(){
-				$(this).popover();
+			$('#item-builds-table_wrapper').on('mouseenter', '.bootstrap-popover', function(){
+				$(this).popover('show');
+			});
+			$('#item-builds-table_wrapper').on('mouseleave', '.bootstrap-popover', function(){
+				$(this).popover('hide');
 			});
 		}
 	});

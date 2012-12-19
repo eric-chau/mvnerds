@@ -140,6 +140,12 @@ class ItemManager
 	public function findBySlugForPopover($slug)
 	{
 		$item = ItemQuery::create()
+			->joinWith('ItemGeneologyRelatedByParentId igrbp', \Criteria::LEFT_JOIN)
+			->joinWith('igrbp.ItemRelatedByChildId irbc', \Criteria::LEFT_JOIN)
+			->addJoinCondition('irbc', 'irbc.IsObsolete = ?', '0')
+			->joinWith('ItemGeneologyRelatedByChildId igrbc', \Criteria::LEFT_JOIN)
+			->joinWith('igrbc.ItemRelatedByParentId irbp', \Criteria::LEFT_JOIN)
+			->addJoinCondition('irbp', 'irbp.IsObsolete = ?', '0')
 			->joinWithI18n($this->userLocale, \Criteria::LEFT_JOIN)
 			->joinWith('ItemPrimaryEffect ipe', \Criteria::LEFT_JOIN)
 			->joinWith('ipe.PrimaryEffect pe', \Criteria::LEFT_JOIN)
@@ -157,6 +163,27 @@ class ItemManager
 		}
 
 		return $item[0];
+	}
+	
+	public function findAllActiveForItemModal()
+	{
+		return ItemQuery::create()
+			->joinWith('ItemGeneologyRelatedByParentId igrbp', \Criteria::LEFT_JOIN)
+			->joinWith('igrbp.ItemRelatedByChildId irbc', \Criteria::LEFT_JOIN)
+			->addJoinCondition('irbc', 'irbc.IsObsolete = ?', '0')
+			->joinWith('ItemGeneologyRelatedByChildId igrbc', \Criteria::LEFT_JOIN)
+			->joinWith('igrbc.ItemRelatedByParentId irbp', \Criteria::LEFT_JOIN)
+			->addJoinCondition('irbp', 'irbp.IsObsolete = ?', '0')
+			->joinWithI18n($this->userLocale, \Criteria::LEFT_JOIN)
+			->joinWith('ItemPrimaryEffect ipe', \Criteria::LEFT_JOIN)
+			->joinWith('ipe.PrimaryEffect pe', \Criteria::LEFT_JOIN)
+			->joinWith('pe.PrimaryEffectI18n pei', \Criteria::LEFT_JOIN)
+			->addJoinCondition('pei', 'pei.Lang LIKE ?', $this->userLocale)
+			->joinWith('ItemSecondaryEffect ise', \Criteria::LEFT_JOIN)
+			->joinWith('ise.ItemSecondaryEffectI18n isei', \Criteria::LEFT_JOIN)
+			->addJoinCondition('isei', 'isei.Lang LIKE ?', $this->userLocale)
+			->add(ItemPeer::IS_OBSOLETE, false)
+		->find();
 	}
 	
 	/**
