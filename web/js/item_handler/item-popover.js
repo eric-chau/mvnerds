@@ -1,5 +1,4 @@
 function initPopoverItem($container) {
-	var popoverTimer;
 	$container.find('li.item').hover(function(e) {
 		if($(this).data('popover') == undefined) {
 			var title = "<img class='tooltip-item-img pull-left' src='/images/items/" + $(this).data('code') + ".png'/>" + $(this).data('title');
@@ -26,14 +25,7 @@ function setItemPopoverContent(slug, $item) {
 		}
 		for (var j = 0; j < item.secondaryEffects.length; j++) {
 			data += item.secondaryEffects[j];
-		}
-		
-		if (locale == 'en') {
-			displayMessage('Unable to show the item\'s detail.', 'error');
-		} else {
-			displayMessage('Impossible d\'accéder au détail de l\'objet.', 'error');
-		}
-		
+		}		
 		data += '<br /><br />' + item.totalCost
 		$item.data('popover').$tip.find(".popover-content").html(data);
 		$item.data('ajax-loaded', true);
