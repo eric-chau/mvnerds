@@ -576,6 +576,7 @@ class ItemBuilderController extends Controller
 		} catch (\Exception $e) {
 			return new Response(json_encode('Impossible de trouver l\'item'));
 		}
+		/* @var $item MVNerds\CoreBundle\Model\Item */
 		
 		$stdItem = new \stdClass();
 		$stdItem->slug = $item->getSlug();
@@ -583,8 +584,82 @@ class ItemBuilderController extends Controller
 		$stdItem->totalCost = $item->getTotalCost();
 		$stdItem->cost = $item->getCost();
 		$stdItem->code = $item->getRiotCode();
+		$stdItem->children = array();
+		$stdItem->parents = array();
+		$stdItem->primaryEffects = array();
+		$stdItem->secondaryEffects = array();
+				
+		foreach ($item->getItemGeneologiesRelatedByParentId() as $itemGeneology) {
+			$stdItem->children[] = $itemGeneology->getItemRelatedByChildId()->getSlug();
+		}
+		foreach ($item->getItemGeneologiesRelatedByChildId() as $itemGeneology) {
+			$parentSlug = $itemGeneology->getItemRelatedByParentId()->getSlug();
+			if ( !in_array($parentSlug, $stdItem->parents) )
+			{
+				$stdItem->parents[] = $parentSlug;
+			}
+		}
+		foreach ($item->getItemPrimaryEffects() as $itemPrimaryEffect) {
+			$stdItem->primaryEffects[] = $itemPrimaryEffect->getValue() . ' ' . $itemPrimaryEffect->getPrimaryEffect()->getLabel();
+		}
+		foreach ($item->getItemSecondaryEffects() as $itemSecondaryEffect) {
+			$stdItem->secondaryEffects[] = $itemSecondaryEffect->getDescription();
+		}
 		
 		return new Response(json_encode($stdItem));
+	}
+	
+	/**
+	 * @Route("/init-item-modal-array", name="item_builder_init_item_modal_array", options={"expose"=true})
+	 */
+	public function initItemModalArrayAction()
+	{
+		$request = $this->getRequest();
+		if  (!$request->isXmlHttpRequest() || !$request->isMethod('POST')) {
+			throw new HttpException(500, 'La requête doit être effectuée en AJAX et en method POST !');
+		}
+		
+		
+		$items = $this->get('mvnerds.item_manager')->findAllActiveForPopover();
+		
+		$itemModalArray = array();
+		
+		foreach ($items as $item)
+		{
+		
+			/* @var $item MVNerds\CoreBundle\Model\Item */
+
+			$stdItem = new \stdClass();
+			$stdItem->slug = $item->getSlug();
+			$stdItem->name = $item->getName();
+			$stdItem->totalCost = $item->getTotalCost();
+			$stdItem->cost = $item->getCost();
+			$stdItem->code = $item->getRiotCode();
+			$stdItem->children = array();
+			$stdItem->parents = array();
+			$stdItem->primaryEffects = array();
+			$stdItem->secondaryEffects = array();
+
+			foreach ($item->getItemGeneologiesRelatedByParentId() as $itemGeneology) {
+				$stdItem->children[] = $itemGeneology->getItemRelatedByChildId()->getSlug();
+			}
+			foreach ($item->getItemGeneologiesRelatedByChildId() as $itemGeneology) {
+				$parentSlug = $itemGeneology->getItemRelatedByParentId()->getSlug();
+				if ( !in_array($parentSlug, $stdItem->parents) )
+				{
+					$stdItem->parents[] = $parentSlug;
+				}
+			}
+			foreach ($item->getItemPrimaryEffects() as $itemPrimaryEffect) {
+				$stdItem->primaryEffects[] = $itemPrimaryEffect->getValue() . ' ' . $itemPrimaryEffect->getPrimaryEffect()->getLabel();
+			}
+			foreach ($item->getItemSecondaryEffects() as $itemSecondaryEffect) {
+				$stdItem->secondaryEffects[] = $itemSecondaryEffect->getDescription();
+			}
+			
+			$itemModalArray[$stdItem->slug] = $stdItem;
+		}
+		return new Response(json_encode($itemModalArray));
 	}
 	
 	/**
