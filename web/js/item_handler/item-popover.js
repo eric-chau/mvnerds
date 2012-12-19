@@ -10,7 +10,6 @@ function initPopoverItem($container) {
 			});
 			$(this).data('popover').options.title = title;
 			$(this).data('popover').options.placement = 'bottom';
-			$(this).data('popover').options.content = '<p style="text-align: center;"><img src="/images/commons/loader16-bg-blue.gif" alt="loading"/></p>';
 			$(this).popover('show');
 			setItemPopoverContent($(this).attr('id'), $(this));
 		}
@@ -25,8 +24,14 @@ function setItemPopoverContent(slug, $item) {
 		}
 		for (var j = 0; j < item.secondaryEffects.length; j++) {
 			data += item.secondaryEffects[j];
-		}		
-		data += '<br /><br />' + item.totalCost
+		}	
+		var cost = '';
+		if (locale == 'en') {
+			cost = 'Cost';
+		} else {
+			cost = 'Coût';
+		}
+		data += '<br /><br />' + cost + ' : ' + item.totalCost + ' (' + item.cost + ')';
 		$item.data('popover').$tip.find(".popover-content").html(data);
 		$item.data('ajax-loaded', true);
 	} catch (err) {
