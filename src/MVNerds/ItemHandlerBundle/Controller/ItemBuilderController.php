@@ -620,7 +620,7 @@ class ItemBuilderController extends Controller
 		}
 		
 		
-		$items = $this->get('mvnerds.item_manager')->findAllActiveForPopover();
+		$items = $this->get('mvnerds.item_manager')->findAllActiveForItemModal();
 		
 		$itemModalArray = array();
 		
@@ -641,13 +641,16 @@ class ItemBuilderController extends Controller
 			$stdItem->secondaryEffects = array();
 
 			foreach ($item->getItemGeneologiesRelatedByParentId() as $itemGeneology) {
-				$stdItem->children[] = $itemGeneology->getItemRelatedByChildId()->getSlug();
+				$child =  $itemGeneology->getItemRelatedByChildId();
+				if (!$child->getIsObsolete()) {
+					$stdItem->children[] = $child->getSlug();
+				}
 			}
 			foreach ($item->getItemGeneologiesRelatedByChildId() as $itemGeneology) {
-				$parentSlug = $itemGeneology->getItemRelatedByParentId()->getSlug();
-				if ( !in_array($parentSlug, $stdItem->parents) )
+				$parent = $itemGeneology->getItemRelatedByParentId();
+				if (!$parent->getIsObsolete() && !in_array($parent->getSlug(), $stdItem->parents) )
 				{
-					$stdItem->parents[] = $parentSlug;
+					$stdItem->parents[] = $parent->getSlug();
 				}
 			}
 			foreach ($item->getItemPrimaryEffects() as $itemPrimaryEffect) {
