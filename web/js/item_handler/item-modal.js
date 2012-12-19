@@ -26,6 +26,23 @@ function initModalItem($container) {
 		}
 	});
 }
+function initItemModalArray() {
+	$.ajax({
+		type: 'POST',
+		url:  Routing.generate('item_builder_init_item_modal_array', {_locale: locale}),
+		dataType: 'json',
+		success: function(array){
+			if (array != undefined) {
+				itemModalArray = array;
+			} else {
+				throw "Unable to load items details";
+			}
+		},
+		error: function() {
+			throw "Unable to load items details";
+		}
+	});
+}
 
 function getItemForModal(slug) {
 	if (itemModalArray[slug] == undefined) {
@@ -39,20 +56,10 @@ function getItemForModal(slug) {
 				if (item.slug != undefined) {
 					itemModalArray[slug] = item;
 				} else {
-					if (locale == 'en') {
-						displayMessage('Unable to show the item\'s detail.', 'error');
-					} else {
-						displayMessage('Impossible d\'accéder au détail de l\'objet.', 'error');
-					}
 					throw "Unable to access item detail";
 				}
 			},
 			error: function() {
-				if (locale == 'en') {
-					displayMessage('Unable to show the item\'s detail.', 'error');
-				} else {
-					displayMessage('Impossible d\'accéder au détail de l\'objet.', 'error');
-				}
 				throw "Unable to access item detail";
 			}
 		});
@@ -74,7 +81,7 @@ function setItemModalContent(item) {
 		}
 		
 		var $geneology = showGeneology(item.slug);
-		console.log($geneology);
+		
 		$itemModal.find('.modal-body .item-modal-geneology').html($geneology);
 		
 		$itemModal.find('.modal-body .item-modal-detail .item-modal-header .item-modal-header-image img').attr('src', '/images/items/' + item.code + '.png');
@@ -103,24 +110,6 @@ function setItemModalContent(item) {
 	}
 }
 
-function initItemModalArray() {
-	$.ajax({
-		type: 'POST',
-		url:  Routing.generate('item_builder_init_item_modal_array', {_locale: locale}),
-		dataType: 'json',
-		success: function(array){
-			if (array != undefined) {
-				itemModalArray = array;
-			} else {
-				throw "Unable to load items details";
-			}
-		},
-		error: function() {
-			throw "Unable to load items details";
-		}
-	});
-}
-
 function showGeneology(slug, isRoot) {
 	isRoot = isRoot != undefined ? isRoot : true;
 	var item = getItemForModal(slug);
@@ -143,7 +132,7 @@ function showGeneology(slug, isRoot) {
 		returnValue +=  '<div class="item-geneology" data-slug="'+item.slug+'" style="width: 100%"><div class="branche verticale"></div><img src="/images/items/'+item.code+'.png" /><div class="branche verticale"></div><div class="branche horizontale" style="width:'+ largeurBranche +'%"></div></div>';
 	}
 	var diviseur = item.children.length > 0 ? (100 / item.children.length) : 100;
-	console.log(item.children);
+	
 	for (var i = 0; i < item.children.length; i++) {
 		returnValue += '<div class="item-geneology" data-slug="'+item.children[i]+'" style="width:'+ diviseur +'%">' + showGeneology(item.children[i], false) + '</div>';
 	}

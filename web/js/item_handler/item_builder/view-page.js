@@ -47,4 +47,6 @@ $(function() {
 		storeItemBuildForCopy();
 		window.location = Routing.generate('item_builder_create', {_locale: locale});
 	});	
+	//Clic sur un item
+	initModalItem($('.item-container'));
 });
