@@ -758,10 +758,12 @@ div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_li
   text-align: center;
 }
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.portrait {
+  float: left;
   text-align: left;
   width: 25px;
   cursor: pointer;
-  margin: 3px;
+  margin: 2px 2px!important;
+  padding: 1px 3px!important;
   position: relative;
 }
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.portrait span.item-count {

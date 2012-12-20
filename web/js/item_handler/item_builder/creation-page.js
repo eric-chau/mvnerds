@@ -106,7 +106,7 @@ function isBuildValid() {
 							}
 						}
 						return true;
-					});	console.log('isValid : '+isValid);
+					});
 					return isValid;
 				} else {
 					if (locale == 'en') {
@@ -168,6 +168,7 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 				var blockName = $(this).find('input.item_sidebar_block_input').val();
 				if(blockName != undefined && blockName != '' && ! (blockName in itemsSlugs)) {
 					var blockArray = new Array();
+					$that = $(this);
 					$(this).find('div.item-sidebar-block-div div.portrait').each(function() {
 						var $itemCount = $(this).find('span.item-count');
 						var itemCount = 1;
@@ -175,14 +176,14 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 							itemCount = $itemCount.html() *1;
 							itemCount = itemCount >= 1 ? itemCount : 1;
 						}
-						blockArray.push({slug: $(this).data('slug'), count: itemCount});
+						blockArray.push({slug: $(this).data('slug'), count: itemCount, order: ($($that.find('.portrait')).index($(this)) + 1)});
 					});
 					if (blockArray.length > 0) {
 						itemsSlugs.push({name:blockName, items:blockArray});
 					}
 				}
 			});
-
+			
 			var data =  {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName, path: path};
 			if (saveBuild) {
 				data.saveBuild = 'true';
@@ -513,6 +514,9 @@ function initItemClickInBlock() {
 function initItemBlocksSortable() {
 	$itemSidebarList.sortable();
 }
+function initItemPortraitInBlocksSortable() {
+	$itemSidebarList.find('div.item-sidebar-block-div').sortable({tolerance: 'intersect', items: '.portrait', cursorAt: {left:15, top: 14}, dropOnEmpty: true});
+}
 
 function initItemAddBlock() {
 	$('#btn-add-item-block').click(function() {
@@ -659,6 +663,9 @@ $(document).ready(function()
 	
 	//On active le module sortable pour les blocks d items
 	initItemBlocksSortable();
+	
+	//On active le module sortable pour les items présents dans les blocks
+	initItemPortraitInBlocksSortable()
 	
 	//Lors du clic sur le bouton ajouter un block
 	initItemAddBlock();
