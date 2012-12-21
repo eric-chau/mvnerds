@@ -28,6 +28,7 @@ function addRecItem(slug, liBlockId) {
 	var $item = $liBlock.children('div.item-sidebar-block-div').find('div.portrait[data-slug="'+slug+'"]');
 	if ($item.length == 0) {
 		$portrait = $('#'+slug).find('div.portrait').clone();
+		$portrait.addClass('item');
 		$liBlock.find('div.item-sidebar-block-div div.indication').remove();
 		$liBlock.children('div.item-sidebar-block-div').append($portrait.css('display', 'inline-block'));
 	} else {
@@ -495,6 +496,7 @@ function initItemClickInBlock() {
 				$itemCount.remove();
 			}
 		} else {
+			$(this).popover('destroy');
 			$(this).remove();
 		}
 		
@@ -801,4 +803,6 @@ $(document).ready(function()
 			updateOnContentResize: Boolean
 		}
 	});
+	
+	initPopoverItem($('#item_sidebar_blocks_list'));
 });

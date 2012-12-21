@@ -1,6 +1,6 @@
 {% set gameModesToString =  item.getGameModesToString()%}
 
-<li class="item {{item.getTagsToString()}} {{gameModesToString}} {% if item.getChampion() %}champion-specific{% endif %}" id="{{ item.getSlug() }}" data-placement="right" data-name="{{ item.getName() | lower }}" data-title="{{ item.getName()}}" data-code="{{ item.getRiotCode()}}" data-champion="{% if item.getChampion() %}{{item.getChampion.getSlug()}}{% endif %}">
+<li class="item {{item.getTagsToString()}} {{gameModesToString}} {% if item.getChampion() %}champion-specific{% endif %}" id="{{ item.getSlug() }}" data-placement="right" data-name="{{ item.getName() | lower }}" data-title="{{ item.getName()}}" data-code="{{ item.getRiotCode()}}" data-slug="{{item.getSlug()}}" data-champion="{% if item.getChampion() %}{{item.getChampion.getSlug()}}{% endif %}">
 	
 	<div class="portrait" data-slug="{{item.getSlug()}}" data-game-modes="{{gameModesToString}}" data-champion="{% if item.getChampion() %}{{item.getChampion.getSlug()}}{% endif %}">
 		{#<div class="item-square {{ item.getSlug() }}"></div>#}

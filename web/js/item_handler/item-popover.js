@@ -1,7 +1,8 @@
 function initPopoverItem($container) {
-	$container.find('li.item').hover(function(e) {
+	$container.on('hover', '.item', function(e) {console.log('hover');
 		if($(this).data('popover') == undefined) {
-			var title = "<img class='tooltip-item-img pull-left' src='/images/items/" + $(this).data('code') + ".png'/>" + $(this).data('title');
+			var item = getItemForModal($(this).attr('data-slug'));
+			var title = "<img class='tooltip-item-img pull-left' src='/images/items/" + item.code + ".png'/>" + item.name;
 			
 			$(this).popover({
 				trigger: 'hover',
@@ -11,7 +12,7 @@ function initPopoverItem($container) {
 			$(this).data('popover').options.title = title;
 			$(this).data('popover').options.placement = 'bottom';
 			$(this).popover('show');
-			setItemPopoverContent($(this).attr('id'), $(this));
+			setItemPopoverContent(item.slug, $(this));
 		}
 	});
 }
