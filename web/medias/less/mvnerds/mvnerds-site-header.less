@@ -1,0 +1,89 @@
+div.container.header {
+	padding: 65px 10px 5px 10px;
+	position: relative;
+
+	div.social-container, div.slogan {
+		display: inline-block;
+	}
+
+	div.slogan {
+		img {
+			margin: 0 5px 0 0;
+		}
+
+		p {
+			display: inline-block;
+			line-height: 1.2em;
+			margin: 0;
+			padding: 0;
+
+			span.location {
+				color: @MVNerdsBlue;
+				font-weight: bold;
+			}
+		}
+
+		span.brand {
+			color: #aaa;
+		}
+	}
+
+	div.social-container {
+		position: absolute;
+		right: 0;
+
+		p {
+			div.wrapper-simple {
+				display: inline-block;
+			}
+
+			a {
+				border: 1px solid #999;
+				color: #999;
+				display: inline-block;
+				font-size: 18px;
+				font-weight: bold;
+				height: 27px;
+				margin: 0 0 0 5px;
+				padding: 3px;
+				text-align: center;
+				text-transform: uppercase;
+
+				&.facebook-link, &.twitter-link {
+					width: 21px;
+				}
+
+				&.switch-locale {
+					background-color: #aaa;
+					color: #fff;
+					padding: 3px 5px;
+				}
+
+				&.facebook-link i, &.switch-locale span {
+					display: inline-block;
+					position: relative;
+					top: 1px;
+				}
+
+				&:hover {
+					color: #fff; .transition(all .3s linear);
+				
+					&.facebook-link {
+						background-color: @facebookBlue;
+						border: 1px solid @facebookBlue;
+					}
+
+					&.twitter-link {
+						background-color: @twitterBlue;
+						border: 1px solid @twitterBlue;
+					}
+
+					&.switch-locale {
+						background-color: @MVNerdsRed;
+						border: 1px solid @MVNerdsRed;
+					}
+				}
+			}
+		}
+	}
+}

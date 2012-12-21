@@ -1,0 +1,56 @@
+div.container.champion-rotation {
+	height: 36px;
+	padding: 5px 10px;
+	position: relative;
+
+	div {
+		display: inline-block;
+
+		&.champion-rotation-content {
+			div.label {
+				font-weight: bold;
+				line-height: 1.2;
+				margin: 0 10px 0 0;
+				position: relative;
+				text-align: right;
+				text-transform: uppercase;
+				top: 2px;
+				vertical-align: top;
+			}
+
+			div.free-champions {
+				a {
+					display: inline-block;
+
+					div {
+						margin: 0 2px;
+						opacity: .5;
+
+						&:hover {
+							opacity: 1; .transition(opacity .2s linear);
+						}
+					}
+				}
+			}
+		}
+
+		&.champion-search-input {
+			position: absolute;
+			right: 0;
+			top: 9px;
+
+			input[type="text"] {
+				font-size: 16px;
+				padding-right: 26px;
+			}
+
+			i {
+				color: #666;
+				font-size: 22px;
+				position: absolute;
+				right: 6px;
+				top: 6px;
+			}
+		}
+	}
+}

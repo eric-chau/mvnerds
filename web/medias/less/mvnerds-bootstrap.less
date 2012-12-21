@@ -2,15 +2,17 @@
 @import "bootstrap/mixins.less";
 
 // MVNerds imports
-@import "mvnerds-variables.less";
-@import "mvnerds-buttons.less";
+@import "mvnerds/mvnerds-variables.less";
+@import "mvnerds/mvnerds-buttons.less";
 
+// Stylisation des balises élémentaires
 body {
-	background-color: @bodyMainBGColor;
+	background: @bodyMainBGColor url('../images/site/main-bg.jpg') no-repeat right bottom fixed;
 	margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
+	color: #666;
 	font-family: 'Cabin', sans-serif;
 	line-height: 1.4em;
 	margin: 0 0 20px 0;
@@ -18,22 +20,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-	font-size: 2em;
+	color: @MVNerdsMainTextColor;
+	font-size: 1.9em;
 }
 
 h2 {
-	font-size: 1.8em;
-}
-
-h3 {
 	font-size: 1.7em;
 }
 
-h4 {
-	font-size: 1.5em;
+h3 {
+	font-size: 1.6em;
 }
 
-a, p, label, ul, li {
+h4 {
+	font-size: 1.4em;
+}
+
+a, p, label, ul, li, div, input[type="text"] {
 	color: @MVNerdsMainTextColor;
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size: 14px;
@@ -56,53 +59,105 @@ ul {
 	margin: 0;
 }
 
-div.container.header {
-	border-bottom: 1px solid #999;
-	padding: 65px 10px 5px 10px;
+img {
+	display: inline-block;
+	vertical-align: top;
+}
+
+input[type="text"] {
+	background-color: @bodyMainBGColor;
+	border: 1px solid #999;
+	color: @MVNerdsMainTextColor;
+	padding: 2px 5px;
+
+	&:focus, &:hover {
+		color: darken(@LoLOrangeAD, 10%); .transition(color .2s linear);
+	}
+}
+
+// Tweak sur le style css des Dropdowns de Twitter Bootstrap
+.dropdown {
+	ul.dropdown-menu {
+		background-color: #333;
+		border: 3px solid rgba(53,53,53,.7);
+		.border-radius(0);
+		color: #fff;
+		padding: 5px;
+
+		li {
+			display: block !important;
+			margin: 0 !important;
+		}
+	}
+}
+
+// Style pour harmoniser l'affichage d'une image
+div.media {
+	border: 1px solid @MVNerdsBlue;
+	display: inline-block;
+	margin: 0 auto 20px auto;
+	padding: 3px;
 	position: relative;
 
-	div.location-infos, div.slogan {
-		display: inline-block;
-
-		p {
-			display: inline-block;
-			line-height: 1em;
-			margin: 0;
-			padding: 0;
+	&:hover {
+		p.legend {
+			opacity: 1; .transition(opacity .2s linear);
 		}
 	}
 
-	div.location-infos {
-		p {
-			span.location {
-				color: @MVNerdsBlue;
-				font-weight: bold;
-			}
-		}
+	&.large {
+		width: 600px;
+		margin-left: 26px;
 	}
 
-	div.slogan {
-		opacity: .5;
+	img {
+		width: 100%;
+	}
+
+	p.legend {
+		background-color: @MVNerdsBlue;
+		color: #fff;
+		opacity: .3;
+		padding: 5px 20px 5px 40px;
 		position: absolute;
 		right: 0;
-
-		&:hover {
-			opacity: .9; .transition(opacity .3s linear);
-		}
-
-		img {
-			display: inline-block;
-			margin: 0 0 0 5px;
-			vertical-align: top;
-		}
-
-		p {
-			text-align: right;
-		}
+		top: 75%;
 	}
 }
 
-div.container.main-container {
-	border-top: 1px solid #fff;
-	padding: 10px;
+span.label {
+	background-color: @MVNerdsBlue;
+	color: #fff;
+	display: inline-block;
+	font-size: 8px;
+	line-height: 1em;
+	padding: 2px 4px;
+	position: relative;
+	text-transform: uppercase;
+	top: -1.4em;
+
+	&.red {
+		background-color: @MVNerdsRed;
+	}
+
+	&.green {
+		background-color: @MVNerdsGreen;
+	}
 }
+
+// Ajout des styles de bordure pour les div.container
+div.container {
+	&.border-top {
+		border-top: 1px solid #fff;
+	}
+
+	&.border-bottom {
+		border-bottom: 1px solid #999;
+	}
+}
+
+// Import des fichiers less nécessaires pour styliser les différentes parties du site
+@import "mvnerds/mvnerds-topbar.less";
+@import "mvnerds/mvnerds-site-header.less";
+@import "mvnerds/mvnerds-champion-rotation.less";
+@import "mvnerds/mvnerds-layout.less";
