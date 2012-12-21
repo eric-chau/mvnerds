@@ -19,6 +19,7 @@
 			'css/item_builder/item-build-detail.css'
 			'css/item_builder/modal.css'
 			'css/comment/comment.css'
+			'css/jquery.mCustomScrollbar.css'
 			output='css/compiled/pmri-view.css'
 			filter='yui_css'
 		%}
@@ -29,30 +30,39 @@
 		<link href="{{ asset('css/item_builder/item-build-detail.css') }}" rel="stylesheet" type="text/css">
 		<link href="{{ asset('css/item_builder/modal.css') }}" rel="stylesheet" type="text/css">
 		<link href="{{ asset('css/comment/comment.css') }}" rel="stylesheet" type="text/css">
+		<link href="{{ asset('css/jquery.mCustomScrollbar.css') }}" rel="stylesheet" type="text/css">
 	{% endif %}
 {% endblock %}
 	
 {% block javascripts %}
 	{{ parent() }}
-		
+	
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 	{% if app.environment != 'dev' %}
 		{% javascripts
+			
+			'js/item_handler/item-modal.js'
 			'js/item_handler/item-popover.js'
 			'js/launch_site/alerts-ajax-handler.js'
 			'js/bootstrap/bootstrap-popover.js'
 			'js/item_handler/item_builder/dl-modal.js'
 			'js/item_handler/item_builder/view-page.js'
+			'js/jquery.mCustomScrollbar.js'
+			'js/jquery.mousewheel.min.js'
 			output='js/compiled/pmri-view.js'
 			filter='yui_js'
 		%}
 		<script src="{{ asset_url }}"></script>
 		{% endjavascripts %}
 	{% else %}
+		<script src="{{ asset('js/item_handler/item-modal.js') }}"></script>
 		<script src="{{ asset('js/item_handler/item-popover.js') }}"></script>
 		<script src="{{ asset('js/launch_site/alerts-ajax-handler.js') }}"></script>
 		<script src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
 		<script src="{{ asset('js/item_handler/item_builder/dl-modal.js') }}"></script>
 		<script src="{{ asset('js/item_handler/item_builder/view-page.js') }}"></script>
+		<script src="{{ asset('js/jquery.mCustomScrollbar.js') }}"></script>
+		<script src="{{ asset('js/jquery.mousewheel.min.js') }}"></script>
 	{% endif %}
 		
 	<script type="text/javascript">
@@ -85,6 +95,7 @@
 		
 		<p class="module-name">
 			Module <strong>Pimp My Recommended Items</strong> | {{'item_build_view_index.created_by'|trans}} <strong><a href="{{ path('summoner_profile_view', {'userSlug': itemBuild.getUser().getSlug()}) }}" title="Consulter le profil de {{ itemBuild.getUser().getUsername }}"">{{itemBuild.getUser().getUserName()}}</a></strong>
+			{% if can_edit %} <div class="generate-button-container"><a href="{{path('item_builder_edit_build', {itemBuildSlug: itemBuild.getSlug()})}}" class="edit-action pull-right"><p>{{ 'item_table.admin.edit'|trans }}</p></a></div>{% endif %}
 		</p>
 		
 		<div class="row-fluid">
@@ -131,4 +142,5 @@
 	</div>
 	
 	{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}
+	{% include 'MVNerdsItemHandlerBundle:Modal:item_modal.html.twig' %}
 {% endblock %}

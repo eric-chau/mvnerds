@@ -107,10 +107,6 @@ class ItemBuilderController extends Controller
 		}
 		//Tri
 		$orderArr = array();
-		
-		$con = \Propel::getConnection();
-		
-		$championName = null;
 		if ( isset( $_GET['iSortCol_0'] ) )
 		{
 			for ( $i=0 ; $i<intval( $_GET['iSortingCols'] ) ; $i++ )
@@ -127,6 +123,7 @@ class ItemBuilderController extends Controller
 		
 		//Recherche par colonne
 		$whereArr = array();
+		$championName = null;
 		for ( $i=0 ; $i<count($aColumns) ; $i++ )
 		{
 			if ( isset($_GET['bSearchable_'.$i]) && $_GET['bSearchable_'.$i] == "true" && $_GET['sSearch_'.$i] != '' )
@@ -182,6 +179,7 @@ class ItemBuilderController extends Controller
 	public function viewAction($itemBuildSlug, $dl)
 	{
 		try{
+			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
 			$itemBuild = $this->get('mvnerds.item_build_manager')->findOneBySlug($itemBuildSlug);
 			$itemBuild->setView($itemBuild->getView() + 1);
 			$itemBuild->save();
@@ -194,6 +192,7 @@ class ItemBuilderController extends Controller
 		$length = count($itemBuildItemsCollection);		
 		for ($i = 0; $i < $length; $i++)
 		{
+			/* @var $itemBuildItems \MVNerds\CoreBundle\Model\ItemBuildItems */
 			$itemBuildItems = $itemBuildItemsCollection[$i];
 			
 			$item = $itemBuildItems->getItem();
@@ -210,21 +209,26 @@ class ItemBuilderController extends Controller
 		ksort($itemBlocks);
 		
 		$lolDir = null;
-		try{
-			if ($this->get('security.context')->isGranted('ROLE_USER'))
+		$canEdit = false;
+		
+		if ($this->get('security.context')->isGranted('ROLE_USER'))
+		{
+			$user = $this->get('security.context')->getToken()->getUser();
+			if (($itemBuild->getUser()->getId() == $user->getId()) || $this->get('security.context')->isGranted('ROLE_ADMIN'))
 			{
-				$user = $this->get('security.context')->getToken()->getUser();
+				$canEdit = true;
+			}
+			try{
 				$lolDirPreference = $this->get('mvnerds.preference_manager')->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
 				$lolDir = $lolDirPreference->getValue();
-			}
-		} catch(\Exception $e) {
-			$lolDir= null;
+			} catch(\Exception $e) {}
 		}
 		
 		$params = array(
-			'itemBuild'		=> $itemBuild,
+			'itemBuild'	=> $itemBuild,
 			'itemBlocks'	=> $itemBlocks,
-			'lol_dir'		=> $lolDir
+			'lol_dir'	=> $lolDir,
+			'can_edit'	=> $canEdit
 		);
 		if ($dl != null && $dl == 'dl') {
 			$params['start_dl'] = 'true';
@@ -357,8 +361,9 @@ class ItemBuilderController extends Controller
 			foreach ($items as $item)
 			{
 				$itemSlug = $item['slug'];
-				$itemCount = $item['count'];
-				$itemCount = $itemCount >= 1 ? $itemCount : 1;
+				$itemCount = $item['count'] >= 1 ? $item['count'] : 1;
+				$itemOrder = $item['order'] >= 1 ? $item['order'] : 1;
+				
 				try {
 					$item = $itemManager->findBySlug($itemSlug);
 				} catch (\Exception $e) {
@@ -372,7 +377,8 @@ class ItemBuilderController extends Controller
 				$itemBuildItems->setType($itemBlockName);
 				$itemBuildItems->setPosition($i);
 				$itemBuildItems->setCount($itemCount);
-
+				$itemBuildItems->setItemOrder($itemOrder);
+				
 				$itemBuilditemsCollection->append($itemBuildItems);
 			}
 			$i ++;
