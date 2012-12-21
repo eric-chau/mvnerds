@@ -1,579 +1,586 @@
 .champion-square25 {
 	background-image: url('/images/champions/square25-sprite.jpg');
 	height: 25px;
-	width: 25px;   
+	width: 25px;
 }
 
-
 .champion-square25.ahri {
-    background-position: -260px -182px;
+    
+    
+    background-position: -260px -208px;
 }
 
 .champion-square25.akali {
     
     
-    background-position: -260px -156px;
+    background-position: -260px -182px;
 }
 
 .champion-square25.alistar {
     
     
-    background-position: -260px -130px;
+    background-position: -260px -156px;
 }
 
 .champion-square25.amumu {
     
     
-    background-position: -260px -104px;
+    background-position: -260px -130px;
 }
 
 .champion-square25.anivia {
     
     
-    background-position: -260px -78px;
+    background-position: -260px -104px;
 }
 
 .champion-square25.annie {
     
     
-    background-position: -260px -52px;
+    background-position: -260px -78px;
 }
 
 .champion-square25.ashe {
     
     
-    background-position: -260px -26px;
+    background-position: -260px -52px;
 }
 
 .champion-square25.blitzcrank {
     
     
-    background-position: -260px -0px;
+    background-position: -260px -26px;
 }
 
 .champion-square25.brand {
     
     
-    background-position: -234px -234px;
+    background-position: -260px -0px;
 }
 
 .champion-square25.caitlyn {
     
     
-    background-position: -208px -234px;
+    background-position: -234px -234px;
 }
 
 .champion-square25.cassiopeia {
     
     
-    background-position: -182px -234px;
+    background-position: -208px -234px;
 }
 
 .champion-square25.chogath {
     
     
-    background-position: -156px -234px;
+    background-position: -182px -234px;
 }
 
 .champion-square25.corki {
     
     
-    background-position: -130px -234px;
+    background-position: -156px -234px;
 }
 
 .champion-square25.darius {
     
     
-    background-position: -104px -234px;
+    background-position: -130px -234px;
 }
 
 .champion-square25.diana {
     
     
-    background-position: -78px -234px;
+    background-position: -104px -234px;
 }
 
 .champion-square25.dr-mundo {
     
     
-    background-position: -52px -234px;
+    background-position: -78px -234px;
 }
 
 .champion-square25.draven {
     
     
-    background-position: -26px -234px;
+    background-position: -52px -234px;
 }
 
 .champion-square25.elise {
     
     
-    background-position: -0px -234px;
+    background-position: -26px -234px;
 }
 
 .champion-square25.evelynn {
     
     
-    background-position: -234px -208px;
+    background-position: -0px -234px;
 }
 
 .champion-square25.ezreal {
     
     
-    background-position: -208px -208px;
+    background-position: -234px -208px;
 }
 
 .champion-square25.fiddlesticks {
     
     
-    background-position: -182px -208px;
+    background-position: -208px -208px;
 }
 
 .champion-square25.fiora {
     
     
-    background-position: -156px -208px;
+    background-position: -182px -208px;
 }
 
 .champion-square25.fizz {
     
     
-    background-position: -130px -208px;
+    background-position: -156px -208px;
 }
 
 .champion-square25.galio {
     
     
-    background-position: -104px -208px;
+    background-position: -130px -208px;
 }
 
 .champion-square25.gangplank {
     
     
-    background-position: -78px -208px;
+    background-position: -104px -208px;
 }
 
 .champion-square25.garen {
     
     
-    background-position: -52px -208px;
+    background-position: -78px -208px;
 }
 
 .champion-square25.gragas {
     
     
-    background-position: -26px -208px;
+    background-position: -52px -208px;
 }
 
 .champion-square25.graves {
     
     
-    background-position: -0px -208px;
+    background-position: -26px -208px;
 }
 
 .champion-square25.hecarim {
     
     
-    background-position: -234px -182px;
+    background-position: -0px -208px;
 }
 
 .champion-square25.heimerdinger {
     
     
-    background-position: -208px -182px;
+    background-position: -234px -182px;
 }
 
 .champion-square25.irelia {
     
     
-    background-position: -182px -182px;
+    background-position: -208px -182px;
 }
 
 .champion-square25.janna {
     
     
-    background-position: -156px -182px;
+    background-position: -182px -182px;
 }
 
 .champion-square25.jarvan-iv {
     
     
-    background-position: -130px -182px;
+    background-position: -156px -182px;
 }
 
 .champion-square25.jax {
     
     
-    background-position: -104px -182px;
+    background-position: -130px -182px;
 }
 
 .champion-square25.jayce {
     
     
-    background-position: -78px -182px;
+    background-position: -104px -182px;
 }
 
 .champion-square25.karma {
     
     
-    background-position: -52px -182px;
+    background-position: -78px -182px;
 }
 
 .champion-square25.karthus {
     
     
-    background-position: -26px -182px;
+    background-position: -52px -182px;
 }
 
 .champion-square25.kassadin {
     
     
-    background-position: -0px -182px;
+    background-position: -26px -182px;
 }
 
 .champion-square25.katarina {
     
     
-    background-position: -234px -156px;
+    background-position: -0px -182px;
 }
 
 .champion-square25.kayle {
     
     
-    background-position: -208px -156px;
+    background-position: -234px -156px;
 }
 
 .champion-square25.kennen {
     
     
-    background-position: -182px -156px;
+    background-position: -208px -156px;
 }
 
 .champion-square25.khazix {
     
     
-    background-position: -156px -156px;
+    background-position: -182px -156px;
 }
 
 .champion-square25.kogmaw {
     
     
-    background-position: -130px -156px;
+    background-position: -156px -156px;
 }
 
 .champion-square25.leblanc {
     
     
-    background-position: -104px -156px;
+    background-position: -130px -156px;
 }
 
 .champion-square25.lee-sin {
     
     
-    background-position: -78px -156px;
+    background-position: -104px -156px;
 }
 
 .champion-square25.leona {
     
     
-    background-position: -52px -156px;
+    background-position: -78px -156px;
 }
 
 .champion-square25.lulu {
     
     
-    background-position: -26px -156px;
+    background-position: -52px -156px;
 }
 
 .champion-square25.lux {
     
     
-    background-position: -0px -156px;
+    background-position: -26px -156px;
 }
 
 .champion-square25.maitre-yi {
     
     
-    background-position: -234px -130px;
+    background-position: -0px -156px;
 }
 
 .champion-square25.malphite {
     
     
-    background-position: -208px -130px;
+    background-position: -234px -130px;
 }
 
 .champion-square25.malzahar {
     
     
-    background-position: -182px -130px;
+    background-position: -208px -130px;
 }
 
 .champion-square25.maokai {
     
     
-    background-position: -156px -130px;
+    background-position: -182px -130px;
 }
 
 .champion-square25.miss-fortune {
     
     
-    background-position: -130px -130px;
+    background-position: -156px -130px;
 }
 
 .champion-square25.mordekaiser {
     
     
-    background-position: -104px -130px;
+    background-position: -130px -130px;
 }
 
 .champion-square25.morgana {
     
     
-    background-position: -78px -130px;
+    background-position: -104px -130px;
 }
 
 .champion-square25.nami {
     
     
-    background-position: -52px -130px;
+    background-position: -78px -130px;
 }
 
 .champion-square25.nasus {
     
     
-    background-position: -26px -130px;
+    background-position: -52px -130px;
 }
 
 .champion-square25.nautilus {
     
     
-    background-position: -0px -130px;
+    background-position: -26px -130px;
 }
 
 .champion-square25.nidalee {
     
     
-    background-position: -234px -104px;
+    background-position: -0px -130px;
 }
 
 .champion-square25.nocturne {
     
     
-    background-position: -208px -104px;
+    background-position: -234px -104px;
 }
 
 .champion-square25.nunu {
     
     
-    background-position: -182px -104px;
+    background-position: -208px -104px;
 }
 
 .champion-square25.olaf {
     
     
-    background-position: -156px -104px;
+    background-position: -182px -104px;
 }
 
 .champion-square25.orianna {
     
     
-    background-position: -130px -104px;
+    background-position: -156px -104px;
 }
 
 .champion-square25.pantheon {
     
     
-    background-position: -104px -104px;
+    background-position: -130px -104px;
 }
 
 .champion-square25.poppy {
     
     
-    background-position: -78px -104px;
+    background-position: -104px -104px;
 }
 
 .champion-square25.rammus {
     
     
-    background-position: -52px -104px;
+    background-position: -78px -104px;
 }
 
 .champion-square25.renekton {
     
     
-    background-position: -26px -104px;
+    background-position: -52px -104px;
 }
 
 .champion-square25.rengar {
     
     
-    background-position: -0px -104px;
+    background-position: -26px -104px;
 }
 
 .champion-square25.riven {
     
     
-    background-position: -234px -78px;
+    background-position: -0px -104px;
 }
 
 .champion-square25.rumble {
     
     
-    background-position: -208px -78px;
+    background-position: -234px -78px;
 }
 
 .champion-square25.ryze {
     
     
-    background-position: -182px -78px;
+    background-position: -208px -78px;
 }
 
 .champion-square25.sejuani {
     
     
-    background-position: -156px -78px;
+    background-position: -182px -78px;
 }
 
 .champion-square25.shaco {
     
     
-    background-position: -130px -78px;
+    background-position: -156px -78px;
 }
 
 .champion-square25.shen {
     
     
-    background-position: -104px -78px;
+    background-position: -130px -78px;
 }
 
 .champion-square25.shyvana {
     
     
-    background-position: -78px -78px;
+    background-position: -104px -78px;
 }
 
 .champion-square25.singed {
     
     
-    background-position: -52px -78px;
+    background-position: -78px -78px;
 }
 
 .champion-square25.sion {
     
     
-    background-position: -26px -78px;
+    background-position: -52px -78px;
 }
 
 .champion-square25.sivir {
     
     
-    background-position: -0px -78px;
+    background-position: -26px -78px;
 }
 
 .champion-square25.skarner {
     
     
-    background-position: -234px -52px;
+    background-position: -0px -78px;
 }
 
 .champion-square25.sona {
     
     
-    background-position: -208px -52px;
+    background-position: -234px -52px;
 }
 
 .champion-square25.soraka {
     
     
-    background-position: -182px -52px;
+    background-position: -208px -52px;
 }
 
 .champion-square25.swain {
     
     
-    background-position: -156px -52px;
+    background-position: -182px -52px;
 }
 
 .champion-square25.syndra {
     
     
-    background-position: -130px -52px;
+    background-position: -156px -52px;
 }
 
 .champion-square25.talon {
     
     
-    background-position: -104px -52px;
+    background-position: -130px -52px;
 }
 
 .champion-square25.taric {
     
     
-    background-position: -78px -52px;
+    background-position: -104px -52px;
 }
 
 .champion-square25.teemo {
     
     
-    background-position: -52px -52px;
+    background-position: -78px -52px;
 }
 
 .champion-square25.tristana {
     
     
-    background-position: -26px -52px;
+    background-position: -52px -52px;
 }
 
 .champion-square25.trundle {
     
     
-    background-position: -0px -52px;
+    background-position: -26px -52px;
 }
 
 .champion-square25.tryndamere {
     
     
-    background-position: -234px -26px;
+    background-position: -0px -52px;
 }
 
 .champion-square25.twisted-fate {
     
     
-    background-position: -208px -26px;
+    background-position: -234px -26px;
 }
 
 .champion-square25.twitch {
     
     
-    background-position: -182px -26px;
+    background-position: -208px -26px;
 }
 
 .champion-square25.udyr {
     
     
-    background-position: -156px -26px;
+    background-position: -182px -26px;
 }
 
 .champion-square25.urgot {
     
     
-    background-position: -130px -26px;
+    background-position: -156px -26px;
 }
 
 .champion-square25.varus {
     
     
-    background-position: -104px -26px;
+    background-position: -130px -26px;
 }
 
 .champion-square25.vayne {
     
     
-    background-position: -78px -26px;
+    background-position: -104px -26px;
 }
 
 .champion-square25.veigar {
+    
+    
+    background-position: -78px -26px;
+}
+
+.champion-square25.vi {
     
     
     background-position: -52px -26px;

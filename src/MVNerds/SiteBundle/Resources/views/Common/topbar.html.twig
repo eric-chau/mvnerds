@@ -1,0 +1,70 @@
+<div id="topbar">
+	<div class="container">
+		<ul class="menu">
+			<li class="home">
+				<a href="#"><i class="icon-home"></i></a>
+			</li>
+			<li>
+				<a href="#">Most Valuable News</a>
+			</li>
+			<li>
+				<a href="#" class="active">Champion Benchmark</a>
+			</li>
+			<li>
+				<a href="#">Pimp My Recommended Items</a>
+			</li>
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><strong>Plus</strong></a>
+				<ul class="dropdown-menu">
+					<li>
+						<div class="menu-header">Menu de navigation</div>
+						<div class="row-fluid menu-detail">
+							<div class="span4">
+								<ul>
+									<li class="header"><a href="#"><i class="icon-file"></i> Most Valuable News</a></li>
+									<li class="header"><a href="#"><i class="icon-random"></i> Champion Benchmark</a></li>
+									<li class="header"><a href="#"><i class="icon-wrench"></i> Pimp my recommended items</a></li>
+									<li><a href="#"><i class="icon-stop"></i> Personnaliser la liste d'objets conseillés</a></li>
+									<li><a href="#"><i class="icon-stop"></i> Consulter les listes d'objets publiques</a></li>
+								</ul>
+							</div>
+								
+							<div class="span4">
+								<ul>
+									<li class="header"><a href="#"><i class="icon-facetime-video"></i> LoL Video Center</a></li>
+									<li class="header"><a href="#"><i class="icon-shopping-cart"></i> Skin Trade Place</a></li>
+								</ul>
+							</div>
+								
+							<div class="span4">
+								<ul>
+									<li class="header"><a href="#"><i class="icon-globe"></i> Most Valuable Nerds</a></li>
+									<li><a href="#"><i class="icon-stop"></i> Aller sur les forums de discussions</a></li>
+									<li><a href="#"><i class="icon-stop"></i> Les membres de la communauté</a></li>
+									<li><a href="#"><i class="icon-stop"></i> L'équipe League of Legends</a></li>
+								</ul>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</li>
+		</ul>
+			
+		<ul class="right-container">
+			<li class="alert">
+				<a href="#" class="unread"><i class="icon-info-sign"></i></a>
+			</li>
+			<li class="notification">
+				<i class="icon-exclamation-sign"></i>
+			</li>
+			<li class="user-container">
+				{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+					<img src="{{ asset('medias/images/avatar/' ~ app.user.getUserAvatarName() ~ '.jpg') }}" /> <a href="#" class="username">{{ app.user.getUsername() }}</a> <a href="#" class="signout"><i class="icon-signout"></i></a>
+				{% else %}
+					<a href="#">se connecter</a> ou <a href="#">s'enregistrer</a>
+				{% endif %}
+			</li>
+		</ul>
+		
+	</div>
+</div>

@@ -1,0 +1,56 @@
+
+.btn, .mvnerds-btn {
+	display: inline-block;
+	margin: 0 2px;
+
+	&:hover, &:focus {
+		.transition(all .3s linear);
+	}
+}
+
+.btn {
+	background-color: darken(@MVNerdsBlue, 10%);
+	color: @ClassicButtonLinkTextColor !important;
+	padding: 7px 10px;
+
+	&:hover, &:focus {
+		background-color: @MVNerdsBlue;
+	}
+
+	&.green {
+		background-color: darken(@MVNerdsGreen, 5%);
+
+		&:hover, &:focus {
+			background-color: @MVNerdsGreen;
+		}
+	}
+
+	&.red {
+		background-color: darken(@MVNerdsRed, 10%);
+
+		&:hover, &:focus {
+			background-color: @MVNerdsRed;
+		}
+	}
+}
+
+.mvnerds-btn {
+	border-bottom: 3px solid #ddd;
+	padding: 10px 5px;
+
+	&:hover, &:focus, &.active {
+		border-bottom-color: @MVNerdsBlue;
+	}
+
+	&.green {
+		&:hover, &:focus, &.active {
+			border-bottom-color: @MVNerdsGreen;
+		}
+	}
+
+	&.red {
+		&:hover, &:focus, &.active {
+			border-bottom-color: @MVNerdsRed;
+		}
+	}
+}

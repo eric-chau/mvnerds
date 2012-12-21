@@ -1,0 +1,198 @@
+div#topbar {
+	background-color: @bodyMainBGColor;
+	border-top: 4px solid #333;
+	margin: 0 0 5px 0;
+	padding: 0 10px;
+	position: fixed;
+	width: 100%;
+	z-index: 10000;
+
+	div.container {
+		position: relative;
+	}
+
+	ul {
+		&.menu, &.right-container {
+			display: inline-block;
+		}
+
+		&.menu {
+			padding: 4px 0;
+			text-transform: uppercase;
+
+			li {
+				color: #333;
+				margin: 0 20px 0 0;
+
+				&.dropdown {
+					margin: 0;
+					padding: 0 10px;
+					position: static;
+
+					&.open {
+						background-color: @MVNerdsRed; 
+						color: #fff; .transition(all .3s linear);
+
+						&:hover a {
+							color: #fff;
+						}
+					}
+
+					ul.dropdown-menu {
+						background-color: rgba(228,230,229,.95);
+						left: 50%;
+						margin: 0 0 0 -451px;
+						padding: 10px 20px 30px 20px;
+						width: 860px;
+
+						li {
+							div.menu-header {
+								color: #666;
+								font-weight: bold;
+								letter-spacing: 5px;
+								text-align: center;
+								text-transform: uppercase;
+							}
+
+							div.menu-detail {
+								ul {
+									list-style: none;
+
+									 li {
+									 	border-bottom: 1px solid #666;
+									 	margin: 0 0 0 15px !important;
+										text-transform: none;
+
+										&.header {
+											border: 0;
+											margin: 20px 0 0 0 !important;
+											text-transform: uppercase;
+
+											a {
+												color: darken(@MVNerdsRed, 10%);
+												font-weight: bold;												
+
+												&:hover {
+													color: @MVNerdsRed;
+												}
+
+												i {
+													font-size: 14px;
+													top: 0;
+												}
+
+											}
+										}
+
+										a {
+											color: #666;
+											display: inline-block;
+											padding: 0;
+
+											i {
+												font-size: 8px;
+												position: relative;
+												top: -2px;
+											}
+
+											&:hover {
+												color: darken(@MVNerdsBlue, 5%); .transition(color .2s linear);
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+
+				a {
+					&:hover {
+						color: darken(@MVNerdsRed, 10%);
+					}
+
+					&.active {
+						color: @MVNerdsRed;
+						font-weight: bold;
+					}
+				}
+			}
+		}
+
+		&.right-container {
+			position: absolute;
+			right: 0;
+
+			li {
+				&.alert, &.notification {
+					color: #888;
+					padding: 2px 0;
+					position: relative;
+					top: 2px;
+
+					a.unread {
+						color: @LoLOrangeAD;
+					}
+				}
+
+				&.user-container {
+					background-color: #333;
+					color: #888;
+					margin: 0;
+					padding: 3px 10px;
+
+					img {
+						border: 1px solid #999;
+						display: inline-block;
+						height: 16px;
+						margin: 0 3px 0 0;
+						padding: 2px;
+					}
+
+					a {
+						color: #fff;
+						display: inline-block;
+						font-weight: bold;
+						text-transform: uppercase;
+
+						&:hover {
+							text-decoration: underline;
+						}
+
+						&.username {
+							color: #aaa;
+							margin: 0 10px 0 0;
+							position: relative;
+							text-transform: none;
+							top: -2px;
+						}
+
+						&.signout:hover {
+							color: @MVNerdsRed; .transition(color .25s linear);
+							text-decoration: none;
+						}
+					}
+
+					i {
+						font-size: 14px;
+						left: 3px;
+						position: relative;
+						top: -1px;
+					}
+				}
+			}
+		}
+
+		li {
+			display: inline-block;
+			font-family: 'Anaheim', sans-serif;
+			font-size: 16px;
+
+			i {
+				font-size: 18px;
+				position: relative;
+				top: 1px;
+			}
+		}
+	}
+}

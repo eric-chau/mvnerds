@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+	<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" xmlns:fb="http://ogp.me/ns/fb#"> <![endif]-->
+	<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" xmlns:fb="http://ogp.me/ns/fb#"> <![endif]-->
+	<!--[if IE 8]>         <html class="no-js lt-ie9" xmlns:fb="http://ogp.me/ns/fb#"> <![endif]-->
+	<!--[if gt IE 8]><!--> <html class="no-js" xmlns:fb="http://ogp.me/ns/fb#"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>{% block title %}Guides, Builds and Tools for League of Legends - LoL | MVNerds{% endblock %}</title>
+		<meta name="description" content="{{'Overview.content.p1'|trans}}">
+		<meta name="viewport" content="width=device-width">
+		{% block metas %}{% endblock %}
+		
+		<link href='http://fonts.googleapis.com/css?family=Anaheim' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Cabin' rel='stylesheet' type='text/css'>
+		
+		{% if app.environment == 'dev' %}
+			<link href='{{ asset('medias/css/bootstrap.css') }}' rel='stylesheet' type='text/css'>
+			<link href='{{ asset('medias/css/mvnerds-bootstrap.css') }}' rel='stylesheet' type='text/css'>
+			<link href='{{ asset('medias/css/champions/champion-square36-sprite.css') }}' rel='stylesheet' type='text/css'>
+		{% endif %}
+					
+		{% block css %}{% endblock %}
+		
+		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}" />
+		
+		<script type="text/javascript">var locale = '{{ app.request.getLocale() }}';</script>
+		<script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+		<script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+		
+		{% if app.environment == 'dev' %}
+			<script src="{{ asset('medias/js/jquery-1.8.3.min.js') }}" type="text/javascript"></script>
+		{% endif %}
+		
+	</head>
+	<body>
+		<!--[if IE]>
+			<p class="chromeframe" style="position: fixed;top:0; left:0;z-index:2000; width: 100%;margin:0;padding:0">{{'Comment_ie.1'|trans}}<a href="http://browsehappy.com/">{{'Comment_ie.2'|trans}}</a> {{'General.or'|trans}} <a href="http://www.google.com/chromeframe/?redirect=true">{{'Comment_ie.3'|trans}}</a> {{'Comment_ie.4'|trans}}</p>
+		<![endif]-->
+
+		{% block body %}
+			
+			{% include 'MVNerdsSiteBundle:Common:topbar.html.twig' %}
+			
+			{% include 'MVNerdsSiteBundle:Common:header.html.twig' %}
+			
+			{% include 'MVNerdsSiteBundle:Common:champion-rotation.html.twig' %}
+			
+			<div class="container main-container border-top">
+				<div class="row-fluid">
+					<div class="span8 left-content">
+						<h1>Une nouvelle championne arrive : Vi</h1>
+						
+						<div class="media large">
+							<img src="{{ asset('medias/images/news/example-vi.jpg') }}" />
+							<p class="legend">Vi dans sa tenue classique</p>
+						</div>
+						
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vehicula cursus lacus sit amet consequat. Mauris eleifend mi in massa ultricies nec mattis risus egestas. Suspendisse malesuada lobortis nisl in laoreet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi lacinia quam quis nisl elementum consequat. Etiam vel elit ante, ut dapibus quam. Ut vitae est risus. Vestibulum quam sapien, porttitor sed pulvinar ac, pharetra sed mi. Cras faucibus tellus eros. Nam adipiscing nulla a mi malesuada commodo. Etiam ac urna magna.</p>
+
+						<p>Nam turpis leo, hendrerit vel volutpat in, rhoncus eget libero. Nunc vehicula rutrum ante eget aliquam. Curabitur nunc nisl, pulvinar eget varius in, vestibulum mattis ligula. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam a tellus a ipsum malesuada volutpat non sed nisl. Morbi accumsan scelerisque mi a imperdiet. Nam id magna eros. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam luctus metus quis ipsum consectetur vulputate. Aliquam dictum ornare metus, at viverra turpis pharetra vel.</p>
+						<p><a href="#" class="btn">Bouton classique</a> <a href="#" class="btn red">Bouton classique</a> <a href="#" class="btn green">Bouton classique</a></p>
+						<p><a href="#" class="mvnerds-btn">Bouton MVNerds</a> <a href="#" class="mvnerds-btn red">Bouton MVNerds</a> <a href="#" class="mvnerds-btn green">Bouton MVNerds</a></p>
+						
+						<h2>Pimp my recommended items</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vehicula cursus lacus sit amet consequat. Mauris eleifend mi in massa ultricies nec mattis risus egestas. Suspendisse malesuada lobortis nisl in laoreet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi lacinia quam quis nisl elementum consequat. Etiam vel elit ante, ut dapibus quam. Ut vitae est risus. Vestibulum quam sapien, porttitor sed pulvinar ac, pharetra sed mi. Cras faucibus tellus eros. Nam adipiscing nulla a mi malesuada commodo. Etiam ac urna magna.</p>
+
+						<p>Nam turpis leo, hendrerit vel volutpat in, rhoncus eget libero. Nunc vehicula rutrum ante eget aliquam. Curabitur nunc nisl, pulvinar eget varius in, vestibulum mattis ligula. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam a tellus a ipsum malesuada volutpat non sed nisl. Morbi accumsan scelerisque mi a imperdiet. Nam id magna eros. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam luctus metus quis ipsum consectetur vulputate. Aliquam dictum ornare metus, at viverra turpis pharetra vel.</p>
+						<p><a href="#" class="btn">Bouton classique</a> <a href="#" class="btn red">Bouton classique</a> <a href="#" class="btn green">Bouton classique</a></p>
+						<p><a href="#" class="mvnerds-btn">Bouton MVNerds</a> <a href="#" class="mvnerds-btn red">Bouton MVNerds</a> <a href="#" class="mvnerds-btn green">Bouton MVNerds</a></p>
+						
+						<h2>Pimp my recommended items</h2>
+						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas vehicula cursus lacus sit amet consequat. Mauris eleifend mi in massa ultricies nec mattis risus egestas. Suspendisse malesuada lobortis nisl in laoreet. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Morbi lacinia quam quis nisl elementum consequat. Etiam vel elit ante, ut dapibus quam. Ut vitae est risus. Vestibulum quam sapien, porttitor sed pulvinar ac, pharetra sed mi. Cras faucibus tellus eros. Nam adipiscing nulla a mi malesuada commodo. Etiam ac urna magna.</p>
+
+						<p>Nam turpis leo, hendrerit vel volutpat in, rhoncus eget libero. Nunc vehicula rutrum ante eget aliquam. Curabitur nunc nisl, pulvinar eget varius in, vestibulum mattis ligula. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Aliquam a tellus a ipsum malesuada volutpat non sed nisl. Morbi accumsan scelerisque mi a imperdiet. Nam id magna eros. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nam luctus metus quis ipsum consectetur vulputate. Aliquam dictum ornare metus, at viverra turpis pharetra vel.</p>
+						<p><a href="#" class="btn">Bouton classique</a> <a href="#" class="btn red">Bouton classique</a> <a href="#" class="btn green">Bouton classique</a></p>
+						<p><a href="#" class="mvnerds-btn">Bouton MVNerds</a> <a href="#" class="mvnerds-btn red">Bouton MVNerds</a> <a href="#" class="mvnerds-btn green">Bouton MVNerds</a></p>
+					</div>
+					<div class="span4 right-content">
+						<div class="block">
+							<div class="header">
+								<h3>Pimp My Recommended Items <span class="label red">spotlight</span></h3>
+							</div>
+							<div class="body">
+								<p>
+									Joueurs de League of Legends, le PMRI est fait pour vous ! C'est un utilitaire qui vous permet de changer la liste des objets recommandés de vos champions préférés. C'est la liste qui est accessible depuis l'onglet "Conseillés" de la nouvelle boutique en jeu de League of Legends.
+								</p>
+								<div class="block-media">
+									<object width="300" height="169">
+										<param name="movie" value="http://www.youtube.com/v/fKsMEdYup84?version=3"></param>
+										<param name="allowScriptAccess" value="always"></param>
+										<embed src="http://www.youtube.com/v/fKsMEdYup84?version=3" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="300" height="169"></embed>
+									</object>
+								</div>
+							</div>
+							<div class="footer">
+								<a href="#">En savoir plus</a>
+							</div>
+						</div>
+						{#<ul>
+							<li>Taille de pub standard</li>
+							<li>300*250</li>
+							<li>468*60</li>
+							<li>728*90</li>
+						</ul>#}
+						
+					<div class="block">
+						<div class="header">
+							<h3>Champion Benchmark</h3>
+						</div>
+						<div class="body">
+							<p>Comparez les champions entre eux et profitez de :</p>
+							<ul>
+								<li>Une liste de champions originale</li>
+								<li>Un système de filtrage efficace</li>
+								<li>Un outil de comparaison performant</li>
+							</ul>
+							<div class="block-media">
+								<img src="{{ asset('images/launch_site/champion-benchmark-preview.jpg') }}" />
+							</div>
+						</div>
+						<div class="footer red">
+							<a href="#">Tester maintenant</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+		
+		{% if app.environment == 'dev' %}
+			<script src="{{ asset('medias/js/jquery-1.8.3.min.js') }}" type="text/javascript"></script>
+			<script src="{{ asset('medias/js/bootstrap/bootstrap-dropdown.js') }}" type="text/javascript"></script>
+		{% endif %}
+		
+		{% block javascripts %}{% endblock %}
+		
+			<script src="{{ asset('medias/js/mvnerds-bootstrap.js') }}" type="text/javascript"></script>
+	</body>
+</html>
