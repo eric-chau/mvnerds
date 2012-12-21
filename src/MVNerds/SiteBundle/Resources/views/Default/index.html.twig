@@ -77,6 +77,7 @@
 						<p><a href="#" class="btn">Bouton classique</a> <a href="#" class="btn red">Bouton classique</a> <a href="#" class="btn green">Bouton classique</a></p>
 						<p><a href="#" class="mvnerds-btn">Bouton MVNerds</a> <a href="#" class="mvnerds-btn red">Bouton MVNerds</a> <a href="#" class="mvnerds-btn green">Bouton MVNerds</a></p>
 					</div>
+						
 					<div class="span4 right-content">
 						<div class="block">
 							<div class="header">
@@ -98,6 +99,39 @@
 								<a href="#">En savoir plus</a>
 							</div>
 						</div>
+							
+						<div class="block">
+							<div class="header">
+								<h3>PMRI* <span class="label">Nouvelles listes</span></h3>
+							</div>
+							<div class="body">
+								<p>
+									{% for item_build in lastest_items_builds %}
+										{{ item_build.getName() }}<br />
+									{% endfor %}
+								</p>
+							</div>
+							<div class="footer">
+								<a href="#">Voir plus</a>
+							</div>
+						</div>
+							
+						<div class="block">
+							<div class="header">
+								<h3>PMRI* <span class="label red">Listes les plus téléchargées</span></h3>
+							</div>
+							<div class="body">
+								<p>
+									{% for item_build in popular_items_builds %}
+										{{ item_build.getName() }}<br />
+									{% endfor %}
+								</p>
+							</div>
+							<div class="footer">
+								<a href="#">Voir plus</a>
+							</div>
+						</div>
+							
 						{#<ul>
 							<li>Taille de pub standard</li>
 							<li>300*250</li>
@@ -105,23 +139,24 @@
 							<li>728*90</li>
 						</ul>#}
 						
-					<div class="block">
-						<div class="header">
-							<h3>Champion Benchmark</h3>
-						</div>
-						<div class="body">
-							<p>Comparez les champions entre eux et profitez de :</p>
-							<ul>
-								<li>Une liste de champions originale</li>
-								<li>Un système de filtrage efficace</li>
-								<li>Un outil de comparaison performant</li>
-							</ul>
-							<div class="block-media">
-								<img src="{{ asset('images/launch_site/champion-benchmark-preview.jpg') }}" />
+						<div class="block">
+							<div class="header">
+								<h3>Champion Benchmark</h3>
 							</div>
-						</div>
-						<div class="footer red">
-							<a href="#">Tester maintenant</a>
+							<div class="body">
+								<p>Comparez les champions entre eux et profitez de :</p>
+								<ul>
+									<li>Une liste de champions originale</li>
+									<li>Un système de filtrage efficace</li>
+									<li>Un outil de comparaison performant</li>
+								</ul>
+								<div class="block-media">
+									<img src="{{ asset('images/launch_site/champion-benchmark-preview.jpg') }}" />
+								</div>
+							</div>
+							<div class="footer red">
+								<a href="#">Tester maintenant</a>
+							</div>
 						</div>
 					</div>
 				</div>

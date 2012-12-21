@@ -12,6 +12,9 @@ class DefaultController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('MVNerdsSiteBundle:Default:index.html.twig');
+        return $this->render('MVNerdsSiteBundle:Default:index.html.twig', array(
+			'lastest_items_builds' => $this->get('mvnerds.item_build_manager')->findLatestBuilds(),
+			'popular_items_builds' => $this->get('mvnerds.item_build_manager')->findMostDownloadedBuilds()
+		));
     }
 }
