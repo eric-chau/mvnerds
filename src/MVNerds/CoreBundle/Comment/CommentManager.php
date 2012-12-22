@@ -90,7 +90,10 @@ class CommentManager
 	private function increaseObjectCommentCountByOne(IComment $object)
 	{
 		$object->setCommentCount($object->getCommentCount() + 1);
-		
+		if (method_exists($object, 'keepUpdateDateUnchanged')) 
+		{
+			$object->keepUpdateDateUnchanged();
+		}
 		// Finally
 		$object->save();
 	}

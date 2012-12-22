@@ -182,6 +182,7 @@ class ItemBuilderController extends Controller
 			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
 			$itemBuild = $this->get('mvnerds.item_build_manager')->findOneBySlug($itemBuildSlug);
 			$itemBuild->setView($itemBuild->getView() + 1);
+			$itemBuild->keepUpdateDateUnchanged();
 			$itemBuild->save();
 		} catch (\Exception $e) {
 			return $this->redirect($this->generateUrl('item_builder_list'));
@@ -353,10 +354,8 @@ class ItemBuilderController extends Controller
 		$itemBuilditemsCollection = new \PropelCollection();
 		foreach ($itemsSlugs as $itemBlock)
 		{
-			$itemBlockName = $itemBlock['name'];
-			$items = $itemBlock['items'];
-			
-			$itemBlockName = preg_replace('/[^a-zA-Z0-9 ]+/','',$itemBlockName);
+			$items = $itemBlock['items'];	
+			$itemBlockName = preg_replace('/[^a-zA-Z0-9 ]+/','',$itemBlock['name']);
 			
 			foreach ($items as $item)
 			{
@@ -503,6 +502,7 @@ class ItemBuilderController extends Controller
 			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
 			$itemBuild = $this->get('mvnerds.item_build_manager')->findOneBySlug($itemBuildSlug);
 			$itemBuild->setDownload($itemBuild->getDownload()+1);
+			$itemBuild->keepUpdateDateUnchanged();
 			$itemBuild->save();
 		} catch (\Exception $e) {
 			//Si le build n est pas trouvé en base de données on ne fait rien
