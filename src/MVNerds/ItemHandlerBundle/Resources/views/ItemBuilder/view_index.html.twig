@@ -113,7 +113,7 @@
 				<h2>{{'item_build_view_index.game_mode.h2'|trans}}</h2>
 
 				<div class="game-mode-container">
-					{% set gameMode = itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel() %}
+					{% set gameMode = itemBuild.getGameMode().getLabel() %}
 
 					{% if gameMode == 'classic' %}
 						<div class="game-mode classic" data-game-mode="classic"><span class="message">Summoner Rift</span></div>

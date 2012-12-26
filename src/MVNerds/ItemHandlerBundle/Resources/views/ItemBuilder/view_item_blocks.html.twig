@@ -1,16 +1,16 @@
-{% for itemBlock in itemBlocks %}
+{% for itemBlock in itemBuild.getItemBuildBlocks() %}
 	<div class="item-container view-item-container">
 		<div class="elements-grid">
-			<h3>{{itemBlock['type']}}</h3>
+			<h3>{{itemBlock.getType()}}</h3>
 
 			<ul>
-				{% for itemTab in itemBlock['items'] %}
-					{% set item = itemTab['item']%}
-					<li class="item"data-placement="right" data-name="{{ item.getName() | lower }}" data-title="{{ item.getName()}}" id="{{ item.getSlug() }}" data-code="{{ item.getRiotCode()}}">
+				{% for itemBuildBlockItem in itemBlock.getItemBuildBlockItems() %}
+					{% set item = itemBuildBlockItem.getItem()%}
+					<li class="item"data-placement="right" data-name="{{ item.getName() | lower }}" data-title="{{ item.getName()}}" id="{{ item.getSlug() }}" data-code="{{ item.getRiotCode()}}" data-slug="{{item.getSlug()}}">
 						<div class="portrait" data-slug="{{item.getSlug()}}">
 							<img draggable="false" class="item-image" src="{{ asset('images/items/' ~ item.getRiotCode() ~ '.png') }}" alt="image de l'item {{ item.getName() }}" />
-							{% if (itemTab['count'] > 1) %}
-								<span class="item-count">{{itemTab['count']}}</span>
+							{% if (itemBuildBlockItem.getCount() > 1) %}
+								<span class="item-count">{{itemBuildBlockItem.getCount()}}</span>
 							{% endif %}
 						</div>
 					</li>

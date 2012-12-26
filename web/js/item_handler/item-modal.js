@@ -35,11 +35,11 @@ function initItemModalArray() {
 			if (array != undefined) {
 				itemModalArray = array;
 			} else {
-				throw "Unable to load items details";
+				throw 'initItemModalArray : Unable to load items details';
 			}
 		},
 		error: function() {
-			throw "Unable to load items details";
+			throw "initItemModalArray Unable to load items details";
 		}
 	});
 }

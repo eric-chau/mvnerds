@@ -404,8 +404,9 @@
   </table>
   <table name="item_build">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
-    <column name="name" required="true" size="255" type="VARCHAR" />
+    <column name="game_mode_id" required="true" type="INTEGER" />
     <column defaultValue="NULL" name="user_id" type="INTEGER" />
+    <column name="name" required="true" size="255" type="VARCHAR" />
     <column defaultValue="0" name="download" required="true" type="INTEGER" />
     <column defaultValue="0" name="view" required="true" type="INTEGER" />
     <column name="description" type="LONGVARCHAR" />
@@ -413,6 +414,9 @@
     <column defaultValue="0" name="comment_count" required="true" type="INTEGER" />
     <foreign-key foreignTable="user">
       <reference foreign="id" local="user_id" />
+    </foreign-key>
+    <foreign-key foreignTable="game_mode">
+      <reference foreign="id" local="game_mode_id" />
     </foreign-key>
     <behavior name="sluggable">
       <parameter name="slug_column" value="slug" />
@@ -430,8 +434,8 @@
   <table name="champion_item_build">
     <column name="champion_id" primaryKey="true" required="true" type="INTEGER" />
     <column name="item_build_id" primaryKey="true" required="true" type="INTEGER" />
-    <column name="game_mode_id" primaryKey="true" required="true" type="INTEGER" />
     <column defaultValue="0" name="is_default_build" required="true" type="BOOLEAN" />
+    <column name="game_mode_id" type="INTEGER" />
     <foreign-key foreignTable="champion" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="champion_id" />
     </foreign-key>
@@ -584,18 +588,14 @@
       <reference foreign="id" local="role_id" />
     </foreign-key>
   </table>
-  <table name="item_build_items">
-    <column name="item_build_id" primaryKey="true" required="true" type="INTEGER" />
-    <column name="item_id" primaryKey="true" required="true" type="INTEGER" />
-    <column name="type" primaryKey="true" required="true" size="255" type="VARCHAR" />
-    <column defaultValue="1" name="position" primaryKey="true" required="true" type="INTEGER" />
-    <column defaultValue="1" name="count" required="true" type="INTEGER" />
-    <column defaultValue="1" name="item_order" required="true" type="INTEGER" />
+  <table name="item_build_block">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="item_build_id" type="INTEGER" />
+    <column name="type" required="true" size="255" type="VARCHAR" />
+    <column defaultValue="1" name="position" required="true" type="INTEGER" />
+    <column name="description" size="255" type="VARCHAR" />
     <foreign-key foreignTable="item_build" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="item_build_id" />
-    </foreign-key>
-    <foreign-key foreignTable="item" onDelete="CASCADE" onUpdate="CASCADE">
-      <reference foreign="id" local="item_id" />
     </foreign-key>
   </table>
   <table name="user_report_comment">
@@ -611,5 +611,31 @@
   <table name="pioneer_user">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
     <column name="email" required="true" size="100" type="VARCHAR" />
+  </table>
+  <table name="item_build_block_item">
+    <column name="item_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="item_block_id" primaryKey="true" required="true" type="INTEGER" />
+    <column defaultValue="1" name="position" required="true" type="INTEGER" />
+    <column defaultValue="1" name="count" required="true" type="INTEGER" />
+    <foreign-key foreignTable="item" onDelete="CASCADE" onUpdate="CASCADE">
+      <reference foreign="id" local="item_id" />
+    </foreign-key>
+    <foreign-key foreignTable="item_build_block" onDelete="CASCADE" onUpdate="CASCADE">
+      <reference foreign="id" local="item_block_id" />
+    </foreign-key>
+  </table>
+  <table name="item_build_items">
+    <column name="item_build_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="item_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="type" primaryKey="true" required="true" size="255" type="VARCHAR" />
+    <column defaultValue="1" name="position" primaryKey="true" required="true" type="INTEGER" />
+    <column defaultValue="1" name="count" required="true" type="INTEGER" />
+    <column defaultValue="1" name="item_order" required="true" type="INTEGER" />
+    <foreign-key foreignTable="item_build" onDelete="CASCADE" onUpdate="CASCADE">
+      <reference foreign="id" local="item_build_id" />
+    </foreign-key>
+    <foreign-key foreignTable="item" onDelete="CASCADE" onUpdate="CASCADE">
+      <reference foreign="id" local="item_id" />
+    </foreign-key>
   </table>
 </database>

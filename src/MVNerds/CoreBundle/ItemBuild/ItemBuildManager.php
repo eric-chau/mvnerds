@@ -26,14 +26,18 @@ class ItemBuildManager
 		$itemBuild = ItemBuildQuery::create()
 			->joinWith('User', \Criteria::LEFT_JOIN)
 			->joinWith('ChampionItemBuild', \Criteria::LEFT_JOIN)
-			->joinWith('ChampionItemBuild.GameMode', \Criteria::LEFT_JOIN)
+			->joinWith('GameMode', \Criteria::LEFT_JOIN)
 			->joinWith('ChampionItemBuild.Champion', \Criteria::LEFT_JOIN)
 			->joinWith('Champion.ChampionI18n', \Criteria::LEFT_JOIN)
-			->joinWith('ItemBuildItems', \Criteria::LEFT_JOIN)
-			->useItemBuildItemsQuery()
-				->orderByItemOrder()
+			->joinWith('ItemBuildBlock', \Criteria::LEFT_JOIN)
+			->joinWith('ItemBuildBlock.ItemBuildBlockItem', \Criteria::LEFT_JOIN)
+			->useItemBuildBlockQuery()
+				->orderByPosition()
+				->useItemBuildBlockItemQuery()
+					->orderByPosition()
+				->endUse()
 			->endUse()
-			->joinWith('ItemBuildItems.Item', \Criteria::LEFT_JOIN)
+			->joinWith('ItemBuildBlockItem.Item', \Criteria::LEFT_JOIN)
 			->joinWith('Item.ItemI18n', \Criteria::LEFT_JOIN)
 			->addJoinCondition('ItemI18n', 'ItemI18n.Lang = ?', $this->userLocale)
 			->add(ItemBuildPeer::SLUG, $slug)
@@ -45,6 +49,22 @@ class ItemBuildManager
 		}
 
 		return $itemBuild[0];
+	}
+	
+	public function findAll($offset, $limit)
+	{
+		$itemBuilds = ItemBuildQuery::create()
+			->orderById()
+			->offset($offset)
+			->limit($limit)
+		->find();
+		
+		if (null === $itemBuilds)
+		{
+			throw new InvalidArgumentException('No item build found !');
+		}
+
+		return $itemBuilds;
 	}
 	
 	public function findAllPublic()
@@ -152,7 +172,7 @@ class ItemBuildManager
 	{
 		$itemBuilds = ItemBuildQuery::create()
 			->joinWith('ChampionItemBuild', \Criteria::LEFT_JOIN)
-			->joinWith('ChampionItemBuild.GameMode', \Criteria::LEFT_JOIN)
+			->joinWith('GameMode', \Criteria::LEFT_JOIN)
 			->joinWith('ChampionItemBuild.Champion chp', \Criteria::LEFT_JOIN)
 			->joinWith('chp.ChampionI18n', \Criteria::LEFT_JOIN)
 			->joinWith('User', \Criteria::LEFT_JOIN)
@@ -174,13 +194,13 @@ class ItemBuildManager
 	{
 		$itemBuilds = ItemBuildQuery::create()
 			->joinWith('User')
+			->joinWith('GameMode')
 			->add(ItemBuildPeer::STATUS, ItemBuildPeer::STATUS_PUBLIC)
 			->orderById(\Criteria::DESC)
 			->limit(5)
 		->find();
 		
 		$championItemBuildsCriteria = \MVNerds\CoreBundle\Model\ChampionItemBuildQuery::create()
-				->joinWith('GameMode')
 				->joinWith('Champion')
 				->joinWith('Champion.ChampionI18n');
 		
@@ -200,13 +220,13 @@ class ItemBuildManager
 	{
 		$itemBuilds = ItemBuildQuery::create()
 			->joinWith('User')
+			->joinWith('GameMode')
 			->add(ItemBuildPeer::STATUS, ItemBuildPeer::STATUS_PUBLIC)
 			->orderByDownload(\Criteria::DESC)
 			->limit(5)
 		->find();
 		
 		$championItemBuildsCriteria = \MVNerds\CoreBundle\Model\ChampionItemBuildQuery::create()
-				->joinWith('GameMode')
 				->joinWith('Champion')
 				->joinWith('Champion.ChampionI18n');
 		

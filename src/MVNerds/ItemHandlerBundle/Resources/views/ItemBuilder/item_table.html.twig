@@ -26,7 +26,7 @@
 						<span class="created-by">{{'item_table.td.created_by'|trans}} <a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}" title="{{'item_table.td.consult_profile_of'|trans}} {{ user.getUsername }}">{{user.getUsername()}}</a> {{'item_table.td.created_the'|trans}} {{itemBuild.getCreateTime('d/m/Y')}} <i class="icon-comments icon-white" title="comments"></i>{{itemBuild.getCommentCount()}} <i class="icon-download-alt icon-white" title="downloads"></i>{{itemBuild.getDownload()}} <i class="icon-eye-open icon-white" title="views"></i>{{itemBuild.getView()}}</span>
 					</td>
 						
-					<td class="game-mode">{{itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel() | trans}}</td>
+					<td class="game-mode">{{itemBuild.getGameMode().getLabel() | trans}}</td>
 					
 					<td>
 						{% if admin_mode is defined and admin_mode %}
@@ -35,14 +35,9 @@
 								<a class="action download-action tooltip-anchor" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}" rel="tooltip" data-placement="top" data-original-title="{{ 'item_table.admin.download'|trans }}"><i class="icon-download-alt"></i></a>
 								<a href="{{ path('item_builder_edit_build', {'itemBuildSlug': itemBuild.getSlug()}) }}" class="action edit-action tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="{{ 'item_table.admin.edit'|trans }}"><i class="icon-edit"></i></a>
 								<a href="#delete-build-{{ itemBuild.getSlug() }}-modal" class="action delete-action tooltip-anchor" data-toggle="modal" rel="tooltip" data-placement="top" data-original-title="{{ 'item_table.admin.delete'|trans }}"><i class="icon-remove-sign"></i></a>
-								{#<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>{{'item_table.td.downloaded'|trans}}</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> {{'item_table.td.times'|trans}}</span>#}
 							</div>
-							
-							
 						{% else %}
 							<a class="action view-action" href="{{path('item_builder_view', {itemBuildSlug: itemBuild.getSlug()})}}"><i class="icon-share"></i> {{'General.watch'|trans}}</a>
-							
-							{#<span class="dl-count-block" data-id="dl-count-{{itemBuild.getSlug()}}"><strong>{{'item_table.td.downloaded'|trans}}</strong> <span class="dl-count">{{itemBuild.getDownload()}}</span> {{'item_table.td.times'|trans}}</span>#}
 						{% endif %}
 					</td>
 				</tr>

@@ -137,6 +137,46 @@ class ItemController extends Controller
 		return new Response(json_encode(true));
 	}
 	
+	/**
+	 * @Route("/convert-item-build/{offset}/{limit}")
+	 */
+	public function convertItemBuild($offset, $limit)
+	{
+		/* @var $itemBuildManager \MVNerds\CoreBundle\ItemBuild\ItemBuildManager */
+		$itemBuildManager = $this->get('mvnerds.item_build_manager');
+		$allItemBuilds = $itemBuildManager->findAll($offset, $limit);
+		foreach ($allItemBuilds as $itemBuild)
+		{
+			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
+			$itemBuild->setGameMode($itemBuild->getChampionItemBuilds()->getFirst()->getGameMode());
+			$itemBuild->save();
+			$itemBuildItems = $itemBuild->getItemBuildItemss();
+			
+			$itemBlocksArray = array();
+			
+			foreach ($itemBuildItems as $itemBuildItem)
+			{
+				/* @var $itemBuildItem \MVNerds\CoreBundle\Model\ItemBuildItems */
+				if (!isset($itemBlocksArray[$itemBuildItem->getType()]))
+				{
+					$itemBuildBlock = new \MVNerds\CoreBundle\Model\ItemBuildBlock();
+					$itemBuildBlock->setItemBuild($itemBuildItem->getItemBuild());
+					$itemBuildBlock->setType($itemBuildItem->getType());
+					$itemBuildBlock->setPosition($itemBuildItem->getPosition());
+					$itemBlocksArray[$itemBuildItem->getType()] = $itemBuildBlock;
+					$itemBuildBlock->save();
+				}
+				$itemBuildBlockItem = new \MVNerds\CoreBundle\Model\ItemBuildBlockItem();
+				$itemBuildBlockItem->setItem($itemBuildItem->getItem());
+				$itemBuildBlockItem->setPosition($itemBuildItem->getItemOrder());
+				$itemBuildBlockItem->setCount($itemBuildItem->getCount());
+				$itemBuildBlockItem->setItemBuildBlock($itemBlocksArray[$itemBuildItem->getType()]);
+				$itemBuildBlockItem->save();
+			}
+		}
+		die(var_dump($allItemBuilds));
+	}
+	
 }
 
 ?>
