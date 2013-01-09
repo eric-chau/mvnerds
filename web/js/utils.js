@@ -98,3 +98,7 @@ function deactivateButton($buttonLi) {
 		$buttonLi.find('a').addClass('disabled');
 	}
 }
+
+$(function() {
+	$('.bootstrap-tooltip').tooltip();
+});

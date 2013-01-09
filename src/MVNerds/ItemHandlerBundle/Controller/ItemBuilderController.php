@@ -664,7 +664,8 @@ class ItemBuilderController extends Controller
 			$selectedItems[$position] = array(
 				'type'		=> $type, 
 				'escaped'	=> $ecapedName, 
-				'items'	=> array()
+				'items'	=> array(),
+				'description' => $itemBuildItemBlock->getDescription()
 			);
 			
 			foreach ( $itemBuildItemBlock->getItemBuildBlockItems() as $itemBuildBlockItem)

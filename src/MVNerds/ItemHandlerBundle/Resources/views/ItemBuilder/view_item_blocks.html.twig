@@ -1,8 +1,10 @@
 {% for itemBlock in itemBuild.getItemBuildBlocks() %}
 	<div class="item-container view-item-container">
 		<div class="elements-grid">
-			<h3>{{itemBlock.getType()}}</h3>
+			<h3>{{itemBlock.getType()}}</h3> 
 
+			{% if itemBlock.getDescription() != '' %}<p>{{itemBlock.getDescription()}}</p>{% endif %}
+			
 			<ul>
 				{% for itemBuildBlockItem in itemBlock.getItemBuildBlockItems() %}
 					{% set item = itemBuildBlockItem.getItem()%}

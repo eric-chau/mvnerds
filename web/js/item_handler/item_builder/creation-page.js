@@ -20,7 +20,8 @@ var
 	$addItemBlockModal,
 	$blockNameInputs,
 	isBuildSaved,
-	saveInProgress
+	saveInProgress,
+	nbBlocks
 ;
 
 function addRecItem(slug, liBlockId) {
@@ -167,6 +168,7 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 			var itemsSlugs = new Array();
 			$itemSidebarList.find('li.item-sidebar-block-li').each(function () {
 				var blockName = $(this).find('input.item_sidebar_block_input').val();
+				var blockDescription = $.trim($(this).attr('data-description'));//TODO ESCAPE
 				if(blockName != undefined && blockName != '' && ! (blockName in itemsSlugs)) {
 					var blockArray = new Array();
 					$that = $(this);
@@ -180,7 +182,7 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 						blockArray.push({slug: $(this).data('slug'), count: itemCount, order: ($($that.find('.portrait')).index($(this)) + 1)});
 					});
 					if (blockArray.length > 0) {
-						itemsSlugs.push({name:blockName, items:blockArray});
+						itemsSlugs.push({name:blockName, items:blockArray, description: blockDescription});
 					}
 				}
 			});
@@ -192,7 +194,6 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 			if(itemBuildSlug != undefined) {
 				data.itemBuildSlug = itemBuildSlug;
 			}
-
 			$.ajax({
 				type: 'POST',
 				url:  Routing.generate('item_builder_generate_rec_item_file', {_locale: locale}),
@@ -377,12 +378,12 @@ function initWithStoredItemBuild() {
 		var blockName = block.name;
 		var blockNameEscaped = blockName.replace(/ +/g, '_');
 		var items = block.items;
+		var blockDescription = block.description;
+		
+		$itemSidebarList.append('<li class="item-sidebar-block-li" id="__'+blockNameEscaped+'__item-block-li" data-description="'+blockDescription+'"><input type="text" class="item_sidebar_block_input span9" value="'+blockName+'"/><a href="#" class="describe-block btn-describe-block-item" id="__'+blockNameEscaped+'__describe-block"><i class="icon-file"></i></a><a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a><div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div></li>')
+		initItemDroppable($itemSidebarList.find('li:last div.item-sidebar-block-div'));
+		
 		for (var j = 0; j < items.length; j++) {
-			var name = blockName;
-			if ( isItemBlockNameFree(name) ) {
-				$itemSidebarList.append('<li class="item-sidebar-block-li" id="__'+blockNameEscaped+'__item-block-li"><input type="text" class="item_sidebar_block_input span9" value="'+name+'"/> <a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a><div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div></li>')
-				initItemDroppable($itemSidebarList.find('li:last div.item-sidebar-block-div'));
-			}
 			addManyRecItems(items[j]['slug'], '__'+blockNameEscaped + '__item-block-li', items[j]['count']);
 		}
 	}
@@ -409,17 +410,14 @@ function storeItemBuild() {
 	});
 
 	var gameMode = $('div.game-mode-container div.game-mode.active').first().attr('data-game-mode');
-//
-//	var itemSlugs = new Array();
-//	$('#rec-item-sortable li.rec-item.full div.portrait').each(function(){
-//		itemSlugs.push($(this).attr('data-slug'));
-//	});
-	
-	var itemSlugs = new Array();
+
+	var itemsSlugs = new Array();
 	$itemSidebarList.find('li.item-sidebar-block-li').each(function () {
 		var blockName = $(this).find('input.item_sidebar_block_input').val();
-		if(! (blockName in itemSlugs)) {
+		var blockDescription = $.trim($(this).attr('data-description'));//TODO ESCAPE
+		if(blockName != undefined && blockName != '' && ! (blockName in itemsSlugs)) {
 			var blockArray = new Array();
+			$that = $(this);
 			$(this).find('div.item-sidebar-block-div div.portrait').each(function() {
 				var $itemCount = $(this).find('span.item-count');
 				var itemCount = 1;
@@ -427,10 +425,10 @@ function storeItemBuild() {
 					itemCount = $itemCount.html() *1;
 					itemCount = itemCount >= 1 ? itemCount : 1;
 				}
-				blockArray.push({slug: $(this).data('slug'), count: itemCount});
+				blockArray.push({slug: $(this).data('slug'), count: itemCount, order: ($($that.find('.portrait')).index($(this)) + 1)});
 			});
 			if (blockArray.length > 0) {
-				itemSlugs.push({name:blockName, items:blockArray});
+				itemsSlugs.push({name:blockName, items:blockArray, description: blockDescription});
 			}
 		}
 	});
@@ -440,7 +438,7 @@ function storeItemBuild() {
 	saveItemInLS('storedItemBuild', 'true');
 	saveItemInLS('storedChampionSlugs', championSlugs);
 	saveItemInLS('storedGameMode', gameMode);
-	saveItemInLS('storedItemSlugs', JSON.stringify(itemSlugs));
+	saveItemInLS('storedItemSlugs', JSON.stringify(itemsSlugs));
 	saveItemInLS('storedBuildName', buildName);
 }
 /*************** FIN LOCAL STORAGE ****************/
@@ -530,7 +528,8 @@ function initItemAddBlock() {
 			indication = 'Déposez vos objets ici';
 			placeholder = 'Nom du bloc'
 		}
-		$itemSidebarList.append('<li class="item-sidebar-block-li" id="___item-block-li"><input type="text" placeholder="'+placeholder+'" class="item_sidebar_block_input span9" value=""/> <a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a><div class="item-sidebar-block-div"><div class="indication">'+indication+'</div></div></li>')
+		$itemSidebarList.append('<li class="item-sidebar-block-li" id="__'+nbBlocks+'__item-block-li"><input type="text" placeholder="'+placeholder+'" class="item_sidebar_block_input span9" value=""/> <a href="#" class="describe-block btn-describe-block-item" id="__'+nbBlocks+'__describe-block"><i class="icon-file"></i></a><a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a><div class="item-sidebar-block-div"><div class="indication">'+indication+'</div></div></li>')
+		nbBlocks ++;
 		$('.item-sidebar-block-li').last().children('input').focus();
 		initItemDroppable($itemSidebarList.find('li:last div.item-sidebar-block-div'));
 		setTimeout(function(){
@@ -597,16 +596,33 @@ function initBlockInputName() {
 	$itemSidebarList.on('focusin', 'li input.item_sidebar_block_input', function() {
 		var oldName = $.trim($(this).val());
 		
+		var blockNames = new Array();
+		$itemSidebarList.find('li.item-sidebar-block-li').each(function() {
+			blockNames.push($(this).find('input').val());
+		});
+		
+		$(this).parent().find('.btn-describe-block-item').popover('hide');
+		$(this).parent().find('.btn-describe-block-item').removeClass('active');
+		
 		$(this).focusout(function() {
 			var newName = $.trim($(this).val());
 			var regex = new RegExp("[^a-zA-Z0-9 ]");
 			
-			if ( ! (newName != '' && !regex.test(newName))) {
+			if (oldName == $(this).val()) {
+				
+			} else if ( ! (newName != '' && !regex.test(newName))) {
 				$(this).val(oldName);
 				if (locale == 'en') {
-					displayMessage('The given name is not valid.', 'success');
+					displayMessage('The given name is not valid.', 'error');
 				}else {
 					displayMessage('Le nom saisi n\'est pas valide.', 'error')
+				}
+			} else if (blockNames.indexOf($(this).val()) >= 0) {
+				$(this).val(oldName);
+				if (locale == 'en') {
+					displayMessage('This block name is already in use.', 'error');
+				}else {
+					displayMessage('Le nom saisi est déjà utilisé.', 'error')
 				}
 			} else {
 				newName = newName.replace(/ +/g, ' ');
@@ -615,9 +631,64 @@ function initBlockInputName() {
 				$(this).val(oldName);
 				newName = newName.replace(/ +/g, '_');
 				$(this).parent('li').attr('id', '__' + newName + '__item-block-li')
+				var $btnDescribe = $(this).parent('li').find('a.btn-describe-block-item');
+				
+				$btnDescribe.popover('destroy');
+				$btnDescribe.attr('id', '__' + newName + '__describe-block')
+				$btnDescribe.popover({
+					animation: true,
+					placement: 'left',
+					trigger: 'click',
+					title: 'Description du bloc ' + $btnDescribe.parent().find('input').val(),
+					template : '<div class="popover bloc-description-popover" data-source="#'+$btnDescribe.parent().attr('id')+'"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><textarea></textarea></div><div class="popover-footer"><a href="#" class="save-bloc-description action">Enregistrer</a><a href="#" class="cancel-save-bloc-description action">Annuler</a></div></div></div>'
+				});
+				$btnDescribe.data('popover').tip().find('.popover-inner .popover-content textarea').val($btnDescribe.parent().attr('data-description'));
 			}
 		})
 	});
+}
+
+function initDescribeBlock() {
+	$itemSidebarList.on('mouseover', '.btn-describe-block-item', function() {
+		if($(this).data('popover') == undefined) {
+			var $this = $(this);
+			$(this).popover({
+				animation: true,
+				placement: 'left',
+				trigger: 'click',
+				title: 'Description du bloc ' + $this.parent().find('input').val(),
+				content: '',
+				template: '<div class="popover bloc-description-popover" data-source="#'+$this.parent('.item-sidebar-block-li').attr('id')+'"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><textarea></textarea></div><div class="popover-footer"><a href="#" class="save-bloc-description action">Enregistrer</a><a href="#" class="cancel-save-bloc-description action">Annuler</a></div></div></div>'
+			});
+			if ( $(this).parent().data('description') != undefined) {
+				$(this).data('popover').tip().find('.popover-inner .popover-content textarea').val($(this).parent().data('description'));
+			}
+		}
+		return false;
+	});
+	$itemSidebarList.on('click', '.btn-describe-block-item', function() {
+		$(this).toggleClass('active');
+		return false;
+	});
+	$('body').on('click', '.save-bloc-description', function() {
+		var $popover = $($(this).parents('.popover').data('source')).find('.btn-describe-block-item');
+		
+		$popover.parent().attr('data-description', $(this).parents('.popover-inner').find('.popover-content').find('textarea').val());
+		
+		$popover.popover('hide');
+		$popover.toggleClass('active');
+		return false;
+	});
+	$('body').on('click', '.cancel-save-bloc-description', function() {
+		var $popover = $($(this).parents('.popover').data('source')).find('.btn-describe-block-item');
+		
+		$(this).parents('.popover-inner').find('.popover-content').find('textarea').val($popover.parent().attr('data-description'));
+		
+		$popover.popover('hide');
+		$popover.toggleClass('active');
+		return false;
+	});
+	
 }
 
 $(document).ready(function()
@@ -635,7 +706,6 @@ $(document).ready(function()
 	$blockNameInputs = $('input.item_sidebar_block_input');
 	isBuildSaved = false;
 	saveInProgress = false;
-	
 	processScrollRecItems();
 	
 	$window.on('scroll', processScrollRecItems);
@@ -680,6 +750,11 @@ $(document).ready(function()
 	
 	//Lors de la prise de focus par les input des block dédiés a l edition des noms des bocks
 	initBlockInputName();
+	
+	//Lors du clic sur le bouton de description d un bloc
+	initDescribeBlock();
+	
+	nbBlocks = $itemSidebarList.children('.item-sidebar-block-li').length + 1;
 	
 	//Bouton de generation du build uniquement
 	$('#only-generate-build, #modal-btn-only-generate-build').click(function(e){
@@ -800,7 +875,7 @@ $(document).ready(function()
 	//CustomScrollBar
 	$itemSidebarList.parent('li').mCustomScrollbar({
 		advanced:{
-			updateOnContentResize: Boolean
+			updateOnContentResize: true
 		}
 	});
 	
