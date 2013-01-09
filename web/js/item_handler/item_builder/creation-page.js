@@ -379,7 +379,9 @@ function initWithStoredItemBuild() {
 		var blockNameEscaped = blockName.replace(/ +/g, '_');
 		var items = block.items;
 		var blockDescription = block.description;
-		
+		if ( blockDescription == undefined) {
+			blockDescription = '';
+		}
 		$itemSidebarList.append('<li class="item-sidebar-block-li" id="__'+blockNameEscaped+'__item-block-li" data-description="'+blockDescription+'"><input type="text" class="item_sidebar_block_input span9" value="'+blockName+'"/><a href="#" class="describe-block btn-describe-block-item" id="__'+blockNameEscaped+'__describe-block"><i class="icon-file"></i></a><a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a><div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div></li>')
 		initItemDroppable($itemSidebarList.find('li:last div.item-sidebar-block-div'));
 		
@@ -415,6 +417,7 @@ function storeItemBuild() {
 	$itemSidebarList.find('li.item-sidebar-block-li').each(function () {
 		var blockName = $(this).find('input.item_sidebar_block_input').val();
 		var blockDescription = $.trim($(this).attr('data-description'));//TODO ESCAPE
+		
 		if(blockName != undefined && blockName != '' && ! (blockName in itemsSlugs)) {
 			var blockArray = new Array();
 			$that = $(this);

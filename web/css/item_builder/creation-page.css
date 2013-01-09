@@ -360,7 +360,6 @@ div.body-container div.item-container {
 }
 div.body-container div.champion-container .item,
 div.body-container div.item-container .item {
-  height: 50px;
   width: 50px;
   list-style: none;
 }
