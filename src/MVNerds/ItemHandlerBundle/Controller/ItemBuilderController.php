@@ -299,6 +299,7 @@ class ItemBuilderController extends Controller
 		$itemsSlugs = $request->get('itemsSlugs');
 		$gameMode = $request->get('gameMode');
 		$buildName = $request->get('buildName');
+		$buildDescription = $request->get('description');
 		$saveBuild = $request->get('saveBuild');
 		$path = $request->get('path');
 		$itemBuildSlug = $request->get('itemBuildSlug');
@@ -329,6 +330,7 @@ class ItemBuilderController extends Controller
 		}
 		
 		$itemBuild->setGameModeId($gameModes[$gameMode]);
+		$itemBuild->setDescription($buildDescription);
 		
 		$i = 1;
 		$itemBuildBlocks = new \PropelCollection();
@@ -683,6 +685,7 @@ class ItemBuilderController extends Controller
 			'selectedChampions'	=> $selectedChampions,
 			'selectedItems'		=> $selectedItems,
 			'buildName'			=> $itemBuild->getName(),
+			'buildDescription'		=> $itemBuild->getDescription(),
 			'gameMode'			=> $itemBuild->getGameMode()->getLabel(),
 			'itemBuildSlug'		=> $itemBuildSlug
 		));

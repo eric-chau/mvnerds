@@ -606,7 +606,7 @@ div.body-container div.game-mode-container .game-mode {
   display: inline-block;
   height: 153px;
   margin: 0 5px;
-  width: 229px;
+  width: 225px;
 }
 div.body-container div.game-mode-container .game-mode.dominion {
   background-position: -291px -1px;
@@ -804,7 +804,7 @@ div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_li
   -moz-border-radius: 0 !important;
   border-radius: 0 !important;
   color: #19A0DF;
-  width: 117px;
+  width: 115px;
 }
 div.body-container div.item-container div#item-sidebar-blocks ul#item_sidebar_list li ul#item_sidebar_blocks_list li.item-sidebar-block-li input:focus {
   background-color: #444;
@@ -928,6 +928,17 @@ div.body-container div.name-container input[type="text"] {
   font-size: 18px;
   padding: 7px;
   width: 250px;
+}
+div.body-container div.name-container textarea {
+  font-size: 17px;
+  width: 250px;
+  height: 150px;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+}
+div.body-container div.name-container p {
+  text-align: left;
 }
 div.body-container div.generate-button-container a {
   background-color: #333;

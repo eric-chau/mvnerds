@@ -113,6 +113,10 @@
 		<div class="name-container">
 			<form action="#" method="POST">
 				<input type="text" class="" id="build-name" placeholder="{{'create_item_build.list_name.placeholder' | trans}}" value="{% if buildName is defined %}{{buildName}}{% endif %}"/>
+				<br />
+				<br />
+				<p>{{'create_item_build.p.5.2' | trans}}</p>
+				<textarea placeholder="Description..." id="build-description">{% if buildDescription is defined and buildDescription != '' %}{{ buildDescription }}{% endif %}</textarea>
 			</form>
 		</div>
 		

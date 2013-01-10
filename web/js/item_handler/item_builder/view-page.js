@@ -28,6 +28,7 @@ function storeItemBuildForCopy() {
 	});
 
 	var buildName = '';
+	var buildDescription = '';
 	
 	saveItemInLS('storedItemBuild', 'true');
 	saveItemInLS('storedChampionSlugs', championSlugs);

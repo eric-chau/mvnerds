@@ -83,13 +83,19 @@
 			
 			<trans-unit id="13">
 				<source>create_item_build.h2.4</source>
-				<target>Etape 4 : nommez votre liste</target>
+				<target>Etape 4 : nommez et décrivez votre liste</target>
 			</trans-unit>
 			<trans-unit id="14">
 				<source>create_item_build.p.5</source>
 				<target>
 					Vous devez maintenant nommer votre liste d'objet conseillés. Vous pourrez ensuite si vous le souhaitez, la consulter de nouveau,
 					la récupérer, l'éditer ou encore la partager avec le reste de la communauté MVNerds.
+				</target>
+			</trans-unit>
+			<trans-unit id="0014">
+				<source>create_item_build.p.5.2</source>
+				<target>
+					Vous pouvez également, si vous le souhaitez, décrire votre liste d'objets.
 				</target>
 			</trans-unit>
 			<trans-unit id="014">

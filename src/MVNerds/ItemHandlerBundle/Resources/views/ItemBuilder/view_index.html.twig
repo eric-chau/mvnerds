@@ -99,6 +99,17 @@
 		</p>
 		
 		<div class="row-fluid">
+			{% if itemBuild.getDescription() != null and itemBuild.getDescription() != '' %}
+				<h2>Description</h2>
+				
+				<p>
+					{{ itemBuild.getDescription() }}
+				</p>
+			{% endif %}
+		</div>
+		
+		<div class="row-fluid">
+			
 			<div class="span8">
 				<h2>{{'item_build_view_index.champions.h2'|trans}}</h2>
 

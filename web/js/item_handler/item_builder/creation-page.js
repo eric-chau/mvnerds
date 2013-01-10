@@ -82,13 +82,13 @@ function simulateClickDownload(linkEl) {console.log('simul');
 };
 
 function isBuildValid() {
-	$champions = $('div.champion-container li.champion.active');
+	var $champions = $('div.champion-container li.champion.active');
 	
-	gameMode = $('div.game-mode-container div.game-mode.active').first().data('game-mode');
-	buildName = $('input#build-name').val();
-	path = $('#modal-lol-path').val();
+	var gameMode = $('div.game-mode-container div.game-mode.active').first().data('game-mode');
+	var buildName = $('input#build-name').val();
+	var path = $('#modal-lol-path').val();
 	
-	$items = $itemSidebarList.find('li div div.portrait');
+	var $items = $itemSidebarList.find('li div div.portrait');
 	
 	if($champions.length >= 1) {
 		if(gameModesArray.indexOf(gameMode) >=0 ) {
@@ -150,13 +150,14 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 		
 		saveBuild = saveBuild == undefined ? false : saveBuild;
 
-		$champions = $('div.champion-container li.champion.active');
+		var $champions = $('div.champion-container li.champion.active');
 
-		gameMode = $('div.game-mode-container div.game-mode.active').first().data('game-mode');
-		buildName = $('input#build-name').val();
-		path = $('#modal-lol-path').val();
+		var gameMode = $('div.game-mode-container div.game-mode.active').first().data('game-mode');
+		var buildName = $('input#build-name').val();
+		var buildDescription = $('textarea#build-description').val();
+		var path = $('#modal-lol-path').val();
 
-		$items = $itemSidebarList.find('li div div.portrait');
+		var $items = $itemSidebarList.find('li div div.portrait');
 
 		if (isBuildValid()) {
 			
@@ -187,7 +188,7 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 				}
 			});
 			
-			var data =  {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName, path: path};
+			var data =  {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName, path: path, description: buildDescription};
 			if (saveBuild) {
 				data.saveBuild = 'true';
 			}					
@@ -361,9 +362,9 @@ function initWithStoredItemBuild() {
 	var gameMode = getItemFromLS('storedGameMode');
 	var itemSlugs = getItemFromLS('storedItemSlugs').split(',');
 	var buildName = getItemFromLS('storedBuildName');
+	var buildDescription = getItemFromLS('storedBuildDescription');
 	
 	itemSlugs = JSON.parse(getItemFromLS('storedItemSlugs'));
-	console.log(itemSlugs);
 	for(var i = 0; i < championSlugs.length; i++) {
 		if (championSlugs[i] != '') {
 			$('#champion-isotope-list li.champion#'+championSlugs[i]).addClass('active');
@@ -391,6 +392,7 @@ function initWithStoredItemBuild() {
 	}
 	
 	$('#build-name').val(buildName);
+	$('#build-description').val(buildDescription);
 	
 	var activeChampions = $('ul#champion-isotope-list li.champion.active');
 	if (activeChampions.length > 0) {
@@ -403,6 +405,7 @@ function initWithStoredItemBuild() {
 	delete localStorage['storedGameMode'];
 	delete localStorage['storedItemSlugs'];
 	delete localStorage['storedBuildName'];
+	delete localStorage['storedBuildDescription'];
 }
 
 function storeItemBuild() {
@@ -437,12 +440,17 @@ function storeItemBuild() {
 	});
 
 	var buildName = $('#build-name').val();
-	
+	var buildDescription = $('#build-description').val();
+	if ( buildDescription == undefined || buildDescription == '' ) {
+		buildDescription = '';
+	}
+	alert(buildDescription);
 	saveItemInLS('storedItemBuild', 'true');
 	saveItemInLS('storedChampionSlugs', championSlugs);
 	saveItemInLS('storedGameMode', gameMode);
 	saveItemInLS('storedItemSlugs', JSON.stringify(itemsSlugs));
 	saveItemInLS('storedBuildName', buildName);
+	saveItemInLS('storedBuildDescription', buildDescription);
 }
 /*************** FIN LOCAL STORAGE ****************/
 
