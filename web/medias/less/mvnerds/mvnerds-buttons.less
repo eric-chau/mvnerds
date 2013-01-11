@@ -13,6 +13,11 @@
 	color: @ClassicButtonLinkTextColor !important;
 	padding: 7px 10px;
 
+	&.small {
+		font-size: 12px;
+		padding: 2px 5px;
+	}
+
 	&:hover, &:focus {
 		background-color: @MVNerdsBlue;
 	}
@@ -25,12 +30,16 @@
 		}
 	}
 
-	&.red {
+	&.red, &.no-color {
 		background-color: darken(@MVNerdsRed, 10%);
 
 		&:hover, &:focus {
 			background-color: @MVNerdsRed;
 		}
+	}
+
+	&.no-color {
+		background-color: #999;
 	}
 }
 

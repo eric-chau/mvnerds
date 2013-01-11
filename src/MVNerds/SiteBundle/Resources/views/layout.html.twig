@@ -1,0 +1,18 @@
+{% extends '::layout.html.twig' %}
+
+{% block css %}
+	{% if app.environment == 'dev' %}
+		<link href='{{ asset('medias/css/champions/champion-square25-sprite.css') }}' rel='stylesheet' type='text/css'>
+		<link href='{{ asset('medias/css/champions/champion-square36-sprite.css') }}' rel='stylesheet' type='text/css'>
+	{% endif %}
+{% endblock %}
+
+{% block body %}
+	{% include 'MVNerdsSiteBundle:Common:topbar.html.twig' %}
+			
+	{% include 'MVNerdsSiteBundle:Common:header.html.twig' %}
+
+	{% include 'MVNerdsSiteBundle:Common:champion-rotation.html.twig' %}
+
+	{% block main_content %}{% endblock %}
+{% endblock %}

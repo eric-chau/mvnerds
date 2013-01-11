@@ -54,12 +54,12 @@
 			<li class="alert">
 				<a href="#" class="unread"><i class="icon-info-sign"></i></a>
 			</li>
-			<li class="notification">
+			{#<li class="notification">
 				<i class="icon-exclamation-sign"></i>
-			</li>
+			</li>#}
 			<li class="user-container">
 				{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-					<img src="{{ asset('medias/images/avatar/' ~ app.user.getUserAvatarName() ~ '.jpg') }}" /> <a href="#" class="username">{{ app.user.getUsername() }}</a> <a href="#" class="signout"><i class="icon-signout"></i></a>
+					<img src="{{ asset('medias/images/avatar/' ~ app.user.getUserAvatarName() ~ '.jpg') }}" /> <a href="#" class="username">{{ app.user.getUsername() }}</a> <a href="#" class="signout">Déconnexion</a>
 				{% else %}
 					<a href="#">se connecter</a> ou <a href="#">s'enregistrer</a>
 				{% endif %}

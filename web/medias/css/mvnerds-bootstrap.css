@@ -44,6 +44,10 @@
   color: #ffffff !important;
   padding: 7px 10px;
 }
+.btn.small {
+  font-size: 12px;
+  padding: 2px 5px;
+}
 .btn:hover,
 .btn:focus {
   background-color: #19a0df;
@@ -55,12 +59,18 @@
 .btn.green:focus {
   background-color: #759e1a;
 }
-.btn.red {
+.btn.red,
+.btn.no-color {
   background-color: #be3322;
 }
 .btn.red:hover,
-.btn.red:focus {
+.btn.no-color:hover,
+.btn.red:focus,
+.btn.no-color:focus {
   background-color: #db4a38;
+}
+.btn.no-color {
+  background-color: #999;
 }
 .mvnerds-btn {
   border-bottom: 3px solid #ddd;
@@ -188,7 +198,7 @@ div.media:hover p.legend {
 }
 div.media.large {
   width: 600px;
-  margin-left: 26px;
+  margin-left: 15px;
 }
 div.media img {
   width: 100%;
@@ -225,9 +235,75 @@ div.container.border-top {
 div.container.border-bottom {
   border-bottom: 1px solid #999;
 }
-div#topbar {
+div.separator {
+  background: url('/medias/images/site/separator.png') no-repeat top center;
+  display: block;
+  height: 14px;
+  margin: 10px;
+  opacity: .7;
+}
+ul.nav.nav-tabs {
+  border-bottom: 2px solid #19a0df;
+  margin: 0 0 10px 0 !important;
+  padding: 0 !important;
+}
+ul.nav.nav-tabs li {
+  display: inline-block;
+  margin: 0 4px;
+  text-align: center;
+  vertical-align: middle;
+}
+ul.nav.nav-tabs li.active {
+  background-color: #19a0df;
+}
+ul.nav.nav-tabs li.active a {
+  color: #fff;
+  font-weight: bold;
+}
+ul.nav.nav-tabs li a {
+  display: block;
+  font-weight: normal;
+  padding: 5px 10px;
+}
+div.tab-content div.tab-pane {
+  display: none;
+}
+div.tab-content div.tab-pane.active {
+  display: block;
+}
+div.sidebar-ad-container {
+  border: 1px solid #666;
+  margin: 0 0 20px 0;
+  padding: 10px;
+}
+div.popover {
+  border: 2px solid #111;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  width: 330px;
+  padding: 0;
+}
+div.popover h3.popover-title {
+  background-color: #111;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  color: #eee;
+}
+div.popover div.popover-content {
   background-color: #e4e6e5;
-  border-top: 4px solid #333;
+}
+div.popover div.popover-content div.champion-square-list {
+  text-align: center;
+}
+div.popover div.popover-content div.champion-square-list div.champion-square36 {
+  display: inline-block;
+  margin: 2px;
+}
+div#topbar {
+  background-color: #333;
+  border-top: 2px solid #333;
   margin: 0 0 5px 0;
   padding: 0 10px;
   position: fixed;
@@ -268,7 +344,7 @@ div#topbar ul.menu li.dropdown.open:hover a {
 div#topbar ul.menu li.dropdown ul.dropdown-menu {
   background-color: rgba(228, 230, 229, 0.95);
   left: 50%;
-  margin: 0 0 0 -451px;
+  margin: 2px 0 0 -451px;
   padding: 10px 20px 30px 20px;
   width: 860px;
 }
@@ -320,8 +396,11 @@ div#topbar ul.menu li.dropdown ul.dropdown-menu li div.menu-detail ul li a:hover
   -o-transition: color 0.2s linear;
   transition: color 0.2s linear;
 }
+div#topbar ul.menu li a {
+  color: #999;
+}
 div#topbar ul.menu li a:hover {
-  color: #be3322;
+  color: #fff;
 }
 div#topbar ul.menu li a.active {
   color: #db4a38;
@@ -523,6 +602,14 @@ div.container.champion-rotation div.champion-search-input i {
 div.container.main-container {
   padding: 20px 10px;
 }
+div.container.main-container div.span8.left-content {
+  border: 1px solid #666;
+  padding: 10px;
+}
+div.container.main-container div.span8.left-content div.ad-container {
+  margin: 0 0 10px 0;
+  text-align: center;
+}
 div.container.main-container div.span4.right-content div.block {
   margin: 0 0 20px 0;
 }
@@ -556,6 +643,48 @@ div.container.main-container div.span4.right-content div.block div.body ul {
 div.container.main-container div.span4.right-content div.block div.body ul li {
   color: #aaa;
   font-weight: bold;
+}
+div.container.main-container div.span4.right-content div.block div.body div.pmri-row {
+  background-color: #333;
+  color: #999;
+  cursor: pointer;
+  margin: 5px 0;
+  min-height: 0;
+  padding: 4px 0 4px 10px;
+  position: relative;
+}
+div.container.main-container div.span4.right-content div.block div.body div.pmri-row:hover {
+  background-color: #147fb1;
+  color: #fff;
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+div.container.main-container div.span4.right-content div.block div.body div.pmri-row:hover i.icon-double-angle-right {
+  display: block;
+}
+div.container.main-container div.span4.right-content div.block div.body div.pmri-row a {
+  color: #db4a38;
+  font-weight: bold;
+}
+div.container.main-container div.span4.right-content div.block div.body div.pmri-row a:hover {
+  color: #fff;
+}
+div.container.main-container div.span4.right-content div.block div.body div.pmri-row i.icon-double-angle-right {
+  display: none;
+  font-size: 40px;
+  margin-top: -20px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+}
+div.container.main-container div.span4.right-content div.block div.body div.pmri-row img {
+  float: left;
+  margin: 0 10px 0 0;
+  position: relative;
+  top: 2px;
+  width: 54px;
 }
 div.container.main-container div.span4.right-content div.block div.footer {
   background-color: #658816;

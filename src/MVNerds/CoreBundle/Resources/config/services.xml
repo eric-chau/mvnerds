@@ -17,6 +17,9 @@
 			<call method="setSession">
 				<argument type="service" id="session" />
 			</call>
+			<call method="setRouter">
+				<argument type="service" id="router" />
+			</call>
 		</service>
 		
 		<!-- BATCH SERVICES -->

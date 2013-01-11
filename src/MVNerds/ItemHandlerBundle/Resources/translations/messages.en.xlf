@@ -309,7 +309,7 @@
 			<trans-unit id="2004">
 				<source>item_table.td.created_by</source>
 				<target>
-					Created by
+					By
 				</target>
 			</trans-unit>
 			<trans-unit id="2005">

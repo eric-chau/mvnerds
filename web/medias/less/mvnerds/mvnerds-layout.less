@@ -3,13 +3,21 @@ div.container.main-container {
 
 	div {
 		&.span8.left-content {
+			border: 1px solid #666;
+			padding: 10px;
 
+			div.ad-container {
+				margin: 0 0 10px 0;
+				text-align: center;
+			}
 		}
 
 		&.span4.right-content {
+			// Block dans la sidebar
 			div.block {
 				margin: 0 0 20px 0;
 
+				// Block header CSS
 				div.header {
 					border: 1px solid #333;
 					padding: 10px 5px;
@@ -20,6 +28,7 @@ div.container.main-container {
 					}
 				}
 
+				// Block body CSS
 				div.body {
 					background-color: #333;
 					padding: 10px 0;
@@ -47,8 +56,54 @@ div.container.main-container {
 							font-weight: bold;
 						}
 					}
+
+					div.pmri-row {
+						background-color: #333;
+						color: #999;
+						cursor: pointer;
+						margin: 5px 0;
+						min-height: 0;
+						padding: 4px 0 4px 10px;
+						position: relative;
+
+						&:hover {
+							background-color: darken(@MVNerdsBlue, 10%);
+							color: #fff; .transition(all .25s linear);
+
+							i.icon-double-angle-right {
+								display: block;
+							}
+						}
+
+						a {
+							color: @MVNerdsRed;
+							font-weight: bold;
+
+							&:hover {
+								color: #fff;
+							}
+						}
+
+						i.icon-double-angle-right {
+							display: none;
+							font-size: 40px;
+							margin-top: -20px;
+							position: absolute;
+							right: 10px;
+							top: 50%;
+						}
+
+						img {
+							float: left;
+							margin: 0 10px 0 0;
+							position: relative;
+							top: 2px;
+							width: 54px;
+						}
+					}
 				}
 
+				// Block footer CSS
 				div.footer {
 					background-color: darken(@MVNerdsGreen, 5%);
 

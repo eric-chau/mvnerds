@@ -1,6 +1,6 @@
 div#topbar {
-	background-color: @bodyMainBGColor;
-	border-top: 4px solid #333;
+	background-color: #333;
+	border-top: 2px solid #333;
 	margin: 0 0 5px 0;
 	padding: 0 10px;
 	position: fixed;
@@ -41,7 +41,7 @@ div#topbar {
 					ul.dropdown-menu {
 						background-color: rgba(228,230,229,.95);
 						left: 50%;
-						margin: 0 0 0 -451px;
+						margin: 2px 0 0 -451px;
 						padding: 10px 20px 30px 20px;
 						width: 860px;
 
@@ -107,8 +107,10 @@ div#topbar {
 				}
 
 				a {
+					color: #999;
+
 					&:hover {
-						color: darken(@MVNerdsRed, 10%);
+						color: #fff;
 					}
 
 					&.active {

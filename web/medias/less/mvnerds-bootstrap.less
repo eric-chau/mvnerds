@@ -107,7 +107,7 @@ div.media {
 
 	&.large {
 		width: 600px;
-		margin-left: 26px;
+		margin-left: 15px;
 	}
 
 	img {
@@ -153,6 +153,84 @@ div.container {
 
 	&.border-bottom {
 		border-bottom: 1px solid #999;
+	}
+}
+
+div.separator {
+	background: url('/medias/images/site/separator.png') no-repeat top center;
+	display: block;
+	height: 14px;
+	margin: 10px;
+	opacity: .7;
+}
+
+ul.nav.nav-tabs {
+	border-bottom: 2px solid @MVNerdsBlue;
+	margin: 0 0 10px 0 !important;
+	padding: 0 !important;
+
+	li {
+		display: inline-block;
+		margin: 0 4px;
+		text-align: center;
+		vertical-align: middle;
+
+		&.active {
+			background-color: @MVNerdsBlue;
+
+			a {
+				color: #fff;
+				font-weight: bold;
+			}
+		}
+
+		a {
+			display: block;
+			font-weight: normal;
+			padding: 5px 10px;
+		}
+	}
+}
+
+div.tab-content {
+	div.tab-pane {
+		display: none;
+
+		&.active {
+			display: block;
+		}
+	}
+}
+
+div.sidebar-ad-container {
+	border: 1px solid #666;
+	margin: 0 0 20px 0;
+	padding: 10px;
+}
+
+div.popover {
+	border: 2px solid #111;
+	.border-radius(0);
+	width: 330px;
+	padding: 0;
+	
+	h3.popover-title {
+		background-color: #111;
+		.border-radius(0);
+		color: #eee;
+	}
+
+	div.popover-content {
+		background-color: @bodyMainBGColor;
+
+		div.champion-square-list {
+			text-align: center;
+
+			div.champion-square36 {
+				display: inline-block;
+				margin: 2px;
+			}
+		}
 	}
 }
 

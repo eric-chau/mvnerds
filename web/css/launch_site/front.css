@@ -1283,3 +1283,9 @@ div.alert.alert-success {
 div.alert.alert-error {
   background-color: #db4a38;
 }
+div.ad-container {
+  background-color: #000;
+  margin: 0 0 20px 0;
+  padding: 10px 0;
+  text-align: center;
+}
