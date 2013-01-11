@@ -260,6 +260,18 @@
 					Add a bloc
 				</target>
 			</trans-unit>
+			<trans-unit id="38">
+				<source>create_item_build.build_private.label</source>
+				<target>
+					Make this list private
+				</target>
+			</trans-unit>
+			<trans-unit id="39">
+				<source>create_item_build.build_private.tooltip</source>
+				<target>
+					If you save this list, and make it private, you will be the only one able to see it.
+				</target>
+			</trans-unit>
 
 			<!-- TABED LIST INDEX -->
 			<trans-unit id="1000">

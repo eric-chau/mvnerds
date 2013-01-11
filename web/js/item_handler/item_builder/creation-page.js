@@ -155,6 +155,7 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 		var gameMode = $('div.game-mode-container div.game-mode.active').first().data('game-mode');
 		var buildName = $('input#build-name').val();
 		var buildDescription = $('textarea#build-description').val();
+		var isBuildPrivate = $('input#build-private').prop('checked');
 		var path = $('#modal-lol-path').val();
 
 		var $items = $itemSidebarList.find('li div div.portrait');
@@ -188,7 +189,7 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 				}
 			});
 			
-			var data =  {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName, path: path, description: buildDescription};
+			var data =  {championsSlugs : championsSlugs, itemsSlugs: itemsSlugs, gameMode: gameMode, buildName: buildName, path: path, description: buildDescription, isBuildPrivate: isBuildPrivate};
 			if (saveBuild) {
 				data.saveBuild = 'true';
 			}					
@@ -363,7 +364,7 @@ function initWithStoredItemBuild() {
 	var itemSlugs = getItemFromLS('storedItemSlugs').split(',');
 	var buildName = getItemFromLS('storedBuildName');
 	var buildDescription = getItemFromLS('storedBuildDescription');
-	
+	var isBuildPrivate = getItemFromLS('storedBuildIsPrivate');
 	itemSlugs = JSON.parse(getItemFromLS('storedItemSlugs'));
 	for(var i = 0; i < championSlugs.length; i++) {
 		if (championSlugs[i] != '') {
@@ -393,6 +394,7 @@ function initWithStoredItemBuild() {
 	
 	$('#build-name').val(buildName);
 	$('#build-description').val(buildDescription);
+	$('#build-private').prop('checked', ( isBuildPrivate == 'false' ? false : true ) );
 	
 	var activeChampions = $('ul#champion-isotope-list li.champion.active');
 	if (activeChampions.length > 0) {
@@ -406,6 +408,7 @@ function initWithStoredItemBuild() {
 	delete localStorage['storedItemSlugs'];
 	delete localStorage['storedBuildName'];
 	delete localStorage['storedBuildDescription'];
+	delete localStorage['storedBuildIsPrivate'];
 }
 
 function storeItemBuild() {
@@ -444,13 +447,15 @@ function storeItemBuild() {
 	if ( buildDescription == undefined || buildDescription == '' ) {
 		buildDescription = '';
 	}
-	alert(buildDescription);
+	var isBuildPrivate = $('input#build-private').prop('checked');
+	
 	saveItemInLS('storedItemBuild', 'true');
 	saveItemInLS('storedChampionSlugs', championSlugs);
 	saveItemInLS('storedGameMode', gameMode);
 	saveItemInLS('storedItemSlugs', JSON.stringify(itemsSlugs));
 	saveItemInLS('storedBuildName', buildName);
 	saveItemInLS('storedBuildDescription', buildDescription);
+	saveItemInLS('storedBuildIsPrivate', isBuildPrivate);
 }
 /*************** FIN LOCAL STORAGE ****************/
 

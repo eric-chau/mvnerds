@@ -56,7 +56,7 @@ class FrontController extends Controller
 		
 		return $this->render('MVNerdsProfileBundle:Profile:profile_index.html.twig', array(
 			'user'				=> $user,
-			'user_items_builds' => $this->get('mvnerds.item_build_manager')->findByUserId($user->getId())
+			'user_items_builds' => $this->get('mvnerds.item_build_manager')->findPublicByUserId($user->getId())
 		));
 	}
 	

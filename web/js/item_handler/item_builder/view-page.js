@@ -29,12 +29,15 @@ function storeItemBuildForCopy() {
 
 	var buildName = '';
 	var buildDescription = '';
+	var isBuildPrivate = false;
 	
 	saveItemInLS('storedItemBuild', 'true');
 	saveItemInLS('storedChampionSlugs', championSlugs);
 	saveItemInLS('storedGameMode', gameMode);
 	saveItemInLS('storedItemSlugs', JSON.stringify(itemSlugs));
 	saveItemInLS('storedBuildName', buildName);
+	saveItemInLS('storedBuildDescription', buildDescription);
+	saveItemInLS('storedBuildIsPrivate', isBuildPrivate);
 }
 
 $(function() {

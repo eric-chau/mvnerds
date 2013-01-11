@@ -186,6 +186,25 @@ class ItemBuildManager
 
 		return $itemBuilds;
 	}	
+	public function findPublicByUserId($userId)
+	{
+		$itemBuilds = ItemBuildQuery::create()
+			->joinWith('ChampionItemBuild', \Criteria::LEFT_JOIN)
+			->joinWith('GameMode', \Criteria::LEFT_JOIN)
+			->joinWith('ChampionItemBuild.Champion chp', \Criteria::LEFT_JOIN)
+			->joinWith('chp.ChampionI18n', \Criteria::LEFT_JOIN)
+			->joinWith('User', \Criteria::LEFT_JOIN)
+			->add(ItemBuildPeer::USER_ID, $userId)
+			->add(ItemBuildPeer::STATUS, ItemBuildPeer::STATUS_PUBLIC)
+		->find();
+		
+		if (null === $itemBuilds)
+		{
+			throw new InvalidArgumentException('No item build found !');
+		}
+
+		return $itemBuilds;
+	}	
 	
 	/**
 	 * Récupère les builds les plus récents

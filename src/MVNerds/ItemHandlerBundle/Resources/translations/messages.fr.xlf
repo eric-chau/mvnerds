@@ -263,6 +263,18 @@
 					Ajouter un bloc
 				</target>
 			</trans-unit>
+			<trans-unit id="38">
+				<source>create_item_build.build_private.label</source>
+				<target>
+					Rendre cette liste privée
+				</target>
+			</trans-unit>
+			<trans-unit id="39">
+				<source>create_item_build.build_private.tooltip</source>
+				<target>
+					Si vous enregistrez cette liste en tant que privée, vous serez le seul capable de la voir.
+				</target>
+			</trans-unit>
 
 			<!-- TABED LIST INDEX -->
 			<trans-unit id="1000">

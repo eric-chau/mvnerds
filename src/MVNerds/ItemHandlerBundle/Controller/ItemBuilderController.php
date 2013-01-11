@@ -300,6 +300,7 @@ class ItemBuilderController extends Controller
 		$gameMode = $request->get('gameMode');
 		$buildName = $request->get('buildName');
 		$buildDescription = $request->get('description');
+		$isBuildPrivate = $request->get('isBuildPrivate');
 		$saveBuild = $request->get('saveBuild');
 		$path = $request->get('path');
 		$itemBuildSlug = $request->get('itemBuildSlug');
@@ -331,6 +332,12 @@ class ItemBuilderController extends Controller
 		
 		$itemBuild->setGameModeId($gameModes[$gameMode]);
 		$itemBuild->setDescription($buildDescription);
+		
+		if ($isBuildPrivate == 'false') { 
+			$itemBuild->setStatus(\MVNerds\CoreBundle\Model\ItemBuildPeer::STATUS_PUBLIC);
+		} else {
+			$itemBuild->setStatus(\MVNerds\CoreBundle\Model\ItemBuildPeer::STATUS_PRIVATE);
+		}
 		
 		$i = 1;
 		$itemBuildBlocks = new \PropelCollection();
@@ -687,7 +694,8 @@ class ItemBuilderController extends Controller
 			'buildName'			=> $itemBuild->getName(),
 			'buildDescription'		=> $itemBuild->getDescription(),
 			'gameMode'			=> $itemBuild->getGameMode()->getLabel(),
-			'itemBuildSlug'		=> $itemBuildSlug
+			'itemBuildSlug'		=> $itemBuildSlug,
+			'isBuildPrivate'		=> ($itemBuild->getStatus() == \MVNerds\CoreBundle\Model\ItemBuildPeer::STATUS_PRIVATE)
 		));
 	}
 	

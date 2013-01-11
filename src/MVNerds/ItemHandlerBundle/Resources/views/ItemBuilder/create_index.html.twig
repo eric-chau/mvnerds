@@ -125,6 +125,14 @@
 		<p class="note">{{'create_item_build.tip.5' | trans}}</p>
 		<p class="note">{{'create_item_build.tip.6' | trans}}</p>
 		
+		<div id="private-container">
+			<form action="#" method="POST">
+				<i class="icon-lock icon white"></i>
+				<input type="checkbox" id="build-private" {% if isBuildPrivate is defined and isBuildPrivate == 1%}checked="checked"{% endif %}/>
+				<label for="build-private"> {{'create_item_build.build_private.label'|trans}} <i class="icon-question-sign icon-white bootstrap-tooltip" data-title="{{'create_item_build.build_private.tooltip'|trans}}"></i></label>
+			</form>
+		</div>
+		
 		<div class="generate-button-container">
 			{% if itemBuildSlug is not defined %}
 				{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}

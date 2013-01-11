@@ -940,6 +940,23 @@ div.body-container div.name-container textarea {
 div.body-container div.name-container p {
   text-align: left;
 }
+div.body-container div#private-container {
+  text-align: center;
+}
+div.body-container div#private-container i {
+  font-size: 17px;
+}
+div.body-container div#private-container input[type="checkbox"] {
+  margin: 10px;
+  display: inline-block;
+}
+div.body-container div#private-container label {
+  display: inline-block;
+}
+div.body-container div#private-container label i {
+  font-size: 17px;
+  cursor: help;
+}
 div.body-container div.generate-button-container a {
   background-color: #333;
   color: #999;
