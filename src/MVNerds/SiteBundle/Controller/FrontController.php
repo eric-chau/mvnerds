@@ -17,4 +17,12 @@ class FrontController extends Controller
 			'popular_items_builds' => $this->get('mvnerds.item_build_manager')->findMostDownloadedBuilds()
 		));
     }
+	
+	/**
+     * @Route("/test-api")
+     */
+    public function testAPIAction()
+    {
+		$this->get('mvnerds.elophant_api_manager')->getSummonerAccoundId('kopovlie', 'euw');
+    }
 }

@@ -160,5 +160,14 @@
 			VOTE MANAGER SERVICE
 		-->
 		<service id="mvnerds.vote_manager" class="MVNerds\CoreBundle\Vote\VoteManager" />    
+
+		<!-- 
+			VOTE MANAGER SERVICE
+		-->
+		<service id="mvnerds.elophant_api_manager" class="MVNerds\CoreBundle\ElophantAPI\ElophantAPIManager">
+			<call method="setBuzz">
+				<argument type="service" id="buzz" />
+			</call>
+		</service>
 	</services>		
 </container>
