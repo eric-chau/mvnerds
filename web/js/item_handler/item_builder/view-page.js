@@ -9,6 +9,7 @@ function storeItemBuildForCopy() {
 	var itemSlugs = new Array();
 	$('div.item-container.view-item-container div.elements-grid').each(function () {
 		var blockName = $(this).find('h3').html();
+		var blockDescription = $(this).children('p').html();
 		if(! (blockName in itemSlugs)) {
 			var blockArray = new Array();
 			$(this).find('ul li.item div.portrait').each(function() {
@@ -21,18 +22,22 @@ function storeItemBuildForCopy() {
 				blockArray.push({slug: $(this).data('slug'), count: itemCount});
 			});
 			if (blockArray.length > 0) {
-				itemSlugs.push({name:blockName, items:blockArray});
+				itemSlugs.push({name:blockName, items:blockArray, description: blockDescription});
 			}
 		}
 	});
 
 	var buildName = '';
+	var buildDescription = '';
+	var isBuildPrivate = false;
 	
 	saveItemInLS('storedItemBuild', 'true');
 	saveItemInLS('storedChampionSlugs', championSlugs);
 	saveItemInLS('storedGameMode', gameMode);
 	saveItemInLS('storedItemSlugs', JSON.stringify(itemSlugs));
 	saveItemInLS('storedBuildName', buildName);
+	saveItemInLS('storedBuildDescription', buildDescription);
+	saveItemInLS('storedBuildIsPrivate', isBuildPrivate);
 }
 
 $(function() {

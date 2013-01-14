@@ -1,17 +1,19 @@
 function initPopoverItem($container) {
-	$container.find('li.item').hover(function(e) {
+	$container.on('hover', '.item', function(e) {
 		if($(this).data('popover') == undefined) {
 			var title = "<img class='tooltip-item-img pull-left' src='/images/items/" + $(this).data('code') + ".png'/>" + $(this).data('title');
 			
 			$(this).popover({
 				trigger: 'hover',
 				placement: 'bottom',
-				delay: {show: 1, hide: 1}
+				delay: {show: 0, hide: 0}
 			});
 			$(this).data('popover').options.title = title;
 			$(this).data('popover').options.placement = 'bottom';
+			$(this).data('popover').options.animation = false;
+			$(this).data('popover').options.template = '<div class="popover item-popover"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>';
 			$(this).popover('show');
-			setItemPopoverContent($(this).attr('id'), $(this));
+			setItemPopoverContent($(this).data('slug'), $(this));
 		}
 	});
 }
@@ -20,10 +22,13 @@ function setItemPopoverContent(slug, $item) {
 		var item = getItemForModal(slug);
 		var data = '';
 		for (var i = 0; i < item.primaryEffects.length; i++) {
-			data += item.primaryEffects[i];
+			data += item.primaryEffects[i] + '<br />';
+		}
+		if (item.primaryEffects.length > 0 && item.secondaryEffects.length > 0) {
+			data += '<br />';
 		}
 		for (var j = 0; j < item.secondaryEffects.length; j++) {
-			data += item.secondaryEffects[j];
+			data += item.secondaryEffects[j] + '<br />';
 		}	
 		var cost = '';
 		if (locale == 'en') {
@@ -31,7 +36,7 @@ function setItemPopoverContent(slug, $item) {
 		} else {
 			cost = 'Coût';
 		}
-		data += '<br /><br />' + cost + ' : ' + item.totalCost + ' (' + item.cost + ')';
+		data += '<br />' + cost + ' : ' + item.totalCost + ' (' + item.cost + ')';
 		$item.data('popover').$tip.find(".popover-content").html(data);
 		$item.data('ajax-loaded', true);
 	} catch (err) {
@@ -41,50 +46,4 @@ function setItemPopoverContent(slug, $item) {
 			displayMessage('Impossible d\'accéder au détail de l\'objet.', 'error');
 		}
 	}
-}
-
-function initPopoverItemAjax($container) {
-	var popoverTimer;
-	$container.find('li.item').hover(function(e) {
-		$(this).data('isHover', true);
-		if(popoverTimer) {
-			clearTimeout(popoverTimer);
-			popoverTimer = null;
-		}
-		if($(this).data('popover') == undefined) {
-			var title = "<img class='tooltip-item-img pull-left' src='/images/items/" + $(this).data('code') + ".png'/>" + $(this).data('title');
-			
-			$(this).popover({
-				trigger: 'hover',
-				placement: 'bottom',
-				delay: {show: 1, hide: 1}
-			});
-			$(this).data('popover').options.title = title;
-			$(this).data('popover').options.placement = 'bottom';
-			$(this).data('popover').options.content = '<p style="text-align: center;"><img src="/images/commons/loader16-bg-blue.gif" alt="loading"/></p>';
-			$(this).popover('show');
-		}
-		
-		if($(this).data('ajax-loaded') == undefined) {
-			var $that = $(this);
-			popoverTimer = setTimeout(function() {
-				if($that.data('isHover')) {
-					setItemPopoverContent($that.attr('id'), $that);
-				}
-			}, 500)
-		}
-	}, function(){
-		$(this).data('isHover', false);
-	});
-}
-function setItemPopoverContentAjax(slug, $item) {
-	$.ajax({
-		type: 'POST',
-		url:  Routing.generate('item_builder_get_item_popover_content', {_locale: locale}),
-		data: {slug: slug},
-		dataType: 'html'
-	}).done(function(data){
-		$item.data('popover').$tip.find(".popover-content").html(data);
-		$item.data('ajax-loaded', true);
-	});
 }

@@ -96,11 +96,7 @@
 		<p note="tip">{{'create_item_build.tip.3' | trans}}</p>
 		<p class="note">{{'create_item_build.tip.4' | trans}}</p>
 		
-		<div class="item-container">
-			{#<div id="item-topbar" class="actionbar">
-				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_topbar.html.twig' %}
-			</div>#}
-			
+		<div class="item-container">			
 			<div class="row-fluid">
 				<div id="item-list" class="elements-grid span9">
 					{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_grid.html.twig' %}
@@ -117,6 +113,10 @@
 		<div class="name-container">
 			<form action="#" method="POST">
 				<input type="text" class="" id="build-name" placeholder="{{'create_item_build.list_name.placeholder' | trans}}" value="{% if buildName is defined %}{{buildName}}{% endif %}"/>
+				<br />
+				<br />
+				<p>{{'create_item_build.p.5.2' | trans}}</p>
+				<textarea placeholder="Description..." id="build-description">{% if buildDescription is defined and buildDescription != '' %}{{ buildDescription }}{% endif %}</textarea>
 			</form>
 		</div>
 		
@@ -124,6 +124,14 @@
 		<p>{{'create_item_build.p.6' | trans}}</p>
 		<p class="note">{{'create_item_build.tip.5' | trans}}</p>
 		<p class="note">{{'create_item_build.tip.6' | trans}}</p>
+		
+		<div id="private-container">
+			<form action="#" method="POST">
+				<i class="icon-lock icon white"></i>
+				<input type="checkbox" id="build-private" {% if isBuildPrivate is defined and isBuildPrivate == 1%}checked="checked"{% endif %}/>
+				<label for="build-private"> {{'create_item_build.build_private.label'|trans}} <i class="icon-question-sign icon-white bootstrap-tooltip" data-title="{{'create_item_build.build_private.tooltip'|trans}}"></i></label>
+			</form>
+		</div>
 		
 		<div class="generate-button-container">
 			{% if itemBuildSlug is not defined %}

@@ -99,6 +99,17 @@
 		</p>
 		
 		<div class="row-fluid">
+			{% if itemBuild.getDescription() != null and itemBuild.getDescription() != '' %}
+				<h2>Description</h2>
+				
+				<p>
+					{{ itemBuild.getDescription() }}
+				</p>
+			{% endif %}
+		</div>
+		
+		<div class="row-fluid">
+			
 			<div class="span8">
 				<h2>{{'item_build_view_index.champions.h2'|trans}}</h2>
 
@@ -113,7 +124,7 @@
 				<h2>{{'item_build_view_index.game_mode.h2'|trans}}</h2>
 
 				<div class="game-mode-container">
-					{% set gameMode = itemBuild.getChampionItemBuilds().getFirst().getGameMode().getLabel() %}
+					{% set gameMode = itemBuild.getGameMode().getLabel() %}
 
 					{% if gameMode == 'classic' %}
 						<div class="game-mode classic" data-game-mode="classic"><span class="message">Summoner Rift</span></div>

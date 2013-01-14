@@ -83,12 +83,18 @@
 			
 			<trans-unit id="13">
 				<source>create_item_build.h2.4</source>
-				<target>Step 4 : name your list</target>
+				<target>Step 4 : name and describe your list</target>
 			</trans-unit>
 			<trans-unit id="14">
 				<source>create_item_build.p.5</source>
 				<target>
 					You now have to name your recommended items list. If your are registered on mvnerds.com you will be able to save your list and download it again in the future or edit it.
+				</target>
+			</trans-unit>
+			<trans-unit id="0014">
+				<source>create_item_build.p.5.2</source>
+				<target>
+					You can also, if you want to, describe your list.
 				</target>
 			</trans-unit>
 			<trans-unit id="014">
@@ -252,6 +258,18 @@
 				<source>create_item_build.sidebar.button.add_block</source>
 				<target>
 					Add a bloc
+				</target>
+			</trans-unit>
+			<trans-unit id="38">
+				<source>create_item_build.build_private.label</source>
+				<target>
+					Make this list private
+				</target>
+			</trans-unit>
+			<trans-unit id="39">
+				<source>create_item_build.build_private.tooltip</source>
+				<target>
+					If you save this list, and make it private, you will be the only one able to see it.
 				</target>
 			</trans-unit>
 

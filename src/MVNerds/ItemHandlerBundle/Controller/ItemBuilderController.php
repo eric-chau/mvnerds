@@ -13,6 +13,8 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 use MVNerds\CoreBundle\Model\ChampionItemBuild;
 use MVNerds\CoreBundle\Model\UserPreference;
 use  MVNerds\CoreBundle\Model\ItemBuildItems;
+use MVNerds\CoreBundle\Model\ItemBuildBlock;
+use MVNerds\CoreBundle\Model\ItemBuildBlockItem;
 
 /**
  * @Route("/pimp-my-recommended-items")
@@ -182,31 +184,11 @@ class ItemBuilderController extends Controller
 			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
 			$itemBuild = $this->get('mvnerds.item_build_manager')->findOneBySlug($itemBuildSlug);
 			$itemBuild->setView($itemBuild->getView() + 1);
+			$itemBuild->keepUpdateDateUnchanged();
 			$itemBuild->save();
 		} catch (\Exception $e) {
 			return $this->redirect($this->generateUrl('item_builder_list'));
 		}
-		$itemBuildItemsCollection = $itemBuild->getItemBuildItemss();
-		$itemBlocks = array();
-		
-		$length = count($itemBuildItemsCollection);		
-		for ($i = 0; $i < $length; $i++)
-		{
-			/* @var $itemBuildItems \MVNerds\CoreBundle\Model\ItemBuildItems */
-			$itemBuildItems = $itemBuildItemsCollection[$i];
-			
-			$item = $itemBuildItems->getItem();
-			$type = $itemBuildItems->getType();
-			$position = $itemBuildItems->getPosition();
-			$ecapedName = preg_replace('/ +/', '_', $type);
-			if (! isset($itemBlocks[$position]))
-			{
-				$itemBlocks[$position] = array('type' => $type, 'escaped' => $ecapedName, 'items' => array());
-			}
-			
-			$itemBlocks[$position]['items'][] = array('item' => $item, 'count' => $itemBuildItems->getCount());
-		}
-		ksort($itemBlocks);
 		
 		$lolDir = null;
 		$canEdit = false;
@@ -226,7 +208,6 @@ class ItemBuilderController extends Controller
 		
 		$params = array(
 			'itemBuild'	=> $itemBuild,
-			'itemBlocks'	=> $itemBlocks,
 			'lol_dir'	=> $lolDir,
 			'can_edit'	=> $canEdit
 		);
@@ -317,7 +298,9 @@ class ItemBuilderController extends Controller
 		$championsSlugs = $request->get('championsSlugs');
 		$itemsSlugs = $request->get('itemsSlugs');
 		$gameMode = $request->get('gameMode');
-		$buildName = $request->get('buildName');//TODO a echaper
+		$buildName = $request->get('buildName');
+		$buildDescription = $request->get('description');
+		$isBuildPrivate = $request->get('isBuildPrivate');
 		$saveBuild = $request->get('saveBuild');
 		$path = $request->get('path');
 		$itemBuildSlug = $request->get('itemBuildSlug');
@@ -343,21 +326,35 @@ class ItemBuilderController extends Controller
 			'aram'			=> 3,
 			'twisted-treeline'	=> 5
 		);
-		
 		if (!key_exists($gameMode, $gameModes)) {
 			$gameMode = 'classic';
 		}
 		
-		$i = 1;
+		$itemBuild->setGameModeId($gameModes[$gameMode]);
+		$itemBuild->setDescription($buildDescription);
 		
-		$itemBuilditemsCollection = new \PropelCollection();
+		if ($isBuildPrivate == 'false') { 
+			$itemBuild->setStatus(\MVNerds\CoreBundle\Model\ItemBuildPeer::STATUS_PUBLIC);
+		} else {
+			$itemBuild->setStatus(\MVNerds\CoreBundle\Model\ItemBuildPeer::STATUS_PRIVATE);
+		}
+		
+		$i = 1;
+		$itemBuildBlocks = new \PropelCollection();
 		foreach ($itemsSlugs as $itemBlock)
-		{
-			$itemBlockName = $itemBlock['name'];
+		{	
+			$itemBlockName = preg_replace('/[^a-zA-Z0-9 ]+/','',$itemBlock['name']);
+			
+			$itemBuildBlock = new ItemBuildBlock();
+			$itemBuildBlock->setType($itemBlockName);
+			$itemBuildBlock->setPosition($i++);
+			
+			if (isset($itemBlock['description']) && ($itemBuildBlockDescription = $itemBlock['description']) && '' != $itemBuildBlockDescription)
+			{
+				$itemBuildBlock->setDescription($itemBuildBlockDescription);
+			}
+			
 			$items = $itemBlock['items'];
-			
-			$itemBlockName = preg_replace('/[^a-zA-Z0-9 ]+/','',$itemBlockName);
-			
 			foreach ($items as $item)
 			{
 				$itemSlug = $item['slug'];
@@ -369,21 +366,16 @@ class ItemBuilderController extends Controller
 				} catch (\Exception $e) {
 					throw new HttpException(500, 'Invalid recommended items : item not found! slug given : '.$itemSlug);
 				}
-				if (strpos($item->getGameModesToString(), 'shared') === false && strpos($item->getGameModesToString(), $gameMode) === false) {
-					throw new HttpException(500, 'Invalid recommended items : game mode!');
-				}
-				$itemBuildItems = new ItemBuildItems();
-				$itemBuildItems->setItemId($item->getId());
-				$itemBuildItems->setType($itemBlockName);
-				$itemBuildItems->setPosition($i);
-				$itemBuildItems->setCount($itemCount);
-				$itemBuildItems->setItemOrder($itemOrder);
 				
-				$itemBuilditemsCollection->append($itemBuildItems);
+				$itemBuildBlockItem = new ItemBuildBlockItem();
+				$itemBuildBlockItem->setItemId($item->getId());
+				$itemBuildBlockItem->setCount($itemCount);
+				$itemBuildBlockItem->setPosition($itemOrder);
+				$itemBuildBlock->addItemBuildBlockItem($itemBuildBlockItem);
 			}
-			$i ++;
+			$itemBuildBlocks->append($itemBuildBlock);
 		}
-		$itemBuild->setItemBuildItemss($itemBuilditemsCollection);
+		$itemBuild->setItemBuildBlocks($itemBuildBlocks);
 		
 		$itemBuild->setName($buildName);
 		
@@ -409,45 +401,19 @@ class ItemBuilderController extends Controller
 		}
 		//Si on a au moins un champion dans la liste
 		if($championItemBuilds->count() > 0) {
-			$itemBuild->setChampionItemBuilds($championItemBuilds);
-			
-			foreach ($itemBuilditemsCollection as $itemBuildItems)
-			{
-				/* @var $itemBuildItems ItemBuildItems */
-				$item = $itemBuildItems->getItem();
-				
-				//Si l item est associé a un champion
-				if ($item->getChampionId() != null) {
-					//S il y a plus d un champion dans la liste c est que c est une erreur
-					if($championItemBuilds->count() > 1) {
-						throw new HttpException(500, 'Invalid champion-specific item given!');
-					} elseif ($item->getChampionId() != $championItemBuilds->getFirst()->getChampionId()) {
-						//Sinon on verifie que l id du champion de la liste differe de l'id associé a l item
-						throw new HttpException(500, 'Invalid champion-specific item given!');
-					}
-				}
-			}
-			
-			
+			$itemBuild->setChampionItemBuilds($championItemBuilds);			
 			
 			if (null != $saveBuild && $saveBuild == 'true' && $this->get('security.context')->isGranted('ROLE_USER')) {
-				$user = $this->get('security.context')->getToken()->getUser();
-				
+				$user = $this->getUser();
 				$nbItemBuilds = $itemBuildManager->countNbBuildsByUserId($user->getId());
+				$itemBuild->setUser($user);
 				
-				if ($isEdition) 
+				if ($isEdition || $this->get('security.context')->isGranted('ROLE_ADMIN')) 
 				{
-					$itemBuild->setUser($user);
 					$itemBuild->save();
 				}
-				elseif($this->get('security.context')->isGranted('ROLE_ADMIN'))
-				{
-					$itemBuild->setUser($user);
-					$itemBuild->save();
-				} 
 				elseif ($nbItemBuilds < self::MAX_ITEM_BUILDS) 
 				{
-					$itemBuild->setUser($user);
 					$itemBuild->save();
 				}
 			}
@@ -459,19 +425,16 @@ class ItemBuilderController extends Controller
 		$batchManager = $this->get('mvnerds.batch_manager');
 		if($this->get('security.context')->isGranted('ROLE_USER'))
 		{
-			$user = $this->get('security.context')->getToken()->getUser();
+			$user = $this->getUser();
 			$preferenceManager = $this->get('mvnerds.preference_manager');
-			if (null === $path || '' == $path ) 
-			{
+			if (null === $path || '' == $path ) {
 				try{
 					$lolDirectoryPreference = $preferenceManager->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
 					$path = $lolDirectoryPreference->getValue();
 				}catch(\Exception $e) {
 					$path = null;
 				}
-			} 
-			else
-			{
+			} else {
 				try{
 					$userPreference = $this->get('mvnerds.preference_manager')->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
 				} catch (\Exception $e) {
@@ -503,6 +466,7 @@ class ItemBuilderController extends Controller
 			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
 			$itemBuild = $this->get('mvnerds.item_build_manager')->findOneBySlug($itemBuildSlug);
 			$itemBuild->setDownload($itemBuild->getDownload()+1);
+			$itemBuild->keepUpdateDateUnchanged();
 			$itemBuild->save();
 		} catch (\Exception $e) {
 			//Si le build n est pas trouvé en base de données on ne fait rien
@@ -558,7 +522,7 @@ class ItemBuilderController extends Controller
 		try{
 			$item = $this->get('mvnerds.item_manager')->findBySlugForPopover($slug);
 		} catch (\Exception $e) {
-			return new Response(json_encode('Impossible de trouver l\'item'));
+			return new Response(json_encode('getItemPopover : Impossible de trouver l\'item'));
 		}
 		
 		return $this->render('MVNerdsItemHandlerBundle:Popover:item_popover_content.html.twig', array(
@@ -580,7 +544,7 @@ class ItemBuilderController extends Controller
 		try{
 			$item = $this->get('mvnerds.item_manager')->findBySlugForPopover($slug);
 		} catch (\Exception $e) {
-			return new Response(json_encode('Impossible de trouver l\'item'));
+			return new Response(json_encode('getItemModalContent : Impossible de trouver l\'item'));
 		}
 		/* @var $item MVNerds\CoreBundle\Model\Item */
 		
@@ -687,7 +651,7 @@ class ItemBuilderController extends Controller
 			return $this->redirect($this->generateUrl('item_builder_list'));
 		}
 		
-		if( ! ($this->get('security.context')->getToken()->getUser()->getId() == $itemBuild->getUserId() || $this->get('security.context')->isGranted('ROLE_ADMIN')))
+		if( ! ($this->getUser()->getId() == $itemBuild->getUserId() || $this->get('security.context')->isGranted('ROLE_ADMIN')))
 		{
 			throw new AccessDeniedException();
 		}
@@ -698,31 +662,40 @@ class ItemBuilderController extends Controller
 			$selectedChampions[] = $championItemBuild->getChampion()->getSlug();
 		}
 		
-		$itemBuildItemsCollection = $itemBuild->getItemBuildItemss();
+		$itemBuildItemBlocks = $itemBuild->getItemBuildBlocks();
 		$selectedItems = array();
-		foreach ($itemBuildItemsCollection as $itemBuildItems)
+		foreach ($itemBuildItemBlocks as $itemBuildItemBlock)
 		{
-			$item = $itemBuildItems->getItem();
-			$type = $itemBuildItems->getType();
-			$position = $itemBuildItems->getPosition();
-			$count = $itemBuildItems->getCount();
+			$type = $itemBuildItemBlock->getType();
 			$ecapedName = preg_replace('/ +/', '_', $type);
-			if (! isset($selectedItems[$position]))
+			$position = $itemBuildItemBlock->getPosition();
+			
+			$selectedItems[$position] = array(
+				'type'		=> $type, 
+				'escaped'	=> $ecapedName, 
+				'items'	=> array(),
+				'description' => $itemBuildItemBlock->getDescription()
+			);
+			
+			foreach ( $itemBuildItemBlock->getItemBuildBlockItems() as $itemBuildBlockItem)
 			{
-				$selectedItems[$position] = array('type' => $type, 'escaped' => $ecapedName, 'items' => array());
+				$selectedItems[$position]['items'][] = array(
+					'item'		=> $itemBuildBlockItem->getItem(),
+					'count'	=> $itemBuildBlockItem->getCount()
+				);
 			}
-
-			$selectedItems[$position]['items'][] = array('item' => $item, 'count' => $count);
 		}
-		ksort($selectedItems);
+		
 		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:create_index.html.twig', array(
 			'champions'			=> $this->get('mvnerds.champion_manager')->findAllWithTags(),
 			'items'			=> $this->get('mvnerds.item_manager')->findAllActive(),
 			'selectedChampions'	=> $selectedChampions,
 			'selectedItems'		=> $selectedItems,
 			'buildName'			=> $itemBuild->getName(),
-			'gameMode'			=> $itemBuild->getChampionItemBuilds()->getFirst()->getGameMode()->getLabel(),
-			'itemBuildSlug'		=> $itemBuildSlug
+			'buildDescription'		=> $itemBuild->getDescription(),
+			'gameMode'			=> $itemBuild->getGameMode()->getLabel(),
+			'itemBuildSlug'		=> $itemBuildSlug,
+			'isBuildPrivate'		=> ($itemBuild->getStatus() == \MVNerds\CoreBundle\Model\ItemBuildPeer::STATUS_PRIVATE)
 		));
 	}
 	
@@ -742,7 +715,7 @@ class ItemBuilderController extends Controller
 			return $this->redirect($this->generateUrl('summoner_profile_index'));
 		}
 		
-		if($this->get('security.context')->getToken()->getUser()->getId() == $itemBuild->getUserId() || $this->get('security.context')->isGranted('ROLE_ADMIN'))
+		if($this->getUser()->getId() == $itemBuild->getUserId() || $this->get('security.context')->isGranted('ROLE_ADMIN'))
 		{
 			$itemBuild->delete();
 		}
