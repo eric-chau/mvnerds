@@ -638,4 +638,32 @@
       <reference foreign="id" local="item_id" />
     </foreign-key>
   </table>
+  <table name="skill">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="champion_id" required="true" type="INTEGER" />
+    <column name="name" required="true" size="45" type="VARCHAR" />
+    <column name="description" required="true" type="LONGVARCHAR" />
+    <column defaultValue="0" name="cost" required="true" size="45" type="VARCHAR" />
+    <column defaultValue="0" name="range" required="true" size="45" type="VARCHAR" />
+    <column defaultValue="0" name="cooldown" required="true" size="45" type="VARCHAR" />
+    <column defaultValue="0" name="position" required="true" type="TINYINT" />
+    <foreign-key foreignTable="champion">
+      <reference foreign="id" local="champion_id" />
+    </foreign-key>
+    <behavior name="i18n">
+      <parameter name="i18n_columns" value="name, description, cost, cooldown" />
+      <parameter name="default_locale" value="fr" />
+      <parameter name="locale_column" value="lang" />
+      <parameter name="i18n_table" value="skill_i18n" />
+      <parameter name="i18n_phpname" value="SkillI18n" />
+    </behavior>
+    <behavior name="sluggable">
+      <parameter name="slug_column" value="slug" />
+      <parameter name="slug_pattern" value="{name}" />
+      <parameter name="replace_pattern" value="/[^\w\/]+/u" />
+      <parameter name="replacement" value="-" />
+      <parameter name="separator" value="-" />
+      <parameter name="permanent" value="false" />
+    </behavior>
+  </table>
 </database>

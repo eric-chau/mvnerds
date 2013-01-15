@@ -16,7 +16,7 @@ class ChampionGrabberType extends AbstractType
 		));
 		
 		$builder->add('nb_champions', 'integer', array(
-			'label'		=> 'Nombre de champions à récupérer (0 pour récupérer tout ce qui suit l\'index de départ)',
+			'label'		=> 'Nombre de champions à parcourir (0 pour récupérer tout ce qui suit l\'index de départ)',
 			'required'	=> true,
 			'data'		=> 0
 		));
