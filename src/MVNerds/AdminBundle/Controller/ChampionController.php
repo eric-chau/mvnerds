@@ -78,7 +78,7 @@ class ChampionController extends Controller
 			$form->bind($request);
 			if ($form->isValid())
 			{
-				$champion = $form->getData();die(var_dump($champion->getChampionI18ns()));
+				$champion = $form->getData();
 				// TODO: effectuer au moins la valiation en XML avant de sauvegarder les modifications effectuées sur le champion
 				$this->get('mvnerds.champion_manager')->save($champion);
 

@@ -161,7 +161,8 @@ class ChampionType extends AbstractType
 			'type' => new SkillType(),
 			'allow_add' => true,
 			'allow_delete' => true,
-			'prototype' => true
+			'prototype' => true,
+			'by_reference' => false
 		));
 	}
 	
