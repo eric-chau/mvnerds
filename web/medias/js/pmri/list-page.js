@@ -216,29 +216,29 @@ $(document).ready(function() {
 	//On change filter input
 	$('#champion-filter-input').on('keyup', function(e){
 		if (e.keyCode == 13 || e.keyCode == 8) {
-			itemBuildsTable.fnFilter($(this).val(), 4);
+			itemBuildsTable.fnFilter($(this).val(), 3);
 		}
 	});
 	$('#author-filter-input').on('keyup change', function(e){
 		if (e.keyCode == 13 || e.keyCode == 8) {
-			itemBuildsTable.fnFilter($(this).val(), 7);
+			itemBuildsTable.fnFilter($(this).val(), 6);
 		}
 	});
 	$('#title-filter-input').on('keyup change', function(e){
 		if (e.keyCode == 13 || e.keyCode == 8) {
-			itemBuildsTable.fnFilter($(this).val(), 10);
+			itemBuildsTable.fnFilter($(this).val(), 9);
 		}
 	});
 	$('#search-filter-btn').on('click', function(e){
 		e.preventDefault();
 		if ($('#champion-filter-input').val() != '') {
-			itemBuildsTable.fnFilter($('#champion-filter-input').val(), 4);
+			itemBuildsTable.fnFilter($('#champion-filter-input').val(), 3);
 		}
 		if ($('#author-filter-input').val() != '') {
-			itemBuildsTable.fnFilter($('#author-filter-input').val(), 7);
+			itemBuildsTable.fnFilter($('#author-filter-input').val(), 6);
 		}
 		if ($('#title-filter-input').val() != '') {
-			itemBuildsTable.fnFilter($('#title-filter-input').val(), 10);
+			itemBuildsTable.fnFilter($('#title-filter-input').val(), 9);
 		}
 	});
 	
