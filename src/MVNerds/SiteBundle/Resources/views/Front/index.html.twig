@@ -1,6 +1,8 @@
 {% extends 'MVNerdsSiteBundle::layout.html.twig' %}
 
 {% block javascripts %}
+	{{ parent() }}
+
 	{% if app.environment == 'dev' %}
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tab.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
@@ -12,13 +14,17 @@
 				event.preventDefault();
 				$(this).tab('show');
 			});
-			
-			$('.bootstrap-popover').popover();
 		});
-	</script>
+		</script>
 	{% else %}
 
 	{% endif %}
+{% endblock %}
+	
+{% block breadcrumbs %}
+	{{ parent() }}
+	
+	> <a href="#">Pimp My Recommended Items</a>
 {% endblock %}
 
 {% block main_content %}
@@ -111,7 +117,7 @@
 						</div>
 					</div>
 					<div class="footer">
-						<a href="#">Voir plus</a>
+						<a href="{{ path('pmri_list') }}">Voir plus</a>
 					</div>
 				</div>
 

@@ -6,13 +6,12 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
-use Exception;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Exception;
 
 use MVNerds\CoreBundle\Model\ChampionItemBuild;
 use MVNerds\CoreBundle\Model\UserPreference;
-use  MVNerds\CoreBundle\Model\ItemBuildItems;
 use MVNerds\CoreBundle\Model\ItemBuildBlock;
 use MVNerds\CoreBundle\Model\ItemBuildBlockItem;
 
@@ -31,45 +30,50 @@ class ItemBuilderController extends Controller
 	{		
 		$canSaveBuild = false;
 		$lolDir = null;
-		
-		if ($this->get('security.context')->isGranted('ROLE_USER')) 
-		{
-			$user = $this->get('security.context')->getToken()->getUser();
-			if($this->get('security.context')->isGranted('ROLE_ADMIN'))
-			{
+		$user = $this->getUser();
+		if ($this->get('security.context')->isGranted('ROLE_USER')) {
+			if($this->get('security.context')->isGranted('ROLE_ADMIN')) {
 				$canSaveBuild = true;
 			}
-			else
-			{
+			else {
 				$nbItemBuilds = $this->get('mvnerds.item_build_manager')->countNbBuildsByUserId($user->getId());
-				if ($nbItemBuilds < self::MAX_ITEM_BUILDS)
-				{
+				if ($nbItemBuilds < self::MAX_ITEM_BUILDS) {
 					$canSaveBuild = true;
 				}
 			}
-			try{
+			try {
 				$lolDirPreference = $this->get('mvnerds.preference_manager')->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
 				$lolDir = $lolDirPreference->getValue();
-			} catch(\Exception $e) {
-				$lolDir= null;
+			} 
+			catch(\Exception $e) {
+				$lolDir = null;
 			}
 		}	
 		
 		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:create_index.html.twig', array(
-			'champions'		=> $this->get('mvnerds.champion_manager')->findAllWithTags(),
-			'items'		=> $this->get('mvnerds.item_manager')->findAllActive(),
+			'champions'			=> $this->get('mvnerds.champion_manager')->findAllWithTags(),
+			'items'				=> $this->get('mvnerds.item_manager')->findAllActive(),
 			'can_save_build'	=> $canSaveBuild,
-			'lol_dir'		=> $lolDir
+			'lol_dir'			=> $lolDir
 		));
 	}
 	
 	/**
 	 * 
-	 * @Route("/list", name="item_builder_list", options={"expose"=true})
+	 * @Route("/old-list", name="item_builder_list", options={"expose"=true})
+	 */
+	public function oldListAction() 
+	{
+		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:list_index.html.twig');
+	}
+	
+	/**
+	 * 
+	 * @Route("/list", name="pmri_list")
 	 */
 	public function listAction() 
 	{
-		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:list_index.html.twig');
+		return $this->render('MVNerdsItemHandlerBundle:PMRI:pmri_list_index.html.twig');
 	}
 	
 	/**
@@ -85,7 +89,6 @@ class ItemBuilderController extends Controller
 		}
 		
 		$aColumns = array(
-			'',
 			'',
 			'',
 			'',
@@ -157,10 +160,10 @@ class ItemBuilderController extends Controller
 		foreach($itemBuilds as $itemBuild)
 		{
 			$jsonItemBuilds['aaData'][] = array(
-				$this->renderView('MVNerdsItemHandlerBundle:ItemBuilder:list_column_champion.html.twig', array('itemBuild' => $itemBuild)),
-				$this->renderView('MVNerdsItemHandlerBundle:ItemBuilder:list_column_name.html.twig', array('itemBuild' => $itemBuild, 'user' => $itemBuild->getuser())),
+				$this->renderView('MVNerdsItemHandlerBundle:PMRI:pmri_list_table_row_champion.html.twig', array('item_build' => $itemBuild)),
+				$this->renderView('MVNerdsItemHandlerBundle:PMRI:pmri_list_table_row_name.html.twig', array('item_build' => $itemBuild, 'user' => $itemBuild->getUser())),
 				$translator->trans($itemBuild->getChampionItemBuilds()->getFirst()->getGameMode()->getLabel()),
-				$this->renderView('MVNerdsItemHandlerBundle:ItemBuilder:list_column_actions.html.twig', array('itemBuild' => $itemBuild)),
+				//$this->renderView('MVNerdsItemHandlerBundle:ItemBuilder:list_column_actions.html.twig', array('itemBuild' => $itemBuild)),
 				$itemBuild->getChampionsNamesToString(),
 				$itemBuild->getDownload(),
 				$itemBuild->getUpdateTime('YmdHims'),

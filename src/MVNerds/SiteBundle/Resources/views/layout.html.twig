@@ -1,6 +1,8 @@
 {% extends '::layout.html.twig' %}
 
 {% block css %}
+	{{ parent() }}
+
 	{% if app.environment == 'dev' %}
 		<link href='{{ asset('medias/css/champions/champion-square25-sprite.css') }}' rel='stylesheet' type='text/css'>
 		<link href='{{ asset('medias/css/champions/champion-square36-sprite.css') }}' rel='stylesheet' type='text/css'>
@@ -10,7 +12,29 @@
 {% block body %}
 	{% include 'MVNerdsSiteBundle:Common:topbar.html.twig' %}
 			
-	{% include 'MVNerdsSiteBundle:Common:header.html.twig' %}
+	<div class="container header border-bottom">
+		<div class="slogan">
+			<img src="{{ asset('medias/images/site/mvnerds-logo.png') }}" />
+			<p>
+				<span class="brand"><strong>MOST VALUABLE NERDS</strong> - Guides, Builds and Tools for League of Legends</span><br />
+				Vous êtes sur <span class="location">{% block breadcrumbs %}<a href="{{ path('site_homepage') }}">Accueil</a>{% endblock %}</span>
+			</p>
+		</div>
+		<div class="social-container">
+			<p>
+				{# SWITCH DE LANGUE #}
+				{% if locale == 'fr' %}
+					<a href="{{ path('culture_switch_language', {'locale': 'en'}) }}" class="switch-locale"><span>english</span></a> 
+				{% else %}
+					<a href="{{ path('culture_switch_language', {'locale': 'fr'}) }}" class="switch-locale"><span>français</span></a> 
+				{% endif %}
+				{# FACEBOOK LINK #}
+				<a href="#" class="facebook-link"><i class="icon-facebook"></i></a>
+				{# TWITTER LINK #}
+				<a href="#" class="twitter-link"><i class="icon-twitter"></i></a>
+			</p>
+		</div>
+	</div>
 
 	{% include 'MVNerdsSiteBundle:Common:champion-rotation.html.twig' %}
 

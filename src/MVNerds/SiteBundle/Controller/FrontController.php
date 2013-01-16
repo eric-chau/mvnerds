@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class FrontController extends Controller
 {
     /**
-     * @Route("/{_locale}/test-css", name="site_homepage", defaults={"_locale" = "fr"})
+     * @Route("/{_locale}", name="site_homepage", defaults={"_locale" = "fr"})
      */
     public function indexAction()
     {

@@ -212,6 +212,11 @@ div.media p.legend {
   right: 0;
   top: 75%;
 }
+div.video {
+  background-color: #333;
+  padding: 10px;
+  text-align: center;
+}
 span.label {
   background-color: #19a0df;
   color: #fff;
@@ -300,6 +305,9 @@ div.popover div.popover-content div.champion-square-list {
 div.popover div.popover-content div.champion-square-list div.champion-square36 {
   display: inline-block;
   margin: 2px;
+}
+.hide {
+  display: none;
 }
 div#topbar {
   background-color: #333;
@@ -492,8 +500,13 @@ div.container.header div.slogan p {
   padding: 0;
 }
 div.container.header div.slogan p span.location {
-  color: #19a0df;
   font-weight: bold;
+}
+div.container.header div.slogan p span.location a {
+  color: #19a0df;
+}
+div.container.header div.slogan p span.location a:hover {
+  text-decoration: underline;
 }
 div.container.header div.slogan span.brand {
   color: #aaa;
@@ -597,7 +610,7 @@ div.container.champion-rotation div.champion-search-input i {
   font-size: 22px;
   position: absolute;
   right: 6px;
-  top: 6px;
+  top: 2px;
 }
 div.container.main-container {
   padding: 20px 10px;
