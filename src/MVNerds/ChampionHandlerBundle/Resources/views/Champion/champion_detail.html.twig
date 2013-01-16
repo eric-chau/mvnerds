@@ -30,17 +30,54 @@
 		<link rel="stylesheet" href="{{ asset('css/champion_handler/champion-square25-sprite.css') }}">
 		<link rel="stylesheet" href="{{ asset('css/champion_handler/champion-square36-sprite.css') }}">
 	{% endif %}
+		
+	<style>
+		.body-container {
+			background-color: #000;
+			padding: 20px;
+			margin-bottom: 10px;
+		}
+		.body-container h2{
+			color: #fff;
+		}
+		.body-container p{
+			color: #fff;
+		}
+		.body-container div{
+			color: #fff;
+		}
+		div.skill {
+			border: 1px solid #666;
+			margin: 5px;
+		}
+	</style>
 {% endblock %}
 
 {% block javascripts %}
 	{{ parent() }}
 	
 	<script type="text/javascript" src="{{ asset('/js/launch_site/front.js') }}"></script>	
-{% endblock %}
-				
+{% endblock %}	
+
 {% block body_main_content %}	
 	<div class="body-container">
 		<h2>{{ champion.getName() }}</h2>
 		<p>{{ champion.getLore() }}</p>
+		
+		<div id="spells-container">
+			{% for skill in champion.getSkills() %}
+				<div class="row-fluid skill">
+					<div class="span4 skill-image">
+						<img src="{{asset('/images/skills/' ~ skill.getSlug() ~ '.png')}}" alt="image du skill {{skill.getName()}}"/>
+					</div>
+					<div class="span8 skill-content">
+						<stong>{{skill.getName()}}</strong> <br />
+						{{skill.getCooldown()}} <br />
+						{{skill.getCost()}} <br /><br />
+						{{skill.getDescription()}}
+					</div>
+				</div>
+			{% endfor %}
+		</div>
 	</div>	
 {% endblock %}

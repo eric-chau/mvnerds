@@ -121,7 +121,10 @@ class SkillController extends Controller
 									$skill->setPosition(0);
 								}
 								$skill->save();
-								file_put_contents(__DIR__ . '/../../../../web/images/spells/'. $skill->getSlug() .'.png', file_get_contents($spellImageUrl));
+								$spellImageUrl = preg_replace('/ /', '%20', $spellImageUrl);
+								try {
+								file_put_contents(__DIR__ . '/../../../../web/images/skills/'. $skill->getSlug() .'.png', file_get_contents($spellImageUrl));
+								} catch (\Exception $e) {}
 							}
 						}
 					}

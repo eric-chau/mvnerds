@@ -143,6 +143,22 @@ class ChampionManager
 		return $champion;
 	}
 	
+	public function findBySlugWithSkills($slug)
+	{
+		$champion = ChampionQuery::create()
+			->joinWithI18n($this->userLocale)
+			->joinWithSkill()
+			->add(ChampionPeer::SLUG, $slug)
+		->find();
+
+		if (null === $champion || null === $champion[0])
+		{
+			throw new InvalidArgumentException('No champion with slug:' . $slug . '!');
+		}
+
+		return $champion[0];
+	}
+	
 	
 	/**
 	 * Récupère un objet Champion à partir de son slug $slug
