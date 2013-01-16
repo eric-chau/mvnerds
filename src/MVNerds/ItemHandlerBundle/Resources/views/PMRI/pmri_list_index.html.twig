@@ -1,0 +1,132 @@
+{% extends 'MVNerdsSiteBundle::layout.html.twig' %}
+
+{% block css %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		<link href="{{ asset('medias/css/pmri/list-page.css') }}" rel="stylesheet" type="text/css">
+	{% else %}
+
+	{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/jquery.dataTables.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/pmri/list-page.js') }}"></script>
+	{% else %}
+
+	{% endif %}
+{% endblock %}
+
+{% block breadcrumbs %}
+	{{ parent() }}
+	
+	> <a href="{{ path('pmri_list') }}">Pimp My Recommended Items</a>
+{% endblock %}
+
+{% block main_content %}
+	<div class="container main-container border-top">
+		<div class="row-fluid">
+			<div class="span8 left-content">
+				<h1>Pimp My Recommended <a href="#" class="how-it-works-toggle"><span class="label red">comment ça marche ?</span></a></h1>
+				
+				<div class="how-it-works">
+					<p>
+						Joueurs de League of Legends, le PMRI est fait pour vous ! C'est un utilitaire qui vous permet de changer la liste des objets recommandés de vos champions préférés. C'est la liste qui est accessible depuis l'onglet "Conseillés" de la nouvelle boutique en jeu de League of Legends.
+					</p>
+					<p>
+						Vous n'avez aucun logiciel à installer, l'outil est entièrement gratuit et en ligne. Nous nous sommes appuyé sur l'API fournie par Riot Games pour réaliser l'outil Pimp My Recommended Items, vous ne risquez donc rien pour votre compte de jeu ! PMRI vous offre la possibilité de créer vos listes et de les enregistrer sur notre site. De cette manière vous pouvez partager vos créations avec vos amis et toute la communauté MVNerds !
+					</p>
+
+					<p>
+						N'hésitez pas à visionner la vidéo de présentation !
+					</p>
+
+					<div class="video">
+						<iframe width="560" height="315" src="http://www.youtube.com/embed/fKsMEdYup84?rel=0" frameborder="0" allowfullscreen></iframe>
+					</div>
+					
+					<div class="separator"></div>
+				</div>
+				
+				<table id="item-builds-table" class="table data-table" data-filter="{% if championSlug is defined %}{{championSlug}}{% endif %}">
+					<thead>
+						<tr>
+							<th class="champion">{{'item_table.th.champion'|trans}}</th>
+							<th class="name">{{'item_table.th.name'|trans}}</th>
+							<th class="game-mode">{{'item_table.th.game_mode'|trans}}</th>
+						</tr>
+					</thead>
+					<tbody>
+						{# Contenu chargé en AJAX par DataTable #}
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="span4 right-content">
+				<div class="block">
+					<div class="header">
+						<h3>Options de filtrage</h3>
+					</div>
+					<div class="body">
+						<p>Trier par :</p>
+						<ul id="sort-list">
+							<li><a href="#" class="sort-link" data-option-value="0"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.name-asc'|trans}}</a></li>
+							<li><a href="#" class="sort-link" data-option-value="1"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.name-desc'|trans}}</a></li>
+							<li><a href="#" class="sort-link" data-option-value="2"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.most-downloaded'|trans}}</a></li>
+							<li><a href="#" class="sort-link" data-option-value="3"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.less-downloaded'|trans}}</a></li>
+							<li><a href="#" class="sort-link" data-option-value="4"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.oldest'|trans}}</a></li>
+							<li><a href="#" class="sort-link selected" data-option-value="5"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.newest'|trans}}</a></li>
+							<li><a href="#" class="sort-link" data-option-value="6"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.updated'|trans}}</a></li>
+							<li><a href="#" class="sort-link" data-option-value="7"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.most-commented'|trans}}</a></li>
+							<li><a href="#" class="sort-link" data-option-value="8"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.views'|trans}}</a></li>
+						</ul>
+						
+						<p>Rechercher par :</p>
+						<ul class="filters-list more-filter">
+							<li id="filter-title">
+								<label for="title-filter-input">{{'item_build_list_index.sort.filter-by-title'|trans}}</label>
+								<input type="text" id="title-filter-input" class="input-mini"/>
+							</li>
+							
+							<li id="filter-champion">
+								<label for="champion-filter-input">{{'item_build_list_index.sort.filter-by-champion'|trans}}</label>
+								<input type="text" id="champion-filter-input" class="input-mini" data-provide="typeahead"/>
+							</li>
+							
+							<li id="filter-author">
+								<label for="author-filter-input">{{'item_build_list_index.sort.filter-by-author'|trans}}</label>
+								<input type="text" id="author-filter-input" class="input-mini"/>
+							</li>
+							
+							<li id="filter-search">
+								<a href="#" class="btn green" id="search-filter-btn">Rechercher <i class="icon-search icon-white"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+					
+				{# PUBLICITÉ #}
+				<div class="sidebar-ad-container">
+					<script type="text/javascript"><!--
+					google_ad_client = "ca-pub-9866334543391692";
+					/* Rectangle MVNerds 2.0 */
+					google_ad_slot = "3578997199";
+					google_ad_width = 300;
+					google_ad_height = 250;
+					//-->
+					</script>
+					<script type="text/javascript"
+					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+					</script>	
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+	

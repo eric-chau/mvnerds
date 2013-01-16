@@ -1,0 +1,229 @@
+// Twitter Bootstraps imports
+@import "../bootstrap/mixins.less";
+
+// MVNerds imports
+@import "../mvnerds/mvnerds-variables.less";
+
+div.span8.left-content {
+	min-height: 300px;
+
+	h1 a.how-it-works-toggle {
+		&.inactive span.label {
+			background-color: #666;
+		}
+	}
+
+	div#item-builds-table_wrapper {
+		position: relative;
+
+		div#item-builds-table_processing {
+			background-color: rgba(0,0,0,.7);
+			color: white;
+			font-weight: bold;
+			left: 50%;
+			margin: -45px 0 0 -61px;
+			padding: 25px;
+			position: absolute;
+			text-align: center;
+			top: 50%;
+
+			i {
+				display: block;
+				font-size: 30px;
+				margin: 0 0 10px 0;
+			}
+		}
+
+		div.dataTables_info {
+			margin: 5px 0 30px 0;
+			text-align: right;
+		}
+
+		div.dataTables_paginate {
+			text-align: center;
+
+			a {
+				border: 1px solid #999;
+				cursor: pointer;
+				display: inline-block;
+				margin: 0 5px;
+				padding: 5px 7px;
+
+				&:hover {
+					background-color: #ccc; .transition(background-color .25s linear);
+				}
+
+				&.paginate_active {
+					background-color: @MVNerdsRed;
+					border: 0;
+					color: white;
+					cursor: default;
+					font-weight: bold;
+				}
+
+				&.paginate_button_disabled {
+					border: 1px solid #aaa;
+					color: #aaa;
+					cursor: default;
+
+					&:hover {
+						background-color: inherit;
+					}
+				}
+			}
+		}
+	}
+
+	table#item-builds-table {
+		border-spacing: 0 3px;
+		width: 638px !important;
+
+		th {
+			text-align: left;
+
+			&.champion {
+				width: 80px !important;
+			}
+
+			&.name {
+				width: 360px !important;
+			}
+
+			&.game-mode {
+				width: 198px !important;
+			}
+		}
+
+		tbody {
+			tr {
+				background-color: #ddd;
+				margin: 0 0 5px 0;
+
+				&:hover {
+					background-color: lighten(@MVNerdsBlue, 10%); .transition(background-color .25s linear);
+				}
+
+				td {
+					padding: 3px 0;
+
+					&.champion {
+						text-align: center;
+
+						img {
+							width: 54px;
+						}
+					}
+
+					&.name {
+						a {
+							font-weight: bold;
+
+							&:hover {
+								text-decoration: underline;
+							}
+						}
+
+						div.created-by {
+							a {
+								color: @MVNerdsRed;
+
+								&:hover {
+									color: white; .transition(color .25s linear);
+									text-decoration: none;
+								}
+							}
+						}
+
+						span.one-stat {
+							display: inline-block;
+							margin: 0 10px 0 0;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+
+div.span4.right-content {
+	div.block div.body {
+		ul#sort-list {
+			list-style: none;
+			padding: 0 20px !important;
+
+			i {
+				display: inline-block;
+				margin: 0 10px 0 0;
+			}
+
+			li {
+				margin: 2px 0;
+
+				a {
+					color: #888;
+
+					&:hover {
+						color: white;
+
+						i {
+							color: white; .transition(color .25s linear);
+						}
+					}
+
+					&.selected {
+						color: @LoLOrangeAD;
+						cursor: default;
+
+						&:hover {
+							color: @LoLOrangeAD;
+
+							i {
+								color: @LoLOrangeAD;
+							}
+						}
+
+						i {
+							color: @LoLOrangeAD;
+						}
+					}
+
+					i {
+						color: #444;
+					}
+				}
+			}
+		}
+
+		ul.filters-list {
+			list-style: none;
+			padding: 0 20px !important;
+
+			li {
+				margin: 0 0 10px 0;
+
+				&#filter-search {
+					margin: 20px 0;
+					text-align: center;
+				}
+
+				label {
+					color: inherit;
+					display: inline-block;
+					margin: 0 10px 0 0;
+					text-align: right;
+					width: 80px;
+				}
+
+				input[type="text"] {
+					background-color: #333;
+					border: 1px solid #666;
+					color: #999;
+
+					&:focus {
+						color: @LoLOrangeAD;
+					}
+				}
+			}
+		}
+	}
+}

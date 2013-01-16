@@ -457,15 +457,15 @@
 			</trans-unit>
 			<trans-unit id="3012">
 				<source>item_build_list_index.sort.filter-by-champion</source>
-				<target>Filtrer par champion</target>
+				<target>Champion</target>
 			</trans-unit>
 			<trans-unit id="3013">
 				<source>item_build_list_index.sort.filter-by-author</source>
-				<target>Filtrer par auteur</target>
+				<target>Auteur</target>
 			</trans-unit>
 			<trans-unit id="3014">
 				<source>item_build_list_index.sort.filter-by-title</source>
-				<target>Filtrer par titre</target>
+				<target>Titre</target>
 			</trans-unit>
 			<trans-unit id="3015">
 				<source>item_build_list_index.sort.views</source>

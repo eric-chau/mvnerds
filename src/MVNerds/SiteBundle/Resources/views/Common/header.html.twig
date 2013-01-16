@@ -3,7 +3,7 @@
 		<img src="{{ asset('medias/images/site/mvnerds-logo.png') }}" />
 		<p>
 			<span class="brand"><strong>MOST VALUABLE NERDS</strong> - Guides, Builds and Tools for League of Legends</span><br />
-			Vous êtes sur <span class="location">Pimp My Recommended Items > Création</span>
+			Vous êtes sur <span class="location">{% block breadcrumbs %}<a href="{{ path('site_homepage') }}">Accueil</a>{% endblock %}</span>
 		</p>
 	</div>
 	<div class="social-container">

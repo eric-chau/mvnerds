@@ -14,7 +14,7 @@ class FrontController extends Controller
 	/**
 	 * Affiche la page d'accueil du site de présentation
 	 * 
-	 * @Route("/{_locale}", name="launch_site_front", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"})
+	 * @Route("/{_locale}/old", name="launch_site_front", requirements={"_locale"="en|fr"}, defaults={"_locale" = "fr"})
 	 */
 	public function indexAction()
 	{	

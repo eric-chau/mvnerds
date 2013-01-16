@@ -1,0 +1,211 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+div.span8.left-content {
+  min-height: 300px;
+}
+div.span8.left-content h1 a.how-it-works-toggle.inactive span.label {
+  background-color: #666;
+}
+div.span8.left-content div#item-builds-table_wrapper {
+  position: relative;
+}
+div.span8.left-content div#item-builds-table_wrapper div#item-builds-table_processing {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-weight: bold;
+  left: 50%;
+  margin: -45px 0 0 -61px;
+  padding: 25px;
+  position: absolute;
+  text-align: center;
+  top: 50%;
+}
+div.span8.left-content div#item-builds-table_wrapper div#item-builds-table_processing i {
+  display: block;
+  font-size: 30px;
+  margin: 0 0 10px 0;
+}
+div.span8.left-content div#item-builds-table_wrapper div.dataTables_info {
+  margin: 5px 0 30px 0;
+  text-align: right;
+}
+div.span8.left-content div#item-builds-table_wrapper div.dataTables_paginate {
+  text-align: center;
+}
+div.span8.left-content div#item-builds-table_wrapper div.dataTables_paginate a {
+  border: 1px solid #999;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 5px;
+  padding: 5px 7px;
+}
+div.span8.left-content div#item-builds-table_wrapper div.dataTables_paginate a:hover {
+  background-color: #ccc;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+div.span8.left-content div#item-builds-table_wrapper div.dataTables_paginate a.paginate_active {
+  background-color: #db4a38;
+  border: 0;
+  color: white;
+  cursor: default;
+  font-weight: bold;
+}
+div.span8.left-content div#item-builds-table_wrapper div.dataTables_paginate a.paginate_button_disabled {
+  border: 1px solid #aaa;
+  color: #aaa;
+  cursor: default;
+}
+div.span8.left-content div#item-builds-table_wrapper div.dataTables_paginate a.paginate_button_disabled:hover {
+  background-color: inherit;
+}
+div.span8.left-content table#item-builds-table {
+  border-spacing: 0 3px;
+  width: 638px !important;
+}
+div.span8.left-content table#item-builds-table th {
+  text-align: left;
+}
+div.span8.left-content table#item-builds-table th.champion {
+  width: 80px !important;
+}
+div.span8.left-content table#item-builds-table th.name {
+  width: 360px !important;
+}
+div.span8.left-content table#item-builds-table th.game-mode {
+  width: 198px !important;
+}
+div.span8.left-content table#item-builds-table tbody tr {
+  background-color: #ddd;
+  margin: 0 0 5px 0;
+}
+div.span8.left-content table#item-builds-table tbody tr:hover {
+  background-color: #41b4ea;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+div.span8.left-content table#item-builds-table tbody tr td {
+  padding: 3px 0;
+}
+div.span8.left-content table#item-builds-table tbody tr td.champion {
+  text-align: center;
+}
+div.span8.left-content table#item-builds-table tbody tr td.champion img {
+  width: 54px;
+}
+div.span8.left-content table#item-builds-table tbody tr td.name a {
+  font-weight: bold;
+}
+div.span8.left-content table#item-builds-table tbody tr td.name a:hover {
+  text-decoration: underline;
+}
+div.span8.left-content table#item-builds-table tbody tr td.name div.created-by a {
+  color: #db4a38;
+}
+div.span8.left-content table#item-builds-table tbody tr td.name div.created-by a:hover {
+  color: white;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+  text-decoration: none;
+}
+div.span8.left-content table#item-builds-table tbody tr td.name span.one-stat {
+  display: inline-block;
+  margin: 0 10px 0 0;
+}
+div.span4.right-content div.block div.body ul#sort-list {
+  list-style: none;
+  padding: 0 20px !important;
+}
+div.span4.right-content div.block div.body ul#sort-list i {
+  display: inline-block;
+  margin: 0 10px 0 0;
+}
+div.span4.right-content div.block div.body ul#sort-list li {
+  margin: 2px 0;
+}
+div.span4.right-content div.block div.body ul#sort-list li a {
+  color: #888;
+}
+div.span4.right-content div.block div.body ul#sort-list li a:hover {
+  color: white;
+}
+div.span4.right-content div.block div.body ul#sort-list li a:hover i {
+  color: white;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div.span4.right-content div.block div.body ul#sort-list li a.selected {
+  color: #fb9701;
+  cursor: default;
+}
+div.span4.right-content div.block div.body ul#sort-list li a.selected:hover {
+  color: #fb9701;
+}
+div.span4.right-content div.block div.body ul#sort-list li a.selected:hover i {
+  color: #fb9701;
+}
+div.span4.right-content div.block div.body ul#sort-list li a.selected i {
+  color: #fb9701;
+}
+div.span4.right-content div.block div.body ul#sort-list li a i {
+  color: #444;
+}
+div.span4.right-content div.block div.body ul.filters-list {
+  list-style: none;
+  padding: 0 20px !important;
+}
+div.span4.right-content div.block div.body ul.filters-list li {
+  margin: 0 0 10px 0;
+}
+div.span4.right-content div.block div.body ul.filters-list li#filter-search {
+  margin: 20px 0;
+  text-align: center;
+}
+div.span4.right-content div.block div.body ul.filters-list li label {
+  color: inherit;
+  display: inline-block;
+  margin: 0 10px 0 0;
+  text-align: right;
+  width: 80px;
+}
+div.span4.right-content div.block div.body ul.filters-list li input[type="text"] {
+  background-color: #333;
+  border: 1px solid #666;
+  color: #999;
+}
+div.span4.right-content div.block div.body ul.filters-list li input[type="text"]:focus {
+  color: #fb9701;
+}

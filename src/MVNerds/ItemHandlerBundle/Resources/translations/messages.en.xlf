@@ -454,15 +454,15 @@
 			</trans-unit>
 			<trans-unit id="3012">
 				<source>item_build_list_index.sort.filter-by-champion</source>
-				<target>Filter by champion</target>
+				<target>Champion</target>
 			</trans-unit>
 			<trans-unit id="3013">
 				<source>item_build_list_index.sort.filter-by-author</source>
-				<target>Filter by author</target>
+				<target>Author</target>
 			</trans-unit>
 			<trans-unit id="3014">
 				<source>item_build_list_index.sort.filter-by-title</source>
-				<target>Filter by title</target>
+				<target>Title</target>
 			</trans-unit>
 			<trans-unit id="3015">
 				<source>item_build_list_index.sort.views</source>
