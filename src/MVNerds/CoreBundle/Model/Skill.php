@@ -42,4 +42,23 @@ class Skill extends BaseSkill {
 		$this->save();
 		$skillI18n->delete();
 	}
+	
+	public function getImage() {
+		return '';
+	}
+	public function setImage($imageUrl) {
+		if ($imageUrl && $imageUrl != '') {
+			$imageUrl = preg_replace('/ /', '%20', $imageUrl);
+			
+			if ( null === $this->getSlug() || $this->getSlug() == '') {
+				$slug = $this->createSlug();
+			} else {
+				$slug = $this->getSlug();
+			}
+			
+			try {
+				file_put_contents(__DIR__ . '/../../../../web/images/skills/'. $slug .'.png', file_get_contents($imageUrl));
+			} catch (\Exception $e) {}
+		}
+	}
 } // Skill

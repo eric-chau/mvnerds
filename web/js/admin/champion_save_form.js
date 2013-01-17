@@ -38,6 +38,10 @@ jQuery(document).ready(function() {
 						'<label for="champion_skills___name___position" class="required">Position</label>'+
 						'<input type="number" id="champion_skills___name___position" name="champion[skills][__name__][position]" required="required" value="">'+
 					'</div>'+
+					'<div style="margin-bottom:9px;">'+
+						'<label for="champion_skills___name___image" class="required">Image</label>'+
+						'<input type="text" id="champion_skills___name___image" name="champion[skills][__name__][image]" value="">'+
+					'</div>'+
 					'<fieldset class="champion_skill_i18n" style="margin-left:100px;">'+
 						'<legend>Traductions du skill : </legend>'+
 						'<a href="#" class="btn btn-success add-skill-i18n-link"><i class="icon-white icon-plus-sign"></i> Add a skill translation</a>'+

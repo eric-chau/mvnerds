@@ -20,6 +20,9 @@ class SkillType extends AbstractType
 		));
 		
 		$builder->add('range');
+		$builder->add('image', 'text', array(
+			'required' => false
+		));
 		$builder->add('position');
 	}
 
