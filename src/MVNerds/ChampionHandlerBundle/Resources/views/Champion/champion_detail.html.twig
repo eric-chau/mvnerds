@@ -40,6 +40,9 @@
 		.body-container h2{
 			color: #fff;
 		}
+		.body-container h3{
+			color: #aaa;
+		}
 		.body-container p{
 			color: #fff;
 		}
@@ -62,6 +65,7 @@
 {% block body_main_content %}	
 	<div class="body-container">
 		<h2>{{ champion.getName() }}</h2>
+		<h3>{{ champion.getTitle() }}</h3>
 		<p>{{ champion.getLore() }}</p>
 		
 		<div id="spells-container">

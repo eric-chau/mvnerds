@@ -17,5 +17,29 @@ use MVNerds\CoreBundle\Model\om\BaseSkill;
  * @package    propel.generator.src.MVNerds.CoreBundle.Model
  */
 class Skill extends BaseSkill {
+	public function removeSkillI18n(SkillI18n $l)
+	{
+		if ($this->collSkillI18ns === null) {
+			return $this;
+		}
+		
+		if (!$this->collSkillI18ns->contains($l)) {
+			$this->doRemoveSkillI18n($l);
+		}
 
+		return $this;
+	}
+	
+	public function doRemoveSkillI18n(SkillI18n $skillI18n)
+	{
+		
+		foreach ($this->collSkillI18ns as $key => $o) {
+			if ($o == $skillI18n) {
+				unset($this->collSkillI18ns[$key]);
+				break;
+			}
+		}
+		$this->save();
+		$skillI18n->delete();
+	}
 } // Skill

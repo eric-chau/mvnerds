@@ -161,8 +161,34 @@ class ChampionType extends AbstractType
 			'type' => new SkillType(),
 			'allow_add' => true,
 			'allow_delete' => true,
-			'prototype' => true,
-			'by_reference' => false
+			'by_reference' => false,
+			'attr' => array(
+				'data-i18n-prototype' => '<div id="champion_skills___parent-name___skill_i18ns___name__">'.
+									'<div>'.
+										'<label for="champion_skills___parent-name___skill_i18ns___name___lang" class="required">Lang</label>'.
+										'<select id="champion_skills___parent-name___skill_i18ns___name___lang" name="champion[skills][__parent-name__][skill_i18ns][__name__][lang]" required="required">'.
+											'<option value="fr">Français</option>'.
+											'<option value="en">English</option>'.
+										'</select>'.
+									'</div>'.
+									'<div>'.
+										'<label for="champion_skills___parent-name___skill_i18ns___name___name" class="required">Nom</label>'.
+										'<input type="text" id="champion_skills___parent-name___skill_i18ns___name___name" name="champion[skills][__parent-name__][skill_i18ns][__name__][name]" required="required"/>'.
+									'</div>'.
+									'<div>'.
+										'<label for="champion_skills___parent-name___skill_i18ns___name___description" class="required">Description</label>'.
+										'<textarea id="champion_skills___parent-name___skill_i18ns___name___description" name="champion[skills][__parent-name__][skill_i18ns][__name__][description]" required="required"></textarea>'.
+									'</div>'.
+									'<div>'.
+										'<label for="champion_skills___parent-name___skill_i18ns___name___cost" class="required">Coût</label>'.
+										'<input type="text" id="champion_skills___parent-name___skill_i18ns___name___cost" name="champion[skills][__parent-name__][skill_i18ns][__name__][cost]" required="required"/>'.
+									'</div>'.
+									'<div>'.
+										'<label for="champion_skills___parent-name___skill_i18ns___name___cooldown" class="required">Cooldown</label>'.
+										'<input type="text" id="champion_skills___parent-name___skill_i18ns___name___cooldown" name="champion[skills][__parent-name__][skill_i18ns][__name__][cooldown]" required="required"/>'.
+									'</div>'.
+								'</div>'
+			)
 		));
 	}
 	
