@@ -6,8 +6,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 use MVNerds\DataGrabberBundle\Form\Type\ChampionGrabberType;
-use MVNerds\CoreBundle\Model\TagQuery;
-use MVNerds\CoreBundle\Model\TagI18nPeer;
 use MVNerds\CoreBundle\Model\Skill;
 /**
  * @Route("/skills")
@@ -15,9 +13,9 @@ use MVNerds\CoreBundle\Model\Skill;
 class SkillController extends Controller
 {	
 	/**
-	 * Permet d'insérer dans la base les champions de manière automatique
+	 * Permet de récupérer les kills des champions depuis le site lol-fr en français
 	 * 
-	 * @Route("/", name="DataGrabber_champions_index")
+	 * @Route("/", name="DataGrabber_skills_index")
 	 */
 	public function indexAction()
 	{
@@ -25,7 +23,7 @@ class SkillController extends Controller
 				
 		$request = $this->getRequest();
 		if ($request->isMethod('POST'))
-		{
+		{die('ko');
 			$form->bind($request);
 			if ($form->isValid())
 			{
@@ -41,18 +39,13 @@ class SkillController extends Controller
 				//Si la liste des champions a bien été récupérée
 				if ($championsList)
 				{
-					/* @var $championTagManager \MVNerds\CoreBundle\ChampionTag\ChampionTagManager */
-					$championTagManager = $this->get('mvnerds.champion_tag_manager');
-					
 					/* @var $championManager \MVNerds\CoreBundle\Champion\ChampionManager */
 					$championManager = $this->get('mvnerds.champion_manager');
-
 					/* @var $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
 					$flashManager = $this->get('mvnerds.flash_manager');
-					
 					/* @var $skillManager \MVNerds\CoreBundle\Skill\SkillManager */
 					$skillManager = $this->get('mvnerds.skill_manager');
-
+					
 					//Liens de tous les champions
 					$championsLinks = $championsList->find('li a');
 
@@ -143,7 +136,135 @@ class SkillController extends Controller
 				return $this->redirect($this->generateUrl('DataGrabber_champions_index'));
 			}
 		}
-		return $this->render('MVNerdsDataGrabberBundle:Champion:index.html.twig', array(
+		return $this->render('MVNerdsDataGrabberBundle:Skill:index.html.twig', array(
+			'form' => $form->createView()
+		));
+	}
+	
+	/**
+	 * Permet de récupérer les kills des champions depuis le site leaguecraft.com en anglais
+	 * 
+	 * @Route("/en", name="DataGrabber_skills_en")
+	 */
+	public function enAction()
+	{
+		$form = $this->createForm(new ChampionGrabberType());
+				
+		$request = $this->getRequest();
+		if ($request->isMethod('POST'))
+		{
+			$form->bind($request);
+			if ($form->isValid())
+			{
+				include(__DIR__ . '/../SimpleHtmlDom/simple_html_dom.php');
+				
+				$champInfo = $form->getData();
+				$startChamp = $champInfo['start_index'];
+				$nbChamp = $champInfo['nb_champions'];
+				
+				/* @var $championManager \MVNerds\CoreBundle\Champion\ChampionManager */
+				$championManager = $this->get('mvnerds.champion_manager');
+				
+				//Récupération de la liste des champions
+				$championsList = $championManager->findAll();
+				
+				/* @var $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
+				$flashManager = $this->get('mvnerds.flash_manager');
+				
+				$errors = '';
+				
+				//Si la liste des champions a bien été récupérée
+				if ($championsList)
+				{
+					/* @var $skillManager \MVNerds\CoreBundle\Skill\SkillManager */
+					$skillManager = $this->get('mvnerds.skill_manager');
+					
+					
+					//Si l'utilisateur demande à récupérer tous les champions qui suivent l'index de départ
+					if ($nbChamp <= 0)
+					{
+						$nbChamp = count($championsList) - $startChamp;
+					}
+					
+					
+					//On boucle sur chaque champion pour récupérer le lien associé
+					for ($i = $startChamp; $i < $startChamp + $nbChamp; $i++)
+					{
+						$champName = $championsList->get($i)->setLocale('en')->getName();
+						$champNameEscaped = preg_replace("/([' ._]+)/", '-', $champName);
+						
+						//Récupération de la page du champion
+						$championHtml = file_get_html('http://leaguecraft.com/guide/' . $champNameEscaped . '-build-guide.xhtml');
+
+						if ($championHtml->find('h1', 0))
+						{
+							//Récupération du nom du champion
+							$tmpName= $championHtml->find('h1', 0)->plaintext;
+							$name = str_replace(' Build Guide', '', $tmpName);
+							try {
+								$champion = $championManager->findByName($name);
+							} catch ( \Exception $e) {
+								continue;
+							}
+							
+							$championSpellsHtml = $championHtml->find('.spell_box');
+							for ($j = 0; $j < 5; $j++) 
+							{
+								$championSpellHtml = $championSpellsHtml[$j];
+								$tmpSpellName = $championSpellHtml->find('h3', 0)->plaintext;
+								$spellName = preg_replace('/\(Q\) |\(W\) |\(E\) |\(R\) /', '', $tmpSpellName);
+								echo $spellName . '<br />';
+								try {
+									/* @var $skill \MVNerds\CoreBundle\Model\Skill */
+									$skill = $skillManager->findByChampionAndPosition($champion, $j);
+									$slug = $skill->getSlug();
+								} catch ( \Exception $e ) {
+									continue;
+								}
+								
+								$skill->setLocale('en');
+								$skill->setName($spellName);
+								
+								if ($j > 0) {
+									$spellText = preg_replace('/ +/', ' ',trim($championSpellHtml->find('div.spell_text', 0)->innertext));
+									$spellTextExploded = preg_split('/<br clear="all">/', $spellText);
+									$description = str_get_html($spellTextExploded[2])->plaintext;
+									$skill->setDescription(trim($description));
+									
+									$spellTextHtml = $championSpellHtml->find('div.spell_text ul');
+									$skill->setCooldown(preg_replace('/ +/', ' ',trim($spellTextHtml[0]->find('li', 1)->plaintext)));
+									$skill->setCost(preg_replace('/ +/', ' ', trim($spellTextHtml[1]->find('li', 1)->plaintext)));
+								} else {
+									$spellTextHtml = $championSpellHtml->find('div.spell_text', 0);
+									$spellText = trim($spellTextHtml->innertext);
+									$description = substr($spellText, 0, strpos($spellText, '<li class="column'));
+									$skill->setDescription(trim($description));
+									$skill->setCooldown(0);
+									$skill->setCost(0);
+								}
+								$skill->setSlug($slug);
+								$skill->save();
+							}
+						} else {
+							$errors .= 'champion '. $champNameEscaped . ' not found <br />';
+						}
+					}
+				}
+				else
+				{
+					// Ajout d'un message de flash pour notifier que les informations de l'utilisateur ont bien été modifié
+					$flashManager->setErrorMessage('Erreur <br />' . $errors);
+					// On redirige l'utilisateur vers la liste des utilisateurs
+					return $this->redirect($this->generateUrl('DataGrabber_skills_en'));
+				}
+				
+				// Ajout d'un message de flash pour notifier que les informations de l'utilisateur ont bien été modifié
+				$flashManager->setSuccessMessage('Les skills ont bien été grabbés <br />'.$errors);
+				// On redirige l'utilisateur vers la liste des utilisateurs
+				return $this->redirect($this->generateUrl('DataGrabber_skills_en'));
+			}
+		}
+		return $this->render('MVNerdsDataGrabberBundle:Skill:en.html.twig', array(
 			'form' => $form->createView()
 		));
 	}

@@ -14,7 +14,8 @@ class ChampionType extends AbstractType
 		$builder->add('champion_i18ns', 'collection', array(
 			'type' => new ChampionI18nType(),
 			'allow_add' => true,
-			'prototype' => true
+			'prototype' => true,
+			'by_reference' => false
 		));
 		
 		$builder->add('base_damage', 'number', array(

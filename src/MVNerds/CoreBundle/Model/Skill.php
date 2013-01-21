@@ -23,7 +23,7 @@ class Skill extends BaseSkill {
 			return $this;
 		}
 		
-		if (!$this->collSkillI18ns->contains($l)) {
+		if ($this->collSkillI18ns->contains($l)) {
 			$this->doRemoveSkillI18n($l);
 		}
 
@@ -32,7 +32,6 @@ class Skill extends BaseSkill {
 	
 	public function doRemoveSkillI18n(SkillI18n $skillI18n)
 	{
-		
 		foreach ($this->collSkillI18ns as $key => $o) {
 			if ($o == $skillI18n) {
 				unset($this->collSkillI18ns[$key]);

@@ -51,6 +51,21 @@ class SkillManager
 		return $skill;
 	}
 
+	public function findByChampionAndPosition($champion, $position)
+	{
+		$skill = SkillQuery::create()
+			->add(SkillPeer::CHAMPION_ID, $champion->getId())
+			->add(SkillPeer::POSITION, $position)
+		->findOne();
+
+		if (null === $skill)
+		{
+			throw new InvalidArgumentException('No skill with champion_id :' . $champion->getId() . ' and position '. $position .'!');
+		}
+
+		return $skill;
+	}
+	
 	/**
 	 * Permet de persister en base de données le champion $champion
 	 * 

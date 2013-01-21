@@ -148,7 +148,7 @@ class ChampionManager
 		$champion = ChampionQuery::create()
 			->joinWithI18n($this->userLocale)
 			->joinWithSkill()
-			->joinWith('Skill.SkillI18n')
+			->joinWith('Skill.SkillI18n', \Criteria::LEFT_JOIN)
 			->addJoinCondition('SkillI18n', 'SkillI18n.Lang = ?', $this->userLocale)
 			->add(ChampionPeer::SLUG, $slug)
 		->find();
