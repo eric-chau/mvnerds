@@ -22,6 +22,7 @@
 		<script type="text/javascript" src="{{ asset('medias/js/site/alerts-ajax-handler.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/item-handler/item-modal.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/item-handler/item-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/item-handler/dl-modal.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/pmri/detail-page.js') }}"></script>
 	{% else %}
 
@@ -58,7 +59,7 @@
 				<div class="map-container">
 					<h2>Carte et description</h2>
 					<p>
-						<div class="game-mode {{ item_build.getGameMode().getLabel() }}">
+						<div class="game-mode {{ item_build.getGameMode().getLabel() }}" data-game-mode="{{ item_build.getGameMode().getLabel() }}">
 							<span class="message">{{ item_build.getGameMode().getLabel()|trans }}</span>
 						</div>
 						{% if item_build.getDescription() == '' %}
@@ -144,5 +145,6 @@
 	</div>
 	
 	{% include 'MVNerdsItemHandlerBundle:Modal:item_modal.html.twig' %}
+	{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}
 {% endblock %}
 	

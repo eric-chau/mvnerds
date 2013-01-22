@@ -1,15 +1,14 @@
 function storeItemBuildForCopy() {
 	var championSlugs = new Array();
-	$('div#champion-list ul li.champion').each(function(){
+	$('div.champions-list div.champion').each(function(){
 		championSlugs.push($(this).attr('id'));
 	});
 
-	var gameMode = $('div.game-mode-container div.game-mode').first().attr('data-game-mode');
+	var gameMode = $('div.map-container div.game-mode').first().attr('data-game-mode');
 	
 	var itemSlugs = new Array();
-	$('div.item-container.view-item-container div.elements-grid').each(function () {
+	$('div.item-block-container div.element').each(function () {
 		var blockName = $(this).find('h3').html();
-		var blockDescription = $(this).children('p').html();
 		if(! (blockName in itemSlugs)) {
 			var blockArray = new Array();
 			$(this).find('ul li.item div.portrait').each(function() {
@@ -22,7 +21,7 @@ function storeItemBuildForCopy() {
 				blockArray.push({slug: $(this).data('slug'), count: itemCount});
 			});
 			if (blockArray.length > 0) {
-				itemSlugs.push({name:blockName, items:blockArray, description: blockDescription});
+				itemSlugs.push({name:blockName, items:blockArray, description: ''});
 			}
 		}
 	});
@@ -63,4 +62,7 @@ $(document).ready(function()
 
 	// Permet de forcer le téléchargement du build dans le cas où la classe start-dl est affecté au bouton
 	$('a.download-action.start-dl').click();
+	
+	// Affiche l'item modal lors du clic sur un objet
+	initModalItem($('.item-block-container'));
 });
