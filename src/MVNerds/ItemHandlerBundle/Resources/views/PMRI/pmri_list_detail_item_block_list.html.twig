@@ -1,0 +1,14 @@
+<div class="item-block-container">
+	<h2>Les blocs d'objets</h2>
+	{% for item_block in item_build.getItemBuildBlocks() %}
+		{% if loop.index0 % 2 == 0 %}
+			<div class="row-fluid">
+		{% endif %}
+					
+		{% include 'MVNerdsItemHandlerBundle:PMRI:pmri_list_detail_item_block_row.html.twig' with {'item_block': item_block} %}
+		
+		{% if loop.index0 % 2 != 0 or loop.last %}
+			</div>
+		{% endif %}
+	{%endfor%}
+</div>

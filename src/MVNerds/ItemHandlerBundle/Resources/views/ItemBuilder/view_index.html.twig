@@ -4,7 +4,7 @@
 	<meta property="og:title" content="MVNerds - Pimp My Recommended Items" />
 	<meta property="og:description" content="Liste d'objets recommandés : {{itemBuild.getName()}}" />
 	<meta property="og:type" content="activity" />
-	<meta property="og:url" content="http://www.mvnerds.com{{path('item_builder_view', {'itemBuildSlug':itemBuild.getSlug()})}}" />
+	<meta property="og:url" content="http://www.mvnerds.com{{path('pmri_list_detail', {'itemBuildSlug':itemBuild.getSlug()})}}" />
 	<meta property="og:image" content="http://www.mvnerds.com/images/news/maj-saison-3-mini.png" />
 	<meta property="og:site_name" content="MVNerds" />
 	<meta property="fb:admins" content="1317459591" />
@@ -144,9 +144,9 @@
 		{% include 'MVNerdsItemHandlerBundle:ItemBuilder:view_item_blocks.html.twig' %}
 		
 		<div class="item-build-social-actions">
-			<fb:like class="" href="{{url('item_builder_view', {'itemBuildSlug':itemBuild.getSlug()})}}" send="false" layout="button_count" width="450" show_faces="true" font="trebuchet ms" data-colorscheme="dark"></fb:like>
+			<fb:like class="" href="{{url('pmri_list_detail', {'itemBuildSlug':itemBuild.getSlug()})}}" send="false" layout="button_count" width="450" show_faces="true" font="trebuchet ms" data-colorscheme="dark"></fb:like>
 			<a href="https://twitter.com/share" class="twitter-share-button" data-text="Pimp My Recommended Items list : {{itemBuild.getName()}}
-			{{url('item_builder_view', {'itemBuildSlug':itemBuild.getSlug()})}}" data-lang="{{locale}}" data-url="{{url('item_builder_view', {'itemBuildSlug':itemBuild.getSlug()})}}"></a>
+			{{url('pmri_list_detail', {'itemBuildSlug':itemBuild.getSlug()})}}" data-lang="{{locale}}" data-url="{{url('pmri_list_detail', {'itemBuildSlug':itemBuild.getSlug()})}}"></a>
 		</div>
 		
 		{% render 'MVNerdsCommentBundle:Comment:renderLightComments' with {'object': itemBuild} %}

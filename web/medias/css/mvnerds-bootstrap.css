@@ -234,6 +234,9 @@ span.label.red {
 span.label.green {
   background-color: #759e1a;
 }
+span.label.disabled {
+  background-color: #666 !important;
+}
 div.container.border-top {
   border-top: 1px solid #fff;
 }
@@ -638,6 +641,12 @@ div.container.main-container div.span4.right-content div.block div.body {
   background-color: #333;
   padding: 10px 0;
 }
+div.container.main-container div.span4.right-content div.block div.body a {
+  color: #db4a38;
+}
+div.container.main-container div.span4.right-content div.block div.body a:hover {
+  color: white;
+}
 div.container.main-container div.span4.right-content div.block div.body div.block-media {
   text-align: center;
 }
@@ -714,6 +723,12 @@ div.container.main-container div.span4.right-content div.block div.footer.red {
 }
 div.container.main-container div.span4.right-content div.block div.footer.red:hover {
   background-color: #db4a38;
+}
+div.container.main-container div.span4.right-content div.block div.footer.blue {
+  background-color: #147fb1;
+}
+div.container.main-container div.span4.right-content div.block div.footer.blue:hover {
+  background-color: #19a0df;
 }
 div.container.main-container div.span4.right-content div.block div.footer a {
   color: #fff;

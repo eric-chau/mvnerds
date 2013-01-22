@@ -33,6 +33,14 @@ div.container.main-container {
 					background-color: #333;
 					padding: 10px 0;
 
+					a {
+						color: @MVNerdsRed;
+
+						&:hover {
+							color: white;
+						}
+					}
+
 					div.block-media {
 						text-align: center;
 
@@ -116,6 +124,14 @@ div.container.main-container {
 
 						&:hover {
 							background-color: @MVNerdsRed;
+						}
+					}
+
+					&.blue {
+						background-color: darken(@MVNerdsBlue, 10%);
+
+						&:hover {
+							background-color: @MVNerdsBlue;
 						}
 					}
 

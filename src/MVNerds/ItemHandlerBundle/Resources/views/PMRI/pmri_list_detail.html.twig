@@ -1,0 +1,148 @@
+{% extends 'MVNerdsSiteBundle::layout.html.twig' %}
+
+{% block title %}Pimp My Recommended Items - MVNerds{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		<link href="{{ asset('medias/css/pmri/list-detail.css') }}" rel="stylesheet" type="text/css">
+	{% else %}
+
+	{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-modal.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/site/alerts-ajax-handler.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/item-handler/item-modal.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/item-handler/item-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/pmri/detail-page.js') }}"></script>
+	{% else %}
+
+	{% endif %}
+{% endblock %}
+
+{% block breadcrumbs %}
+	{{ parent() }}
+	
+	> <a href="{{ path('pmri_list') }}">Pimp My Recommended Items</a> > <a href="{{ path('pmri_list_detail', {'itemBuildSlug':item_build.getSlug()}) }}">{{ item_build.getName() }}</a>
+{% endblock %}
+
+{% block main_content %}
+	<div class="container main-container border-top">
+		<div class="row-fluid">
+			<div class="span8 left-content">
+				<h1>Liste "{{ item_build.getName() }}"</h1>
+				
+				{# PUBLICITÉ #}
+				<div class="ad-container">
+					<script type="text/javascript"><!--
+					google_ad_client = "ca-pub-9866334543391692";
+					/* MVNerds 2.0 Contenu principal */
+					google_ad_slot = "9485929999";
+					google_ad_width = 468;
+					google_ad_height = 60;
+					//-->
+					</script>
+					<script type="text/javascript"
+					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+					</script>
+				</div>
+				
+				<div class="map-container">
+					<h2>Carte et description</h2>
+					<p>
+						<div class="game-mode {{ item_build.getGameMode().getLabel() }}">
+							<span class="message">{{ item_build.getGameMode().getLabel()|trans }}</span>
+						</div>
+						{% if item_build.getDescription() == '' %}
+							<i>Le créateur de cette liste n'a pas fourni de description.</i>
+						{% else %}
+							{{ item_build.getDescription()|nl2br }}
+						{% endif %}
+					</p>
+					<div class="clearfix"></div>
+				</div>
+				
+				{% include 'MVNerdsItemHandlerBundle:PMRI:pmri_list_detail_champion_list.html.twig' %}
+				
+				{% include 'MVNerdsItemHandlerBundle:PMRI:pmri_list_detail_item_block_list.html.twig' %}
+				
+				<h2>Vos commentaires</h2>
+			</div>
+			
+			<div class="span4 right-content">
+				<div class="block">
+					<div class="footer red">
+						<a href="#" class="download-action{% if start_dl is defined and start_dl %} start-dl{% endif %}" data-name="{{item_build.getName()}}" data-slug="{{item_build.getSlug()}}">{{'item_build_view_index.download.btn'|trans}}</a>
+					</div>
+				</div>
+					
+				<div class="block">
+					<div class="footer blue">
+						<a href="#" class="copy-action" data-name="{{item_build.getName()}}" data-slug="{{item_build.getSlug()}}">{{'item_build_view_index.copy.btn'|trans}}</a>
+					</div>
+				</div>
+					
+				{% if can_edit %}
+					<div class="block">
+						<div class="footer blue">
+							<a href="{{ path('item_builder_edit_build', {itemBuildSlug: item_build.getSlug()}) }}">{{ 'item_table.admin.edit'|trans }}</a>
+						</div>
+					</div>
+				{% endif %}
+					
+				<div class="block">
+					<div class="header">
+						<h3>À propos</h3>
+					</div>
+					<div class="body">
+						<div class="block-media">
+							<img src="{{ asset('medias/images/avatar/' ~ item_build.getUser().getUserAvatarName()~ '.jpg') }}" />
+						</div>
+						<p>
+							{% set status = item_build.getStatus() %}
+							Statut : <span class="status {% if status == 'PUBLIC' %}public{% else %} private{% endif %}">{{ status }}</span><br />
+						</p>
+						<p>
+							Cette liste a été créée par <strong><a href="{{ path('summoner_profile_view', {'userSlug': item_build.getUser().getSlug()}) }}" title="Consulter le profil de {{ item_build.getUser().getUsername }}">{{item_build.getUser().getUserName()}}</a></strong> le <span class="create-date">{{ item_build.getCreateTime('d/m/Y') }}</span>.<br />
+						</p>
+						<p>
+							Sa dernière mise à jour a eu lieu le <span class="update-date">{{ item_build.getUpdateTime('d/m/Y') }}</span>.<br />
+						</p>
+						<p>
+							Elle a été consultée <strong>{{ item_build.getView() }}</strong> fois, téléchargée <strong>{{ item_build.getDownload() }}</strong> fois et commentée <strong>{{ item_build.getCommentCount() }}</strong> fois.<br />
+						</p>
+					</div>
+					<div class="footer">
+						<a href="#">Aller sur le profil de l'auteur</a>
+					</div>
+				</div>
+					
+				{# PUBLICITÉ #}
+				<div class="sidebar-ad-container">
+					<script type="text/javascript"><!--
+					google_ad_client = "ca-pub-9866334543391692";
+					/* Rectangle MVNerds 2.0 */
+					google_ad_slot = "3578997199";
+					google_ad_width = 300;
+					google_ad_height = 250;
+					//-->
+					</script>
+					<script type="text/javascript"
+					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+					</script>	
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	{% include 'MVNerdsItemHandlerBundle:Modal:item_modal.html.twig' %}
+{% endblock %}
+	

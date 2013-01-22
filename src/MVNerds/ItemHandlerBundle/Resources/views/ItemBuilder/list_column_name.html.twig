@@ -1,4 +1,4 @@
-<a href="{{path('item_builder_view', {itemBuildSlug: itemBuild.getSlug()})}}">{{itemBuild.getName()}}</a><br />
+<a href="{{path('pmri_list_detail', {itemBuildSlug: itemBuild.getSlug()})}}">{{itemBuild.getName()}}</a><br />
 <span class="created-by">{{'item_table.td.created_by'|trans}} <a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}" title="{{'item_table.td.consult_profile_of'|trans}} {{ user.getUsername }}">{{user.getUsername()}}</a>,
 {{'item_table.td.updated_the'|trans}} 
 

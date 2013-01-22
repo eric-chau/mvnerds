@@ -1,0 +1,169 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+div.span8.left-content h1 {
+  margin: 0 0 20px 0;
+}
+div.span8.left-content h2 {
+  border-bottom: 1px solid #666;
+  padding: 0 0 5px 0;
+}
+div.span8.left-content div.champions-container,
+div.span8.left-content div.map-container,
+div.span8.left-content div.item-block-container {
+  margin: 0 0 20px 0;
+}
+div.span8.left-content div.champions-container div.champions-list {
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  padding: 10px 5px 0 10px;
+}
+div.span8.left-content div.champions-container div.champions-list div.champion {
+  background-color: #ddd;
+  border: 1px solid #999;
+  display: inline-block;
+  margin: 0 5px 10px 0;
+  padding: 4px;
+}
+div.span8.left-content div.champions-container div.champions-list div.champion:hover {
+  background-color: #111;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+div.span8.left-content div.game-mode {
+  background: url('/medias/images/pmri/game-mode-bg.jpg');
+  border: 2px solid #111;
+  display: inline-block;
+  float: left;
+  height: 153px;
+  margin: 0 15px 10px 0;
+  width: 225px;
+}
+div.span8.left-content div.game-mode.dominion {
+  background-position: -291px -1px;
+}
+div.span8.left-content div.game-mode.proving-grounds {
+  background-position: -1px -157px;
+}
+div.span8.left-content div.game-mode.classic {
+  background-position: -1px -1px;
+}
+div.span8.left-content div.game-mode.twisted-treeline {
+  background-position: -348px -157px;
+}
+div.span8.left-content div.game-mode span.message {
+  color: #eee;
+  background-color: #111;
+  display: block;
+  font-size: 14px;
+  padding: 3px 10px;
+  margin-top: 124px;
+  text-align: right;
+}
+div.span8.left-content div.item-block-container div.span6.element {
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  margin-bottom: 13px;
+  padding: 10px;
+}
+div.span8.left-content div.item-block-container div.span6.element:hover {
+  background-color: #ccc;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+div.span8.left-content div.item-block-container div.span6.element:hover h3 {
+  color: #666;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div.span8.left-content div.item-block-container div.span6.element h3 {
+  color: #999;
+}
+div.span8.left-content div.item-block-container div.span6.element h3 span.label {
+  cursor: pointer;
+}
+div.span8.left-content div.item-block-container div.span6.element p.description-block {
+  font-style: italic;
+}
+div.span8.left-content div.item-block-container div.span6.element p.description-block i {
+  color: #999;
+  display: inline-block;
+  margin: 0 0 0 5px;
+}
+div.span8.left-content div.item-block-container div.span6.element p.description-block i.icon-quote-left {
+  margin: 0 5px 0 0;
+}
+div.span8.left-content div.item-block-container div.span6.element ul {
+  list-style: none;
+}
+div.span8.left-content div.item-block-container div.span6.element ul li.item {
+  display: inline-block;
+  margin: 0 7px 10px 0;
+}
+div.span8.left-content div.item-block-container div.span6.element ul li.item div.portrait {
+  position: relative;
+}
+div.span8.left-content div.item-block-container div.span6.element ul li.item div.portrait img.item-image {
+  width: 48px;
+}
+div.span8.left-content div.item-block-container div.span6.element ul li.item div.portrait span.item-count {
+  bottom: 3px;
+  color: white;
+  display: inline-block;
+  font-weight: bold;
+  position: absolute;
+  right: 5px;
+}
+div.span4.right-content div.block div.body div.block-media {
+  margin: 10px 0 20px 0;
+}
+div.span4.right-content div.block div.body div.block-media img {
+  border: 1px solid #666;
+  padding: 3px;
+  width: 100px !important;
+}
+div.span4.right-content div.block div.body p {
+  margin: 0 0 5px 0 !important;
+  text-align: left !important;
+}
+div.span4.right-content div.block div.body span.status {
+  color: #759e1a;
+  font-weight: bold;
+}
+div.span4.right-content div.block div.body span.status.private {
+  color: #db4a38;
+}
+div.span4.right-content div.block div.body span.update-date {
+  color: #759e1a;
+  font-weight: bold;
+}

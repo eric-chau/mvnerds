@@ -43,7 +43,7 @@ div.span8.left-content div#item-builds-table_wrapper div#item-builds-table_proce
   padding: 25px;
   position: absolute;
   text-align: center;
-  top: 50%;
+  top: 25%;
 }
 div.span8.left-content div#item-builds-table_wrapper div#item-builds-table_processing i {
   display: block;
@@ -191,7 +191,7 @@ div.span4.right-content div.block div.body ul.filters-list li {
   margin: 0 0 10px 0;
 }
 div.span4.right-content div.block div.body ul.filters-list li#filter-search {
-  margin: 20px 0;
+  margin: 20px 0 0 0;
   text-align: center;
 }
 div.span4.right-content div.block div.body ul.filters-list li label {

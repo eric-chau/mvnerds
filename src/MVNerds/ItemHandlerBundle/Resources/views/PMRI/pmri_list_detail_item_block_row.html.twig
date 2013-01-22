@@ -1,0 +1,23 @@
+<div class="span6 element">
+	<h3>{{ item_block.getType() }} {% if item_block.getDescription() != '' %}<span class="label description-toggle">Note de l'auteur</span>{% endif %}</h3> 
+
+	{% if item_block.getDescription() != '' %}
+		<p class="description-block hide">
+			<i class="icon-quote-left"></i> {{ item_block.getDescription()|nl2br }} <i class="icon-quote-right"></i>
+		</p>
+	{% endif %}
+
+	<ul>
+		{% for itemBuildBlockItem in item_block.getItemBuildBlockItems() %}
+			{% set item = itemBuildBlockItem.getItem()%}
+			<li class="item"data-placement="right" data-name="{{ item.getName() | lower }}" data-title="{{ item.getName()}}" id="{{ item.getSlug() }}" data-code="{{ item.getRiotCode()}}" data-slug="{{item.getSlug()}}">
+				<div class="portrait" data-slug="{{item.getSlug()}}">
+					<img draggable="false" class="item-image" src="{{ asset('images/items/' ~ item.getRiotCode() ~ '.png') }}" alt="image de l'item {{ item.getName() }}" />
+					{% if (itemBuildBlockItem.getCount() > 1) %}
+						<span class="item-count">{{itemBuildBlockItem.getCount()}}</span>
+					{% endif %}
+				</div>
+			</li>
+		{% endfor %}
+	</ul>
+</div>

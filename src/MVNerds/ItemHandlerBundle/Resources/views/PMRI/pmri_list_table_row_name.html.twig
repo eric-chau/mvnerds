@@ -1,4 +1,4 @@
-<a href="{{path('item_builder_view', {itemBuildSlug: item_build.getSlug()})}}">{{item_build.getName()}}</a>
+<a href="{{path('pmri_list_detail', {itemBuildSlug: item_build.getSlug()})}}">{{item_build.getName()}}</a>
 <div class="created-by">{{'item_table.td.created_by'|trans}} 
 	<a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}" title="{{'item_table.td.consult_profile_of'|trans}} {{ user.getUsername }}">{{user.getUsername()}}</a>,
 	{{'item_table.td.updated_the'|trans}} 
@@ -17,6 +17,6 @@
 		{%endif %}
 	{% endif %}
 </div>
-<span class="one-stat"><i class="icon-comments icon-white" title="{{ 'item_table.td.icon.title.comment'|trans }}"></i> {{item_build.getCommentCount()}}</span>
-<span class="one-stat"><i class="icon-download-alt icon-white" title="{{ 'item_table.td.icon.title.download'|trans }}"></i> {{item_build.getDownload()}}</span>
-<span class="one-stat"><i class="icon-eye-open icon-white" title="{{ 'item_table.td.icon.title.view'|trans }}"></i> {{item_build.getView()}}</span>
+<span class="one-stat"><i class="icon-comments icon-white" title="{{ 'item_table.td.icon.title.comment'|trans }}"></i> {{ item_build.getCommentCount() }}</span>
+<span class="one-stat"><i class="icon-download-alt icon-white" title="{{ 'item_table.td.icon.title.download'|trans }}"></i> {{ item_build.getDownload() }}</span>
+<span class="one-stat"><i class="icon-eye-open icon-white" title="{{ 'item_table.td.icon.title.view'|trans }}"></i> {{ item_build.getView() }}</span>

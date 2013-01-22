@@ -2,7 +2,7 @@
 	<div class="container">
 		<ul class="menu">
 			<li class="home">
-				<a href="#"><i class="icon-home"></i></a>
+				<a href="{{ path('site_homepage') }}"><i class="icon-home"></i></a>
 			</li>
 			<li>
 				<a href="#">Most Valuable News</a>
@@ -11,7 +11,7 @@
 				<a href="#" class="active">Champion Benchmark</a>
 			</li>
 			<li>
-				<a href="#">Pimp My Recommended Items</a>
+				<a href="{{ path('pmri_list') }}">Pimp My Recommended Items</a>
 			</li>
 			<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><strong>Plus</strong></a>
@@ -23,9 +23,9 @@
 								<ul>
 									<li class="header"><a href="#"><i class="icon-file"></i> Most Valuable News</a></li>
 									<li class="header"><a href="#"><i class="icon-random"></i> Champion Benchmark</a></li>
-									<li class="header"><a href="#"><i class="icon-wrench"></i> Pimp my recommended items</a></li>
+									<li class="header"><a href="{{ path('pmri_list') }}"><i class="icon-wrench"></i> Pimp my recommended items</a></li>
 									<li><a href="#"><i class="icon-stop"></i> Personnaliser la liste d'objets conseillés</a></li>
-									<li><a href="#"><i class="icon-stop"></i> Consulter les listes d'objets publiques</a></li>
+									<li><a href="{{ path('pmri_list') }}"><i class="icon-stop"></i> Consulter les listes d'objets publiques</a></li>
 								</ul>
 							</div>
 								

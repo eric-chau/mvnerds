@@ -159,7 +159,7 @@ $(document).ready(function() {
 		"oSearch" :{"sSearch":  ((filter != undefined) ? filter : '')},
 		"bLengthChange": false,
 		"aaSorting": [],
-		"iDisplayLength": 15,
+		"iDisplayLength": 12,
 		"sDom": "lrtip",
 		"aoColumns": [
                       {"bSearchable": false, "bSortable":false, 'sClass': 'champion'},//Champions

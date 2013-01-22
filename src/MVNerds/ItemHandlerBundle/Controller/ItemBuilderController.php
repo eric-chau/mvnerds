@@ -179,38 +179,38 @@ class ItemBuilderController extends Controller
 	
 	/**
 	 * 
-	 * @Route("/view/{itemBuildSlug}/{dl}", name="item_builder_view", defaults={"dl"=null}, options={"expose"=true})
+	 * @Route("/view/{itemBuildSlug}/{dl}", name="pmri_list_detail", defaults={"dl"=null}, options={"expose"=true})
 	 */
 	public function viewAction($itemBuildSlug, $dl)
 	{
-		try{
+		try {
 			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
 			$itemBuild = $this->get('mvnerds.item_build_manager')->findOneBySlug($itemBuildSlug);
 			$itemBuild->setView($itemBuild->getView() + 1);
 			$itemBuild->keepUpdateDateUnchanged();
 			$itemBuild->save();
-		} catch (\Exception $e) {
+		} 
+		catch (\Exception $e) {
 			return $this->redirect($this->generateUrl('item_builder_list'));
 		}
 		
 		$lolDir = null;
 		$canEdit = false;
 		
-		if ($this->get('security.context')->isGranted('ROLE_USER'))
-		{
+		if ($this->get('security.context')->isGranted('ROLE_USER')) {
 			$user = $this->get('security.context')->getToken()->getUser();
-			if (($itemBuild->getUser()->getId() == $user->getId()) || $this->get('security.context')->isGranted('ROLE_ADMIN'))
-			{
+			if (($itemBuild->getUser()->getId() == $user->getId()) || $this->get('security.context')->isGranted('ROLE_ADMIN')) {
 				$canEdit = true;
 			}
-			try{
+			try {
 				$lolDirPreference = $this->get('mvnerds.preference_manager')->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
 				$lolDir = $lolDirPreference->getValue();
-			} catch(\Exception $e) {}
+			} 
+			catch(\Exception $e) {}
 		}
 		
 		$params = array(
-			'itemBuild'	=> $itemBuild,
+			'item_build'	=> $itemBuild,
 			'lol_dir'	=> $lolDir,
 			'can_edit'	=> $canEdit
 		);
@@ -218,7 +218,7 @@ class ItemBuilderController extends Controller
 			$params['start_dl'] = 'true';
 		}
 		
-		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:view_index.html.twig', $params);
+		return $this->render('MVNerdsItemHandlerBundle:PMRI:pmri_list_detail.html.twig', $params);
 	}
 	
 	/**
