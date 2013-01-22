@@ -8,6 +8,35 @@
 	{{ form_widget(form.champion_tags) }}	
 </fieldset>
 
+<fieldset id="champion_skills" data-prototype="{{ form_widget(form.skills.vars.prototype) | e }}" data-i18n-prototype="{{ form.skills.vars.attr['data-i18n-prototype']}}">
+	<legend>Skills : </legend>	
+	<a href="#" class="btn btn-success" id="add-skills-link"><i class="icon-white icon-plus-sign"></i> Add a skill</a>
+
+
+	{% for skill in form.skills%}
+		<fieldset class="champion_skill" style="margin-left:50px">
+			<legend>Skill {{form_label(skill)}} </legend>
+			<div style="margin-bottom:9px;">
+				{{ form_label(skill.range) }}
+				{{ form_widget(skill.range) }}
+			</div>
+			<div style="margin-bottom:9px;">
+				{{ form_label(skill.position) }}
+				{{ form_widget(skill.position) }}
+			</div>
+			<div style="margin-bottom:9px;">
+				{{ form_label(skill.image) }}
+				{{ form_widget(skill.image) }}
+			</div>
+			<fieldset class="champion_skill_i18n"  style="margin-left:100px;"  data-prototype="{{ form_widget(skill.skill_i18ns.vars.prototype) | e }}">
+				<legend>Traductions du skill : </legend>
+				<a href="#" class="btn btn-success add-skill-i18n-link"><i class="icon-white icon-plus-sign"></i> Add a skill translation</a>
+				{{ form_widget(skill.skill_i18ns) }}	
+			</fieldset>
+		</fieldset>
+	{% endfor %}
+</fieldset>
+
 <fieldset>
 	<legend>Propriétés : </legend>
 	{{ form_widget(form) }}	

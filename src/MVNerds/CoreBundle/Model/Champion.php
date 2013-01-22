@@ -132,6 +132,18 @@ class Champion extends BaseChampion
 		return $this;
 	}
 	
+	public function removeSkill(Skill $l)
+	{
+		if ($this->collSkills === null) {
+			return $this;
+		}
+		if ($this->collSkills->contains($l)) {
+			$this->doRemoveSkill($l);
+		}
+
+		return $this;
+	}
+	
 	public function removeChampionI18n(ChampionI18n $l)
 	{
 		die('ko');
@@ -147,6 +159,18 @@ class Champion extends BaseChampion
 		}
 		$this->save();
 		$championTag->delete();
+		return $this;
+	}
+	protected function doRemoveSkill($skill)
+	{		
+		foreach ($this->collSkills as $key => $ct) {
+			if ($ct == $skill) {
+				unset($this->collSkills[$key]);
+				break;
+			}
+		}
+		$this->save();
+		$skill->delete();
 		return $this;
 	}
 } // Champion
