@@ -65,7 +65,7 @@ class FrontController extends Controller
 	public function previewChampionAction($championSlug)
 	{		
 		return $this->render('MVNerdsChampionHandlerBundle:Champion:champion_detail.html.twig', array(
-			'champion' => $this->get('mvnerds.champion_manager')->findBySlugWithSkills($championSlug)
+			'champion' => $this->get('mvnerds.champion_manager')->findBySlugWithSkillsAndSkins($championSlug)
 		));
 	}
 

@@ -75,10 +75,23 @@
 						<img src="{{asset('/images/skills/' ~ skill.getSlug() ~ '.png')}}" alt="image du skill {{skill.getName()}}"/>
 					</div>
 					<div class="span8 skill-content">
-						<stong>{{skill.getName()}}</strong> <br />
+						<strong>{{skill.getName()}}</strong> <br />
 						{{skill.getCooldown()}} <br />
 						{{skill.getCost()}} <br /><br />
 						{{skill.getDescription()}}
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+		<div id="skins-container">
+			{% for skin in champion.getSkins() %}
+				<div class="row-fluid skin">
+					<div class="span4 skin-image">
+						<img src="{{asset('/images/skins/' ~ skin.getSlug() ~ '.png')}}" alt="image du skin {{skin.getName()}}"/>
+					</div>
+					<div class="span8 skin-content">
+						<strong>{{skin.getName()}}</strong> <br />
+						{{skin.getCost()}} <br /><br />
 					</div>
 				</div>
 			{% endfor %}

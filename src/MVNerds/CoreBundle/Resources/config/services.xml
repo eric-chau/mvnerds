@@ -174,5 +174,9 @@
 			SKILLS MANAGER SERVICE
 		-->
 		<service id="mvnerds.skill_manager" class="MVNerds\CoreBundle\Skill\SkillManager" />    
+		<!-- 
+			SKINS MANAGER SERVICE
+		-->
+		<service id="mvnerds.skin_manager" class="MVNerds\CoreBundle\Skin\SkinManager" />    
 	</services>		
 </container>

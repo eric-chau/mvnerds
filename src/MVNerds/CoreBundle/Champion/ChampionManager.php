@@ -143,13 +143,16 @@ class ChampionManager
 		return $champion;
 	}
 	
-	public function findBySlugWithSkills($slug)
+	public function findBySlugWithSkillsAndSkins($slug)
 	{
 		$champion = ChampionQuery::create()
 			->joinWithI18n($this->userLocale)
 			->joinWithSkill()
+			->joinWithSkin()
 			->joinWith('Skill.SkillI18n', \Criteria::LEFT_JOIN)
+			->joinWith('Skin.SkinI18n', \Criteria::LEFT_JOIN)
 			->addJoinCondition('SkillI18n', 'SkillI18n.Lang = ?', $this->userLocale)
+			->addJoinCondition('SkinI18n', 'SkinI18n.Lang = ?', $this->userLocale)
 			->add(ChampionPeer::SLUG, $slug)
 		->find();
 

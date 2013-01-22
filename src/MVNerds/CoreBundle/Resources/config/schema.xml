@@ -663,6 +663,30 @@
       <parameter name="replace_pattern" value="/[^\w\/]+/u" />
       <parameter name="replacement" value="-" />
       <parameter name="separator" value="-" />
+      <parameter name="permanent" value="false" />
+    </behavior>
+  </table>
+  <table name="skin">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="champion_id" required="true" type="INTEGER" />
+    <column name="name" required="true" size="100" type="VARCHAR" />
+    <column name="cost" required="true" size="45" type="VARCHAR" />
+    <foreign-key foreignTable="champion">
+      <reference foreign="id" local="champion_id" />
+    </foreign-key>
+    <behavior name="i18n">
+      <parameter name="i18n_columns" value="name" />
+      <parameter name="default_locale" value="en" />
+      <parameter name="locale_column" value="lang" />
+      <parameter name="i18n_table" value="skin_i18n" />
+      <parameter name="i18n_phpname" value="SkinI18n" />
+    </behavior>
+    <behavior name="sluggable">
+      <parameter name="slug_column" value="slug" />
+      <parameter name="slug_pattern" value="{name}" />
+      <parameter name="replace_pattern" value="/[^\w]+/u" />
+      <parameter name="replacement" value="-" />
+      <parameter name="separator" value="-" />
       <parameter name="permanent" value="true" />
     </behavior>
   </table>

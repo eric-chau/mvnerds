@@ -6,16 +6,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 use MVNerds\DataGrabberBundle\Form\Type\ChampionGrabberType;
-use MVNerds\CoreBundle\Model\Skill;
+use MVNerds\CoreBundle\Model\Skin;
 /**
- * @Route("/skills")
+ * @Route("/skin")
  */
-class SkillController extends Controller
+class SkinController extends Controller
 {	
 	/**
 	 * Permet de récupérer les kills des champions depuis le site lol-fr en français
 	 * 
-	 * @Route("/", name="DataGrabber_skills_index")
+	 * @Route("/", name="DataGrabber_skin_index")
 	 */
 	public function indexAction()
 	{
@@ -34,21 +34,23 @@ class SkillController extends Controller
 				$nbChamp = $champInfo['nb_champions'];
 				
 				//Récupération de la liste des champions
-				$championsList = file_get_html('http://lol-fr.com/champions/')->find('ul#champions-list', 0);
-
+				$championsList = file_get_html('http://www.mobafire.com/league-of-legends/champions')->find('#browse-build', 0);
+				
+				$errors = '';
+				
 				//Si la liste des champions a bien été récupérée
-				if ($championsList)
+				if ($championsList->find('a.champ-box'))
 				{
 					/* @var $championManager \MVNerds\CoreBundle\Champion\ChampionManager */
 					$championManager = $this->get('mvnerds.champion_manager');
 					/* @var $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
 					$flashManager = $this->get('mvnerds.flash_manager');
-					/* @var $skillManager \MVNerds\CoreBundle\Skill\SkillManager */
-					$skillManager = $this->get('mvnerds.skill_manager');
+					/* @var $skinManager \MVNerds\CoreBundle\Skin\SkinManager */
+					$skinManager = $this->get('mvnerds.skin_manager');
 					
 					//Liens de tous les champions
-					$championsLinks = $championsList->find('li a');
-
+					$championsLinks = $championsList->find('a.champ-box');
+					
 					//Si l'utilisateur demande à récupérer tous les champions qui suivent l'index de départ
 					if ($nbChamp <= 0)
 					{
@@ -62,81 +64,72 @@ class SkillController extends Controller
 						$championLink = $championsLinks[$i];
 
 						//Récupération de la page du champion
-						$championHtml = file_get_html('http://lol-fr.com' . $championLink->href);
-
-						if ($championHtml)
+						$championHtml = file_get_html('http://www.mobafire.com' . $championLink->href . '/skins');
+						
+						if ($championHtml->find('#champ-head'))
 						{	
 							//Récupération du nom du champion
-							$name= $championHtml->find('ul#champion-skin-switcher li', 1)->plaintext;
+							$h1 = $championHtml->find('#champ-head div.champ-wrap div.champ-info h1.champ-name', 0)->innertext;
+							$h1Exploded = explode('<span>', $h1);
+							$name = trim($h1Exploded[0]);
+							
 							try {
 								$champion = $championManager->findByName($name);
 							} catch ( \Exception $e) {
+								$errors .= 'impossible de trouver le champion avec le nom : ' . $name . '<br />';
 								continue;
 							}
 							
-							$championSpellsHtml = $championHtml->find('ul#champion-spells li');
-							for ($j = 0; $j < 5; $j++) 
-							{
-								$championSpellHtml = $championSpellsHtml[$j];
-								
-								$spellNameHtml = $championSpellHtml->find('p', 0);
-								$spellName = $spellNameHtml->find('strong', 0)->plaintext;
+							$championSkinsHtml = $championHtml->find('#champ-skins div.skin-wrap');
+							foreach ($championSkinsHtml as $championSkinHtml) {
+								$skinName = $championSkinHtml->find('div.skin-hdr table tbody tr td', 0)->plaintext;
 								try {
-									$skill = $skillManager->findByName($spellName);
+									$skinManager->findByName($skinName, 'en');
+									$errors .= 'le skin avec le nom ' . $skinName . ' existe déjà<br />';
 									continue;
-								} catch ( \Exception $e ) {
-									$skill = new Skill();
-									$skill->setName($spellName);
-									$skill->setChampion($champion);
-									$skill->setLocale('fr');
-								}
-								
-								$spellImageUrl = $championSpellHtml->find('img', 0)->src;
-								
-								if ($j < 4) {
-									$spellTooltip = $championSpellHtml->find('p', 1)->innertext;
-									$spellTooltipExploded = explode('<br />', $spellTooltip);
-
-									$skill->setCooldown(array_shift($spellTooltipExploded));
-									$skill->setCost(array_shift($spellTooltipExploded));
-									$skill->setRange(0);
-									
-									$spellDescriptionImploded = implode(' ', $spellTooltipExploded);
-									$spellDescriptionEscaped = trim(str_get_html($spellDescriptionImploded)->plaintext);
-									$spellDescription = preg_replace('/ +/', ' ', $spellDescriptionEscaped);
-
-									$skill->setDescription($spellDescription);
-									$skill->setPosition($j+1);
-								} else {
-									$passiveDescriptionRaw = preg_replace('/((<strong>).*(<\/strong>))(<br \/>)/', ' ', $spellNameHtml->innertext);
-									$passiveDescription = preg_replace('/ +/', ' ', trim($passiveDescriptionRaw));
-									$skill->setDescription($passiveDescription);
-									$skill->setPosition(0);
-								}
-								$skill->save();
-								$spellImageUrl = preg_replace('/ /', '%20', $spellImageUrl);
-								try {
-								file_put_contents(__DIR__ . '/../../../../web/images/skills/'. $skill->getSlug() .'.png', file_get_contents($spellImageUrl));
 								} catch (\Exception $e) {}
+								
+								$skinPicHtml = $championSkinHtml->find('div.skin-pic', 0);
+								$skinPicStyle = $skinPicHtml->style;
+								$skinPicUrlArr = array();
+								preg_match('/url\(.*\)/', $skinPicStyle, $skinPicUrlArr);
+								$skinPicUrl = preg_replace('/url\(|\)/', '', $skinPicUrlArr[0]);
+								
+								$skinCost = trim($championSkinHtml->find('div.skin-info div.cost', 0)->plaintext);
+								
+								$skin = new Skin();
+								$skin->setChampion($champion);
+								$skin->setLocale('en');
+								$skin->setName($skinName);
+								$skin->setCost($skinCost);
+								$skin->save();
+								
+								try {
+									file_put_contents(__DIR__ . '/../../../../web/images/skins/'. $skin->getSlug() .'.png', file_get_contents('http://www.mobafire.com' . $skinPicUrl));
+								} catch (\Exception $e) {
+									$errors .= 'impossible de récupérer l\'image du champion : http://www.mobafire.com' . $skinPicUrl . '<br />';
+								}
 							}
+						} else {
+							$errors .= 'impossible d\'accéder à la page du champion : ' . $championLink->href . '<br />';
 						}
 					}
 				}
 				else
 				{
 					// Ajout d'un message de flash pour notifier que les informations de l'utilisateur ont bien été modifié
-					$flashManager->setErrorMessage('Flash.error.grab.champions');
+					$flashManager->setErrorMessage('La liste des champions n\'a pas pu être récupérée');
 					// On redirige l'utilisateur vers la liste des utilisateurs
-					return $this->redirect($this->generateUrl('DataGrabber_champions_index'));
+					return $this->redirect($this->generateUrl('DataGrabber_skin_index'));
 				}
 				
 				// Ajout d'un message de flash pour notifier que les informations de l'utilisateur ont bien été modifié
-				$flashManager->setSuccessMessage('Les skills ont bien été grabbés');
+				$flashManager->setSuccessMessage('Les skins ont bien été grabbés. <br />Errors : <br />'.$errors);
 				// On redirige l'utilisateur vers la liste des utilisateurs
-				return $this->redirect($this->generateUrl('DataGrabber_champions_index'));
+				return $this->redirect($this->generateUrl('DataGrabber_skin_index'));
 			}
 		}
-		return $this->render('MVNerdsDataGrabberBundle:Skill:index.html.twig', array(
+		return $this->render('MVNerdsDataGrabberBundle:Skin:index.html.twig', array(
 			'form' => $form->createView()
 		));
 	}
@@ -144,7 +137,7 @@ class SkillController extends Controller
 	/**
 	 * Permet de récupérer les kills des champions depuis le site leaguecraft.com en anglais
 	 * 
-	 * @Route("/en", name="DataGrabber_skills_en")
+	 * @Route("/en", name="DataGrabber_skin_en")
 	 */
 	public function enAction()
 	{
@@ -255,16 +248,16 @@ class SkillController extends Controller
 					// Ajout d'un message de flash pour notifier que les informations de l'utilisateur ont bien été modifié
 					$flashManager->setErrorMessage('Erreur <br />' . $errors);
 					// On redirige l'utilisateur vers la liste des utilisateurs
-					return $this->redirect($this->generateUrl('DataGrabber_skills_en'));
+					return $this->redirect($this->generateUrl('DataGrabber_skin'));
 				}
 				
 				// Ajout d'un message de flash pour notifier que les informations de l'utilisateur ont bien été modifié
-				$flashManager->setSuccessMessage('Les skills ont bien été grabbés <br />'.$errors);
+				$flashManager->setSuccessMessage('Les skins ont bien été grabbés <br />'.$errors);
 				// On redirige l'utilisateur vers la liste des utilisateurs
-				return $this->redirect($this->generateUrl('DataGrabber_skills_en'));
+				return $this->redirect($this->generateUrl('DataGrabber_skin'));
 			}
 		}
-		return $this->render('MVNerdsDataGrabberBundle:Skill:en.html.twig', array(
+		return $this->render('MVNerdsDataGrabberBundle:Skin:index.html.twig', array(
 			'form' => $form->createView()
 		));
 	}
