@@ -148,7 +148,7 @@ class ChampionManager
 		$champion = ChampionQuery::create()
 			->joinWithI18n($this->userLocale)
 			->joinWithSkill()
-			->joinWithSkin()
+			->joinWith('Skin', \Criteria::LEFT_JOIN)
 			->joinWith('Skill.SkillI18n', \Criteria::LEFT_JOIN)
 			->joinWith('Skin.SkinI18n', \Criteria::LEFT_JOIN)
 			->addJoinCondition('SkillI18n', 'SkillI18n.Lang = ?', $this->userLocale)
@@ -215,10 +215,11 @@ class ChampionManager
 	 * @return MVNerds\CoreBundle\Model\Champion l'objet Champion qui correspond au nom $name
 	 * @throws InvalidArgumentException exception levé si aucun champion n'est associé au nom  $name
 	 */
-	public function findByName($name)
+	public function findByName($name, $locale = null)
 	{
+		$locale = $locale == null ? $this->userLocale : $locale;
 		$champion = ChampionQuery::create()
-			->joinWithI18n($this->userLocale)
+			->joinWithI18n($locale, \Criteria::LEFT_JOIN)
 			->add(ChampionI18nPeer::NAME, $name)
 		->findOne();
 

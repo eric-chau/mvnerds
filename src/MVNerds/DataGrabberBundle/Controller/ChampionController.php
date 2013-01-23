@@ -12,9 +12,9 @@ use MVNerds\DataGrabberBundle\Form\Type\ChampionGrabberType;
 use MVNerds\CoreBundle\Model\TagQuery;
 use MVNerds\CoreBundle\Model\TagI18nPeer;
 use MVNerds\CoreBundle\Model\ChampionI18nPeer;
-use MVNerds\CoreBundle\Model\ChampionI18nQuery;
+
 /**
- * @Route("/champions")
+ * @Route("/champs")
  */
 class ChampionController extends Controller
 {	
@@ -250,6 +250,158 @@ class ChampionController extends Controller
 			}
 		}
 		return $this->render('MVNerdsDataGrabberBundle:Champion:index.html.twig', array(
+			'form' => $form->createView()
+		));
+	}
+	
+	/**
+	 * Permet de mettre à jour les statistiques des champions depuis le site du wiki de LoL
+	 * 
+	 * @Route("/update-stats", name="DataGrabber_champions_update_stats")
+	 */
+	public function updateStatsAction()
+	{
+		$form = $this->createForm(new ChampionGrabberType());
+				
+		$request = $this->getRequest();
+		if ($request->isMethod('POST'))
+		{
+			$form->bind($request);
+			if ($form->isValid())
+			{
+				include(__DIR__ . '/../SimpleHtmlDom/simple_html_dom.php');
+				//Augmente la durée maximum d'exécution
+				set_time_limit(30);
+				
+				$champInfo = $form->getData();
+				$startChamp = $champInfo['start_index'];
+				$nbChamp = $champInfo['nb_champions'];
+				
+				//Récupération de la liste des champions
+				$championsList = file_get_html('http://leagueoflegends.wikia.com/wiki/League_of_Legends_Wiki')->find('ol.champion_roster', 0);
+				
+				//Si la liste des champions a bien été récupérée
+				if ($championsList->find('li span a'))
+				{
+					/* @var $championManager \MVNerds\CoreBundle\Champion\ChampionManager */
+					$championManager = $this->get('mvnerds.champion_manager');
+					/* @var $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
+					$flashManager = $this->get('mvnerds.flash_manager');
+
+					//Liens de tous les champions
+					$championsLinks = $championsList->find('li span a');
+
+					//Si l'utilisateur demande à récupérer tous les champions qui suivent l'index de départ
+					if ($nbChamp <= 0)
+					{
+						$nbChamp = count($championsLinks) - $startChamp;
+					}
+					
+					$errors = 'Erreurs : <br />';
+					
+					//On boucle sur chaque champion pour récupérer le lien associé
+					for ($i = $startChamp; $i < $startChamp + $nbChamp; $i++)
+					{
+						$championLink = $championsLinks[$i];
+
+						//Récupération de la page du champion
+						$championHtml = file_get_html('http://leagueoflegends.wikia.com' . $championLink->href);
+						
+						if ($championHtml->find('h1'))
+						{	
+							//Récupération du nom du champion
+							$name = $championHtml->find('#WikiaPageHeader h1', 0)->plaintext;
+							try {
+								/* @var $champion \MVNerds\CoreBundle\Model\Champion */
+								$champion = $championManager->findByName($name);
+								$champion->setLocale('fr');
+							} catch (\Exception $e) {
+								$errors .= 'Impossible de trouver le champion ayant pour nom : ' . $name . '<br />';
+								continue;
+							}
+							
+							//Récupération du prix du champion
+							$championCostHtml = $championHtml->find('#champion_info-upper tr td', 2)->find('span a');
+							$champion->setIpCost($championCostHtml[1]->plaintext);
+							$champion->setRpCost($championCostHtml[3]->plaintext);
+							//Initialisation du mana type à none qui sera écrasé par la suite
+							$champion->setManaType('NONE');
+							
+							//Récupération des stats du champion
+							$championStatsHtml = $championHtml->find('table#champion_info-lower table', 1)->find('tr td');
+							foreach($championStatsHtml as $key => $championStatHtml) {
+								if ($key % 2 != 0) {
+									//On saute un tour de boucle tous les deux tours
+									continue;
+								}
+								$statName =  trim($championStatHtml->plaintext);
+								$statValue = trim($championStatsHtml[$key + 1]->plaintext);
+								
+								if ( $statName == 'Health') {
+									$flatValue = trim(strstr($statValue, '(', true)) * 1;
+									$perLvlValue = preg_replace('/\(\+|\)/', '', trim(strstr($statValue, '(+'))) * 1;
+									$champion->setBaseHealth($flatValue + $perLvlValue);
+									$champion->setBonusHealthPerLevel($perLvlValue);
+								} elseif ($statName == 'Attack damage') {
+									$flatValue = trim(strstr($statValue, '(', true)) * 1;
+									$perLvlValue = preg_replace('/\(\+|\)/', '', trim(strstr($statValue, '(+'))) * 1;
+									$champion->setBaseDamage($flatValue + $perLvlValue);
+									$champion->setBonusDamagePerLevel($perLvlValue);
+								} elseif ($statName == 'Health regen.') {
+									$perLvlValue = preg_replace('/\(\+|\)/', '', trim(strstr($statValue, '(+'))) / 5;
+									$flatValue = trim(strstr($statValue, '(', true)) / 5;
+									$champion->setBaseHealthRegen(round($flatValue + $perLvlValue, 2));
+									$champion->setBonusHealthRegenPerLevel(round($perLvlValue, 2));
+								} elseif ($statName == 'Attack speed') {
+									$flatValue = trim(strstr($statValue, '(', true)) * 1;
+									$perLvlValue = preg_replace('/\(\+|%\)/', '', trim(strstr($statValue, '(+'))) * 1;
+									$champion->setBaseAttackSpeed(round($flatValue, 4));
+									$champion->setBonusAttackSpeedPerLevel(round($flatValue * $perLvlValue / 100, 4));
+								} elseif ($statName == 'Mana' && $statValue != 'N/A') {
+									$flatValue = trim(strstr($statValue, '(', true)) * 1;
+									$perLvlValue = preg_replace('/\(\+|\)/', '', trim(strstr($statValue, '(+'))) * 1;
+									$champion->setBaseMana($flatValue + $perLvlValue);
+									$champion->setBonusManaPerLevel($perLvlValue);
+									$champion->setManaType('MANA');
+								} elseif ($statName == 'Fury' || $statName == 'Heat' || $statName == 'Energy') {
+									$champion->setBaseMana($statValue * 1);
+									$champion->setBonusManaRegenPerLevel(0);
+									$champion->setManaType(strtoupper($statName));
+								} elseif ($statName == 'Mana regen.') {
+									$perLvlValue = preg_replace('/\(\+|\)/', '', trim(strstr($statValue, '(+'))) / 5;
+									$flatValue = trim(strstr($statValue, '(', true)) / 5;
+									$champion->setBaseManaRegen(round($flatValue + $perLvlValue, 2));
+									$champion->setBonusManaRegenPerLevel(round($perLvlValue, 2));
+								} elseif ($statName == 'Energy regen.') {
+									$champion->setBaseManaRegen($statValue * 1);
+									$champion->setBonusManaRegenPerLevel(0);
+								} elseif ($statName == 'Magic res.') {
+									$flatValue = trim(strstr($statValue, '(', true)) * 1;
+									$perLvlValue = preg_replace('/\(\+|\)/', '', trim(strstr($statValue, '(+'))) * 1;
+									$champion->setBaseMagicResist($flatValue + $perLvlValue);
+									$champion->setBonusMagicResistPerLevel($perLvlValue);
+								} elseif ($statName == 'Range') {
+									$champion->setAttackRange($statValue);
+								} elseif ($statName == 'Mov. speed') {
+									$champion->setMoveSpeed($statValue);
+								}
+							}
+							$champion->save();
+						} else {
+							$errors .= 'Impossible d\'accéder à la page du champion : http://leagueoflegends.wikia.com' . $championLink->href . '<br />';
+						}
+					}
+				} else {
+					$flashManager->setErrorMessage('Impossible d\'accéder à la liste des champions');
+					return $this->redirect($this->generateUrl('DataGrabber_champions_update_stats'));
+				}
+				
+				$flashManager->setSuccessMessage('Les statistiques ont bien été mises à jour.<br />' . $errors);
+				return $this->redirect($this->generateUrl('DataGrabber_champions_update_stats'));
+			}
+		}
+		
+		return $this->render('MVNerdsDataGrabberBundle:Champion:update_stats.html.twig', array(
 			'form' => $form->createView()
 		));
 	}
