@@ -58,7 +58,7 @@ $(document).ready(function()
 	$('a.copy-action').click(function(e){
 		e.preventDefault();
 		storeItemBuildForCopy();
-		window.location = Routing.generate('item_builder_create', {_locale: locale});
+		window.location = Routing.generate('pmri_create', {_locale: locale});
 	});	
 
 	// Permet de forcer le téléchargement du build dans le cas où la classe start-dl est affecté au bouton

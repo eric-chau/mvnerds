@@ -50,7 +50,7 @@ $(function() {
 	$('a.copy-action').click(function(e){
 		e.preventDefault();
 		storeItemBuildForCopy();
-		window.location = Routing.generate('item_builder_create', {_locale: locale});
+		window.location = Routing.generate('pmri_create', {_locale: locale});
 	});	
 	//Clic sur un item
 	initModalItem($('.item-container'));

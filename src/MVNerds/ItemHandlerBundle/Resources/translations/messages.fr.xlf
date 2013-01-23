@@ -34,7 +34,7 @@
 			<trans-unit id="5">
 				<source>create_item_build.tip.1</source>
 				<target>
-					Astuce : Vous pouvez filtrer les champions par catégorie pour ensuite tous les sélectionner simultanément.
+					Vous pouvez filtrer les champions par catégorie pour ensuite tous les sélectionner simultanément.
 				</target>
 			</trans-unit>
 			
@@ -470,6 +470,10 @@
 			<trans-unit id="3015">
 				<source>item_build_list_index.sort.views</source>
 				<target>Les plus vus</target>
+			</trans-unit>
+			<trans-unit id="3016">
+				<source>item_build_list_index.btn.my_lists</source>
+				<target>Voir mes listes</target>
 			</trans-unit>
 			
 			<!-- VIEW INDEX -->

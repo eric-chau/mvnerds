@@ -24,7 +24,7 @@ class ItemBuilderController extends Controller
 	const MAX_ITEM_BUILDS = 7;
 	
 	/**
-	 * @Route("/create", name="item_builder_create", options={"expose"=true})
+	 * @Route("/create", name="pmri_create", options={"expose"=true})
 	 */
 	public function createAction()
 	{		
@@ -50,7 +50,7 @@ class ItemBuilderController extends Controller
 			}
 		}	
 		
-		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:create_index.html.twig', array(
+		return $this->render('MVNerdsItemHandlerBundle:PMRI:pmri_list_create.html.twig', array(
 			'champions'			=> $this->get('mvnerds.champion_manager')->findAllWithTags(),
 			'items'				=> $this->get('mvnerds.item_manager')->findAllActive(),
 			'can_save_build'	=> $canSaveBuild,

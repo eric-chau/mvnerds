@@ -1,0 +1,187 @@
+{% extends 'MVNerdsSiteBundle::layout.html.twig' %}
+
+{% block title %}{{'create_item_build.title'|trans}} - Pimp My Recommended Items | MVNerds{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		<link href="{{ asset('medias/css/pmri/create-page.css') }}" rel="stylesheet" type="text/css">
+	{% else %}
+
+	{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+	{% if app.environment == 'dev' %}
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-modal.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/jquery.isotope.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/site/isotope-filter.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/jquery.mCustomScrollbar.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/jquery.mousewheel.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/site/alerts-ajax-handler.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/item-handler/item-modal.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/item-handler/item-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/pmri/create-page.js') }}"></script>
+	{% else %}
+
+	{% endif %}
+{% endblock %}
+
+{% block breadcrumbs %}
+	{{ parent() }}
+	
+	> <a href="{{ path('pmri_list') }}">Pimp My Recommended Items</a> > <a href="{{ path('pmri_create') }}">{{ 'Sidebar.pmri.create_list'|trans }}</a>
+{% endblock %}
+
+{% block main_content %}
+	<div class="container main-container border-top">
+		<h1>{{'create_item_build.h1' | trans}}</h1>
+		
+		<p>{{'create_item_build.p.1' | trans}}</p>
+		
+		{# PUBLICITÉ #}
+		<div class="ad-container">
+			<script type="text/javascript"><!--
+			google_ad_client = "ca-pub-9866334543391692";
+			/* MVNerds V1 */
+			google_ad_slot = "3293122397";
+			google_ad_width = 728;
+			google_ad_height = 90;
+			//-->
+			</script>
+			<script type="text/javascript"
+			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+			</script>
+		</div>
+		
+		{# ########################## ETAPE 1 : CHOIX DES CHAMPIONS ########################## #}
+		<div class="step">
+			<h2>{{'create_item_build.h2.1' | trans}}</h2>
+			<p>{{'create_item_build.p.2' | trans}}</p>
+			<p class="note"><i class="icon-question-sign"></i> {{'create_item_build.tip.1' | trans}}</p>
+
+			<div class="champion-container">
+				<div id="champion-topbar" class="actionbar">
+					{% include 'MVNerdsItemHandlerBundle:PMRI:pmri_list_create_champion_topbar.html.twig' %}
+				</div>
+
+				<div id="champion-list" class="elements-grid">
+					{% include 'MVNerdsItemHandlerBundle:ItemBuilder:champion_grid_minified.html.twig' %}
+				</div>
+			</div>
+		</div>
+		
+		<div class="step">
+			<h2>{{'create_item_build.h2.2' | trans}}</h2>
+			<p>{{'create_item_build.p.3' | trans}}</p>
+			<p class="note">{{'create_item_build.tip.2' | trans}}</p>
+
+			<div class="game-mode-container">
+				<div class="game-mode classic {% if gameMode is defined %} {% if gameMode == 'classic' %}active{%endif %} {% else %}active{% endif %}" data-game-mode="classic"><span class="message">Summoner Rift</span></div>
+				<div class="game-mode twisted-treeline {% if gameMode is defined and gameMode == 'twisted-treeline' %}active{%endif %}" data-game-mode="twisted-treeline"><span class="message">Twisted Treeline</span></div>
+				<div class="game-mode dominion {% if gameMode is defined and gameMode == 'dominion' %}active{%endif %}" data-game-mode="dominion"><span class="message" >Dominion</span></div>
+				<div class="game-mode proving-grounds {% if gameMode is defined and gameMode == 'aram' %}active{%endif %}" data-game-mode="aram"><span class="message" >All Random All Mid (ARAM)</span></div>
+			</div>
+		</div>
+		
+		<div class="step">
+			<h2>{{'create_item_build.h2.3' | trans}}</h2>
+			<p>{{'create_item_build.p.4' | trans}}</p>
+			<p note="tip">{{'create_item_build.tip.3' | trans}}</p>
+			<p class="note">{{'create_item_build.tip.4' | trans}}</p>
+
+			<div class="item-container">			
+				<div class="row-fluid">
+					<div id="item-list" class="elements-grid span9">
+						{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_grid.html.twig' %}
+					</div>
+					<div id="item-sidebar-blocks" class="span3">
+						{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_sidebar_blocks.html.twig' %}
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="step">
+			<h2>{{'create_item_build.h2.4' | trans}}</h2>
+			<p>{{'create_item_build.p.5' | trans}}</p>
+
+			<div class="name-container">
+				<form action="#" method="POST">
+					<input type="text" class="" id="build-name" placeholder="{{'create_item_build.list_name.placeholder' | trans}}" value="{% if buildName is defined %}{{buildName}}{% endif %}"/>
+					<br />
+					<br />
+					<p>{{'create_item_build.p.5.2' | trans}}</p>
+					<textarea placeholder="Description..." id="build-description">{% if buildDescription is defined and buildDescription != '' %}{{ buildDescription }}{% endif %}</textarea>
+				</form>
+			</div>
+		</div>
+		
+		<div class="step">
+			<h2>{{'create_item_build.h2.5' | trans}}</h2>
+			<p>{{'create_item_build.p.6' | trans}}</p>
+			<p class="note">{{'create_item_build.tip.5' | trans}}</p>
+			<p class="note">{{'create_item_build.tip.6' | trans}}</p>
+
+			<div id="private-container">
+				<form action="#" method="POST">
+					<i class="icon-lock icon white"></i>
+					<input type="checkbox" id="build-private" {% if isBuildPrivate is defined and isBuildPrivate == 1%}checked="checked"{% endif %}/>
+					<label for="build-private"> {{'create_item_build.build_private.label'|trans}} <i class="icon-question-sign icon-white bootstrap-tooltip" data-title="{{'create_item_build.build_private.tooltip'|trans}}"></i></label>
+				</form>
+			</div>
+
+			<div class="generate-button-container">
+				{% if itemBuildSlug is not defined %}
+					{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+						{% if can_save_build%}
+							<a href="#" id="save-and-generate-build" class="main">{{'create_item_build.btn.save_and_generate' | trans}}</a>
+						{% else %}
+							{{'create_item_build.max_builds_reached' | trans}}
+						{% endif %}
+					{% else %}
+						<a href="#" id="save-and-generate-build-not-authenticated" class="main">{{'create_item_build.btn.save_and_generate' | trans}}</a>
+					{% endif %}
+
+					<a href="#" id="only-generate-build">{{'create_item_build.btn.generate_only' | trans}}</a>
+				{% else %}
+					<a href="#" id="save-build" class="main" data-slug="{{itemBuildSlug}}">{{'create_item_build.btn.save' | trans}}</a>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+	
+	{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}
+	{% include 'MVNerdsItemHandlerBundle:Modal:item_modal.html.twig' %}
+	
+	<div id="modal-authenticate-build" class="modal hide fade">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+			<h3>{{'create_item_build.modal_authenticate.h3' | trans}}</h3>
+		</div>
+		<div class="modal-body" style="min-height:235px;">
+			<p>
+				{{'create_item_build.modal_authenticate.p1' | trans}}
+			</p>
+			{#<p>
+				{{'create_item_build.modal_authenticate.p2' | trans}}
+			</p>#}
+			<p>
+				{{'create_item_build.modal_authenticate.p3' | trans}}
+			</p>
+		</div>
+		<div class="modal-footer">
+			<a href="#" data-dismiss="modal" class="btn-cancel">{{'create_item_build.modal_authenticate.btn.cancel' | trans}}</a>
+			<a href="{{path('security_store_current_route_and_redirect_to_login')}}" id="modal-btn-authentication" data-target="" class="btn-download">{{'create_item_build.modal_authenticate.btn.sign_in' | trans}}</a>
+			<a href="{{path('security_store_current_route_and_redirect_to_registration')}}" id="modal-btn-inscription" data-target="" class="btn-download">{{'create_item_build.modal_authenticate.btn.inscription' | trans}}</a>
+			<a href="{{path('security_summoner_login')}}" id="modal-btn-only-generate-build" data-target="" class="btn-download"><i class="icon-download-alt"></i>{{'create_item_build.modal_authenticate.btn.download_only' | trans}}</a>
+		</div>
+	</div>
+{% endblock %}
+	

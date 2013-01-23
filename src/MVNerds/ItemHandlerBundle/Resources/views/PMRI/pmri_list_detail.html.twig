@@ -1,6 +1,6 @@
 {% extends 'MVNerdsSiteBundle::layout.html.twig' %}
 
-{% block title %}Pimp My Recommended Items - MVNerds{% endblock %}
+{% block title %}{{ item_build.getName() }} - Pimp My Recommended Items | MVNerds{% endblock %}
 
 {% block css %}
 	{{ parent() }}
@@ -78,12 +78,14 @@
 			</div>
 			
 			<div class="span4 right-content">
+				{# Bouton de téléchargement #}
 				<div class="block">
 					<div class="footer red">
 						<a href="#" class="download-action{% if start_dl is defined and start_dl %} start-dl{% endif %}" data-name="{{item_build.getName()}}" data-slug="{{item_build.getSlug()}}">{{'item_build_view_index.download.btn'|trans}}</a>
 					</div>
 				</div>
-					
+				
+				{# Bouton de copie #}
 				<div class="block">
 					<div class="footer blue">
 						<a href="#" class="copy-action" data-name="{{item_build.getName()}}" data-slug="{{item_build.getSlug()}}">{{'item_build_view_index.copy.btn'|trans}}</a>
@@ -91,6 +93,7 @@
 				</div>
 					
 				{% if can_edit %}
+					{# Bouton d'édition #}
 					<div class="block">
 						<div class="footer blue">
 							<a href="{{ path('item_builder_edit_build', {itemBuildSlug: item_build.getSlug()}) }}">{{ 'item_table.admin.edit'|trans }}</a>

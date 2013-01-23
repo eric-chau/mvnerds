@@ -1,0 +1,212 @@
+// Twitter Bootstraps imports
+@import "../bootstrap/mixins.less";
+
+// MVNerds imports
+@import "../mvnerds/mvnerds-variables.less";
+
+div.container.main-container {
+	h2 {
+		border-bottom: 1px solid #666;
+		padding: 0 0 5px 0;
+	}
+
+	div.step {
+		margin: 0 0 20px 0;
+
+		&:hover, &:focus {
+			h2 {
+				border-color: @MVNerdsRed;
+				color: @MVNerdsRed; .transition(all .25s linear);
+			}
+		}
+
+		p.note {
+			padding: 0 0 0 20px;
+
+			i {
+				display: inline-block;
+				margin: 0 5px 0 0;
+			}
+		}
+
+		ul {
+			list-style: none;
+		}
+
+		div.champion-container {
+			div#champion-topbar {
+				margin: 0 0 10px 0;
+
+				ul#champion-actions {
+					text-align: right;
+
+					li {
+						display: inline-block;
+						margin-left: 10px;
+
+						&#btn-clear-champions, &#filters-block {
+							border: 1px solid #ccc;
+
+							&:hover {
+								border-color: #666; .transition(border-color .25s linear);
+							}
+
+							&.disabled {
+								color: #ccc;
+
+								&:hover {
+									border-color: #ccc;
+								}
+
+								a {
+									cursor: not-allowed;
+								}
+							}
+
+							a {
+								display: block;
+								line-height: 27px;
+								padding: 0 5px;
+							}
+						}
+
+						&.search-action input[type="text"] {
+							padding: 3px 5px;
+						}
+					}
+
+					ul#filters-list {
+						background-color: rgba(228,230,229,.95);
+						border: 2px solid #666;
+						left: initial;
+						padding: 0;
+						right: 0;
+						text-align: left;
+						width: 520px;
+
+						li.list-header {
+							color: #666;
+							font-weight: bold;
+							letter-spacing: 3px;
+							padding: 5px;
+							text-align: center;
+							text-transform: uppercase;
+						}
+
+						div.row-filters {
+							margin: 10px 0;
+
+							div.span6 {
+								padding: 0 15px;
+
+								ul.tags-group {
+									li {
+										border: 1px solid rgba(228,230,229,.95);
+										padding: 0 0 0 10px;
+
+										&:hover {
+											border-color: #666; .transition(border-color .25s linear);
+										}
+
+										&.nav-header {
+											color: @MVNerdsRed;
+											font-weight: bold;
+											margin: 10px 0 0 0 !important;
+											padding: 0;
+
+											&:hover {
+												border-color: rgba(228,230,229,.95);
+											}
+										}
+
+										a {
+											&.selected {
+												font-weight: bold;
+
+												i {
+													color: @MVNerdsBlue;
+												}
+											}
+
+											i {
+												color: #aaa;
+												display: inline-block;
+												margin: 0 10px 0 0;
+											}
+										}
+									}
+								}
+							}
+						}
+
+						div.div-action-buttons {
+							div.span6 {
+								margin: 0;
+								min-height: 0;
+								padding: 0 4px 0 0;
+								text-align: left;
+								width: 50%;
+
+								&.div-right {
+									padding: 0 0 0 4px;
+									text-align: right;
+
+									a {
+										border: 1px dashed #666;
+										border-bottom: 0;
+										border-right: 0;
+									}
+								}
+
+								a {
+									border: 1px dashed #666;
+									border-bottom: 0;
+									border-left: 0;
+									line-height: 1.4em;
+									margin: 0;
+									padding: 3px 5px;
+
+									&:hover {
+										background-color: #666;
+										color: white; .transition(all .25s linear);
+
+										&.disabled {
+											background-color: inherit;
+											color: #ccc;
+										}
+									}
+
+									&.disabled {
+										border-color: #ccc;
+										color: #ccc;
+										cursor: not-allowed;
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+
+			div#champion-list {
+				background-color: #ddd;
+				border: 1px solid #ccc;
+				padding: 20px 30px 20px 86px;
+
+				ul#champion-isotope-list {
+					li.champion {
+						border: 1px solid #999;
+						cursor: pointer;
+						margin: 0 0 16px 0;
+						padding: 3px;
+
+						&.active {
+							background-color: @LoLOrangeAD;
+							border-color: @LoLOrangeAD; .transition(all .25s linear);
+						}
+					}
+				}
+			}
+		}
+	}
+}

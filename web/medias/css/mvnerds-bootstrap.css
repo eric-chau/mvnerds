@@ -244,11 +244,9 @@ div.container.border-bottom {
   border-bottom: 1px solid #999;
 }
 div.separator {
-  background: url('/medias/images/site/separator.png') no-repeat top center;
+  border-bottom: 1px solid #888;
   display: block;
-  height: 14px;
-  margin: 10px;
-  opacity: .7;
+  margin: 20px 0;
 }
 ul.nav.nav-tabs {
   border-bottom: 2px solid #19a0df;
@@ -618,13 +616,13 @@ div.container.champion-rotation div.champion-search-input i {
 div.container.main-container {
   padding: 20px 10px;
 }
+div.container.main-container div.ad-container {
+  margin: 0 0 10px 0;
+  text-align: center;
+}
 div.container.main-container div.span8.left-content {
   border: 1px solid #666;
   padding: 10px;
-}
-div.container.main-container div.span8.left-content div.ad-container {
-  margin: 0 0 10px 0;
-  text-align: center;
 }
 div.container.main-container div.span4.right-content div.block {
   margin: 0 0 20px 0;
