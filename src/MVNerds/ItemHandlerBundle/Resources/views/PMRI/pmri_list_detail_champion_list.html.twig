@@ -4,14 +4,14 @@
 		{% if item_build.getChampionItemBuilds()|length > 1 %}
 			{% for champion_item_build in item_build.getChampionItemBuilds() %}
 				{% set champion = champion_item_build.getChampion() %}
-				<div class="champion">
+				<div class="champion" id="{{champion.getSlug()}}">
 					<div class="champion-square36 {{ champion.getSlug() }} tooltip-anchor" data-placement="top" data-title="{{ champion.getName()}}"></div>
 				</div>
 			{% endfor %}
 		{% else %}
 			{% for champion_item_build in item_build.getChampionItemBuilds() %}
 				{% set champion = champion_item_build.getChampion() %}
-				<div class="champion">
+				<div class="champion" id="{{champion.getSlug()}}">
 					<img src="{{ asset('medias/images/champions/square/' ~ champion.getSlug() ~ '.png') }}" class="tooltip-anchor" data-placement="top" data-title="{{ champion.getName()}}" />
 				</div>
 			{% endfor %}
