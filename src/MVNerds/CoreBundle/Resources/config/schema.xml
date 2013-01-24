@@ -20,7 +20,7 @@
     <column name="base_magic_resist" required="true" scale="3" type="FLOAT" />
     <column name="bonus_magic_resist_per_level" required="true" scale="3" type="FLOAT" />
     <column name="move_speed" required="true" type="SMALLINT" />
-    <column name="mana_type" required="true" type="ENUM" valueSet="MANA, ENERGY, RAGE" />
+    <column name="mana_type" required="true" type="ENUM" valueSet="MANA, ENERGY, FURY, HEAT, NONE" />
     <column name="base_attack_speed" required="true" scale="4" type="FLOAT" />
     <column name="bonus_attack_speed_per_level" required="true" scale="4" type="FLOAT" />
     <column name="attack_range" required="true" type="SMALLINT" />
@@ -647,6 +647,7 @@
     <column defaultValue="0" name="range" required="true" size="45" type="VARCHAR" />
     <column defaultValue="0" name="cooldown" required="true" size="45" type="VARCHAR" />
     <column defaultValue="0" name="position" required="true" type="TINYINT" />
+    <column defaultValue="0" name="radius" type="INTEGER" />
     <foreign-key foreignTable="champion">
       <reference foreign="id" local="champion_id" />
     </foreign-key>
