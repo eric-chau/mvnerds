@@ -52,7 +52,7 @@
 			<trans-unit id="8">
 				<source>create_item_build.tip.2</source>
 				<target>
-					Note : Only the items authorised in the game mode selected will appear in the list.
+					Only the items authorised in the game mode selected will appear in the list.
 				</target>
 			</trans-unit>
 			
@@ -71,13 +71,13 @@
 			<trans-unit id="11">
 				<source>create_item_build.tip.3</source>
 				<target>
-					Tip : use the filtering system to find easily your items.
+					Use the filtering system to find easily your items.
 				</target>
 			</trans-unit>
 			<trans-unit id="12">
 				<source>create_item_build.tip.4</source>
 				<target>
-					Note : Blocks left empty won't be used for the recommended items list.
+					Blocks left empty won't be used for the recommended items list.
 				</target>
 			</trans-unit>
 			

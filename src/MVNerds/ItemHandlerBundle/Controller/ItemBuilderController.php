@@ -50,7 +50,7 @@ class ItemBuilderController extends Controller
 			}
 		}	
 		
-		return $this->render('MVNerdsItemHandlerBundle:PMRI:pmri_list_create.html.twig', array(
+		return $this->render('MVNerdsItemHandlerBundle:PMRI:pmri_create.html.twig', array(
 			'champions'			=> $this->get('mvnerds.champion_manager')->findAllWithTags(),
 			'items'				=> $this->get('mvnerds.item_manager')->findAllActive(),
 			'can_save_build'	=> $canSaveBuild,
@@ -218,7 +218,7 @@ class ItemBuilderController extends Controller
 			$params['start_dl'] = 'true';
 		}
 		
-		return $this->render('MVNerdsItemHandlerBundle:PMRI:pmri_list_detail.html.twig', $params);
+		return $this->render('MVNerdsItemHandlerBundle:PMRI:pmri_detail.html.twig', $params);
 	}
 	
 	/**

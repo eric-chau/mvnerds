@@ -5,11 +5,11 @@ function initPopoverItem($container) {
 						
 			$(this).popover({
 				trigger: 'hover',
-				placement: 'bottom',
+				placement: 'right',
 				delay: {show: 0, hide: 0}
 			});
 			$(this).data('popover').options.title = title;
-			$(this).data('popover').options.placement = 'bottom';
+			$(this).data('popover').options.placement = 'right';
 			$(this).data('popover').options.animation = false;
 			$(this).data('popover').options.template = '<div class="popover item-popover"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>';
 			

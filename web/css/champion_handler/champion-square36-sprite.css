@@ -656,4 +656,10 @@
     
     
     background-position: -0px -0px;
-}}
+}
+
+.champion-square36.thresh {
+    background-image: url('/images/champions/thresh36.png');
+    height: 36px;
+    width: 36px;
+}

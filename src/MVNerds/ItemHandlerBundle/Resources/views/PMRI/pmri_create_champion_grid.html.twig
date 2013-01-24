@@ -1,0 +1,5 @@
+<ul id="champion-isotope-list">
+	{% for champion in champions %}
+		{% include 'MVNerdsItemHandlerBundle:PMRI:pmri_create_champion_block.html.twig' with {'champion': champion} %}
+	{% endfor %}
+</ul>

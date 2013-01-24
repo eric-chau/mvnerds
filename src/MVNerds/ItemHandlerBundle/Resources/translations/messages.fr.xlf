@@ -52,7 +52,7 @@
 			<trans-unit id="8">
 				<source>create_item_build.tip.2</source>
 				<target>
-					Seuls les objets autorisés dans le mode de jeu sélectionné apparaitront dans la liste.
+					Seuls les objets autorisés dans le mode de jeu sélectionné apparaîtront dans la liste.
 				</target>
 			</trans-unit>
 			
@@ -71,13 +71,13 @@
 			<trans-unit id="11">
 				<source>create_item_build.tip.3</source>
 				<target>
-					Astuce : Servez vous du système de filtrage pour trouver plus facilement vos objets.
+					Servez-vous du système de filtrage pour trouver plus facilement vos objets.
 				</target>
 			</trans-unit>
 			<trans-unit id="12">
 				<source>create_item_build.tip.4</source>
 				<target>
-					Info : Les blocs laissés vide seront ignorés dans la création de la liste.
+					Les blocs laissés vides seront ignorés dans la création de la liste.
 				</target>
 			</trans-unit>
 			

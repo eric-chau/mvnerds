@@ -68,41 +68,43 @@
 
 			<div class="champion-container">
 				<div id="champion-topbar" class="actionbar">
-					{% include 'MVNerdsItemHandlerBundle:PMRI:pmri_list_create_champion_topbar.html.twig' %}
+					{% include 'MVNerdsItemHandlerBundle:PMRI:pmri_create_champion_topbar.html.twig' %}
 				</div>
 
 				<div id="champion-list" class="elements-grid">
-					{% include 'MVNerdsItemHandlerBundle:ItemBuilder:champion_grid_minified.html.twig' %}
+					{% include 'MVNerdsItemHandlerBundle:PMRI:pmri_create_champion_grid.html.twig' %}
 				</div>
 			</div>
 		</div>
 		
+		{# ########################## ETAPE 2 : CHOISIR LA CARTE ########################## #}
 		<div class="step">
 			<h2>{{'create_item_build.h2.2' | trans}}</h2>
 			<p>{{'create_item_build.p.3' | trans}}</p>
-			<p class="note">{{'create_item_build.tip.2' | trans}}</p>
+			<p class="note"><i class="icon-question-sign"></i> {{'create_item_build.tip.2' | trans}}</p>
 
 			<div class="game-mode-container">
-				<div class="game-mode classic {% if gameMode is defined %} {% if gameMode == 'classic' %}active{%endif %} {% else %}active{% endif %}" data-game-mode="classic"><span class="message">Summoner Rift</span></div>
-				<div class="game-mode twisted-treeline {% if gameMode is defined and gameMode == 'twisted-treeline' %}active{%endif %}" data-game-mode="twisted-treeline"><span class="message">Twisted Treeline</span></div>
-				<div class="game-mode dominion {% if gameMode is defined and gameMode == 'dominion' %}active{%endif %}" data-game-mode="dominion"><span class="message" >Dominion</span></div>
-				<div class="game-mode proving-grounds {% if gameMode is defined and gameMode == 'aram' %}active{%endif %}" data-game-mode="aram"><span class="message" >All Random All Mid (ARAM)</span></div>
+				<div class="game-mode classic {% if gameMode is defined %} {% if gameMode == 'classic' %}active{%endif %} {% else %}active{% endif %}" data-game-mode="classic"><span class="message">{{ 'classic'|trans }}</span></div>
+				<div class="game-mode twisted-treeline {% if gameMode is defined and gameMode == 'twisted-treeline' %}active{%endif %}" data-game-mode="twisted-treeline"><span class="message">{{ 'twisted-treeline'|trans }}</span></div>
+				<div class="game-mode dominion {% if gameMode is defined and gameMode == 'dominion' %}active{%endif %}" data-game-mode="dominion"><span class="message" >{{ 'dominion'|trans }}</span></div>
+				<div class="game-mode proving-grounds {% if gameMode is defined and gameMode == 'aram' %}active{%endif %}" data-game-mode="aram"><span class="message" >{{ 'aram'|trans }}</span></div>
 			</div>
 		</div>
 		
+		{# ########################## ETAPE 3 : DÉFINIR LES BLOCS ET LES OBJETS ASSOCIÉS ########################## #}
 		<div class="step">
 			<h2>{{'create_item_build.h2.3' | trans}}</h2>
 			<p>{{'create_item_build.p.4' | trans}}</p>
-			<p note="tip">{{'create_item_build.tip.3' | trans}}</p>
-			<p class="note">{{'create_item_build.tip.4' | trans}}</p>
+			<p class="note"><i class="icon-question-sign"></i> {{'create_item_build.tip.3' | trans}}</p>
+			<p class="note"><i class="icon-info-sign"></i> {{'create_item_build.tip.4' | trans}}</p>
 
 			<div class="item-container">			
 				<div class="row-fluid">
-					<div id="item-list" class="elements-grid span9">
-						{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_grid.html.twig' %}
+					<div id="item-list" class="elements-grid span8">
+						{% include 'MVNerdsItemHandlerBundle:PMRI:pmri_create_item_grid.html.twig' %}
 					</div>
-					<div id="item-sidebar-blocks" class="span3">
-						{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_sidebar_blocks.html.twig' %}
+					<div id="item-sidebar-blocks" class="span4">
+						{% include 'MVNerdsItemHandlerBundle:PMRI:pmri_create_item_sidebar.html.twig' %}
 					</div>
 				</div>
 			</div>
