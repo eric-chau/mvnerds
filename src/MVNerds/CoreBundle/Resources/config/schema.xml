@@ -647,6 +647,7 @@
     <column defaultValue="0" name="range" required="true" size="45" type="VARCHAR" />
     <column defaultValue="0" name="cooldown" required="true" size="45" type="VARCHAR" />
     <column defaultValue="0" name="position" required="true" type="TINYINT" />
+    <column defaultValue="0" name="radius" type="INTEGER" />
     <foreign-key foreignTable="champion">
       <reference foreign="id" local="champion_id" />
     </foreign-key>
