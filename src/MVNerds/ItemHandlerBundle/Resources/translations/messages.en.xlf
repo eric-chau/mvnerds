@@ -263,7 +263,7 @@
 			<trans-unit id="38">
 				<source>create_item_build.build_private.label</source>
 				<target>
-					Make this list private
+					Do you want to make this list private?
 				</target>
 			</trans-unit>
 			<trans-unit id="39">

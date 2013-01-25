@@ -25,6 +25,9 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+ul {
+  list-style: none;
+}
 div.container.main-container h2 {
   border-bottom: 1px solid #666;
   padding: 0 0 5px 0;
@@ -47,9 +50,6 @@ div.container.main-container div.step p.note {
 div.container.main-container div.step p.note i {
   display: inline-block;
   margin: 0 5px 0 0;
-}
-div.container.main-container div.step ul {
-  list-style: none;
 }
 div.container.main-container div.step div.champion-container div#champion-topbar {
   margin: 0 0 10px 0;
@@ -166,6 +166,9 @@ div.container.main-container div.step div.game-mode-container div.game-mode span
   margin-top: 124px;
   text-align: right;
 }
+div.container.main-container div.step div.item-container li.item {
+  list-style: none;
+}
 div.container.main-container div.step div.item-container div#item-list {
   background-color: #ddd;
   border: 1px solid #ccc;
@@ -230,16 +233,146 @@ div.container.main-container div.step div.item-container div#item-sidebar-blocks
   text-align: left;
 }
 div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li {
-  border: 1px solid #666;
+  background-color: #ddd;
+  border: 2px solid #41b4ea !important;
   margin: 0 0 10px 0;
   padding: 10px;
+  position: relative;
 }
 div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li:hover {
-  border-color: #db4a38;
-  -webkit-transition: border-color 0.25s linear;
-  -moz-transition: border-color 0.25s linear;
-  -o-transition: border-color 0.25s linear;
-  transition: border-color 0.25s linear;
+  background-color: #ccc;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li a.btn-describe-block-item.active i {
+  color: #db4a38;
+}
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li a.btn-describe-block-item i {
+  display: inline-block;
+  font-size: 18px;
+  left: 5px;
+  position: relative;
+  top: 2px;
+}
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li a.btn-delete-block-item,
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li a.btn-toggle-block-size {
+  display: inline-block;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li a.btn-delete-block-item:hover i,
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li a.btn-toggle-block-size:hover i {
+  color: #444;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li a.btn-delete-block-item i,
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li a.btn-toggle-block-size i {
+  color: #aaa;
+}
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li a.btn-toggle-block-size {
+  right: 25px;
+}
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div {
+  border: 1px dashed #999;
+  margin: 10px 0 0 0;
+  min-height: 60px;
+}
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.item.portrait {
+  margin: 6px;
+  position: relative;
+}
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.item.portrait img {
+  width: 36px;
+}
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.item.portrait span.item-count {
+  bottom: 0;
+  color: white;
+  display: inline-block;
+  font-weight: bold;
+  position: absolute;
+  right: 4px;
+}
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.indication {
+  color: #999;
+  font-style: italic;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+}
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li input[type=text] {
+  background-color: #ddd;
+  border-color: #aaa;
+  font-size: 16px;
+  font-weight: bold;
+}
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li input[type=text]:hover,
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li input[type=text]:focus {
+  background-color: #e4e6e5;
+}
+div.container.main-container div.step div.name-container form {
+  text-align: center;
+}
+div.container.main-container div.step div.name-container form input[type="text"]#build-name {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px 10px;
+  width: 300px;
+}
+div.container.main-container div.step div.name-container form p {
+  text-align: left;
+}
+div.container.main-container div.step div.name-container form textarea {
+  background-color: inherit;
+  border-color: #999;
+  padding: 5px 10px;
+  width: 300px;
+}
+div.container.main-container div.step div#private-container {
+  margin: 0 0 20px 0;
+}
+div.container.main-container div.step div#private-container form {
+  line-height: 40px;
+  text-align: center;
+}
+div.container.main-container div.step div#private-container form:hover i {
+  color: #fb9701;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div.container.main-container div.step div#private-container form i {
+  color: #999;
+  display: inline-block;
+  font-size: 40px;
+  margin: 0 10px 0 0;
+}
+div.container.main-container div.step div#private-container form input {
+  display: inline-block;
+  margin: 0 5px 0 10px;
+}
+div.container.main-container div.step div#private-container form input,
+div.container.main-container div.step div#private-container form label {
+  display: inline-block;
+  position: relative;
+  top: -10px;
+}
+div.container.main-container div.step div.generate-button-container {
+  margin: 30px 0 0 0;
+  text-align: center;
+}
+div.container.main-container div.step div.generate-button-container a#save-and-generate-build {
+  margin: 0 15px 0 0;
+}
+div.container.main-container div.step div.generate-button-container a#only-generate-build {
+  position: relative;
+  top: -2px;
 }
 a#drop-filter-list.active,
 a#item-drop-filter-list.active {

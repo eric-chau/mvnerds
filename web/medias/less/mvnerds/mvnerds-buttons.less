@@ -18,6 +18,12 @@
 		padding: 2px 5px;
 	}
 
+	&.large {
+		font-size: 18px;
+		font-weight: bold;
+		padding: 5px 10px;
+	}
+
 	&:hover, &:focus {
 		background-color: @MVNerdsBlue;
 	}
@@ -30,7 +36,7 @@
 		}
 	}
 
-	&.red, &.no-color {
+	&.red {
 		background-color: darken(@MVNerdsRed, 10%);
 
 		&:hover, &:focus {
@@ -40,6 +46,10 @@
 
 	&.no-color {
 		background-color: #999;
+
+		&:hover, &:focus {
+			background-color: #444;
+		}
 	}
 }
 

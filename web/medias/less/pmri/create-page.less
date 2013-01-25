@@ -4,6 +4,10 @@
 // MVNerds imports
 @import "../mvnerds/mvnerds-variables.less";
 
+ul {
+	list-style: none;
+}
+
 div.container.main-container {
 	h2 {
 		border-bottom: 1px solid #666;
@@ -27,10 +31,6 @@ div.container.main-container {
 				display: inline-block;
 				margin: 0 5px 0 0;
 			}
-		}
-
-		ul {
-			list-style: none;
 		}
 
 		div.champion-container {
@@ -136,7 +136,7 @@ div.container.main-container {
 			    	}
 			    }
 
-			    &.dominion {    
+			    &.dominion {
 				    background-position: -291px -1px;
 				}
 
@@ -165,6 +165,10 @@ div.container.main-container {
 		} // Fin de div.game-mode-container
 
 		div.item-container {
+			li.item {
+				list-style: none;
+			}
+
 			div#item-list {
 				background-color: #ddd;
 				border: 1px solid #ccc;
@@ -236,15 +240,164 @@ div.container.main-container {
 					text-align: left;
 
 					li.item-sidebar-block-li {
-						border: 1px solid #666;
+						background-color: #ddd;
+						border: 2px solid lighten(@MVNerdsBlue, 10%) !important;
 						margin: 0 0 10px 0;
 						padding: 10px;
+						position: relative;
 
 						&:hover {
-							border-color: @MVNerdsRed; .transition(border-color .25s linear);
+							background-color: #ccc; .transition(background-color .25s linear);
+						}
+
+						a.btn-describe-block-item {
+							&.active {
+								i {
+									color: @MVNerdsRed;
+								}
+							}
+
+							i {
+								display: inline-block;
+								font-size: 18px;
+								left: 5px;
+								position: relative;
+								top: 2px;
+							}
+						}
+
+						a.btn-delete-block-item, a.btn-toggle-block-size {
+							display: inline-block;
+							position: absolute;
+							right: 5px;
+							top: 5px;
+
+							&:hover i {
+								color: #444; .transition(color .25s linear);
+							}
+
+							i {
+								color: #aaa;
+							}
+						}
+
+						a.btn-toggle-block-size {
+							right: 25px;
+						}
+
+						div.item-sidebar-block-div {
+							border: 1px dashed #999;
+							margin: 10px 0 0 0;
+							min-height: 60px;
+
+							div.item.portrait {
+								margin: 6px;
+								position: relative;
+
+								img {
+									width: 36px;
+								}
+
+								span.item-count {
+									bottom: 0;
+									color: white;
+									display: inline-block;
+									font-weight: bold;
+									position: absolute;
+									right: 4px;
+								}
+							}
+
+							div.indication {
+								color: #999;
+								font-style: italic;
+								height: 60px;
+								line-height: 60px;
+								text-align: center;
+							}
+						}
+
+						input[type=text] {
+							background-color: #ddd;
+							border-color: #aaa;
+							font-size: 16px;
+							font-weight: bold;
+
+							&:hover, &:focus {
+								background-color: #e4e6e5;
+							}
 						}
 					}
 				}
+			}
+		} // Fin de item-container
+
+		div.name-container {
+			form {
+				text-align: center;
+
+				input[type="text"]#build-name {
+					font-size: 18px;
+					font-weight: bold;
+					padding: 5px 10px;
+					width: 300px;
+				}
+
+				p {
+					text-align: left;
+				}
+
+				textarea {
+					background-color: inherit;
+					border-color: #999;
+					padding: 5px 10px;
+					width: 300px;
+				}
+			}
+		}
+
+		div#private-container {
+			margin: 0 0 20px 0;
+
+			form {
+				line-height: 40px;
+				text-align: center;
+
+				&:hover i {
+					color: @LoLOrangeAD; .transition(color .25s linear);
+				}
+
+				i {
+					color: #999;
+					display: inline-block;
+					font-size: 40px;
+					margin: 0 10px 0 0;
+				}
+
+				input {
+					display: inline-block;
+					margin: 0 5px 0 10px;
+				}
+
+				input, label {
+					display: inline-block;
+					position: relative;
+					top: -10px;
+				}
+			}
+		}
+
+		div.generate-button-container {
+			margin: 30px 0 0 0;
+			text-align: center;
+
+			a#save-and-generate-build {
+				margin: 0 15px 0 0;
+			}
+
+			a#only-generate-build {
+				position: relative;
+				top: -2px;
 			}
 		}
 	}

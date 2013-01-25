@@ -657,3 +657,9 @@
     
     background-position: -0px -0px;
 }
+
+.champion-square25.thresh {
+    background-image: url('/images/champions/thresh25.png');
+    height: 25px;
+    width: 25px;
+}

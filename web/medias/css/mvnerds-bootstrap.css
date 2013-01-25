@@ -48,6 +48,11 @@
   font-size: 12px;
   padding: 2px 5px;
 }
+.btn.large {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px 10px;
+}
 .btn:hover,
 .btn:focus {
   background-color: #19a0df;
@@ -59,18 +64,19 @@
 .btn.green:focus {
   background-color: #759e1a;
 }
-.btn.red,
-.btn.no-color {
+.btn.red {
   background-color: #be3322;
 }
 .btn.red:hover,
-.btn.no-color:hover,
-.btn.red:focus,
-.btn.no-color:focus {
+.btn.red:focus {
   background-color: #db4a38;
 }
 .btn.no-color {
   background-color: #999;
+}
+.btn.no-color:hover,
+.btn.no-color:focus {
+  background-color: #444;
 }
 .mvnerds-btn {
   border-bottom: 3px solid #ddd;
@@ -126,7 +132,8 @@ label,
 ul,
 li,
 div,
-input[type="text"] {
+input[type="text"],
+textarea {
   color: #111111;
   font-family: 'Source Sans Pro', sans-serif;
   font-size: 14px;

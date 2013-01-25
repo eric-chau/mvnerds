@@ -10,23 +10,48 @@
 		<ul id="item_sidebar_blocks_list">
 			{% if selectedItems is not defined %}
 				<li class="item-sidebar-block-li" id="__starting__item-block-li">
-					<input type="text" class="item_sidebar_block_input" value="starting"/> <a href="#" class="describe-block btn-describe-block-item" id="__starting__describe-block"><i class="icon-file"></i></a><a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a>
+					<div>
+						<input type="text" class="item_sidebar_block_input" value="starting"/> 
+						<a href="#" class="describe-block btn-describe-block-item" id="__starting__describe-block"><i class="icon-pencil"></i></a>
+						<a href="#" class="btn-toggle-block-size"><i class="icon-resize-small"></i></a>
+						<a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove"></i></a>
+					</div>	
 					<div class="item-sidebar-block-div"><div class="indication">{{'create_item_build.sidebar.item_box.indication'|trans}}</div></div>
 				</li>
 				<li class="item-sidebar-block-li" id="__essential__item-block-li">
-					<input type="text" class="item_sidebar_block_input" value="essential"/> <a href="#" class="describe-block btn-describe-block-item" id="__starting__describe-block"><i class="icon-file"></i></a><a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a>
+					<div>
+						<input type="text" class="item_sidebar_block_input" value="essential"/> 
+						<a href="#" class="describe-block btn-describe-block-item" id="__starting__describe-block"><i class="icon-pencil"></i></a>
+						<a href="#" class="btn-toggle-block-size"><i class="icon-resize-small"></i></a>
+						<a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove"></i></a>
+					</div>
 					<div class="item-sidebar-block-div"><div class="indication">{{'create_item_build.sidebar.item_box.indication'|trans}}</div></div>
 				</li>
 				<li class="item-sidebar-block-li" id="__offensive__item-block-li">
-					<input type="text" class="item_sidebar_block_input" value="offensive"/> <a href="#" class="describe-block btn-describe-block-item" id="__starting__describe-block"><i class="icon-file"></i></a><a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a>
+					<div>
+						<input type="text" class="item_sidebar_block_input" value="offensive"/> 
+						<a href="#" class="describe-block btn-describe-block-item" id="__starting__describe-block"><i class="icon-pencil"></i></a>
+						<a href="#" class="btn-toggle-block-size"><i class="icon-resize-small"></i></a>
+						<a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove"></i></a>
+					</div>
 					<div class="item-sidebar-block-div"><div class="indication">{{'create_item_build.sidebar.item_box.indication'|trans}}</div></div>
 				</li>
 				<li class="item-sidebar-block-li" id="__defensive__item-block-li">
-					<input type="text" class="item_sidebar_block_input" value="defensive"/> <a href="#" class="describe-block btn-describe-block-item" id="__starting__describe-block"><i class="icon-file"></i></a><a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a>
+					<div>
+						<input type="text" class="item_sidebar_block_input" value="defensive"/> 
+						<a href="#" class="describe-block btn-describe-block-item" id="__starting__describe-block"><i class="icon-pencil"></i></a>
+						<a href="#" class="btn-toggle-block-size"><i class="icon-resize-small"></i></a>
+						<a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove"></i></a>
+					</div>
 					<div class="item-sidebar-block-div"><div class="indication">{{'create_item_build.sidebar.item_box.indication'|trans}}</div></div>
 				</li>
 				<li class="item-sidebar-block-li" id="__consumable__item-block-li">
-					<input type="text" class="item_sidebar_block_input" value="consumable"/> <a href="#" class="describe-block btn-describe-block-item" id="__starting__describe-block"><i class="icon-file"></i></a><a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a>
+					<div>
+						<input type="text" class="item_sidebar_block_input" value="consumable"/> 
+						<a href="#" class="describe-block btn-describe-block-item" id="__starting__describe-block"><i class="icon-pencil"></i></a>
+						<a href="#" class="btn-toggle-block-size"><i class="icon-resize-small"></i></a>
+						<a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove"></i></a>
+					</div>
 					<div class="item-sidebar-block-div"><div class="indication">{{'create_item_build.sidebar.item_box.indication'|trans}}</div></div>
 				</li>
 			{% else %}
@@ -36,7 +61,7 @@
 					{% set escapedBlockName = itemBlock['escaped'] %}
 
 					<li class="item-sidebar-block-li" id="__{{escapedBlockName}}__item-block-li" data-description="{{itemBlock['description']}}">
-						<input type="text" class="item_sidebar_block_input" value="{{blockName}}"/> <a href="#" class="describe-block btn-describe-block-item" id="__{{escapedBlockName}}__describe-block"><i class="icon-file"></i></a><a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a>
+						<input type="text" class="item_sidebar_block_input" value="{{blockName}}"/> <a href="#" class="describe-block btn-describe-block-item" id="__{{escapedBlockName}}__describe-block"><i class="icon-pencil"></i></a><a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove"></i></a>
 						<div class="item-sidebar-block-div">
 							{% for itemTab in items %}
 								{%set item = itemTab['item']%}

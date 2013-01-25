@@ -110,6 +110,7 @@
 			</div>
 		</div>
 		
+		{# ########################## ETAPE 4 : NOMMER LA LISTE ET LA DÉCRIRE ########################## #}
 		<div class="step">
 			<h2>{{'create_item_build.h2.4' | trans}}</h2>
 			<p>{{'create_item_build.p.5' | trans}}</p>
@@ -125,33 +126,37 @@
 			</div>
 		</div>
 		
+		{# ########################## ETAPE 4 : CHOIX DE RENDRE PRIVÉE OU NON LA LISTE ET DE L'ENREGISTRER OU NON ########################## #}
 		<div class="step">
 			<h2>{{'create_item_build.h2.5' | trans}}</h2>
 			<p>{{'create_item_build.p.6' | trans}}</p>
-			<p class="note">{{'create_item_build.tip.5' | trans}}</p>
-			<p class="note">{{'create_item_build.tip.6' | trans}}</p>
-
+			
+			 
 			<div id="private-container">
 				<form action="#" method="POST">
 					<i class="icon-lock icon white"></i>
 					<input type="checkbox" id="build-private" {% if isBuildPrivate is defined and isBuildPrivate == 1%}checked="checked"{% endif %}/>
-					<label for="build-private"> {{'create_item_build.build_private.label'|trans}} <i class="icon-question-sign icon-white bootstrap-tooltip" data-title="{{'create_item_build.build_private.tooltip'|trans}}"></i></label>
+					<label for="build-private">{{'create_item_build.build_private.label'|trans}}</label>
 				</form>
 			</div>
+			
+			<p class="note"><i class="icon-info-sign"></i> {{'create_item_build.build_private.tooltip'|trans}}</p>
+			<p class="note"><i class="icon-info-sign"></i> {{'create_item_build.tip.5' | trans}}</p>
+			<p class="note"><i class="icon-info-sign"></i> {{'create_item_build.tip.6' | trans}}</p>
 
 			<div class="generate-button-container">
 				{% if itemBuildSlug is not defined %}
 					{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-						{% if can_save_build%}
-							<a href="#" id="save-and-generate-build" class="main">{{'create_item_build.btn.save_and_generate' | trans}}</a>
+						{% if can_save_build %}
+							<a href="#" id="save-and-generate-build" class="main btn red large">{{'create_item_build.btn.save_and_generate' | trans}}</a>
 						{% else %}
 							{{'create_item_build.max_builds_reached' | trans}}
 						{% endif %}
 					{% else %}
-						<a href="#" id="save-and-generate-build-not-authenticated" class="main">{{'create_item_build.btn.save_and_generate' | trans}}</a>
+						<a href="#" id="save-and-generate-build-not-authenticated" class="main btn red big">{{'create_item_build.btn.save_and_generate' | trans}}</a>
 					{% endif %}
 
-					<a href="#" id="only-generate-build">{{'create_item_build.btn.generate_only' | trans}}</a>
+					<a href="#" id="only-generate-build" class="btn small no-color">{{'create_item_build.btn.generate_only' | trans}}</a>
 				{% else %}
 					<a href="#" id="save-build" class="main" data-slug="{{itemBuildSlug}}">{{'create_item_build.btn.save' | trans}}</a>
 				{% endif %}

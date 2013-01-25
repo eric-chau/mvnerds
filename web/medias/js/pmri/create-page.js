@@ -384,7 +384,7 @@ function initWithStoredItemBuild() {
 		if ( blockDescription == undefined) {
 			blockDescription = '';
 		}
-		$itemSidebarList.append('<li class="item-sidebar-block-li" id="__'+blockNameEscaped+'__item-block-li" data-description="'+blockDescription+'"><input type="text" class="item_sidebar_block_input span9" value="'+blockName+'"/><a href="#" class="describe-block btn-describe-block-item" id="__'+blockNameEscaped+'__describe-block"><i class="icon-file"></i></a><a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a><div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div></li>')
+		$itemSidebarList.append('<li class="item-sidebar-block-li" id="__'+blockNameEscaped+'__item-block-li" data-description="'+blockDescription+'"><div><input type="text" class="item_sidebar_block_input" value="'+blockName+'"/><a href="#" class="describe-block btn-describe-block-item" id="__'+blockNameEscaped+'__describe-block"><i class="icon-pencil"></i></a><a href="#" class="btn-toggle-block-size"><i class="icon-resize-small"></i></a><a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove"></i></a></div><div class="item-sidebar-block-div"><div class="indication">Faites glissez vos items ici</div></div></li>')
 		initItemDroppable($itemSidebarList.find('li:last div.item-sidebar-block-div'));
 		
 		for (var j = 0; j < items.length; j++) {
@@ -470,11 +470,11 @@ function initItemDraggable() {
 			zIndex: 1100,
 			opacity: 1,
 			distance: 20,
-			start: function(){
-				$itemSidebarList.find('li div div.indication').css('border-color', '#FB9701');
+			start: function() {
+				$itemSidebarList.find('li div.item-sidebar-block-div').css('border-color', '#db4a38');
 			},
-			stop: function(){
-				$itemSidebarList.find('li div div.indication').css('border-color', '#999');
+			stop: function() {
+				$itemSidebarList.find('li div.item-sidebar-block-div').css('border-color', '#999');
 			}
 		});
 	});
@@ -544,7 +544,7 @@ function initItemAddBlock() {
 			indication = 'Déposez vos objets ici';
 			placeholder = 'Nom du bloc'
 		}
-		$itemSidebarList.append('<li class="item-sidebar-block-li" id="__'+nbBlocks+'__item-block-li"><input type="text" placeholder="'+placeholder+'" class="item_sidebar_block_input span9" value=""/> <a href="#" class="describe-block btn-describe-block-item" id="__'+nbBlocks+'__describe-block"><i class="icon-file"></i></a><a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove-circle"></i></a><div class="item-sidebar-block-div"><div class="indication">'+indication+'</div></div></li>')
+		$itemSidebarList.append('<li class="item-sidebar-block-li" id="__'+nbBlocks+'__item-block-li"><div><input type="text" placeholder="'+placeholder+'" class="item_sidebar_block_input" value=""/> <a href="#" class="describe-block btn-describe-block-item" id="__'+nbBlocks+'__describe-block"><i class="icon-pencil"></i></a><a href="#" class="btn-toggle-block-size"><i class="icon-resize-small"></i></a><a href="#" class="reset-field btn-delete-block-item"><i class="icon-remove"></i></a></div><div class="item-sidebar-block-div"><div class="indication">'+indication+'</div></div></li>')
 		nbBlocks ++;
 		$('.item-sidebar-block-li').last().children('input').focus();
 		initItemDroppable($itemSidebarList.find('li:last div.item-sidebar-block-div'));
@@ -561,7 +561,7 @@ function initItemAddBlock() {
 
 function initItemRemoveBlock() {
 	$itemSidebarList.on('click', '.btn-delete-block-item',function() {
-		$(this).parent().remove();
+		$(this).parent().parent().remove();
 		return false;
 	});
 }
@@ -896,4 +896,11 @@ $(document).ready(function()
 	});
 	
 	initPopoverItem($('#item_sidebar_blocks_list'));
+
+	$('li#item_sidebar_blocks_li').on('click', 'a.btn-toggle-block-size', function(event)
+	{
+		event.preventDefault();
+		$(this).parent().parent().find('div.item-sidebar-block-div').slideToggle();
+		$(this).find('i').toggleClass('icon-resize-small icon-resize-full');
+	});
 });
