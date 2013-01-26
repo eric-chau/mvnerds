@@ -5,34 +5,35 @@ function initPopoverItem($container) {
 						
 			$(this).popover({
 				trigger: 'hover',
-				placement: 'top',
+				placement: 'bottom',
 				delay: {show: 0, hide: 0}
 			});
 			$(this).data('popover').options.title = title;
-			$(this).data('popover').options.placement = 'top';
+			$(this).data('popover').options.placement = 'bottom';
 			$(this).data('popover').options.animation = false;
-			$(this).data('popover').options.template = '<div class="popover item-popover"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>';
+			$(this).data('popover').options.template = '<div class="popover item-popover"><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><p></p></div></div></div>';
 			
 			try {
 				var item = getItemForModal($(this).data('slug'));
 				
 				var data = '';
 				for (var i = 0; i < item.primaryEffects.length; i++) {
-					data += item.primaryEffects[i] + '<br />';
+					data += '<span class="primary-effect">' + item.primaryEffects[i] + '<br /></span>';
 				}
 				if (item.primaryEffects.length > 0 && item.secondaryEffects.length > 0) {
 					data += '<br />';
 				}
 				for (var j = 0; j < item.secondaryEffects.length; j++) {
-					data += item.secondaryEffects[j] + '<br />';
+					var strArray = item.secondaryEffects[j].split(':');
+					data += '<strong>' + strArray[0] + ('1' in strArray? ':</strong>' + strArray[1] : '</strong>') + '<br />';
 				}	
-				var cost = '';
+				var cost = '<span class="cost">';
 				if (locale == 'en') {
-					cost = 'Cost';
+					cost += 'Cost';
 				} else {
-					cost = 'Coût';
+					cost += 'Coût';
 				}
-				data += '<br />' + cost + ' : ' + item.totalCost + ' (' + item.cost + ')';
+				data += '<br />' + cost + ' : ' + item.totalCost + ' (' + item.cost + ')</span>';
 				
 				$(this).data('popover').options.content = data;
 			} catch (err) {

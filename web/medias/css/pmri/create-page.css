@@ -178,6 +178,7 @@ div.container.main-container div.step div.item-container div#item-list ul {
   list-style: none;
 }
 div.container.main-container div.step div.item-container div#item-list ul li.item {
+  cursor: pointer;
   margin: 0 0 12px 0;
 }
 div.container.main-container div.step div.item-container div#item-list ul li.item img {
@@ -508,4 +509,126 @@ ul#filters-list div.div-action-buttons div.span6.div-right a {
   border: 1px dashed #666;
   border-bottom: 0;
   border-right: 0;
+}
+div.popover h3 {
+  font-weight: bold;
+  height: 40px;
+  padding: 5px 5px 5px 50px;
+  position: relative;
+}
+div.popover h3 img.tooltip-item-img {
+  border: 3px solid black;
+  left: -12px;
+  position: absolute;
+  -webkit-transform: rotate(-10deg);
+  -moz-transform: rotate(-10deg);
+  -ms-transform: rotate(-10deg);
+  -o-transform: rotate(-10deg);
+  transform: rotate(-10deg);
+  top: -12px;
+  width: 48px;
+}
+div.popover div.popover-content span.primary-effect {
+  color: #759e1a;
+  font-weight: bold;
+}
+div.popover div.popover-content span.cost {
+  color: #db4a38;
+  font-weight: bold;
+}
+div#item-modal {
+  background-color: #e4e6e5;
+  border: 5px solid rgba(0, 0, 0, 0.5);
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  max-height: 500px;
+  margin: -250px 0 0 -300px;
+  width: 600px;
+}
+div#item-modal div.modal-header {
+  border: 0;
+  padding: 5px 10px 0 0;
+  text-align: right;
+}
+div#item-modal div.modal-header i.icon-remove {
+  color: #aaa;
+  cursor: pointer;
+}
+div#item-modal div.modal-header i.icon-remove:hover {
+  color: #444;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div#item-modal div.modal-body {
+  padding: 0 15px 15px 15px;
+}
+div#item-modal div.modal-body div.item-modal-parents {
+  border-bottom: 1px solid #444;
+  margin: 0 0 10px 0;
+  padding: 0 0 10px 0;
+}
+div#item-modal div.modal-body div.item-modal-parents ul.item-modal-parent-list li {
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
+div#item-modal div.modal-body div.item-modal-parents ul.item-modal-parent-list li img {
+  width: 36px;
+}
+div#item-modal div.modal-body div.item-modal-geneology div.item-geneology {
+  cursor: pointer;
+  float: left;
+  margin: 0 auto;
+  text-align: center;
+}
+div#item-modal div.modal-body div.item-modal-geneology div.item-geneology img {
+  width: 48px;
+}
+div#item-modal div.modal-body div.item-modal-geneology div.item-geneology div.branche {
+  background: #666;
+  margin: 0 auto;
+  position: relative;
+}
+div#item-modal div.modal-body div.item-modal-geneology div.item-geneology div.branche.verticale {
+  height: 6px;
+  width: 1px;
+}
+div#item-modal div.modal-body div.item-modal-geneology div.item-geneology div.branche.horizontale {
+  height: 1px;
+}
+div#item-modal div.modal-body div.item-modal-geneology > div:first-child {
+  width: 100%;
+}
+div#item-modal div.item-modal-detail {
+  background-color: #ddd;
+  border: 2px solid #ccc;
+  margin: 10px 0 0 0;
+  padding: 10px;
+}
+div#item-modal div.item-modal-detail div.item-modal-header {
+  margin: 0 0 10px 0;
+}
+div#item-modal div.item-modal-detail div.item-modal-header div.item-modal-header-image {
+  text-align: center;
+}
+div#item-modal div.item-modal-detail div.item-modal-header div.item-modal-header-name {
+  color: #db4a38;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+div#item-modal div.item-modal-detail div.item-modal-header span.item-modal-header-cost-value {
+  font-weight: bold;
+}
+div#item-modal div.item-modal-detail div.item-modal-detail-body {
+  padding: 0 10px 10px 10px;
+}
+div#item-modal div.item-modal-detail div.item-modal-detail-body ul.item-modal-primary-effects {
+  margin: 0 0 10px 0;
+}
+div#item-modal div.item-modal-detail div.item-modal-detail-body ul.item-modal-primary-effects li.item-primary-effect {
+  color: #759e1a;
+  font-weight: bold;
 }

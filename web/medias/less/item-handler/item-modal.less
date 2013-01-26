@@ -1,0 +1,115 @@
+
+div#item-modal {
+	background-color: @bodyMainBGColor;
+	border: 5px solid rgba(0,0,0,.5);
+	.border-radius(0);
+	max-height: 500px;
+	margin: -250px 0 0 -300px;
+	width: 600px;
+
+	div.modal-header {
+		border: 0;
+		padding: 5px 10px 0 0;
+		text-align: right;
+
+		i.icon-remove {
+			color: #aaa;
+			cursor: pointer;
+
+			&:hover {
+				color: #444; .transition(color .25s linear);
+			}
+		}
+	}
+
+	div.modal-body {
+		padding: 0 15px 15px 15px;
+
+		div.item-modal-parents {
+			border-bottom: 1px solid #444;
+			margin: 0 0 10px 0;
+			padding: 0 0 10px 0;
+
+			ul.item-modal-parent-list {
+				li {
+					cursor: pointer;
+					display: inline-block;
+					margin:	0 5px 0 0;
+
+					img {
+						width: 36px;
+					}
+				}
+			}
+		}
+
+		div.item-modal-geneology {
+			div.item-geneology {
+				cursor: pointer;
+				float: left;
+				margin: 0 auto;
+				text-align: center;
+				
+				img {
+					width: 48px;
+				}
+
+				div.branche {
+					background: #666;
+					margin: 0 auto;
+					position: relative;
+					
+					&.verticale {
+						height: 6px;
+						width: 1px;
+					}
+
+					&.horizontale {
+						height: 1px;
+					}
+				}
+			}
+		}
+
+		div.item-modal-geneology > div:first-child{
+			width:100%;
+		}
+	}
+
+	div.item-modal-detail {
+		background-color: #ddd;
+		border: 2px solid #ccc;
+		margin: 10px 0 0 0;
+		padding: 10px;
+
+		div.item-modal-header {
+			margin: 0 0 10px 0;
+
+			div.item-modal-header-image {
+				text-align: center;
+			}
+
+			div.item-modal-header-name {
+				color: @MVNerdsRed;
+				font-weight: bold;
+				margin-bottom: 10px;
+			}
+
+			span.item-modal-header-cost-value {
+				font-weight: bold;
+			}
+		}
+
+		div.item-modal-detail-body {
+			padding: 0 10px 10px 10px;
+
+			ul.item-modal-primary-effects {
+				margin: 0 0 10px 0;
+				li.item-primary-effect {
+					color: @MVNerdsGreen;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}

@@ -1,0 +1,33 @@
+
+div.popover {
+	h3 {
+		font-weight: bold;
+		height: 40px;
+		padding: 5px 5px 5px 50px;
+		position: relative;
+
+		img.tooltip-item-img {
+			border: 3px solid black;
+			left: -12px;
+			position: absolute;
+			.rotate(-10deg);
+			top: -12px;
+			width: 48px;
+		}	
+	}
+
+	div.popover-content {
+		span {
+			&.primary-effect {
+				color: @MVNerdsGreen;
+				font-weight: bold;
+			}
+
+			&.cost {
+				color: @MVNerdsRed;
+				font-weight: bold;
+			}
+		}
+	}
+	
+}

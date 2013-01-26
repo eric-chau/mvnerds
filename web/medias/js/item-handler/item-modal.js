@@ -70,7 +70,7 @@ function getItemForModal(slug) {
 function setItemModalContent(item) {
 	cleanItemModalContent();
 	if (item != undefined) {
-		$itemModal.modal('show');
+		$itemModal.modal({'show': true, 'backdrop': false});
 		
 		var parentsLength = item.parents.length;
 		for (var i = 0; i < parentsLength; i++) {
@@ -97,8 +97,9 @@ function setItemModalContent(item) {
 		
 		var secondaryEffectsLength = item.secondaryEffects.length;
 		for (var k = 0; k < secondaryEffectsLength; k++) {
+			var strArray = item.secondaryEffects[k].split(':');
 			$itemModal.find('.modal-body .item-modal-detail .item-modal-secondary-effects').append(
-				'<li class="item-secondary-effect">'+ item.secondaryEffects[k] +'</li>'
+				'<li class="item-secondary-effect">'+ '<strong>' + strArray[0] + ('1' in strArray? ':</strong>' + strArray[1] : '</strong>') +'</li>'
 			);
 		}
 	} else {
@@ -160,5 +161,5 @@ $(function() {
 		}
 	}
 	$itemModal = $('div#item-modal');
-	$itemModal.modal('hide');
+	$itemModal.modal({'show': false, 'backdrop': false});
 });
