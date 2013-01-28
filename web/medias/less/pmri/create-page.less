@@ -109,6 +109,11 @@ div.container.main-container {
 							position: absolute;
 							right: -12px;
 						}
+						
+						&.isotope-hidden {
+							pointer-events: none;
+							z-index: 1;
+						}
 					}
 				}
 			}
@@ -184,6 +189,11 @@ div.container.main-container {
 						img {
 							width: 48px;
 						}
+
+						&.isotope-hidden {
+							pointer-events: none;
+							z-index: 1;
+						}
 					}
 				}
 			}
@@ -220,6 +230,10 @@ div.container.main-container {
 						&.search-action input[type="text"] {
 							padding: 3px 5px;
 							width: 144px;
+						}
+
+						&#item_sidebar_blocks_li {
+							height: 670px;
 						}
 
 						a#btn-add-item-block {

@@ -222,6 +222,7 @@ div#item-modal div.modal-header i.icon-remove:hover {
 }
 div#item-modal div.modal-body {
   padding: 0 15px 15px 15px;
+  max-height: 461px!important;
 }
 div#item-modal div.modal-body div.item-modal-parents {
   border-bottom: 1px solid #444;
@@ -265,6 +266,7 @@ div#item-modal div.item-modal-detail {
   border: 2px solid #ccc;
   margin: 10px 0 0 0;
   padding: 10px;
+  height: 175px;
 }
 div#item-modal div.item-modal-detail div.item-modal-header {
   margin: 0 0 10px 0;
@@ -282,6 +284,7 @@ div#item-modal div.item-modal-detail div.item-modal-header span.item-modal-heade
 }
 div#item-modal div.item-modal-detail div.item-modal-detail-body {
   padding: 0 10px 10px 10px;
+  height: 100px;
 }
 div#item-modal div.item-modal-detail div.item-modal-detail-body ul.item-modal-primary-effects {
   margin: 0 0 10px 0;

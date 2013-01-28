@@ -129,7 +129,7 @@ function showGeneology(slug, isRoot) {
 		returnValue +=  '<div class="item-geneology" data-slug="'+item.slug+'" style="width: 100%"><div class="branche verticale"></div><img src="/images/items/'+item.code+'.png" /><div class="branche verticale"></div></div>';
 	} else {
 		var largeurBranche = 100 - (item.children.length > 0 ? (100 / item.children.length) : 100);
-		returnValue +=  '<div class="item-geneology" data-slug="'+item.slug+'" style="width: 100%"><div class="branche verticale"></div><img src="/images/items/'+item.code+'.png" /><div class="branche verticale"></div><div class="branche horizontale" style="width:'+ largeurBranche +'%"></div></div>';
+		returnValue +=  '<div class="" data-slug="'+item.slug+'" style="width: 100%"><div class="branche verticale"></div><img src="/images/items/'+item.code+'.png" /><div class="branche verticale"></div><div class="branche horizontale" style="width:'+ largeurBranche +'%"></div></div>';
 	}
 	var diviseur = item.children.length > 0 ? (100 / item.children.length) : 100;
 	

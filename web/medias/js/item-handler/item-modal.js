@@ -12,7 +12,7 @@ function initModalItem($container) {
 			console.log('error : ' + err);
 		}
 	});
-	$itemModal.on('click', '.item-parent, .item-geneology', function() {
+	$itemModal.on('click', '.item-parent, .item-geneology-img', function() {
 		try {
 			var item = getItemForModal($(this).attr('data-slug'));
 			setItemModalContent(item);
@@ -116,7 +116,7 @@ function showGeneology(slug, isRoot) {
 	var item = getItemForModal(slug);
 	var returnValue = '';
 	if (isRoot) {
-		returnValue = '<div class="item-geneology" data-slug="'+item.slug+'"><img src="/images/items/'+item.code+'.png" />';
+		returnValue = '<div class="item-geneology"><img class="item-geneology-img" data-slug="'+item.slug+'" src="/images/items/'+item.code+'.png" />';
 		if (item.children.length > 1) {
 			var largeurBrancheRacine = 100 - (item.children.length > 0 ? (100 / item.children.length) : 100);
 			returnValue += '<div class="branche verticale"></div><div class="branche horizontale" style="width: '+largeurBrancheRacine+'%"></div>'
@@ -125,17 +125,17 @@ function showGeneology(slug, isRoot) {
 		}
 		returnValue += '</div>';
 	} else if (item.children.length == 0) {
-		return '<div class="branche verticale"></div><img src="/images/items/'+item.code+'.png" />';
+		return '<div class="branche verticale"></div><img class="item-geneology-img" data-slug="'+item.slug+'" src="/images/items/'+item.code+'.png" />';
 	} else if (item.children.length == 1) {
-		returnValue +=  '<div class="item-geneology" data-slug="'+item.slug+'" style="width: 100%"><div class="branche verticale"></div><img src="/images/items/'+item.code+'.png" /><div class="branche verticale"></div></div>';
+		returnValue +=  '<div class="item-geneology" style="width: 100%"><div class="branche verticale"></div><img class="item-geneology-img" data-slug="'+item.slug+'" src="/images/items/'+item.code+'.png" /><div class="branche verticale"></div></div>';
 	} else {
 		var largeurBranche = 100 - (item.children.length > 0 ? (100 / item.children.length) : 100);
-		returnValue +=  '<div class="item-geneology" data-slug="'+item.slug+'" style="width: 100%"><div class="branche verticale"></div><img src="/images/items/'+item.code+'.png" /><div class="branche verticale"></div><div class="branche horizontale" style="width:'+ largeurBranche +'%"></div></div>';
+		returnValue +=  '<div class="item-geneology" style="width: 100%"><div class="branche verticale"></div><img class="item-geneology-img" data-slug="'+item.slug+'" src="/images/items/'+item.code+'.png" /><div class="branche verticale"></div><div class="branche horizontale" style="width:'+ largeurBranche +'%"></div></div>';
 	}
 	var diviseur = item.children.length > 0 ? (100 / item.children.length) : 100;
 	
 	for (var i = 0; i < item.children.length; i++) {
-		returnValue += '<div class="item-geneology" data-slug="'+item.children[i]+'" style="width:'+ diviseur +'%">' + showGeneology(item.children[i], false) + '</div>';
+		returnValue += '<div class="item-geneology" style="width:'+ diviseur +'%">' + showGeneology(item.children[i], false) + '</div>';
 	}
 	return returnValue;
 }
@@ -161,5 +161,6 @@ $(function() {
 		}
 	}
 	$itemModal = $('div#item-modal');
-	$itemModal.modal({'show': false, 'backdrop': false});
+	//$itemModal.modal({'show': false, 'backdrop': false});
+	$itemModal.modal({'show': false});
 });
