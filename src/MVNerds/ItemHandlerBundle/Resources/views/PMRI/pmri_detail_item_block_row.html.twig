@@ -1,5 +1,5 @@
 <div class="span6 element">
-	<h3>{{ item_block.getType() }} {% if item_block.getDescription() != '' %}<span class="label description-toggle">Note de l'auteur</span>{% endif %}</h3> 
+	<h3><span class="block-name">{{ item_block.getType() }}</span> {% if item_block.getDescription() != '' %}<span class="label description-toggle">Note de l'auteur</span>{% endif %}</h3> 
 
 	{% if item_block.getDescription() != '' %}
 		<p class="description-block hide">

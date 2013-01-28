@@ -8,7 +8,7 @@ function storeItemBuildForCopy() {
 	
 	var itemSlugs = new Array();
 	$('div.item-block-container div.element').each(function () {
-		var blockName = $(this).find('h3').html();
+		var blockName = $(this).find('h3 span.block-name').html();
 		if(! (blockName in itemSlugs)) {
 			var blockArray = new Array();
 			$(this).find('ul li.item div.portrait').each(function() {

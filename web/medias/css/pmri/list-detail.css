@@ -238,12 +238,12 @@ div#item-modal div.modal-body div.item-modal-parents ul.item-modal-parent-list l
   width: 36px;
 }
 div#item-modal div.modal-body div.item-modal-geneology div.item-geneology {
-  cursor: pointer;
   float: left;
   margin: 0 auto;
   text-align: center;
 }
 div#item-modal div.modal-body div.item-modal-geneology div.item-geneology img {
+  cursor: pointer;
   width: 48px;
 }
 div#item-modal div.modal-body div.item-modal-geneology div.item-geneology div.branche {
