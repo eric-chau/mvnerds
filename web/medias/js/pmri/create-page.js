@@ -226,7 +226,7 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 					} else {
 						isBuildSaved = true;
 						//si c'est un enregistrement suivi d'un téléchargement
-						window.location = Routing.generate('item_builder_view', {_locale: locale, itemBuildSlug: data, dl: 'dl'});
+						window.location = Routing.generate('pmri_list_detail', {_locale: locale, itemBuildSlug: data, dl: 'dl'});
 					}
 					$('#loading-save-build').remove();
 				}
