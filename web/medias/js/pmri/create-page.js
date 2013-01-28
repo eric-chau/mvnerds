@@ -665,7 +665,7 @@ function initBlockInputName() {
 					placement: 'left',
 					trigger: 'click',
 					title: descriptionBlockTitle + $btnDescribe.parent().find('input').val(),
-					template : '<div class="popover bloc-description-popover" data-source="#'+$btnDescribe.parent().attr('id')+'"><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><textarea></textarea></div><div class="popover-footer"><a href="#" class="cancel-save-bloc-description action btn small">' + cancelStr + '</a><a href="#" class="save-bloc-description action btn green small">' + saveStr + '</a></div></div></div>'
+					template : '<div class="popover bloc-description-popover" data-source="#'+$btnDescribe.parent().attr('id')+'"><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-contenu"><textarea></textarea></div><div class="popover-footer"><a href="#" class="cancel-save-bloc-description action btn small">' + cancelStr + '</a><a href="#" class="save-bloc-description action btn green small">' + saveStr + '</a></div></div></div>'
 				});
 				$btnDescribe.data('popover').tip().find('.popover-inner .popover-content textarea').val($btnDescribe.parent().attr('data-description'));
 			}

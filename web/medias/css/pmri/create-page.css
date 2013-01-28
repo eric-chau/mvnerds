@@ -521,10 +521,11 @@ ul#filters-list div.div-action-buttons div.span6.div-right a {
   border-bottom: 0;
   border-right: 0;
 }
-div.popover.bloc-description-popover div.popover-content {
+div.popover.bloc-description-popover div.popover-contenu {
+  background-color: #e4e6e5;
   padding: 10px;
 }
-div.popover.bloc-description-popover div.popover-content textarea {
+div.popover.bloc-description-popover div.popover-contenu textarea {
   background-color: inherit;
   border-color: #999;
   height: 60px;
