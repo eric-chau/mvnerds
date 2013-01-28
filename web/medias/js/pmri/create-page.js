@@ -674,12 +674,12 @@ function initDescribeBlock() {
 				placement: 'left',
 				trigger: 'click',
 				title: 'Description du bloc ' + $this.parent().find('input').val(),
-				content: '<textarea></textarea>',
-				template: '<div class="popover bloc-description-popover" data-source="#'+$this.parents('.item-sidebar-block-li').attr('id')+'"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><textarea></textarea></div><div class="popover-footer"><a href="#" class="save-bloc-description action">Enregistrer</a><a href="#" class="cancel-save-bloc-description action">Annuler</a></div></div></div>'
+				content: '',
+				template: '<div class="popover bloc-description-popover" data-source="#'+$this.parents('.item-sidebar-block-li').attr('id')+'"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-contenu"><textarea></textarea></div><div class="popover-footer"><a href="#" class="save-bloc-description action">Enregistrer</a><a href="#" class="cancel-save-bloc-description action">Annuler</a></div></div></div>'
 			});
 			
 			if ( $(this).parents('.item-sidebar-block-li').data('description') != undefined) {
-				$(this).data('popover').tip().find('.popover-inner .popover-content textarea').val($(this).parents('.item-sidebar-block-li').data('description'));
+				$(this).data('popover').tip().find('.popover-inner .popover-contenu textarea').val($(this).parents('.item-sidebar-block-li').data('description'));
 			}
 		}
 		return false;
@@ -691,7 +691,7 @@ function initDescribeBlock() {
 	$('body').on('click', '.save-bloc-description', function() {
 		var $popover = $($(this).parents('.popover').data('source')).find('.btn-describe-block-item');
 		
-		$popover.parents('.item-sidebar-block-li').attr('data-description', $(this).parents('.popover-inner').find('.popover-content').find('textarea').val());
+		$popover.parents('.item-sidebar-block-li').attr('data-description', $(this).parents('.popover-inner').find('.popover-contenu').find('textarea').val());
 		
 		$popover.popover('hide');
 		$popover.toggleClass('active');
@@ -700,7 +700,7 @@ function initDescribeBlock() {
 	$('body').on('click', '.cancel-save-bloc-description', function() {
 		var $popover = $($(this).parents('.popover').data('source')).find('.btn-describe-block-item');
 		
-		$(this).parents('.popover-inner').find('.popover-content').find('textarea').val($popover.parents('.item-sidebar-block-li').attr('data-description'));
+		$(this).parents('.popover-inner').find('.popover-contenu').find('textarea').val($popover.parents('.item-sidebar-block-li').attr('data-description'));
 		
 		$popover.popover('hide');
 		$popover.toggleClass('active');
