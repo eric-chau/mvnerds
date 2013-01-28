@@ -295,14 +295,14 @@ div.container.main-container div.step div.item-container div#item-sidebar-blocks
   margin: 10px 0 0 0;
   min-height: 60px;
 }
-div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.item.portrait {
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.portrait {
   margin: 6px;
   position: relative;
 }
-div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.item.portrait img {
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.portrait img {
   width: 36px;
 }
-div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.item.portrait span.item-count {
+div.container.main-container div.step div.item-container div#item-sidebar-blocks ul#item_sidebar_blocks_list li.item-sidebar-block-li div.item-sidebar-block-div div.portrait span.item-count {
   bottom: 0;
   color: white;
   display: inline-block;
@@ -385,6 +385,14 @@ div.container.main-container div.step div.generate-button-container a#save-and-g
 div.container.main-container div.step div.generate-button-container a#only-generate-build {
   position: relative;
   top: -2px;
+}
+div.container.main-container div.step div.generate-button-container i#loading-save-build {
+  color: #db4a38;
+  display: inline-block;
+  font-size: 26px;
+  margin: 0 0 0 10px;
+  position: relative;
+  top: 2px;
 }
 a#drop-filter-list.active,
 a#item-drop-filter-list.active {
@@ -521,6 +529,10 @@ ul#filters-list div.div-action-buttons div.span6.div-right a {
   border-bottom: 0;
   border-right: 0;
 }
+div.popover.bloc-description-popover {
+  margin-left: -219px;
+  margin-top: 56px;
+}
 div.popover.bloc-description-popover div.popover-contenu {
   background-color: #e4e6e5;
   padding: 10px;
@@ -531,12 +543,29 @@ div.popover.bloc-description-popover div.popover-contenu textarea {
   height: 60px;
   padding: 5px;
   resize: none;
-  width: 298px;
+  width: 297px;
 }
 div.popover.bloc-description-popover div.popover-footer {
   background-color: #e4e6e5;
   padding: 0 10px 10px 0;
   text-align: right;
+}
+div.edit-indication {
+  background-color: #fb9701;
+  color: white;
+  font-family: 'Arial Black';
+  font-size: 14px;
+  right: 50%;
+  margin: -120px -690px 0 0;
+  opacity: .7;
+  padding: 3px 8px;
+  position: fixed;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  -o-transform: rotate(90deg);
+  transform: rotate(90deg);
+  top: 50%;
 }
 div.popover.item-popover h3 {
   font-weight: bold;

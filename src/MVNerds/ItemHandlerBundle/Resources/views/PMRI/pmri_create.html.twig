@@ -41,6 +41,10 @@
 {% endblock %}
 
 {% block main_content %}
+	{% if edition_mode is defined and edition_mode %}
+		<div class="edit-indication">Édition de la liste "{{ build_name }}"</div>
+	{% endif %}
+	
 	<div class="container main-container border-top">
 		<h1>{{'create_item_build.h1' | trans}}</h1>
 		
@@ -85,10 +89,10 @@
 			<p class="note"><i class="icon-question-sign"></i> {{'create_item_build.tip.2' | trans}}</p>
 
 			<div class="game-mode-container">
-				<div class="game-mode classic {% if gameMode is defined %} {% if gameMode == 'classic' %}active{%endif %} {% else %}active{% endif %}" data-game-mode="classic"><span class="message">{{ 'classic'|trans }}</span></div>
-				<div class="game-mode twisted-treeline {% if gameMode is defined and gameMode == 'twisted-treeline' %}active{%endif %}" data-game-mode="twisted-treeline"><span class="message">{{ 'twisted-treeline'|trans }}</span></div>
-				<div class="game-mode dominion {% if gameMode is defined and gameMode == 'dominion' %}active{%endif %}" data-game-mode="dominion"><span class="message" >{{ 'dominion'|trans }}</span></div>
-				<div class="game-mode proving-grounds {% if gameMode is defined and gameMode == 'aram' %}active{%endif %}" data-game-mode="aram"><span class="message" >{{ 'aram'|trans }}</span></div>
+				<div class="game-mode classic {% if game_mode is defined %} {% if game_mode == 'classic' %}active{%endif %} {% else %}active{% endif %}" data-game-mode="classic"><span class="message">{{ 'classic'|trans }}</span></div>
+				<div class="game-mode twisted-treeline {% if game_mode is defined and game_mode == 'twisted-treeline' %}active{%endif %}" data-game-mode="twisted-treeline"><span class="message">{{ 'twisted-treeline'|trans }}</span></div>
+				<div class="game-mode dominion {% if game_mode is defined and game_mode == 'dominion' %}active{%endif %}" data-game-mode="dominion"><span class="message" >{{ 'dominion'|trans }}</span></div>
+				<div class="game-mode proving-grounds {% if game_mode is defined and game_mode == 'aram' %}active{%endif %}" data-game-mode="aram"><span class="message" >{{ 'aram'|trans }}</span></div>
 			</div>
 		</div>
 		
@@ -118,11 +122,11 @@
 
 			<div class="name-container">
 				<form action="#" method="POST">
-					<input type="text" class="" id="build-name" placeholder="{{'create_item_build.list_name.placeholder' | trans}}" value="{% if buildName is defined %}{{buildName}}{% endif %}"/>
+					<input type="text" class="" id="build-name" placeholder="{{'create_item_build.list_name.placeholder' | trans}}" value="{% if build_name is defined %}{{build_name}}{% endif %}"/>
 					<br />
 					<br />
 					<p>{{'create_item_build.p.5.2' | trans}}</p>
-					<textarea placeholder="Description..." id="build-description">{% if buildDescription is defined and buildDescription != '' %}{{ buildDescription }}{% endif %}</textarea>
+					<textarea placeholder="Description..." id="build-description">{% if build_description is defined and build_description != '' %}{{ build_description }}{% endif %}</textarea>
 				</form>
 			</div>
 		</div>
@@ -136,7 +140,7 @@
 			<div id="private-container">
 				<form action="#" method="POST">
 					<i class="icon-lock icon white"></i>
-					<input type="checkbox" id="build-private" {% if isBuildPrivate is defined and isBuildPrivate == 1%}checked="checked"{% endif %}/>
+					<input type="checkbox" id="build-private" {% if is_build_private is defined and is_build_private == 1%}checked="checked"{% endif %}/>
 					<label for="build-private">{{'create_item_build.build_private.label'|trans}}</label>
 				</form>
 			</div>
@@ -146,7 +150,7 @@
 			<p class="note"><i class="icon-info-sign"></i> {{'create_item_build.tip.6' | trans}}</p>
 
 			<div class="generate-button-container">
-				{% if itemBuildSlug is not defined %}
+				{% if item_build_slug is not defined %}
 					{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 						{% if can_save_build %}
 							<a href="#" id="save-and-generate-build" class="main btn red large">{{'create_item_build.btn.save_and_generate' | trans}}</a>
@@ -154,12 +158,12 @@
 							{{'create_item_build.max_builds_reached' | trans}}
 						{% endif %}
 					{% else %}
-						<a href="#" id="save-and-generate-build-not-authenticated" class="main btn red big">{{'create_item_build.btn.save_and_generate' | trans}}</a>
+						<a href="#" id="save-and-generate-build-not-authenticated" class="main btn red large">{{'create_item_build.btn.save_and_generate' | trans}}</a>
 					{% endif %}
 
 					<a href="#" id="only-generate-build" class="btn small no-color">{{'create_item_build.btn.generate_only' | trans}}</a>
 				{% else %}
-					<a href="#" id="save-build" class="main" data-slug="{{itemBuildSlug}}">{{'create_item_build.btn.save' | trans}}</a>
+					<a href="#" id="save-build" class="main btn red large" data-slug="{{item_build_slug}}">{{'create_item_build.btn.save' | trans}}</a>
 				{% endif %}
 			</div>
 		</div>

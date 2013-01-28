@@ -639,7 +639,7 @@ class ItemBuilderController extends Controller
 	}
 	
 	/**
-	 * @Route("/edit-build/{itemBuildSlug}", name="item_builder_edit_build")
+	 * @Route("/edit/{itemBuildSlug}", name="pmri_edit")
 	 * @Secure(roles="ROLE_USER")
 	 */
 	public function editBuildAction($itemBuildSlug) 
@@ -689,16 +689,17 @@ class ItemBuilderController extends Controller
 			}
 		}
 		
-		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:create_index.html.twig', array(
+		return $this->render('MVNerdsItemHandlerBundle:PMRI:pmri_create.html.twig', array(
 			'champions'			=> $this->get('mvnerds.champion_manager')->findAllWithTags(),
-			'items'			=> $this->get('mvnerds.item_manager')->findAllActive(),
+			'items'				=> $this->get('mvnerds.item_manager')->findAllActive(),
 			'selectedChampions'	=> $selectedChampions,
 			'selectedItems'		=> $selectedItems,
-			'buildName'			=> $itemBuild->getName(),
-			'buildDescription'		=> $itemBuild->getDescription(),
-			'gameMode'			=> $itemBuild->getGameMode()->getLabel(),
-			'itemBuildSlug'		=> $itemBuildSlug,
-			'isBuildPrivate'		=> ($itemBuild->getStatus() == \MVNerds\CoreBundle\Model\ItemBuildPeer::STATUS_PRIVATE)
+			'build_name'		=> $itemBuild->getName(),
+			'build_description'	=> $itemBuild->getDescription(),
+			'game_mode'			=> $itemBuild->getGameMode()->getLabel(),
+			'item_build_slug'	=> $itemBuildSlug,
+			'is_build_private'	=> ($itemBuild->getStatus() == \MVNerds\CoreBundle\Model\ItemBuildPeer::STATUS_PRIVATE),
+			'edition_mode'		=> true
 		));
 	}
 	

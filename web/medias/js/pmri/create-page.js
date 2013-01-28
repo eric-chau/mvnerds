@@ -146,7 +146,7 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 	if (saveInProgress == false && isBuildSaved == false) {
 		saveInProgress = true;
 		
-		$('div.generate-button-container').prepend('<img id="loading-save-build" src="/images/commons/loader.gif" alt="loading"/>');
+		$('div.generate-button-container').append('<i id="loading-save-build" class="icon-spinner icon-spin"></i>');
 		
 		saveBuild = saveBuild == undefined ? false : saveBuild;
 
@@ -210,7 +210,7 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 					}else {
 						displayMessage('Les modifications ont bien été enregistrées.', 'success');
 					}
-					window.location = Routing.generate('item_builder_view', {_locale: locale, itemBuildSlug: data});
+					window.location = Routing.generate('pmri_list_detail', {_locale: locale, itemBuildSlug: data});
 				} else {
 					//si c'est un nouveau build
 					

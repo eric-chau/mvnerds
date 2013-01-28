@@ -305,7 +305,7 @@ div.container.main-container {
 							margin: 10px 0 0 0;
 							min-height: 60px;
 
-							div.item.portrait {
+							div.portrait {
 								margin: 6px;
 								position: relative;
 
@@ -413,6 +413,15 @@ div.container.main-container {
 			a#only-generate-build {
 				position: relative;
 				top: -2px;
+			}
+
+			i#loading-save-build {
+				color: @MVNerdsRed;
+				display: inline-block;
+				font-size: 26px;
+				margin: 0 0 0 10px;
+				position: relative;
+				top: 2px;
 			}
 		}
 	}
@@ -546,6 +555,9 @@ ul#item-filters-list, ul#filters-list {
 }
 
 div.popover.bloc-description-popover {
+	margin-left: -219px;
+	margin-top: 56px;
+
 	div.popover-contenu {
 		background-color: @bodyMainBGColor;
 		padding: 10px;
@@ -556,7 +568,7 @@ div.popover.bloc-description-popover {
 			height: 60px;
 			padding: 5px;
 			resize: none;
-			width: 298px;
+			width: 297px;
 		}
 	}
 
@@ -565,6 +577,20 @@ div.popover.bloc-description-popover {
 		padding: 0 10px 10px 0;
 		text-align: right;
 	}
+}
+
+div.edit-indication {
+	background-color: @LoLOrangeAD;
+	color: white;
+	font-family: 'Arial Black';
+	font-size: 14px;
+	right: 50%;
+	margin: -120px -690px 0 0;
+	opacity: .7;
+	padding: 3px 8px;
+	position: fixed;
+	.rotate(90deg);
+	top: 50%;
 }
 
 @import "../item-handler/item-popover.less";

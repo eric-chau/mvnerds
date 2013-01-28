@@ -95,7 +95,7 @@
 		
 		<p class="module-name">
 			Module <strong>Pimp My Recommended Items</strong> | {{'item_build_view_index.created_by'|trans}} <strong><a href="{{ path('summoner_profile_view', {'userSlug': itemBuild.getUser().getSlug()}) }}" title="Consulter le profil de {{ itemBuild.getUser().getUsername }}"">{{itemBuild.getUser().getUserName()}}</a></strong>
-			{% if can_edit %} <div class="generate-button-container"><a href="{{path('item_builder_edit_build', {itemBuildSlug: itemBuild.getSlug()})}}" class="edit-action pull-right"><p>{{ 'item_table.admin.edit'|trans }}</p></a></div>{% endif %}
+			{% if can_edit %} <div class="generate-button-container"><a href="{{path('pmri_edit', {itemBuildSlug: itemBuild.getSlug()})}}" class="edit-action pull-right"><p>{{ 'item_table.admin.edit'|trans }}</p></a></div>{% endif %}
 		</p>
 		
 		<div class="row-fluid">

@@ -33,7 +33,7 @@
 							<div class="admin-actions">
 								<a class="action view-action tooltip-anchor" href="{{path('pmri_list_detail', {itemBuildSlug: itemBuild.getSlug()})}}" rel="tooltip" data-placement="top" data-original-title="{{ 'item_table.admin.view'|trans }}"><i class="icon-share"></i></a>
 								<a class="action download-action tooltip-anchor" data-name="{{itemBuild.getName()}}" data-slug="{{itemBuild.getSlug()}}" rel="tooltip" data-placement="top" data-original-title="{{ 'item_table.admin.download'|trans }}"><i class="icon-download-alt"></i></a>
-								<a href="{{ path('item_builder_edit_build', {'itemBuildSlug': itemBuild.getSlug()}) }}" class="action edit-action tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="{{ 'item_table.admin.edit'|trans }}"><i class="icon-edit"></i></a>
+								<a href="{{ path('pmri_edit', {'itemBuildSlug': itemBuild.getSlug()}) }}" class="action edit-action tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="{{ 'item_table.admin.edit'|trans }}"><i class="icon-edit"></i></a>
 								<a href="#delete-build-{{ itemBuild.getSlug() }}-modal" class="action delete-action tooltip-anchor" data-toggle="modal" rel="tooltip" data-placement="top" data-original-title="{{ 'item_table.admin.delete'|trans }}"><i class="icon-remove-sign"></i></a>
 							</div>
 						{% else %}
