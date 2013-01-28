@@ -608,6 +608,15 @@ function initChampionClick() {
 	});
 }
 
+var saveStr = 'Enregistrer', 
+	cancelStr = 'Annuler',
+	descriptionBlockTitle = 'Description du bloc ';
+if (locale == 'en') {
+	saveStr = 'Save';
+	cancelStr = 'Cancel';
+	descriptionBlockTitle = 'Description of the block ';
+}
+
 function initBlockInputName() {
 	$itemSidebarList.on('focusin', 'li input.item_sidebar_block_input', function() {
 		var oldName = $.trim($(this).val());
@@ -655,8 +664,8 @@ function initBlockInputName() {
 					animation: true,
 					placement: 'left',
 					trigger: 'click',
-					title: 'Description du bloc ' + $btnDescribe.parent().find('input').val(),
-					template : '<div class="popover bloc-description-popover" data-source="#'+$btnDescribe.parent().attr('id')+'"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><textarea></textarea></div><div class="popover-footer"><a href="#" class="save-bloc-description action">Enregistrer</a><a href="#" class="cancel-save-bloc-description action">Annuler</a></div></div></div>'
+					title: descriptionBlockTitle + $btnDescribe.parent().find('input').val(),
+					template : '<div class="popover bloc-description-popover" data-source="#'+$btnDescribe.parent().attr('id')+'"><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><textarea></textarea></div><div class="popover-footer"><a href="#" class="cancel-save-bloc-description action btn small">' + cancelStr + '</a><a href="#" class="save-bloc-description action btn green small">' + saveStr + '</a></div></div></div>'
 				});
 				$btnDescribe.data('popover').tip().find('.popover-inner .popover-content textarea').val($btnDescribe.parent().attr('data-description'));
 			}
@@ -673,9 +682,9 @@ function initDescribeBlock() {
 				animation: true,
 				placement: 'left',
 				trigger: 'click',
-				title: 'Description du bloc ' + $this.parent().find('input').val(),
+				title: descriptionBlockTitle + $this.parent().find('input').val(),
 				content: '<textarea></textarea>',
-				template: '<div class="popover bloc-description-popover" data-source="#'+$this.parents('.item-sidebar-block-li').attr('id')+'"><div class="arrow"></div><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><textarea></textarea></div><div class="popover-footer"><a href="#" class="save-bloc-description action">Enregistrer</a><a href="#" class="cancel-save-bloc-description action">Annuler</a></div></div></div>'
+				template: '<div class="popover bloc-description-popover" data-source="#'+$this.parents('.item-sidebar-block-li').attr('id')+'"><div class="popover-inner"><h3 class="popover-title"></h3><div class="popover-content"><textarea></textarea></div><div class="popover-footer"><a href="#" class="cancel-save-bloc-description action btn small">' + cancelStr + '</a><a href="#" class="save-bloc-description action btn green small">' + saveStr + '</a></div></div></div>'
 			});
 			
 			if ( $(this).parents('.item-sidebar-block-li').data('description') != undefined) {

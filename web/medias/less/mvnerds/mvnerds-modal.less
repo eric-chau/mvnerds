@@ -1,0 +1,55 @@
+// Twitter Bootstraps imports
+@import "../bootstrap/mixins.less";
+
+// MVNerds imports
+@import "../mvnerds/mvnerds-variables.less";
+
+div.modal-backdrop.fade.in {
+	opacity: .6;
+}
+
+div.modal {
+	background-color: @bodyMainBGColor;
+	border: 5px solid rgba(0,0,0,.5);
+	.border-radius(0);
+	max-height: 500px;
+	margin: -250px 0 0 -300px;
+	width: 600px;
+
+	div.modal-header {
+		border: 0;
+		position: relative;
+
+		i.icon-remove {
+			color: #aaa;
+			cursor: pointer;
+			display: inline-block;
+			position: absolute;
+			right: 10px;
+			top: 10px;
+
+			&:hover {
+				color: #444; .transition(color .25s linear);
+			}
+		}
+	}
+
+	div.modal-body {
+		ul {
+			margin: 0 0 1.4em 0;
+			padding: 0 20px;
+		}
+
+		input[type="text"] {
+			display: inline-block;
+			margin: 0 5px;
+		}
+	}
+
+	div.modal-footer {
+		background-color: @bodyMainBGColor;
+		border: 0;
+		.box-shadow(none);
+		padding-top: 0;
+	}
+}

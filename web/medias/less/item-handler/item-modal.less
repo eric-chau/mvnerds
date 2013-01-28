@@ -1,3 +1,6 @@
+div.modal-backdrop.fade.in {
+	opacity: .6;
+}
 
 div#item-modal {
 	background-color: @bodyMainBGColor;
@@ -24,7 +27,7 @@ div#item-modal {
 
 	div.modal-body {
 		padding: 0 15px 15px 15px;
-		max-height: 461px!important;
+		max-height: 461px !important;
 
 		div.item-modal-parents {
 			border-bottom: 1px solid #444;
@@ -80,9 +83,9 @@ div#item-modal {
 	div.item-modal-detail {
 		background-color: #ddd;
 		border: 2px solid #ccc;
+		height: 225px;
 		margin: 10px 0 0 0;
-		padding: 10px;
-		height: 175px;
+		padding: 10px;		
 
 		div.item-modal-header {
 			margin: 0 0 10px 0;
@@ -103,10 +106,12 @@ div#item-modal {
 		}
 
 		div.item-modal-detail-body {
+			height: 150px;
 			padding: 0 10px 10px 10px;
-			height: 100px;
+			
 			ul.item-modal-primary-effects {
 				margin: 0 0 10px 0;
+				
 				li.item-primary-effect {
 					color: @MVNerdsGreen;
 					font-weight: bold;
