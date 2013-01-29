@@ -11,7 +11,7 @@
 					<li class="nav-header">{{'items_filter_type.attack'|trans}}</li>
 					{% for tag in tags['attack']%}
 						<li>
-							<a href="#" class="filter-link" data-option-value="{{tag.getSlug()}}"><i class=" icon-ok-sign"></i>{{tag.getLabel()}}</a>
+							<a href="#" class="filter-link" data-option-value="{{tag.getSlug()}}"><i class=" icon-ok-sign"></i>{{tag.setLocale(locale).getLabel()}}</a>
 						</li>
 					{% endfor %}
 					{#<li>
@@ -31,7 +31,7 @@
 					<li class="nav-header">{{'items_filter_type.defense'|trans}}</li>
 					{% for tag in tags['defense']%}
 						<li>
-							<a href="#" class="filter-link" data-option-value="{{tag.getSlug()}}"><i class=" icon-ok-sign"></i>{{tag.getLabel()}}</a>
+							<a href="#" class="filter-link" data-option-value="{{tag.getSlug()}}"><i class=" icon-ok-sign"></i>{{tag.setLocale(locale).getLabel()}}</a>
 						</li>
 					{% endfor %}
 					{#<li>
@@ -55,7 +55,7 @@
 					<li class="nav-header">{{'items_filter_type.magic'|trans}}</li>
 					{% for tag in tags['magic']%}
 						<li>
-							<a href="#" class="filter-link" data-option-value="{{tag.getSlug()}}"><i class=" icon-ok-sign"></i>{{tag.getLabel()}}</a>
+							<a href="#" class="filter-link" data-option-value="{{tag.getSlug()}}"><i class=" icon-ok-sign"></i>{{tag.setLocale(locale).getLabel()}}</a>
 						</li>
 					{% endfor %}
 					{#<li>
@@ -75,7 +75,7 @@
 					<li class="nav-header">{{'items_filter_type.other'|trans}}</li>
 					{% for tag in tags['other']%}
 						<li>
-							<a href="#" class="filter-link" data-option-value="{{tag.getSlug()}}"><i class=" icon-ok-sign"></i>{{tag.getLabel()}}</a>
+							<a href="#" class="filter-link" data-option-value="{{tag.getSlug()}}"><i class=" icon-ok-sign"></i>{{tag.setLocale(locale).getLabel()}}</a>
 						</li>
 					{% endfor %}
 					{#<li>

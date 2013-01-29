@@ -52,7 +52,7 @@ class TagManager
 	public function findByParentName($name)
 	{
 		$tags = TagQuery::create()
-			->joinWithI18n($this->userLocale)
+			->joinWithI18n($this->userLocale, \Criteria::LEFT_JOIN)
 			->joinWith('TagType')
 			->addJoinCondition('TagType', 'TagType.UniqueName LIKE ?', $name)
 		->find();
