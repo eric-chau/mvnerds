@@ -3,6 +3,7 @@
 namespace MVNerds\CoreBundle\Tag;
 
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 use MVNerds\CoreBundle\Model\Tag;
 use MVNerds\CoreBundle\Model\TagPeer;
@@ -11,6 +12,8 @@ use MVNerds\CoreBundle\Model\TagI18nPeer;
 		
 class TagManager
 {
+	private $userLocale;
+	
 	/**
 	 * Permet de récupérer tous les tags
 	 */
@@ -46,13 +49,25 @@ class TagManager
 		return $tag;
 	}
 	
-	/**
-	 * Permet de persister en base de données le tag $tag
-	 * 
-	 * @param \MVNerds\CoreBundle\Model\Tag $tag l'objet Tagà faire persister en base de données
-	 */
-	public function save(Tag $tag)
+	public function findByParentName($name)
 	{
-		$tag->save();
+		$tags = TagQuery::create()
+			->joinWithI18n($this->userLocale)
+			->joinWith('TagType')
+			->addJoinCondition('TagType', 'TagType.UniqueName LIKE ?', $name)
+		->find();
+		
+		if (null === $tags)
+		{
+			throw new InvalidArgumentException('No tag with parent name:' . $name . '!');
+		}
+
+		return $tags;
+	}
+	
+	public function setUserLocale(Session $session)
+	{
+		$locale = $session->get('locale', null);
+		$this->userLocale = null === $locale? 'fr' : $locale;
 	}
 }

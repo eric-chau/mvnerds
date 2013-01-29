@@ -45,16 +45,23 @@ class ItemBuilderController extends Controller
 				$lolDirPreference = $this->get('mvnerds.preference_manager')->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
 				$lolDir = $lolDirPreference->getValue();
 			} 
-			catch(\Exception $e) {
-				$lolDir = null;
-			}
+			catch(\Exception $e) {}
 		}	
 		
+		/* @var $tagManager \MVNerds\CoreBundle\Tag\TagManager */
+		$tagManager = $this->get('mvnerds.tag_manager');
+		$tags = array();
+		$tags['attack'] = $tagManager->findByParentName('BASE_ITEM_ATTACK');
+		$tags['magic'] = $tagManager->findByParentName('BASE_ITEM_MAGIC');
+		$tags['defense'] = $tagManager->findByParentName('BASE_ITEM_DEFENSE');
+		$tags['other'] = $tagManager->findByParentName('BASE_ITEM_OTHER');
+		
 		return $this->render('MVNerdsItemHandlerBundle:PMRI:pmri_create.html.twig', array(
-			'champions'			=> $this->get('mvnerds.champion_manager')->findAllWithTags(),
-			'items'				=> $this->get('mvnerds.item_manager')->findAllActive(),
+			'champions'		=> $this->get('mvnerds.champion_manager')->findAllWithTags(),
+			'items'		=> $this->get('mvnerds.item_manager')->findAllActive(),
 			'can_save_build'	=> $canSaveBuild,
-			'lol_dir'			=> $lolDir
+			'lol_dir'		=> $lolDir,
+			'tags'			=> $tags
 		));
 	}
 	

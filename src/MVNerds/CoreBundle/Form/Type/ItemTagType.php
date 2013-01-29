@@ -6,6 +6,9 @@ use Symfony\Component\Form\AbstractType;
 use \Symfony\Component\Form\FormBuilderInterface;
 use \Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
+use MVNerds\CoreBundle\Model\TagTypeQuery;
+use MVNerds\CoreBundle\Model\TagTypePeer;
+
 class ItemTagType extends AbstractType
 {
 	public function buildForm(FormBuilderInterface $builder, array $options) 
@@ -17,14 +20,15 @@ class ItemTagType extends AbstractType
 			$locale = 'fr';
 		}
 		
+		$tagType = TagTypeQuery::create()->add(TagTypePeer::UNIQUE_NAME, 'BASE_ITEM_PARENT')->findOne();
+		
 		$builder->add('tag', 'model', array(
 			'class' => '\MVNerds\CoreBundle\Model\Tag',
 			'query' => \MVNerds\CoreBundle\Model\TagQuery::create()
-				->joinTagType('tt')
-				->joinTagI18n('ti')
-				->addJoinCondition('tt', 'tt.UniqueName = ?', 'BASE_ITEM_PARENT')
-				->addJoinCondition('ti', 'ti.Lang = ?', $locale)
-				->orderBy('ti.Label'),
+				->joinWithI18n($locale)
+				->joinWith('TagType tt')
+				->addJoinCondition('tt', 'tt.ParentId = ?', $tagType->getId())
+				->orderBy('TagI18n.Label', 'asc'),
 			'property' => 'label'
 		));
 	}
