@@ -500,7 +500,7 @@ ul#item-filters-list div.div-action-buttons div.span6 a.disabled,
 ul#filters-list div.div-action-buttons div.span6 a.disabled,
 ul#item-filters-list div.div-action-buttons div.span12 a.disabled,
 ul#filters-list div.div-action-buttons div.span12 a.disabled {
-  border-color: #ccc;
+  border-color: #ccc!important;
   color: #ccc;
   cursor: not-allowed;
 }
