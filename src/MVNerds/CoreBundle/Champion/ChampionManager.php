@@ -153,6 +153,9 @@ class ChampionManager
 			->joinWith('Skin.SkinI18n', \Criteria::LEFT_JOIN)
 			->addJoinCondition('SkillI18n', 'SkillI18n.Lang = ?', $this->userLocale)
 			->addJoinCondition('SkinI18n', 'SkinI18n.Lang = ?', $this->userLocale)
+			->useSkillQuery()
+				->orderByPosition()
+			->endUse()
 			->add(ChampionPeer::SLUG, $slug)
 		->find();
 
