@@ -536,4 +536,36 @@ class ChampionController extends Controller
 			'form' => $form->createView()
 		));
 	}
+	
+	/**
+	 * Permet de mettre a jour la rotation des champion depuis le wiki lol
+	 * 
+	 * @Route("/rotation", name="DataGrabber_champions_rotation")
+	 */
+	public function rotation() 
+	{
+		include(__DIR__ . '/../SimpleHtmlDom/simple_html_dom.php');
+
+		//Récupération de la liste des champions
+		$championsList = file_get_html('http://leagueoflegends.wikia.com/wiki/League_of_Legends_Wiki')->find('div#rotation ol.free_champion_rotation', 0);
+
+		//Si la liste des champions a bien été récupérée
+		if ($championsList->find('li span.character_icon span a')) {
+			/* @var $championManager \MVNerds\CoreBundle\Champion\ChampionManager */
+			$championManager = $this->get('mvnerds.champion_manager');
+			
+			$champions = array();
+			
+			foreach ($championsList->find('li span.character_icon span a') as $championLink) {
+				try {
+					$champion = $championManager->findByName(preg_replace('/Dr /', 'Dr. ', $championLink->plaintext));
+				} catch (\Exception $e) {
+					return $this->redirect($this->generateUrl('DataGrabber_champions_index'));
+				}
+				$champions[] = $champion->getSlug();
+			}
+		}
+		die(var_dump($champions));
+		return $this->redirect($this->generateUrl('DataGrabber_champions_index'));
+	}
 }

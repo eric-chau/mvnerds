@@ -708,9 +708,7 @@ $(document).ready(function()
 	$blockNameInputs = $('input.item_sidebar_block_input');
 	isBuildSaved = false;
 	saveInProgress = false;
-	processScrollRecItems();
 	
-	$window.on('scroll', processScrollRecItems);
 	
 	//On charge le build depuis le storage s il y en a un
 	if (getItemFromLS('storedItemBuild')) {
