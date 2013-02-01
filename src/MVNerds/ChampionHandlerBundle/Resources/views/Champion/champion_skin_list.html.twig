@@ -1,0 +1,31 @@
+<div class="skins-container">
+	<h2>Skins</h2>
+	<div id="skin-list">
+		{% for skin in champion.getSkins() %}
+			{% if loop.index0 != 0 %}
+				<div class="skin">
+					<img src="{{asset('/medias/images/champions/skins/' ~ skin.getSlug() ~ '.png')}}" alt="image du skin {{skin.getName()}}"/>
+					<div class="skin-infos">
+						<strong>{{skin.getName()}}</strong><br />
+						{{skin.getCost()}}
+					</div>
+					<div class="skin-detail">
+						<h5>
+							{{skin.getName()}} 
+							<span class="cost">
+								{% if skin.getCost() > 0 %}
+									<i class="icon-rp"></i>
+								{% endif %}
+								{{ skin.getCost() }}
+							</span>
+						</h5>
+						<div class="video-container">
+							<iframe width="400" height="225" src="http://www.youtube.com/embed/cZvr7tt0a9s?rel=0" frameborder="0" allowfullscreen></iframe>
+						</div>
+					</div>
+				</div>
+			{% endif %}
+		{% endfor %}
+	</div>
+</div>
+		

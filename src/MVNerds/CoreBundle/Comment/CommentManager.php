@@ -94,6 +94,7 @@ class CommentManager
 		{
 			$object->keepUpdateDateUnchanged();
 		}
+		
 		// Finally
 		$object->save();
 	}

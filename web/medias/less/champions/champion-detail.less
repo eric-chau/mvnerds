@@ -1,0 +1,302 @@
+// Twitter Bootstraps imports
+@import "../bootstrap/mixins.less";
+
+// MVNerds imports
+@import "../mvnerds/mvnerds-variables.less";
+
+div.span8.left-content {
+	div.champion-square {
+		float: left;
+		margin: 0 10px 0 0;
+	}
+
+	h1, h2 {
+		border-bottom: 1px solid @MVNerdsRed;//1px solid lighten(@LoLBorderBrown, 15%);
+	}
+
+	h1 {	
+		margin: 0 0 0 110px;
+	}
+
+	h2 {
+		margin: 0 0 10px 0;
+	}
+
+	div.champion-title {
+		color: darken(@MVNerdsRed, 10%);
+		font-weight: bold;
+		margin: 3px 0;
+		position: relative;
+		text-transform: uppercase;
+
+		div.cost {
+			color: @MVNerdsMainTextColor;
+			font-weight: normal;
+			position: absolute;
+			right: 0;
+			text-transform: lowercase;
+			top: 0;
+		}
+	}
+
+	div.statistics-container {
+		margin: 0 0 30px 0;
+
+		dl {
+			display: inline-block;
+			margin: 0 0 20px 0;
+			vertical-align: top;
+			width: 49%;
+
+			dt, dd {
+				display: inline-block;
+			}
+
+			dd {
+				font-weight: bold;
+
+				&.bonus {
+					color: @MVNerdsBlue;
+					font-size: 12px;
+				}
+
+				span.lvl-max {
+					color: @MVNerdsRed;
+				}
+			}
+
+			dt {
+				color: #444;
+				margin: 7px 0 0 0;
+				text-align: right;
+				width: 170px;
+
+				&.bonus {
+					color: #aaa;
+					font-size: 10px;
+					margin: 0;
+					text-transform: uppercase;
+				}
+			}
+		}
+
+		p.note {
+			color: darken(@LoLOrangeAD, 5%);
+			font-size: 14px;
+			font-style: italic;
+			margin: 0 30px;
+			position: relative;
+
+			i {
+				left: -17px;
+				position: absolute;
+				top: 2px;
+			}
+		}
+	}
+
+	div.lore-container {
+		margin: 0 0 40px 0;
+		position: relative;
+
+		p {
+			border-bottom: 1px solid #bbb;
+			height: 99px;
+			margin: 0;
+			overflow: hidden;
+			
+			&.active {
+				height: 100%;
+				overflow: initial;
+				padding: 0 0 10px 0;
+			}
+		}
+
+		a.read-more {
+			background-color: @MVNerdsGreen;
+			bottom: -18px;
+			color: white;
+			display: inline-block;
+			left: 50%;
+			padding: 0 10px;
+			position: absolute;
+
+			i {
+				display: inline-block;
+				position: relative;
+				top: 1px;
+			}
+		}
+	}
+
+	div.ad-container {
+		margin-top: 10px;
+	}
+
+	div.skins-container {
+		margin: 0 0 20px 0;
+
+		div.skin {
+			border: 3px solid black;
+			.border-radius(3px);
+			cursor: pointer;
+			display: inline-block;
+			margin: 0 2px 10px 2px;
+			opacity: .75;
+			position: relative;
+
+			&:hover {
+				opacity: 1; .transition(opacity .25s linear);
+			}
+
+			&.active {
+				background-color: black;
+				.border-radius(0);
+				cursor: default;
+				opacity: 1;
+				padding: 10px;
+				width: 608px;
+
+				img {
+					margin: 0 10px 0 0;
+				}
+
+				div.skin-infos {
+					display: none;
+				}
+
+				div.skin-detail {
+					display: inline-block;
+				}
+			}
+
+			img {
+				width: 147px;
+			}
+
+			div.skin-infos {
+				background-color: rgba(0,0,0,.8);
+				color: #eee;
+				left: 0;
+				padding: 5px 0;
+				position: absolute;
+				text-align: center;
+				bottom: 0;
+				width: 147px;
+			}
+
+			div.skin-detail {
+				display: none;
+				width: 448px;
+
+				h5 {
+					border-bottom: 1px solid @LoLOrangeAD;
+					color: @LoLOrangeAD;
+					margin: 0 0 15px 0;
+					padding: 0 0 3px 0;
+					position: relative;
+
+					span.cost {
+						color: #aaa;
+						position: absolute;
+						right: 0;
+						top: 0;
+					}
+				}
+
+				div.video-container {
+					text-align: center;
+				}
+			}
+		}
+	}
+
+	.cost i {
+		background-image: url('/medias/images/commons/rp_logo.png') !important;
+		background-repeat: no-repeat;
+		background-size: 16px 16px;
+		display: inline-block;
+		height: 16px;
+		position: relative;
+		top: 3px;
+		width: 16px;
+
+		&.icon-ip {
+			background-image: url('/medias/images/commons/ip_logo.png') !important;
+		}
+	}
+}
+
+div.span4.right-content {
+	div.block {
+		div.header {
+			cursor: pointer;
+			position: relative;
+
+			&:hover {
+				background-color: #ddd; .transition(background-color .25s linear);
+			}
+
+			div.skill-key {
+				background-color: black;
+				bottom: 0;
+				color: white;
+				display: inline-block;
+				font-weight: bold;
+				left: 50%;
+				margin: -11px 0 -12px -10px;
+				opacity: .8;
+				padding: 1px 7px;
+				position: absolute;
+				text-transform: uppercase;
+
+				&.ultimate {
+					background-color: @MVNerdsRed;
+					margin-left: -43px;
+				}
+
+				&.passive {
+					margin-left: -30px;
+				}
+			}
+
+			i {
+				margin: -7px 0 0 0;
+				position: absolute;
+				right: 10px;
+				top: 50%;
+			}
+
+			img {
+				border: 2px solid #000;
+				.border-radius(7px);
+				left: -11px;
+				position: absolute;
+				.rotate(-10deg);
+				top: 0px;
+				width: 36px;
+			}
+
+			h3 {
+				padding: 0 23px 0 30px;
+			}
+		}
+
+		div.body {
+			background-color: inherit !important;
+			border: 1px solid #bbb;
+			border-top: 0;
+			padding: 20px 0 10px 0 !important;
+
+			p {
+				&.cdr-cost {
+					color: @MVNerdsRed !important;
+				}
+
+				&.description {
+					color: @MVNerdsMainTextColor !important;
+				}
+			}
+		}
+	}
+}

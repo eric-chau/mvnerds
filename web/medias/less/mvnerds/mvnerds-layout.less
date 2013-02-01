@@ -9,12 +9,14 @@ div.container.main-container {
 	div {
 		&.span8.left-content {
 			border: 1px solid #666;
+			.box-shadow(0 0 5px 5px #ccc);
 			padding: 10px;
 		}
 
 		&.span4.right-content {
 			// Block dans la sidebar
 			div.block {
+				.box-shadow(0 0 5px 5px #ccc);
 				margin: 0 0 20px 0;
 
 				// Block header CSS
@@ -144,6 +146,10 @@ div.container.main-container {
 						text-transform: uppercase;
 					}
 				}
+			}
+
+			div.sidebar-ad-container {
+				.box-shadow(0 0 5px 5px #ccc);
 			}
 		}
 	}

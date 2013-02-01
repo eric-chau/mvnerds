@@ -1,0 +1,58 @@
+div#footer {
+	background-color: #333;
+	border-top: 2px solid #333;
+	color: #eee;
+	padding: 10px;
+
+	div.container {
+		div.champions-block {
+			border-bottom: 1px solid #444;
+			margin: 0 0 5px 0;
+			padding: 0 0 10px 0;
+
+			&:hover h5 i {
+				color: @MVNerdsRed; .transition(color .25s linear);
+			}
+
+			h5 {
+				border-bottom: 1px solid #666;
+				margin: 0;
+				padding: 0 0 4px 7px;
+				text-transform: uppercase;
+
+				i {
+					display: inline-block;
+					font-size: 18px;
+					margin: 0 2px 0 0;
+					position: relative;
+					top: 1px;
+				}
+			}
+
+			ul {
+				display: inline-block;
+				list-style: none;
+				margin: 3px 0 0 7px;
+				vertical-align: top;
+				width: 90px;
+
+				li {
+					a {
+						color: #777;
+						font-size: 12px;
+
+						&:hover {
+							color: #eee; .transition(color .25s linear);
+						}
+					}
+				}
+			}
+		}
+
+		div.mvnerds-legal {
+			div {
+				color: #999;
+			}
+		}
+	}
+}
