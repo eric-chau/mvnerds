@@ -50,44 +50,21 @@ function addManyRecItems(slug, liBlockId, count) {
 	}
 }
 
- //Fixation de la liste d objets recommandés
-function processScrollRecItems() {
-	var scrollTop = $window.scrollTop();
-
-	if (scrollTop >= recItemsTop - 9.85 && ! isRecItemsFixed) {
-		isRecItemsFixed = true;
-		$recItemList.addClass('fixed');
-		$recItemList.parent('.item-container').addClass('fixed');
-	} else if (scrollTop <= recItemsTop - 9.85 && isRecItemsFixed) {
-		isRecItemsFixed = false;
-		$recItemList.removeClass('fixed');
-		$recItemList.parent('.item-container').removeClass('fixed');
-	}
-}
-
-function simulateClickDownload(linkEl) {console.log('simul');
-	if (HTMLElement.prototype.click) {console.log('proto');
-		// You'll want to create a new element so you don't alter the page element's
-		// attributes, unless of course the target attr is already _blank
-		// or you don't need to alter anything
+function simulateClickDownload(linkEl) {
+	if (HTMLElement.prototype.click) {
 		var linkElCopy = $.extend(true, Object.create(linkEl), linkEl);
 		$(linkElCopy).attr('target', '_blank');
-		console.log($(linkElCopy));
-		console.log(linkElCopy);
 		linkElCopy.click();
-	} else {console.log('else');
-		// As Daniel Doezema had said
+	} else {
 		window.open($(linkEl).attr('href'));
 	}
-};
+}
 
 function isBuildValid() {
 	var $champions = $('div.champion-container li.champion.active');
 	
 	var gameMode = $('div.game-mode-container div.game-mode.active').first().data('game-mode');
 	var buildName = $('input#build-name').val();
-	var path = $('#modal-lol-path').val();
-	
 	var $items = $itemSidebarList.find('li div div.portrait');
 	
 	if($champions.length >= 1) {
@@ -157,8 +134,6 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 		var buildDescription = $('textarea#build-description').val();
 		var isBuildPrivate = $('input#build-private').prop('checked');
 		var path = $('#modal-lol-path').val();
-
-		var $items = $itemSidebarList.find('li div div.portrait');
 
 		if (isBuildValid()) {
 			
@@ -231,7 +206,7 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 					$('#loading-save-build').remove();
 				}
 				saveInProgress = false;
-			}).fail(function(data){
+			}).fail(function(){
 				$('#loading-save-build').remove();
 				if (locale == 'en') {
 					displayMessage('Impossible to create the build.', 'success');

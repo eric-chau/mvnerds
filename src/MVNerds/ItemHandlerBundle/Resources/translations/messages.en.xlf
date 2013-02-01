@@ -530,6 +530,23 @@
 				<source>item_build_view_index.copy.tooltip</source>
 				<target>Create a new items lists based on this one</target>
 			</trans-unit>
+			
+			<trans-unit id="5000">
+				<source>items_filter_type.attack</source>
+				<target>Attack</target>
+			</trans-unit>
+			<trans-unit id="5001">
+				<source>items_filter_type.magic</source>
+				<target>Magic</target>
+			</trans-unit>
+			<trans-unit id="5002">
+				<source>items_filter_type.defense</source>
+				<target>Defense</target>
+			</trans-unit>
+			<trans-unit id="5003">
+				<source>items_filter_type.other</source>
+				<target>Other</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

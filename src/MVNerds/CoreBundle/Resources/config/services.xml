@@ -106,6 +106,9 @@
 
 		<!-- TAG MANAGER SERVICES -->
 		<service id="mvnerds.tag_manager" class="MVNerds\CoreBundle\Tag\TagManager">
+			<call method="setUserLocale">
+				<argument type="service" id="session" />
+			</call>
 		</service>
 		
 		<!-- News MANAGER SERVICES -->

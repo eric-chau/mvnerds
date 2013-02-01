@@ -449,6 +449,10 @@ ul#item-filters-list div.row-filters div.span6 ul.tags-group li.nav-header:hover
 ul#filters-list div.row-filters div.span6 ul.tags-group li.nav-header:hover {
   border-color: rgba(228, 230, 229, 0.95);
 }
+ul#item-filters-list div.row-filters div.span6 ul.tags-group li a,
+ul#filters-list div.row-filters div.span6 ul.tags-group li a {
+  text-transform: capitalize;
+}
 ul#item-filters-list div.row-filters div.span6 ul.tags-group li a.selected,
 ul#filters-list div.row-filters div.span6 ul.tags-group li a.selected {
   font-weight: bold;
@@ -496,7 +500,7 @@ ul#item-filters-list div.div-action-buttons div.span6 a.disabled,
 ul#filters-list div.div-action-buttons div.span6 a.disabled,
 ul#item-filters-list div.div-action-buttons div.span12 a.disabled,
 ul#filters-list div.div-action-buttons div.span12 a.disabled {
-  border-color: #ccc;
+  border-color: #ccc!important;
   color: #ccc;
   cursor: not-allowed;
 }

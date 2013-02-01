@@ -210,10 +210,31 @@ div.tab-content {
 	}
 }
 
+div.ad-container {
+	position: relative;
+	height: 60px;
+	img.unblock-ad-img {
+		display: block;
+		position: absolute;
+		left: 85px;
+		z-index: 0;
+	}
+	margin-top: -60px;
+}
 div.sidebar-ad-container {
 	border: 1px solid #666;
 	margin: 0 0 20px 0;
 	padding: 10px;
+	position: relative;
+	height: 250px; 
+
+	img.unblock-ad-img {
+		position: absolute;
+		z-index: 0;
+	}
+	ins {
+		margin-top: -250px;
+	}
 }
 
 div.popover {

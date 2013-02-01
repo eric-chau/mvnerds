@@ -533,6 +533,23 @@
 				<source>item_build_view_index.copy.tooltip</source>
 				<target>Créer une nouvelle liste d'objets recommandés basé sur celle-ci</target>
 			</trans-unit>
+
+			<trans-unit id="5000">
+				<source>items_filter_type.attack</source>
+				<target>Attaque</target>
+			</trans-unit>
+			<trans-unit id="5001">
+				<source>items_filter_type.magic</source>
+				<target>Magique</target>
+			</trans-unit>
+			<trans-unit id="5002">
+				<source>items_filter_type.defense</source>
+				<target>Défense</target>
+			</trans-unit>
+			<trans-unit id="5003">
+				<source>items_filter_type.other</source>
+				<target>Autre</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

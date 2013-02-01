@@ -8,8 +8,13 @@
 		<div class="row-fluid row-filters">
 			<div class="span6">
 				<ul class="tags-group">
-					<li class="nav-header">Attack</li>
-					<li>
+					<li class="nav-header">{{'items_filter_type.attack'|trans}}</li>
+					{% for tag in tags['attack']%}
+						<li>
+							<a href="#" class="filter-link" data-option-value="{{tag.getSlug()}}"><i class=" icon-ok-sign"></i>{{tag.setLocale(locale).getLabel()}}</a>
+						</li>
+					{% endfor %}
+					{#<li>
 						<a href="#" class="filter-link" data-option-value="damage"><i class=" icon-ok-sign"></i>Damage</a>
 					</li>
 					<li>
@@ -20,11 +25,16 @@
 					</li>
 					<li>
 						<a href="#" class="filter-link" data-option-value="critical-strike"><i class=" icon-ok-sign"></i>Critical strike</a>
-					</li>
+					</li>#}
 				</ul>
 				<ul class="tags-group">
-					<li class="nav-header">Defense</li>
-					<li>
+					<li class="nav-header">{{'items_filter_type.defense'|trans}}</li>
+					{% for tag in tags['defense']%}
+						<li>
+							<a href="#" class="filter-link" data-option-value="{{tag.getSlug()}}"><i class=" icon-ok-sign"></i>{{tag.setLocale(locale).getLabel()}}</a>
+						</li>
+					{% endfor %}
+					{#<li>
 						<a href="#" class="filter-link" data-option-value="health"><i class=" icon-ok-sign"></i>Health</a>
 					</li>
 					<li>
@@ -35,15 +45,20 @@
 					</li>
 					<li>
 						<a href="#" class="filter-link" data-option-value="magic-resist"><i class=" icon-ok-sign"></i>Magic resist</a>
-					</li>
+					</li>#}
 				</ul>
 					
 			</div>
 				
 			<div class="span6">
 				<ul class="tags-group">
-					<li class="nav-header">Magic</li>
-					<li>
+					<li class="nav-header">{{'items_filter_type.magic'|trans}}</li>
+					{% for tag in tags['magic']%}
+						<li>
+							<a href="#" class="filter-link" data-option-value="{{tag.getSlug()}}"><i class=" icon-ok-sign"></i>{{tag.setLocale(locale).getLabel()}}</a>
+						</li>
+					{% endfor %}
+					{#<li>
 						<a href="#" class="filter-link" data-option-value="spell-damage"><i class=" icon-ok-sign"></i>Ability power</a>
 					</li>
 					<li>
@@ -54,11 +69,16 @@
 					</li>
 					<li data-option-value="bottom">
 						<a href="#" class="filter-link" data-option-value="cooldown-reduction"><i class=" icon-ok-sign"></i>Cooldown reduction</a>
-					</li>
+					</li>#}
 				</ul>
 				<ul class="tags-group">
-					<li class="nav-header">Other</li>
-					<li>
+					<li class="nav-header">{{'items_filter_type.other'|trans}}</li>
+					{% for tag in tags['other']%}
+						<li>
+							<a href="#" class="filter-link" data-option-value="{{tag.getSlug()}}"><i class=" icon-ok-sign"></i>{{tag.setLocale(locale).getLabel()}}</a>
+						</li>
+					{% endfor %}
+					{#<li>
 						<a href="#" class="filter-link" data-option-value="movement"><i class=" icon-ok-sign"></i>Movement</a>
 					</li>
 					<li>
@@ -72,7 +92,7 @@
 					</li>
 					<li>
 						<a href="#" class="filter-link" data-option-value="legendary"><i class=" icon-ok-sign"></i>Legendary</a>
-					</li>
+					</li>#}
 				</ul>
 			</div>
 		</div>
