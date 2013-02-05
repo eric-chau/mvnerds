@@ -80,7 +80,7 @@
 				
 				{% include 'MVNerdsItemHandlerBundle:PMRI:pmri_detail_item_block_list.html.twig' %}
 				
-				<h2>Vos commentaires</h2>
+				{% render 'MVNerdsCommentBundle:Comment:renderComments' with {'object': item_build, 'objectType': 'item_build'} %}
 			</div>
 			
 			<div class="span4 right-content">

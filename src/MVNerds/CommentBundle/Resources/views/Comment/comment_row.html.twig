@@ -1,0 +1,57 @@
+{% set show_comment = true %}
+{% if comment.getUserReportComments()|length > 5 %}
+	{% set show_comment = false %}
+{% endif %}
+{% set crypted_id = comment.getId() * 47 %}
+<div class="row-fluid comment-block" data-comment-id="{{ crypted_id }}" id="comment-{{ crypted_id }}">
+	<div class="span2">
+		<img src="{{ asset('images/avatar/' ~ comment.getUser().getUserAvatarName() ~ '.jpg') }}" />
+	</div>
+	<div class="span10">
+		<i class="icon-caret-left"></i>
+		<div class="posted-by">
+			<strong><a href="{{ path('summoner_profile_view', {'userSlug': comment.getUser().getSlug()}) }}" title="{{'Check the profile of'|trans}} {{ comment.getUser().getUsername }}">{{ comment.getUser().getUsername() }}</a></strong> {{'Comments.posted_by'|trans}}:
+			<div class="comment-date">{% include ':Extension:custom_format_date.html.twig' with {'object': comment} %}</div>
+		</div>
+		
+		<div class="comment-main-content">
+			{% if show_comment %}
+				<p><i class="icon-quote-left"></i> <span class="msg">{{ comment.getContent()|nl2br }}</span> <i class="icon-quote-right"></i></p>
+			{% else %}
+				<p class="reported-comment"><a href="#">{{'Comments.masked'|trans}}</a></p>
+				<p class="reported hide"><i class="icon-quote-left"></i> {{ comment.getContent()|nl2br }} <i class="icon-quote-right"></i></p>
+			{% endif %}
+		</div>
+		
+		{% if is_granted('IS_AUTHENTICATED_REMEMBERED') and comment.getUser().getId() == app.user.getId() %}
+			<div class="comment-edition-mode hide">
+				<textarea>{{ comment.getContent() }}</textarea>
+				<i class="icon-spinner icon-spin loader hide"></i> <a href="#" class="cancel-comment-edition btn no-color small">Annuler</a> <a href="#" class="save-comment-edition btn small green disabled">Enregistrer</a>
+			</div>
+		{% endif %}
+		
+		{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+			<div class="comment-actions">
+				{#<div class="report-container">
+					{% if comment.didIReportThisComment(app.user) %}
+						{% include 'MVNerdsCommentBundle:Common:report_success.html.twig' %}
+					{% else %}
+						<a href="#" class="report{% if show_comment == false %} hide{% endif %}" data-comment-id="{{ comment.getId() }}">{{'Comments.signal'|trans}}</a>
+					{% endif %}
+				</div>#}
+				<a href="#" class="reply"><strong>Répondre</strong></a> · 
+				<div class="more-actions-container">
+					<a href="#" class="more-actions dropdown-toggle" data-toggle="dropdown"><i class="icon-cogs"></i></a>
+					<ul class="dropdown-menu" data-comment-id="{{ crypted_id }}">
+						{% if comment.getUser().getId() == app.user.getId() %}
+							<li><a href="#" class="edit-comment-action">Éditer ce commentaire</a></li>
+						{% endif %}
+						<li><a href="#">Signaler comme abus</a></li>
+					</ul>
+				</div>
+			</div>
+		{% endif %}
+		
+		<div class="comment-number">#{{ comment_number }}</div>
+	</div>
+</div>

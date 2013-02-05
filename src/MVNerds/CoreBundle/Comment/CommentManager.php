@@ -3,6 +3,7 @@
 namespace MVNerds\CoreBundle\Comment;
 
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use MVNerds\CoreBundle\Model\Comment;
 use MVNerds\CoreBundle\Model\CommentPeer;
@@ -32,6 +33,19 @@ class CommentManager
 		return $comment;
 	}
 	
+	public function editComment($commentID, User $user, $commentString)
+	{
+		$comment = $this->findById($commentID);
+		if ($comment->getUserId() != $user->getId()) {
+			throw new AccessDeniedException();
+		}
+		
+		$comment->setContent($commentString);
+		$comment->save();
+		
+		return $comment;
+	}
+	
 	public function countCommentForUser(User $user)
 	{
 		return $comments = CommentQuery::create()
@@ -39,8 +53,20 @@ class CommentManager
 		->count();
 	}
 	
-	public function findByObject(IComment $object, $page = 0)
+	public function objectCommentCount(IComment $object)
 	{
+		return $comments = CommentQuery::create()
+			->add(CommentPeer::OBJECT_ID, $object->getId())
+			->add(CommentPeer::OBJECT_NAMESPACE, get_class($object))
+		->count();
+	}
+	
+	public function findByObject(IComment $object, $firstCommentID = null)
+	{
+		$offset = 0;
+		if ($firstCommentID != null) {
+			$offset = $this->countCommentSinceFirstLoad($object, $firstCommentID);
+		}
 		$comments = CommentQuery::create()
 			->joinWith('User')
 			->joinWith('User.Profile')
@@ -48,13 +74,29 @@ class CommentManager
 			->add(CommentPeer::OBJECT_NAMESPACE, get_class($object))
 			->add(CommentPeer::OBJECT_ID, $object->getId())
 			->orderBy(CommentPeer::CREATE_TIME, 'desc')
-			->offset($page * self::COMMENT_PER_PAGE)
-			->limit(self::COMMENT_PER_PAGE)
+			->offset($offset)
+			->limit($firstCommentID != null? 0 : self::COMMENT_PER_PAGE)
 		->find();
 		
 		$comments->populateRelation('UserReportComment');
 		
-		return $comments;
+		$commentsArray = array(
+			'comments' => $comments
+		);
+		
+		if ($firstCommentID != null) {
+			$commentsArray['comment_count_since_first_load'] = $offset;
+		}
+		
+		return $commentsArray;
+	}
+	
+	private function countCommentSinceFirstLoad(IComment $object, $firstCommentID) {
+		return CommentQuery::create()
+			->add(CommentPeer::OBJECT_NAMESPACE, get_class($object))
+			->add(CommentPeer::OBJECT_ID, $object->getId())
+			->where(CommentPeer::ID . '> ?', $firstCommentID)
+		->count() + 1; // +1 car on doit compter également le commentaire qui sert de référence ($firstCommentID)
 	}
 	
 	public function getLastestComments(IComment $object, $lastCommentID)

@@ -1,0 +1,234 @@
+div.comments-container {
+	//padding: 0 50px;
+
+	form.leave-comment-form {
+		background-color: darken(@MVNerdsRed, 20%);
+		padding: 10px 50px;
+
+		div.span2 img {
+			border: 3px solid #999;
+			//.border-radius(5px);
+		}
+
+		div.span10 {
+			div.comment-actions {
+				margin: 4px 0 0 0;
+				text-align: right;
+
+				a.btn {
+					margin: 0 !important;
+				}
+			}
+
+			textarea {
+				width: 434px;
+			}
+
+			i {
+				color: white;
+			}
+		}
+	}
+
+	div.comments-list {
+		margin: 0 0 30px 0;
+		padding: 0 50px;
+
+		div.no-comment {
+			border: 1px dashed #999;
+			color: #999;
+			padding: 10px 0;
+			text-align: center;
+		}
+
+		div.comment-block {
+			margin: 0 0 10px 0;
+
+			div.span2 {
+				border: 4px solid #ccc;
+			}
+
+			div.span10 {
+				border: 2px solid #ccc;
+				.box-shadow(1px 2px 2px #ccc);
+				padding: 10px;
+				position: relative;
+
+				&:hover {
+					border-color: #999; .transition(border-color .25s linear);
+
+					i.icon-caret-left {
+						color: #999; .transition(color .25s linear);
+					}
+
+					div.comment-date {
+						color: @MVNerdsMainTextColor; .transition(color .25s linear);
+					}
+
+					div.comment-number {
+						color: #999; .transition(color .25s linear);
+					}
+				}
+
+				i.icon-caret-left {
+					color: #ccc;
+					font-size: 20px;
+					left: -9px;
+					position: absolute;
+					top: 5px;
+				}
+
+				div.posted-by {
+					margin: 0 0 5px 0;
+
+					a:hover {
+						text-decoration: underline;
+					}
+				}
+
+				div.comment-date {
+					color: #999;
+					font-size: 12px;
+					position: absolute;
+					right: 5px;
+					top: 5px;
+				}
+
+				p {
+					margin: 0 0 10px 0;
+
+					i {
+						color: #bbb;
+						display: inline-block;
+						margin-right: 3px;
+
+						&.icon-quote-right {
+							margin: 0 0 0 3px;
+						}
+					}
+				}
+
+				div.comment-edition-mode {
+					text-align: right;
+
+					textarea {
+						margin: 0 0 5px 0;
+						width: 410px;
+					}
+
+					a.save-comment-edition {
+						margin-right: 0;
+					}
+				}
+
+				div.comment-actions {
+					color: #999;
+					text-align: right;
+
+					a.reply, a.more-actions {
+						border: 1px solid @bodyMainBGColor;
+						color: @MVNerdsGreen;
+						display: inline-block;
+						font-size: 12px;
+						margin: 0 10px;
+						opacity: .45;
+						padding: 2px 5px;	
+
+						&:hover {
+							border-color: @MVNerdsGreen; 
+							opacity: 1; .transition(opacity .25s linear);
+						}
+					}
+
+					div.more-actions-container {
+						display: inline-block;
+						position: relative;
+
+						&.open a.more-actions {
+							border-color: @MVNerdsGreen; 
+							opacity: 1; .transition(opacity .25s linear);
+						}
+
+						a.more-actions {
+							margin-right: -5px;
+						}
+
+						ul.dropdown-menu {
+							background-color: @bodyMainBGColor;
+							border: 2px solid @MVNerdsGreen;
+							.border-radius(0);
+							left: initial !important;
+							margin: 0;
+							padding: 3px 0;
+							right: -5px !important;
+							text-align: left;
+							top: 24px;
+
+							li {
+								&:hover {
+									background-color: @MVNerdsGreen;
+								
+									a {
+										color: white; 
+									}
+								}
+
+								a {
+									font-size: 12px; .transition(none);
+								}
+							}
+						}
+					}
+				}
+
+				div.comment-number {
+					color: #bbb;
+					font-weight: bold;
+					left: 451px;
+					position: absolute;
+					bottom: 0;
+				}
+			} // Fin de div.span10
+		}
+	} // Fin de div.comments-list
+
+	div.load-more-comments {
+		margin: -20px 0 20px 0;
+		padding: 0 50px;
+		text-align: right;
+
+		a.btn {
+			margin-right: 0;
+		}
+
+		i.loader {
+			font-size: 22px;
+			margin: 0 8px 0 0;
+		}
+	}
+}
+
+textarea {
+	background-color: @bodyMainBGColor;
+	border-color: #999;
+	height: 76px;
+	padding: 3px 5px;
+	resize: none;
+
+	&:focus, &:hover {
+		background-color: #eee; .transition(background-color .25s linear);
+	}
+}
+
+i.loader {
+	color: @MVNerdsRed;
+	display: inline-block;
+	font-size: 16px;
+	margin: 0 4px 0 0;
+	position: relative;
+	top: 2px;
+
+	&.hide {
+		opacity: 0;
+	}
+}

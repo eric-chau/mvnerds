@@ -1,0 +1,4 @@
+{% for comment in comments %}
+	{% include 'MVNerdsCommentBundle:Comment:comment_row.html.twig' with {'comment': comment, 'comment_number': comment_count} %}
+	{% set comment_count = comment_count - 1 %}
+{% endfor %}

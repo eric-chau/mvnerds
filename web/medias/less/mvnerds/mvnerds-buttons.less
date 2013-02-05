@@ -44,11 +44,20 @@
 		}
 	}
 
-	&.no-color {
+	&.no-color, &.disabled {
 		background-color: #999;
 
 		&:hover, &:focus {
 			background-color: #444;
+		}
+	}
+
+	&.disabled {
+		background-color: #999;
+		cursor: not-allowed;
+
+		&:hover, &:focus {
+			background-color: #999;
 		}
 	}
 }
