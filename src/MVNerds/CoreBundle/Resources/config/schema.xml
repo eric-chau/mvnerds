@@ -691,4 +691,24 @@
       <parameter name="permanent" value="true" />
     </behavior>
   </table>
+  <table name="video">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="user_id" required="true" type="INTEGER" />
+    <column name="category_id" required="true" type="INTEGER" />
+    <column name="title" required="true" size="100" type="VARCHAR" />
+    <column name="link" required="true" size="45" type="VARCHAR" />
+    <column name="description" size="255" type="VARCHAR" />
+    <column defaultValue="0" name="view" required="true" type="INTEGER" />
+    <column name="status" required="true" type="ENUM" valueSet="ACTIVE, DISABLED" />
+    <foreign-key foreignTable="video_category">
+      <reference foreign="id" local="category_id" />
+    </foreign-key>
+    <foreign-key foreignTable="user">
+      <reference foreign="id" local="user_id" />
+    </foreign-key>
+  </table>
+  <table name="video_category">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="unique_name" required="true" size="45" type="VARCHAR" />
+  </table>
 </database>

@@ -1,0 +1,125 @@
+{% extends 'MVNerdsSiteBundle::layout.html.twig' %}
+
+{% block title %}LoL Video Center - MVNerds{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+	{% else %}
+
+	{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/jquery.dataTables.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/videos/list-page.js') }}"></script>
+	{% else %}
+
+	{% endif %}
+{% endblock %}
+
+{% block breadcrumbs %}
+	{{ parent() }}
+	
+	> <a href="{{ path('pmri_list') }}">LoL Video Center</a>
+{% endblock %}
+
+{% block main_content %}
+	<div class="container main-container border-top">
+		<div class="row-fluid">
+			<div class="span8 left-content">
+				<h1>LoL Video Center <a href="#" class="how-it-works-toggle"><span class="label red">comment ça marche ?</span></a></h1>
+				
+				<div class="how-it-works hide">
+					<p>
+						Joueurs de League of Legends, le LoL Video Center vous permet de partager vos vidéos préférés en rapport avec League of Legends.
+					</p>
+					<p>
+						Postez des vidéos fun, utiles, ou ayant un quelconque rapport avec LoL !
+					</p>
+					
+					<div class="separator"></div>
+				</div>
+				
+				<table id="videos-table" class="table data-table">
+					<thead>
+						<tr>
+							<th class="preview">Aperçu</th>
+							<th class="title">Titre</th>
+							<th class="category">Catégorie</th>
+						</tr>
+					</thead>
+					<tbody>
+						{# Contenu chargé en AJAX par DataTable #}
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="span4 right-content">
+				{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+					{# Bouton de création #}
+					<div class="block">
+						<div class="footer red">
+							<a href="{{ path('videos_publish') }}" id="video-publish-action">Publier une vidéo</a>
+						</div>
+					</div>
+				
+					<div class="block">
+						<div class="footer blue">
+							<a href="{{path('summoner_profile_index')}}#summoner-videos-list">Voir mes vidéos</a>
+						</div>
+					</div>
+				{% endif %}
+				
+				<div class="block">
+					<div class="header">
+						<h3>Options de filtrage</h3>
+					</div>
+					<div class="body">
+						<p>Catégories :</p>
+						<ul id="sort-list">
+							<li><a href="#" class="sort-link selected" data-option-value="0"><i class=" icon-ok-sign"></i>Fun</a></li>
+							<li><a href="#" class="sort-link" data-option-value="1"><i class=" icon-ok-sign"></i>WTF</a></li>
+							<li><a href="#" class="sort-link" data-option-value="2"><i class=" icon-ok-sign"></i>Tuto</a></li>
+							<li><a href="#" class="sort-link" data-option-value="3"><i class=" icon-ok-sign"></i>Spotlight</a></li>
+						</ul>
+						
+						<p>Rechercher par :</p>
+						<ul class="filters-list more-filter">
+							<li id="filter-title">
+								<label for="title-filter-input">{{'item_build_list_index.sort.filter-by-title'|trans}}</label>
+								<input type="text" id="title-filter-input" class="input-mini"/>
+							</li>
+							
+							<li id="filter-search">
+								<a href="#" class="btn green" id="search-filter-btn">Rechercher <i class="icon-search icon-white"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+					
+				{# PUBLICITÉ #}
+				<div class="sidebar-ad-container">
+					<script type="text/javascript"><!--
+					google_ad_client = "ca-pub-9866334543391692";
+					/* Rectangle MVNerds 2.0 */
+					google_ad_slot = "3578997199";
+					google_ad_width = 300;
+					google_ad_height = 250;
+					//-->
+					</script>
+					<script type="text/javascript"
+					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+					</script>	
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+	
