@@ -1,0 +1,135 @@
+<div class="statistics-container">
+	<h2>Caractéristiques</h2>
+
+	<dl>
+		<dt>{{'Champion_preview.stat.health'|trans}}</dt>
+		<dd>
+			{{ champion.getBaseHealth() }}
+			{% set value = champion.getBaseHealth() %}
+			{{ champion.setLevel(18) }}
+			{% if value != champion.getBaseHealth() %}
+				<span class="lvl-max">({{ champion.getBaseHealth() }})</span>
+			{% endif %}
+			{{ champion.setLevel(1) }}
+		</dd>
+		<dt class="bonus">{{'Champion_preview.stat.bonus_per_level.label'|trans}}</dt>
+		<dd class="bonus">{{ champion.getBonusHealthPerLevel() }}</dd>
+
+		<dt>{{'Champion_preview.stat.health_regen'|trans}}</dt>
+		<dd>
+			{{ champion.getBaseHealthRegen() * 5 }}
+			{% set value = champion.getBaseHealthRegen() %}
+			{{ champion.setLevel(18) }}
+			{% if value != champion.getBaseHealthRegen() %}
+				<span class="lvl-max">({{ champion.getBaseHealthRegen() * 5 }})</span>
+			{% endif %}
+			{{ champion.setLevel(1) }}
+		</dd>
+		<dt class="bonus">{{'Champion_preview.stat.bonus_per_level.label'|trans}}</dt>
+		<dd class="bonus">{{ champion.getBonusHealthRegenPerLevel() * 5 }}</dd>  
+
+		<dt>{{'Champion_preview.stat.armor'|trans}}</dt>
+		<dd>
+			{{ champion.getBaseArmor() }}
+			{% set value = champion.getBaseArmor() %}
+			{{ champion.setLevel(18) }}
+			{% if value != champion.getBaseArmor() %}
+				<span class="lvl-max">({{ champion.getBaseArmor() }})</span>
+			{% endif %}
+			{{ champion.setLevel(1) }}
+		</dd>
+		<dt class="bonus">{{'Champion_preview.stat.bonus_per_level.label'|trans}}</dt>
+		<dd class="bonus">{{ champion.getBonusArmorPerLevel() }}</dd>
+
+		<dt>{{'Champion_preview.stat.damage'|trans}}</dt>
+		<dd>
+			{{ champion.getBaseDamage() }}
+			{% set value = champion.getBaseDamage() %}
+			{{ champion.setLevel(18) }}
+			{% if value != champion.getBaseDamage() %}
+				<span class="lvl-max">({{ champion.getBaseDamage() }})</span>
+			{% endif %}
+			{{ champion.setLevel(1) }}
+		</dd>
+		<dt class="bonus">{{'Champion_preview.stat.bonus_per_level.label'|trans}}</dt>
+		<dd class="bonus">{{ champion.getBonusDamagePerLevel() }}</dd>
+
+		<dt>{{'Champion_preview.stat.movement_speed'|trans}}</dt>
+		<dd>
+			{{ champion.getMoveSpeed() }}
+			{% set value = champion.getMoveSpeed() %}
+			{{ champion.setLevel(18) }}
+			{% if value != champion.getMoveSpeed() %}
+				<span class="lvl-max">({{ champion.getMoveSpeed() }})</span>
+			{% endif %}
+			{{ champion.setLevel(1) }}
+		</dd>
+	</dl>
+
+	<dl>
+		<dt>{{'Champion_preview.stat.mana'|trans}}</dt>
+		<dd>
+			{{ champion.getBaseMana() }}
+			{% set value = champion.getBaseMana() %}
+			{{ champion.setLevel(18) }}
+			{% if value != champion.getBaseMana() %}
+				<span class="lvl-max">({{ champion.getBaseMana() }})</span>
+			{% endif %}
+			{{ champion.setLevel(1) }}
+		</dd>	
+		<dt class="bonus">{{'Champion_preview.stat.bonus_per_level.label'|trans}}</dt>
+		<dd class="bonus">{{ champion.getBonusManaPerLevel() }}</dd>
+
+		<dt>{{'Champion_preview.stat.mana_regen'|trans}}</dt>
+		<dd>
+			{{ champion.getBaseManaRegen() * 5 }}
+			{% set value = champion.getBaseManaRegen() %}
+			{{ champion.setLevel(18) }}
+			{% if value != champion.getBaseManaRegen() %}
+				<span class="lvl-max">({{ champion.getBaseManaRegen() * 5 }})</span>
+			{% endif %}
+			{{ champion.setLevel(1) }}
+		</dd>
+		<dt class="bonus">{{'Champion_preview.stat.bonus_per_level.label'|trans}}</dt>
+		<dd class="bonus">{{ champion.getBonusManaRegenPerLevel() * 5 }}</dd>
+
+		<dt>{{'Champion_preview.stat.magic_resist'|trans}}</dt>
+		<dd>
+			{{ champion.getBaseMagicResist() }}
+			{% set value = champion.getBaseMagicResist() %}
+			{{ champion.setLevel(18) }}
+			{% if value != champion.getBaseMagicResist() %}
+				<span class="lvl-max">({{ champion.getBaseMagicResist() }})</span>
+			{% endif %}
+			{{ champion.setLevel(1) }}
+		</dd>
+		<dt class="bonus">{{'Champion_preview.stat.bonus_per_level.label'|trans}}</dt>
+		<dd class="bonus">{{ champion.getBonusMagicResistPerLevel() }}</dd>
+
+		<dt>{{'Champion_preview.stat.attack_speed'|trans}}</dt>
+		<dd>
+			{{ champion.getBaseAttackSpeed() }}
+			{% set value = champion.getBaseAttackSpeed() %}
+			{{ champion.setLevel(18) }}
+			{% if value != champion.getBaseAttackSpeed() %}
+				<span class="lvl-max">({{ champion.getBaseAttackSpeed() }})</span>
+			{% endif %}
+			{{ champion.setLevel(1) }}
+		</dd>
+		<dt class="bonus">{{'Champion_preview.stat.bonus_per_level.label'|trans}}</dt>
+		<dd class="bonus">{{ champion.getBonusAttackSpeedPerLevel() }}</dd>
+
+		<dt>{{'Champion_preview.stat.range'|trans}}</dt>
+		<dd>
+			{{ champion.getAttackRange() }}
+			{% set value = champion.getAttackRange() %}
+			{{ champion.setLevel(18) }}
+			{% if value != champion.getAttackRange() %}
+				<span class="lvl-max">({{ champion.getAttackRange() }})</span>
+			{% endif %}
+			{{ champion.setLevel(1) }}
+		</dd>
+	</dl>
+
+	<p class="note"><i class="icon-info-sign"></i> Les valeurs des caractéristiques entre parethèse et en rouge correspondent à celles de {{ champion.getName() }} au niveau 18.</p>
+</div>

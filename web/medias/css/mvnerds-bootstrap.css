@@ -649,9 +649,15 @@ div.container.main-container div.ad-container {
 }
 div.container.main-container div.span8.left-content {
   border: 1px solid #666;
+  -webkit-box-shadow: 0 0 5px 5px #cccccc;
+  -moz-box-shadow: 0 0 5px 5px #cccccc;
+  box-shadow: 0 0 5px 5px #cccccc;
   padding: 10px;
 }
 div.container.main-container div.span4.right-content div.block {
+  -webkit-box-shadow: 0 0 5px 5px #cccccc;
+  -moz-box-shadow: 0 0 5px 5px #cccccc;
+  box-shadow: 0 0 5px 5px #cccccc;
   margin: 0 0 20px 0;
 }
 div.container.main-container div.span4.right-content div.block div.header {
@@ -762,4 +768,61 @@ div.container.main-container div.span4.right-content div.block div.footer a {
   padding: 10px;
   text-align: right;
   text-transform: uppercase;
+}
+div.container.main-container div.span4.right-content div.sidebar-ad-container {
+  -webkit-box-shadow: 0 0 5px 5px #cccccc;
+  -moz-box-shadow: 0 0 5px 5px #cccccc;
+  box-shadow: 0 0 5px 5px #cccccc;
+}
+div#footer {
+  background-color: #333;
+  border-top: 2px solid #333;
+  color: #eee;
+  padding: 10px;
+}
+div#footer div.container div.champions-block {
+  border-bottom: 1px solid #444;
+  margin: 0 0 5px 0;
+  padding: 0 0 10px 0;
+}
+div#footer div.container div.champions-block:hover h5 i {
+  color: #db4a38;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div#footer div.container div.champions-block h5 {
+  border-bottom: 1px solid #666;
+  margin: 0;
+  padding: 0 0 4px 7px;
+  text-transform: uppercase;
+}
+div#footer div.container div.champions-block h5 i {
+  display: inline-block;
+  font-size: 18px;
+  margin: 0 2px 0 0;
+  position: relative;
+  top: 1px;
+}
+div#footer div.container div.champions-block ul {
+  display: inline-block;
+  list-style: none;
+  margin: 3px 0 0 7px;
+  vertical-align: top;
+  width: 90px;
+}
+div#footer div.container div.champions-block ul li a {
+  color: #777;
+  font-size: 12px;
+}
+div#footer div.container div.champions-block ul li a:hover {
+  color: #eee;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div#footer div.container div.mvnerds-legal div {
+  color: #999;
 }

@@ -18,6 +18,27 @@
 				<source>champions_benchmark.h1</source>
 				<target>Champions Benchmark</target>
 			</trans-unit>
+
+			<trans-unit id="101">
+				<source>champion.skill.position.0</source>
+				<target>Passif</target>
+			</trans-unit>
+			<trans-unit id="102">
+				<source>champion.skill.position.1</source>
+				<target>a</target>
+			</trans-unit>
+			<trans-unit id="103">
+				<source>champion.skill.position.2</source>
+				<target>z</target>
+			</trans-unit>
+			<trans-unit id="104">
+				<source>champion.skill.position.3</source>
+				<target>e</target>
+			</trans-unit>
+			<trans-unit id="105">
+				<source>champion.skill.position.4</source>
+				<target>R - Ultime</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

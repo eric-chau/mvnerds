@@ -1,0 +1,18 @@
+{% for skill in skills %}
+	<div class="block skill">
+		<div class="header">
+			<img src="{{asset('/medias/images/champions/skills/' ~ skill.getSlug() ~ '.png')}}" alt="Image de la compétence {{skill.getName()}}"/>
+			<h3>{{skill.getName()}}</h3>
+			<i class="icon-resize-small"></i>
+			{% set skill_token = 'champion.skill.position.' ~ skill.getPosition() %}
+			<div class="skill-key {% if skill.getPosition() == '4' %}ultimate{% else %}{% if skill.getPosition() == '0' %}passive{% endif %}{% endif %}">{{ skill_token|trans }}</div>
+		</div>
+		<div class="body">
+			{% if skill.getCooldown() != '0' and skill.getCooldown() != '0' %}
+				<p class="cdr-cost">{{ skill.getCooldown() }}, {{ skill.getCost() }}</p>
+			{% endif %}
+				
+			<p class="description">{{ skill.getDescription()|nl2br }}</p>
+		</div>
+	</div>
+{% endfor %}

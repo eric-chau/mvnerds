@@ -1,0 +1,9 @@
+{% for champion in champions %}
+	{% if loop.index0 % 12 == 0 %}
+		<ul class="champion-list">
+	{% endif %}
+		<li><a href="{{ path('champion_detail', {'slug': champion.getSlug()}) }}">{{ champion.getName() }}</a></li>
+	{% if loop.index0 % 12 == 11 %}
+		</ul>
+	{% endif %}
+{% endfor %}

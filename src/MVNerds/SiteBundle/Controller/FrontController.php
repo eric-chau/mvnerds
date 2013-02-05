@@ -19,6 +19,16 @@ class FrontController extends Controller
     }
 	
 	/**
+	 * Renvoi la liste des champions formater pour l'affichage dans le footer du site
+	 */
+	public function renderFooterChampionAction()
+	{
+		return $this->render('MVNerdsSiteBundle:Common:footer_champion_list.html.twig', array(
+			'champions' => $this->get('mvnerds.champion_manager')->findAll()
+		));
+	}
+	
+	/**
      * @Route("/test-api")
      */
     public function testAPIAction()
