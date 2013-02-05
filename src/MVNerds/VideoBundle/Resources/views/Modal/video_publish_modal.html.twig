@@ -10,20 +10,22 @@
 			</p>
 		
 			<form id="video-publish-form" action="#">
-				<label for="video-publish-title">Titre<span class="label">*</span></label> <input type="text" id="video-publish-title" name="title"/>
+				<label for="video-publish-title">Titre<sup>*</sup></label> <input type="text" id="video-publish-title" name="title"/><br /><br />
 				
-				<label for="video-publish-title">Catégorie<span class="label">*</span></label> 
+				<label for="video-publish-category">Catégorie<sup>*</sup></label> 
 				<select id="video-publish-category">
-					<option value="">Fun</option>
-					<option value="">Tuto</option>
-				</select>
+					<option value="1">Fun</option>
+					<option value="2">Tuto</option>
+				</select><br /><br />
 				
-				<label for="video-publish-description">Description</label> <textarea name="description" id="video-publish-description"></textarea>
+				<label for="video-publish-link">Lien de la vidéo<sup>*</sup></label> <input type="text" id="video-publish-link" name="title"/><br /><br />
+				
+				<label for="video-publish-description">Description</label> <textarea name="description" id="video-publish-description"></textarea><br /><br />
 			</form>
 	</div>
 	<div class="modal-footer">
 		<i class="icon-spinner icon-spin hide" id="modal-dl-loading-img"></i>
 		<a href="#" data-dismiss="modal" class="btn-cancel btn">{{'create_item_build.modal_dl_build.btn.cancel'|trans}}</a>
-		<a href="#" id="modal-btn-download" data-target="" class="btn-download btn red"><i class="icon-download-alt"></i> {{'create_item_build.modal_dl_build.btn.download'|trans}}</a>
+		<a href="#" id="modal-btn-publish" data-target="" class="btn-download btn red"><i class="icon-upload-alt"></i> Publier</a>
 	</div>
 </div>

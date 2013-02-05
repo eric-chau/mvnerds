@@ -181,5 +181,10 @@
 			SKINS MANAGER SERVICE
 		-->
 		<service id="mvnerds.skin_manager" class="MVNerds\CoreBundle\Skin\SkinManager" />    
+
+		<!-- 
+			VIDEOS MANAGER SERVICE
+		-->
+		<service id="mvnerds.video_manager" class="MVNerds\CoreBundle\Video\VideoManager" />    
 	</services>		
 </container>

@@ -17,8 +17,10 @@
 	{% if app.environment == 'dev' %}
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-modal.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/jquery.dataTables.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/videos/list-page.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/videos/publish-video.js') }}"></script>
 	{% else %}
 
 	{% endif %}
@@ -66,7 +68,7 @@
 					{# Bouton de création #}
 					<div class="block">
 						<div class="footer red">
-							<a href="{{ path('videos_publish') }}" id="video-publish-action">Publier une vidéo</a>
+							<a href="#" id="video-publish-action">Publier une vidéo</a>
 						</div>
 					</div>
 				
@@ -118,6 +120,8 @@
 					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					</script>	
 				</div>
+					
+				{% include 'MVNerdsVideoBundle:Modal:video_publish_modal.html.twig' %}
 			</div>
 		</div>
 	</div>
