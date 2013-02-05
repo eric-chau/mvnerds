@@ -1,0 +1,17 @@
+{% set date = '' %}
+{% if object.getCreateTime('d/m/Y') == date().format('d/m/Y') %}
+	{% set date = 'Comments.today'|trans %}
+{% else %}
+	{% if object.getCreateTime('d/m/Y') == date('-1day').format('d/m/Y') %}
+		{% set date = 'Comments.yesterday'|trans %}
+	{%else %}
+		{% set date = object.getCreateTime('d/m/Y') %}
+	{%endif %}
+{% endif %}
+
+{% set time = object.getCreateTime('H:i') %}
+{% if app.request.getLocale() == 'fr' %}
+	{% set time = time|replace(':', 'h') %}
+{% endif %}
+
+{{ date }}, {{ time }}

@@ -192,7 +192,7 @@ class ItemBuilderController extends Controller
 	{
 		try {
 			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
-			$itemBuild = $this->get('mvnerds.item_build_manager')->findOneBySlug($itemBuildSlug);
+			$itemBuild = $this->get('mvnerds.item_build_manager')->findBySlug($itemBuildSlug);
 			$itemBuild->setView($itemBuild->getView() + 1);
 			$itemBuild->keepUpdateDateUnchanged();
 			$itemBuild->save();
@@ -248,7 +248,7 @@ class ItemBuilderController extends Controller
 		$path = $request->get('path');
 		
 		try {
-			$itemBuild = $itemBuildManager->findOneBySlug($itemBuildSlug);
+			$itemBuild = $itemBuildManager->findBySlug($itemBuildSlug);
 		} catch (\Exception $e ) {
 			throw new HttpException(500, 'Invalid slug given : '.$itemBuildSlug);
 		}
@@ -318,7 +318,7 @@ class ItemBuilderController extends Controller
 		
 		if ($itemBuildSlug != null) {
 			try {
-				$itemBuild = $itemBuildManager->findOneBySlug($itemBuildSlug);
+				$itemBuild = $itemBuildManager->findBySlug($itemBuildSlug);
 				$isEdition = true;
 			} catch(\Exception $e) {
 				throw new HttpException(500, 'Unable to find item build with slug '.$itemBuildSlug.'!');
@@ -474,7 +474,7 @@ class ItemBuilderController extends Controller
 	{
 		try{
 			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
-			$itemBuild = $this->get('mvnerds.item_build_manager')->findOneBySlug($itemBuildSlug);
+			$itemBuild = $this->get('mvnerds.item_build_manager')->findBySlug($itemBuildSlug);
 			$itemBuild->setDownload($itemBuild->getDownload()+1);
 			$itemBuild->keepUpdateDateUnchanged();
 			$itemBuild->save();
@@ -656,7 +656,7 @@ class ItemBuilderController extends Controller
 			
 		try {
 			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
-			$itemBuild = $itemBuildManager->findOneBySlug($itemBuildSlug);
+			$itemBuild = $itemBuildManager->findBySlug($itemBuildSlug);
 		} catch (\Exception $e ) {
 			return $this->redirect($this->generateUrl('item_builder_list'));
 		}
@@ -721,7 +721,7 @@ class ItemBuilderController extends Controller
 			
 		try {
 			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
-			$itemBuild = $itemBuildManager->findOneBySlug($itemBuildSlug);
+			$itemBuild = $itemBuildManager->findBySlug($itemBuildSlug);
 		} catch (\Exception $e ) {
 			return $this->redirect($this->generateUrl('summoner_profile_index'));
 		}
@@ -732,44 +732,6 @@ class ItemBuilderController extends Controller
 		}
 		
 		return $this->redirect($this->generateUrl('summoner_profile_index'));
-	}
-	
-	/**
-	 * @Route("/leave-comment", name="item_build_leave_comment", options={"expose"=true})
-	 */
-	public function leaveCommentAction()
-	{
-		$request = $this->getRequest();
-		if (!$request->isXmlHttpRequest() || !$request->isMethod('POST'))
-		{
-			throw new HttpException(500, 'Request must be AJAX and POST method');
-		}
-		
-		$itemBuildSlug = $request->get('object_slug', null);
-		$userSlug = $request->get('user_slug', null);
-		$commentMsg = $request->get('comment_msg', null);
-		$lastCommentID = $request->get('last_comment_id', null);
-		if (null == $itemBuildSlug || null == $userSlug || null == $commentMsg) {
-			throw new HttpException(500, 'object_slug | user_slug | comment_msg is/are missing!');
-		}
-		
-		if (0 != strcmp($userSlug, $this->getUser()->getSlug())) {
-			throw new AccessDeniedException();
-		}
-		
-		try {
-			$itemBuild = $this->get('mvnerds.item_build_manager')->findOneBySlug($itemBuildSlug);
-		}
-		catch(Exception $e) {
-			throw new InvalidArgumentException('Item build not found for slug:`'. $itemBuildSlug .'`');
-		}
-		
-		return $this->forward('MVNerdsCommentBundle:Comment:leaveComment', array(
-			'object'		=> $itemBuild,
-			'user'			=> $this->getUser(),
-			'commentMsg'	=> $commentMsg,
-			'lastCommentID' => $lastCommentID
-		));
 	}
 	
 	/**
@@ -790,7 +752,7 @@ class ItemBuilderController extends Controller
 		}
 		
 		try {
-			$itemBuild = $this->get('mvnerds.item_build_manager')->findOneBySlug($itemBuildSlug);
+			$itemBuild = $this->get('mvnerds.item_build_manager')->findBySlug($itemBuildSlug);
 		}
 		catch(Exception $e) {
 			throw new InvalidArgumentException('Item build not found for slug:`'. $itemBuildSlug .'`');

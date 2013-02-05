@@ -1,0 +1,17 @@
+<div class="comments-list">
+	{% set comment_count = object.getCommentCount() %}
+	{% for comment in comments %}
+		{% include 'MVNerdsCommentBundle:Comment:comment_row.html.twig' with {'comment_number': comment_count} %}
+		{% set comment_count = comment_count - 1 %}
+	{% else %}
+		<div class="no-comment">
+			{{ 'Comments.no_reactions'|trans }}
+		</div>
+	{% endfor %}
+</div>
+
+{% if comments|length >= 10 %}
+	<div class="load-more-comments">
+		<i class="icon-spinner icon-spin loader hide"></i> <a href="#" class="load-comments btn">Lire plus de commentaires</a>
+	</div>
+{% endif %}

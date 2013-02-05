@@ -71,12 +71,23 @@
 .btn.red:focus {
   background-color: #db4a38;
 }
-.btn.no-color {
+.btn.no-color,
+.btn.disabled {
   background-color: #999;
 }
 .btn.no-color:hover,
-.btn.no-color:focus {
+.btn.disabled:hover,
+.btn.no-color:focus,
+.btn.disabled:focus {
   background-color: #444;
+}
+.btn.disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+.btn.disabled:hover,
+.btn.disabled:focus {
+  background-color: #999;
 }
 .mvnerds-btn {
   border-bottom: 3px solid #ddd;

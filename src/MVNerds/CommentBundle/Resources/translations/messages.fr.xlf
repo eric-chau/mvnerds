@@ -24,7 +24,7 @@
 			</trans-unit>
 			<trans-unit id="6">
 				<source>Comments.posted_by</source>
-				<target>Posté par</target>
+				<target>a commenté </target>
 			</trans-unit>
 			<trans-unit id="7">
 				<source>Comments.today</source>

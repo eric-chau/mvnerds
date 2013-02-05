@@ -71,7 +71,7 @@
 
 				{% include 'MVNerdsChampionHandlerBundle:Champion:champion_skin_list.html.twig' with {'champion': champion} %}
 				
-				<h2>Vos commentaires</h2>
+				{% render 'MVNerdsCommentBundle:Comment:renderComments' with {'object': champion, 'objectType': 'champion'} %}
 			</div>
 			
 			<div class="span4 right-content">

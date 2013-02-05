@@ -1,0 +1,17 @@
+{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+	<form action="#" method="POST" class="leave-comment-form">
+		<div class="row-fluid">
+			<div class="span2">
+				<img src="{{ asset('images/avatar/' ~ app.user.getUserAvatarName() ~ '.jpg') }}" class="user-avatar" />
+			</div>
+			<div class="span10">
+				<textarea placeholder="{{'Comments.write_comment'|trans}}" class="comment-msg" rows="2"></textarea>
+				<div class="comment-actions">
+					<i class="icon-spinner icon-spin loader hide"></i> <a href="#" class="btn green small btn-send-comment disabled">{{'Comments.comment'|trans}}</a>
+				</div>
+			</div>
+		</div>
+	</form>
+{% else %}
+
+{% endif %}

@@ -21,7 +21,7 @@ class ItemBuildManager
 	 * @return ItemBuild l'objet ItemBuild qui correspond au slug $slug
 	 * @throws InvalidArgumentException exception levé si aucun item build n'est associé au slug $slug
 	 */
-	public function findOneBySlug($slug)
+	public function findBySlug($slug)
 	{
 		$itemBuild = ItemBuildQuery::create()
 			->joinWith('User', \Criteria::LEFT_JOIN)
