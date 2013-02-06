@@ -47,7 +47,7 @@ $(document).ready(function() {
 		};
 	}
 	
-	itemBuildsTable = $('#videos-table').dataTable({
+/*	itemBuildsTable = $('#videos-table').dataTable({
 		"bProcessing": true,
 		"bServerSide": true,
 		"sAjaxSource": Routing.generate('videos_list_ajax', {_locale: locale}),
@@ -107,7 +107,7 @@ $(document).ready(function() {
 	
 	//CHAMP DE RECHERCHE
 	$('#item-builds-table_filter label').addClass('search-box');
-
+*/
 	// Vérifie si c'est la première fois ou non que l'utilisateur accède au module PMRI
 	var howItWorksValue = getItemFromLS('display_how_it_works_videos');
 	if (howItWorksValue == undefined || howItWorksValue == 'true') {

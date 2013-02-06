@@ -19,7 +19,13 @@ class FrontController extends Controller
 	 */
 	public function indexAction()
 	{
-		return $this->render('MVNerdsVideoBundle:Front:list_index.html.twig');
+		/* @var $videoManager \MVNerds\CoreBundle\Video\VideoManager */
+		$videoManager = $this->get('mvnerds.video_manager');
+		
+		return $this->render('MVNerdsVideoBundle:Front:list_index.html.twig', array(
+			'video_categories'	=> $videoManager->findAllVideoCatgories(),
+			'videos'		=> $videoManager->findAllActive()
+		));
 	}
 	
 	/**
@@ -44,7 +50,12 @@ class FrontController extends Controller
 		}
 		
 		if ( isset( $_POST['category'] ) && ($category = $_POST['category']) != '' ) {
-			$video->setCategoryId($category);
+			try {
+				$videoManager->findVideoCategoryById($category);
+				$video->setVideoCategoryId($category);
+			} catch (\Exception $e) {
+				throw new \Exception('Video catgory not valid');
+			}
 		} else {
 			throw new HttpException(500, 'Missing category');
 		}
@@ -65,8 +76,8 @@ class FrontController extends Controller
 		
 		$video->setUser($this->getUser());
 		
-		//$video->save();
-		return new Response(json_encode($video->toArray()));
+		$video->save();
+		return new Response(json_encode($video->getSlug()));
 	}
 	
 	/**
@@ -76,5 +87,77 @@ class FrontController extends Controller
 	public function listAjaxAction()
 	{
 		return new Response(json_encode(array()));
+	}
+	
+	/**
+	 * @Route("/detail/{slug}", name="videos_detail", options={"expose"=true})
+	 */
+	public function detailAction($slug)
+	{
+		/* @var $videoManager \MVNerds\CoreBundle\Video\VideoManager */
+		$videoManager = $this->get('mvnerds.video_manager');
+		
+		try {
+			/* @var $video \MVNerds\CoreBundle\Model\Video */
+			$video = $videoManager->findBySlug($slug);
+			$video->setView($video->getView() + 1);
+			$video->keepUpdateDateUnchanged();
+			$video->save();
+		} catch (\Exception $e) {
+			return $this->redirect($this->generateUrl('videos_index'));
+		}
+		
+		$canEdit = false;
+		if ($this->get('security.context')->isGranted('ROLE_USER')) {
+			$user = $this->getUser();
+			if (($video->getUser()->getId() == $user->getId()) || $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+				$canEdit = true;
+			}
+		}
+		
+		return $this->render('MVNerdsVideoBundle:Front:detail.html.twig', array(
+			'video'		=> $video,
+			'can_edit'	=> $canEdit
+		));
+	}
+	
+	/**
+	 * Permet d'afficher la vidéo qu'elle provienne de youtube ou bien de dailymotion
+	 */
+	public function renderVideoAction(Video $video)
+	{
+		if (strpos($video->getLink(), 'youtube.com') !== false) { 
+			$link = 'http://www.youtube.com/v/';
+			$exploded = explode('&', str_replace('http://www.youtube.com/watch?v=', '', $video->getLink()));
+			
+			return $this->render('MVNerdsVideoBundle:Videos:youtube.html.twig', array(
+				'link'		=> $link . $exploded[0]
+			));
+		} elseif (strpos($video->getLink(), 'youtu.be') !== false) {
+			$link = 'http://www.youtube.com/v/';
+			$exploded = explode('&', str_replace('http://youtu.be/', '', $video->getLink()));
+			
+			return $this->render('MVNerdsVideoBundle:Videos:youtube.html.twig', array(
+				'link'		=> $link . $exploded[0]
+			));
+		} elseif (strpos($video->getLink(),'dailymotion.com') !== false) {
+			$link = 'http://www.dailymotion.com/embed/video/';
+			if (strpos($video->getLink(),'/video/') !== false) {
+				$exploded = explode('_', str_replace('http://www.dailymotion.com/video/', '', $video->getLink()));
+			
+				return $this->render('MVNerdsVideoBundle:Videos:dailymotion.html.twig', array(
+					'link'		=> $link . $exploded[0]
+				));
+			} elseif (strpos($video->getLink(),'#video=') !== false) {
+				$link .= preg_replace('/http:\/\/www\.dailymotion\.com\/.*#video=/', '', $video->getLink());
+				
+				return $this->render('MVNerdsVideoBundle:Videos:dailymotion.html.twig', array(
+					'link'		=> $link
+				));
+			} else {
+				return new Response();
+			}
+		}
+		return $this->redirect($this->generateUrl('videos_index'));
 	}
 }

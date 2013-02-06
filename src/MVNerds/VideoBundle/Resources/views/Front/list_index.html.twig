@@ -59,6 +59,13 @@
 					</thead>
 					<tbody>
 						{# Contenu chargé en AJAX par DataTable #}
+						{% for video in videos %}
+							<tr>
+								<td></td>
+								<td><a href="{{path('videos_detail', {slug: video.getSlug()})}}" class="video-title-link">{{video.getTitle()}}</a></td>
+								<td>{{video.getVideoCategory().getUniqueName()}}</td>
+							</tr>
+						{% endfor %}
 					</tbody>
 				</table>
 			</div>

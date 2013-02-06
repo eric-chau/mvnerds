@@ -44,12 +44,10 @@ function publishVideo() {
 		url:  Routing.generate('videos_publish_ajax', {_locale: locale}),
 		data: data,
 		dataType: 'json'
-	}).done(function(data){
-		console.log('Done');
-		console.log(data);
-	}).fail(function(data){
+	}).done(function(slug){
+		window.location = Routing.generate('videos_detail', {_locale: locale, slug: slug});
+	}).fail(function(){
 		console.log('fail');
-		console.log(data);
 	});
 }
 
@@ -80,7 +78,7 @@ $(document).ready(function() {
 	//Clic sur le bouton publish de la modal
 	$('#modal-btn-publish').click(function(e) {
 		e.preventDefault();
-		console.log('publish');
+		$('#modal-video-publish').modal('hide');
 		try {
 			publishVideo()
 		} catch (err) {

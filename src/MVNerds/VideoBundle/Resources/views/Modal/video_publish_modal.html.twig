@@ -14,8 +14,9 @@
 				
 				<label for="video-publish-category">Catégorie<sup>*</sup></label> 
 				<select id="video-publish-category">
-					<option value="1">Fun</option>
-					<option value="2">Tuto</option>
+					{% for video_category in video_categories %}
+						<option value="{{video_category.getId()}}">{{video_category.getUniqueName()}}</option>
+					{% endfor %}
 				</select><br /><br />
 				
 				<label for="video-publish-link">Lien de la vidéo<sup>*</sup></label> <input type="text" id="video-publish-link" name="title"/><br /><br />
