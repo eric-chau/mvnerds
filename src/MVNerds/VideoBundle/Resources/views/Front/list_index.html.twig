@@ -93,10 +93,9 @@
 					<div class="body">
 						<p>Catégories :</p>
 						<ul id="sort-list">
-							<li><a href="#" class="sort-link selected" data-option-value="0"><i class=" icon-ok-sign"></i>Fun</a></li>
-							<li><a href="#" class="sort-link" data-option-value="1"><i class=" icon-ok-sign"></i>WTF</a></li>
-							<li><a href="#" class="sort-link" data-option-value="2"><i class=" icon-ok-sign"></i>Tuto</a></li>
-							<li><a href="#" class="sort-link" data-option-value="3"><i class=" icon-ok-sign"></i>Spotlight</a></li>
+							{% for video_category in video_categories %}
+								<li><a href="#" class="sort-link" data-option-value="{{video_category.getId()}}"><i class=" icon-ok-sign"></i>{{video_category.getUniqueName()}}</a></li>
+							{% endfor %}
 						</ul>
 						
 						<p>Rechercher par :</p>

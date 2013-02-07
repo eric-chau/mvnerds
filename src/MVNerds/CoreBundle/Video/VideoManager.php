@@ -42,10 +42,35 @@ class VideoManager
 	
 	public function isVideoLinkValid($link) 
 	{
-		if (strpos($link, 'youtube.com') === false && strpos($link,'youtu.be') === false && strpos($link,'dailymotion.com') === false) {
-			return false;
+		
+		//On supprime la chaine "http://" si elle existe puis on supprime la chaine "www" si elle existe
+		$videoLink = preg_replace('/^www\./', '', str_replace('http://', '', $link));
+		
+		if (strpos($videoLink, 'youtube.com/watch?v=') !== false || strpos($videoLink, 'youtu.be/') !== false) {
+			
+			if (strpos($videoLink, 'youtube.com') !== false) {
+				$exploded = explode('&', str_replace('youtube.com/watch?v=', '', $videoLink));
+			} else {
+				$exploded = explode('?', str_replace('youtu.be/', '', $videoLink));
+			}
+			
+			return $exploded[0] != '';
+			
+		} elseif (strpos($videoLink,'dailymotion.com') !== false) {
+			
+			if (strpos($videoLink, '/video/') !== false) {
+				$exploded = explode('_', str_replace('dailymotion.com/video/', '', $videoLink));
+			
+				return $exploded[0] != '';
+				
+			} elseif (strpos($videoLink,'#video=') !== false) {
+				$exploded .= preg_replace('/dailymotion\.com\/.*#video=/', '', $videoLink);
+				
+				return $exploded != '';
+			}
 		}
-		return true;
+		
+		return false;
 	}
 	
 	public function findAllVideoCatgories() 

@@ -18,33 +18,38 @@ use MVNerds\CoreBundle\Model\om\BaseVideo;
  */
 class Video extends BaseVideo {
 
+	//Permet de récupérer l'image d'aperçu de la vidéo à partir du lien de celle-ci
 	public function getThumbnailUrl()
 	{
-		if (strpos($this->getLink(), 'youtube.com') !== false) { 
-			$link = 'http://img.youtube.com/vi/';
-			$exploded = explode('&', str_replace('http://www.youtube.com/watch?v=', '', $this->getLink()));
+		//On supprime la chaine "http://" si elle existe puis on supprime la chaine "www" si elle existe
+		$videoLink = preg_replace('/^www\./', '', str_replace('http://', '', $this->getLink()));
+		
+		if (strpos($videoLink, 'youtube.com/watch?v=') !== false || strpos($videoLink, 'youtu.be/') !== false) { 
+			$embed = 'http://img.youtube.com/vi/';
 			
-			return $link . $exploded[0] . '/0.jpg';
-		} elseif (strpos($this->getLink(), 'youtu.be') !== false) {
-			$link = 'http://img.youtube.com/vi/';
-			$exploded = explode('&', str_replace('http://youtu.be/', '', $this->getLink()));
-			
-			return $link . $exploded[0] . '/0.jpg';
-		} elseif (strpos($this->getLink(),'dailymotion.com') !== false) {
-			$link = 'http://www.dailymotion.com/thumbnail/video/';
-			if (strpos($this->getLink(),'/video/') !== false) {
-				$exploded = explode('_', str_replace('http://www.dailymotion.com/video/', '', $this->getLink()));
-			
-				return $link . $exploded[0];
-			} elseif (strpos($this->getLink(),'#video=') !== false) {
-				$exploded = preg_replace('/http:\/\/www\.dailymotion\.com\/.*#video=/', '', $this->getLink());
-				
-				return $link . $exploded;
+			if (strpos($videoLink, 'youtube.com') !== false) {
+				$exploded = explode('&', str_replace('youtube.com/watch?v=', '', $videoLink));
 			} else {
-				return '';
+				$exploded = explode('?', str_replace('youtu.be/', '', $videoLink));
 			}
-		} else {
-			return '';
+			
+			return $embed . $exploded[0] . '/0.jpg';
+			
+		} elseif (strpos($videoLink,'dailymotion.com') !== false) {
+			$embed = 'http://www.dailymotion.com/thumbnail/video/';
+			
+			if (strpos($videoLink, '/video/') !== false) {
+				$exploded = explode('_', str_replace('dailymotion.com/video/', '', $videoLink));
+			
+				return $embed . $exploded[0];
+				
+			} elseif (strpos($videoLink,'#video=') !== false) {
+				$embed .= preg_replace('/dailymotion\.com\/.*#video=/', '', $videoLink);
+				
+				return $embed;
+			}
 		}
+		
+		return '';
 	}
 } // Video

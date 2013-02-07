@@ -6,7 +6,7 @@ function isVideoValid() {
 	if ($title == undefined || $title.val() == '') {
 		throw errorMsgs['title'][locale];
 	}
-	if ($category == undefined || $category.val() == '' || !isCategoryValid($category.val())) {
+	if ($category == undefined || $category.val() == '') {
 		throw errorMsgs['category'][locale];
 	}
 	if ($link == undefined || $link.val() == '' || !isVideoLinkValid($link.val())) {
@@ -16,17 +16,12 @@ function isVideoValid() {
 
 //Permet de vérifier si le lien passé en paramètres est valide (youtube ou dailymotion)
 function isVideoLinkValid(link) {
-	if (	link.indexOf('youtube.com', 0) >= 0 || 
-		link.indexOf('youtu.be', 0) >= 0 ||
+	if (	link.indexOf('youtube.com/watch?v=', 0) >= 0 || 
+		link.indexOf('youtu.be/', 0) >= 0 ||
 		link.indexOf('dailymotion.com', 0) >= 0) {
 		return true;
 	}
 	return false;
-}
-
-//Permet de vérifier si la catégorie sélectionnée est valide
-function isCategoryValid(category) {
-	return true;
 }
 
 //Permet de publier la vidéo

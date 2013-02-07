@@ -126,38 +126,39 @@ class FrontController extends Controller
 	 */
 	public function renderVideoAction(Video $video)
 	{
-		if (strpos($video->getLink(), 'youtube.com') !== false) { 
-			$link = 'http://www.youtube.com/v/';
-			$exploded = explode('&', str_replace('http://www.youtube.com/watch?v=', '', $video->getLink()));
+		//On supprime la chaine "http://" si elle existe puis on supprime la chaine "www" si elle existe
+		$videoLink = preg_replace('/^www\./', '', str_replace('http://', '', $video->getLink()));
+		
+		if (strpos($videoLink, 'youtube.com/watch?v=') !== false || strpos($videoLink, 'youtu.be/') !== false) { 
+			$embed = 'http://www.youtube.com/v/';
+			
+			if (strpos($videoLink, 'youtube.com') !== false) {
+				$exploded = explode('&', str_replace('youtube.com/watch?v=', '', $videoLink));
+			} else {
+				$exploded = explode('?', str_replace('youtu.be/', '', $videoLink));
+			}
 			
 			return $this->render('MVNerdsVideoBundle:Videos:youtube.html.twig', array(
-				'link'		=> $link . $exploded[0]
+				'link'		=> $embed . $exploded[0]
 			));
-		} elseif (strpos($video->getLink(), 'youtu.be') !== false) {
-			$link = 'http://www.youtube.com/v/';
-			$exploded = explode('&', str_replace('http://youtu.be/', '', $video->getLink()));
+		} elseif (strpos($videoLink,'dailymotion.com') !== false) {
+			$embed = 'http://www.dailymotion.com/embed/video/';
 			
-			return $this->render('MVNerdsVideoBundle:Videos:youtube.html.twig', array(
-				'link'		=> $link . $exploded[0]
-			));
-		} elseif (strpos($video->getLink(),'dailymotion.com') !== false) {
-			$link = 'http://www.dailymotion.com/embed/video/';
-			if (strpos($video->getLink(),'/video/') !== false) {
-				$exploded = explode('_', str_replace('http://www.dailymotion.com/video/', '', $video->getLink()));
+			if (strpos($videoLink, '/video/') !== false) {
+				$exploded = explode('_', str_replace('dailymotion.com/video/', '', $videoLink));
 			
 				return $this->render('MVNerdsVideoBundle:Videos:dailymotion.html.twig', array(
-					'link'		=> $link . $exploded[0]
+					'link'		=> $embed . $exploded[0]
 				));
-			} elseif (strpos($video->getLink(),'#video=') !== false) {
-				$link .= preg_replace('/http:\/\/www\.dailymotion\.com\/.*#video=/', '', $video->getLink());
+			} elseif (strpos($videoLink,'#video=') !== false) {
+				$embed .= preg_replace('/dailymotion\.com\/.*#video=/', '', $videoLink);
 				
 				return $this->render('MVNerdsVideoBundle:Videos:dailymotion.html.twig', array(
-					'link'		=> $link
+					'link'		=> $embed
 				));
-			} else {
-				return new Response();
 			}
 		}
-		return $this->redirect($this->generateUrl('videos_index'));
+		
+		return new Response();
 	}
 }
