@@ -10,22 +10,24 @@
 			</p>
 		
 			<form id="video-publish-form" action="#">
-				<label for="video-publish-title">Titre<sup>*</sup></label> <input type="text" id="video-publish-title" name="title"/><br /><br />
+				<label for="video-publish-title">Titre<sup>*</sup></label> <input type="text" id="video-publish-title" name="title" value="{{video.getTitle()}}"/><br /><br />
 				
 				<label for="video-publish-category">Catégorie<sup>*</sup></label> 
 				<select id="video-publish-category">
 					{% for video_category in video_categories %}
-						<option value="{{video_category.getId()}}">{{video_category.getUniqueName()}}</option>
+						<option value="{{video_category.getId()}}" {% if video.getVideoCategoryId() == video_category.getId() %}selected="selected"{% endif %}>{{video_category.getUniqueName()}}</option>
 					{% endfor %}
 				</select><br /><br />
 				
-				<label for="video-publish-link">Lien de la vidéo<sup>*</sup></label> <input type="text" id="video-publish-link" name="title"/><br /><br />
+				<label for="video-publish-link">Lien de la vidéo<sup>*</sup></label> <input type="text" id="video-publish-link" name="title" value="{{video.getLink()}}"/><br /><br />
 				
-				<label for="video-publish-description">Description</label> <textarea name="description" id="video-publish-description"></textarea><br /><br />
+				<label for="video-publish-description">Description</label> <textarea name="description" id="video-publish-description">{{video.getDescription()}}</textarea><br /><br />
+				
+				<input type="hidden" value="{{video.getSlug()}}" id="video-publish-slug"/>
 			</form>
 	</div>
 	<div class="modal-footer">
-		<i class="icon-spinner icon-spin hide" id="modal-dl-loading-img"></i>
+		<i class="icon-spinner icon-spin hide" id="modal-video-loading-img"></i>
 		<a href="#" data-dismiss="modal" class="btn-cancel btn">{{'create_item_build.modal_dl_build.btn.cancel'|trans}}</a>
 		<a href="#" id="modal-btn-publish" data-target="" class="btn-download btn red"><i class="icon-upload-alt"></i> Publier</a>
 	</div>

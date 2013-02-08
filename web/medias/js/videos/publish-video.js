@@ -1,4 +1,4 @@
-var $title, $category, $link, $description, errorMsgs = [];
+var $title, $category, $link, $description, errorMsgs = [], $slug, $loading, $modalPublish;
 
 //Permet de vérifier si le formlaire de publication de vidéo est valide
 //Lance une exception s il y a un problème
@@ -6,7 +6,7 @@ function isVideoValid() {
 	if ($title == undefined || $title.val() == '') {
 		throw errorMsgs['title'][locale];
 	}
-	if ($category == undefined || $category.val() == '' || !isCategoryValid($category.val())) {
+	if ($category == undefined || $category.val() == '') {
 		throw errorMsgs['category'][locale];
 	}
 	if ($link == undefined || $link.val() == '' || !isVideoLinkValid($link.val())) {
@@ -16,17 +16,12 @@ function isVideoValid() {
 
 //Permet de vérifier si le lien passé en paramètres est valide (youtube ou dailymotion)
 function isVideoLinkValid(link) {
-	if (	link.indexOf('youtube.com', 0) >= 0 || 
-		link.indexOf('youtu.be', 0) >= 0 ||
+	if (	link.indexOf('youtube.com/watch?v=', 0) >= 0 || 
+		link.indexOf('youtu.be/', 0) >= 0 ||
 		link.indexOf('dailymotion.com', 0) >= 0) {
 		return true;
 	}
 	return false;
-}
-
-//Permet de vérifier si la catégorie sélectionnée est valide
-function isCategoryValid(category) {
-	return true;
 }
 
 //Permet de publier la vidéo
@@ -36,7 +31,7 @@ function publishVideo() {
 	isVideoValid();
 	
 	//On prépare les données à envoyer
-	var data = {title: $title.val(), category: $category.val(), link: $link.val(), description: $description.val()};
+	var data = {title: $title.val(), category: $category.val(), link: $link.val(), description: $description.val(), slug: $slug.val()};
 	
 	//On demande la création de la vidéo en AJAX
 	$.ajax({
@@ -45,8 +40,12 @@ function publishVideo() {
 		data: data,
 		dataType: 'json'
 	}).done(function(slug){
+		$loading.hide();
+		$modalPublish.modal('hide');
 		window.location = Routing.generate('videos_detail', {_locale: locale, slug: slug});
 	}).fail(function(){
+		$loading.hide();
+		$modalPublish.modal('hide');
 		console.log('fail');
 	});
 }
@@ -57,6 +56,11 @@ $(document).ready(function() {
 	$category = $('#video-publish-category')
 	$link = $('#video-publish-link')
 	$description = $('#video-publish-description')
+	$slug = $('#video-publish-slug')
+	
+	$modalPublish = $('#modal-video-publish');
+	
+	$loading = $('#modal-video-loading-img');
 	
 	//Initialisation des messages d'erreurs
 	errorMsgs['title'] = [];
@@ -69,20 +73,21 @@ $(document).ready(function() {
 	errorMsgs['link']['fr'] = 'La lien de la vidéo fourni n\'est pas valide.';
 	errorMsgs['link']['en'] = 'The video link is not valid.';
 	
-	//Clic sur le bouton publish de la page de listing des vidéos
-	$('#video-publish-action').click(function() {
-		$('#modal-video-publish').modal('show');
+	//Clic sur le bouton publish de la page de listing des vidéos ou de la page de détail
+	$('#video-publish-action, #video-edit-action').click(function() {
+		$modalPublish.modal('show');
 		return false;
 	});
 	
 	//Clic sur le bouton publish de la modal
 	$('#modal-btn-publish').click(function(e) {
 		e.preventDefault();
-		$('#modal-video-publish').modal('hide');
+		$loading.show();
 		try {
 			publishVideo()
 		} catch (err) {
 			console.log(err);
+			$loading.hide();
 		}
 	});
 });
