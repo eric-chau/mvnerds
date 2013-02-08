@@ -66,7 +66,7 @@ $(document).ready(function() {
                       {"bVisible": false, "bSearchable": true, "bSortable":true},//title
                       {"bVisible": false, "bSearchable": false, "bSortable":true},//view
                       {"bVisible": false, "bSearchable": true, "bSortable":true},//category
-		   // {"bVisible": false, "bSearchable": false, "bSortable":true},//comment_count
+		    {"bVisible": false, "bSearchable": false, "bSortable":true},//comment_count
 		],
 		"sPaginationType": 'full_numbers',
 		"oLanguage": langage
@@ -79,7 +79,7 @@ $(document).ready(function() {
 		[6, 'asc'],//Titre croissant
 		[6, 'desc'],//Titre décroissant
 		[7, 'desc'],//Les + vues
-		//[8, 'desc']//Les + commentées
+		[9, 'desc']//Les + commentées
 	];
 	
 	var $dropdownSort = $('ul#sort-list');
