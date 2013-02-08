@@ -1,0 +1,10 @@
+<div class="response-block">
+	<div class="posted-by">
+		<strong><a href="{{ path('summoner_profile_view', {'userSlug': response.getUser().getSlug()}) }}" title="{{'Check the profile of'|trans}} {{ response.getUser().getUsername }}">{{ response.getUser().getUsername() }}</a></strong> {{'Comments.reply_by'|trans}}:
+		<div class="response-date">{% include ':Extension:custom_format_date.html.twig' with {'object': response.getCreateTime()} %}</div>
+	</div>
+		
+	<div class="response-main-content">
+		<p><i class="icon-quote-left"></i> <span class="msg">{{ response.getContent()|nl2br }}</span> <i class="icon-quote-right"></i></p>
+	</div>
+</div>

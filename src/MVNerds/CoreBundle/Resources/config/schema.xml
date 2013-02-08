@@ -46,6 +46,7 @@
       <parameter name="i18n_table" value="champion_i18n" />
       <parameter name="i18n_phpname" value="ChampionI18n" />
     </behavior>
+    <behavior name="mvnerds_commentable" />
   </table>
   <table name="user">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -411,7 +412,6 @@
     <column defaultValue="0" name="view" required="true" type="INTEGER" />
     <column name="description" type="LONGVARCHAR" />
     <column name="status" required="true" type="ENUM" valueSet="PUBLIC, PRIVATE, OBSOLETE" />
-    <column defaultValue="0" name="comment_count" required="true" type="INTEGER" />
     <foreign-key foreignTable="user">
       <reference foreign="id" local="user_id" />
     </foreign-key>
@@ -430,6 +430,7 @@
       <parameter name="create_column" value="create_time" />
       <parameter name="update_column" value="update_time" />
     </behavior>
+    <behavior name="mvnerds_commentable" />
   </table>
   <table name="champion_item_build">
     <column name="champion_id" primaryKey="true" required="true" type="INTEGER" />
@@ -493,7 +494,6 @@
     <column defaultValue="0" name="view" required="true" type="INTEGER" />
     <column name="image_name" required="true" size="255" type="VARCHAR" />
     <column defaultValue="0" name="is_highlight" required="true" type="BOOLEAN" />
-    <column defaultValue="0" name="comment_count" required="true" type="INTEGER" />
     <foreign-key foreignTable="user">
       <reference foreign="id" local="user_id" />
     </foreign-key>
@@ -519,6 +519,7 @@
       <parameter name="i18n_table" value="news_i18n" />
       <parameter name="i18n_phpname" value="NewsI18n" />
     </behavior>
+    <behavior name="mvnerds_commentable" />
   </table>
   <table name="comment">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -718,9 +719,26 @@
       <parameter name="create_column" value="create_time" />
       <parameter name="update_column" value="update_time" />
     </behavior>
+    <behavior name="mvnerds_commentable" />
   </table>
   <table name="video_category">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
     <column name="unique_name" required="true" size="45" type="VARCHAR" />
+  </table>
+  <table name="comment_response">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="user_id" required="true" type="INTEGER" />
+    <column name="comment_id" required="true" type="INTEGER" />
+    <column name="content" required="true" type="LONGVARCHAR" />
+    <foreign-key foreignTable="user">
+      <reference foreign="id" local="user_id" />
+    </foreign-key>
+    <foreign-key foreignTable="comment">
+      <reference foreign="id" local="comment_id" />
+    </foreign-key>
+    <behavior name="timestampable">
+      <parameter name="create_column" value="create_time" />
+      <parameter name="update_column" value="update_time" />
+    </behavior>
   </table>
 </database>

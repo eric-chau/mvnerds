@@ -2,11 +2,11 @@
 
 namespace MVNerds\CoreBundle\Model;
 
-use MVNerds\CoreBundle\Comment\IComment;
-use MVNerds\CoreBundle\Model\om\BaseNews;
+use MVNerds\CoreBundle\Model\om\BaseCommentResponsePeer;
+
 
 /**
- * Skeleton subclass for representing a row from the 'news' table.
+ * Skeleton subclass for performing query and update operations on the 'comment_response' table.
  *
  * 
  *
@@ -16,6 +16,6 @@ use MVNerds\CoreBundle\Model\om\BaseNews;
  *
  * @package    propel.generator.src.MVNerds.CoreBundle.Model
  */
-class News extends BaseNews {
+class CommentResponsePeer extends BaseCommentResponsePeer {
 
-} // News
+} // CommentResponsePeer

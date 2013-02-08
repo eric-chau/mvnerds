@@ -7,10 +7,10 @@ $(document).ready(function()
 		$commentCount = $('span.comment-count');
 
 	// Activation de l'event de click sur le bouton "Commenter"
-	$commentBtn.on('click', function(event)
+	$('div.comments-container').on('click', 'a.btn-send-comment', function(event)
 	{
 		event.preventDefault();
-		if ($commentBtn.hasClass('disabled')) {
+		if ($(this).hasClass('disabled')) {
 			return false;
 		}
 
@@ -39,6 +39,7 @@ $(document).ready(function()
 				$commentMsg.removeAttr('disabled');
 				$commentMsg.val('');
 				$commentCount.html(parseInt($commentCount.html()) + $content.find('div.comment-block').length);
+				window.scrollTo($('div.comments-container').position().left, $('div.comments-container').position().top - 80);
 			}
 		});
 	});
@@ -116,13 +117,18 @@ $(document).ready(function()
 				$parent.find('textarea').removeAttr('disabled');
 				$parent.parent().find('p span.msg').html(response.content);
 				$parent.hide();
+				$parent.parent().find('div.comment-actions div.last-edition-date').html(response.last_edition_date);
 				$parent.parent().find('div.comment-main-content').show();
 				$parent.parent().find('div.comment-actions').show();
 			}
 		});
 	});
 
-	//
+	/*****************************************************************************/
+	/********************************* FIN EVENT *********************************/
+	/*****************************************************************************/
+
+	// Activation de l'event de click sur le bouton "Voir tous les commentaires"
 	$('div.load-more-comments a.load-comments').on('click', function(event) {
 		event.preventDefault();
 		var $this = $(this);
@@ -145,11 +151,103 @@ $(document).ready(function()
 				$this.parent().slideUp().remove();
 			}
 		});
-	})
+	});
 
 	/*****************************************************************************/
-	/********************************* FIN EVENT *********************************/
+	/************* EVENT EN RAPPORT AVEC L'EDITION D'UN COMMENTAIRE **************/
 	/*****************************************************************************/
+
+	// Déclaration des variables
+	var commentStr = 'Comment',
+		replyStr = 'Answer to',
+		replyStrSecondPart = ', comment ',
+		commentPlaceholderStr = 'Write a comment',
+		replyPlaceholderStr = 'Reply to a comment',
+		currentCommentReplyID = 0;
+	if (locale == 'fr') {
+		commentStr = 'Commenter';
+		replyStr = 'Répondre à';
+		replyStrSecondPart = ', commentaire ';
+		commentPlaceholderStr = 'Écrire un commentaire';
+		replyPlaceholderStr = 'Répondre à un commentaire';
+	}
+
+	// Activation de l'event de click sur le bouton répondre de chaque commentaire
+	$('div.comments-list').on('click', 'a.reply-action', function(event) {
+		event.preventDefault();
+
+		if ($(this).hasClass('active')) {
+			return false;
+		}
+
+		$('div.comments-list').find('a.reply-action').removeClass('active');
+		var $this = $(this),
+			$form = $('form.leave-comment-form'),
+			commentOwner = $this.data('username'),
+			commentNumber = $this.parent().parent().parent().find('div.comment-number').html();
+		currentCommentReplyID = $this.parent().parent().parent().data('comment-id');
+		
+		window.scrollTo($('form.leave-comment-form').position().left, $('form.leave-comment-form').position().top);
+		$form.addClass('reply-mode');
+		$form.find('a.btn-send-comment, a.btn-reply-comment').removeClass('green btn-send-comment').addClass('red btn-reply-comment').html(replyStr + ' <strong>' + commentOwner + replyStrSecondPart + commentNumber + '</strong>');
+		$form.find('a.btn-cancel-reply-mode').removeClass('hide');
+		$this.addClass('active');
+		$form.find('textarea').attr('placeholder', replyPlaceholderStr);
+	});
+
+	// Activation du click sur le bouton "Annuler" lorsque l'on est en mode réponse
+	$('form.leave-comment-form').on('click', 'a.btn-cancel-reply-mode', function(event) {
+		event.preventDefault();
+
+		if ($(this).hasClass('hide')) {
+			return false;
+		}
+
+		$('div.comments-list').find('a.reply-action').removeClass('active');
+		var $this = $(this),
+			$form = $('form.leave-comment-form');
+		$form.removeClass('reply-mode');
+		$this.addClass('hide');
+		$form.find('a.btn-send-comment, a.btn-reply-comment').removeClass('red btn-reply-comment').addClass('green btn-send-comment').html(commentStr);
+		$form.find('textarea').attr('placeholder', commentPlaceholderStr);
+	});
+
+	// Activation de l'event de click sur le bouton de réponse
+	$('div.comments-container').on('click', 'a.btn-reply-comment', function(event) {
+		event.preventDefault();
+		
+		if ($(this).hasClass('disabled')) {
+			return false;
+		}
+
+		var currentCommentID = currentCommentReplyID,
+			$this = $(this);
+
+		$loader.removeClass('hide');
+		$commentBtn.addClass('disabled');
+		$commentMsg.attr('disabled', 'disabled');
+
+		$.ajax({
+			url: Routing.generate('comment_reply', {'_locale': locale}),
+			data: {
+				'user_slug': userSlug,
+				'comment_id': currentCommentID,
+				'reply_msg': $('textarea.comment-msg').val()
+			},
+			type: 'POST',
+			dataType: 'html',
+			success: function(response) {
+				var $content = $('<div class="hide"></div>').html(response),
+					$block = $('div#comment-' + currentCommentID);
+				$content.appendTo($block.find('div.responses-list'));
+				$content.slideDown();
+				$loader.addClass('hide');
+				$commentMsg.removeAttr('disabled');
+				$commentMsg.val('');
+				window.scrollTo($block.position().left, $block.position().top - 40);
+			}
+		});
+	});
 
 	/*
 

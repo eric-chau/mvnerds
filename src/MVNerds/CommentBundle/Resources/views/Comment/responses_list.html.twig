@@ -1,0 +1,5 @@
+<div class="responses-list">
+	{% for response in responses %}
+		{% include 'MVNerdsCommentBundle:Comment:response_row.html.twig' with {'response': response} %}
+	{% endfor %}
+</div>

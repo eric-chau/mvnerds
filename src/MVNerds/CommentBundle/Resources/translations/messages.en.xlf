@@ -66,6 +66,14 @@
 				<source>Comment.registration</source>
 				<target>Register</target>
 			</trans-unit>
+			<trans-unit id="17">
+				<source>Comment.last_edition.DATE</source>
+				<target>Last update DATE</target>
+			</trans-unit>
+			<trans-unit id="18">
+				<source>Comments.reply_by</source>
+				<target>replied</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

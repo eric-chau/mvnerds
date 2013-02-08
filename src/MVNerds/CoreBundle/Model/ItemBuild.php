@@ -16,7 +16,7 @@ use MVNerds\CoreBundle\Comment\IComment;
  *
  * @package    propel.generator.src.MVNerds.CoreBundle.Model
  */
-class ItemBuild extends BaseItemBuild implements IComment {
+class ItemBuild extends BaseItemBuild {
 
 	public function getChampionsNamesToString()
 	{

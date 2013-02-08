@@ -2,12 +2,15 @@ div.comments-container {
 	//padding: 0 50px;
 
 	form.leave-comment-form {
-		background-color: darken(@MVNerdsRed, 20%);
+		background-color: darken(@MVNerdsRed, 20%); .transition(background-color .25s linear);
 		padding: 10px 50px;
+
+		&.reply-mode {
+			background-color: darken(@MVNerdsGreen, 10%); .transition(background-color .25s linear);
+		}
 
 		div.span2 img {
 			border: 3px solid #999;
-			//.border-radius(5px);
 		}
 
 		div.span10 {
@@ -123,9 +126,10 @@ div.comments-container {
 
 				div.comment-actions {
 					color: #999;
+					position: relative;
 					text-align: right;
 
-					a.reply, a.more-actions {
+					a.reply-action, a.more-actions {
 						border: 1px solid @bodyMainBGColor;
 						color: @MVNerdsGreen;
 						display: inline-block;
@@ -138,6 +142,22 @@ div.comments-container {
 							border-color: @MVNerdsGreen; 
 							opacity: 1; .transition(opacity .25s linear);
 						}
+					}
+
+					a.reply-action.active {
+						background-color: @MVNerdsGreen;
+						border-color: @MVNerdsGreen;
+						color: white;
+						cursor: not-allowed;
+						opacity: 1;
+					}
+
+					div.last-edition-date {
+						font-size: 12px;
+						display: inline-block;
+						left: 0;
+						position: absolute;
+						top: 3px;
 					}
 
 					div.more-actions-container {
@@ -177,6 +197,31 @@ div.comments-container {
 									font-size: 12px; .transition(none);
 								}
 							}
+						}
+					}
+				}
+
+				div.responses-list {
+					div.response-block {
+						background-color: #ddd;
+						border: 1px solid #ccc;
+						margin: 8px 0 0 0;
+						padding: 5px;
+						position: relative;
+
+						a, div, p {
+							color: #444;
+							font-size: 12px;
+						}
+
+						div.response-date {
+							position: absolute;
+							right: 5px;
+							top: 5px;
+						}
+
+						div.response-main-content p {
+							margin: 0;
 						}
 					}
 				}

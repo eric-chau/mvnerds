@@ -98,8 +98,13 @@ class CommentController extends Controller
 		}
 		
 		return new Response(json_encode(array(
-			'content'			=> $comment->getContent()
-			//'last_edition_date'	=> $comment->getLastUpdate()
+			'content'			=> $comment->getContent(),
+			'last_edition_date'	=> $this->get('translator')->trans('Comment.last_edition.DATE', array(
+				'DATE' => $this->renderView(':Extension:custom_format_date.html.twig', array(
+					'object' => $comment->getUpdateTime(), 
+					'lowercase' => true
+				))
+			))
 		)));
 	}
 	
@@ -134,6 +139,42 @@ class CommentController extends Controller
 		return $this->render('MVNerdsCommentBundle:Comment:load_more_comments_list.html.twig', array(
 			'comments'		=> $commentArray['comments'],
 			'comment_count'	=> $object->getCommentCount() - $commentArray['comment_count_since_first_load']
+		));
+	}
+	
+	/**
+	 * @Route("/{_locale}/comment/add-response", name="comment_reply", options={"expose"=true})
+	 * @Secure(roles="ROLE_USER")
+	 */
+	public function addResponseAction()
+	{
+		$request = $this->getRequest();
+		if (!$request->isXmlHttpRequest() || !$request->isMethod('POST'))
+		{
+			throw new HttpException(500, 'Request must be AJAX and POST method');
+		}
+		
+		$userSlug = $request->get('user_slug', null);
+		$commentID = $request->get('comment_id', null);
+		$replyMsg = $request->get('reply_msg', null);
+		if ($userSlug == null || $commentID == null || $replyMsg == null) {
+			throw new HttpException(500, 'Des paramètres sont manquants !');
+		}
+		
+		if (0 != strcmp($userSlug, $this->getUser()->getSlug())) {
+			throw new AccessDeniedException();
+		}
+		
+		$response = null;
+		try {
+			$response = $this->get('mvnerds.comment_manager')->addResponseToComment($commentID / 47, $this->getUser(), $replyMsg);
+		}
+		catch(Exception $e) {
+			throw new InvalidArgumentException('Comment not found for id:`'. $commentID .'`');
+		}
+		
+		return $this->render('MVNerdsCommentBundle:Comment:response_row.html.twig', array(
+			'response' => $response
 		));
 	}
 

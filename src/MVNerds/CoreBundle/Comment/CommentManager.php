@@ -13,6 +13,8 @@ use MVNerds\CoreBundle\Model\User;
 use MVNerds\CoreBundle\Model\UserReportComment;
 use MVNerds\CoreBundle\Model\UserReportCommentPeer;
 use MVNerds\CoreBundle\Model\UserReportCommentQuery;
+use MVNerds\CoreBundle\Model\CommentResponse;
+use MVNerds\CoreBundle\Model\CommentResponseQuery;
 
 class CommentManager
 {
@@ -31,6 +33,21 @@ class CommentManager
 		$comment->save();
 		
 		return $comment;
+	}
+	
+	public function addResponseToComment($commentID, User $user, $responseString)
+	{
+		$comment = $this->findById($commentID);
+		
+		$response = new CommentResponse();
+		$response->setComment($comment);
+		$response->setUser($user);
+		$response->setContent($responseString);
+		
+		// Finally
+		$response->save();
+		
+		return $response;
 	}
 	
 	public function editComment($commentID, User $user, $commentString)
@@ -79,6 +96,9 @@ class CommentManager
 		->find();
 		
 		$comments->populateRelation('UserReportComment');
+		$comments->populateRelation('CommentResponse', CommentResponseQuery::create()
+			->joinWith('User')
+		);
 		
 		$commentsArray = array(
 			'comments' => $comments
