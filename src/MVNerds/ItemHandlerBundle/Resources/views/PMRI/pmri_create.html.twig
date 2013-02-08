@@ -48,7 +48,7 @@
 
 {% block main_content %}
 	{% if edition_mode is defined and edition_mode %}
-		<div class="edit-indication">Édition de la liste "{{ build_name }}"</div>
+		<div class="edit-indication">{{ 'create_item_build.edition_indication'|trans }}</div>
 	{% endif %}
 	
 	<div class="container main-container border-top">

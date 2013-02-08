@@ -275,6 +275,10 @@
 					Si vous enregistrez cette liste en tant que privée, vous serez le seul capable de la voir.
 				</target>
 			</trans-unit>
+			<trans-unit id="40">
+				<source>create_item_build.edition_indication</source>
+				<target>MODE ÉDITION</target>
+			</trans-unit>
 
 			<!-- TABED LIST INDEX -->
 			<trans-unit id="1000">

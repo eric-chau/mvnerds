@@ -272,6 +272,10 @@
 					If you save this list, and make it private, you will be the only one able to see it.
 				</target>
 			</trans-unit>
+			<trans-unit id="40">
+				<source>create_item_build.edition_indication</source>
+				<target>EDITION MODE</target>
+			</trans-unit>
 
 			<!-- TABED LIST INDEX -->
 			<trans-unit id="1000">

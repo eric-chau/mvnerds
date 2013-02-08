@@ -297,7 +297,6 @@ div.tab-content div.tab-pane.active {
 }
 div.ad-container {
   position: relative;
-  height: 60px;
   margin-top: -60px;
 }
 div.ad-container img.unblock-ad-img {
