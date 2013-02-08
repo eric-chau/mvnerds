@@ -25,6 +25,12 @@
 	{% endif %}
 {% endblock %}
 
+{% block topbar %}
+	{% set module = 'pmri' %}
+		
+	{{ parent() }}
+{% endblock %}
+		
 {% block breadcrumbs %}
 	{{ parent() }}
 	

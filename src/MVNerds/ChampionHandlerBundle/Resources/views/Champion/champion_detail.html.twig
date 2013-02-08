@@ -26,6 +26,12 @@
 
 	{% endif %}
 {% endblock %}
+		
+{% block topbar %}
+	{% set module = 'champion' %}
+		
+	{{ parent() }}
+{% endblock %}
 
 {% block breadcrumbs %}
 	{{ parent() }}

@@ -720,6 +720,7 @@
       <parameter name="update_column" value="update_time" />
     </behavior>
     <behavior name="mvnerds_commentable" />
+    <behavior name="mvnerds_commentable" />
   </table>
   <table name="video_category">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />

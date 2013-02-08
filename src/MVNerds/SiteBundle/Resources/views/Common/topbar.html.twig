@@ -2,16 +2,16 @@
 	<div class="container">
 		<ul class="menu">
 			<li class="home">
-				<a href="{{ path('site_homepage') }}"><i class="icon-home"></i></a>
+				<a href="{{ path('site_homepage') }}" class="{% if module is not defined %}active{% endif %}"><i class="icon-home"></i></a>
 			</li>
 			<li>
-				<a href="#">Most Valuable News</a>
+				<a href="#" class="{% if module is defined and module == 'news' %}active{% endif %}">Most Valuable News</a>
 			</li>
 			<li>
-				<a href="#" class="active">Champion Benchmark</a>
+				<a href="#" class="{% if module is defined and module == 'champion_benchmark' %}active{% endif %}">Champion Benchmark</a>
 			</li>
 			<li>
-				<a href="{{ path('pmri_list') }}">Pimp My Recommended Items</a>
+				<a href="{{ path('pmri_list') }}" class="{% if module is defined and module == 'pmri' %}active{% endif %}">Pimp My Recommended Items</a>
 			</li>
 			<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><strong>Plus</strong></a>
