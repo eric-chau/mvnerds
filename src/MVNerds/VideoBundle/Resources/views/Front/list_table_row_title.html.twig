@@ -1,0 +1,21 @@
+<a href="{{path('videos_detail', {slug: video.getSlug()})}}">{{video.getTitle()}}</a>
+<div class="created-by">{{'item_table.td.created_by'|trans}} 
+	<a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}" title="{{'item_table.td.consult_profile_of'|trans}} {{ user.getUsername }}">{{user.getUsername()}}</a>,
+	{{'item_table.td.updated_the'|trans}} 
+	{% if video.getUpdateTime('d/m/Y') == date().format('d/m/Y') %}
+		<strong>{{'Comments.today'|trans}}</strong>
+	{% else %}
+		{% if video.getUpdateTime('d/m/Y') == date('-1day').format('d/m/Y') %}
+			<strong>{{'Comments.yesterday'|trans}}</strong>
+		{%else %}
+			 {{'item_table.td.created_the'|trans}} 
+			{% if video.getUpdateTime().getTimestamp() > date('-5days').getTimestamp() %}
+				 <strong>{{ video.getUpdateTime('d/m/Y') }}</strong>
+			{% else %}
+				 {{ video.getUpdateTime('d/m/Y') }}
+			{% endif %}
+		{%endif %}
+	{% endif %}
+</div>
+{#<span class="one-stat"><i class="icon-comments icon-white" title="{{ 'item_table.td.icon.title.comment'|trans }}"></i> {{ video.getCommentCount() }}</span>#}
+<span class="one-stat"><i class="icon-eye-open icon-white" title="{{ 'item_table.td.icon.title.view'|trans }}"></i> {{ video.getView() }}</span>

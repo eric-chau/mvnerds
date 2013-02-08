@@ -5,6 +5,7 @@ $(document).ready(function() {
 	filter = $('#item-builds-table').data('filter');
 	
 	var 	$titleFilterInput = $('input#title-filter-input');
+	var 	$categoryFilterInput = $('#category-filter-input');
 	
 	var langage;
 	if(locale != undefined && locale == 'en') {
@@ -47,38 +48,38 @@ $(document).ready(function() {
 		};
 	}
 	
-/*	itemBuildsTable = $('#videos-table').dataTable({
+	videosTable = $('#videos-table').dataTable({
 		"bProcessing": true,
 		"bServerSide": true,
 		"sAjaxSource": Routing.generate('videos_list_ajax', {_locale: locale}),
 		"bLengthChange": false,
 		"aaSorting": [],
-		"iDisplayLength": 12,
+		"iDisplayLength": 3,
 		"sDom": "lrtip",
 		"aoColumns": [
                       {"bSearchable": false, "bSortable":false, 'sClass': 'preview'},//Aperçu
                       {"bSearchable": false, "bSortable":true, 'sClass': 'title'},//Titre + stats + auteur
-                      {"bSearchable": false, "bSortable":true},//Catégorie
-                      {"bVisible": false, "bSearchable": true, "bSortable":true},//Auteur
-                      {"bVisible": false, "bSearchable": false, "bSortable":true},//Date de publication
-                      {"bVisible": false, "bSearchable": false, "bSortable":true},//Comment count
-                      {"bVisible": false, "bSearchable": true, "bSortable":true},//Titre
-                      {"bVisible": false, "bSearchable": false, "bSortable":true},//Vues
+                      {"bSearchable": false, "bSortable":true},//Catégorie xlf
+                      {"bVisible": false, "bSearchable": true, "bSortable":true},//username
+                      {"bVisible": false, "bSearchable": false, "bSortable":true},//create_time
+                      {"bVisible": false, "bSearchable": false, "bSortable":true},//update_time
+                      {"bVisible": false, "bSearchable": true, "bSortable":true},//title
+                      {"bVisible": false, "bSearchable": false, "bSortable":true},//view
+                      {"bVisible": false, "bSearchable": true, "bSortable":true},//category
+		   // {"bVisible": false, "bSearchable": false, "bSortable":true},//comment_count
 		],
 		"sPaginationType": 'full_numbers',
 		"oLanguage": langage
 	});
 	
 	var sortTable = [
-		[9, 'asc'],//Nom croissant
-		[9, 'desc'],//Nom décroissant
-		[4, 'desc'],//Les + DL
-		[4, 'asc'],//Les - DL
-		[7, 'asc'],//Les + anciens
-		[7, 'desc'],//Les + récents
+		[4, 'asc'],//Les + anciens
+		[4, 'desc'],//Les + récents
 		[5, 'desc'],//Les dernières MAJ
-		[8, 'desc'],//Les + commentées
-		[10, 'desc'],//Les + vues
+		[6, 'asc'],//Titre croissant
+		[6, 'desc'],//Titre décroissant
+		[7, 'desc'],//Les + vues
+		//[8, 'desc']//Les + commentées
 	];
 	
 	var $dropdownSort = $('ul#sort-list');
@@ -86,19 +87,22 @@ $(document).ready(function() {
 		e.preventDefault();
 		$dropdownSort.find('li a.sort-link').removeClass('selected');
 		$(this).addClass('selected');
-		itemBuildsTable.fnSort([sortTable[$(this).attr('data-option-value')]]);
+		videosTable.fnSort([sortTable[$(this).attr('data-option-value')]]);
 	});
 	
 	//On change filter input
-	$('#title-filter-input').on('keyup change', function(e){
+	$titleFilterInput.on('keyup change', function(e){
 		if (e.keyCode == 13 || e.keyCode == 8) {
-			itemBuildsTable.fnFilter($(this).val(), 9);
+			videosTable.fnFilter($(this).val(), 6);
 		}
+	});
+	$categoryFilterInput.on('change', function(e){
+			videosTable.fnFilter($(this).val(), 8);
 	});
 	$('#search-filter-btn').on('click', function(e){
 		e.preventDefault();
-		if ($('#title-filter-input').val() != '') {
-			itemBuildsTable.fnFilter($('#title-filter-input').val(), 9);
+		if ($titleFilterInput.val() != '') {
+			videosTable.fnFilter($titleFilterInput.val(), 6);
 		}
 	});
 	
@@ -107,8 +111,8 @@ $(document).ready(function() {
 	
 	//CHAMP DE RECHERCHE
 	$('#item-builds-table_filter label').addClass('search-box');
-*/
-	// Vérifie si c'est la première fois ou non que l'utilisateur accède au module PMRI
+
+	// Vérifie si c'est la première fois ou non que l'utilisateur accède au module Video
 	var howItWorksValue = getItemFromLS('display_how_it_works_videos');
 	if (howItWorksValue == undefined || howItWorksValue == 'true') {
 		$('a.how-it-works-toggle').find('span.label').toggleClass('disabled');

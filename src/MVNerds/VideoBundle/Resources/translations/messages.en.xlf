@@ -4,15 +4,15 @@
 		<body>
 			<trans-unit id="0">
 				<source>video_list_index.sort.title-asc</source>
-				<target>Titre par ordre croissant</target>
+				<target>Title ascendent</target>
 			</trans-unit>
 			<trans-unit id="1">
 				<source>video_list_index.sort.title-desc</source>
-				<target>Titre par ordre décroissant</target>
+				<target>Title descendent</target>
 			</trans-unit>
 			<trans-unit id="2">
 				<source>video_list_index.sort.filter-by-category</source>
-				<target>Catégorie</target>
+				<target>Categories</target>
 			</trans-unit>
 			
 			<trans-unit id="100">
@@ -21,7 +21,7 @@
 			</trans-unit>
 			<trans-unit id="101">
 				<source>TUTO</source>
-				<target>Tutoriel</target>
+				<target>Tutorial</target>
 			</trans-unit>
 			<trans-unit id="102">
 				<source>SPOTLIGHT</source>
@@ -29,7 +29,7 @@
 			</trans-unit>
 			<trans-unit id="103">
 				<source>SKIN_PREVIEW</source>
-				<target>Aperçu skin</target>
+				<target>Skin spotlight</target>
 			</trans-unit>
 			<trans-unit id="104">
 				<source>WTF</source>
@@ -41,11 +41,11 @@
 			</trans-unit>
 			<trans-unit id="106">
 				<source>TOP_PLAY</source>
-				<target>Bonne action</target>
+				<target>Top Play</target>
 			</trans-unit>
 			<trans-unit id="107">
 				<source>OTHER</source>
-				<target>Autre</target>
+				<target>Other</target>
 			</trans-unit>
 		</body>
 	</file>

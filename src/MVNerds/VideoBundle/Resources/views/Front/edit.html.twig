@@ -15,10 +15,6 @@
 	{{ parent() }}
 
 	{% if app.environment == 'dev' %}
-		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-modal.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('medias/js/videos/publish-video.js') }}"></script>
 	{% else %}
 
 	{% endif %}
@@ -34,7 +30,7 @@
 	<div class="container main-container border-top">
 		<div class="row-fluid">
 			<div class="span8 left-content">
-				<h1>Video "<span class="video-title">{{ video.getTitle() }}"</span></h1>
+				<h1>Video "{{ video.getTitle() }}"</h1>
 				
 				{% render 'MVNerdsVideoBundle:Front:renderVideo' with {'video': video} %}
 				
@@ -65,7 +61,7 @@
 					{# Bouton d'édition #}
 					<div class="block">
 						<div class="footer blue">
-							<a href="{{ path('videos_edit', {slug: video.getSlug()}) }}" id="video-edit-action">{{ 'item_table.admin.edit'|trans }}</a>
+							<a href="{{ path('videos_edit', {slug: video.getSlug()}) }}">{{ 'item_table.admin.edit'|trans }}</a>
 						</div>
 					</div>
 				{% endif %}
@@ -107,9 +103,6 @@
 					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					</script>	
 				</div>
-				{% if can_edit %}
-					{% include 'MVNerdsVideoBundle:Modal:video_publish_modal.html.twig' %}
-				{% endif %}
 			</div>
 		</div>
 	</div>

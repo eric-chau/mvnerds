@@ -92,4 +92,56 @@ class VideoManager
 
 		return $videoCategory;
 	}
+	
+	public function findAllActiveAjax($limitStart = 0, $limitLength = 2, $orderArr = array('CreateTime' => 'desc'), $whereArr = array())
+	{
+		$videoQuery = VideoQuery::create()
+			->offset($limitStart)
+			->limit($limitLength)
+			->add(VideoPeer::STATUS, VideoPeer::STATUS_ACTIVE)
+			->joinWith('User', \Criteria::LEFT_JOIN)
+			->joinWith('VideoCategory', \Criteria::LEFT_JOIN);
+		
+		foreach($orderArr as $orderCol => $orderDir)
+		{
+			$videoQuery->orderBy($orderCol, $orderDir);
+		}
+		foreach($whereArr as $whereCol => $whereVal)
+		{
+			$videoQuery->add($whereCol, '%' . $whereVal . '%', \Criteria::LIKE);
+		}
+		
+		$videos = $videoQuery->find();
+		
+		if (null === $videos)
+		{
+			throw new InvalidArgumentException('No video found !');
+		}
+
+		return $videos;
+	}
+	
+	public function countAllActive()
+	{
+		$videosCount = VideoQuery::create()
+			->add(VideoPeer::STATUS, VideoPeer::STATUS_ACTIVE)
+		->count();
+		
+		return $videosCount;
+	}
+	
+	public function countAllActiveAjax($whereArr = array())
+	{
+		$videoQuery = VideoQuery::create()
+			->add(VideoPeer::STATUS, VideoPeer::STATUS_ACTIVE)
+			->joinWith('User', \Criteria::LEFT_JOIN)
+			->joinWith('VideoCategory', \Criteria::LEFT_JOIN);
+	
+		foreach($whereArr as $whereCol => $whereVal)
+		{
+			$videoQuery->add($whereCol, '%' . $whereVal . '%', \Criteria::LIKE);
+		}
+		
+		return $videoQuery->count();
+	}
 }

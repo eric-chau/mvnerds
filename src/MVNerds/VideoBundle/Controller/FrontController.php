@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use MVNerds\CoreBundle\Model\Video;
 
@@ -24,7 +25,8 @@ class FrontController extends Controller
 		
 		return $this->render('MVNerdsVideoBundle:Front:list_index.html.twig', array(
 			'video_categories'	=> $videoManager->findAllVideoCatgories(),
-			'videos'		=> $videoManager->findAllActive()
+			'videos'		=> $videoManager->findAllActive(),
+			'video'			=> new Video()
 		));
 	}
 	
@@ -41,8 +43,24 @@ class FrontController extends Controller
 		/* @var $videoManager \MVNerds\CoreBundle\Video\VideoManager */
 		$videoManager = $this->get('mvnerds.video_manager');
 		
-		$video = new Video();
 		
+		//Si le paramètre slug est défini c'est une edition de vidéo
+		if ( isset( $_POST['slug'] ) && ($slug = $_POST['slug']) != '' ) {
+			try {
+				/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
+				$video = $videoManager->findBySlug($slug);
+			} catch (\Exception $e ) {
+				throw new HttpException(500, 'Video not found');
+			}
+
+			if( ! ($this->getUser()->getId() == $video->getUserId() || $this->get('security.context')->isGranted('ROLE_ADMIN'))) {
+				throw new AccessDeniedException();
+			}
+		} else {
+			$video = new Video();
+			$video->setUser($this->getUser());
+		}
+				
 		if ( isset( $_POST['title'] ) && ($title = $_POST['title']) != '' ) {
 			$video->setTitle($title);
 		} else {
@@ -74,8 +92,6 @@ class FrontController extends Controller
 			$video->setDescription($description);
 		}
 		
-		$video->setUser($this->getUser());
-		
 		$video->save();
 		return new Response(json_encode($video->getSlug()));
 	}
@@ -86,7 +102,91 @@ class FrontController extends Controller
 	 */
 	public function listAjaxAction()
 	{
-		return new Response(json_encode(array()));
+		$request = $this->getRequest();
+		if (!$request->isXmlHttpRequest())
+		{
+			throw new HttpException(500, 'Request must be AJAX');
+		}
+		
+		$aColumns = array(
+			'',
+			'',
+			'',
+			'user.USERNAME',
+			'CreateTime',
+			'UpdateTime',
+			'Title',
+			'View',
+			'video_category.UNIQUE_NAME',
+			//'CommentCount'
+		);
+		
+		$limitStart = 0;
+		$limitLength = -1;
+		//Pagination
+		if ( isset( $_GET['iDisplayStart'] ) && $_GET['iDisplayLength'] != '-1' )
+		{
+			$limitStart = $_GET['iDisplayStart'];
+			$limitLength = $_GET['iDisplayLength'];
+		}
+		//Tri
+		$orderArr = array();
+		if ( isset( $_GET['iSortCol_0'] ) )
+		{
+			for ( $i=0 ; $i<intval( $_GET['iSortingCols'] ) ; $i++ )
+			{
+				if ( $_GET[ 'bSortable_'.intval($_GET['iSortCol_'.$i]) ] == "true" )
+				{
+					$orderArr[$aColumns[intval($_GET['iSortCol_'.$i])]] = ($_GET['sSortDir_'.$i]);
+				}
+			}
+		}
+		if (count($orderArr) <= 0) {
+			$orderArr = array('CreateTime' => 'desc');
+		}
+		
+		//Recherche par colonne
+		$whereArr = array();
+		for ( $i=0 ; $i<count($aColumns) ; $i++ )
+		{
+			if ( isset($_GET['bSearchable_'.$i]) && $_GET['bSearchable_'.$i] == "true" && $_GET['sSearch_'.$i] != '' )
+			{
+				if ($aColumns[$i] == 'user.USERNAME' || $aColumns[$i] == 'Title' || $aColumns[$i] == 'video_category.UNIQUE_NAME')
+				{
+					$whereArr[$aColumns[$i]] = ($_GET['sSearch_'.$i]);
+				}
+			}
+		}
+		
+		$translator = $this->get('translator');
+		$videoManager = $this->get('mvnerds.video_manager');
+		
+		$videos = $videoManager->findAllActiveAjax($limitStart, $limitLength, $orderArr, $whereArr);
+		
+		$jsonVideos = array(
+			"tab" => $videos->count(),
+			"sEcho" => intval($_GET['sEcho']),
+			"iTotalRecords" => $videoManager->countAllActive(),
+			"iTotalDisplayRecords" => $videoManager->countAllActiveAjax($whereArr),
+			'aaData' => array()
+		);
+		
+		foreach($videos as $video)
+		{			
+			$jsonVideos['aaData'][] = array(
+				$this->renderView('MVNerdsVideoBundle:Front:list_table_row_thumbnail.html.twig', array('video' => $video)),
+				$this->renderView('MVNerdsVideoBundle:Front:list_table_row_title.html.twig', array('video' => $video, 'user' => $video->getUser())),
+				$translator->trans($video->getVideoCategory()->getUniqueName()),
+				$video->getUser()->getUsername(),
+				$video->getCreateTime('YmdHims'),
+				$video->getUpdateTime('YmdHims'),
+				$video->getTitle(),
+				$video->getView(),
+				$video->getVideoCategory()->getUniqueName(),
+				//$video->getCommentCount()
+			);
+		}
+		return new Response(json_encode($jsonVideos));
 	}
 	
 	/**
@@ -107,17 +207,46 @@ class FrontController extends Controller
 			return $this->redirect($this->generateUrl('videos_index'));
 		}
 		
-		$canEdit = false;
+		$params = array(
+			'video' => $video,
+			'can_edit'	=> false
+		);
+		
 		if ($this->get('security.context')->isGranted('ROLE_USER')) {
 			$user = $this->getUser();
 			if (($video->getUser()->getId() == $user->getId()) || $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-				$canEdit = true;
+				$params['can_edit'] = true;
+				
+				$params['video_categories'] = $videoManager->findAllVideoCatgories();
 			}
 		}
 		
-		return $this->render('MVNerdsVideoBundle:Front:detail.html.twig', array(
+		return $this->render('MVNerdsVideoBundle:Front:detail.html.twig', $params);
+	}
+	
+	/**
+	 * @Route("/edit/{slug}", name="videos_edit", options={"expose"=true})
+	 */
+	public function editAction($slug) 
+	{
+		/* @var $videoManager \MVNerds\CoreBundle\Video\VideoManager */
+		$videoManager = $this->get('mvnerds.video_manager');
+			
+		try {
+			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
+			$video = $videoManager->findBySlug($slug);
+		} catch (\Exception $e ) {
+			return $this->redirect($this->generateUrl('videos_index'));
+		}
+		
+		if( ! ($this->getUser()->getId() == $video->getUserId() || $this->get('security.context')->isGranted('ROLE_ADMIN')))
+		{
+			throw new AccessDeniedException();
+		}
+		
+		return $this->render('MVNerdsVideoBundle:Front:edit.html.twig', array(
 			'video'		=> $video,
-			'can_edit'	=> $canEdit
+			'video_categories'	=> $videoManager->findAllVideoCatgories()
 		));
 	}
 	
