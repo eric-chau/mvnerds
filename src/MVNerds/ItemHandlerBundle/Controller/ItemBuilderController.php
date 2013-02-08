@@ -696,17 +696,26 @@ class ItemBuilderController extends Controller
 			}
 		}
 		
+		/* @var $tagManager \MVNerds\CoreBundle\Tag\TagManager */
+		$tagManager = $this->get('mvnerds.tag_manager');
+		$tags = array();
+		$tags['attack'] = $tagManager->findByParentName('BASE_ITEM_ATTACK');
+		$tags['magic'] = $tagManager->findByParentName('BASE_ITEM_MAGIC');
+		$tags['defense'] = $tagManager->findByParentName('BASE_ITEM_DEFENSE');
+		$tags['other'] = $tagManager->findByParentName('BASE_ITEM_OTHER');
+		
 		return $this->render('MVNerdsItemHandlerBundle:PMRI:pmri_create.html.twig', array(
 			'champions'			=> $this->get('mvnerds.champion_manager')->findAllWithTags(),
-			'items'				=> $this->get('mvnerds.item_manager')->findAllActive(),
+			'items'			=> $this->get('mvnerds.item_manager')->findAllActive(),
 			'selectedChampions'	=> $selectedChampions,
 			'selectedItems'		=> $selectedItems,
-			'build_name'		=> $itemBuild->getName(),
-			'build_description'	=> $itemBuild->getDescription(),
-			'game_mode'			=> $itemBuild->getGameMode()->getLabel(),
-			'item_build_slug'	=> $itemBuildSlug,
-			'is_build_private'	=> ($itemBuild->getStatus() == \MVNerds\CoreBundle\Model\ItemBuildPeer::STATUS_PRIVATE),
-			'edition_mode'		=> true
+			'build_name'			=> $itemBuild->getName(),
+			'build_description'		=> $itemBuild->getDescription(),
+			'game_mode'		=> $itemBuild->getGameMode()->getLabel(),
+			'item_build_slug'		=> $itemBuildSlug,
+			'is_build_private'		=> ($itemBuild->getStatus() == \MVNerds\CoreBundle\Model\ItemBuildPeer::STATUS_PRIVATE),
+			'edition_mode'		=> true,
+			'tags'				=>$tags
 		));
 	}
 	
