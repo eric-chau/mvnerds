@@ -67,15 +67,6 @@ class ItemBuilderController extends Controller
 	
 	/**
 	 * 
-	 * @Route("/old-list", name="item_builder_list", options={"expose"=true})
-	 */
-	public function oldListAction() 
-	{
-		return $this->render('MVNerdsItemHandlerBundle:ItemBuilder:list_index.html.twig');
-	}
-	
-	/**
-	 * 
 	 * @Route("/list", name="pmri_list")
 	 */
 	public function listAction() 

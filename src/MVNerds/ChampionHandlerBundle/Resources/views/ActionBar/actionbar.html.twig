@@ -1,10 +1,8 @@
 <div class="actions-bar">
 	<div id="actions-bar-content">
-		<h2 data-content-name="champion-handler">{{'Actionsbar.title'|trans}} <span class="sign red">beta</span></h2>
-
 		<ul class="action-buttons">
 			<li class="action {% if page != 'compare' %}force-hide{% endif %}" data-page-display="compare">
-				<a rel="previous" class="data-pagination" href="{{ path('champion_handler_front_index') }}" data-page-display="champions">
+				<a rel="previous" class="data-pagination" href="{{ path('champion_benchmark_index') }}" data-page-display="champions">
 					<i class="icon-arrow-left icon-white"></i> <span class="action-label">{{'Champion_comparison.back_to_list'|trans}}</span>
 				</a>
 			</li>

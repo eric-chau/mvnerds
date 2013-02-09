@@ -1,0 +1,5 @@
+<ul id="isotope-list">
+	{% for champion in champions %}
+		{% include 'MVNerdsChampionHandlerBundle:ChampionBenchmark:champion_benchmark_index_champion_block.html.twig' with {'champion': champion} %}
+	{% endfor %}
+</ul>

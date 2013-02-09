@@ -12,6 +12,38 @@ use Symfony\Component\HttpFoundation\Response;
 class ChampionBenchmarkController extends Controller
 {
 	/**
+	 * @Route("/", name="champion_benchmark_index")
+	 */
+	public function indexAction()
+	{
+		$request = $this->getRequest();	
+		if ($request->isXmlHttpRequest())
+		{
+			return $this->forward('MVNerdsChampionHandlerBundle:Front:championComparison');
+		}
+		
+		$comparisonListSlugs = $this->get('mvnerds.champion_comparison_manager')->getListSlugs();
+		$comparisonList = $this->get('mvnerds.champion_manager')->findManyBySlugs($comparisonListSlugs);
+		
+		return $this->render('MVNerdsChampionHandlerBundle:ChampionBenchmark:champion_benchmark_index.html.twig', array(
+			'comparison_list'	=> $comparisonList,
+			'champions'			=> $this->get('mvnerds.champion_manager')->findAllWithTags()
+		));
+	}
+	
+	/**
+	 * @Route("/get-champions-name", name="champion_benchmark_get_champions_name", options={"expose"=true})
+	 */
+	public function getChampionsNameAction()
+	{
+		$request = $this->getRequest();
+		if  (!$request->isXmlHttpRequest() || !$request->isMethod('POST')) {
+			throw new HttpException(500, 'La requête doit être effectuée en AJAX et en method POST !');
+		}
+		return new Response(json_encode($this->get('mvnerds.champion_manager')->getChampionsName()->toArray()));
+	}
+	
+	/**
 	 * Permet de rediriger vers l action de comparaison
 	 * 
 	 * @Route("/level-{lvl}", name="champion_benchmark_compare", defaults={"lvl" = 1}, options={"expose"=true})

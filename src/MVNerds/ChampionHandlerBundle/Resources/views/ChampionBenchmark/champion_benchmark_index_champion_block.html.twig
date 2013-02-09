@@ -1,0 +1,10 @@
+<li class="champion {{ champion.getTagsToString() }}" id="{{ champion.getSlug() }}" data-name="{{ champion.getName() | lower }}" >
+	
+	<div class="portrait">
+		<div class="champion-square {{ champion.getSlug() }}"></div>
+		<div class="champion-name">{{ champion.getName() }}</div>
+	</div>
+	<div class="preview hide">
+		{% include 'MVNerdsChampionHandlerBundle:ChampionBenchmark:champion_benchmark_index_champion_preview.html.twig' %}
+	</div>
+</li>
