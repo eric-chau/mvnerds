@@ -118,7 +118,7 @@ class FrontController extends Controller
 			'Title',
 			'View',
 			'video_category.UNIQUE_NAME',
-			//'CommentCount'
+			'CommentCount'
 		);
 		
 		$limitStart = 0;
@@ -183,7 +183,7 @@ class FrontController extends Controller
 				$video->getTitle(),
 				$video->getView(),
 				$video->getVideoCategory()->getUniqueName(),
-				//$video->getCommentCount()
+				$video->getCommentCount()
 			);
 		}
 		return new Response(json_encode($jsonVideos));
