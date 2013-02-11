@@ -565,3 +565,26 @@ i.loader {
 i.loader.hide {
   opacity: 0;
 }
+div.alert {
+  border: 3px solid rgba(0, 0, 0, 0.5);
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  color: white;
+  opacity: 0.8;
+  padding: 5px;
+  text-shadow: none;
+}
+div.alert.alert-fixed {
+  bottom: 10px;
+  position: fixed;
+  right: 10px;
+  width: 300px;
+  z-index: 1100;
+}
+div.alert.alert-success {
+  background-color: #759e1a;
+}
+div.alert.alert-error {
+  background-color: #db4a38;
+}
