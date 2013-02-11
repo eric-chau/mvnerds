@@ -15,12 +15,10 @@ class ChampionController extends Controller
 	 */
 	public function championDetailAction($slug)
 	{
-		$champion = null;
 		try {
 			$champion = $this->get('mvnerds.champion_manager')->findBySlugWithSkillsAndSkins($slug);
-		}
-		catch (Exception $e) {
-			
+		} catch (Exception $e) {
+			return $this->redirect($this->generateUrl('site_homepage'));
 		}		
 		
 		return $this->render('MVNerdsChampionHandlerBundle:Champion:champion_detail.html.twig', array(
@@ -38,5 +36,21 @@ class ChampionController extends Controller
 			throw new HttpException(500, 'La requête doit être effectuée en AJAX et en method POST !');
 		}
 		return new Response(json_encode($this->get('mvnerds.champion_manager')->getChampionsName()->toArray()));
+	}
+	
+	/**
+	 * Retourne la page de détail d'un champion en se basant sur son nom
+	 * 
+	 * @Route("/champion-by-name/{name}", name="champion_detail_by_name", options={"expose"=true})
+	 */
+	public function championDetailByNameAction($name)
+	{
+		try {
+			$champion = $this->get('mvnerds.champion_manager')->findByName($name);
+		} catch (Exception $e) {
+			return $this->redirect($this->generateUrl('site_homepage'));
+		}		
+		
+		return $this->redirect($this->generateUrl('champion_detail', array('slug' => $champion->getSlug())));
 	}
 }

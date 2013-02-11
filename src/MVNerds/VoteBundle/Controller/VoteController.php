@@ -5,73 +5,102 @@ namespace MVNerds\VoteBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use JMS\SecurityExtraBundle\Annotation\Secure;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
-use MVNerds\CoreBundle\Model\ItemBuild;
-
+use MVNerds\CoreBundle\Vote\IVote;
+use MVNerds\CoreBundle\Model\Vote;
 /**
  * @Route("/vote")
  */
 class VoteController extends Controller
 {	
-	/**
-	 * @Route("/render-block", name="vote_render_block", options={"expose"=true})
-	 */
-	public function renderVoteBlockAction($object)
+	public function renderVoteBlockAction(IVote $object)
 	{		
 		/* @var $voteManager MVNerds\CoreBundle\Vote\VoteManager */
 		$voteManager  = $this->get('mvnerds.vote_manager');
 		
-		$votesCount = $voteManager->getVotesCount($object);
-		$likesCount = 0;
-		$dislikesCount = 0;
-		if ($votesCount) {
-			foreach($votesCount as $voteCount)
-			{
-				if ($voteCount['vote.LIKE'] == 1) {
-					$likesCount = $voteCount['nbVotes'];
-				} elseif ($voteCount['vote.LIKE'] == 0) {
-					$dislikesCount = $voteCount['nbVotes'];
-				}
-			}
-		}
-		$totalVotesCount = $likesCount + $dislikesCount;
+		$likesCount = $object->getLikeCount();
+		$dislikesCount = $object->getDislikeCount();
+		$votesCount = $likesCount + $dislikesCount;
 		
-		$canVote = false;
+		$canLike = false;
+		$canDislike = false;
 		
 		if ($this->get('security.context')->isGranted('ROLE_USER'))
 		{
-			$user = $this->get('security.context')->getToken()->getUser();
+			$user = $this->getUser();
 			try {
-				$userVote = $voteManager->findByObjectAndUser($object, $user);
+				/* @var $vote \MVNerds\CoreBundle\Model\Vote */
+				$vote = $voteManager->findByObjectAndUser($object, $user);
+				if ($vote->getLike()) {
+					$canDislike = true;
+				} else {
+					$canLike = true;
+				}
 			} catch (\Exception $e) {
-				$userVote = null;
+				$canLike = true;
+				$canDislike = true;
 			}
 		}
 		
 		return $this->render('MVNerdsVoteBundle:Vote:vote_block.html.twig', array(
-			'can_vote'		=> $canVote,
-			'total_votes_count'	=> $totalVotesCount,
+			'can_like'		=> $canLike,
+			'can_dislike'		=> $canDislike,
+			'votes_count'	=> $votesCount,
 			'likes_count'		=> $likesCount,
-			'dislikes_count'	=> $dislikesCount
+			'dislikes_count'	=> $dislikesCount,
+			'object_slug'		=> $object->getSlug(),
+			'object_type'		=> get_class($object)
 		));
 	}
 	
 	/**
-	 * @Route("/like", name="vote_like", options={"expose"=true})
+	 * @Route("/vote", name="vote_vote", options={"expose"=true})
 	 * @Secure(roles="ROLE_USER")
 	 */
-	public function likeAction()
+	public function voteAction()
 	{
-		return $this->render('MVNerdsVoteBundle:Default:index.html.twig', array('name' => $name));
+		$request = $this->getRequest();
+		if (!$request->isXmlHttpRequest() || !$request->isMethod('POST'))
+		{
+			throw new HttpException(500, 'Request must be AJAX and POST method');
+		}
+		
+		$objectSlug = $request->get('object_slug', null);
+		$objectType = $request->get('object_type', null);
+		$like = $request->get('like', null);
+		
+		if ($objectSlug == null || $objectType == null || $like == null) {
+			throw new HttpException(500, 'Missing parameters !');
+		}
+		
+		$user = $this->getUser();
+		
+		try {
+			$object = $this->get('mvnerds.' . $objectType . '_manager')->findBySlug($objectSlug);
+		}
+		catch(Exception $e) {
+			throw new InvalidArgumentException('Object not found for slug:`'. $objectSlug .'`');
+		}
+		
+		/* @var $voteManager \MVNerds\CoreBundle\Vote\VoteManager */
+		$voteManager = $this->get('mvnerds.vote_manager');
+		$vote = $voteManager->vote($object, $user, $like);
+		
+		$canDislike = false;
+		$canLike = false;
+		if ($vote->getLike()) {
+			$canDislike = true;
+		} else {
+			$canLike = true;
+		}
+		
+		return new Response(json_encode(array(
+			'likeCount'		 => $object->getLikeCount(),
+			'dislikeCount'	 => $object->getDislikeCount(),
+			'canLike'		=> $canLike,
+			'canDislike'		=> $canDislike
+		)));
 	}
-	
-	/**
-	 * @Route("/dislike", name="vote_dislike", options={"expose"=true})
-	 * @Secure(roles="ROLE_USER")
-	 */
-	public function dislikeAction()
-	{
-		return $this->render('MVNerdsVoteBundle:Default:index.html.twig', array('name' => $name));
-	}
-
 }
