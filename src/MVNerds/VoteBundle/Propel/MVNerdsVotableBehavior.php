@@ -34,6 +34,6 @@ class MVNerdsVotableBehavior extends Behavior
 	
 	public function objectMethods($builder)
 	{
-		$builder->declareClassNamespace('IComment','MVNerds\CoreBundle\Vote');
+		$builder->declareClassNamespace('IVote','MVNerds\CoreBundle\Vote');
 	}
 }

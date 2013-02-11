@@ -477,7 +477,7 @@
   <table name="vote">
     <column name="object_id" primaryKey="true" required="true" type="INTEGER" />
     <column description="namespace de classe php associee" name="object_namespace" primaryKey="true" required="true" size="255" type="VARCHAR" />
-    <column name="user_id" required="true" type="INTEGER" />
+    <column name="user_id" primaryKey="true" required="true" type="INTEGER" />
     <column defaultValue="1" description="true si c'est un like et false si c est un dislike" name="like" required="true" type="BOOLEAN" />
     <foreign-key foreignTable="user">
       <reference foreign="id" local="user_id" />
@@ -721,6 +721,7 @@
     </behavior>
     <behavior name="mvnerds_commentable" />
     <behavior name="mvnerds_commentable" />
+    <behavior name="mvnerds_votable" />
   </table>
   <table name="video_category">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />

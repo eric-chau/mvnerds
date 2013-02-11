@@ -53,6 +53,7 @@ propel:
         attributes:           {}
     behaviors:
         mvnerds_commentable:	MVNerds\CommentBundle\Propel\MVNerdsCommentableBehavior
+        mvnerds_votable:	MVNerds\VoteBundle\Propel\MVNerdsVotableBehavior
 
 # Swiftmailer Configuration
 swiftmailer:
