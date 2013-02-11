@@ -232,7 +232,7 @@ function initIsotope($isotope){
 		}
 	});
 	//Lors du clic sur le bouton close d un champion maximisé
-	$isotope.on('click', 'li.champion-maxi div.preview-header', function(){
+	$isotope.on('click', 'li.champion-maxi div.close-preview', function(){
 		return minimizeChampion($('#'+$(this).attr('data-dissmiss')), $isotope);
 	});
 }
@@ -440,7 +440,7 @@ jQuery(function() {
 	$isotope = $('#isotope-list');
 	initIsotope($isotope);
 
-	$('div.champion-portrait  a.btn-add-to-list').on('click', function(event) {
+	$('a.btn-add-to-list').on('click', function(event) {
 		event.preventDefault();
 		console.log($(this).data('champion-slug'));
 		addChampionToList($(this).data('champion-slug'));
@@ -452,7 +452,7 @@ jQuery(function() {
 		tags : [],
 		name: ''
 	}
-	$isotope.initTypeahead($filterInput, Routing.generate('champion_benchmark_get_champions_name',{_locale: locale}));
+	$isotope.initTypeahead($filterInput, Routing.generate('champions_names',{_locale: locale}));
 	initFilterList($isotope);
 	initCleanAction($isotope, $filterInput);
 });

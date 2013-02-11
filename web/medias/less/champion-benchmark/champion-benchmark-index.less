@@ -11,40 +11,152 @@ ul {
 div.container.main-container {
 	ul.action-buttons {
 		margin: 0 0 5px 0;
+		position: relative;
 		text-align: right;
 
-		li {
+		li.action {
+			border: 1px solid #ccc;
 			display: inline-block;
 			margin-left: 10px;
 
-			&#btn-clear-champions, &#filters-block {
-				border: 1px solid #ccc;
+			&:hover {
+				border-color: #666; .transition(border-color .25s linear);
+			}
 
-				&:hover {
-					border-color: #666; .transition(border-color .25s linear);
-				}
+			&#comparison-list-dropdown {
+				position: static !important;
 
-				&.disabled {
-					color: #ccc;
+				ul#comparison-list {
+					background-color: rgba(228,230,229,.95);
+					padding: 0 !important;
+					text-align: left;
+					width: 994px;
 
-					&:hover {
-						border-color: #ccc;
+					li {
+						border: 0;
+
+						&.list-header {
+							color: #666;
+							font-weight: bold;
+							letter-spacing: 3px;
+							margin: 0 0 5px 0;
+							padding: 5px;
+							text-align: center;
+							text-transform: uppercase;
+
+							i {
+								color: @MVNerdsRed;
+
+								&.hide {
+									display: none !important;
+								}
+							}
+						}
+
+						&.indication {
+							border: 1px dashed #999;
+							color: #666;
+							font-size: 12px;
+							font-style: italic;
+							margin: 0 5px 5px 5px !important;
+							padding: 10px;
+							text-align: center;
+						}
+
+						&.champion-comparable {
+							display: inline-block;
+							margin: 3px 0 0 0 !important;
+							width: 196px;
+
+							a.champion-comparable-remove {
+								display: block;
+								line-height: 1.4em;
+								padding: 2px 10px;
+								position: relative;
+
+								&:hover {
+									background-color: @MVNerdsBlue; 
+
+									div.champion-comparable-name, i {
+										color: white; .transition(color .15s linear);
+									}
+								}
+
+								div.champion-square25, div.champion-comparable-name {
+									display: inline-block;
+									vertical-align: middle;
+								}
+
+								div.champion-comparable-name {
+									font-weight: bold;
+									text-align: center;
+									width: 150px;
+								}
+
+								i {
+									position: absolute;
+									right: 6px;
+									top: 7px;
+								}
+							}
+						}
+
+						&#li-clean {
+							a {
+								border: 1px dashed #666;
+								border-bottom: 0;
+								border-left: 0;
+								line-height: 1.4em;
+								margin: 5px 0 0 0;
+								padding: 3px 5px;
+
+								&:hover {
+									background-color: #666;
+									color: white; .transition(all .25s linear);
+								}
+
+								&.disabled {
+									display: none;
+								}
+							}
+						}
 					}
-
-					a {
-						cursor: not-allowed;
-					}
-				}
-
-				a {
-					display: block;
-					line-height: 27px;
-					padding: 0 5px;
 				}
 			}
 
-			&.search-action input[type="text"] {
-				padding: 3px 5px;
+			&.btn-compare {
+				&:hover {
+					border-color: @MVNerdsRed; .transition(border-color .25s linear);
+				}
+
+				a {
+				color: @MVNerdsRed;
+				}
+			}
+
+			&.disabled {
+				&:hover {
+					border-color: #ccc;
+				}
+
+				a {
+					color: #ccc;
+					cursor: not-allowed;
+				}
+			}
+
+			a {
+				display: block;
+				line-height: 27px;
+				padding: 0 5px;
+			}
+
+			&.search-action {
+				border: 0;
+				
+				input[type="text"] {
+					padding: 3px 5px;
+				}
 			}
 		}
 
@@ -106,6 +218,8 @@ div.container.main-container {
 				}
 
 				div.preview {
+					padding: 9px 0 0 0;
+
 					h3, h5, p {
 						margin: 0;
 					}
@@ -120,13 +234,31 @@ div.container.main-container {
 					}
 
 					div.preview-header {
-						cursor: pointer;
-						margin: 5px 0 10px 0;
+						margin: 5px 0 20px 0;
 						padding: 0 5px;
+						position: relative;
+
+						div.close-preview {
+							color: #999;
+							cursor: pointer;
+							font-size: 12px;
+							position: absolute;
+							right: 11px;
+							top: -13px;
+
+							&:hover {
+								color: #444; .transition(color .25s linear);
+
+								i {
+									color: #444; .transition(color .25s linear);
+								}
+							}
+						}
 					}
 
 					div.span6 {
 						&.right-side {
+							margin: 12px 0 0 0;
 							a {
 								border: 1px solid #999;
 								display: block;
@@ -134,7 +266,7 @@ div.container.main-container {
 								text-align: center;
 
 								&:hover {
-									background-color: #999;
+									background-color: #111;
 									color: white; .transition(background-color .25s linear);
 								}
 							}
@@ -195,12 +327,13 @@ div.container.main-container {
 									background-image: url('/medias/images/commons/ip_logo.png') !important;
 								}
 							}
-						}
-					}
 
-					p.indication {
-						margin: 20px 0 0 0;
-						text-align: center;
+							&.indication {
+								font-size: 12px;
+								font-style: italic;
+								text-align: center;
+							}
+						}
 					}
 				}
 			}
@@ -208,14 +341,14 @@ div.container.main-container {
 	}
 }
 
-a#drop-filter-list.active, a#item-drop-filter-list.active {
+a#drop-filter-list.active {
 	color: @MVNerdsRed;
 }
 
-ul#item-filters-list, ul#filters-list {
+ul#filters-list {
 	background-color: rgba(228,230,229,.95);
 	border: 2px solid #666;
-	left: initial;
+	left: auto;
 	padding: 0;
 	right: 0;
 	text-align: left;

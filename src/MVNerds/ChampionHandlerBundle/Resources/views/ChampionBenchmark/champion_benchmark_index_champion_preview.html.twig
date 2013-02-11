@@ -1,9 +1,10 @@
-<div class="row-fluid preview-header" data-dissmiss="{{ champion.getSlug() }}">
+<div class="row-fluid preview-header">
 	<div class="span6">
 		<h3>{{ champion.getName() }}</h3>
 		<h5>{{ champion.getTitle() }}</h5>
 	</div>
 	<div class="span6">
+		<div class="close-preview" data-dissmiss="{{ champion.getSlug() }}">Fermer <i class="icon-remove"></i></div>
 		<p>
 			<i class="icon-ip"></i> {{ champion.getIpCost() }} {{'General.or'|trans}} <i class="icon-rp"></i> {{ champion.getRpCost() }}
 		</p>
@@ -59,6 +60,8 @@
 			<dt class="last-child">{{'Champion_preview.stat.movement_speed'|trans}}</dt>
 			<dd>{{ champion.getMoveSpeed() }}</dd>
 		</dl>
+			
+		<p class="indication">{{'Champion_preview.stat.indication.part1'|trans}} {{ champion.getName() }} {{'Champion_preview.stat.indication.part2'|trans}}.</p>
 	</div>
 	<div class="span6 right-side">
 		<a href="{{ path('champion_detail', {'slug': champion.getSlug()}) }}">En savoir plus sur {{ champion.getName() }}</a>
@@ -66,4 +69,3 @@
 		<div class="champion-portrait {{ champion.getSlug() }}"></div>
 	</div>
 </div>
-<p class="indication">{{'Champion_preview.stat.indication.part1'|trans}} {{ champion.getName() }} {{'Champion_preview.stat.indication.part2'|trans}}</p>

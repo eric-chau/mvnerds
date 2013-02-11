@@ -27,4 +27,16 @@ class ChampionController extends Controller
 			'champion' => $champion
 		));
 	}
+	
+	/**
+	 * @Route("/get-champions-name", name="champions_names", options={"expose"=true})
+	 */
+	public function getChampionsNameAction()
+	{
+		$request = $this->getRequest();
+		if  (!$request->isXmlHttpRequest() || !$request->isMethod('POST')) {
+			throw new HttpException(500, 'La requête doit être effectuée en AJAX et en method POST !');
+		}
+		return new Response(json_encode($this->get('mvnerds.champion_manager')->getChampionsName()->toArray()));
+	}
 }

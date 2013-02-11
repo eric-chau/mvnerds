@@ -867,7 +867,7 @@ $(document).ready(function()
 	
 	$championIsotopeList.options = championIsotopeOptions;
 	$championIsotopeList.filters = championIsotopeFilters;
-	$championIsotopeList.initTypeahead($championFilterInput, Routing.generate('champion_handler_front_get_champions_name',{_locale: locale}), $('li#li-clean-filter'));
+	$championIsotopeList.initTypeahead($championFilterInput, Routing.generate('champions_names',{_locale: locale}), $('li#li-clean-filter'));
 	initChampionFilterList($championIsotopeList, $('ul#filters-list li'));
 	initChampionCleanAction($championIsotopeList, $championFilterInput);
 	initChampionAddFilteredAction($championIsotopeList);

@@ -434,19 +434,23 @@ a#drop-filter-list.active, a#item-drop-filter-list.active {
 ul#item-filters-list, ul#filters-list {
 	background-color: rgba(228,230,229,.95);
 	border: 2px solid #666;
-	left: initial;
+	left: auto;
 	padding: 0;
 	right: 0;
 	text-align: left;
 	width: 520px;
 
-	li.list-header {
-		color: #666;
-		font-weight: bold;
-		letter-spacing: 3px;
-		padding: 5px;
-		text-align: center;
-		text-transform: uppercase;
+	li {
+		display: block !important;
+
+		&.list-header {
+			color: #666;
+			font-weight: bold;
+			letter-spacing: 3px;
+			padding: 5px;
+			text-align: center;
+			text-transform: uppercase;
+		}
 	}
 
 	div.row-filters {

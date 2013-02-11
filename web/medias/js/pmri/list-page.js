@@ -262,7 +262,7 @@ $(document).ready(function() {
 	//Auto complete champions
 	$.ajax({
 		type: 'POST',
-		url:  Routing.generate('champion_handler_front_get_champions_name', {_locale: locale}), 
+		url:  Routing.generate('champions_names', {_locale: locale}), 
 		dataType: 'html'
 	}).done(function(data){
 		$('#champion-filter-input').attr('data-source', data);

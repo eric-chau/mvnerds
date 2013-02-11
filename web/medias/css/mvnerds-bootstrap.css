@@ -197,7 +197,6 @@ input[type="text"]:hover {
   padding: 5px;
 }
 .dropdown ul.dropdown-menu li {
-  display: block !important;
   margin: 0 !important;
 }
 div.media {
@@ -393,6 +392,9 @@ div#topbar ul.menu li.dropdown ul.dropdown-menu {
   margin: 2px 0 0 -451px;
   padding: 10px 20px 30px 20px;
   width: 860px;
+}
+div#topbar ul.menu li.dropdown ul.dropdown-menu li {
+  display: block;
 }
 div#topbar ul.menu li.dropdown ul.dropdown-menu li div.menu-header {
   color: #666;

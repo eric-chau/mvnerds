@@ -402,11 +402,15 @@ ul#item-filters-list,
 ul#filters-list {
   background-color: rgba(228, 230, 229, 0.95);
   border: 2px solid #666;
-  left: initial;
+  left: auto;
   padding: 0;
   right: 0;
   text-align: left;
   width: 520px;
+}
+ul#item-filters-list li,
+ul#filters-list li {
+  display: block !important;
 }
 ul#item-filters-list li.list-header,
 ul#filters-list li.list-header {

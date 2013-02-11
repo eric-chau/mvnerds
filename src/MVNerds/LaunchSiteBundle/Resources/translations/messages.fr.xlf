@@ -39,6 +39,10 @@
 				<source>General.watch</source>
 				<target>Voir</target>
 			</trans-unit>
+			<trans-unit id="10">
+				<source>General.close</source>
+				<target>Fermer</target>
+			</trans-unit>
 
 			<!--  COUNTDOWN -->
 			<trans-unit id="1000">
@@ -219,7 +223,7 @@
 			</trans-unit>
 			<trans-unit id="5020">
 				<source>Actionsbar.Item.Filter.Dropdown.title</source>
-				<target>Filtrer les items par tags</target>
+				<target>Filtrer les objets par tags</target>
 			</trans-unit>
 
 			<!--  CHAMPION PREVIEW -->

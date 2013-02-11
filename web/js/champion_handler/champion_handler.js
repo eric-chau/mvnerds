@@ -452,7 +452,7 @@ jQuery(function() {
 		tags : [],
 		name: ''
 	}
-	$isotope.initTypeahead($filterInput, Routing.generate('champion_handler_front_get_champions_name',{_locale: locale}));
+	$isotope.initTypeahead($filterInput, Routing.generate('champions_names',{_locale: locale}));
 	initFilterList($isotope);
 	initCleanAction($isotope, $filterInput);
 });

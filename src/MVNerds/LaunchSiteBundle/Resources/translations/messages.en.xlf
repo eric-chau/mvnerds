@@ -40,6 +40,10 @@
 				<source>General.watch</source>
 				<target>Watch</target>
 			</trans-unit>
+			<trans-unit id="10">
+				<source>General.close</source>
+				<target>Close</target>
+			</trans-unit>
 
 			<!--  COUNTDOWN -->
 			<trans-unit id="1000">
