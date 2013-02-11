@@ -5,6 +5,7 @@ namespace MVNerds\ChampionHandlerBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Exception;
+use Symfony\Component\HttpFoundation\Response;
 
 class ChampionController extends Controller
 {
