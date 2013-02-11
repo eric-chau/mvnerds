@@ -386,6 +386,9 @@ div#topbar ul.menu li.dropdown.open {
 div#topbar ul.menu li.dropdown.open:hover a {
   color: #fff;
 }
+div#topbar ul.menu li.dropdown.open a.dropdown-toggle {
+  color: #fff !important;
+}
 div#topbar ul.menu li.dropdown ul.dropdown-menu {
   background-color: rgba(228, 230, 229, 0.95);
   left: 50%;

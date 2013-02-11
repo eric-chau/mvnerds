@@ -34,7 +34,7 @@ class ChampionBenchmarkController extends Controller
 	/**
 	 * Permet de rediriger vers l action de comparaison
 	 * 
-	 * @Route("/level-{lvl}", name="champion_benchmark_compare", defaults={"lvl" = 1}, options={"expose"=true})
+	 * @Route("/compare/{lvl}", name="champion_benchmark_compare", defaults={"lvl" = 1}, options={"expose"=true})
 	 */
 	public function compareChampionsAction($lvl)
 	{
@@ -61,32 +61,15 @@ class ChampionBenchmarkController extends Controller
 				}
 			}
 			
-			if ($request->isXmlHttpRequest())
-			{
-				return $this->render('MVNerdsChampionHandlerBundle:ChampionBenchmark:compare_index.html.twig', array(
-					'reference_champion'	=> $referenceChampion,
-					'comparison_list'		=> $comparisonList,
-					'lvl'				=> $lvl
-				));
-			}
-			
-			return $this->render('MVNerdsChampionHandlerBundle:Front:index.html.twig', array(
+			return $this->render('MVNerdsChampionHandlerBundle:ChampionBenchmark:champion_benchmark_compare.html.twig', array(
 				'comparison_list'		=> $comparisonList,
 				'reference_champion'	=> $referenceChampion,
-				'page'				=> 'compare',
-				'lvl'				=> $lvl
+				'lvl'					=> $lvl
 			));
 		}
 		else
 		{
-			if ($request->isXmlHttpRequest())
-			{
-				return $this->render('MVNerdsChampionHandlerBundle:ChampionBenchmark:redirect.html.twig');
-			}
-			else
-			{
-				return $this->forward('MVNerdsChampionHandlerBundle:Front:index');
-			}
+			return $this->redirect($this->generateUrl('champion_benchmark_index'));
 		}
 	}
 	

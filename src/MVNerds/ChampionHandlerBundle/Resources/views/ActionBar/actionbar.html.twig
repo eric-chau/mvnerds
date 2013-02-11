@@ -23,7 +23,7 @@
 						<li class="indication {% if list_size > 0 %}hide{% endif %}">{{'Actionsbar.Comparison_list.Dropdown.indication'|trans}}</li>
 
 						{% for champion in comparison_list %}
-							{% include 'MVNerdsChampionHandlerBundle:CompareList:comparison_row.html.twig' with {'champion': champion }%}
+							{% include 'MVNerdsChampionHandlerBundle:CompareList:comparison_row.html.twig' with {'champion': champion } %}
 						{% endfor %}
 
 						<li id="li-clean" class="clean {% if list_size < 1 %} disabled{% endif %}">
