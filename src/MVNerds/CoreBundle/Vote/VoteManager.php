@@ -24,20 +24,25 @@ class VoteManager
 			->joinWith('User')
 			->add(VotePeer::OBJECT_NAMESPACE, get_class($object))
 			->add(VotePeer::OBJECT_ID, $object->getId())
+			->add(VotePeer::USER_ID, $user->getId())
 		->find();
 		
-		return $votes;
+		if (null === $votes || null === $votes[0])
+		{
+			throw new InvalidArgumentException('No votes foud for this object and user !');
+		}
+
+		return $votes[0];
 	}
 	
 	public function getVotesCount($object)
 	{
-		$votes = VoteQuery::create()
+		return VoteQuery::create()
 			->select(array(VotePeer::LIKE))
 			->addAsColumn('nbVotes', 'COUNT(*)')
 			->groupBy(VotePeer::LIKE)
 			->add(VotePeer::OBJECT_NAMESPACE, get_class($object))
 			->add(VotePeer::OBJECT_ID, $object->getId())
-		->find();
-		return $votes;
+		->count();
 	}
 }

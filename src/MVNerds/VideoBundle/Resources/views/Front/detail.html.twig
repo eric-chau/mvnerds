@@ -36,6 +36,8 @@
 			<div class="span8 left-content">
 				<h1>Video "<span class="video-title">{{ video.getTitle() }}"</span></h1>
 				
+				{% render 'MVNerdsVoteBundle:Vote:renderVoteBlock' with {'object': video} %}
+				
 				{% render 'MVNerdsVideoBundle:Front:renderVideo' with {'video': video} %}
 				
 				<p class="video-description">
