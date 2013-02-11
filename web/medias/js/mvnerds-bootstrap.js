@@ -15,7 +15,7 @@ $(function() {
 	//Ajout de l'auto-completion du champ de recherche des champions du header
 	$.ajax({
 		type: 'POST',
-		url:  Routing.generate('champion_benchmark_get_champions_name',{_locale: locale}), 
+		url:  Routing.generate('champions_names',{_locale: locale}), 
 		dataType: 'html'
 	}).done(function(data){
 		$('#header-champion-search-input').attr('data-source', data);
