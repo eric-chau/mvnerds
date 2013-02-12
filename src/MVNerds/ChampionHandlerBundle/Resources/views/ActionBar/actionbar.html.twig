@@ -13,7 +13,7 @@
 
 				{# Bouton dropdown de la liste des champions sélectionnés pour la comparaison #}
 				<li class="action dropdown" id="comparison-list-dropdown">
-					<a href="#" class="dropdown-toggle action-button-link" data-toggle="dropdown" id="drop-comparison-list" role="button">
+					<a href="#" class="dropdown-toggle action-button-link btn" data-toggle="dropdown" id="drop-comparison-list" role="button">
 						<i class="icon-th-large icon-white"></i> 
 						{{'Actionsbar.Comparison_list.title'|trans}} <i id="comparison-list-size">({{list_size}})</i>
 					</a>
@@ -37,7 +37,7 @@
 
 				{# Bouton d'action qui permet de comparer la liste des champions sélectionnés #}
 				<li class="action btn-compare{% if list_size < 2 %} disabled{% endif %}">
-					<a id="btn-compare" {% if list_size < 2 %}class="disabled"{% endif %} href="{{path('champion_benchmark_compare', {'_locale': locale }) }}">
+					<a id="btn-compare" class="btn red{% if list_size < 2 %} disabled{% endif %}" href="{{path('champion_benchmark_compare', {'_locale': locale }) }}">
 						<i class="icon-random icon-white"></i> {{'Actionsbar.Compare.title'|trans}}
 					</a>
 				</li>

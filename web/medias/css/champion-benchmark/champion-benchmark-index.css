@@ -119,9 +119,7 @@ div.container.main-container ul.action-buttons li.action#comparison-list-dropdow
   top: 7px;
 }
 div.container.main-container ul.action-buttons li.action#comparison-list-dropdown ul#comparison-list li#li-clean a {
-  border: 1px dashed #666;
-  border-bottom: 0;
-  border-left: 0;
+  border-top: 1px dashed #666;
   line-height: 1.4em;
   margin: 5px 0 0 0;
   padding: 3px 5px;
@@ -158,6 +156,9 @@ div.container.main-container ul.action-buttons li.action a {
   display: block;
   line-height: 27px;
   padding: 0 5px;
+}
+div.container.main-container ul.action-buttons li.action a.btn {
+  margin: 0;
 }
 div.container.main-container ul.action-buttons li.action.search-action {
   border: 0;
