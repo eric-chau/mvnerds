@@ -119,6 +119,7 @@ function removeChampionFromComparisonList(slug)
 {
 	//On retire le champion
 	$('ul#comparison-list li#comparable-'+slug).remove();
+	nbComparedChampions--;
 	//On vérifie la taille de la liste
 	if( nbComparedChampions < 1){
 		//On désactive les deux boutons
@@ -133,7 +134,6 @@ function removeChampionFromComparisonList(slug)
 	else if (nbComparedChampions <= 16){
 		$('#comparison-list').removeClass('scrollable');
 	}
-	nbComparedChampions--;
 	setNbComparedChampionsLabel(nbComparedChampions);
 	//Et on affiche le message de succes
 	getAlertMessage(SUCCESS_ALERT);
@@ -185,7 +185,7 @@ function deactivateCleanButton()
 }
 //Permet de désactiver le bouton de comparaison
 function deactivateCompareButton()
-{
+{console.log('dea');
 	$('a#btn-compare').addClass('disabled');
 	$('a#btn-compare').parent('li').addClass('disabled');
 }
