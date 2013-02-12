@@ -74,7 +74,7 @@
 							<span class="message">{{ item_build.getGameMode().getLabel()|trans }}</span>
 						</div>
 						{% if item_build.getDescription() == '' %}
-							<i>Le créateur de cette liste n'a pas fourni de description.</i>
+							<i>{{ item_build.getUser().getUsername() }} n'a pas fourni de description.</i>
 						{% else %}
 							{{ item_build.getDescription()|nl2br }}
 						{% endif %}

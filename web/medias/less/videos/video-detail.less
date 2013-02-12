@@ -1,0 +1,59 @@
+// Twitter Bootstraps imports
+@import "../bootstrap/mixins.less";
+
+// MVNerds imports
+@import "../mvnerds/mvnerds-variables.less";
+
+div.span8.left-content {
+	h2 {
+		border-bottom: 1px solid #666;
+		padding: 0 0 5px 0;
+	}
+
+	div.video-player-container {
+		background-color: #111;
+		margin: 0 0 20px 0;
+		padding: 10px 0;
+		text-align: center;
+	}
+}
+
+div.span4.right-content {
+	div.block {
+		div.body {
+			div.block-media {
+				margin: 10px 0 20px 0;
+
+				img {
+					border: 1px solid #666;
+					padding: 3px;
+					width: 100px !important
+				}
+			}
+
+			 p {
+			 	margin: 0 0 5px 0 !important;
+			 	text-align: left !important;
+			 }
+
+			span {
+				&.status {
+					color: @MVNerdsGreen;
+					font-weight: bold;
+
+					&.private {
+						color: @MVNerdsRed;
+					}
+				}
+
+				&.update-date {
+					color: @MVNerdsGreen;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+}
+
+@import "../comment/comment.less";
+@import "../mvnerds/mvnerds-alerts.less";

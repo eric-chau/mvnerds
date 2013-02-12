@@ -26,8 +26,7 @@ class ChampionRotationManager
 			->orderByCreateTime(\Criteria::DESC)
 		->find();
 
-		if (null === $rotations || null === $rotations[0])
-		{
+		if (0 == count($rotations)) {
 			throw new InvalidArgumentException('No rotation found');
 		}
 

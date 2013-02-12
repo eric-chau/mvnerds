@@ -76,15 +76,15 @@ div.span8.left-content {
 			text-align: left;
 
 			&.preview {
-				width: 80px !important;
+				width: 100px !important;
 			}
 
 			&.title {
-				width: 360px !important;
+				width: 430px !important;
 			}
 
 			&.category {
-				width: 198px !important;
+				width: 108px !important;
 			}
 		}
 
@@ -208,13 +208,23 @@ div.span4.right-content {
 					width: 80px;
 				}
 
-				input[type="text"] {
+				input[type="text"], select {
 					background-color: #333;
 					border: 1px solid #666;
 					color: #999;
 
 					&:focus {
 						color: @LoLOrangeAD;
+					}
+				}
+
+				select {
+					color: @LoLOrangeAD;
+					padding: 2px 2px 2px 5px;
+					width: 159px;
+
+					&:focus {
+						color: #888;
 					}
 				}
 			}

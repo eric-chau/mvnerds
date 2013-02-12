@@ -7,6 +7,7 @@
 
 	{% if app.environment == 'dev' %}
 		<link href="{{ asset('medias/css/videos/list-page.css') }}" rel="stylesheet" type="text/css">
+		<link href="{{ asset('medias/css/mvnerds/mvnerds-modal.css') }}" rel="stylesheet" type="text/css">
 	{% else %}
 
 	{% endif %}
@@ -27,10 +28,16 @@
 	{% endif %}
 {% endblock %}
 
+{% block topbar %}
+	{% set module = 'lol_video_center' %}
+		
+	{{ parent() }}
+{% endblock %}
+		
 {% block breadcrumbs %}
 	{{ parent() }}
 	
-	> <a href="{{ path('videos_index') }}">LoL Video Center</a>
+	> <a href="{{ path('lol_video_index') }}">LoL Video Center</a>
 {% endblock %}
 
 {% block main_content %}
@@ -85,9 +92,8 @@
 						<h3>Options de filtrage</h3>
 					</div>
 					<div class="body">
-						<p>Catégories :</p>
+						<p>Trier par :</p>
 						<ul id="sort-list">
-							
 							<li><a href="#" class="sort-link" data-option-value="0"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.oldest'|trans}}</a></li>
 							<li><a href="#" class="sort-link selected" data-option-value="1"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.newest'|trans}}</a></li>
 							<li><a href="#" class="sort-link" data-option-value="2"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.updated'|trans}}</a></li>
@@ -95,7 +101,6 @@
 							<li><a href="#" class="sort-link" data-option-value="4"><i class=" icon-ok-sign"></i>{{'video_list_index.sort.title-desc'|trans}}</a></li>
 							<li><a href="#" class="sort-link" data-option-value="5"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.views'|trans}}</a></li>
 							<li><a href="#" class="sort-link" data-option-value="6"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.most-commented'|trans}}</a></li>
-							
 						</ul>
 						
 						<p>Rechercher par :</p>
@@ -108,7 +113,7 @@
 							<li id="filter-category">
 								<label for="category-filter-input">{{'video_list_index.sort.filter-by-category'|trans}}</label>
 								<select id="category-filter-input">
-									<option value="" selected="selected">--------------</option>
+									<option value="" selected="selected"></option>
 									{% for video_category in video_categories %}
 										<option value="{{video_category.getUniqueName()}}">{{video_category.getUniqueName() | trans}}</option>
 									{% endfor %}

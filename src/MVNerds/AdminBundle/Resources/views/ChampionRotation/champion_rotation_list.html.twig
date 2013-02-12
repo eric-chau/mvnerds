@@ -5,7 +5,7 @@
 	<div class="span1">Actions</div>
 </div>
 {% for rotation in rotations %}
-	{% include 'MVNerdsAdminBundle:ChampionRotation:champion_rotation_row.html.twig' with {'rotation': rotation}%}
+	{% include 'MVNerdsAdminBundle:ChampionRotation:champion_rotation_row.html.twig' with {'rotation': rotation} %}
 {% else %}
 	<i>Aucune rotation enregistrée</i>
 {% endfor %}

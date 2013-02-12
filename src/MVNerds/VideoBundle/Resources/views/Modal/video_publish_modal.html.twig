@@ -1,7 +1,7 @@
 <div id="modal-video-publish" class="modal hide fade">
 	<div class="modal-header">
 		<i class="icon-remove" data-dismiss="modal"></i>
-		<h3>Publier une vidéo</h3>
+		<h3><i class="icon-play-circle"></i> Publier une vidéo</h3>
 	</div>
 	<div class="modal-body">
 		
@@ -10,16 +10,16 @@
 			</p>
 		
 			<form id="video-publish-form" action="#">
-				<label for="video-publish-title">Titre<sup>*</sup></label> <input type="text" id="video-publish-title" name="title" value="{{video.getTitle()}}"/><br /><br />
+				<label for="video-publish-title">Titre*</label> <input type="text" id="video-publish-title" name="title" value="{{video.getTitle()}}"/><br /><br />
 				
-				<label for="video-publish-category">Catégorie<sup>*</sup></label> 
+				<label for="video-publish-category">Catégorie*</label> 
 				<select id="video-publish-category">
 					{% for video_category in video_categories %}
 						<option value="{{video_category.getId()}}" {% if video.getVideoCategoryId() == video_category.getId() %}selected="selected"{% endif %}>{{video_category.getUniqueName()}}</option>
 					{% endfor %}
 				</select><br /><br />
 				
-				<label for="video-publish-link">Lien de la vidéo<sup>*</sup></label> <input type="text" id="video-publish-link" name="title" value="{{video.getLink()}}"/><br /><br />
+				<label for="video-publish-link">Lien de la vidéo*</label> <input type="text" id="video-publish-link" name="title" value="{{video.getLink()}}"/><br /><br />
 				
 				<label for="video-publish-description">Description</label> <textarea name="description" id="video-publish-description">{{video.getDescription()}}</textarea><br /><br />
 				

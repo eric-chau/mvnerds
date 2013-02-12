@@ -11,19 +11,19 @@ use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use MVNerds\CoreBundle\Model\Video;
 
 /**
- * @Route("/videos")
+ * @Route("/lol-video-center")
  */
-class FrontController extends Controller
+class LoLVideoController extends Controller
 {
 	/**
-	 * @Route("/", name="videos_index")
+	 * @Route("/", name="lol_video_index")
 	 */
 	public function indexAction()
 	{
 		/* @var $videoManager \MVNerds\CoreBundle\Video\VideoManager */
 		$videoManager = $this->get('mvnerds.video_manager');
 		
-		return $this->render('MVNerdsVideoBundle:Front:list_index.html.twig', array(
+		return $this->render('MVNerdsVideoBundle:LoLVideoCenter:lol_video_index.html.twig', array(
 			'video_categories'	=> $videoManager->findAllVideoCatgories(),
 			'videos'		=> $videoManager->findAllActive(),
 			'video'			=> new Video()
@@ -42,8 +42,7 @@ class FrontController extends Controller
 		
 		/* @var $videoManager \MVNerds\CoreBundle\Video\VideoManager */
 		$videoManager = $this->get('mvnerds.video_manager');
-		
-		
+				
 		//Si le paramètre slug est défini c'est une edition de vidéo
 		if ( isset( $_POST['slug'] ) && ($slug = $_POST['slug']) != '' ) {
 			try {
@@ -174,8 +173,8 @@ class FrontController extends Controller
 		foreach($videos as $video)
 		{			
 			$jsonVideos['aaData'][] = array(
-				$this->renderView('MVNerdsVideoBundle:Front:list_table_row_thumbnail.html.twig', array('video' => $video)),
-				$this->renderView('MVNerdsVideoBundle:Front:list_table_row_title.html.twig', array('video' => $video, 'user' => $video->getUser())),
+				$this->renderView('MVNerdsVideoBundle:LoLVideoCenter:lol_video_index_table_preview_cell.html.twig', array('video' => $video)),
+				$this->renderView('MVNerdsVideoBundle:LoLVideoCenter:lol_video_index_table_title_cell.html.twig', array('video' => $video, 'user' => $video->getUser())),
 				$translator->trans($video->getVideoCategory()->getUniqueName()),
 				$video->getUser()->getUsername(),
 				$video->getCreateTime('YmdHims'),
@@ -190,7 +189,7 @@ class FrontController extends Controller
 	}
 	
 	/**
-	 * @Route("/detail/{slug}", name="videos_detail", options={"expose"=true})
+	 * @Route("/{slug}", name="videos_detail", options={"expose"=true})
 	 */
 	public function detailAction($slug)
 	{
@@ -204,7 +203,7 @@ class FrontController extends Controller
 			$video->keepUpdateDateUnchanged();
 			$video->save();
 		} catch (\Exception $e) {
-			return $this->redirect($this->generateUrl('videos_index'));
+			return $this->redirect($this->generateUrl('lol_video_index'));
 		}
 		
 		$params = array(
@@ -221,33 +220,7 @@ class FrontController extends Controller
 			}
 		}
 		
-		return $this->render('MVNerdsVideoBundle:Front:detail.html.twig', $params);
-	}
-	
-	/**
-	 * @Route("/edit/{slug}", name="videos_edit", options={"expose"=true})
-	 */
-	public function editAction($slug) 
-	{
-		/* @var $videoManager \MVNerds\CoreBundle\Video\VideoManager */
-		$videoManager = $this->get('mvnerds.video_manager');
-			
-		try {
-			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
-			$video = $videoManager->findBySlug($slug);
-		} catch (\Exception $e ) {
-			return $this->redirect($this->generateUrl('videos_index'));
-		}
-		
-		if( ! ($this->getUser()->getId() == $video->getUserId() || $this->get('security.context')->isGranted('ROLE_ADMIN')))
-		{
-			throw new AccessDeniedException();
-		}
-		
-		return $this->render('MVNerdsVideoBundle:Front:edit.html.twig', array(
-			'video'		=> $video,
-			'video_categories'	=> $videoManager->findAllVideoCatgories()
-		));
+		return $this->render('MVNerdsVideoBundle:LoLVideoCenter:lol_video_detail.html.twig', $params);
 	}
 	
 	/**
@@ -258,36 +231,46 @@ class FrontController extends Controller
 		//On supprime la chaine "http://" si elle existe puis on supprime la chaine "www" si elle existe
 		$videoLink = preg_replace('/^www\./', '', str_replace('http://', '', $video->getLink()));
 		
+		$response = null;
+		// On vérifie si la vidéo provient de youtube
 		if (strpos($videoLink, 'youtube.com/watch?v=') !== false || strpos($videoLink, 'youtu.be/') !== false) { 
 			$embed = 'http://www.youtube.com/v/';
 			
 			if (strpos($videoLink, 'youtube.com') !== false) {
 				$exploded = explode('&', str_replace('youtube.com/watch?v=', '', $videoLink));
-			} else {
+			} 
+			else {
 				$exploded = explode('?', str_replace('youtu.be/', '', $videoLink));
 			}
 			
-			return $this->render('MVNerdsVideoBundle:Videos:youtube.html.twig', array(
+			$response = $this->render('MVNerdsVideoBundle:Videos:youtube.html.twig', array(
 				'link'		=> $embed . $exploded[0]
 			));
-		} elseif (strpos($videoLink,'dailymotion.com') !== false) {
+		} 
+		// Sinon on vérifie si elle provient de dailymotion
+		elseif (strpos($videoLink,'dailymotion.com') !== false) {
 			$embed = 'http://www.dailymotion.com/embed/video/';
 			
 			if (strpos($videoLink, '/video/') !== false) {
 				$exploded = explode('_', str_replace('dailymotion.com/video/', '', $videoLink));
 			
-				return $this->render('MVNerdsVideoBundle:Videos:dailymotion.html.twig', array(
+				$response = $this->render('MVNerdsVideoBundle:Videos:dailymotion.html.twig', array(
 					'link'		=> $embed . $exploded[0]
 				));
-			} elseif (strpos($videoLink,'#video=') !== false) {
+			} 
+			elseif (strpos($videoLink,'#video=') !== false) {
 				$embed .= preg_replace('/dailymotion\.com\/.*#video=/', '', $videoLink);
 				
-				return $this->render('MVNerdsVideoBundle:Videos:dailymotion.html.twig', array(
+				$response = $this->render('MVNerdsVideoBundle:Videos:dailymotion.html.twig', array(
 					'link'		=> $embed
 				));
 			}
 		}
 		
-		return new Response();
+		if (null == $response) {
+			throw new HttpException(500, 'The provided link is not legal.');
+		}
+		
+		return $response;
 	}
 }

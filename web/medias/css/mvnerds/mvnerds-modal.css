@@ -38,6 +38,17 @@ div.modal {
   margin: -250px 0 0 -300px;
   width: 600px;
 }
+div.modal:hover h3 {
+  color: #db4a38;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div.modal h3 {
+  border-bottom: 1px solid #999;
+  padding: 0 0 2px 0;
+}
 div.modal div.modal-header {
   border: 0;
   position: relative;
@@ -61,9 +72,35 @@ div.modal div.modal-body ul {
   margin: 0 0 1.4em 0;
   padding: 0 20px;
 }
-div.modal div.modal-body input[type="text"] {
+div.modal div.modal-body input[type="text"],
+div.modal div.modal-body select,
+div.modal div.modal-body textarea {
   display: inline-block;
   margin: 0 5px;
+}
+div.modal div.modal-body label {
+  display: inline-block;
+  font-weight: bold;
+  text-align: right;
+  width: 120px;
+}
+div.modal div.modal-body textarea,
+div.modal div.modal-body select {
+  background-color: #e4e6e5;
+  border-color: #999;
+}
+div.modal div.modal-body input[type="text"] {
+  width: 200px;
+}
+div.modal div.modal-body select {
+  padding: 2px 2px 2px 5px;
+  width: 212px;
+}
+div.modal div.modal-body textarea {
+  height: 76px;
+  padding: 5px;
+  resize: none;
+  width: 400px;
 }
 div.modal div.modal-footer {
   background-color: #e4e6e5;

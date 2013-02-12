@@ -54,12 +54,12 @@ $(document).ready(function() {
 		"sAjaxSource": Routing.generate('videos_list_ajax', {_locale: locale}),
 		"bLengthChange": false,
 		"aaSorting": [],
-		"iDisplayLength": 3,
+		"iDisplayLength": 10,
 		"sDom": "lrtip",
 		"aoColumns": [
                       {"bSearchable": false, "bSortable":false, 'sClass': 'preview'},//Aperçu
                       {"bSearchable": false, "bSortable":true, 'sClass': 'title'},//Titre + stats + auteur
-                      {"bSearchable": false, "bSortable":true},//Catégorie xlf
+                      {"bSearchable": false, "bSortable":true, 'sClass': 'category'},//Catégorie xlf
                       {"bVisible": false, "bSearchable": true, "bSortable":true},//username
                       {"bVisible": false, "bSearchable": false, "bSortable":true},//create_time
                       {"bVisible": false, "bSearchable": false, "bSortable":true},//update_time

@@ -6,6 +6,8 @@
 	{{ parent() }}
 
 	{% if app.environment == 'dev' %}
+		<link href="{{ asset('medias/css/videos/video-detail.css') }}" rel="stylesheet" type="text/css">
+		<link href="{{ asset('medias/css/mvnerds/mvnerds-modal.css') }}" rel="stylesheet" type="text/css">
 	{% else %}
 
 	{% endif %}
@@ -24,25 +26,23 @@
 	{% endif %}
 {% endblock %}
 
+{% block topbar %}
+	{% set module = 'lol_video_center' %}
+		
+	{{ parent() }}
+{% endblock %}
+		
 {% block breadcrumbs %}
 	{{ parent() }}
 	
-	> <a href="{{ path('videos_index') }}">LoL Video Center</a> > <a href="{{ path('videos_detail', {'slug':video.getSlug()}) }}">{{ video.getTitle() }}</a>
+	> <a href="{{ path('lol_video_index') }}">LoL Video Center</a> > <a href="{{ path('videos_detail', {'slug':video.getSlug()}) }}">{{ video.getTitle() }}</a>
 {% endblock %}
 
 {% block main_content %}
 	<div class="container main-container border-top">
 		<div class="row-fluid">
 			<div class="span8 left-content">
-				<h1>Video "<span class="video-title">{{ video.getTitle() }}"</span></h1>
-				
-				{% render 'MVNerdsVoteBundle:Vote:renderVoteBlock' with {'object': video} %}
-				
-				{% render 'MVNerdsVideoBundle:Front:renderVideo' with {'video': video} %}
-				
-				<p class="video-description">
-					{{video.getDescription()}}
-				</p>
+				<h1>Vidéo "<span class="video-title">{{ video.getTitle() }}"</span></h1>
 				
 				{# PUBLICITÉ #}
 				<div class="ad-container">
@@ -59,6 +59,21 @@
 					</script>
 				</div>
 				
+				<div class="video-player-container">
+					{% render 'MVNerdsVideoBundle:LoLVideo:renderVideo' with {'video': video} %}
+				</div>
+				
+				<div class="description-container">
+					<h2>Description</h2>
+					<p>
+						{% if video.getDescription() == '' %}
+							<i>{{ video.getUser().getUsername() }} n'a pas fourni de description.</i>
+						{% else %}
+							{{ video.getDescription()|nl2br }}
+						{% endif %}
+					</p>
+				</div>
+				
 				{% render 'MVNerdsCommentBundle:Comment:renderComments' with {'object': video, 'objectType': 'video'} %}
 			</div>
 			
@@ -67,11 +82,13 @@
 					{# Bouton d'édition #}
 					<div class="block">
 						<div class="footer blue">
-							<a href="{{ path('videos_edit', {slug: video.getSlug()}) }}" id="video-edit-action">{{ 'item_table.admin.edit'|trans }}</a>
+							<a href="#" id="video-edit-action">{{ 'item_table.admin.edit'|trans }}</a>
 						</div>
 					</div>
 				{% endif %}
 				
+				{% render 'MVNerdsVoteBundle:Vote:renderVoteBlock' with {'object': video} %}
+					
 				<div class="block">
 					<div class="header">
 						<h3>À propos</h3>

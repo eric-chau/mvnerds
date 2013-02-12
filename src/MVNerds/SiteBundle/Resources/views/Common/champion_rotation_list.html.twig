@@ -4,7 +4,6 @@
 </div>
 
 <div class="free-champions">
-
 	{% for champion_rotation in rotation.getChampionRotations() %}
 		<a href="{{path('champion_detail', {slug: champion_rotation.getChampion().getSlug()})}}"><div class="champion-square36 {{champion_rotation.getChampion().getSlug()}}"></div></a>
 	{% endfor %}

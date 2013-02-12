@@ -16,6 +16,17 @@ div.modal {
 	margin: -250px 0 0 -300px;
 	width: 600px;
 
+	&:hover {
+		h3 {
+			color: @MVNerdsRed; .transition(color .25s linear);
+		}
+	}
+
+	h3 {
+		border-bottom: 1px solid #999;
+		padding: 0 0 2px 0;
+	}
+
 	div.modal-header {
 		border: 0;
 		position: relative;
@@ -40,9 +51,37 @@ div.modal {
 			padding: 0 20px;
 		}
 
-		input[type="text"] {
+		input[type="text"], select, textarea {
 			display: inline-block;
 			margin: 0 5px;
+		}
+
+		label {
+			display: inline-block;
+			font-weight: bold;
+			text-align: right;
+			width: 120px;
+		}
+
+		textarea, select {
+			background-color: @bodyMainBGColor;
+			border-color: #999;
+		}
+
+		input[type="text"] {
+			width: 200px;
+		}
+
+		select {
+			padding: 2px 2px 2px 5px;
+			width: 212px;
+		}
+
+		textarea {
+			height: 76px;
+			padding: 5px;
+			resize: none;
+			width: 400px;
 		}
 	}
 
