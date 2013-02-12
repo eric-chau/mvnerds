@@ -743,4 +743,29 @@
       <parameter name="update_column" value="update_time" />
     </behavior>
   </table>
+  <table name="rotation">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="title" required="true" size="255" type="VARCHAR" />
+    <behavior name="i18n">
+      <parameter name="i18n_columns" value="title" />
+      <parameter name="default_locale" value="fr" />
+      <parameter name="locale_column" value="lang" />
+      <parameter name="i18n_table" value="rotation_i18n" />
+      <parameter name="i18n_phpname" value="RotationI18n" />
+    </behavior>
+    <behavior name="timestampable">
+      <parameter name="create_column" value="create_time" />
+      <parameter name="update_column" value="update_time" />
+    </behavior>
+  </table>
+  <table name="champion_rotation">
+    <column name="rotation_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="champion_id" primaryKey="true" required="true" type="INTEGER" />
+    <foreign-key foreignTable="rotation" onDelete="CASCADE" onUpdate="CASCADE">
+      <reference foreign="id" local="rotation_id" />
+    </foreign-key>
+    <foreign-key foreignTable="champion" onDelete="CASCADE" onUpdate="CASCADE">
+      <reference foreign="id" local="champion_id" />
+    </foreign-key>
+  </table>
 </database>

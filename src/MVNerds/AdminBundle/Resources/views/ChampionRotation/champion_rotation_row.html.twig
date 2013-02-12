@@ -1,0 +1,21 @@
+<div class="row-fluid normal-line champion-rotation" id="{{rotation.getId()}}">
+	<div class="span2">
+		{{rotation.getTitle()}}
+	</div>
+	<div class="span8">
+		{% for championRotation in rotation.getChampionRotations() %}
+			<img class="champion-image" src="{{ asset('images/champions/square/' ~ championRotation.getChampion().getSlug() ~ '.png') }}" alt="image du champion {{ championRotation.getChampion().getName() }}" title = "{{ championRotation.getChampion().getName() }}"/>
+		{% endfor %}
+	</div>
+	<div class="span1">
+		{{ rotation.getCreateTime('d/m/Y h:i:s') }}
+	</div>
+	<div class="span1">
+		<a  draggable="false" href="{{ path('admin_champ_rotation_edit', {'id': rotation.getId()}) }}" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Éditer">
+			<i class="icon-edit"></i>
+		</a>
+		<a  draggable="false" href="#" class="tooltip-anchor bootstrap-modal" rel="tooltip" data-placement="top" data-original-title="Supprimer la rotation" data-toggle="modal" data-name="{{rotation.getTitle()}}" data-id="{{rotation.getId()}}" data-href="/fr/administration/champ-rotation/__ID__/delete">
+			<i class="icon-remove"></i>
+		</a>
+	</div>
+</div>
