@@ -186,5 +186,14 @@
 			VIDEOS MANAGER SERVICE
 		-->
 		<service id="mvnerds.video_manager" class="MVNerds\CoreBundle\Video\VideoManager" />    
+		
+		<!-- 
+			CHAMPION ROTATION MANAGER SERVICE
+		-->
+		<service id="mvnerds.champion_rotation_manager" class="MVNerds\CoreBundle\ChampionRotation\ChampionRotationManager">    
+			<call method="setUserLocale">
+				<argument type="service" id="session" />
+			</call>
+		</service>
 	</services>		
 </container>

@@ -1,0 +1,31 @@
+{% extends 'MVNerdsAdminBundle:ChampionRotation:layout.html.twig' %}
+
+{% block title %}Administration des rotations de champion - MVNerds{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-alert.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-modal.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-tooltip.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
+{% endblock %}
+	
+{% block content %}	
+	<h1>Les rotations de champions</h1>
+
+	<div class="action-buttons right">
+		<a href="{{ path('admin_champ_rotation_add') }}" class="btn btn-success btn-large"><i class="icon-plus-sign icon-white"></i> <strong>Ajouter une rotation de champion</strong></a>
+	</div>
+
+	{% autoescape false %}
+		{{ render_success_flash() }}
+	{% endautoescape %}
+	{% autoescape false %}
+		{{ render_error_flash() }}
+	{% endautoescape %}
+
+	<div class="content-container">
+		{% include 'MVNerdsAdminBundle:ChampionRotation:champion_rotation_list.html.twig' with {'rotations': rotations } %}
+	</div>
+{% endblock %}

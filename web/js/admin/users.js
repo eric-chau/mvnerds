@@ -9,6 +9,7 @@ jQuery(function($) {
 			$('.bootstrap-modal-name').html($(this).data('name'));
 			$('#modal-btn-confirm-delete').attr('data-slug', $(this).data('slug'));
 			$('#modal-btn-confirm-delete').attr('data-href', $(this).data('href'));
+			$('#modal-btn-confirm-delete').attr('data-id', $(this).data('id'));
 			$('#bootstrap-delete-modal').modal('show');
 		});
 
@@ -17,10 +18,12 @@ jQuery(function($) {
 			var $loader = $(this).parent().find('img'), $this = $(this);
 			$loader.removeClass('hide');
 			var slug = $(this).data('slug');
+			var id = $(this).attr('data-id');
 			var href = $(this).data('href');
-			console.log(href);
+			
 			href = href.replace('__SLUG__', slug);
-			console.log(href);
+			href = href.replace('__ID__', id);
+			
 			$.ajax({
 				url: href,
 				type: 'GET',
@@ -30,7 +33,12 @@ jQuery(function($) {
 						// On remonte à la modal pour la cachée
 						$('#bootstrap-delete-modal').modal('hide');
 						// Objet jQuery portant sur la ligne qui concerne l'utilisateur
-						var $row = $('#'+slug);
+						var $row;console.log(slug);
+						if (slug == undefined || slug == '') {
+							$row = $('#' + id);
+						} else {
+							$row = $('#'+slug);
+						}
 						$loader.addClass('hide');
 						$row.slideUp('slow');
 						$row.remove();

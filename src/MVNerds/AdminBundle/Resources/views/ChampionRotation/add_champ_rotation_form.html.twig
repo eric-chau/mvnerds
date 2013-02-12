@@ -1,0 +1,24 @@
+{% extends 'MVNerdsAdminBundle:ChampionRotation:layout.html.twig' %}
+
+{% block title %}Administration des rotations de champions - MVNerds{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	<script type="text/javascript" src="{{ asset('js/admin/champion_rotation_save_form.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+	<h1>Ajouter une rotation de champion</h1>
+
+	<div class="action-buttons">
+		<a href="{{ path('admin_champ_rotation_index') }}" class="btn btn-large"><i class="icon-arrow-left"></i> <strong>Retourner à la liste</strong></a>
+		<a href="#" class="btn btn-success btn-large pull-right btn-submit-form"><i class="icon-ok icon-white"></i> <strong>J'ai terminé</strong></a>
+	</div>
+
+	<div class="content-container">
+		<form action="{{ path('admin_champ_rotation_add') }}" method="POST" {{ form_enctype(form) }}>
+			{% include 'MVNerdsAdminBundle:ChampionRotation:inner_form_save_champ_rotation.html.twig' %}
+		</form>
+	</div>
+{% endblock %}

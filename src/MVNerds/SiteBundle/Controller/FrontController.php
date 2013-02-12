@@ -29,6 +29,16 @@ class FrontController extends Controller
 	}
 	
 	/**
+	 * Affiche la rotation des champions la plus récente
+	 */
+	public function renderChampionRotationAction()
+	{
+		return $this->render('MVNerdsSiteBundle:Common:champion_rotation_list.html.twig', array(
+			'rotation' => $this->get('mvnerds.champion_rotation_manager')->findLast()
+		));
+	}
+	
+	/**
      * @Route("/test-api")
      */
     public function testAPIAction()
