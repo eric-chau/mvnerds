@@ -153,20 +153,42 @@ div.span4.right-content div.block div.body div.block-media img {
   padding: 3px;
   width: 100px !important;
 }
-div.span4.right-content div.block div.body p {
-  margin: 0 0 5px 0 !important;
-  text-align: left !important;
+div.span4.right-content div.block div.body div.stats {
+  background-color: #141414;
+  color: #999;
+  display: inline-block;
+  font-size: 10px;
+  line-height: 1em;
+  margin: 0 0 4px 8px;
+  padding: 5px 10px 9px 10px;
+  text-transform: uppercase;
+  vertical-align: top;
+  width: 130px;
 }
-div.span4.right-content div.block div.body span.status {
+div.span4.right-content div.block div.body div.stats.odd {
+  margin-left: 1px;
+}
+div.span4.right-content div.block div.body div.stats strong {
+  color: #19a0df;
+  display: inline-block;
+  font-size: 18px;
+  line-height: 25px;
+}
+div.span4.right-content div.block div.body div.stats strong.green {
   color: #759e1a;
-  font-weight: bold;
 }
-div.span4.right-content div.block div.body span.status.private {
+div.span4.right-content div.block div.body div.stats strong.red,
+div.span4.right-content div.block div.body div.stats strong a {
   color: #db4a38;
+  font-size: 18px;
 }
-div.span4.right-content div.block div.body span.update-date {
-  color: #759e1a;
-  font-weight: bold;
+div.span4.right-content div.block div.body div.stats i {
+  display: inline-block;
+  float: left;
+  font-size: 28px;
+  margin: 0 10px 0 0;
+  position: relative;
+  top: 7px;
 }
 div.popover.item-popover h3 {
   font-weight: bold;

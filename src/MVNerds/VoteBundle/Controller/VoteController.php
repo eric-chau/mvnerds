@@ -45,9 +45,9 @@ class VoteController extends Controller
 		}
 		
 		return $this->render('MVNerdsVoteBundle:Vote:vote_block.html.twig', array(
-			'can_like'		=> $canLike,
+			'can_like'			=> $canLike,
 			'can_dislike'		=> $canDislike,
-			'votes_count'	=> $votesCount,
+			'votes_count'		=> $votesCount,
 			'likes_count'		=> $likesCount,
 			'dislikes_count'	=> $dislikesCount,
 			'object_slug'		=> $object->getSlug(),

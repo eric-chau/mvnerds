@@ -121,19 +121,39 @@
 						<div class="block-media">
 							<img src="{{ asset('medias/images/avatar/' ~ item_build.getUser().getUserAvatarName()~ '.jpg') }}" />
 						</div>
-						<p>
+						<div class="stats">
+							<i class="icon-user"></i> 
+							<strong><a href="{{ path('summoner_profile_view', {'userSlug': item_build.getUser().getSlug()}) }}" title="Consulter le profil de {{ item_build.getUser().getUsername }}">{{item_build.getUser().getUserName()}}</a></strong><br /> auteur
+						</div>
+						
+						<div class="stats odd">
+							<i class="icon-time"></i> 
+							<strong>{{ item_build.getUpdateTime('d/m/Y') }}</strong><br /> mise à jour
+						</div>
+							
+						<div class="stats">
 							{% set status = item_build.getStatus() %}
-							Statut : <span class="status {% if status == 'PUBLIC' %}public{% else %} private{% endif %}">{{ status }}</span><br />
-						</p>
-						<p>
-							Cette liste a été créée par <strong><a href="{{ path('summoner_profile_view', {'userSlug': item_build.getUser().getSlug()}) }}" title="Consulter le profil de {{ item_build.getUser().getUsername }}">{{item_build.getUser().getUserName()}}</a></strong> le <span class="create-date">{{ item_build.getCreateTime('d/m/Y') }}</span>.<br />
-						</p>
-						<p>
-							Sa dernière mise à jour a eu lieu le <span class="update-date">{{ item_build.getUpdateTime('d/m/Y') }}</span>.<br />
-						</p>
-						<p>
-							Elle a été consultée <strong>{{ item_build.getView() }}</strong> fois, téléchargée <strong>{{ item_build.getDownload() }}</strong> fois et commentée <strong>{{ item_build.getCommentCount() }}</strong> fois.<br />
-						</p>
+							<i class="{% if status == 'private' %}icon-lock{% else %}icon-unlock{% endif %}"></i> 
+							<strong class="{% if status == 'private' %}red{% else %}green{% endif %}">{{ status }}</strong><br /> status
+						</div>
+						
+						<div class="stats odd">
+							<i class="icon-eye-open"></i> 
+							<strong>{{ item_build.getView() }}</strong><br /> vues
+						</div>
+						
+						<div class="stats">
+							<i class="icon-download"></i> 
+							<strong>{{ item_build.getDownload() }}</strong><br /> téléchargés
+						</div>	
+						
+						<div class="stats odd">
+							<i class="icon-comments-alt"></i> 
+							<strong>{{ item_build.getCommentCount() }}</strong><br /> commentaires
+						</div>
+							
+						
+						<div class="clearfix"></div>
 					</div>
 					<div class="footer">
 						<a href="#">Aller sur le profil de l'auteur</a>

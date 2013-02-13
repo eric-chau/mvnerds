@@ -21,6 +21,7 @@
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-modal.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/site/alerts-ajax-handler.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/videos/video-detail.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/videos/publish-video.js') }}"></script>
 	{% else %}
 
@@ -66,7 +67,9 @@
 					{% elseif video_type == 'dailymotion' %}
 						{% include 'MVNerdsVideoBundle:Videos:dailymotion.html.twig' with {'link': video.getLink()} %}
 					{% endif %}
-					{#{% render 'MVNerdsVideoBundle:LoLVideo:renderVideo' with {'video': video} %}#}
+					<div class="video-infos">
+						
+					</div>
 				</div>
 				
 				<div class="description-container">
@@ -92,8 +95,6 @@
 						</div>
 					</div>
 				{% endif %}
-				
-				{% render 'MVNerdsVoteBundle:Vote:renderVoteBlock' with {'object': video, 'objectType': 'video'} %}
 					
 				<div class="block">
 					<div class="header">
@@ -102,16 +103,30 @@
 					<div class="body">
 						<div class="block-media">
 							<img src="{{ asset('medias/images/avatar/' ~ video.getUser().getUserAvatarName()~ '.jpg') }}" />
+							{% render 'MVNerdsVoteBundle:Vote:renderVoteBlock' with {'object': video, 'objectType': 'video'} %}
 						</div>
-						<p>
-							Cette vidéo a été publiée par <strong><a href="{{ path('summoner_profile_view', {'userSlug': video.getUser().getSlug()}) }}" title="Consulter le profil de {{ video.getUser().getUsername }}">{{video.getUser().getUserName()}}</a></strong> le <span class="create-date">{{ video.getCreateTime('d/m/Y') }}</span>.<br />
-						</p>
-						<p>
-							Sa dernière mise à jour a eu lieu le <span class="update-date">{{ video.getUpdateTime('d/m/Y') }}</span>.<br />
-						</p>
-						<p>
-							Cette page a été consultée <strong>{{ video.getView() }}</strong> fois{#, et commentée <strong>{{ video.getCommentCount() }}</strong> fois.<br />#}
-						</p>
+						<div class="clearfix"></div>
+						
+						<div class="stats">
+							<i class="icon-user"></i> 
+							<strong><a href="{{ path('summoner_profile_view', {'userSlug': video.getUser().getSlug()}) }}" title="Consulter le profil de {{ video.getUser().getUsername }}">{{video.getUser().getUserName()}}</a></strong><br /> auteur
+						</div>
+						
+						<div class="stats odd">
+							<i class="icon-time"></i> 
+							<strong>{{ video.getCreateTime('d/m/Y') }}</strong><br /> date de création
+						</div>
+						
+						<div class="stats">
+							<i class="icon-eye-open"></i> 
+							<strong>{{ video.getView() }}</strong><br /> vues
+						</div>
+						
+						<div class="stats odd">
+							<i class="icon-comments-alt"></i> 
+							<strong>{{ video.getCommentCount() }}</strong><br /> commentaires
+						</div>
+						<div class="clearfix"></div>
 					</div>
 					<div class="footer">
 						<a href="#">Aller sur le profil de l'auteur</a>

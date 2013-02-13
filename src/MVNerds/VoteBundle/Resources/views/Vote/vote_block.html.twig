@@ -1,19 +1,36 @@
-<div class="vote-block row-fluid">
-	<div class="span5">
-		<div class="row-fluid like-block">
-			<a href="#" data-like="true" class="btn-vote-like btn-vote {% if not can_like %}disabled{% endif %}"><i class="icon-thumbs-up"></i></a>
+<div class="vote-block">
+	{% if votes_count > 0 %}		
+		{% set rating = (likes_count / votes_count) * 100 %}
+		{% set rating_css_class = '' %}
+		{% if rating < 40 %}
+			{% set rating_css_class = 'rating red' %}
+		{% else %}
+			{% if rating >= 40 and rating < 70 %}
+				{% set rating_css_class = 'rating orange' %}
+			{% else %}
+				{% set rating_css_class = 'rating green' %}
+			{% endif %}
+		{% endif %}
+		<div class="{{ rating_css_class }}">
+			{{ rating|number_format(0) }}%
 		</div>
-		<div class="row-fluid dislike-block">
-			<a href="#" data-like="false" class="btn-vote-dislike btn-vote {% if not can_dislike %}disabled{% endif %}"><i class="icon-thumbs-down"></i></a>
+	{% else %}
+		<div class="rating">
+			Non noté
 		</div>
-	</div>
-	<div class="span7">
-		<div class="row-fluid percentage-vote-block">
-			like : <span class="like_count">{{likes_count}}</span> | dislike :  <span class="dislike_count">{{dislikes_count}}</span>
-		</div>
-		<div class="row-fluid total-vote-block">
-			total : <span class="vote_count">{{votes_count}}</span>
-		</div>
+	{% endif %}
+	
+	<div class="vote-actions">
+		<a href="#" data-like="true" class="btn-vote-like like btn-vote {% if not can_like %}disabled{% endif %}">
+			<i class="icon-thumbs-up"></i>
+			<span class="like_count">{{likes_count}}</span>
+		</a>
+		
+
+		<a href="#" data-like="false" class="btn-vote-dislike dislike btn-vote {% if not can_dislike %}disabled{% endif %}">
+			<i class="icon-thumbs-down"></i>
+			<span class="dislike_count">{{dislikes_count}}</span>
+		</a>
 	</div>
 </div>
 
