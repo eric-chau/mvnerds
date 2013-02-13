@@ -35,6 +35,19 @@ div.span8.left-content div.video-player-container {
   padding: 10px 0 5px 0;
   text-align: center;
 }
+div.span8.left-content div.related-videos-container div.related-video {
+  display: inline-block;
+  width: 100px;
+  vertical-align: top;
+  margin: 10px;
+}
+div.span8.left-content div.related-videos-container div.related-video img.related-video-thumbnail {
+  width: 100px;
+  height: 75px;
+}
+div.span8.left-content div.related-videos-container div.related-video span.related-video-title {
+  width: 100px;
+}
 div.span4.right-content div.block div.body div.block-media {
   height: 108px;
   margin: 0 0 10px 0;

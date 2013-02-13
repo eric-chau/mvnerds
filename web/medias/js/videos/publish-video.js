@@ -17,6 +17,7 @@ function isVideoValid() {
 //Permet de vérifier si le lien passé en paramètres est valide (youtube ou dailymotion)
 function isVideoLinkValid(link) {
 	if (	link.indexOf('youtube.com/watch?v=', 0) >= 0 || 
+		link.indexOf('youtube.com/v/', 0) >= 0 || 
 		link.indexOf('youtu.be/', 0) >= 0 ||
 		link.indexOf('dailymotion.com', 0) >= 0) {
 		return true;
