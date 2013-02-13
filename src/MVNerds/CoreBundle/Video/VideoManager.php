@@ -40,6 +40,18 @@ class VideoManager
 		->find();
 	}
 	
+	public function findRelatedVideos($video)
+	{
+		return VideoQuery::create()
+			->joinWith('VideoCategory')
+			->joinWith('User')
+			->add(VideoPeer::STATUS, VideoPeer::STATUS_ACTIVE)
+			->add(VideoPeer::VIDEO_CATEGORY_ID, $video->getVideoCategoryId())
+			->add(VideoPeer::ID, $video->getId(), \Criteria::NOT_EQUAL)
+			->limit(5)
+		->find();
+	}
+	
 	/**
 	 * Permet de formater une url brut (http://www.youtube.com/watch?v=....) en url embed (http://www.youtube.com/v/...)
 	 * @param string $link l url a formater
@@ -55,36 +67,35 @@ class VideoManager
 		$formatedLink = false;
 		
 		// On vérifie si la vidéo provient de youtube
-		if (strpos($escapedLink, 'youtube.com/watch?v=') !== false || strpos($escapedLink, 'youtu.be/') !== false) { 
+		if (strpos($escapedLink, 'youtube.com/watch?v=') !== false || strpos($escapedLink, 'youtu.be/') !== false || strpos($escapedLink, 'youtube.com/v/') !== false) { 
 			$embed = 'http://www.youtube.com/v/';
 			
-			if (strpos($escapedLink, 'youtube.com') !== false) {
-				$exploded = explode('&', str_replace('youtube.com/watch?v=', '', $escapedLink));
-			} 
-			else {
+			if (strpos($escapedLink, 'youtube.com/v/') !== false) {
+				$exploded = array(str_replace('youtube.com/v/', '', $escapedLink));
+			} elseif (strpos($escapedLink, 'youtu.be/') !== false) {
 				$exploded = explode('?', str_replace('youtu.be/', '', $escapedLink));
+			} elseif (strpos($escapedLink, 'youtube.com') !== false) {
+				$exploded = explode('&', str_replace('youtube.com/watch?v=', '', $escapedLink));
 			}
+			
 			if ($exploded != null && count($exploded) > 0 && $exploded[0] != '') {
 				$formatedLink = $embed . $exploded[0];
 			}
 		} 
 		// Sinon on vérifie si elle provient de dailymotion
-		elseif (strpos($escapedLink,'dailymotion.com') !== false) {
+		elseif (strpos($escapedLink,'dailymotion.com') !== false || strpos($escapedLink,'dailymotion.com/embed/video/') !== false) {
 			$embed = 'http://www.dailymotion.com/embed/video/';
 			
-			if (strpos($escapedLink, '/video/') !== false) {
+			if (strpos($escapedLink, 'dailymotion.com/embed/video/') !== false) {
+				$exploded = array(str_replace('dailymotion.com/embed/video/', '', $escapedLink));
+			} elseif (strpos($escapedLink, '/video/') !== false) {
 				$exploded = explode('_', str_replace('dailymotion.com/video/', '', $escapedLink));
+			} elseif (strpos($escapedLink,'#video=') !== false) {
+				$exploded = array(preg_replace('/dailymotion\.com\/.*#video=/', '', $escapedLink));
+			}
 			
-				if ($exploded != null && count($exploded) > 0 && $exploded[0] != '') {
-					$formatedLink = $embed . $exploded[0];
-				}
-			} 
-			elseif (strpos($escapedLink,'#video=') !== false) {
-				$embed .= preg_replace('/dailymotion\.com\/.*#video=/', '', $escapedLink);
-				
-				if ($embed != null && $embed != '') {
-					$formatedLink = $embed;
-				}
+			if ($exploded != null && count($exploded) > 0 && $exploded[0] != '') {
+				$formatedLink = $embed . $exploded[0];
 			}
 		}
 		

@@ -215,10 +215,13 @@ class LoLVideoController extends Controller
 			$videoType = 'dailymotion';
 		}
 		
+		$relatedVideos = $videoManager->findRelatedVideos($video);
+		
 		$params = array(
-			'video'		=> $video,
-			'can_edit'	=> false,
-			'video_type'	=> $videoType
+			'video'			=> $video,
+			'can_edit'		=> false,
+			'video_type'		=> $videoType,
+			'related_videos'	=> $relatedVideos
 		);
 		
 		if ($this->get('security.context')->isGranted('ROLE_USER')) {
