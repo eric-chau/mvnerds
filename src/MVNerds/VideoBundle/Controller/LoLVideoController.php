@@ -78,8 +78,8 @@ class LoLVideoController extends Controller
 		}
 		
 		if ( isset( $_POST['link'] ) && ($link = $_POST['link']) != '' ) {
-			if ($videoManager->isVideoLinkValid($link)) {
-				$video->setLink($link);
+			if (($formatedLink = $videoManager->formatVideoLink($link))) {
+				$video->setLink($formatedLink);
 			} else {
 				throw new \Exception('Link not valid');
 			}
@@ -206,9 +206,17 @@ class LoLVideoController extends Controller
 			return $this->redirect($this->generateUrl('lol_video_index'));
 		}
 		
+		$videoType = null;
+		if (strpos($video->getLink(), 'youtube.com') !== false) {
+			$videoType = 'youtube';
+		} elseif (strpos($video->getLink(), 'dailymotion.com') !== false) {
+			$videoType = 'dailymotion';
+		}
+		
 		$params = array(
-			'video' => $video,
-			'can_edit'	=> false
+			'video'		=> $video,
+			'can_edit'	=> false,
+			'video_type'	=> $videoType
 		);
 		
 		if ($this->get('security.context')->isGranted('ROLE_USER')) {
@@ -221,56 +229,5 @@ class LoLVideoController extends Controller
 		}
 		
 		return $this->render('MVNerdsVideoBundle:LoLVideoCenter:lol_video_detail.html.twig', $params);
-	}
-	
-	/**
-	 * Permet d'afficher la vidéo qu'elle provienne de youtube ou bien de dailymotion
-	 */
-	public function renderVideoAction(Video $video)
-	{
-		//On supprime la chaine "http://" si elle existe puis on supprime la chaine "www" si elle existe
-		$videoLink = preg_replace('/^www\./', '', str_replace('http://', '', $video->getLink()));
-		
-		$response = null;
-		// On vérifie si la vidéo provient de youtube
-		if (strpos($videoLink, 'youtube.com/watch?v=') !== false || strpos($videoLink, 'youtu.be/') !== false) { 
-			$embed = 'http://www.youtube.com/v/';
-			
-			if (strpos($videoLink, 'youtube.com') !== false) {
-				$exploded = explode('&', str_replace('youtube.com/watch?v=', '', $videoLink));
-			} 
-			else {
-				$exploded = explode('?', str_replace('youtu.be/', '', $videoLink));
-			}
-			
-			$response = $this->render('MVNerdsVideoBundle:Videos:youtube.html.twig', array(
-				'link'		=> $embed . $exploded[0]
-			));
-		} 
-		// Sinon on vérifie si elle provient de dailymotion
-		elseif (strpos($videoLink,'dailymotion.com') !== false) {
-			$embed = 'http://www.dailymotion.com/embed/video/';
-			
-			if (strpos($videoLink, '/video/') !== false) {
-				$exploded = explode('_', str_replace('dailymotion.com/video/', '', $videoLink));
-			
-				$response = $this->render('MVNerdsVideoBundle:Videos:dailymotion.html.twig', array(
-					'link'		=> $embed . $exploded[0]
-				));
-			} 
-			elseif (strpos($videoLink,'#video=') !== false) {
-				$embed .= preg_replace('/dailymotion\.com\/.*#video=/', '', $videoLink);
-				
-				$response = $this->render('MVNerdsVideoBundle:Videos:dailymotion.html.twig', array(
-					'link'		=> $embed
-				));
-			}
-		}
-		
-		if (null == $response) {
-			throw new HttpException(500, 'The provided link is not legal.');
-		}
-		
-		return $response;
 	}
 }

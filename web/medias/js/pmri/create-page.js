@@ -76,7 +76,7 @@ function isBuildValid() {
 						if($(this).children('input.item_sidebar_block_input').val() == '') {
 							if ($(this).find('div.item-sidebar-block-div div.portrait').length > 0) {
 								if (locale == 'en') {
-									displayMessage('Please name all of your created blocks.', 'success');
+									displayMessage('Please name all of your created blocks.', 'error');
 								}else {
 									displayMessage('Veuillez saisir un nom pour tous vos blocs créés.', 'error');
 								}

@@ -15,7 +15,7 @@ use MVNerds\CoreBundle\Model\Vote;
  */
 class VoteController extends Controller
 {	
-	public function renderVoteBlockAction(IVote $object)
+	public function renderVoteBlockAction(IVote $object, $objectType)
 	{		
 		/* @var $voteManager MVNerds\CoreBundle\Vote\VoteManager */
 		$voteManager  = $this->get('mvnerds.vote_manager');
@@ -51,7 +51,7 @@ class VoteController extends Controller
 			'likes_count'		=> $likesCount,
 			'dislikes_count'	=> $dislikesCount,
 			'object_slug'		=> $object->getSlug(),
-			'object_type'		=> get_class($object)
+			'object_type'		=> $objectType
 		));
 	}
 	

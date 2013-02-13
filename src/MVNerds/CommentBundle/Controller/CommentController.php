@@ -18,7 +18,7 @@ class CommentController extends Controller
 		return $this->render('MVNerdsCommentBundle:Comment:render_comments_block.html.twig', array(
 			'object'		=> $object,
 			'comments'		=> $commentArray['comments'],
-			'object_type'	=> $objectType
+			'object_type'		=> $objectType
 		));
 	}
 	

@@ -87,6 +87,7 @@ $(document).ready(function() {
 			publishVideo()
 		} catch (err) {
 			console.log(err);
+			displayMessage(err, ERROR_ALERT);
 			$loading.hide();
 		}
 	});

@@ -21,33 +21,22 @@ class Video extends BaseVideo {
 	//Permet de récupérer l'image d'aperçu de la vidéo à partir du lien de celle-ci
 	public function getThumbnailUrl()
 	{
-		//On supprime la chaine "http://" si elle existe puis on supprime la chaine "www" si elle existe
-		$videoLink = preg_replace('/^www\./', '', str_replace('http://', '', $this->getLink()));
+		//On récupère le lien de la vidéo
+		$videoLink = $this->getLink();
 		
-		if (strpos($videoLink, 'youtube.com/watch?v=') !== false || strpos($videoLink, 'youtu.be/') !== false) { 
+		//Si c'est un lien embed youtube
+		if (strpos($videoLink, 'http://www.youtube.com/v/') !== false) {
 			$embed = 'http://img.youtube.com/vi/';
+			$videoId = str_replace('http://www.youtube.com/v/', '', $videoLink);
 			
-			if (strpos($videoLink, 'youtube.com') !== false) {
-				$exploded = explode('&', str_replace('youtube.com/watch?v=', '', $videoLink));
-			} else {
-				$exploded = explode('?', str_replace('youtu.be/', '', $videoLink));
-			}
-			
-			return $embed . $exploded[0] . '/0.jpg';
-			
-		} elseif (strpos($videoLink,'dailymotion.com') !== false) {
+			return $embed . $videoId . '/0.jpg';
+		} 
+		// Sinon si c est un lien embed dailymotion
+		elseif (strpos($videoLink, 'http://www.dailymotion.com/embed/video/') !== false) {
 			$embed = 'http://www.dailymotion.com/thumbnail/video/';
+			$videoId = str_replace('http://www.dailymotion.com/embed/video/', '', $videoLink);
 			
-			if (strpos($videoLink, '/video/') !== false) {
-				$exploded = explode('_', str_replace('dailymotion.com/video/', '', $videoLink));
-			
-				return $embed . $exploded[0];
-				
-			} elseif (strpos($videoLink,'#video=') !== false) {
-				$embed .= preg_replace('/dailymotion\.com\/.*#video=/', '', $videoLink);
-				
-				return $embed;
-			}
+			return $embed . $videoId;
 		}
 		
 		return '';

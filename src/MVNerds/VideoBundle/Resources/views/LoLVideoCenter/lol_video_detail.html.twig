@@ -20,6 +20,7 @@
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-modal.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/site/alerts-ajax-handler.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/videos/publish-video.js') }}"></script>
 	{% else %}
 
@@ -60,7 +61,12 @@
 				</div>
 				
 				<div class="video-player-container">
-					{% render 'MVNerdsVideoBundle:LoLVideo:renderVideo' with {'video': video} %}
+					{% if video_type == 'youtube' %}
+						{% include 'MVNerdsVideoBundle:Videos:youtube.html.twig' with {'link': video.getLink()}%}
+					{% elseif video_type == 'dailymotion' %}
+						{% include 'MVNerdsVideoBundle:Videos:dailymotion.html.twig' with {'link': video.getLink()} %}
+					{% endif %}
+					{#{% render 'MVNerdsVideoBundle:LoLVideo:renderVideo' with {'video': video} %}#}
 				</div>
 				
 				<div class="description-container">
@@ -87,7 +93,7 @@
 					</div>
 				{% endif %}
 				
-				{% render 'MVNerdsVoteBundle:Vote:renderVoteBlock' with {'object': video} %}
+				{% render 'MVNerdsVoteBundle:Vote:renderVoteBlock' with {'object': video, 'objectType': 'video'} %}
 					
 				<div class="block">
 					<div class="header">

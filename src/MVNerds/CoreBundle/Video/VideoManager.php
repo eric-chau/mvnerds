@@ -40,37 +40,55 @@ class VideoManager
 		->find();
 	}
 	
-	public function isVideoLinkValid($link) 
+	/**
+	 * Permet de formater une url brut (http://www.youtube.com/watch?v=....) en url embed (http://www.youtube.com/v/...)
+	 * @param string $link l url a formater
+	 * @return l url formatée si tout c est bien passé ou false sinon
+	 */
+	public function formatVideoLink($link)
 	{
+		//On supprime les chaine "http://" et "https://" si elles existent puis on supprime la chaine "www" si elle existe
+		$link = str_replace('http://', '', $link);
+		$link = str_replace('https://', '', $link);
+		$escapedLink = preg_replace('/^www\./', '', $link);
 		
-		//On supprime la chaine "http://" si elle existe puis on supprime la chaine "www" si elle existe
-		$videoLink = preg_replace('/^www\./', '', str_replace('http://', '', $link));
+		$formatedLink = false;
 		
-		if (strpos($videoLink, 'youtube.com/watch?v=') !== false || strpos($videoLink, 'youtu.be/') !== false) {
+		// On vérifie si la vidéo provient de youtube
+		if (strpos($escapedLink, 'youtube.com/watch?v=') !== false || strpos($escapedLink, 'youtu.be/') !== false) { 
+			$embed = 'http://www.youtube.com/v/';
 			
-			if (strpos($videoLink, 'youtube.com') !== false) {
-				$exploded = explode('&', str_replace('youtube.com/watch?v=', '', $videoLink));
-			} else {
-				$exploded = explode('?', str_replace('youtu.be/', '', $videoLink));
+			if (strpos($escapedLink, 'youtube.com') !== false) {
+				$exploded = explode('&', str_replace('youtube.com/watch?v=', '', $escapedLink));
+			} 
+			else {
+				$exploded = explode('?', str_replace('youtu.be/', '', $escapedLink));
 			}
+			if ($exploded != null && count($exploded) > 0 && $exploded[0] != '') {
+				$formatedLink = $embed . $exploded[0];
+			}
+		} 
+		// Sinon on vérifie si elle provient de dailymotion
+		elseif (strpos($escapedLink,'dailymotion.com') !== false) {
+			$embed = 'http://www.dailymotion.com/embed/video/';
 			
-			return $exploded[0] != '';
+			if (strpos($escapedLink, '/video/') !== false) {
+				$exploded = explode('_', str_replace('dailymotion.com/video/', '', $escapedLink));
 			
-		} elseif (strpos($videoLink,'dailymotion.com') !== false) {
-			
-			if (strpos($videoLink, '/video/') !== false) {
-				$exploded = explode('_', str_replace('dailymotion.com/video/', '', $videoLink));
-			
-				return $exploded[0] != '';
+				if ($exploded != null && count($exploded) > 0 && $exploded[0] != '') {
+					$formatedLink = $embed . $exploded[0];
+				}
+			} 
+			elseif (strpos($escapedLink,'#video=') !== false) {
+				$embed .= preg_replace('/dailymotion\.com\/.*#video=/', '', $escapedLink);
 				
-			} elseif (strpos($videoLink,'#video=') !== false) {
-				$exploded .= preg_replace('/dailymotion\.com\/.*#video=/', '', $videoLink);
-				
-				return $exploded != '';
+				if ($embed != null && $embed != '') {
+					$formatedLink = $embed;
+				}
 			}
 		}
 		
-		return false;
+		return $formatedLink;
 	}
 	
 	public function findAllVideoCatgories() 
