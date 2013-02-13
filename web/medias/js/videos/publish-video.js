@@ -43,10 +43,10 @@ function publishVideo() {
 		$loading.hide();
 		$modalPublish.modal('hide');
 		window.location = Routing.generate('videos_detail', {_locale: locale, slug: slug});
-	}).fail(function(){
+	}).fail(function(msg){
 		$loading.hide();
 		$modalPublish.modal('hide');
-		console.log('fail');
+		displayMessage(msg.responseText, ERROR_ALERT);
 	});
 }
 
@@ -86,7 +86,6 @@ $(document).ready(function() {
 		try {
 			publishVideo()
 		} catch (err) {
-			console.log(err);
 			displayMessage(err, ERROR_ALERT);
 			$loading.hide();
 		}

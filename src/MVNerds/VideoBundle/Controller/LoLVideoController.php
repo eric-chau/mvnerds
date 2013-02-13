@@ -42,14 +42,16 @@ class LoLVideoController extends Controller
 		
 		/* @var $videoManager \MVNerds\CoreBundle\Video\VideoManager */
 		$videoManager = $this->get('mvnerds.video_manager');
-				
+		
+		$translator = $this->get('translator');
+		
 		//Si le paramètre slug est défini c'est une edition de vidéo
 		if ( isset( $_POST['slug'] ) && ($slug = $_POST['slug']) != '' ) {
 			try {
 				/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
 				$video = $videoManager->findBySlug($slug);
 			} catch (\Exception $e ) {
-				throw new HttpException(500, 'Video not found');
+				return new Response($translator->trans('error.video_not_found'), 400);
 			}
 
 			if( ! ($this->getUser()->getId() == $video->getUserId() || $this->get('security.context')->isGranted('ROLE_ADMIN'))) {
@@ -63,7 +65,7 @@ class LoLVideoController extends Controller
 		if ( isset( $_POST['title'] ) && ($title = $_POST['title']) != '' ) {
 			$video->setTitle($title);
 		} else {
-			throw new HttpException(500, 'Missing title');
+			return new Response($translator->trans('error.missing_title'), 400);
 		}
 		
 		if ( isset( $_POST['category'] ) && ($category = $_POST['category']) != '' ) {
@@ -71,20 +73,20 @@ class LoLVideoController extends Controller
 				$videoManager->findVideoCategoryById($category);
 				$video->setVideoCategoryId($category);
 			} catch (\Exception $e) {
-				throw new \Exception('Video catgory not valid');
+				return new Response($translator->trans('error.video_category_not_valid'), 400);
 			}
 		} else {
-			throw new HttpException(500, 'Missing category');
+			return new Response($translator->trans('error.missing_category'), 400);
 		}
 		
 		if ( isset( $_POST['link'] ) && ($link = $_POST['link']) != '' ) {
 			if (($formatedLink = $videoManager->formatVideoLink($link))) {
 				$video->setLink($formatedLink);
 			} else {
-				throw new \Exception('Link not valid');
+				return new Response($translator->trans('error.link_not_valid'), 400);
 			}
 		} else {
-			throw new HttpException(500, 'Missing link');
+			return new Response($translator->trans('error.missing_link'), 400);
 		}
 		
 		if ( isset( $_POST['description'] ) && ($description = $_POST['description']) != '' ) {

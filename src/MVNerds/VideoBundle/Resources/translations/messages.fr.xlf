@@ -47,6 +47,32 @@
 				<source>OTHER</source>
 				<target>Autre</target>
 			</trans-unit>
+			
+			<!-- TRADUCTION DES MESSAGES D ERREURS DU LoLVideoController -->
+			<trans-unit id="1000">
+				<source>error.video_not_found</source>
+				<target>Vidéo introuvable</target>
+			</trans-unit>
+			<trans-unit id="1001">
+				<source>error.missing_title</source>
+				<target>Titre manquant</target>
+			</trans-unit>
+			<trans-unit id="1002">
+				<source>error.video_category_not_valid</source>
+				<target>Catégorie non valide</target>
+			</trans-unit>
+			<trans-unit id="1003">
+				<source>error.missing_category</source>
+				<target>Catégorie manquante</target>
+			</trans-unit>
+			<trans-unit id="1004">
+				<source>error.link_not_valid</source>
+				<target>Lien non valide</target>
+			</trans-unit>
+			<trans-unit id="1005">
+				<source>error.missing_link</source>
+				<target>Lien manquant</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
