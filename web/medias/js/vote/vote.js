@@ -16,6 +16,18 @@ $(document).ready(function() {
 			$('.like_count').html(data.likeCount);
 			$('.dislike_count').html(data.dislikeCount);
 			$('.vote_count').html(data.likeCount + data.dislikeCount);
+			
+			var rating = data.likeCount / (data.likeCount + data.dislikeCount) * 100;
+			var rating_css_class = '';
+			if (rating < 40) {
+				rating_css_class = 'rating red';
+			} else if (rating >= 40 && rating < 70) {
+					rating_css_class = 'rating orange';
+			} else {
+			   rating_css_class = 'rating green';
+			}
+			$('div.vote-block div.rating').attr('class', rating_css_class).html(Math.round(rating) + '%');
+			
 			if (data.canLike) {
 				$('.btn-vote-like').removeClass('disabled');
 			} else {
