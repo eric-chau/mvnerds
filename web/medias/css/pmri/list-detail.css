@@ -148,8 +148,66 @@ div.span8.left-content div.item-block-container div.span6.element ul li.item div
 div.span4.right-content div.block div.body div.block-media {
   margin: 10px 0 20px 0;
 }
+div.span4.right-content div.block div.body div.block-media div.vote-block {
+  background-color: #141414;
+  height: 108px;
+  margin: 0 8px 0 120px;
+}
+div.span4.right-content div.block div.body div.block-media div.vote-block div.rating {
+  color: #666;
+  font-size: 28px;
+  font-weight: bold;
+  padding: 5px 0;
+}
+div.span4.right-content div.block div.body div.block-media div.vote-block div.rating.red {
+  color: #db4a38;
+}
+div.span4.right-content div.block div.body div.block-media div.vote-block div.rating.orange {
+  color: #fb9701;
+}
+div.span4.right-content div.block div.body div.block-media div.vote-block div.rating.green {
+  color: #759e1a;
+}
+div.span4.right-content div.block div.body div.block-media div.vote-block div.vote-actions {
+  color: #999;
+  font-size: 12px;
+  padding: 5px 0;
+}
+div.span4.right-content div.block div.body div.block-media div.vote-block div.vote-actions a {
+  color: #759e1a;
+  display: inline-block;
+  margin: 0 20px;
+}
+div.span4.right-content div.block div.body div.block-media div.vote-block div.vote-actions a:hover i {
+  color: white;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div.span4.right-content div.block div.body div.block-media div.vote-block div.vote-actions a.disabled {
+  cursor: not-allowed;
+}
+div.span4.right-content div.block div.body div.block-media div.vote-block div.vote-actions a.dislike {
+  color: #db4a38;
+}
+div.span4.right-content div.block div.body div.block-media div.vote-block div.vote-actions a.dislike:hover i {
+  color: white;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div.span4.right-content div.block div.body div.block-media div.vote-block div.vote-actions a i {
+  display: block;
+  font-size: 20px;
+  margin: 0 0 3px 0;
+}
 div.span4.right-content div.block div.body div.block-media img {
   border: 1px solid #666;
+  display: inline-block;
+  float: left;
+  margin: 0 10px 0 8px;
   padding: 3px;
   width: 100px !important;
 }
