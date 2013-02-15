@@ -5,35 +5,35 @@
 			<!-- PAGE DE LOGIN -->
 			<trans-unit id="1">
 				<source>Login.h1</source>
-				<target>Connexion à un compte MVNerds</target>
+				<target>Sign in to my MVNerds account</target>
 			</trans-unit>
 			<trans-unit id="2">
 				<source>Bad credentials</source>
-				<target>La combinaison nom d'utilisateur / mot de passe est incorrecte.</target>
+				<target>The Username and the password provided don't match.</target>
 			</trans-unit>
 			<trans-unit id="3">
 				<source>Login.form.username</source>
-				<target>Nom d'utilisateur</target>
+				<target>Username</target>
 			</trans-unit>
 			<trans-unit id="4">
 				<source>Login.form.password</source>
-				<target>Mot de passe</target>
+				<target>Password</target>
 			</trans-unit>
 			<trans-unit id="5">
 				<source>Login.form.remember_me</source>
-				<target>Se souvenir de moi</target>
+				<target>Remember me</target>
 			</trans-unit>
 			<trans-unit id="6">
 				<source>Login.form.forgot_password</source>
-				<target>Mot de passe oublié ?</target>
+				<target>Forgot password?</target>
 			</trans-unit>
 			<trans-unit id="7">
 				<source>Login.form.signin.button</source>
-				<target>Je me connecte</target>
+				<target>Log in</target>
 			</trans-unit>
 			<trans-unit id="8">
 				<source>Login.no_account.h2</source>
-				<target>Je ne suis pas encore inscrit</target>
+				<target>Not registered yet</target>
 			</trans-unit>
 			<trans-unit id="9">
 				<source>Login.no_account.message</source>
@@ -44,15 +44,15 @@
 			</trans-unit>
 			<trans-unit id="10">
 				<source>Login.create_account.button</source>
-				<target>Créer un compte</target>
+				<target>Sign up</target>
 			</trans-unit>
 			<trans-unit id="11">
 				<source>Login.title</source>
-				<target>Connexion à mon compte</target>
+				<target>Log in to my account</target>
 			</trans-unit>
 			<trans-unit id="12">
 				<source>Login.breadcrumbs</source>
-				<target>Je me connecte à mon compte MVNerds</target>
+				<target>Sign in to my MVNerds account</target>
 			</trans-unit>
 
 			<!-- LOGIN PAGE - FORGOT PASSWORD MODAL -->
@@ -62,15 +62,15 @@
 			</trans-unit>
 			<trans-unit id="21">
 				<source>Login.ForgotPassword.modal.title</source>
-				<target>J'ai oublié mon mot de passe</target>
+				<target>I forgot my password</target>
 			</trans-unit>
 			<trans-unit id="22">
 				<source>Login.ForgotPassword.modal.error.message</source>
-				<target>Désolé, l'adresse mail que vous avez renseigné n'est pas reconnue, veuillez réessayer.</target>
+				<target>Sorry, you provided an invalid email, try again.</target>
 			</trans-unit>
 			<trans-unit id="23">
 				<source>Login.ForgotPassword.modal.warning.message</source>
-				<target>Il est possible que l'e-mail soit considéré comme un spam.</target>
+				<target>Sometimes our emails are considered as spam.</target>
 			</trans-unit>
 			<trans-unit id="24">
 				<source>Login.ForgotPassword.modal.intro.message</source>
@@ -81,17 +81,17 @@
 			</trans-unit>
 			<trans-unit id="25">
 				<source>Login.ForgotPassword.modal.send.button</source>
-				<target>Envoyer</target>
+				<target>Send</target>
 			</trans-unit>
 			<trans-unit id="26">
 				<source>Login.ForgotPassword.modal.success.title</source>
-				<target>Demande de réinitialisation de mot de passe acceptée</target>
+				<target>Password reset request accepted</target>
 			</trans-unit>
 			<trans-unit id="27">
 				<source>Login.ForgotPassword.modal.success.message</source>
 				<target>
 					Nous avons envoyé les instructions de réinitialisation de mot de passe à votre adresse email. Si vous ne recevez pas les instructions d'ici une minute 
-					ou deux, vérifiez les filtres de spams et / ou de courriers indésirables de votre messagerie.
+					ou deux, vérifiez les filtres de spams et / ou de courriers indésirables de votre messagerie. | A TRADUIRE
 				</target>
 			</trans-unit>
 		</body>

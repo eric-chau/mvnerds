@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="file.ext">
+		<body>
+			<!-- Validateur à l'inscription d'un nouveau membre -->
+			<trans-unit id="20300">
+				<source>Validation.User.username.already_in_use</source>
+				<target>This user name is already used.</target>
+			</trans-unit>
+			<trans-unit id="20301">
+				<source>Validation.User.password.miss_match</source>
+				<target>The two passwords do not match.</target>
+			</trans-unit>
+			<trans-unit id="20302">
+				<source>Validation.User.email.already_in_use</source>
+				<target>This e-mail address is already in use.</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

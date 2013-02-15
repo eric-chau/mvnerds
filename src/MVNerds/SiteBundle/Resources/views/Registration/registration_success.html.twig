@@ -1,0 +1,68 @@
+{% extends 'MVNerdsSiteBundle::layout.html.twig' %}
+
+{% block title %}Enregistrement terminé - Création de compte | MVNerds{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+	{% else %}
+
+	{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		
+	{% else %}
+
+	{% endif %}
+{% endblock %}
+
+{% block topbar %}
+	{% set module = 'registration' %}
+		
+	{{ parent() }}
+{% endblock %}
+		
+{% block breadcrumbs %}
+	{{ parent() }}
+	
+	> <a href="{{ path('site_summoner_registration') }}">Créer un compte MVNerds</a> > Enregistrement terminé
+{% endblock %}
+
+{% block main_content %}
+	<div class="container main-container border-top">
+		
+		{# PUBLICITÉ #}
+		<div class="ad-container">
+			<script type="text/javascript"><!--
+			google_ad_client = "ca-pub-9866334543391692";
+			/* MVNerds V1 */
+			google_ad_slot = "3293122397";
+			google_ad_width = 728;
+			google_ad_height = 90;
+			//-->
+			</script>
+			<script type="text/javascript"
+			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+			</script>
+		</div>
+		
+		<h1>{{'registration_success.h1'|trans}}</h1>
+
+		<p>
+			{{'registration_success.p1'|trans({'%username%':user.getUsername(), '%usermail%':user.getEmail()})}}
+		</p>
+
+		<p>
+			{{'registration_success.p2'|trans}}
+		</p>
+
+		<p>
+			<strong style="color: #be3322">Important :</strong> {{'registration_success.warning'|trans}}
+		</p>
+	</div>
+{% endblock %}

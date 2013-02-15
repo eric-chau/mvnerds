@@ -7,4 +7,16 @@
 	<div class="response-main-content">
 		<p><i class="icon-quote-left"></i> <span class="msg">{{ response.getContent()|nl2br }}</span> <i class="icon-quote-right"></i></p>
 	</div>
+	
+	{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+		<div class="more-actions-container">
+			<a href="#" class="more-actions dropdown-toggle" data-toggle="dropdown"><i class="icon-cogs"></i></a>
+			<ul class="dropdown-menu" data-response-id="{{ response.getId() * 47 }}">
+				{% if response.getUser().getId() == app.user.getId() %}
+					<li><a href="#" class="edit-response-action">Éditer cette réponse</a></li>
+				{% endif %}
+				<li><a href="#">Signaler comme abus</a></li>
+			</ul>
+		</div>
+	{% endif %}
 </div>

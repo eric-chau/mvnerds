@@ -623,11 +623,11 @@
 			</trans-unit>
 			<trans-unit id="20203">
 				<source>account_activation.a.profile</source>
-				<target>See my profile</target>
+				<target>Sign in</target>
 			</trans-unit>
 			<trans-unit id="20204">
 				<source>account_activation.a.index</source>
-				<target>Home</target>
+				<target>Back to home</target>
 			</trans-unit>
 			<trans-unit id="20205">
 				<source>account_activation_fail.h1</source>
@@ -653,18 +653,6 @@
 				<target>The MVNerds team</target>
 			</trans-unit>
 
-			<trans-unit id="20300">
-				<source>Validation.User.username.already_in_use</source>
-				<target>This user name is already used.</target>
-			</trans-unit>
-			<trans-unit id="20301">
-				<source>Validation.User.password.miss_match</source>
-				<target>The two passwords do not match.</target>
-			</trans-unit>
-			<trans-unit id="20302">
-				<source>Validation.User.email.already_in_use</source>
-				<target>This e-mail address is already in use.</target>
-			</trans-unit>
 
 			<trans-unit id="21000">
 				<source>Sidebar.most_valuable_news.tooltip.access_module</source>

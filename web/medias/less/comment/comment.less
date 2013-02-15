@@ -27,6 +27,21 @@ div.comments-container {
 				width: 434px;
 			}
 
+			div.anonymous-user-comment-field {
+				background-color: @bodyMainBGColor;
+				border-color: #999;
+				height: 76px;
+				padding: 3px 5px;
+
+				a {
+					color: darken(@MVNerdsBlue, 10%);
+
+					&:hover, &:focus {
+						text-decoration: underline;
+					}
+				}
+			}
+
 			i {
 				color: white;
 			}
@@ -222,6 +237,47 @@ div.comments-container {
 
 						div.response-main-content p {
 							margin: 0;
+						}
+
+						div.more-actions-container {
+							text-align: right;
+
+
+							&.open a.more-actions {
+								border-color: @MVNerdsGreen; 
+								opacity: 1; .transition(opacity .25s linear);
+							}
+
+							a.more-actions {
+								position: relative;
+							}
+
+
+							ul.dropdown-menu {
+								background-color: @bodyMainBGColor;
+								border: 2px solid @MVNerdsGreen;
+								.border-radius(0);
+								left: initial !important;
+								margin: 0;
+								padding: 3px 0;
+								right: -5px !important;
+								text-align: left;
+								top: 24px;
+
+								li {
+									&:hover {
+										background-color: @MVNerdsGreen;
+									
+										a {
+											color: white; 
+										}
+									}
+
+									a {
+										font-size: 12px; .transition(none);
+									}
+								}
+							}
 						}
 					}
 				}

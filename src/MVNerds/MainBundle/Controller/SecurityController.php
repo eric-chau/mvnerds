@@ -10,7 +10,7 @@ class SecurityController extends Controller
 {
 
 	/**
-	 * @Route("/summoner/login", name="security_summoner_login")
+	 * @Route("/{_locale}/summoner/login", name="security_summoner_login")
 	 */
 	public function loginAction()
 	{
@@ -28,7 +28,7 @@ class SecurityController extends Controller
 			$session->remove(SecurityContext::AUTHENTICATION_ERROR);
 		}
 
-		return $this->render('MVNerdsLaunchSiteBundle:Login:login_index.html.twig', array(
+		return $this->render('MVNerdsSiteBundle:Registration:login_index.html.twig', array(
 			'last_username'				=> $session->get(SecurityContext::LAST_USERNAME),
 			'error'						=> $error
 		));
@@ -51,7 +51,7 @@ class SecurityController extends Controller
 	{
 		$this->get('session')->set('_security.user_area.target_path', $this->getRequest()->headers->get('referer'));
 		
-		return $this->redirect($this->generateUrl('launch_site_summoner_registration'));
+		return $this->redirect($this->generateUrl('site_summoner_registration'));
 	}
 
 	/**

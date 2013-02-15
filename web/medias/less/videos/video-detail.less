@@ -49,108 +49,7 @@ div.span4.right-content {
 					margin: 0 10px 0 8px;
 					padding: 3px;
 					width: 100px !important;
-				}
-
-				div.vote-block {
-					background-color: #141414;
-					height: 108px;
-					margin: 0 8px 0 120px;
-
-					div {
-						&.rating {
-							color: #666;
-							font-size: 28px;
-							font-weight: bold;
-							padding: 5px 0;
-
-							&.red {
-								color: @MVNerdsRed;
-							}
-
-							&.orange {
-								color: @LoLOrangeAD;
-							}
-
-							&.green {
-								color: @MVNerdsGreen;
-							}
-						}
-
-						&.vote-actions {
-							color: #999;
-							font-size: 12px;
-							padding: 5px 0;
-
-							a {
-								color: @MVNerdsGreen;
-								display: inline-block;
-								margin: 0 20px;
-
-								&:hover i {
-									color: white; .transition(color .25s linear);
-								}
-
-								&.disabled {
-									cursor: not-allowed;
-								}
-
-								&.dislike {
-									color: @MVNerdsRed;
-
-									&:hover i {
-										color: white; .transition(color .25s linear);
-									}
-								}
-
-								i {
-									display: block;
-									font-size: 20px;
-									margin: 0 0 3px 0;
-								}
-							}
-						}
-					}
-
-
-				}
-			}
-
-			 div.stats {
-			 	background-color: #141414;
-			 	color: #999;
-			 	display: inline-block;
-				font-size: 10px;
-				line-height: 1em;
-				margin: 0 0 4px 8px;
-				padding: 5px 10px 9px 10px;
-				text-transform: uppercase;
-				vertical-align: top;
-				width: 130px;
-
-				&.odd {
-					margin-left: 1px;
-				}
-
-				strong {
-					color: @MVNerdsBlue;
-					display: inline-block;
-					font-size: 18px;
-					line-height: 25px;
-
-					a {
-						color: @MVNerdsRed;
-						font-size: 18px;
-					}
-				}
-
-				i {
-					display: inline-block;
-					float: left;
-					font-size: 28px;
-					margin: 0 10px 0 0;
-					position: relative;
-					top: 7px;
-				}
+				}	
 			}
 		}
 	}
@@ -158,3 +57,4 @@ div.span4.right-content {
 
 @import "../comment/comment.less";
 @import "../mvnerds/mvnerds-alerts.less";
+@import "../vote/vote.less";

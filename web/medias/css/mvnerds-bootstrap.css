@@ -144,6 +144,8 @@ ul,
 li,
 div,
 input[type="text"],
+input[type="password"],
+input[type="email"],
 textarea {
   color: #111111;
   font-family: 'Source Sans Pro', sans-serif;
@@ -173,14 +175,20 @@ img {
   display: inline-block;
   vertical-align: top;
 }
-input[type="text"] {
+input[type="text"],
+input[type="password"],
+input[type="email"] {
   background-color: #e4e6e5;
   border: 1px solid #999;
   color: #111111;
   padding: 2px 5px;
 }
 input[type="text"]:focus,
-input[type="text"]:hover {
+input[type="password"]:focus,
+input[type="email"]:focus,
+input[type="text"]:hover,
+input[type="password"]:hover,
+input[type="email"]:hover {
   color: #c87801;
   -webkit-transition: color 0.2s linear;
   -moz-transition: color 0.2s linear;
@@ -495,19 +503,8 @@ div#topbar ul.right-container li.user-container a:hover {
   text-decoration: underline;
 }
 div#topbar ul.right-container li.user-container a.username {
-  color: #aaa;
-  margin: 0 10px 0 0;
-  position: relative;
+  margin: 0 20px 0 0;
   text-transform: none;
-  top: -2px;
-}
-div#topbar ul.right-container li.user-container a.signout:hover {
-  color: #db4a38;
-  -webkit-transition: color 0.25s linear;
-  -moz-transition: color 0.25s linear;
-  -o-transition: color 0.25s linear;
-  transition: color 0.25s linear;
-  text-decoration: none;
 }
 div#topbar ul.right-container li.user-container i {
   font-size: 14px;
@@ -656,6 +653,7 @@ div.container.champion-rotation div.champion-search-input i {
   top: 2px;
 }
 div.container.main-container {
+  min-height: 417px;
   padding: 20px 10px;
 }
 div.container.main-container div.ad-container {
@@ -711,6 +709,39 @@ div.container.main-container div.span4.right-content div.block div.body ul {
 div.container.main-container div.span4.right-content div.block div.body ul li {
   color: #aaa;
   font-weight: bold;
+}
+div.container.main-container div.span4.right-content div.block div.body div.stats {
+  background-color: #141414;
+  color: #999;
+  display: inline-block;
+  font-size: 10px;
+  line-height: 1em;
+  margin: 0 0 4px 8px;
+  padding: 5px 10px 9px 10px;
+  text-transform: uppercase;
+  vertical-align: top;
+  width: 130px;
+}
+div.container.main-container div.span4.right-content div.block div.body div.stats.odd {
+  margin-left: 1px;
+}
+div.container.main-container div.span4.right-content div.block div.body div.stats strong {
+  color: #19a0df;
+  display: inline-block;
+  font-size: 18px;
+  line-height: 25px;
+}
+div.container.main-container div.span4.right-content div.block div.body div.stats strong a {
+  color: #db4a38;
+  font-size: 18px;
+}
+div.container.main-container div.span4.right-content div.block div.body div.stats i {
+  display: inline-block;
+  float: left;
+  font-size: 28px;
+  margin: 0 10px 0 0;
+  position: relative;
+  top: 7px;
 }
 div.container.main-container div.span4.right-content div.block div.body div.pmri-row {
   background-color: #333;

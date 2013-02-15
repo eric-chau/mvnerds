@@ -25,11 +25,9 @@ $(function() {
 		var champs = $(this).data('source');
 		
 		if (champs.indexOf(val) >= 0) {
-			console.log('in');
 			window.location = Routing.generate('champion_detail_by_name', {_locale: locale, name: val});
-		} else {
-			console.log('not in');
-		}
+		} 
+		else { }
 	});
 });
 

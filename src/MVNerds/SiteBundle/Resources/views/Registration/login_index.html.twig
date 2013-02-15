@@ -1,0 +1,117 @@
+{% extends 'MVNerdsSiteBundle::layout.html.twig' %}
+
+{% block title %}{{ 'Login.title'|trans }} | MVNerds{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		<link href="{{ asset('medias/css/site/login-index.css') }}" rel="stylesheet" type="text/css">
+		<link href="{{ asset('medias/css/mvnerds/mvnerds-modal.css') }}" rel="stylesheet" type="text/css">
+	{% else %}
+
+	{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-modal.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/jquery.form.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/site/login-page.js') }}"></script>
+	{% else %}
+
+	{% endif %}
+{% endblock %}
+
+{% block topbar %}
+	{% set module = 'registration' %}
+		
+	{{ parent() }}
+{% endblock %}
+		
+{% block breadcrumbs %}
+	{{ parent() }}
+	
+	> <a href="{{ path('security_summoner_login') }}">{{ 'Login.breadcrumbs'|trans }}</a>
+{% endblock %}
+
+{% block main_content %}
+	<div class="container main-container border-top">
+		<div class="row-fluid">
+			<div class="span8 left-content">
+				<h1>{{ 'Login.h1'|trans }}</h1>
+				
+				{# PUBLICITÉ #}
+				<div class="ad-container">
+					<script type="text/javascript"><!--
+					google_ad_client = "ca-pub-9866334543391692";
+					/* MVNerds 2.0 Contenu principal */
+					google_ad_slot = "9485929999";
+					google_ad_width = 468;
+					google_ad_height = 60;
+					//-->
+					</script>
+					<script type="text/javascript"
+					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+					</script>
+				</div>
+				
+				{% if error %}
+					<div class="form-error">{{ error.message|trans }}</div>
+				{% endif %}
+
+				<form action="{{ path('security_summoner_login_check') }}" method="post">
+					<div class="field">
+						<label for="username_main">{{ 'Login.form.username'|trans }}</label>
+						<input type="text" id="username_main" name="_username" value="{{ last_username }}" />
+					</div>
+					
+					<div class="field">
+						<label for="password_main">{{ 'Login.form.password'|trans }}</label>
+						<input type="password" id="password_main" name="_password" />
+					</div>
+					
+					<div class="field remember-me">
+						<label for="remember_me_main">{{ 'Login.form.remember_me'|trans }}</label>
+						<input type="checkbox" id="remember_me_main" name="_remember_me" checked />
+					</div>
+					
+					<a href="#" class="forgot-pwd">{{ 'Login.form.forgot_password'|trans }}</a> <button class="btn green">{{ 'Login.form.signin.button'|trans }}</button>
+				</form>
+					
+				<h2>{{ 'Login.no_account.h2'|trans }}</h2>
+				
+				<p>
+					{{ 'Login.no_account.message'|trans }}
+				</p>
+				<p class="align-center">
+					<a href="{{ path('site_summoner_registration') }}" class="btn large red">{{ 'Login.create_account.button'|trans }}</a>
+				</p>
+			</div>
+			
+			<div class="span4 right-content">
+				{# PUBLICITÉ #}
+				<div class="sidebar-ad-container">
+					<script type="text/javascript"><!--
+					google_ad_client = "ca-pub-9866334543391692";
+					/* Rectangle MVNerds 2.0 */
+					google_ad_slot = "3578997199";
+					google_ad_width = 300;
+					google_ad_height = 250;
+					//-->
+					</script>
+					<script type="text/javascript"
+					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+					</script>	
+				</div>
+			</div>
+		</div>
+			
+		{% include 'MVNerdsSiteBundle:Modal:forgot_password_modal.html.twig' %}
+	</div>
+{% endblock %}
+	
