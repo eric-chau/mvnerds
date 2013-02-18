@@ -65,7 +65,7 @@ class ReportManager
 	
 	private function updateObjectReportStatus(IReport $object)
 	{
-		if ($this->countReportsForObject($object) >= self::MAX_REPORTS) {
+		if ($object->getReportStatus() != 'HARD' && $this->countReportsForObject($object) >= self::MAX_REPORTS) {
 			$object->setReportStatus('SOFT');
 			if (method_exists($object, 'keepUpdateDateUnchanged')) {
 				$object->keepUpdateDateUnchanged();

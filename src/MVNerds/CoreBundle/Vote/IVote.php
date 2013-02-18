@@ -11,4 +11,8 @@ interface IVote
 	public function getDislikeCount();
 	
 	public function setDislikeCount($v);
+	
+	public function getVoteStatus();
+	
+	public function setVoteStatus($v);
 }

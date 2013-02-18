@@ -725,11 +725,10 @@
     <behavior name="mvnerds_votable">
       <parameter name="like_count_column" value="like_count" />
       <parameter name="dislike_count_column" value="dislike_count" />
+      <parameter name="vote_status_column" value="vote_status" />
     </behavior>
     <behavior name="mvnerds_reportable">
       <parameter name="report_status_column" value="report_status" />
-      <parameter name="value_set" value="FALSE, SOFT, HARD" />
-      <parameter name="default_value" value="FALSE" />
     </behavior>
   </table>
   <table name="video_category">
