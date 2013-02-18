@@ -198,6 +198,9 @@ class LoLVideoController extends Controller
 		/* @var $videoManager \MVNerds\CoreBundle\Video\VideoManager */
 		$videoManager = $this->get('mvnerds.video_manager');
 		
+		/* @var $reportManager \MVNerds\CoreBundle\Report\ReportManager */
+		$reportManager = $this->get('mvnerds.report_manager');
+		
 		try {
 			/* @var $video \MVNerds\CoreBundle\Model\Video */
 			$video = $videoManager->findBySlug($slug);
@@ -208,6 +211,14 @@ class LoLVideoController extends Controller
 			return $this->redirect($this->generateUrl('lol_video_index'));
 		}
 		
+		$user = $this->getUser();
+		
+		try {
+			$reportManager->findByObjectAndUser($video, $user);
+			$canReportVideo = false;
+		} catch (\Exception $e) {
+			$canReportVideo = true;
+		}
 		$videoType = null;
 		if (strpos($video->getLink(), 'youtube.com') !== false) {
 			$videoType = 'youtube';
@@ -221,11 +232,11 @@ class LoLVideoController extends Controller
 			'video'			=> $video,
 			'can_edit'		=> false,
 			'video_type'		=> $videoType,
-			'related_videos'	=> $relatedVideos
+			'related_videos'	=> $relatedVideos,
+			'can_report_video'	=> $canReportVideo
 		);
 		
 		if ($this->get('security.context')->isGranted('ROLE_USER')) {
-			$user = $this->getUser();
 			if (($video->getUser()->getId() == $user->getId()) || $this->get('security.context')->isGranted('ROLE_ADMIN')) {
 				$params['can_edit'] = true;
 				

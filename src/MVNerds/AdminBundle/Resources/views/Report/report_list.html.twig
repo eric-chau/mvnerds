@@ -1,0 +1,11 @@
+<div class="row-fluid title-line">
+	<div class="span2">Identifiant</div>
+	<div class="span4">Namespace</div>
+	<div class="span4">Description</div>
+	<div class="span2">Actions</div>
+</div>
+{% for report in reports %}
+	{% include 'MVNerdsAdminBundle:Report:report_row.html.twig' %}
+{% else %}
+	<i>Aucun objet n a été report avec le statut SOFT</i>
+{% endfor %}

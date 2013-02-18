@@ -1,0 +1,11 @@
+<div class="row-fluid normal-line">
+	<div class="span2">{{ report.getObjectId() }}</div>
+	<div class="span4">{{ report.getObjectNamespace() }}</div>
+	<div class="span4">{{ report.getDescription() }}</div>
+	<div class="span2">		
+		{# Changer le report_status en HARD #}
+		<a href="#" class="status-to-hard-action" data-id="{{report.getObjectId()}}" data-namespace="{{report.getObjectNamespace()}}" title="Éditer">
+			<i class="icon-edit"></i>
+		</a>
+	</div>
+</div>

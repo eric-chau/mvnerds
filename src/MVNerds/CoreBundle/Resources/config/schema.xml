@@ -431,7 +431,6 @@
       <parameter name="update_column" value="update_time" />
     </behavior>
     <behavior name="mvnerds_commentable" />
-    <behavior name="mvnerds_votable" />
   </table>
   <table name="champion_item_build">
     <column name="champion_id" primaryKey="true" required="true" type="INTEGER" />
@@ -720,9 +719,18 @@
       <parameter name="create_column" value="create_time" />
       <parameter name="update_column" value="update_time" />
     </behavior>
-    <behavior name="mvnerds_commentable" />
-    <behavior name="mvnerds_commentable" />
-    <behavior name="mvnerds_votable" />
+    <behavior name="mvnerds_commentable">
+      <parameter name="comment_count_column" value="comment_count" />
+    </behavior>
+    <behavior name="mvnerds_votable">
+      <parameter name="like_count_column" value="like_count" />
+      <parameter name="dislike_count_column" value="dislike_count" />
+    </behavior>
+    <behavior name="mvnerds_reportable">
+      <parameter name="report_status_column" value="report_status" />
+      <parameter name="value_set" value="FALSE, SOFT, HARD" />
+      <parameter name="default_value" value="FALSE" />
+    </behavior>
   </table>
   <table name="video_category">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -767,6 +775,15 @@
     </foreign-key>
     <foreign-key foreignTable="champion" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="champion_id" />
+    </foreign-key>
+  </table>
+  <table name="user_report">
+    <column name="user_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="object_id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="object_namespace" primaryKey="true" required="true" size="255" type="VARCHAR" />
+    <column name="description" size="255" type="VARCHAR" />
+    <foreign-key foreignTable="user">
+      <reference foreign="id" local="user_id" />
     </foreign-key>
   </table>
 </database>
