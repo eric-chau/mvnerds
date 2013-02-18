@@ -177,6 +177,48 @@ class CommentController extends Controller
 			'response' => $response
 		));
 	}
+	
+	/**
+	 * @Route("/{_locale}/response/edit", name="response_edit", options={"expose"=true})
+	 * @Secure(roles="ROLE_USER")
+	 */
+	public function editResponseAction()
+	{
+		$request = $this->getRequest();
+		if (!$request->isXmlHttpRequest() || !$request->isMethod('POST'))
+		{
+			throw new HttpException(500, 'Request must be AJAX and POST method');
+		}
+		
+		$responseID = $request->get('response_id', null);
+		$userSlug = $request->get('user_slug', null);
+		$responseMsg = $request->get('response_msg', null);
+		if ($userSlug == null || $responseMsg == null || $responseID == null) {
+			throw new HttpException(500, 'Des paramètres sont manquants !');
+		}
+		
+		if (0 != strcmp($userSlug, $this->getUser()->getSlug())) {
+			throw new AccessDeniedException();
+		}
+		
+		$response = null;
+		try {
+			$response = $this->get('mvnerds.comment_manager')->editResponse($responseID / 47, $this->getUser(), $responseMsg);
+		}
+		catch (Exception $e) {
+			throw new AccessDeniedException();
+		}
+		
+		return new Response(json_encode(array(
+			'content'			=> $response->getContent(),
+			'last_edition_date'	=> $this->get('translator')->trans('Comment.last_edition.DATE', array(
+				'DATE' => $this->renderView(':Extension:custom_format_date.html.twig', array(
+					'object' => $response->getUpdateTime(), 
+					'lowercase' => true
+				))
+			))
+		)));
+	}
 
 	/**
 	 * @Route("/comment/report", name="comment_report", options={"expose"=true})

@@ -15,6 +15,7 @@ use MVNerds\CoreBundle\Model\UserReportCommentPeer;
 use MVNerds\CoreBundle\Model\UserReportCommentQuery;
 use MVNerds\CoreBundle\Model\CommentResponse;
 use MVNerds\CoreBundle\Model\CommentResponseQuery;
+use MVNerds\CoreBundle\Model\CommentResponsePeer;
 
 class CommentManager
 {
@@ -61,6 +62,19 @@ class CommentManager
 		$comment->save();
 		
 		return $comment;
+	}
+	
+	public function editResponse($responseID, User $user, $responseString)
+	{
+		$response = $this->findResponseById($responseID);
+		if ($response->getUserId() != $user->getId()) {
+			throw new AccessDeniedException();
+		}
+		
+		$response->setContent($responseString);
+		$response->save();
+		
+		return $response;
 	}
 	
 	public function countCommentForUser(User $user)
@@ -147,6 +161,19 @@ class CommentManager
 		}
 		
 		return $comment;
+	}
+	
+	public function findResponseById($id)
+	{
+		$response = CommentResponseQuery::create()
+			->add(CommentResponsePeer::ID, $id)
+		->findOne();
+		
+		if (null == $response) {
+			throw new InvalidArgumentException('No response for id `'. $id .'`');
+		}
+		
+		return $response;
 	}
 	
 	private function increaseObjectCommentCountByOne(IComment $object)

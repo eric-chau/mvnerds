@@ -250,26 +250,26 @@ div.comments-container div.comments-list div.comment-block div.span10 div.commen
 div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions div.more-actions-container a.more-actions {
   margin-right: -5px;
 }
-div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions div.more-actions-container ul.dropdown-menu {
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions div.more-actions-container ul.dropdown-menu.comment {
   background-color: #e4e6e5;
   border: 2px solid #759e1a;
   -webkit-border-radius: 0 !important;
   -moz-border-radius: 0 !important;
   border-radius: 0 !important;
-  left: initial !important;
+  left: auto;
   margin: 0;
   padding: 3px 0;
   right: -5px !important;
   text-align: left;
   top: 24px;
 }
-div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions div.more-actions-container ul.dropdown-menu li:hover {
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions div.more-actions-container ul.dropdown-menu.comment li:hover {
   background-color: #759e1a;
 }
-div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions div.more-actions-container ul.dropdown-menu li:hover a {
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions div.more-actions-container ul.dropdown-menu.comment li:hover a {
   color: white;
 }
-div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions div.more-actions-container ul.dropdown-menu li a {
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions div.more-actions-container ul.dropdown-menu.comment li a {
   font-size: 12px;
   -webkit-transition: none;
   -moz-transition: none;
@@ -297,40 +297,76 @@ div.comments-container div.comments-list div.comment-block div.span10 div.respon
 div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-main-content p {
   margin: 0;
 }
-div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.more-actions-container {
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-edition-mode {
   text-align: right;
 }
-div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.more-actions-container.open a.more-actions {
-  border-color: #759e1a;
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-edition-mode textarea {
+  margin: 0 0 5px 0;
+  width: 398px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-edition-mode a.save-response-edition {
+  margin-right: 0;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions {
+  margin: 5px 0 0 0;
+  position: relative;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.last-edition-date {
+  font-size: 12px;
+  display: inline-block;
+  left: 0;
+  position: absolute;
+  top: 3px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.more-actions-container {
+  position: relative;
+  text-align: right;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.more-actions-container.open a.more-actions {
+  border-color: #999;
   opacity: 1;
   -webkit-transition: opacity 0.25s linear;
   -moz-transition: opacity 0.25s linear;
   -o-transition: opacity 0.25s linear;
   transition: opacity 0.25s linear;
 }
-div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.more-actions-container a.more-actions {
-  position: relative;
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.more-actions-container a.more-actions {
+  border: 1px solid #e4e6e5;
+  color: #999;
+  display: inline-block;
+  font-size: 12px;
+  margin: 0;
+  opacity: .65;
+  padding: 2px 5px;
 }
-div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.more-actions-container ul.dropdown-menu {
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.more-actions-container a.more-actions:hover {
+  border-color: #999;
+  opacity: 1;
+  -webkit-transition: opacity 0.25s linear;
+  -moz-transition: opacity 0.25s linear;
+  -o-transition: opacity 0.25s linear;
+  transition: opacity 0.25s linear;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.more-actions-container ul.dropdown-menu.response {
   background-color: #e4e6e5;
-  border: 2px solid #759e1a;
+  border: 2px solid #999;
   -webkit-border-radius: 0 !important;
   -moz-border-radius: 0 !important;
   border-radius: 0 !important;
-  left: initial !important;
+  left: auto;
   margin: 0;
   padding: 3px 0;
-  right: -5px !important;
+  right: 0;
   text-align: left;
   top: 24px;
 }
-div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.more-actions-container ul.dropdown-menu li:hover {
-  background-color: #759e1a;
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.more-actions-container ul.dropdown-menu.response li:hover {
+  background-color: #999;
 }
-div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.more-actions-container ul.dropdown-menu li:hover a {
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.more-actions-container ul.dropdown-menu.response li:hover a {
   color: white;
 }
-div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.more-actions-container ul.dropdown-menu li a {
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.more-actions-container ul.dropdown-menu.response li a {
   font-size: 12px;
   -webkit-transition: none;
   -moz-transition: none;
