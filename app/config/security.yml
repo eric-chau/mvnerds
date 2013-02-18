@@ -27,7 +27,7 @@ security:
             anonymous: ~
             form_login:
                 check_path: /summoner/login-check
-                login_path: /summoner/login
+                login_path: /{_locale}/summoner/login
             logout:
                 path:   /summoner/logout
                 target: /

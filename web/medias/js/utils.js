@@ -98,3 +98,7 @@ function deactivateButton($buttonLi) {
 		$buttonLi.find('a').addClass('disabled');
 	}
 }
+
+jQuery.nl2br = function(varTest){
+	return varTest.replace(/(\r\n|\n\r|\r|\n)/g, "<br>");
+};

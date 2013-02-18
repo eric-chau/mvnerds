@@ -115,7 +115,7 @@ $(document).ready(function()
 			success: function(response) {
 				$parent.find('i.loader').addClass('hide');
 				$parent.find('textarea').removeAttr('disabled');
-				$parent.parent().find('p span.msg').html(response.content);
+				$parent.parent().find('p span.msg').html($.nl2br(response.content));
 				$parent.hide();
 				$parent.parent().find('div.comment-actions div.last-edition-date').html(response.last_edition_date);
 				$parent.parent().find('div.comment-main-content').show();

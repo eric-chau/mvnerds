@@ -1,0 +1,129 @@
+{% extends 'MVNerdsSiteBundle::layout.html.twig' %}
+
+{% block title %}Inscription | MVNerds{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		<link href="{{ asset('medias/css/site/registration-index.css') }}" rel="stylesheet" type="text/css">
+	{% else %}
+
+	{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		
+	{% else %}
+
+	{% endif %}
+{% endblock %}
+
+{% block topbar %}
+	{% set module = 'registration' %}
+		
+	{{ parent() }}
+{% endblock %}
+		
+{% block breadcrumbs %}
+	{{ parent() }}
+	
+	> <a href="{{ path('site_summoner_registration') }}">Créer un compte MVNerds</a>
+{% endblock %}
+
+{% block main_content %}
+	<div class="container main-container border-top">
+		<div class="row-fluid">
+			<div class="span8 left-content">
+				<h1>Création d'un compte MVNerds</h1>
+				
+				{# PUBLICITÉ #}
+				<div class="ad-container">
+					<script type="text/javascript"><!--
+					google_ad_client = "ca-pub-9866334543391692";
+					/* MVNerds 2.0 Contenu principal */
+					google_ad_slot = "9485929999";
+					google_ad_width = 468;
+					google_ad_height = 60;
+					//-->
+					</script>
+					<script type="text/javascript"
+					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+					</script>
+				</div>
+				
+				<p>
+					Pour créer votre compte MVNerds, vous devez simplement remplir le formulaire ci-dessous en respectant les quelques règles ci-dessous. N'hésitez plus,
+					enregistrez-vous et profitez d'outils taillés pour vous. Et vous ne connaissez pas la meilleure, c'est GRATUIT !
+				</p>
+				<ul>
+					<li class="title">Nom d'invocateur :</li>
+					<li>Doit être composé au minimum de 3 caractères.</li>
+					<li>Doit être unique et disponible.</li>
+					<li>N'utilisez pas un nom d'invocateur d'un autre joueur. Si vous faites l'objet d'une réclamation, des sanctions seront prises à votre encontre.</li>
+					<li class="title">Mot de passe :</li>
+					<li>Doit être composé au minimum de 6 caractères.</li>
+					<li>N'hésitez pas à inclure des caractères spéciaux pour plus de sécurité.</li>
+					<li class="title">Adresse email :</li>
+					<li>Renseignez une adresse valide, elle vous permettra d'activer votre compte.</li>
+					<li>Votre adresse email ne sera pas visible des autres utilisateurs MVNerds et ne sera en aucun cas communiqué à d'autres personnes ou entreprises
+						sans votre autorisation. Nous nous réservons le droit de communiquer votre email dans des cas de force majeur.</li>
+				</ul>
+				
+				<form action="{{ path('site_summoner_registration') }}" method="POST" {{ form_enctype(form) }}>
+					<div class="form-errors">
+						{{ form_errors(form) }}
+					</div>
+						
+					<div class="field">
+						{{ form_label(form.username) }}
+						{{ form_widget(form.username) }}
+						{{ form_errors(form.username) }}
+					</div>
+					
+					<div class="field">
+						{{ form_label(form.password) }}
+						{{ form_widget(form.password) }}
+						{{ form_errors(form.password) }}
+					</div>
+					
+					<div class="field">
+						{{ form_label(form.passwordConfirm) }}
+						{{ form_widget(form.passwordConfirm) }}
+						{{ form_errors(form.passwordConfirm) }}
+					</div>
+					
+					<div class="field">
+						{{ form_label(form.email) }}
+						{{ form_widget(form.email) }}
+						{{ form_errors(form.email) }}
+					</div>
+						
+					{{ form_rest(form) }}
+					
+					<button class="btn large green">Je m'inscris</button>
+				</form>
+			</div>
+			
+			<div class="span4 right-content">
+				{# PUBLICITÉ #}
+				<div class="sidebar-ad-container">
+					<script type="text/javascript"><!--
+					google_ad_client = "ca-pub-9866334543391692";
+					/* Rectangle MVNerds 2.0 */
+					google_ad_slot = "3578997199";
+					google_ad_width = 300;
+					google_ad_height = 250;
+					//-->
+					</script>
+					<script type="text/javascript"
+					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+					</script>	
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}

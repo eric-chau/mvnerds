@@ -1,0 +1,72 @@
+{% extends 'MVNerdsSiteBundle::layout.html.twig' %}
+
+{% block title %}Erreur lors de l'activation de votre compte | MVNerds{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+	{% else %}
+
+	{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		
+	{% else %}
+
+	{% endif %}
+{% endblock %}
+
+{% block topbar %}
+	{% set module = 'registration' %}
+		
+	{{ parent() }}
+{% endblock %}
+		
+{% block breadcrumbs %}
+	{{ parent() }}
+	
+	> Erreur lors de l'activation de votre compte
+{% endblock %}
+
+{% block main_content %}
+	<div class="container main-container border-top">
+		{# PUBLICITÉ #}
+		<div class="ad-container">
+			<script type="text/javascript"><!--
+			google_ad_client = "ca-pub-9866334543391692";
+			/* MVNerds V1 */
+			google_ad_slot = "3293122397";
+			google_ad_width = 728;
+			google_ad_height = 90;
+			//-->
+			</script>
+			<script type="text/javascript"
+			src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+			</script>
+		</div>
+			
+		<h1>{{'account_activation_fail.h1'|trans}}</h1>
+
+		{% if user is not defined %}
+			<p>
+				{{'account_activation_fail.p1'|trans({'%slug%':('<strong>'~slug~'</strong>'),'%activationcode%':('<strong>'~activation_code~'</strong>') })|raw}}
+			</p>
+
+			<p>
+				{{'account_activation_fail.p2'|trans}}
+			</p>
+		{% else %}
+			<p>
+				{{'account_activation_fail.p3'|trans({'%username%':user.getUserName()})}}
+			</p>
+		{% endif %}
+		<p>
+			{{'account_activation_fail.p4'|trans}}
+		</p>
+	</div>
+{% endblock %}

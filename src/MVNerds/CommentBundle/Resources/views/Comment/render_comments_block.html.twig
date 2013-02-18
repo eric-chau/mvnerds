@@ -3,17 +3,7 @@
 <div class="comments-container">
 	{% include 'MVNerdsCommentBundle:Comment:comments_list.html.twig' with {'object': object, 'comments': comments} %}
 	
-	{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-		{% include 'MVNerdsCommentBundle:Comment:add_comment_block.html.twig' %}
-	{% else %}
-		<div class="anonymous-actions">
-			<p class="note">{{ 'Comment.not_authenticated'|trans }}</p>
-			<p class="buttons">
-				<a href="{{ path('security_store_current_route_and_redirect_to_login') }}">{{ 'Comment.signin'|trans }}</a> 
-				<a href="{{ path('launch_site_summoner_registration') }}" class="registration">{{ 'Comment.registration'|trans }}</a>
-			</p>
-		</div>
-	{% endif %}
+	{% include 'MVNerdsCommentBundle:Comment:add_comment_block.html.twig' %}	
 </div>
 
 <script type="text/javascript">

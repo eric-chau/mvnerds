@@ -1,0 +1,60 @@
+div.vote-block {
+	background-color: #141414;
+	height: 108px;
+	margin: 0 8px 0 120px;
+
+	div {
+		&.rating {
+			color: #666;
+			font-size: 28px;
+			font-weight: bold;
+			padding: 5px 0;
+
+			&.red {
+				color: @MVNerdsRed;
+			}
+
+			&.orange {
+				color: @LoLOrangeAD;
+			}
+
+			&.green {
+				color: @MVNerdsGreen;
+			}
+		}
+
+		&.vote-actions {
+			color: #999;
+			font-size: 12px;
+			padding: 5px 0;
+
+			a {
+				color: @MVNerdsGreen;
+				display: inline-block;
+				margin: 0 20px;
+
+				&:hover i {
+					color: white; .transition(color .25s linear);
+				}
+
+				&.disabled {
+					cursor: not-allowed;
+				}
+
+				&.dislike {
+					color: @MVNerdsRed;
+
+					&:hover i {
+						color: white; .transition(color .25s linear);
+					}
+				}
+
+				i {
+					display: block;
+					font-size: 20px;
+					margin: 0 0 3px 0;
+				}
+			}
+		}
+	}
+}

@@ -59,9 +59,13 @@
 			</li>#}
 			<li class="user-container">
 				{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-					<img src="{{ asset('medias/images/avatar/' ~ app.user.getUserAvatarName() ~ '.jpg') }}" /> <a href="#" class="username">{{ app.user.getUsername() }}</a> <a href="#" class="signout">Déconnexion</a>
+					<img src="{{ asset('medias/images/avatar/' ~ app.user.getUserAvatarName() ~ '.jpg') }}" /> 
+					<a href="#" class="username">{{ app.user.getUsername() }}</a> 
+					
+					<a href="{{ path('security_summoner_logout') }}" class="signout">Déconnexion</a>
 				{% else %}
-					<a href="#">se connecter</a> ou <a href="#">s'enregistrer</a>
+					<a href="{{ path('security_summoner_login', {'_locale': locale}) }}">se connecter</a> ou 
+					<a href="{{ path('site_summoner_registration') }}">s'enregistrer</a>
 				{% endif %}
 			</li>
 		</ul>

@@ -1,4 +1,5 @@
 div.container.main-container {
+	min-height: 417px;
 	padding: 20px 10px;
 
 	div.ad-container {
@@ -64,6 +65,44 @@ div.container.main-container {
 						li {
 							color: #aaa;
 							font-weight: bold;
+						}
+					}
+
+					div.stats {
+					 	background-color: #141414;
+					 	color: #999;
+					 	display: inline-block;
+						font-size: 10px;
+						line-height: 1em;
+						margin: 0 0 4px 8px;
+						padding: 5px 10px 9px 10px;
+						text-transform: uppercase;
+						vertical-align: top;
+						width: 130px;
+
+						&.odd {
+							margin-left: 1px;
+						}
+
+						strong {
+							color: @MVNerdsBlue;
+							display: inline-block;
+							font-size: 18px;
+							line-height: 25px;
+
+							a {
+								color: @MVNerdsRed;
+								font-size: 18px;
+							}
+						}
+
+						i {
+							display: inline-block;
+							float: left;
+							font-size: 28px;
+							margin: 0 10px 0 0;
+							position: relative;
+							top: 7px;
 						}
 					}
 

@@ -314,6 +314,19 @@ div.comments-container form.leave-comment-form div.span10 div.comment-actions a.
 div.comments-container form.leave-comment-form div.span10 textarea {
   width: 434px;
 }
+div.comments-container form.leave-comment-form div.span10 div.anonymous-user-comment-field {
+  background-color: #e4e6e5;
+  border-color: #999;
+  height: 76px;
+  padding: 3px 5px;
+}
+div.comments-container form.leave-comment-form div.span10 div.anonymous-user-comment-field a {
+  color: #147fb1;
+}
+div.comments-container form.leave-comment-form div.span10 div.anonymous-user-comment-field a:hover,
+div.comments-container form.leave-comment-form div.span10 div.anonymous-user-comment-field a:focus {
+  text-decoration: underline;
+}
 div.comments-container form.leave-comment-form div.span10 i {
   color: white;
 }
@@ -509,6 +522,46 @@ div.comments-container div.comments-list div.comment-block div.span10 div.respon
 }
 div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-main-content p {
   margin: 0;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.more-actions-container {
+  text-align: right;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.more-actions-container.open a.more-actions {
+  border-color: #759e1a;
+  opacity: 1;
+  -webkit-transition: opacity 0.25s linear;
+  -moz-transition: opacity 0.25s linear;
+  -o-transition: opacity 0.25s linear;
+  transition: opacity 0.25s linear;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.more-actions-container a.more-actions {
+  position: relative;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.more-actions-container ul.dropdown-menu {
+  background-color: #e4e6e5;
+  border: 2px solid #759e1a;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  left: initial !important;
+  margin: 0;
+  padding: 3px 0;
+  right: -5px !important;
+  text-align: left;
+  top: 24px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.more-actions-container ul.dropdown-menu li:hover {
+  background-color: #759e1a;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.more-actions-container ul.dropdown-menu li:hover a {
+  color: white;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.more-actions-container ul.dropdown-menu li a {
+  font-size: 12px;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
 }
 div.comments-container div.comments-list div.comment-block div.span10 div.comment-number {
   color: #bbb;
