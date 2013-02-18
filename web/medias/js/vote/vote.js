@@ -43,5 +43,7 @@ $(document).ready(function() {
 		}).fail(function(data){
 			console.log(data);
 		});
+		
+		return false;
 	});
 });

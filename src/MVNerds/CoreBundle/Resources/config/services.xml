@@ -195,5 +195,10 @@
 				<argument type="service" id="session" />
 			</call>
 		</service>
+
+		<!-- 
+			REPORT MANAGER SERVICE
+		-->
+		<service id="mvnerds.report_manager" class="MVNerds\CoreBundle\Report\ReportManager" />    
 	</services>		
 </container>

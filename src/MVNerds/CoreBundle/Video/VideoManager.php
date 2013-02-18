@@ -12,7 +12,6 @@ use MVNerds\CoreBundle\Model\VideoCategoryPeer;
 class VideoManager
 {	
 	/**
-	 * 
 	 * @param type $slug
 	 * @return \MVNerds\CoreBundle\Model\Video
 	 * @throws InvalidArgumentException
@@ -26,6 +25,25 @@ class VideoManager
 		if (null === $video)
 		{
 			throw new InvalidArgumentException('No video with slug:' . $slug . '!');
+		}
+
+		return $video;
+	}
+	
+	/**
+	 * @param int $id
+	 * @return \MVNerds\CoreBundle\Model\Video
+	 * @throws InvalidArgumentException
+	 */
+	public function findById($id)
+	{
+		$video = VideoQuery::create()
+			->add(VideoPeer::ID, $id)
+		->findOne();
+
+		if (null === $video)
+		{
+			throw new InvalidArgumentException('No video with id:' . $id . '!');
 		}
 
 		return $video;

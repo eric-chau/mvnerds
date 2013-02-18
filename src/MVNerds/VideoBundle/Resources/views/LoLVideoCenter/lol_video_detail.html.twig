@@ -23,6 +23,7 @@
 		<script type="text/javascript" src="{{ asset('medias/js/site/alerts-ajax-handler.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/videos/video-detail.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/videos/publish-video.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/report/report.js') }}"></script>
 	{% else %}
 
 	{% endif %}
@@ -46,6 +47,10 @@
 			<div class="span8 left-content">
 				<h1>Vidéo "<span class="video-title">{{ video.getTitle() }}"</span></h1>
 				
+				{% if can_report_video %}
+					<a href="#" class="report-action" data-type="video" data-slug="{{video.getSlug()}}">Signaler pour abus</a>
+				{% endif %}
+				
 				{# PUBLICITÉ #}
 				<div class="ad-container">
 					<script type="text/javascript"><!--
@@ -67,9 +72,6 @@
 					{% elseif video_type == 'dailymotion' %}
 						{% include 'MVNerdsVideoBundle:Videos:dailymotion.html.twig' with {'link': video.getLink()} %}
 					{% endif %}
-					<div class="video-infos">
-						
-					</div>
 				</div>
 				
 				<div class="description-container">

@@ -1,0 +1,28 @@
+{% extends 'MVNerdsAdminBundle:Report:layout.html.twig' %}
+
+{% block title %}Administration des reports SOFT - MVNerds{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-alert.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-modal.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-tooltip.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('medias/js/report/change-status-to-hard.js') }}"></script>
+
+{% endblock %}
+
+{% block content %}
+	<h1>Reports SOFT</h1>
+
+	<div class="action-buttons right">
+	</div>
+	
+	{% autoescape false %}
+		{{ render_success_flash() }}
+	{% endautoescape %}
+	
+	<div class="content-container">
+		{% include 'MVNerdsAdminBundle:Report:report_list.html.twig' %}
+	</div>
+{% endblock %}
