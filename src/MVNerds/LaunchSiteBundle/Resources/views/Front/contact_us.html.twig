@@ -16,6 +16,18 @@
 							</div>
 						</div>
 						<div class="control-group">
+							<label for="contact-category" class="control-label">{{ 'Contact.form.category.label'|trans}}</label>
+							<div class="controls">
+								<select id="contact-category" name="contact-category" type="text" placeholder="{{ 'Contact.form.subject.label'|trans}}">
+									<option value="{{'Contact.form.category.BUG' | trans}}">{{'Contact.form.category.BUG' | trans}}</option>
+									<option value="{{'Contact.form.category.SUGGESTION' | trans}}">{{'Contact.form.category.SUGGESTION' | trans}}</option>
+									<option value="{{'Contact.form.category.PARTNERSHIP' | trans}}">{{'Contact.form.category.PARTNERSHIP' | trans}}</option>
+									<option value="{{'Contact.form.category.FEEDBACK' | trans}}">{{'Contact.form.category.FEEDBACK' | trans}}</option>
+									<option value="{{'Contact.form.category.OTHER' | trans}}">{{'Contact.form.category.OTHER' | trans}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="control-group">
 							<label for="contact-subject" class="control-label">{{ 'Contact.form.subject.label'|trans}}</label>
 							<div class="controls">
 								<input id="contact-subject" name="contact-subject" type="text" placeholder="{{ 'Contact.form.subject.label'|trans}}" />

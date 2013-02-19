@@ -153,6 +153,7 @@ class FrontController extends Controller
 			$mail = $request->get('contact-mail');
 			$subject = $request->get('contact-subject');
 			$message = $request->get('contact-message');
+			$category = $request->get('contact-category');
 			
 			/* $flashManager \MVNerds\CoreBundle\Flash\FlashManager */
 			$flashManager = $this->get('mvnerds.flash_manager');
@@ -163,14 +164,16 @@ class FrontController extends Controller
 				{
 					if ($message && strlen($message) > 10)
 					{
+						\Swift_Preferences::getInstance()->setCharset('iso-8859-2');
 						$message = \Swift_Message::newInstance()
 							->setSubject('Contact from : '.$mail)
 							->setFrom($mail)
 							->setTo('hani.yagoub@gmail.com')
 							->setBody($this->renderView('MVNerdsLaunchSiteBundle:Front:contact_mail.txt.twig', array(
-								'mail' => $mail,
+								'mail'		=> $mail,
 								'subject'	=> $subject,
-								'message'	=> $message
+								'message'	=> $message,
+								'category'	=> $category
 						)));
 						$this->get('mailer')->send($message);
 						$flashManager->setSuccessMessage('Flash.success.send_mail_contact');
