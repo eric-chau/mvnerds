@@ -869,6 +869,40 @@ div#footer div.container div.champions-block ul li a:hover {
   -o-transition: color 0.25s linear;
   transition: color 0.25s linear;
 }
-div#footer div.container div.mvnerds-legal div {
+div#footer div.container div.mvnerds-legal div.span3.logo-container {
+  padding: 5px 0 0 0;
+  text-align: right;
+}
+div#footer div.container div.mvnerds-legal div.span9.main-content {
   color: #999;
+}
+div#footer div.container div.mvnerds-legal div.span9.main-content strong {
+  color: #db4a38;
+}
+div#footer div.container div.mvnerds-legal div.span9.main-content p {
+  color: #999;
+  font-size: 12px;
+  margin: 10px 0;
+}
+div#footer div.container div.mvnerds-legal div.span9.main-content ul {
+  margin: 0;
+  padding: 0;
+}
+div#footer div.container div.mvnerds-legal div.span9.main-content ul li {
+  display: inline-block;
+  margin: 0 10px 0 0;
+}
+div#footer div.container div.mvnerds-legal div.span9.main-content ul li a {
+  color: #999;
+}
+div#footer div.container div.mvnerds-legal div.span9.main-content ul li a:hover {
+  text-decoration: underline;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+div#footer div.container div.mvnerds-legal div.span9.main-content ul li i {
+  color: #147fb1;
+  font-size: 12px;
 }
