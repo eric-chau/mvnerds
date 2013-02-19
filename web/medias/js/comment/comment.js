@@ -154,7 +154,7 @@ $(document).ready(function()
 	});
 
 	/*****************************************************************************/
-	/************* EVENT EN RAPPORT AVEC L'EDITION D'UN COMMENTAIRE **************/
+	/************* EVENT EN RAPPORT AVEC 'RÉPONSE A UN COMMENTAIRE' **************/
 	/*****************************************************************************/
 
 	// Déclaration des variables
@@ -245,6 +245,76 @@ $(document).ready(function()
 				$commentMsg.removeAttr('disabled');
 				$commentMsg.val('');
 				window.scrollTo($block.position().left, $block.position().top - 40);
+			}
+		});
+	});
+
+
+	/*****************************************************************************/
+	/************** EVENT EN RAPPORT AVEC L'EDITION D'UNE RÉPONSE ****************/
+	/*****************************************************************************/
+	var $currentResponseRow;
+	// Activation d'event sur le clique d'édition d'une réponse
+	$('div.comments-list').on('click', 'ul.response a.edit-response-action', function(event)
+	{
+		event.preventDefault();
+		$currentResponseRow = $('div.response-block#response-' + $(this).parent().parent().data('response-id'));
+
+		$currentResponseRow.find('div.response-actions').hide();
+		$currentResponseRow.find('div.response-main-content').hide();
+		$currentResponseRow.find('div.response-edition-mode').show();
+	});
+
+	// Event qui permet de vérifier si l'édition d'une réponse est valide et peut être soumis à un enregistrement
+	$('div.comments-list').on('keyup click change', 'div.response-edition-mode textarea', function() {
+		var $saveButton = $(this).parent().find('a.save-response-edition');
+		if ($.trim($(this).val()) != $.trim($(this).parent().parent().find('div.response-main-content p span.msg').html()) && $.trim($(this).val()) != '') {
+			$saveButton.removeClass('disabled');
+		}
+		else {
+			$saveButton.addClass('disabled');
+		}
+	});
+
+	// Activation de l'event de click sur le bouton d'annulation d'édition
+	$('div.comments-list').on('click', 'a.cancel-response-edition', function(event) {
+		event.preventDefault();
+		$(this).parent().find('a.save-response-edition').addClass('disabled');
+		$(this).parent().find('textarea').val($(this).parent().parent().find('div.response-main-content p span.msg').html());
+		$currentResponseRow.find('div.response-edition-mode').hide();
+		$currentResponseRow.find('div.response-main-content').show();
+		$currentResponseRow.find('div.response-actions').show();		
+	});
+
+// Activation de l'event de click sur le bouton d'enregistrement de l'édition d'une réponse
+	$('div.comments-list').on('click', 'a.save-response-edition', function(event) {
+		event.preventDefault();
+		if ($(this).hasClass('disabled')) {
+			return false;
+		}
+
+		var $parent = $(this).parent();
+		$parent.find('i.loader').removeClass('hide');
+		$parent.find('textarea').attr('disabled', 'disabled');
+		$(this).addClass('disabled');
+
+		$.ajax({
+			url: Routing.generate('response_edit', {'_locale': locale}),
+			data: {
+				'response_id': $currentResponseRow.data('response-id'),
+				'user_slug': userSlug,
+				'response_msg': $.trim($parent.find('textarea').val())
+			},
+			type: 'POST',
+			dataType: 'json',
+			success: function(response) {
+				$parent.find('i.loader').addClass('hide');
+				$parent.find('textarea').removeAttr('disabled');
+				$parent.parent().find('p span.msg').html($.nl2br(response.content));
+				$parent.hide();
+				$parent.parent().find('div.response-actions div.last-edition-date').html(response.last_edition_date);
+				$parent.parent().find('div.response-main-content').show();
+				$parent.parent().find('div.response-actions').show();
 			}
 		});
 	});

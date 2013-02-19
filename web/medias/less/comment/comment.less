@@ -188,11 +188,11 @@ div.comments-container {
 							margin-right: -5px;
 						}
 
-						ul.dropdown-menu {
+						ul.dropdown-menu.comment {
 							background-color: @bodyMainBGColor;
 							border: 2px solid @MVNerdsGreen;
 							.border-radius(0);
-							left: initial !important;
+							left: auto;
 							margin: 0;
 							padding: 3px 0;
 							right: -5px !important;
@@ -239,42 +239,78 @@ div.comments-container {
 							margin: 0;
 						}
 
-						div.more-actions-container {
+						div.response-edition-mode {
 							text-align: right;
 
-
-							&.open a.more-actions {
-								border-color: @MVNerdsGreen; 
-								opacity: 1; .transition(opacity .25s linear);
+							textarea {
+								margin: 0 0 5px 0;
+								width: 398px;
 							}
 
-							a.more-actions {
+							a.save-response-edition {
+								margin-right: 0;
+							}
+						}
+
+						div.response-actions {
+							margin: 5px 0 0 0;
+							position: relative;
+
+							div.last-edition-date {
+								font-size: 12px;
+								display: inline-block;
+								left: 0;
+								position: absolute;
+								top: 3px;
+							}
+
+							div.more-actions-container {
 								position: relative;
-							}
+								text-align: right;
 
+								&.open a.more-actions {
+									border-color: #999; 
+									opacity: 1; .transition(opacity .25s linear);
+								}
 
-							ul.dropdown-menu {
-								background-color: @bodyMainBGColor;
-								border: 2px solid @MVNerdsGreen;
-								.border-radius(0);
-								left: initial !important;
-								margin: 0;
-								padding: 3px 0;
-								right: -5px !important;
-								text-align: left;
-								top: 24px;
+								a.more-actions {
+									border: 1px solid @bodyMainBGColor;
+									color: #999;
+									display: inline-block;
+									font-size: 12px;
+									margin: 0;
+									opacity: .65;
+									padding: 2px 5px;	
 
-								li {
 									&:hover {
-										background-color: @MVNerdsGreen;
-									
-										a {
-											color: white; 
-										}
+										border-color: #999; 
+										opacity: 1; .transition(opacity .25s linear);
 									}
+								}
 
-									a {
-										font-size: 12px; .transition(none);
+								ul.dropdown-menu.response {
+									background-color: @bodyMainBGColor;
+									border: 2px solid #999;
+									.border-radius(0);
+									left: auto;
+									margin: 0;
+									padding: 3px 0;
+									right: 0;
+									text-align: left;
+									top: 24px;
+
+									li {
+										&:hover {
+											background-color: #999;
+										
+											a {
+												color: white; 
+											}
+										}
+
+										a {
+											font-size: 12px; .transition(none);
+										}
 									}
 								}
 							}

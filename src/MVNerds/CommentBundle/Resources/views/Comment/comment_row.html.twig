@@ -45,7 +45,7 @@
 				{% endif %}
 				<div class="more-actions-container">
 					<a href="#" class="more-actions dropdown-toggle" data-toggle="dropdown"><i class="icon-cogs"></i></a>
-					<ul class="dropdown-menu" data-comment-id="{{ crypted_id }}">
+					<ul class="dropdown-menu comment" data-comment-id="{{ crypted_id }}">
 						{% if comment.getUser().getId() == app.user.getId() %}
 							<li><a href="#" class="edit-comment-action">Éditer ce commentaire</a></li>
 						{% endif %}

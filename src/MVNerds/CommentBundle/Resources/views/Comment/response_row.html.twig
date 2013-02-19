@@ -1,4 +1,4 @@
-<div class="response-block">
+<div class="response-block" data-response-id="{{ response.getId() * 47 }}" id="response-{{ response.getId() * 47 }}">
 	<div class="posted-by">
 		<strong><a href="{{ path('summoner_profile_view', {'userSlug': response.getUser().getSlug()}) }}" title="{{'Check the profile of'|trans}} {{ response.getUser().getUsername }}">{{ response.getUser().getUsername() }}</a></strong> {{'Comments.reply_by'|trans}}:
 		<div class="response-date">{% include ':Extension:custom_format_date.html.twig' with {'object': response.getCreateTime()} %}</div>
@@ -7,16 +7,31 @@
 	<div class="response-main-content">
 		<p><i class="icon-quote-left"></i> <span class="msg">{{ response.getContent()|nl2br }}</span> <i class="icon-quote-right"></i></p>
 	</div>
+		
+	{% if is_granted('IS_AUTHENTICATED_REMEMBERED') and response.getUser().getId() == app.user.getId() %}
+		<div class="response-edition-mode hide">
+			<textarea>{{ response.getContent() }}</textarea>
+			<i class="icon-spinner icon-spin loader hide"></i> <a href="#" class="cancel-response-edition btn no-color small">Annuler</a> <a href="#" class="save-response-edition btn small green disabled">Enregistrer</a>
+		</div>
+	{% endif %}
 	
 	{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-		<div class="more-actions-container">
-			<a href="#" class="more-actions dropdown-toggle" data-toggle="dropdown"><i class="icon-cogs"></i></a>
-			<ul class="dropdown-menu" data-response-id="{{ response.getId() * 47 }}">
-				{% if response.getUser().getId() == app.user.getId() %}
-					<li><a href="#" class="edit-response-action">Éditer cette réponse</a></li>
+		<div class="response-actions">
+			<div class="last-edition-date">
+				{% if response.getCreateTime().getTimestamp() != response.getUpdateTime().getTimestamp() %}
+					{{ 'Comment.last_edition.DATE'|trans({'DATE': ''}) }} {% include ':Extension:custom_format_date.html.twig' with {'object': response.getUpdateTime(), 'lowercase': true} %}
 				{% endif %}
-				<li><a href="#">Signaler comme abus</a></li>
-			</ul>
+			</div>
+		
+			<div class="more-actions-container">
+				<a href="#" class="more-actions dropdown-toggle" data-toggle="dropdown"><i class="icon-cogs"></i></a>
+				<ul class="dropdown-menu response" data-response-id="{{ response.getId() * 47 }}">
+					{% if response.getUser().getId() == app.user.getId() %}
+						<li><a href="#" class="edit-response-action">Éditer cette réponse</a></li>
+					{% endif %}
+					<li><a href="#">Signaler comme abus</a></li>
+				</ul>
+			</div>
 		</div>
 	{% endif %}
 </div>
