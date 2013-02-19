@@ -28,7 +28,7 @@ class ReportManager
 		->find();
 	}
 	
-	public function report(IReport $object ,$user)
+	public function report(IReport $object ,$user, $desciption = null)
 	{
 		try {
 			$report = $this->findByObjectAndUser($object, $user);
@@ -38,6 +38,7 @@ class ReportManager
 			$report->setObjectId($object->getId());
 			$report->setObjectNamespace(get_class($object));
 			$report->setUser($user);
+			$report->setDescription($desciption);
 			$report->save();
 		}
 		

@@ -47,9 +47,7 @@
 			<div class="span8 left-content">
 				<h1>Vidéo "<span class="video-title">{{ video.getTitle() }}"</span></h1>
 				
-				{% if can_report_video %}
-					<a href="#" class="report-action" data-type="video" data-slug="{{video.getSlug()}}">Signaler pour abus</a>
-				{% endif %}
+				{% include 'MVNerdsReportBundle:Report:detailed_report_block.html.twig' with {'object_type': 'video', 'can_report': can_report_video, 'object': video, 'report_motives': report_motives} %}
 				
 				{# PUBLICITÉ #}
 				<div class="ad-container">

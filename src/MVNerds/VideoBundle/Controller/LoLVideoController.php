@@ -9,7 +9,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use MVNerds\CoreBundle\Model\Video;
-
+use MVNerds\CoreBundle\Model\UserReport;
 /**
  * @Route("/lol-video-center")
  */
@@ -227,13 +227,14 @@ class LoLVideoController extends Controller
 		}
 		
 		$relatedVideos = $videoManager->findRelatedVideos($video);
-		
+				
 		$params = array(
 			'video'			=> $video,
 			'can_edit'		=> false,
 			'video_type'		=> $videoType,
 			'related_videos'	=> $relatedVideos,
-			'can_report_video'	=> $canReportVideo
+			'can_report_video'	=> $canReportVideo,
+			'report_motives'	=> UserReport::$REPORT_MOTIVES['video']
 		);
 		
 		if ($this->get('security.context')->isGranted('ROLE_USER')) {
