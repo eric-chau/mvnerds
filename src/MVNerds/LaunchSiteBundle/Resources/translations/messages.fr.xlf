@@ -483,6 +483,30 @@
 				<source>Contact.p1</source>
 				<target>Si vous avez des commentaires à faire, des suggestions à donner ou n'importe quelle remarque à partager veuillez s'il vous plaît utiliser le formulaire ci-dessous.</target>
 			</trans-unit>
+			<trans-unit id="13005">
+				<source>Contact.form.category.label</source>
+				<target>Catégorie</target>
+			</trans-unit>
+			<trans-unit id="13006">
+				<source>Contact.form.category.SUGGESTION</source>
+				<target>Suggestions</target>
+			</trans-unit>
+			<trans-unit id="13007">
+				<source>Contact.form.category.OTHER</source>
+				<target>Autre</target>
+			</trans-unit>
+			<trans-unit id="13008">
+				<source>Contact.form.category.BUG</source>
+				<target>Rapport de Bug</target>
+			</trans-unit>
+			<trans-unit id="13009">
+				<source>Contact.form.category.PARTNERSHIP</source>
+				<target>Demande de partenariat</target>
+			</trans-unit>
+			<trans-unit id="13010">
+				<source>Contact.form.category.FEEDBACK</source>
+				<target>Réaction</target>
+			</trans-unit>
 
 			<!--  CONTACT -->
 			<trans-unit id="14000">

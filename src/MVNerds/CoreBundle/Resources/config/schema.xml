@@ -431,6 +431,7 @@
       <parameter name="update_column" value="update_time" />
     </behavior>
     <behavior name="mvnerds_commentable" />
+    <behavior name="mvnerds_votable" />
   </table>
   <table name="champion_item_build">
     <column name="champion_id" primaryKey="true" required="true" type="INTEGER" />
