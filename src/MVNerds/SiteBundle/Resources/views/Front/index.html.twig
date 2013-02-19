@@ -1,6 +1,8 @@
 {% extends 'MVNerdsSiteBundle::layout.html.twig' %}
 
 {% block css %}
+	{{ parent() }}
+
 	<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/site/front.css') }}">
 {% endblock %}
 

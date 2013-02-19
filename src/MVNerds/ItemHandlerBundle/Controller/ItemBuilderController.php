@@ -176,50 +176,6 @@ class ItemBuilderController extends Controller
 	}
 	
 	/**
-	 * 
-	 * @Route("/{itemBuildSlug}/{dl}", name="pmri_list_detail", defaults={"dl"=null}, options={"expose"=true})
-	 */
-	public function viewAction($itemBuildSlug, $dl)
-	{
-		try {
-			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
-			$itemBuild = $this->get('mvnerds.item_build_manager')->findBySlug($itemBuildSlug);
-			$itemBuild->setView($itemBuild->getView() + 1);
-			$itemBuild->keepUpdateDateUnchanged();
-			$itemBuild->save();
-		} 
-		catch (\Exception $e) {
-			return $this->redirect($this->generateUrl('item_builder_list'));
-		}
-		
-		$lolDir = null;
-		$canEdit = false;
-		
-		if ($this->get('security.context')->isGranted('ROLE_USER')) {
-			$user = $this->get('security.context')->getToken()->getUser();
-			if (($itemBuild->getUser()->getId() == $user->getId()) || $this->get('security.context')->isGranted('ROLE_ADMIN')) {
-				$canEdit = true;
-			}
-			try {
-				$lolDirPreference = $this->get('mvnerds.preference_manager')->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
-				$lolDir = $lolDirPreference->getValue();
-			} 
-			catch(\Exception $e) {}
-		}
-		
-		$params = array(
-			'item_build'	=> $itemBuild,
-			'lol_dir'	=> $lolDir,
-			'can_edit'	=> $canEdit
-		);
-		if ($dl != null && $dl == 'dl') {
-			$params['start_dl'] = 'true';
-		}
-		
-		return $this->render('MVNerdsItemHandlerBundle:PMRI:pmri_detail.html.twig', $params);
-	}
-	
-	/**
 	 * Re-génération d'un build déjà éxistant avec les nouveaux chemins $path
 	 * 
 	 * @Route("/generate-rec-items-from-slug", name="item_builder_generate_rec_item_file_from_slug", options={"expose"=true})
@@ -732,5 +688,49 @@ class ItemBuilderController extends Controller
 		}
 		
 		return $this->redirect($this->generateUrl('summoner_profile_index'));
+	}
+	
+	/**
+	 * 
+	 * @Route("/{itemBuildSlug}/{dl}", name="pmri_list_detail", defaults={"dl"=null}, options={"expose"=true})
+	 */
+	public function viewAction($itemBuildSlug, $dl)
+	{
+		try {
+			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
+			$itemBuild = $this->get('mvnerds.item_build_manager')->findBySlug($itemBuildSlug);
+			$itemBuild->setView($itemBuild->getView() + 1);
+			$itemBuild->keepUpdateDateUnchanged();
+			$itemBuild->save();
+		} 
+		catch (\Exception $e) {
+			return $this->redirect($this->generateUrl('item_builder_list'));
+		}
+		
+		$lolDir = null;
+		$canEdit = false;
+		
+		if ($this->get('security.context')->isGranted('ROLE_USER')) {
+			$user = $this->get('security.context')->getToken()->getUser();
+			if (($itemBuild->getUser()->getId() == $user->getId()) || $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+				$canEdit = true;
+			}
+			try {
+				$lolDirPreference = $this->get('mvnerds.preference_manager')->findUserPreferenceByUniqueNameAndUserId('LEAGUE_OF_LEGENDS_DIRECTORY', $user->getId());
+				$lolDir = $lolDirPreference->getValue();
+			} 
+			catch(\Exception $e) {}
+		}
+		
+		$params = array(
+			'item_build'	=> $itemBuild,
+			'lol_dir'	=> $lolDir,
+			'can_edit'	=> $canEdit
+		);
+		if ($dl != null && $dl == 'dl') {
+			$params['start_dl'] = 'true';
+		}
+		
+		return $this->render('MVNerdsItemHandlerBundle:PMRI:pmri_detail.html.twig', $params);
 	}
 }
