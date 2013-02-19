@@ -35,22 +35,9 @@ div.span8.left-content div.video-player-container {
   padding: 10px 0 5px 0;
   text-align: center;
 }
-div.span8.left-content div.related-videos-container div.related-video {
-  display: inline-block;
-  width: 100px;
-  vertical-align: top;
-  margin: 10px;
-}
-div.span8.left-content div.related-videos-container div.related-video img.related-video-thumbnail {
-  width: 100px;
-  height: 75px;
-}
-div.span8.left-content div.related-videos-container div.related-video span.related-video-title {
-  width: 100px;
-}
 div.span4.right-content div.block div.body div.block-media {
   height: 108px;
-  margin: 0 0 10px 0;
+  margin: 0 0 4px 0;
 }
 div.span4.right-content div.block div.body div.block-media img {
   border: 1px solid #666;
@@ -59,6 +46,41 @@ div.span4.right-content div.block div.body div.block-media img {
   margin: 0 10px 0 8px;
   padding: 3px;
   width: 100px !important;
+}
+div.span4.right-content div.block div.body a.related-video-block {
+  border: 1px solid #444;
+  border-left: 0;
+  border-right: 0;
+  display: block;
+  height: 75px;
+  margin: 0 0 10px 0;
+  padding: 5px;
+}
+div.span4.right-content div.block div.body a.related-video-block:hover {
+  background-color: #19a0df;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+div.span4.right-content div.block div.body a.related-video-block:hover span {
+  color: white;
+}
+div.span4.right-content div.block div.body a.related-video-block img {
+  display: inline-block;
+  float: left;
+  height: 75px;
+  margin: 0 10px 0 0;
+  width: 100px;
+}
+div.span4.right-content div.block div.body a.related-video-block span {
+  color: #aaa;
+  display: block;
+  font-size: 12px;
+}
+div.span4.right-content div.block div.body a.related-video-block span.title {
+  font-size: 14px;
+  font-weight: bold;
 }
 div.comments-container form.leave-comment-form {
   background-color: #92281b;

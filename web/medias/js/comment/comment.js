@@ -68,6 +68,7 @@ $(document).ready(function()
 		$currentCommentRow.find('div.comment-actions').hide();
 		$currentCommentRow.find('div.comment-main-content').hide();
 		$currentCommentRow.find('div.comment-edition-mode').show();
+		$currentCommentRow.find('div.comment-edition-mode').find('textarea').focus();
 	});
 
 	// Event qui permet de vérifier si l'édition d'un commentaire est valide et peut être soumis à un enregistrement
@@ -193,6 +194,7 @@ $(document).ready(function()
 		$form.find('a.btn-cancel-reply-mode').removeClass('hide');
 		$this.addClass('active');
 		$form.find('textarea').attr('placeholder', replyPlaceholderStr);
+		$form.find('textarea').focus();
 	});
 
 	// Activation du click sur le bouton "Annuler" lorsque l'on est en mode réponse
@@ -263,6 +265,7 @@ $(document).ready(function()
 		$currentResponseRow.find('div.response-actions').hide();
 		$currentResponseRow.find('div.response-main-content').hide();
 		$currentResponseRow.find('div.response-edition-mode').show();
+		$currentResponseRow.find('div.response-edition-mode').find('textarea').focus();
 	});
 
 	// Event qui permet de vérifier si l'édition d'une réponse est valide et peut être soumis à un enregistrement

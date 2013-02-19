@@ -16,23 +16,6 @@ div.span8.left-content {
 		padding: 10px 0 5px 0;
 		text-align: center;
 	}
-	
-	div.related-videos-container {
-		div.related-video {
-			display: inline-block;
-			width: 100px;
-			vertical-align: top;
-			margin: 10px;
-
-			img.related-video-thumbnail {
-				width: 100px;
-				height: 75px;
-			}
-			span.related-video-title {
-				width: 100px;
-			}
-		}
-	}
 }
 
 div.span4.right-content {
@@ -40,7 +23,7 @@ div.span4.right-content {
 		div.body {
 			div.block-media {
 				height: 108px;
-				margin: 0 0 10px 0;
+				margin: 0 0 4px 0;
 
 				img {
 					border: 1px solid #666;
@@ -50,6 +33,43 @@ div.span4.right-content {
 					padding: 3px;
 					width: 100px !important;
 				}	
+			}
+
+			a.related-video-block {
+				border: 1px solid #444;
+				border-left: 0;
+				border-right: 0;
+				display: block;
+				height: 75px;
+				margin: 0 0 10px 0;
+				padding: 5px;
+
+				&:hover {
+					background-color: @MVNerdsBlue; .transition(none);
+					
+					span {
+						color: white;
+					}
+				}
+
+				img {
+					display: inline-block;
+					float: left;
+					height: 75px;
+					margin: 0 10px 0 0;
+					width: 100px;
+				}
+
+				span {
+					color: #aaa;
+					display: block;
+					font-size: 12px;
+
+					&.title {
+						font-size: 14px;
+						font-weight: bold;
+					}
+				}
 			}
 		}
 	}

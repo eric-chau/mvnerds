@@ -83,19 +83,6 @@
 					</p>
 				</div>
 				
-				<div class="related-videos-container">
-					<h2>Vidéos liées</h2>
-					
-					{% for related_video in related_videos %}
-						<div class="related-video">
-							<a href="{{path('videos_detail', {'slug': related_video.getSlug})}}"><img class="related-video-thumbnail" src="{{related_video.getThumbnailUrl()}}" alt="aperçu de la video : {{related_video.getTitle()}}"/></a><br />
-							<a href="{{path('videos_detail', {'slug': related_video.getSlug})}}"><span class="related-video-title">{{related_video.getTitle()}}</span></a>
-						</div>
-					{% else %}
-						<p>Aucune vidéo liée n'a été trouvée</p>
-					{% endfor %}
-				</div>
-				
 				{% render 'MVNerdsCommentBundle:Comment:renderComments' with {'object': video, 'objectType': 'video'} %}
 			</div>
 			
@@ -160,11 +147,35 @@
 					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					</script>	
 				</div>
-				{% if can_edit %}
-					{% include 'MVNerdsVideoBundle:Modal:video_publish_modal.html.twig' %}
-				{% endif %}
+				
+				<div class="block">
+					<div class="header">
+						<h3>Dans la même catégorie</h3>
+					</div>
+					<div class="body">
+						{% for related_video in related_videos %}
+							<a href="{{path('videos_detail', {'slug': related_video.getSlug})}}" class="related-video-block">
+								<img src="{{ related_video.getThumbnailUrl() }}" alt="aperçu de la video : {{ related_video.getTitle() }}"/>
+								<div class="related-video-infos">
+									<span class="title">{{ related_video.getTitle() }}</span>
+									<span>De 
+										{{ related_video.getUser().getUsername() }}
+									</span>
+									<span>{{ related_video.getView() }} vues, {{ related_video.getCommentCount() }} commentaires</span>
+								</div>
+							</a>
+							
+						{% else %}
+							<p>Aucune vidéo liée n'a été trouvée</p>
+						{% endfor %}
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
+	
+	{% if can_edit %}
+		{% include 'MVNerdsVideoBundle:Modal:video_publish_modal.html.twig' %}
+	{% endif %}
 {% endblock %}
 	
