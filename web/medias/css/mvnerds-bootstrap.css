@@ -418,7 +418,7 @@ div#topbar ul.menu li.dropdown ul.dropdown-menu li div.menu-detail ul {
   list-style: none;
 }
 div#topbar ul.menu li.dropdown ul.dropdown-menu li div.menu-detail ul li {
-  border-bottom: 1px solid #666;
+  border-bottom: 1px solid #aaa;
   margin: 0 0 0 15px !important;
   text-transform: none;
 }
@@ -433,6 +433,7 @@ div#topbar ul.menu li.dropdown ul.dropdown-menu li div.menu-detail ul li.header 
 }
 div#topbar ul.menu li.dropdown ul.dropdown-menu li div.menu-detail ul li.header a:hover {
   color: #db4a38;
+  text-decoration: underline;
 }
 div#topbar ul.menu li.dropdown ul.dropdown-menu li div.menu-detail ul li.header a i {
   font-size: 14px;
@@ -742,48 +743,6 @@ div.container.main-container div.span4.right-content div.block div.body div.stat
   margin: 0 10px 0 0;
   position: relative;
   top: 7px;
-}
-div.container.main-container div.span4.right-content div.block div.body div.pmri-row {
-  background-color: #333;
-  color: #999;
-  cursor: pointer;
-  margin: 5px 0;
-  min-height: 0;
-  padding: 4px 0 4px 10px;
-  position: relative;
-}
-div.container.main-container div.span4.right-content div.block div.body div.pmri-row:hover {
-  background-color: #147fb1;
-  color: #fff;
-  -webkit-transition: all 0.25s linear;
-  -moz-transition: all 0.25s linear;
-  -o-transition: all 0.25s linear;
-  transition: all 0.25s linear;
-}
-div.container.main-container div.span4.right-content div.block div.body div.pmri-row:hover i.icon-double-angle-right {
-  display: block;
-}
-div.container.main-container div.span4.right-content div.block div.body div.pmri-row a {
-  color: #db4a38;
-  font-weight: bold;
-}
-div.container.main-container div.span4.right-content div.block div.body div.pmri-row a:hover {
-  color: #fff;
-}
-div.container.main-container div.span4.right-content div.block div.body div.pmri-row i.icon-double-angle-right {
-  display: none;
-  font-size: 40px;
-  margin-top: -20px;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-}
-div.container.main-container div.span4.right-content div.block div.body div.pmri-row img {
-  float: left;
-  margin: 0 10px 0 0;
-  position: relative;
-  top: 2px;
-  width: 54px;
 }
 div.container.main-container div.span4.right-content div.block div.footer {
   background-color: #658816;

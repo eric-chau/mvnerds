@@ -177,7 +177,7 @@ class ItemBuilderController extends Controller
 	
 	/**
 	 * 
-	 * @Route("/view/{itemBuildSlug}/{dl}", name="pmri_list_detail", defaults={"dl"=null}, options={"expose"=true})
+	 * @Route("/{itemBuildSlug}/{dl}", name="pmri_list_detail", defaults={"dl"=null}, options={"expose"=true})
 	 */
 	public function viewAction($itemBuildSlug, $dl)
 	{
@@ -459,7 +459,7 @@ class ItemBuilderController extends Controller
 	}
 	
 	/**
-	 * @Route("/{itemBuildSlug}/download-rec-items", name="item_builder_download_file", options={"expose"=true})
+	 * @Route("/download-rec-items/{itemBuildSlug}", name="item_builder_download_file", options={"expose"=true})
 	 */
 	public function executeDownloadItemBuildAction($itemBuildSlug)
 	{
@@ -732,35 +732,5 @@ class ItemBuilderController extends Controller
 		}
 		
 		return $this->redirect($this->generateUrl('summoner_profile_index'));
-	}
-	
-	/**
-	 * @Route("/load-more-comment", name="item_build_load_more_comment", options={"expose"=true})
-	 */
-	public function loadMoreCommentAction()
-	{
-		$request = $this->getRequest();
-		if (!$request->isXmlHttpRequest() || !$request->isMethod('POST'))
-		{
-			throw new HttpException(500, 'Request must be AJAX and POST method');
-		}
-		
-		$itemBuildSlug = $request->get('object_slug', null);
-		$page = $request->get('page', null);
-		if (null == $itemBuildSlug || null == $page) {
-			throw new HttpException(500, 'object_slug | page is/are missing!');
-		}
-		
-		try {
-			$itemBuild = $this->get('mvnerds.item_build_manager')->findBySlug($itemBuildSlug);
-		}
-		catch(Exception $e) {
-			throw new InvalidArgumentException('Item build not found for slug:`'. $itemBuildSlug .'`');
-		}
-
-		return $this->forward('MVNerdsCommentBundle:Comment:loadMoreComment', array(
-			'object'	=> $itemBuild,
-			'page'		=> $page
-		));
 	}
 }
