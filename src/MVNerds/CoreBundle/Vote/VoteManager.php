@@ -9,6 +9,16 @@ use MVNerds\CoreBundle\Model\Vote;
 
 class VoteManager
 {
+	/**
+	 * Le nombre minimum de votes à atteindre avant que l'objet ne passe en vote_status : APPROVED
+	 */
+	const MIN_VOTES = 20;
+	
+	/**
+	 * Le taux minimum de votes à atteindre avant que l'objet ne passe en vote_status : APPROVED
+	 */
+	const MIN_RATING = 75;
+	
 	public function findByObject($object)
 	{
 		$votes = VoteQuery::create()
@@ -41,15 +51,22 @@ class VoteManager
 	{
 		$like = $like == 'true' ? true : false;
 		try {
+			//Si un vote a déjà été trouvé pour cet utilisateur et cet objet
 			$vote = $this->findByObjectAndUser($object, $user);
+			//Si la valeur du vote reste inchangée
 			if ($vote->getLike() == $like) {
+				//On retourne directement le vote
 				return $vote;
 			} else {
+				//Sinon on met à jour la valeur du vote
 				$vote->setLike($like);
 				$vote->save();
+				//et on met à jour les compteurs de vote de l objet
 				if ($like) {
 					$this->incrementObjectLikeCount($object);
 					$this->decrementObjectDislikeCount($object);
+					//Si c est un like on met également à jour le vote_status
+					$this->updateObjectVoteStatus($object);
 				} else {
 					$this->incrementObjectDislikeCount($object);
 					$this->decrementObjectLikeCount($object);
@@ -57,19 +74,23 @@ class VoteManager
 			}
 			
 		} catch (\Exception $e) {
+			//Si une exception est levée celà signifie qu'aucun vote n'a été trouvé pour cet utilisateur et cet objet
+			//On crée alors un nouvel objet Vote
 			$vote = new Vote();
 			$vote->setObjectId($object->getId());
 			$vote->setObjectNamespace(get_class($object));
 			$vote->setUser($user);
 			$vote->setLike($like);
 			$vote->save();
+			//On met à jour les compteurs de l objet
 			if ($like) {
 				$this->incrementObjectLikeCount($object);
+				//Si c est un like on met également à jour le vote_status
+				$this->updateObjectVoteStatus($object);
 			} else {
 				$this->incrementObjectDislikeCount($object);
 			}
 		}
-		
 		
 		return $vote;
 	}
@@ -111,6 +132,21 @@ class VoteManager
 				$object->keepUpdateDateUnchanged();
 			}
 
+			$object->save();
+		}
+	}
+	
+	private function updateObjectVoteStatus(IVote $object)
+	{
+		$votesCount = $object->getLikeCount() + $object->getDislikeCount();
+		$rating = round($object->getLikeCount() / $votesCount * 100);
+		
+		if ($object->getVoteStatus() != 'FEATURED' &&  $votesCount >= self::MIN_VOTES && $rating >= self::MIN_RATING) {
+			$object->setReportStatus('APPROVED');
+			if (method_exists($object, 'keepUpdateDateUnchanged')) {
+				$object->keepUpdateDateUnchanged();
+			}
+			
 			$object->save();
 		}
 	}

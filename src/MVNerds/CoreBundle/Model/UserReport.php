@@ -18,4 +18,10 @@ use MVNerds\CoreBundle\Model\om\BaseUserReport;
  */
 class UserReport extends BaseUserReport {
 
+	public static $REPORT_MOTIVES = array(
+		'video' => array(
+			'Contenu non approprié !',
+			'Vidéo dupliquée sur le site.'
+		)
+	);
 } // UserReport

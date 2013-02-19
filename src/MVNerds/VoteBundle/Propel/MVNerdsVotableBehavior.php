@@ -6,21 +6,39 @@ use \Behavior;
 
 class MVNerdsVotableBehavior extends Behavior
 {
+	// default parameters value
+	protected $parameters = array(
+		'like_count_column'	=> 'like_count',
+		'dislike_count_column'	=> 'dislike_count',
+		'vote_status_column'	=> 'vote_status',
+		'value_set'			=> 'DEFAULT, APPROVED, FEATURED',
+		'default_value'		=> 'DEFAULT'
+	);
+	
 	 public function modifyTable()
 	{
-		if (!$this->getTable()->containsColumn('like_count')) {
+		if (!$this->getTable()->containsColumn($this->getParameter('like_count_column'))) {
 			$column = $this->getTable()->addColumn(array(
-				'name'    => 'like_count',
+				'name'    => $this->getParameter('like_count_column'),
 				'type'    => 'INTEGER',
 				'default' => 0
 			));
 		}
 		
-		if (!$this->getTable()->containsColumn('dislike_count')) {
+		if (!$this->getTable()->containsColumn($this->getParameter('dislike_count_column'))) {
 			$column = $this->getTable()->addColumn(array(
-				'name'    => 'dislike_count',
+				'name'    => $this->getParameter('dislike_count_column'),
 				'type'    => 'INTEGER',
 				'default' => 0
+			));
+		}
+		
+		if (!$this->getTable()->containsColumn($this->getParameter('vote_status_column'))) {
+			$column = $this->getTable()->addColumn(array(
+				'name'    => $this->getParameter('vote_status_column'),
+				'type'    => 'ENUM',
+				'valueSet'	=> $this->getParameter('value_set'),
+				'default'	=> $this->getParameter('default_value')
 			));
 		}
 	}

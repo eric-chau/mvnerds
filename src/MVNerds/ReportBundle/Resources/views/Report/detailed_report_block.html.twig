@@ -1,0 +1,15 @@
+{% if can_report %}
+	<div class="detailed-report-block">
+		<a href="#" class="show-report-action" >Signaler pour abus</a>
+		
+		<div class="report-motive" style="display:none;">
+			<form class="report-form" action="#">
+				{% for motive in report_motives %}
+					<input type="radio" name="report-motive" value="{{loop.index0}}" {{loop.index0 == 0 ? 'checked="checked"'}}>{{motive}} <br />
+				{% endfor %}
+				
+				<button type="submit" class="report-form-action" data-type="{{object_type}}" data-slug="{{object.getSlug()}}">Signaler</button>
+			</form>
+		</div>
+	</div>
+{% endif %}

@@ -28,7 +28,7 @@ class ReportManager
 		->find();
 	}
 	
-	public function report(IReport $object ,$user)
+	public function report(IReport $object ,$user, $desciption = null)
 	{
 		try {
 			$report = $this->findByObjectAndUser($object, $user);
@@ -38,6 +38,7 @@ class ReportManager
 			$report->setObjectId($object->getId());
 			$report->setObjectNamespace(get_class($object));
 			$report->setUser($user);
+			$report->setDescription($desciption);
 			$report->save();
 		}
 		
@@ -65,7 +66,7 @@ class ReportManager
 	
 	private function updateObjectReportStatus(IReport $object)
 	{
-		if ($this->countReportsForObject($object) >= self::MAX_REPORTS) {
+		if ($object->getReportStatus() != 'HARD' && $this->countReportsForObject($object) >= self::MAX_REPORTS) {
 			$object->setReportStatus('SOFT');
 			if (method_exists($object, 'keepUpdateDateUnchanged')) {
 				$object->keepUpdateDateUnchanged();

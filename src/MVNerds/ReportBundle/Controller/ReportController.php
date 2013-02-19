@@ -7,6 +7,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
+use MVNerds\CoreBundle\Model\UserReport;
+
 /**
  * @Route("/Report")
  */
@@ -27,8 +29,16 @@ class ReportController extends Controller
 		//Récupération et vérification des paramètres
 		$objectSlug = $request->get('object_slug', null);
 		$objectType = $request->get('object_type', null);
+		$descriptionIndex = $request->get('description_index', null);
 		if ($objectSlug == null || $objectType == null) {
 			throw new HttpException(500, 'Missing parameters !');
+		}
+		$description = null;
+		foreach(UserReport::$REPORT_MOTIVES as $key => $value) {
+			if (isset($value[$descriptionIndex])) {
+				$description = $value[$descriptionIndex];
+				break;
+			}
 		}
 		
 		//Récupération de l utilisateur courant
@@ -43,7 +53,7 @@ class ReportController extends Controller
 		
 		//On essaie d effectuer le report de $object par $user
 		try {
-			$this->get('mvnerds.report_manager')->report($object, $user);
+			$this->get('mvnerds.report_manager')->report($object, $user, $description);
 			return new Response(json_encode('Report pris en compte'));
 		} catch (\Exception $e) {
 			return new Response($e->getMessage(), 400);
