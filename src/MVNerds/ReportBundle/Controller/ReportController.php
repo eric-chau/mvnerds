@@ -66,12 +66,16 @@ class ReportController extends Controller
 		/* @var $reportManager \MVNerds\CoreBundle\Report\ReportManager */
 		$reportManager  = $this->get('mvnerds.report_manager');
 	
-		$canReport = true;
+		
 		if (($user = $this->getUser())) {
 			try {
 				$reportManager->findByObjectAndUser($object, $user);
 				$canReport = false;
-			} catch (\Exception $e) {}
+			} catch (\Exception $e) {
+				$canReport = true;
+			}
+		} else {
+			$canReport = false;
 		}
 		
 		if ($isDetailed) {
