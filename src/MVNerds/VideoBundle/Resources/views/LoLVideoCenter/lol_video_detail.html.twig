@@ -47,7 +47,9 @@
 			<div class="span8 left-content">
 				<h1>Vidéo "<span class="video-title">{{ video.getTitle() }}"</span></h1>
 				
-				{% include 'MVNerdsReportBundle:Report:detailed_report_block.html.twig' with {'object_type': 'video', 'can_report': can_report_video, 'object': video, 'report_motives': report_motives} %}
+				{#{% include 'MVNerdsReportBundle:Report:detailed_report_block.html.twig' with {'object_type': 'video', 'can_report': can_report_video, 'object': video, 'report_motives': report_motives} %}#}
+				
+				{% render 'MVNerdsReportBundle:Report:renderReportBlock' with {'object': video, 'objectType': 'video', 'isDetailed': true} %}
 				
 				{# PUBLICITÉ #}
 				<div class="ad-container">

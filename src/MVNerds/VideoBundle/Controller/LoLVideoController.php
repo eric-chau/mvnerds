@@ -211,14 +211,6 @@ class LoLVideoController extends Controller
 			return $this->redirect($this->generateUrl('lol_video_index'));
 		}
 		
-		$user = $this->getUser();
-		
-		try {
-			$reportManager->findByObjectAndUser($video, $user);
-			$canReportVideo = false;
-		} catch (\Exception $e) {
-			$canReportVideo = true;
-		}
 		$videoType = null;
 		if (strpos($video->getLink(), 'youtube.com') !== false) {
 			$videoType = 'youtube';
@@ -232,13 +224,11 @@ class LoLVideoController extends Controller
 			'video'			=> $video,
 			'can_edit'		=> false,
 			'video_type'		=> $videoType,
-			'related_videos'	=> $relatedVideos,
-			'can_report_video'	=> $canReportVideo,
-			'report_motives'	=> UserReport::$REPORT_MOTIVES['video']
+			'related_videos'	=> $relatedVideos
 		);
 		
 		if ($this->get('security.context')->isGranted('ROLE_USER')) {
-			if (($video->getUser()->getId() == $user->getId()) || $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+			if ( ($user = $this->getUser()) && (($video->getUser()->getId() == $user->getId()) || $this->get('security.context')->isGranted('ROLE_ADMIN')) ) {
 				$params['can_edit'] = true;
 				
 				$params['video_categories'] = $videoManager->findAllVideoCatgories();
