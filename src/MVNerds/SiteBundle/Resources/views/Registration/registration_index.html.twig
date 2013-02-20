@@ -5,21 +5,7 @@
 {% block css %}
 	{{ parent() }}
 
-	{% if app.environment == 'dev' %}
-		<link href="{{ asset('medias/css/site/registration-index.css') }}" rel="stylesheet" type="text/css">
-	{% else %}
-
-	{% endif %}
-{% endblock %}
-
-{% block javascripts %}
-	{{ parent() }}
-
-	{% if app.environment == 'dev' %}
-		
-	{% else %}
-
-	{% endif %}
+	<link href="{{ asset('medias/css/site/registration-index.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block topbar %}

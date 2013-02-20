@@ -6,10 +6,17 @@
 	{{ parent() }}
 
 	{% if app.environment == 'dev' %}
-		<link href="{{ asset('medias/css/pmri/create-page.css') }}" rel="stylesheet" type="text/css">
-		<link href="{{ asset('medias/css/jquery.mCustomScrollbar.css') }}" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/pmri/create-page.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/jquery.mCustomScrollbar.css') }}">
 	{% else %}
-
+		{% stylesheets 
+			'medias/css/pmri/create-page.css'
+			'medias/css/jquery.mCustomScrollbar.css'
+			output='css/pmri-create.css'
+			filter='yui_css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
 	{% endif %}
 {% endblock %}
 
@@ -30,7 +37,23 @@
 		<script type="text/javascript" src="{{ asset('medias/js/item-handler/item-popover.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/pmri/create-page.js') }}"></script>
 	{% else %}
-
+		{% javascripts
+			'medias/js/bootstrap/bootstrap-tooltip.js'
+			'medias/js/bootstrap/bootstrap-popover.js'
+			'medias/js/bootstrap/bootstrap-modal.js'
+			'medias/js/jquery.isotope.min.js'
+			'medias/js/site/isotope-filter.js'
+			'medias/js/site/alerts-ajax-handler.js'
+			'medias/js/jquery.mousewheel.min.js'
+			'medias/js/jquery.mCustomScrollbar.js'
+			'medias/js/item-handler/item-modal.js'
+			'medias/js/item-handler/item-popover.js'
+			'medias/js/pmri/create-page.js'
+			output='js/pmri-create.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
 	{% endif %}
 {% endblock %}
 

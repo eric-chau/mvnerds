@@ -2,25 +2,6 @@
 
 {% block title %}Le compte {{ user.getUsername() }} est activé | MVNerds{% endblock %}
 
-{% block css %}
-	{{ parent() }}
-
-	{% if app.environment == 'dev' %}
-	{% else %}
-
-	{% endif %}
-{% endblock %}
-
-{% block javascripts %}
-	{{ parent() }}
-
-	{% if app.environment == 'dev' %}
-		
-	{% else %}
-
-	{% endif %}
-{% endblock %}
-
 {% block topbar %}
 	{% set module = 'registration' %}
 		

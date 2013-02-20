@@ -5,11 +5,7 @@
 {% block css %}
 	{{ parent() }}
 
-	{% if app.environment == 'dev' %}
-		<link href="{{ asset('medias/css/pmri/list-page.css') }}" rel="stylesheet" type="text/css">
-	{% else %}
-
-	{% endif %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/pmri/list-page.css') }}">
 {% endblock %}
 
 {% block javascripts %}
@@ -21,7 +17,16 @@
 		<script type="text/javascript" src="{{ asset('medias/js/jquery.dataTables.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/pmri/list-page.js') }}"></script>
 	{% else %}
-
+		{% javascripts
+			'medias/js/bootstrap/bootstrap-tooltip.js'
+			'medias/js/bootstrap/bootstrap-popover.js'
+			'medias/js/jquery.dataTables.min.js'
+			'medias/js/pmri/list-page.js'
+			output='js/pmri-index.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
 	{% endif %}
 {% endblock %}
 

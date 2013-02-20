@@ -12,7 +12,16 @@
 		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/champions/champion-square25-sprite.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/champion-benchmark/champion-benchmark-index.css') }}">
 	{% else %}
-
+		{% stylesheets 
+			'medias/css/champions/champion-square-sprite.css'
+			'medias/css/champions/champion-portrait-sprite.css'
+			'medias/css/champions/champion-square25-sprite.css'
+			'medias/css/champion-benchmark/champion-benchmark-index.css'
+			output='css/champion-benchmark-index.css'
+			filter='yui_css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
 	{% endif %}
 {% endblock %}
 
@@ -28,7 +37,18 @@
 		<script type="text/javascript" src="{{ asset('medias/js/site/alerts-ajax-handler.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/champion-benchmark/champion-benchmark-index.js') }}"></script>
 	{% else %}
-
+		{% javascripts
+			'medias/js/bootstrap/bootstrap-tooltip.js'
+			'medias/js/bootstrap/bootstrap-popover.js'
+			'medias/js/jquery.isotope.min.js'
+			'medias/js/site/isotope-filter.js'
+			'medias/js/site/alerts-ajax-handler.js'
+			'medias/js/champion-benchmark/champion-benchmark-index.js'
+			output='js/champion-benchmark-index.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
 	{% endif %}
 {% endblock %}
 
