@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Exception;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use MVNerds\LaunchSiteBundle\CustomException\DisabledUserException;
 use MVNerds\LaunchSiteBundle\CustomException\UnknowUserException;
@@ -15,8 +16,6 @@ use MVNerds\CoreBundle\Model\PioneerUserPeer;
 use MVNerds\CoreBundle\Model\PioneerUserQuery;
 use MVNerds\LaunchSiteBundle\Form\Model\SummonerModel;
 use MVNerds\LaunchSiteBundle\Form\Type\SummonerType;
-use MVNerds\LaunchSiteBundle\Form\Model\ForgotPasswordModel;
-use MVNerds\LaunchSiteBundle\Form\Type\ForgotPasswordType;
 use MVNerds\LaunchSiteBundle\Form\Model\ResetPasswordModel;
 use MVNerds\LaunchSiteBundle\Form\Type\ResetPasswordType;
 
@@ -26,10 +25,12 @@ class RegistrationController extends Controller
 	/**
 	 * Affiche le formulaire d'inscription
 	 * 
-	 * @Route("/{_locale}/summoner-registration", name="site_summoner_registration", requirements={"_locale"="en|fr"})
+	 * @Route("/{_locale}/summoner/registration", name="site_summoner_registration", requirements={"_locale"="en|fr"})
 	 */
 	public function indexAction()
 	{
+		$this->forbidIfConnected();
+		
 		$emailFromRequest = $this->getRequest()->get('email', null);
 		$isValidPioneerUser = false;
 		if (null != $emailFromRequest) {
@@ -65,6 +66,8 @@ class RegistrationController extends Controller
 	 */
 	public function activateAccountAction($slug, $activationCode)
 	{
+		$this->forbidIfConnected();
+		
 		try {
 			$this->get('mvnerds.user_manager')->activateAccount($slug, $activationCode);
 		}
@@ -92,6 +95,8 @@ class RegistrationController extends Controller
 	 */
 	public function forgotPasswordAction($email)
 	{
+		$this->forbidIfConnected();
+		
 		$request = $this->getRequest();
 		if (!$request->isMethod('POST') && !$request->isXmlHttpRequest()) {
 			throw new HttpException(500, 'Action avortée !');
@@ -120,6 +125,8 @@ class RegistrationController extends Controller
 	 */
 	public function resetPasswordAction($slug, $activationCode)
 	{
+		$this->forbidIfConnected();
+		
 		try {
 			$this->get('mvnerds.user_manager')->isValidResetPasswordAction($slug, $activationCode);
 		}
@@ -149,6 +156,8 @@ class RegistrationController extends Controller
 	 */
 	public function changePasswordAction()
 	{
+		$this->forbidIfConnected();
+		
 		$request = $this->getRequest();
 		if ($request->isMethod('POST')) {
 			$userManager = $this->get('mvnerds.user_manager');
@@ -170,6 +179,12 @@ class RegistrationController extends Controller
 		}
 		
 		return $this->redirect($this->generateUrl('launch_site_forgot_password'));
-		
+	}
+	
+	private function forbidIfConnected()
+	{
+		if (true === $this->get('security.context')->isGranted('IS_AUTHENTICATED_ANONYMOUSLY')) {
+			throw new AccessDeniedException();
+		}
 	}
 }
