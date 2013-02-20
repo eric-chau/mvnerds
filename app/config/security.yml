@@ -60,5 +60,4 @@ security:
         - { path: ^/fr/administration/items, roles: ROLE_DATA_MANAGER }
         - { path: ^/fr/administration/news, roles: ROLE_NEWSER }
         - { path: ^/fr/administration, roles: ROLE_ADMIN }
-        - { path: ^/profile, roles: ROLE_USER }
         #- { path: ^/_internal/secure, roles: IS_AUTHENTICATED_ANONYMOUSLY, ip: 127.0.0.1 }

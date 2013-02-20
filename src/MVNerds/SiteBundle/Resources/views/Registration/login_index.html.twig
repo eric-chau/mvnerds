@@ -6,10 +6,17 @@
 	{{ parent() }}
 
 	{% if app.environment == 'dev' %}
-		<link href="{{ asset('medias/css/site/login-index.css') }}" rel="stylesheet" type="text/css">
-		<link href="{{ asset('medias/css/mvnerds/mvnerds-modal.css') }}" rel="stylesheet" type="text/css">
+		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/site/login-index.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/mvnerds/mvnerds-modal.css') }}">
 	{% else %}
-
+		{% stylesheets 
+			'medias/css/site/login-index.css'
+			'medias/css/mvnerds/mvnerds-modal.css'
+			output='css/login-index.css'
+			filter='yui_css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
 	{% endif %}
 {% endblock %}
 
@@ -20,10 +27,18 @@
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-modal.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('medias/js/jquery.form.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/site/login-page.js') }}"></script>
 	{% else %}
-
+		{% javascripts
+			'medias/js/bootstrap/bootstrap-tooltip.js'
+			'medias/js/bootstrap/bootstrap-popover.js'
+			'medias/js/bootstrap/bootstrap-modal.js'
+			'medias/js/site/login-page.js'
+			output='js/login-index.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
 	{% endif %}
 {% endblock %}
 

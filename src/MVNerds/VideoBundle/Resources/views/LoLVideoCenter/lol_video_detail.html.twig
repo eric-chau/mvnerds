@@ -9,7 +9,14 @@
 		<link href="{{ asset('medias/css/videos/video-detail.css') }}" rel="stylesheet" type="text/css">
 		<link href="{{ asset('medias/css/mvnerds/mvnerds-modal.css') }}" rel="stylesheet" type="text/css">
 	{% else %}
-
+		{% stylesheets 
+			'medias/css/videos/video-detail.css'
+			'medias/css/mvnerds/mvnerds-modal.css'
+			output='css/lol-video-center-detail.css'
+			filter='yui_css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
 	{% endif %}
 {% endblock %}
 
@@ -25,7 +32,19 @@
 		<script type="text/javascript" src="{{ asset('medias/js/videos/publish-video.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/report/report.js') }}"></script>
 	{% else %}
-
+		{% javascripts
+			'medias/js/bootstrap/bootstrap-tooltip.js'
+			'medias/js/bootstrap/bootstrap-popover.js'
+			'medias/js/bootstrap/bootstrap-modal.js'
+			'medias/js/site/alerts-ajax-handler.js'
+			'medias/js/videos/video-detail.js'
+			'medias/js/videos/publish-video.js'
+			'medias/js/report/report.js'
+			output='js/lol-video-center-detail.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
 	{% endif %}
 {% endblock %}
 
@@ -105,7 +124,7 @@
 					<div class="body">
 						<div class="block-media">
 							<img src="{{ asset('medias/images/avatar/' ~ video.getUser().getUserAvatarName()~ '.jpg') }}" />
-							{% render 'MVNerdsVoteBundle:Vote:renderVoteBlock' with {'object': video, 'objectType': 'video'} %}
+							{#{% render 'MVNerdsVoteBundle:Vote:renderVoteBlock' with {'object': video, 'objectType': 'video'} %}#}
 						</div>
 						<div class="clearfix"></div>
 						

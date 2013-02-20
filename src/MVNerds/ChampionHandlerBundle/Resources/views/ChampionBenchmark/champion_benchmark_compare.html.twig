@@ -5,24 +5,26 @@
 {% block css %}
 	{{ parent() }}
 
-	{% if app.environment == 'dev' %}
-		<link rel="stylesheet" type="text/css" href="{{ asset('css/champion_handler/champion-square36-sprite.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/champion-benchmark/champion-benchmark-compare.css') }}">
-	{% else %}
-
-	{% endif %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/champion-benchmark/champion-benchmark-compare.css') }}">
 {% endblock %}
 
 {% block javascripts %}
 	{{ parent() }}
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 	{% if app.environment == 'dev' %}
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/site/alerts-ajax-handler.js') }}"></script>
 	{% else %}
-
+		{% javascripts
+			'medias/js/bootstrap/bootstrap-tooltip.js'
+			'medias/js/bootstrap/bootstrap-popover.js'
+			'medias/js/bootstrap/bootstrap-modal.js'
+			output='js/champion-benchmark-compare.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
 	{% endif %}
 {% endblock %}
 

@@ -2,25 +2,6 @@
 
 {% block title %}Erreur lors de l'activation de votre compte | MVNerds{% endblock %}
 
-{% block css %}
-	{{ parent() }}
-
-	{% if app.environment == 'dev' %}
-	{% else %}
-
-	{% endif %}
-{% endblock %}
-
-{% block javascripts %}
-	{{ parent() }}
-
-	{% if app.environment == 'dev' %}
-		
-	{% else %}
-
-	{% endif %}
-{% endblock %}
-
 {% block topbar %}
 	{% set module = 'registration' %}
 		

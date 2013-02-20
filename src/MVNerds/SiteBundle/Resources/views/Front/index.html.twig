@@ -8,22 +8,23 @@
 
 {% block javascripts %}
 	{{ parent() }}
-
+	
 	{% if app.environment == 'dev' %}
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tab.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
-		
-		<script>
-		$(function() {
-			$('ul#myTab a').click(function(event) {
-				event.preventDefault();
-				$(this).tab('show');
-			});
-		});
-		</script>
+		<script type="text/javascript" src="{{ asset('medias/js/site/homepage.js') }}"></script>
 	{% else %}
-
+		{% javascripts
+			'medias/js/bootstrap/bootstrap-tab.js'
+			'medias/js/bootstrap/bootstrap-tooltip.js'
+			'medias/js/bootstrap/bootstrap-popover.js'
+			'medias/js/site/homepage.js'
+			output='js/site-index.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
 	{% endif %}
 {% endblock %}
 

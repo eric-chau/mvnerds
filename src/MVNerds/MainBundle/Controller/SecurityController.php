@@ -5,6 +5,7 @@ namespace MVNerds\MainBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\Security\Core\SecurityContext;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 class SecurityController extends Controller
 {
@@ -13,7 +14,7 @@ class SecurityController extends Controller
 	 * @Route("/{_locale}/summoner/login", name="security_summoner_login")
 	 */
 	public function loginAction()
-	{
+	{		
 		$request = $this->getRequest();
 		$session = $request->getSession();
 
@@ -69,5 +70,4 @@ class SecurityController extends Controller
 	{
 		
 	}
-
 }

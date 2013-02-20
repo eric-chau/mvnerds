@@ -9,7 +9,14 @@
 		<link href="{{ asset('medias/css/videos/list-page.css') }}" rel="stylesheet" type="text/css">
 		<link href="{{ asset('medias/css/mvnerds/mvnerds-modal.css') }}" rel="stylesheet" type="text/css">
 	{% else %}
-
+		{% stylesheets 
+			'medias/css/videos/list-page.css'
+			'medias/css/mvnerds/mvnerds-modal.css'
+			output='css/lol-video-center-index.css'
+			filter='yui_css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
 	{% endif %}
 {% endblock %}
 
@@ -25,7 +32,19 @@
 		<script type="text/javascript" src="{{ asset('medias/js/videos/list-page.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/videos/publish-video.js') }}"></script>
 	{% else %}
-
+		{% javascripts
+			'medias/js/bootstrap/bootstrap-tooltip.js'
+			'medias/js/bootstrap/bootstrap-popover.js'
+			'medias/js/bootstrap/bootstrap-modal.js'
+			'medias/js/site/alerts-ajax-handler.js'
+			'medias/js/jquery.dataTables.min.js'
+			'medias/js/videos/list-page.js'
+			'medias/js/videos/publish-video.js'
+			output='js/lol-video-center-index.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
 	{% endif %}
 {% endblock %}
 

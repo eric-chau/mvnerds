@@ -4,10 +4,7 @@
 {% block css %}
 	{{ parent() }}
 
-	{% if app.environment == 'dev' %}
-		<link href='{{ asset('medias/css/champions/champion-square25-sprite.css') }}' rel='stylesheet' type='text/css'>
-		<link href='{{ asset('medias/css/champions/champion-square36-sprite.css') }}' rel='stylesheet' type='text/css'>
-	{% endif %}
+	<link href='{{ asset('medias/css/champions/champion-square36-sprite.css') }}' rel='stylesheet' type='text/css'>
 {% endblock %}
 
 {% block body %}
