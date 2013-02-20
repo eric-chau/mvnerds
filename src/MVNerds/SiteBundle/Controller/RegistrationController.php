@@ -147,7 +147,8 @@ class RegistrationController extends Controller
 		$this->get('session')->set('forgot_password_user_slug', $slug);
 		
 		return $this->render('MVNerdsSiteBundle:Registration:reset_password.html.twig', array(
-			'form'	=> $this->createForm(new ResetPasswordType(), new ResetPasswordModel($this->get('mvnerds.user_manager')))->createView()
+			'form'	=> $this->createForm(new ResetPasswordType(), new ResetPasswordModel($this->get('mvnerds.user_manager')))->createView(),
+			'user'	=> $this->get('mvnerds.user_manager')->findBySlug($slug)
 		));
 	}
 	
@@ -174,16 +175,17 @@ class RegistrationController extends Controller
 			}
 			
 			return $this->render('MVNerdsSiteBundle:Registration:reset_password.html.twig', array(
-				'form'	=> $form->createView()
+				'form'	=> $form->createView(),
+				'user'	=> $this->get('mvnerds.user_manager')->findBySlug($this->get('session')->get('forgot_password_user_slug'))
 			));
 		}
 		
-		return $this->redirect($this->generateUrl('launch_site_forgot_password'));
+		return $this->redirect($this->generateUrl('security_summoner_login'));
 	}
 	
 	private function forbidIfConnected()
 	{
-		if (true === $this->get('security.context')->isGranted('IS_AUTHENTICATED_ANONYMOUSLY')) {
+		if (null != $this->getUser()) {
 			throw new AccessDeniedException();
 		}
 	}
