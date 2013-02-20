@@ -5,6 +5,7 @@ $(document).ready(function() {
 	filter = $('#item-builds-table').data('filter');
 	
 	var 	$titleFilterInput = $('input#title-filter-input');
+	var 	$authorFilterInput = $('input#author-filter-input');
 	var 	$categoryFilterInput = $('#category-filter-input');
 	
 	var langage;
@@ -96,6 +97,11 @@ $(document).ready(function() {
 			videosTable.fnFilter($(this).val(), 6);
 		}
 	});
+	$authorFilterInput.on('keyup change', function(e){
+		if (e.keyCode == 13 || e.keyCode == 8) {
+			videosTable.fnFilter($(this).val(), 3);
+		}
+	});
 	$categoryFilterInput.on('change', function(e){
 			videosTable.fnFilter($(this).val(), 8);
 	});
@@ -103,6 +109,9 @@ $(document).ready(function() {
 		e.preventDefault();
 		if ($titleFilterInput.val() != '') {
 			videosTable.fnFilter($titleFilterInput.val(), 6);
+		}
+		if ($authorFilterInput.val() != '') {
+			videosTable.fnFilter($authorFilterInput.val(), 3);
 		}
 	});
 	

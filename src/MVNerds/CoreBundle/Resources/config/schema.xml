@@ -671,11 +671,15 @@
   </table>
   <table name="skin">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="video_id" type="INTEGER" />
     <column name="champion_id" required="true" type="INTEGER" />
     <column name="name" required="true" size="100" type="VARCHAR" />
     <column name="cost" required="true" size="45" type="VARCHAR" />
     <foreign-key foreignTable="champion">
       <reference foreign="id" local="champion_id" />
+    </foreign-key>
+    <foreign-key foreignTable="video">
+      <reference foreign="id" local="video_id" />
     </foreign-key>
     <behavior name="i18n">
       <parameter name="i18n_columns" value="name" />
