@@ -22,7 +22,7 @@ class LoLVideoController extends Controller
 	{
 		/* @var $videoManager \MVNerds\CoreBundle\Video\VideoManager */
 		$videoManager = $this->get('mvnerds.video_manager');
-		
+		$videoManager->findAllActiveAjax();
 		return $this->render('MVNerdsVideoBundle:LoLVideoCenter:lol_video_index.html.twig', array(
 			'video_categories'	=> $videoManager->findAllVideoCatgories(),
 			'videos'		=> $videoManager->findAllActive(),
@@ -114,12 +114,13 @@ class LoLVideoController extends Controller
 			'',
 			'',
 			'user.USERNAME',
-			'CreateTime',
-			'UpdateTime',
+			'Create_Time',
+			'Update_Time',
 			'Title',
 			'View',
 			'video_category.UNIQUE_NAME',
-			'CommentCount'
+			'Comment_Count',
+			'LIKE_COUNT / (LIKE_COUNT + DISLIKE_COUNT) * 100'
 		);
 		
 		$limitStart = 0;
@@ -143,9 +144,8 @@ class LoLVideoController extends Controller
 			}
 		}
 		if (count($orderArr) <= 0) {
-			$orderArr = array('CreateTime' => 'desc');
+			$orderArr = array('Create_Time' => 'desc');
 		}
-		
 		//Recherche par colonne
 		$whereArr = array();
 		for ( $i=0 ; $i<count($aColumns) ; $i++ )
@@ -173,7 +173,10 @@ class LoLVideoController extends Controller
 		);
 		
 		foreach($videos as $video)
-		{			
+		{	
+			$voteCount = $video->getLikeCount() + $video->getDislikeCount();
+			$rating = $voteCount > 0 ? $video->getLikeCount() / ($voteCount) * 100 : 0;
+			
 			$jsonVideos['aaData'][] = array(
 				$this->renderView('MVNerdsVideoBundle:LoLVideoCenter:lol_video_index_table_preview_cell.html.twig', array('video' => $video)),
 				$this->renderView('MVNerdsVideoBundle:LoLVideoCenter:lol_video_index_table_title_cell.html.twig', array('video' => $video, 'user' => $video->getUser())),
@@ -184,7 +187,8 @@ class LoLVideoController extends Controller
 				$video->getTitle(),
 				$video->getView(),
 				$video->getVideoCategory()->getUniqueName(),
-				$video->getCommentCount()
+				$video->getCommentCount(),
+				$rating
 			);
 		}
 		return new Response(json_encode($jsonVideos));

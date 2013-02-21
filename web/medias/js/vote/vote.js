@@ -17,7 +17,9 @@ $(document).ready(function() {
 			$('.dislike_count').html(data.dislikeCount);
 			$('.vote_count').html(data.likeCount + data.dislikeCount);
 			
-			var rating = data.likeCount / (data.likeCount + data.dislikeCount) * 100;
+			var voteCount = data.likeCount + data.dislikeCount;
+			var rating = voteCount > 0 ? data.likeCount / (voteCount) * 100 : 0;
+			
 			var rating_css_class = '';
 			if (rating < 40) {
 				rating_css_class = 'rating red';
