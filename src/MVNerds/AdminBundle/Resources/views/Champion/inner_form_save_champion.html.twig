@@ -37,6 +37,35 @@
 	{% endfor %}
 </fieldset>
 
+<fieldset id="champion_skins" data-prototype="{{ form_widget(form.skins.vars.prototype) | e }}" data-i18n-prototype="{{ form.skins.vars.attr['data-i18n-prototype']}}">
+	<legend>Skins : </legend>	
+	<a href="#" class="btn btn-success" id="add-skins-link"><i class="icon-white icon-plus-sign"></i> Add a skin</a>
+
+
+	{% for skin in form.skins%}
+		<fieldset class="champion_skin" style="margin-left:50px">
+			<legend>Skin {{form_label(skin)}} </legend>
+			<div style="margin-bottom:9px;">
+				{{ form_label(skin.cost) }}
+				{{ form_widget(skin.cost) }}
+			</div>
+			<div style="margin-bottom:9px;">
+				{{ form_label(skin.image) }}
+				{{ form_widget(skin.image) }}
+			</div>
+			<div style="margin-bottom:9px;">
+				{{ form_label(skin.video) }}
+				{{ form_widget(skin.video) }}
+			</div>
+			<fieldset class="champion_skin_i18n"  style="margin-left:100px;"  data-prototype="{{ form_widget(skin.skin_i18ns.vars.prototype) | e }}">
+				<legend>Traductions du skin : </legend>
+				<a href="#" class="btn btn-success add-skin-i18n-link"><i class="icon-white icon-plus-sign"></i> Add a skin translation</a>
+				{{ form_widget(skin.skin_i18ns) }}	
+			</fieldset>
+		</fieldset>
+	{% endfor %}
+</fieldset>
+
 <fieldset>
 	<legend>Propriétés : </legend>
 	{{ form_widget(form) }}	

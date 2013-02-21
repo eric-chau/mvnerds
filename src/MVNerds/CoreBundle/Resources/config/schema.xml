@@ -474,6 +474,7 @@
     <foreign-key foreignTable="avatar">
       <reference foreign="id" local="avatar_id" />
     </foreign-key>
+    <behavior name="mvnerds_commentable" />
   </table>
   <table name="vote">
     <column name="object_id" primaryKey="true" required="true" type="INTEGER" />
@@ -663,7 +664,7 @@
     <behavior name="sluggable">
       <parameter name="slug_column" value="slug" />
       <parameter name="slug_pattern" value="{name}" />
-      <parameter name="replace_pattern" value="/[^\w\/]+/u" />
+      <parameter name="replace_pattern" value="/[^\w]+/u" />
       <parameter name="replacement" value="-" />
       <parameter name="separator" value="-" />
       <parameter name="permanent" value="false" />

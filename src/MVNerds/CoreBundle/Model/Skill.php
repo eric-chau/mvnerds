@@ -56,7 +56,7 @@ class Skill extends BaseSkill {
 			}
 			
 			try {
-				file_put_contents(__DIR__ . '/../../../../web/images/skills/'. $slug .'.png', file_get_contents($imageUrl));
+				file_put_contents(__DIR__ . '/../../../../web/medias/images/champions/skills/'. $slug .'.png', file_get_contents($imageUrl));
 			} catch (\Exception $e) {}
 		}
 	}

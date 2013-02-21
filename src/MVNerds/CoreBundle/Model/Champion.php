@@ -144,6 +144,18 @@ class Champion extends BaseChampion
 		return $this;
 	}
 	
+	public function removeSkin(Skin $l)
+	{
+		if ($this->collSkins === null) {
+			return $this;
+		}
+		if ($this->collSkins->contains($l)) {
+			$this->doRemoveSkin($l);
+		}
+
+		return $this;
+	}
+	
 	public function removeChampionI18n(ChampionI18n $l)
 	{
 		die('ko');
@@ -171,6 +183,18 @@ class Champion extends BaseChampion
 		}
 		$this->save();
 		$skill->delete();
+		return $this;
+	}
+	protected function doRemoveSkin($skin)
+	{		
+		foreach ($this->collSkins as $key => $ct) {
+			if ($ct == $skin) {
+				unset($this->collSkins[$key]);
+				break;
+			}
+		}
+		$this->save();
+		$skin->delete();
 		return $this;
 	}
 } // Champion
