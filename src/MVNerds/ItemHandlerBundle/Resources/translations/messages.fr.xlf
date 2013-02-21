@@ -409,6 +409,14 @@
 				<source>item_table.admin.delete</source>
 				<target>Supprimer</target>
 			</trans-unit>
+			<trans-unit id="2022">
+				<source>item_table.td.icon.title.like</source>
+				<target>Votes pour</target>
+			</trans-unit>
+			<trans-unit id="2023">
+				<source>item_table.td.icon.title.dislike</source>
+				<target>Votes contre</target>
+			</trans-unit>
 
 			<!-- All lists -->
 			<trans-unit id="3000">
