@@ -60,6 +60,15 @@ class VideoManager
 		->find();
 	}
 	
+	public function findByUser($user) 
+	{
+		return VideoQuery::create()
+			->joinWith('VideoCategory')
+			->joinWith('User')
+			->add(VideoPeer::USER_ID, $user->getId())
+		->find();
+	}
+	
 	public function findRelatedVideos($video)
 	{
 		return VideoQuery::create()
