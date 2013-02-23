@@ -468,11 +468,15 @@
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
     <column defaultValue="1" name="avatar_id" required="true" type="INTEGER" />
     <column name="team_id" type="INTEGER" />
+    <column name="game_account_id" type="INTEGER" />
     <foreign-key foreignTable="team">
       <reference foreign="id" local="team_id" />
     </foreign-key>
     <foreign-key foreignTable="avatar">
       <reference foreign="id" local="avatar_id" />
+    </foreign-key>
+    <foreign-key foreignTable="game_account">
+      <reference foreign="id" local="game_account_id" />
     </foreign-key>
     <behavior name="mvnerds_commentable" />
   </table>
@@ -542,6 +546,7 @@
       <parameter name="foreign_table" value="user_report_comment" />
       <parameter name="expression" value="count(comment_id)" />
     </behavior>
+    <behavior name="mvnerds_reportable" />
   </table>
   <table name="news_category">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -676,10 +681,10 @@
     <column name="champion_id" required="true" type="INTEGER" />
     <column name="name" required="true" size="100" type="VARCHAR" />
     <column name="cost" required="true" size="45" type="VARCHAR" />
-    <foreign-key foreignTable="champion">
+    <foreign-key foreignTable="champion" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="champion_id" />
     </foreign-key>
-    <foreign-key foreignTable="video">
+    <foreign-key foreignTable="video" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="video_id" />
     </foreign-key>
     <behavior name="i18n">
@@ -756,6 +761,7 @@
       <parameter name="create_column" value="create_time" />
       <parameter name="update_column" value="update_time" />
     </behavior>
+    <behavior name="mvnerds_reportable" />
   </table>
   <table name="rotation">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -790,5 +796,17 @@
     <foreign-key foreignTable="user">
       <reference foreign="id" local="user_id" />
     </foreign-key>
+  </table>
+  <table name="game_account">
+    <column name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="summoner_name" required="true" size="50" type="VARCHAR" />
+    <column name="summoner_id" type="INTEGER" />
+    <column name="summoner_account_id" type="INTEGER" />
+    <column name="region" required="true" size="5" type="VARCHAR" />
+    <column defaultValue="0" name="is_active" required="true" type="BOOLEAN" />
+    <behavior name="timestampable">
+      <parameter name="create_column" value="create_time" />
+      <parameter name="update_column" value="update_time" />
+    </behavior>
   </table>
 </database>
