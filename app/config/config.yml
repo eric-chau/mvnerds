@@ -55,6 +55,7 @@ propel:
         mvnerds_commentable:	MVNerds\CommentBundle\Propel\MVNerdsCommentableBehavior
         mvnerds_votable:	MVNerds\VoteBundle\Propel\MVNerdsVotableBehavior
         mvnerds_reportable:	MVNerds\ReportBundle\Propel\MVNerdsReportableBehavior
+        mvnerds_viewable:	MVNerds\CoreBundle\View\MVNerdsViewableBehavior
 
 # Swiftmailer Configuration
 swiftmailer:

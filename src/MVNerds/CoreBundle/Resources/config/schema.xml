@@ -409,7 +409,6 @@
     <column defaultValue="NULL" name="user_id" type="INTEGER" />
     <column name="name" required="true" size="255" type="VARCHAR" />
     <column defaultValue="0" name="download" required="true" type="INTEGER" />
-    <column defaultValue="0" name="view" required="true" type="INTEGER" />
     <column name="description" type="LONGVARCHAR" />
     <column name="status" required="true" type="ENUM" valueSet="PUBLIC, PRIVATE, OBSOLETE" />
     <foreign-key foreignTable="user">
@@ -432,6 +431,7 @@
     </behavior>
     <behavior name="mvnerds_commentable" />
     <behavior name="mvnerds_votable" />
+    <behavior name="mvnerds_viewable" />
   </table>
   <table name="champion_item_build">
     <column name="champion_id" primaryKey="true" required="true" type="INTEGER" />
@@ -497,7 +497,6 @@
     <column name="preview" required="true" size="255" type="VARCHAR" />
     <column name="status" required="true" type="ENUM" valueSet="DRAFT, PRIVATE, PUBLIC" />
     <column name="content" required="true" type="LONGVARCHAR" />
-    <column defaultValue="0" name="view" required="true" type="INTEGER" />
     <column name="image_name" required="true" size="255" type="VARCHAR" />
     <column defaultValue="0" name="is_highlight" required="true" type="BOOLEAN" />
     <foreign-key foreignTable="user">
@@ -526,6 +525,7 @@
       <parameter name="i18n_phpname" value="NewsI18n" />
     </behavior>
     <behavior name="mvnerds_commentable" />
+    <behavior name="mvnerds_viewable" />
   </table>
   <table name="comment">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -546,7 +546,6 @@
       <parameter name="foreign_table" value="user_report_comment" />
       <parameter name="expression" value="count(comment_id)" />
     </behavior>
-    <behavior name="mvnerds_reportable" />
   </table>
   <table name="news_category">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -710,7 +709,6 @@
     <column name="title" required="true" size="100" type="VARCHAR" />
     <column name="link" required="true" size="255" type="VARCHAR" />
     <column name="description" size="255" type="VARCHAR" />
-    <column defaultValue="0" name="view" required="true" type="INTEGER" />
     <column name="status" required="true" type="ENUM" valueSet="ACTIVE, DISABLED" />
     <foreign-key foreignTable="video_category">
       <reference foreign="id" local="video_category_id" />
@@ -741,6 +739,7 @@
     <behavior name="mvnerds_reportable">
       <parameter name="report_status_column" value="report_status" />
     </behavior>
+    <behavior name="mvnerds_viewable" />
   </table>
   <table name="video_category">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -761,7 +760,6 @@
       <parameter name="create_column" value="create_time" />
       <parameter name="update_column" value="update_time" />
     </behavior>
-    <behavior name="mvnerds_reportable" />
   </table>
   <table name="rotation">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
