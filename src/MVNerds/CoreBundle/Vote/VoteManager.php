@@ -2,6 +2,8 @@
 
 namespace MVNerds\CoreBundle\Vote;
 
+use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
+
 use MVNerds\CoreBundle\Model\VotePeer;
 use MVNerds\CoreBundle\Model\VoteQuery;
 use MVNerds\CoreBundle\Vote\IVote;
@@ -38,8 +40,8 @@ class VoteManager
 			->add(VotePeer::OBJECT_ID, $object->getId())
 			->add(VotePeer::USER_ID, $user->getId())
 		->find();
-		
-		if (null === $votes || null === $votes[0])
+	
+		if (null === $votes || count($votes) <= 0)
 		{
 			throw new InvalidArgumentException('No votes foud for this object and user !');
 		}

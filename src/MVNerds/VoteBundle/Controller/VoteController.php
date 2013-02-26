@@ -16,7 +16,7 @@ use MVNerds\CoreBundle\Model\Vote;
 class VoteController extends Controller
 {	
 	public function renderVoteBlockAction(IVote $object, $objectType)
-	{		
+	{
 		/* @var $voteManager MVNerds\CoreBundle\Vote\VoteManager */
 		$voteManager  = $this->get('mvnerds.vote_manager');
 		
