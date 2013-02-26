@@ -80,7 +80,7 @@ class NewsController extends Controller
 		{
 			if ( isset($_GET['bSearchable_'.$i]) && $_GET['bSearchable_'.$i] == "true" && $_GET['sSearch_'.$i] != '' )
 			{
-				if ($aColumns[$i] == 'user.USERNAME' || $aColumns[$i] == 'Title' || $aColumns[$i] == 'news_category.UNIQUE_NAME')
+				if ($aColumns[$i] == 'user.USERNAME' || $aColumns[$i] == 'news_i18n.Title' || $aColumns[$i] == 'news_category.UNIQUE_NAME')
 				{
 					$whereArr[$aColumns[$i]] = ($_GET['sSearch_'.$i]);
 				}
