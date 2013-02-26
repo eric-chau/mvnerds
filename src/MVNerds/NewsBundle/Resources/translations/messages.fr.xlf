@@ -69,6 +69,27 @@
 				<source>news_list.table.td.created_at</source>
 				<target>à</target>
 			</trans-unit>
+
+			<trans-unit id="2000">
+				<source>MVNERDS</source>
+				<target>MVNerds</target>
+			</trans-unit>
+			<trans-unit id="2001">
+				<source>ARTICLE</source>
+				<target>Article</target>
+			</trans-unit>
+			<trans-unit id="2002">
+				<source>E_SPORT</source>
+				<target>E-Sport</target>
+			</trans-unit>
+			<trans-unit id="2003">
+				<source>EVENT</source>
+				<target>Événement</target>
+			</trans-unit>
+			<trans-unit id="2004">
+				<source>PBE</source>
+				<target>P.B.E</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

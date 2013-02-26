@@ -8,13 +8,13 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
- * @Route("/news")
+ * @Route("/news/old")
  */
 class FrontController extends Controller
 {
 
 	/**
-	 * @Route("/", name="news_index")
+	 * @Route("/", name="old_news_index")
 	 */
 	public function indexAction()
 	{
@@ -31,7 +31,7 @@ class FrontController extends Controller
 	}
 	
 	/**
-	 * @Route("/leave-comment", name="news_leave_comment", options={"expose"=true})
+	 * @Route("/leave-comment", name="old_news_leave_comment", options={"expose"=true})
 	 */
 	public function leaveCommentAction()
 	{
@@ -69,7 +69,7 @@ class FrontController extends Controller
 	}
 	
 	/**
-	 * @Route("/load-more-comment", name="news_load_more_comment", options={"expose"=true})
+	 * @Route("/load-more-comment", name="old_news_load_more_comment", options={"expose"=true})
 	 */
 	public function loadMoreCommentAction()
 	{
@@ -99,7 +99,7 @@ class FrontController extends Controller
 	}
 	
 	/**
-	 * @Route("/{slug}", name="news_detail")
+	 * @Route("/{slug}", name="old_news_detail")
 	 */
 	public function viewAction($slug)
 	{

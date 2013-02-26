@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Session\Session;
 use MVNerds\CoreBundle\Model\News;
 use MVNerds\CoreBundle\Model\NewsQuery;
 use MVNerds\CoreBundle\Model\NewsPeer;
+use MVNerds\CoreBundle\Model\NewsCategoryQuery;
 
 class NewsManager
 {
@@ -155,6 +156,81 @@ class NewsManager
 
 		return $news;
 	}	
+	
+	public function findAllAjax($onlyPublic = true, $limitStart = 0, $limitLength = 2, $orderArr = array('Create_Time' => 'desc'), $whereArr = array())
+	{
+		$newsQuery = NewsQuery::create()
+			->offset($limitStart)
+			->limit($limitLength)
+			->joinWith('User', \Criteria::LEFT_JOIN)
+			->joinWith('NewsCategory', \Criteria::LEFT_JOIN)
+			->join('NewsI18n', \Criteria::LEFT_JOIN);
+		
+		if ($onlyPublic) {
+			$newsQuery->add(NewsPeer::STATUS, NewsPeer::STATUS_PUBLIC);
+		} else {
+			$newsQuery->add(NewsPeer::STATUS, NewsPeer::STATUS_PRIVATE, \Criteria::NOT_LIKE);
+		}
+		
+		foreach($orderArr as $orderCol => $orderDir)
+		{
+			switch ($orderDir) {
+				case 'asc':
+					$newsQuery->addAscendingOrderByColumn($orderCol);
+					break;
+				case 'desc':
+					$newsQuery->addDescendingOrderByColumn($orderCol);
+					break;
+				default:
+					throw new PropelException('ModelCriteria::orderBy() only accepts Criteria::ASC or Criteria::DESC as argument');
+			}
+		}
+		foreach($whereArr as $whereCol => $whereVal)
+		{
+			$newsQuery->add($whereCol, '%' . $whereVal . '%', \Criteria::LIKE);
+		}
+		
+		$news = $newsQuery->find();
+		
+		if (null === $news)
+		{
+			throw new InvalidArgumentException('No news found !');
+		}
+		
+		return $news;
+	}
+	
+	public function countAll($onlyPublic = true)
+	{
+		if ($onlyPublic) {
+			$newsCount = NewsQuery::create()->add(NewsPeer::STATUS, NewsPeer::STATUS_PUBLIC)->count();
+		} else {
+			$newsCount = NewsQuery::create()->add(NewsPeer::STATUS, NewsPeer::STATUS_PRIVATE, \Criteria::NOT_LIKE)->count();	
+		}
+		
+		return $newsCount;
+	}
+	
+	public function countAllAjax($onlyPublic = true, $whereArr = array())
+	{
+		$newsQuery = NewsQuery::create()
+			->joinWith('User', \Criteria::LEFT_JOIN)
+			->joinWith('NewsCategory', \Criteria::LEFT_JOIN)
+			->join('NewsI18n', \Criteria::LEFT_JOIN);
+	
+		if ($onlyPublic) {
+			$newsQuery->add(NewsPeer::STATUS, NewsPeer::STATUS_PUBLIC);
+		} else {
+			$newsQuery->add(NewsPeer::STATUS, NewsPeer::STATUS_PRIVATE, \Criteria::NOT_LIKE);
+		}
+		
+		foreach($whereArr as $whereCol => $whereVal)
+		{
+			$newsQuery->add($whereCol, '%' . $whereVal . '%', \Criteria::LIKE);
+		}
+		
+		return $newsQuery->count();
+	}
 
 	/**
 	 * Permet de faire persister en base de données la news $news
@@ -175,5 +251,11 @@ class NewsManager
 	{
 		$locale = $session->get('locale', null);
 		$this->userLocale = null === $locale? 'fr' : $locale;
+	}
+	
+	public function findAllNewsCategories()
+	{
+		return NewsCategoryQuery::create()
+		->find();
 	}
 }

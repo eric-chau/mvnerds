@@ -1,0 +1,142 @@
+{% extends 'MVNerdsSiteBundle::layout.html.twig' %}
+
+{% block title %}Most Valuable News - MVNerds{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		<link href="{{ asset('medias/css/news/list-page.css') }}" rel="stylesheet" type="text/css">
+	{% else %}
+		{% stylesheets 
+			'medias/css/news/list-page.css'
+			output='css/news-index.css'
+			filter='yui_css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
+	{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/site/alerts-ajax-handler.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/jquery.dataTables.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/news/list-page.js') }}"></script>
+	{% else %}
+		{% javascripts
+			'medias/js/bootstrap/bootstrap-tooltip.js'
+			'medias/js/bootstrap/bootstrap-popover.js'
+			'medias/js/site/alerts-ajax-handler.js'
+			'medias/js/jquery.dataTables.min.js'
+			'medias/js/news/list-page.js'
+			output='js/news-index.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	{% endif %}
+{% endblock %}
+
+{% block topbar %}
+	{% set module = 'news' %}
+		
+	{{ parent() }}
+{% endblock %}
+		
+{% block breadcrumbs %}
+	{{ parent() }}
+	
+	> <a href="{{ path('news_index') }}">Most Valuable News</a>
+{% endblock %}
+
+{% block main_content %}
+	<div class="container main-container border-top">
+		<div class="row-fluid">
+			<div class="span8 left-content">
+				<h1>Most Valuable News</h1>
+								
+				<table id="news-table" class="table data-table">
+					<thead>
+						<tr>
+							<th class="preview">Aperçu</th>
+							<th class="title">Titre</th>
+							<th class="category">Catégorie</th>
+						</tr>
+					</thead>
+					<tbody>
+						{# Contenu chargé en AJAX par DataTable #}
+					</tbody>
+				</table>
+			</div>
+			
+			<div class="span4 right-content">
+				
+				<div class="block">
+					<div class="header">
+						<h3>Options de filtrage</h3>
+					</div>
+					<div class="body">
+						<p>Trier par :</p>
+						<ul id="sort-list">
+							<li><a href="#" class="sort-link" data-option-value="0"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.oldest'|trans}}</a></li>
+							<li><a href="#" class="sort-link selected" data-option-value="1"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.newest'|trans}}</a></li>
+							<li><a href="#" class="sort-link" data-option-value="2"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.updated'|trans}}</a></li>
+							<li><a href="#" class="sort-link" data-option-value="3"><i class=" icon-ok-sign"></i>{{'video_list_index.sort.title-asc'|trans}}</a></li>
+							<li><a href="#" class="sort-link" data-option-value="4"><i class=" icon-ok-sign"></i>{{'video_list_index.sort.title-desc'|trans}}</a></li>
+							<li><a href="#" class="sort-link" data-option-value="5"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.views'|trans}}</a></li>
+							<li><a href="#" class="sort-link" data-option-value="6"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.most-commented'|trans}}</a></li>
+						</ul>
+						
+						<p>Rechercher par :</p>
+						<ul class="filters-list more-filter">
+							<li id="filter-title">
+								<label for="title-filter-input">{{'item_build_list_index.sort.filter-by-title'|trans}}</label>
+								<input type="text" id="title-filter-input" class="input-mini"/>
+							</li>
+							
+							<li id="filter-author">
+								<label for="author-filter-input">{{'item_build_list_index.sort.filter-by-author'|trans}}</label>
+								<input type="text" id="author-filter-input" class="input-mini"/>
+							</li>
+							
+							<li id="filter-category">
+								<label for="category-filter-input">{{'video_list_index.sort.filter-by-category'|trans}}</label>
+								<select id="category-filter-input">
+									<option value="" selected="selected"></option>
+									{% for news_category in news_categories %}
+										<option value="{{news_category.getUniqueName()}}">{{news_category.getUniqueName() | trans}}</option>
+									{% endfor %}
+								</select>
+							</li>
+							
+							<li id="filter-search">
+								<a href="#" class="btn green" id="search-filter-btn">Rechercher <i class="icon-search icon-white"></i></a>
+							</li>
+						</ul>
+					</div>
+				</div>
+					
+				{# PUBLICITÉ #}
+				<div class="sidebar-ad-container">
+					<script type="text/javascript"><!--
+					google_ad_client = "ca-pub-9866334543391692";
+					/* Rectangle MVNerds 2.0 */
+					google_ad_slot = "3578997199";
+					google_ad_width = 300;
+					google_ad_height = 250;
+					//-->
+					</script>
+					<script type="text/javascript"
+					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+					</script>	
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+	
