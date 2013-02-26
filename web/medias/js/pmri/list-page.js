@@ -173,6 +173,7 @@ $(document).ready(function() {
                       {"bVisible": false, "bSearchable": false, "bSortable":true},//Comment count
                       {"bVisible": false, "bSearchable": true, "bSortable":true},//Build Name
                       {"bVisible": false, "bSearchable": false, "bSortable":true},//Views
+                      {"bVisible": false, "bSearchable": false, "bSortable":true},//Rating
 		],
 		"aoSearchCols": [
 			null,
@@ -203,6 +204,8 @@ $(document).ready(function() {
 		[5, 'desc'],//Les dernières MAJ
 		[8, 'desc'],//Les + commentées
 		[10, 'desc'],//Les + vues
+		[11, 'desc'],//Les mieux notées
+		[11, 'asc']//Les moins bien notées
 	];
 	
 	var $dropdownSort = $('ul#sort-list');

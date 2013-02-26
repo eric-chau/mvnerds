@@ -49,7 +49,7 @@
 {% block breadcrumbs %}
 	{{ parent() }}
 	
-	> <a href="#">Champions de League of Legends</a> > <a href="{{ path('champion_detail', {'slug': champion.getSlug()}) }}">{{ champion.getName() }}</a>
+	> <a href="{{ path('champion_benchmark_index') }}">Champions de League of Legends</a> > <a href="{{ path('champion_detail', {'slug': champion.getSlug()}) }}">{{ champion.getName() }}</a>
 {% endblock %}
 
 {% block main_content %}
@@ -61,7 +61,13 @@
 				<div class="champion-title">
 					{{ champion.getTitle() }}
 					<div class="cost"><i class="icon-ip"></i> <strong>{{ champion.getIpCost() }}</strong> {{'General.or'|trans}} <i class="icon-rp"></i> <strong>{{ champion.getRpCost() }}</strong></div>
-				</div><i class="icon-rp"></i> 
+				</div>
+				
+				<div class="champion-tags">
+					{% for champion_tag in champion.getChampionTags() %}
+						<span class="tag">{{champion_tag.getTag().getLabel() }}</span>
+					{% endfor %}
+				</div>
 				
 				<div class="clearfix"></div>
 				{# PUBLICITÉ #}

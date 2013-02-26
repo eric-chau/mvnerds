@@ -3,6 +3,8 @@
 namespace MVNerds\CoreBundle\Video;
 
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
+use \Criteria;
+use \PropelException;
 
 use MVNerds\CoreBundle\Model\VideoQuery;
 use MVNerds\CoreBundle\Model\VideoPeer;
@@ -55,6 +57,15 @@ class VideoManager
 			->joinWith('VideoCategory')
 			->joinWith('User')
 			->add(VideoPeer::STATUS, VideoPeer::STATUS_ACTIVE)
+		->find();
+	}
+	
+	public function findByUser($user) 
+	{
+		return VideoQuery::create()
+			->joinWith('VideoCategory')
+			->joinWith('User')
+			->add(VideoPeer::USER_ID, $user->getId())
 		->find();
 	}
 	
@@ -140,7 +151,7 @@ class VideoManager
 		return $videoCategory;
 	}
 	
-	public function findAllActiveAjax($limitStart = 0, $limitLength = 2, $orderArr = array('CreateTime' => 'desc'), $whereArr = array())
+	public function findAllActiveAjax($limitStart = 0, $limitLength = 2, $orderArr = array('Create_Time' => 'desc'), $whereArr = array())
 	{
 		$videoQuery = VideoQuery::create()
 			->offset($limitStart)
@@ -151,7 +162,16 @@ class VideoManager
 		
 		foreach($orderArr as $orderCol => $orderDir)
 		{
-			$videoQuery->orderBy($orderCol, $orderDir);
+			switch ($orderDir) {
+				case 'asc':
+					$videoQuery->addAscendingOrderByColumn($orderCol);
+					break;
+				case 'desc':
+					$videoQuery->addDescendingOrderByColumn($orderCol);
+					break;
+				default:
+					throw new PropelException('ModelCriteria::orderBy() only accepts Criteria::ASC or Criteria::DESC as argument');
+			}
 		}
 		foreach($whereArr as $whereCol => $whereVal)
 		{
@@ -164,7 +184,7 @@ class VideoManager
 		{
 			throw new InvalidArgumentException('No video found !');
 		}
-
+		
 		return $videos;
 	}
 	

@@ -4,6 +4,7 @@ namespace MVNerds\CoreBundle\ItemBuild;
 
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Session\Session;
+use \PropelException;
 
 use MVNerds\CoreBundle\Model\Item;
 use MVNerds\CoreBundle\Model\ItemBuild;
@@ -89,7 +90,7 @@ class ItemBuildManager
 		return $itemBuilds;
 	}
 	
-	public function findAllPublicAjax($limitStart = 0, $limitLength = 2, $orderArr = array('CreateTime' => 'desc'), $whereArr = array(), $championName = null)
+	public function findAllPublicAjax($limitStart = 0, $limitLength = 2, $orderArr = array('Create_Time' => 'desc'), $whereArr = array(), $championName = null)
 	{
 		$itemBuildsQuery = ItemBuildQuery::create()
 			->offset($limitStart)
@@ -99,7 +100,16 @@ class ItemBuildManager
 		
 		foreach($orderArr as $orderCol => $orderDir)
 		{
-			$itemBuildsQuery->orderBy($orderCol, $orderDir);
+			switch ($orderDir) {
+				case 'asc':
+					$itemBuildsQuery->addAscendingOrderByColumn($orderCol);
+					break;
+				case 'desc':
+					$itemBuildsQuery->addDescendingOrderByColumn($orderCol);
+					break;
+				default:
+					throw new PropelException('ModelCriteria::orderBy() only accepts Criteria::ASC or Criteria::DESC as argument');
+			}
 		}
 		foreach($whereArr as $whereCol => $whereVal)
 		{

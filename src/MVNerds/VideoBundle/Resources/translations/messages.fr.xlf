@@ -47,7 +47,15 @@
 				<source>OTHER</source>
 				<target>Autre</target>
 			</trans-unit>
-			
+			<trans-unit id="108">
+				<source>MUSIC</source>
+				<target>Musique</target>
+			</trans-unit>
+			<trans-unit id="109">
+				<source>INTERVIEW</source>
+				<target>Interview</target>
+			</trans-unit>
+
 			<!-- TRADUCTION DES MESSAGES D ERREURS DU LoLVideoController -->
 			<trans-unit id="1000">
 				<source>error.video_not_found</source>

@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 use MVNerds\CoreBundle\Model\UserReport;
+use MVNerds\CoreBundle\Report\IReport;
 
 /**
  * @Route("/Report")
@@ -57,6 +58,38 @@ class ReportController extends Controller
 			return new Response(json_encode('Report pris en compte'));
 		} catch (\Exception $e) {
 			return new Response($e->getMessage(), 400);
+		}
+	}
+	
+	public function renderReportBlockAction(IReport $object, $objectType, $isDetailed = false)
+	{
+		/* @var $reportManager \MVNerds\CoreBundle\Report\ReportManager */
+		$reportManager  = $this->get('mvnerds.report_manager');
+	
+		
+		if (($user = $this->getUser())) {
+			try {
+				$reportManager->findByObjectAndUser($object, $user);
+				$canReport = false;
+			} catch (\Exception $e) {
+				$canReport = true;
+			}
+		} else {
+			$canReport = false;
+		}
+		
+		if ($isDetailed) {
+			return $this->render('MVNerdsReportBundle:Report:detailed_report_block.html.twig', array(
+				'can_report'		=> $canReport,
+				'object_slug'		=> $object->getSlug(),
+				'object_type'		=> $objectType,
+				'report_motives'	=> UserReport::$REPORT_MOTIVES[$objectType]
+			));
+		} else {
+			return $this->render('MVNerdsReportBundle:Report:simple_report_block.html.twig', array(
+				'can_report'		=> $canReport,
+				'object_slug'		=> $object->getSlug()
+			));
 		}
 	}
 }

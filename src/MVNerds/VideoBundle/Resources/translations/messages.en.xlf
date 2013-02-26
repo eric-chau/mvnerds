@@ -47,6 +47,14 @@
 				<source>OTHER</source>
 				<target>Other</target>
 			</trans-unit>
+			<trans-unit id="108">
+				<source>MUSIC</source>
+				<target>Music</target>
+			</trans-unit>
+			<trans-unit id="109">
+				<source>INTERVIEW</source>
+				<target>Interview</target>
+			</trans-unit>
 
 			<!-- TRADUCTION DES MESSAGES D ERREURS DU LoLVideoController -->
 			<trans-unit id="1000">

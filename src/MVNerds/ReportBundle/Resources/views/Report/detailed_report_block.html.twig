@@ -8,7 +8,7 @@
 					<input type="radio" name="report-motive" value="{{loop.index0}}" {{loop.index0 == 0 ? 'checked="checked"'}}>{{motive}} <br />
 				{% endfor %}
 				
-				<button type="submit" class="report-form-action" data-type="{{object_type}}" data-slug="{{object.getSlug()}}">Signaler</button>
+				<button type="submit" class="report-form-action" data-type="{{object_type}}" data-slug="{{object_slug}}">Signaler</button>
 			</form>
 		</div>
 	</div>

@@ -191,6 +191,28 @@ class ChampionType extends AbstractType
 								'</div>'
 			)
 		));
+		
+		$builder->add('skins', 'collection', array(
+			'type' => new SkinType(),
+			'allow_add' => true,
+			'allow_delete' => true,
+			'by_reference' => false,
+			'attr' => array(
+				'data-i18n-prototype' => '<div id="champion_skins___parent-name___skin_i18ns___name__">'.
+									'<div>'.
+										'<label for="champion_skins___parent-name___skin_i18ns___name___lang" class="required">Lang</label>'.
+										'<select id="champion_skins___parent-name___skin_i18ns___name___lang" name="champion[skins][__parent-name__][skin_i18ns][__name__][lang]" required="required">'.
+											'<option value="fr">Français</option>'.
+											'<option value="en">English</option>'.
+										'</select>'.
+									'</div>'.
+									'<div>'.
+										'<label for="champion_skins___parent-name___skin_i18ns___name___name" class="required">Name</label>'.
+										'<input type="text" id="champion_skins___parent-name___skin_i18ns___name___name" name="champion[skins][__parent-name__][skin_i18ns][__name__][name]" required="required"/>'.
+									'</div>'.
+								'</div>'
+			)
+		));
 	}
 	
 	public function getName()

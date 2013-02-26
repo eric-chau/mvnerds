@@ -2,13 +2,17 @@
 var tagCollectionHolder = $('div#champion_champion_tags');
 var i18nCollectionHolder = $('div#champion_champion_i18ns');
 var skillCollectionHolder = $('#champion_skills');
+var skinCollectionHolder = $('#champion_skins');
 var skillI18nCollectionHolder = $('fieldset.champion_skill_i18n');
+var skinI18nCollectionHolder = $('fieldset.champion_skin_i18n');
 
 // setup an "add a tag" link
 var $addTagLink = $('<a href="#" class="btn btn-success" id="add-tag-link"><i class="icon-white icon-plus-sign"></i> Add a tag</a>');
 var $addI18nLink = $('<a href="#" class="btn btn-success" id="add-tag-link"><i class="icon-white icon-plus-sign"></i> Add a translation</a>');
 var $addSkillLink = $('a#add-skills-link');
+var $addSkinLink = $('a#add-skins-link');
 var $addSkillI18nLink = $('a.add-skill-i18n-link');
+var $addSkinI18nLink = $('a.add-skin-i18n-link');
 
 jQuery(document).ready(function() {
 	tagCollectionHolder.before($addTagLink);
@@ -68,6 +72,57 @@ jQuery(document).ready(function() {
 
 		addFormDeleteLink($(this).parent().children('div').last());
 	});
+	$addSkinLink.on('click', function(e) {
+		e.preventDefault();
+		
+		var collectionSize = skinCollectionHolder.children('fieldset').length;
+		
+		var prototype = skinCollectionHolder.attr('data-prototype');
+		
+		var options = $(prototype).children('div').eq(3).find('select').html();
+		
+		var fieldset= '<fieldset class="champion_skin" style="margin-left:50px">'+
+					'<legend>Skin <label class="required">__name__</label> </legend>'+
+					'<div style="margin-bottom:9px;">'+
+						'<label for="champion_skins___name___cost" class="required">Cost</label>'+
+						'<input type="text" id="champion_skins___name___cost" name="champion[skins][__name__][cost]" required="required" maxlength="45" value="">'+
+					'</div>'+
+					'<div style="margin-bottom:9px;">'+
+						'<label for="champion_skins___name___image" class="required">Image</label>'+
+						'<input type="text" id="champion_skins___name___image" name="champion[skins][__name__][image]" value="">'+
+					'</div>'+
+					'<div style="margin-bottom:9px;">'+
+						'<label for="champion_skins___name___video" class="required">Video</label>'+
+						'<select id="champion_skins___name___video" name="champion[skins][__name__][video]" >'+
+							options +
+						'</select>'+
+					'</div>'+
+					'<fieldset class="champion_skin_i18n" style="margin-left:100px;">'+
+						'<legend>Traductions du skin : </legend>'+
+						'<a href="#" class="btn btn-success add-skin-i18n-link"><i class="icon-white icon-plus-sign"></i> Add a skin translation</a>'+
+					'</fieldset>'+
+				'</fieldset>';
+		
+		var $fieldset = $(fieldset.replace(/__name__/g, collectionSize));
+
+		skinCollectionHolder.append($fieldset);
+
+		addFormDeleteLink(skinCollectionHolder.children('fieldset').last());
+		addFormDeleteLink(skinCollectionHolder.children('fieldset').last().children('fieldset').last().children('div').children('div'));
+	});
+	skinCollectionHolder.on('click', 'a.add-skin-i18n-link', function(e) {
+		e.preventDefault();
+
+		$parent = $(this).parent();
+		var collectionSize = $parent.children('div').length;
+		var prototype = $parent.parent().parent().attr('data-i18n-prototype').replace(/__name__/g, collectionSize);
+		var parentCollectionSize = $parent.parent().parent().children('fieldset').index($parent.parent());
+		prototype = prototype.replace(/__parent-name__/g, parentCollectionSize);
+		var $prototype = $(prototype).prepend('<label>'+collectionSize+'</label>');
+		$parent.append($prototype);
+
+		addFormDeleteLink($(this).parent().children('div').last());
+	});
 
 	// add a delete link to all of the existing tag form li elements
 	$('#champion_champion_tags').children('div').each(function() {
@@ -78,6 +133,12 @@ jQuery(document).ready(function() {
 		addFormDeleteLink($(this));
 	});
 	skillI18nCollectionHolder.children('div').children('div').each(function(){
+		addFormDeleteLink($(this));
+	});
+	skinCollectionHolder.children('fieldset').each(function() {
+		addFormDeleteLink($(this));
+	});
+	skinI18nCollectionHolder.children('div').children('div').each(function(){
 		addFormDeleteLink($(this));
 	});
 });
@@ -92,7 +153,7 @@ function addTagFormDeleteLink($tagFormDiv) {
 	});
 }
 
-function addTagForm(tagCollectionHolder, $addTagLink) {
+function addTagForm(tagCollectionHolder) {
 	// Get the data-prototype we explained earlier
 	var prototype = tagCollectionHolder.attr('data-prototype');
 
@@ -118,7 +179,7 @@ function addSkillForm(skillCollectionHolder) {
 		$(this).parent().remove();
 	});
 }
-function addI18nForm(i18nCollectionHolder, $addI18nLink) {
+function addI18nForm(i18nCollectionHolder) {
 	// Get the data-prototype we explained earlier
 	var prototype = i18nCollectionHolder.attr('data-prototype');
 

@@ -15,7 +15,7 @@
 				<label for="video-publish-category">Catégorie*</label> 
 				<select id="video-publish-category">
 					{% for video_category in video_categories %}
-						<option value="{{video_category.getId()}}" {% if video.getVideoCategoryId() == video_category.getId() %}selected="selected"{% endif %}>{{video_category.getUniqueName()}}</option>
+						<option value="{{video_category.getId()}}" {% if video.getVideoCategoryId() == video_category.getId() %}selected="selected"{% endif %}>{{video_category.getUniqueName() | trans}}</option>
 					{% endfor %}
 				</select><br /><br />
 				

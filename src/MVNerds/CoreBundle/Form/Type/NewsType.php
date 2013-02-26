@@ -14,7 +14,7 @@ class NewsType extends AbstractType
 	{
 		$builder->add('news_category', 'model', array(
 			'class' => '\MVNerds\CoreBundle\Model\NewsCategory',
-			'property' => 'label',
+			'property' => 'unique_name',
 			'label' => 'Catégorie'
 		));
 		

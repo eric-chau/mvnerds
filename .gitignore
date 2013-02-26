@@ -20,3 +20,25 @@ web/builds/*.bat
 
 web/js/compiled/
 web/css/compiled/
+/web/js/champion-benchmark-compare.js
+/web/js/champion-benchmark-index.js
+/web/js/champion-detail.js
+/web/css/champion-benchmark-index.css
+/web/css/champion-detail.css
+/web/css/launch_site/news-layout.css
+/web/css/login-index.css
+/web/css/lol-video-center-detail.css
+/web/css/lol-video-center-index.css
+/web/css/mvnerds-bootstrap.css
+/web/css/pmri-create.css
+/web/css/pmri-list-detail.css
+/web/css/profile.css
+/src/MVNerds/CoreBundle/Model/Skill.php
+/web/js/login-index.js
+/web/js/lol-video-center-detail.js
+/web/js/lol-video-center-index.js
+/web/js/mvnerds-bootstrap.js
+/web/js/pmri-create.js
+/web/js/pmri-index.js
+/web/js/pmri-list-detail.js
+/web/js/site-index.js
