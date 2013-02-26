@@ -409,7 +409,6 @@
     <column defaultValue="NULL" name="user_id" type="INTEGER" />
     <column name="name" required="true" size="255" type="VARCHAR" />
     <column defaultValue="0" name="download" required="true" type="INTEGER" />
-    <column defaultValue="0" name="view" required="true" type="INTEGER" />
     <column name="description" type="LONGVARCHAR" />
     <column name="status" required="true" type="ENUM" valueSet="PUBLIC, PRIVATE, OBSOLETE" />
     <foreign-key foreignTable="user">
@@ -432,6 +431,7 @@
     </behavior>
     <behavior name="mvnerds_commentable" />
     <behavior name="mvnerds_votable" />
+    <behavior name="mvnerds_viewable" />
   </table>
   <table name="champion_item_build">
     <column name="champion_id" primaryKey="true" required="true" type="INTEGER" />
@@ -475,19 +475,7 @@
     <foreign-key foreignTable="avatar">
       <reference foreign="id" local="avatar_id" />
     </foreign-key>
-    <foreign-key foreignTable="game_account">
-      <reference foreign="id" local="game_account_id" />
-    </foreign-key>
-    <behavior name="mvnerds_commentable" />
-    <behavior name="sluggable">
-      <parameter name="slug_column" value="slug" />
-      <parameter name="slug_pattern" value="profile-{id}" />
-      <parameter name="replace_pattern" value="/[^\w\/]+/u" />
-      <parameter name="replacement" value="-" />
-      <parameter name="separator" value="-" />
-      <parameter name="permanent" value="false" />
-    </behavior>
-  </table>
+    <foreign-key foreignTable="game_account">      <reference foreign="id" local="game_account_id" />    </foreign-key>    <behavior name="mvnerds_commentable" />    <behavior name="sluggable">      <parameter name="slug_column" value="slug" />      <parameter name="slug_pattern" value="profile-{id}" />      <parameter name="replace_pattern" value="/[^\w\/]+/u" />      <parameter name="replacement" value="-" />      <parameter name="separator" value="-" />      <parameter name="permanent" value="false" />    </behavior>  </table>
   <table name="vote">
     <column name="object_id" primaryKey="true" required="true" type="INTEGER" />
     <column description="namespace de classe php associee" name="object_namespace" primaryKey="true" required="true" size="255" type="VARCHAR" />
@@ -505,7 +493,6 @@
     <column name="preview" required="true" size="255" type="VARCHAR" />
     <column name="status" required="true" type="ENUM" valueSet="DRAFT, PRIVATE, PUBLIC" />
     <column name="content" required="true" type="LONGVARCHAR" />
-    <column defaultValue="0" name="view" required="true" type="INTEGER" />
     <column name="image_name" required="true" size="255" type="VARCHAR" />
     <column defaultValue="0" name="is_highlight" required="true" type="BOOLEAN" />
     <foreign-key foreignTable="user">
@@ -534,6 +521,7 @@
       <parameter name="i18n_phpname" value="NewsI18n" />
     </behavior>
     <behavior name="mvnerds_commentable" />
+    <behavior name="mvnerds_viewable" />
   </table>
   <table name="comment">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -557,15 +545,7 @@
   </table>
   <table name="news_category">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
-    <column name="label" required="true" size="100" type="VARCHAR" />
-    <behavior name="sluggable">
-      <parameter name="slug_column" value="slug" />
-      <parameter name="slug_pattern" value="{label}" />
-      <parameter name="replace_pattern" value="/[^\w\/]+/u" />
-      <parameter name="replacement" value="-" />
-      <parameter name="separator" value="-" />
-      <parameter name="permanent" value="false" />
-    </behavior>
+    <column name="UNIQUE_NAME" required="true" size="100" type="VARCHAR" />
   </table>
   <table name="role">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -688,13 +668,10 @@
     <column name="champion_id" required="true" type="INTEGER" />
     <column name="name" required="true" size="100" type="VARCHAR" />
     <column name="cost" required="true" size="45" type="VARCHAR" />
-    <foreign-key foreignTable="champion">
+    <foreign-key foreignTable="champion" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="champion_id" />
     </foreign-key>
-    <foreign-key foreignTable="video">
-      <reference foreign="id" local="video_id" />
-    </foreign-key>
-    <behavior name="i18n">
+    <foreign-key foreignTable="video" onDelete="CASCADE" onUpdate="CASCADE">      <reference foreign="id" local="video_id" />    </foreign-key>    <behavior name="i18n">
       <parameter name="i18n_columns" value="name" />
       <parameter name="default_locale" value="en" />
       <parameter name="locale_column" value="lang" />
@@ -717,7 +694,6 @@
     <column name="title" required="true" size="100" type="VARCHAR" />
     <column name="link" required="true" size="255" type="VARCHAR" />
     <column name="description" size="255" type="VARCHAR" />
-    <column defaultValue="0" name="view" required="true" type="INTEGER" />
     <column name="status" required="true" type="ENUM" valueSet="ACTIVE, DISABLED" />
     <foreign-key foreignTable="video_category">
       <reference foreign="id" local="video_category_id" />
@@ -748,6 +724,7 @@
     <behavior name="mvnerds_reportable">
       <parameter name="report_status_column" value="report_status" />
     </behavior>
+    <behavior name="mvnerds_viewable" />
   </table>
   <table name="video_category">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />

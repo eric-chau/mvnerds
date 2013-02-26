@@ -8,13 +8,13 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 /**
- * @Route("/news")
+ * @Route("/news/old")
  */
 class FrontController extends Controller
 {
 
 	/**
-	 * @Route("/", name="news_index")
+	 * @Route("/", name="old_news_index")
 	 */
 	public function indexAction()
 	{
@@ -31,7 +31,7 @@ class FrontController extends Controller
 	}
 	
 	/**
-	 * @Route("/{slug}", name="news_detail")
+	 * @Route("/{slug}", name="old_news_detail")
 	 */
 	public function viewAction($slug)
 	{

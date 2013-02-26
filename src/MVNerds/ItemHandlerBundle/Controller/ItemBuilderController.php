@@ -92,12 +92,13 @@ class ItemBuilderController extends Controller
 			'',
 			'Champions',
 			'Download',
-			'UpdateTime',
+			'Update_Time',
 			'user.USERNAME',
-			'CreateTime',
-			'CommentCount',
+			'Create_Time',
+			'Comment_Count',
 			'Name',
-			'View'
+			'View',
+			'LIKE_COUNT / (LIKE_COUNT + DISLIKE_COUNT) * 100'			
 		);
 		
 		$limitStart = 0;
@@ -121,9 +122,8 @@ class ItemBuilderController extends Controller
 			}
 		}
 		if (count($orderArr) <= 0) {
-			$orderArr = array('CreateTime' => 'desc');
+			$orderArr = array('Create_Time' => 'desc');
 		}
-		
 		//Recherche par colonne
 		$whereArr = array();
 		$championName = null;
@@ -157,11 +157,13 @@ class ItemBuilderController extends Controller
 		
 		foreach($itemBuilds as $itemBuild)
 		{
+			$voteCount = $itemBuild->getLikeCount() + $itemBuild->getDislikeCount();
+			$rating = $voteCount > 0 ? $itemBuild->getLikeCount() / ($voteCount) * 100 : 0;
+			
 			$jsonItemBuilds['aaData'][] = array(
 				$this->renderView('MVNerdsItemHandlerBundle:PMRI:pmri_list_table_row_champion.html.twig', array('item_build' => $itemBuild)),
 				$this->renderView('MVNerdsItemHandlerBundle:PMRI:pmri_list_table_row_name.html.twig', array('item_build' => $itemBuild, 'user' => $itemBuild->getUser())),
 				$translator->trans($itemBuild->getChampionItemBuilds()->getFirst()->getGameMode()->getLabel()),
-				//$this->renderView('MVNerdsItemHandlerBundle:ItemBuilder:list_column_actions.html.twig', array('itemBuild' => $itemBuild)),
 				$itemBuild->getChampionsNamesToString(),
 				$itemBuild->getDownload(),
 				$itemBuild->getUpdateTime('YmdHims'),
@@ -169,7 +171,8 @@ class ItemBuilderController extends Controller
 				$itemBuild->getCreateTime('YmdHims'),
 				$itemBuild->getCommentCount(),
 				$itemBuild->getName(),
-				$itemBuild->getView()
+				$itemBuild->getView(),
+				$rating
 			);
 		}
 		return new Response(json_encode($jsonItemBuilds));

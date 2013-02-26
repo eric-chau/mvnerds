@@ -5,7 +5,7 @@
 				<a href="{{ path('site_homepage') }}" class="{% if module is not defined %}active{% endif %}"><i class="icon-home"></i></a>
 			</li>
 			<li>
-				<a href="#" class="{% if module is defined and module == 'news' %}active{% endif %}">Most Valuable News</a>
+				<a href="{{path('news_index')}}" class="{% if module is defined and module == 'news' %}active{% endif %}">Most Valuable News</a>
 			</li>
 			<li>
 				<a href="{{ path('champion_benchmark_index') }}" class="{% if module is defined and module == 'champion_benchmark' %}active{% endif %}">Champion Benchmark</a>
