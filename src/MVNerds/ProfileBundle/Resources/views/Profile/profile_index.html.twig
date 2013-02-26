@@ -1,11 +1,10 @@
-{% extends 'MVNerdsLaunchSiteBundle::layout.html.twig' %}
+{% extends 'MVNerdsSiteBundle::layout.html.twig' %}
 
 {% set admin_mode = false %}
-{% if app.user != null %}
-	{% if user.getId() == app.user.getId() %}
-		{% set admin_mode = true %}
-	{% endif %}
+{% if app.user != null and user.getId() == app.user.getId() %}
+	{% set admin_mode = true %}
 {% endif %}
+
 
 {% block title %}
 	{% if admin_mode == false %}
@@ -14,127 +13,195 @@
 		{{'Profile_index.title.admin_mode'|trans}} {{ user.getUsername() }} | MVNerds
 	{% endif %}
 {% endblock %}
-		
+
 {% block css %}
 	{{ parent() }}
 
-	{% if app.environment != 'dev' %}
+	{% if app.environment == 'dev' %}
+		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/profile/profile.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/mvnerds/mvnerds-modal.css') }}">
+		{#<link href="{{ asset('css/item_builder/listing-page.css') }}" rel="stylesheet" type="text/css">
+		<link href="{{ asset('css/item_builder/modal.css') }}" rel="stylesheet" type="text/css">
+		<link href="{{ asset('css/champion_handler/champion-square25-sprite.css') }}" rel="stylesheet" type="text/css">#}
+	{% else %}
 		{% stylesheets 
-			'css/profile/profile.css'
-			'css/item_builder/listing-page.css'
-			'css/item_builder/modal.css'
-			'css/champion_handler/champion-square25-sprite.css'
-			output='css/compiled/profile-index.css'
+			'medias/css/profile/profile.css'
+			'medias/css/mvnerds/mvnerds-modal.css'
+			output='css/profile.css'
 			filter='yui_css'
 		%}
 		<link rel="stylesheet" href="{{ asset_url }}" />
 		{% endstylesheets %}
-	{% else %}
-		<link href="{{ asset('css/profile/profile.css') }}" rel="stylesheet" type="text/css">
-		<link href="{{ asset('css/item_builder/listing-page.css') }}" rel="stylesheet" type="text/css">
-		<link href="{{ asset('css/item_builder/modal.css') }}" rel="stylesheet" type="text/css">
-		<link href="{{ asset('css/champion_handler/champion-square25-sprite.css') }}" rel="stylesheet" type="text/css">
 	{% endif %}
 {% endblock %}
-	
+
 {% block javascripts %}
 	{{ parent() }}
-	
-	{% if app.environment != 'dev' %}
+
+	{% if app.environment == 'dev' %}
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/profile/profile.js') }}"></script>
+		{#<script type="text/javascript" src="{{ asset('js/item_handler/item_builder/dl-modal.js') }}"></script>#}
+	{% else %}
 		{% javascripts
-			'js/bootstrap/bootstrap-popover.js'
-			'js/profile/profile.js'
-			'js/item_handler/item_builder/dl-modal.js'
-			output='js/compiled/profile-index.js'
+			'medias/js/bootstrap/bootstrap-tooltip.js'
+			'medias/js/bootstrap/bootstrap-popover.js'
+			'medias/js/profile/profile.js'
+			output='js/profile.js'
 			filter='yui_js'
 		%}
 		<script src="{{ asset_url }}"></script>
 		{% endjavascripts %}
-	{% else %}
-		<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('js/profile/profile.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('js/item_handler/item_builder/dl-modal.js') }}"></script>
 	{% endif %}
 {% endblock %}
 
-{% block body_main_content %}
-	<div class="body-container summoner-profile">
-		{% set current_avatar_name = user.getProfile().getAvatar().getName() %}
-		{% if admin_mode %}
-			<h1>{{'Profile_index.h1'|trans}} {{ user.getUsername() }}</h1>
-			<p>
-				{{'Profile_index.p1'|trans({'%date%':user.getCreatedAt()|date('d/m/Y')})}}
-				{% for role in user.getRoles() %}
-					<strong>{{ (role)|trans|lower }}</strong>{% if loop.index + 1 == loop.length %} {{'General.and'|trans}} {% else %}{% if loop.index == loop.length %}.{% else %},{% endif %}{% endif %}
-				{% endfor %}
-			</p>
-			
-			<p class="change-password">
-				Vous souhaitez changer votre mot de passe ? <a href="#" class="btn-change-password">Démarrer la procédure</a> 
-				<img src="{{ asset('images/commons/loader16-bg-141414.gif') }}" class="loader hide" />
-				<span class="process-ok hide">Nous avons bien pris en compte votre demande, vous allez recevoir un email vous détaillant la démarche à suivre.</span>
-			</p>
-			
-			<h2>{{'Profile_index.avatar.h2'|trans}}</h2>
-			<div class="user-custom-avatar-container">
-				<div class="row-fluid">
-					<div class="span3 current-avatar">
-						<strong>{{'Profile_index.avatar.current_avatar'|trans}}</strong>
-						<img src="{{ asset('images/avatar/'~ current_avatar_name ~'.jpg') }}" class="avatar" />
-						<a href="#" class="btn-save-avatar disabled" data-current-avatar-name="{{ current_avatar_name }}">{{'Profile_index.avatar.save_new_avatar'|trans}}</a> <img src="{{ asset('images/commons/loader16-bg-141414.gif') }}" class="loader hide" />
+{% block topbar %}
+	{% set module = 'lol_video_center' %}
+		
+	{{ parent() }}
+{% endblock %}
+		
+{% block breadcrumbs %}
+	{{ parent() }}
+	
+	> 
+	{% if admin_mode == false %}
+		<a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}">Profil de {{ user.getSlug() }}</a>
+	{% else %}
+		<a href="{{ path('summoner_profile_index') }}">Mon profil</a>
+	{% endif %}
+{% endblock %}
+
+{% block main_content %}
+	<div class="container main-container border-top">
+		<div class="row-fluid">
+			<div class="span8 left-content">
+				{% set current_avatar_name = user.getProfile().getAvatar().getName() %}
+				<div class="profile-header">
+					<img src="{{ asset('medias/images/avatar/'~ current_avatar_name ~'.jpg') }}" />
+					<h1>{{ user.getUsername() }}</h1>
+					<div class="user-stat">
+						<i class="icon-pencil"></i>
+						<strong>{{ user.getCreatedAt('d/m/Y') }}</strong>
+						<span>Date d'inscription</span>
 					</div>
-					<div class="span9 avatar-selection">
-						{% for avatar in avatars %}
-							<img src="{{ asset('images/avatar/'~ avatar.getName() ~'.jpg') }}" class="avatar-choice {% if avatar.getName() == current_avatar_name %} selected{% endif %}" data-avatar-name="{{ avatar.getName() }}" />
-						{% endfor %}
+					<div class="user-stat">
+						<i class="icon-comments-alt"></i>
+						<strong>{{ user_comment_count }}</strong>
+						<span>Commentaires postés</span>
+					</div>
+					<div class="user-stat">
+						<i class="icon-eye-open"></i>
+						<strong>{{ user_comment_count }}</strong>
+						<span>Consultations</span>
 					</div>
 				</div>
-			</div>
-		{% else %}
-			<img src="{{ asset('images/avatar/'~ current_avatar_name ~'.jpg') }}" class="avatar" />
-			<h1>{{ user.getUsername() }}</h1>
-			<p class="gray-color">{{ user.getUsername() }} {{'Profile_index.avatar.admin_mode.registered_since'|trans({'%date%':user.getCreatedAt()|date('d/m/Y')})}}
-				<ul class="gray-color">
-					{% for role in user.getRoles() %}
-						<li>{{ (role)|trans }}</li>
-					{% endfor %}
-				</ul>
-			</p>
-			<div class="clearfix"></div>
-		{% endif %}
-		
-		{% if admin_mode %}
-			<h2>{{'Profile_index.avatar.admin_mode.preferences.h2'|trans}}</h2>
-			<div class="user-custom-parameters-container">
-				<div class="module-block">
-					<h4>PIMP MY RECOMMENDED ITEMS</h4>
+				<div class="clearfix"></div>
+				
+				<div class="profile-body">
+					<h2>Mon compte de jeu lié : <i>non trouvé</i></h2>
+					
+					<p>{{ user.getUsername() }} n'a pas encore lié son compte League of Legends à son compte MVNerds.</p>
+					
+					<h2>
+						Pimp My Recommended Items 
+						{% if admin_mode %}
+							<a href="#" class="user-preference-toggle" data-block-id="pmri-user-preferences"><span class="label red">mes préférences utilisateur</span></a>
+						{% endif %}
+					</h2>
+					
+					{% if admin_mode %}
+						<div id="pmri-user-preferences" class="preference-block">
+							<form action="#" method="POST">
+								<div>
+									{{ form_label(form.lolDirectory) }}
+									{{ form_widget(form.lolDirectory) }}
+									<a href="#" class="reset-field"><i class="icon-remove-sign"></i></a>
+									<a href="#" class="save-field disabled" data-preference="LEAGUE_OF_LEGENDS_DIRECTORY"><i class="icon-ok-sign"></i>enregistrer</a>
+								</div>
 
-					<form action="#" method="POST">
-						<div>
-							{{ form_label(form.lolDirectory) }}
-							{{ form_widget(form.lolDirectory) }}
-							<a href="#" class="reset-field"><i class="icon-remove-circle"></i></a>
-							<a href="#" class="save-field disabled" data-preference="LEAGUE_OF_LEGENDS_DIRECTORY"><i class="icon-ok-circle"></i></a>
-							<img src="{{ asset('images/commons/loader16-bg-141414.gif') }}" class="loader hide" />
+								{{ form_rest(form) }}
+							</form>
 						</div>
+					{% endif %}
 
-						{{ form_rest(form) }}
-					</form>
+						{% if user_items_builds|length > 0 %}
+							{% include 'MVNerdsProfileBundle:Profile:pmri_list.html.twig' with {'item_builds': user_items_builds, 'admin_mode': admin_mode}  %}
+						{% else %}
+							<p class="empty-list">{{ user.getUsername() }} {{'ItemBuilder.pmri.p1'|trans}}</p>
+						{% endif %}
+					</div>
+				
+				{#
+				{% if admin_mode %}
+					<h1>{{'Profile_index.h1'|trans}} {{ user.getUsername() }}</h1>
+					<p>
+						{{'Profile_index.p1'|trans({'%date%':user.getCreatedAt()|date('d/m/Y')})}}
+						{% for role in user.getRoles() %}
+							<strong>{{ (role)|trans|lower }}</strong>{% if loop.index + 1 == loop.length %} {{'General.and'|trans}} {% else %}{% if loop.index == loop.length %}.{% else %},{% endif %}{% endif %}
+						{% endfor %}
+					</p>
+
+					<p class="change-password">
+						Vous souhaitez changer votre mot de passe ? <a href="#" class="btn-change-password">Démarrer la procédure</a> 
+						<img src="{{ asset('images/commons/loader16-bg-141414.gif') }}" class="loader hide" />
+						<span class="process-ok hide">Nous avons bien pris en compte votre demande, vous allez recevoir un email vous détaillant la démarche à suivre.</span>
+					</p>
+
+					<h2>{{'Profile_index.avatar.h2'|trans}}</h2>
+					<div class="user-custom-avatar-container">
+						<div class="row-fluid">
+							<div class="span3 current-avatar">
+								<strong>{{'Profile_index.avatar.current_avatar'|trans}}</strong>
+								<img src="{{ asset('images/avatar/'~ current_avatar_name ~'.jpg') }}" class="avatar" />
+								<a href="#" class="btn-save-avatar disabled" data-current-avatar-name="{{ current_avatar_name }}">{{'Profile_index.avatar.save_new_avatar'|trans}}</a> <img src="{{ asset('images/commons/loader16-bg-141414.gif') }}" class="loader hide" />
+							</div>
+							<div class="span9 avatar-selection">
+								{% for avatar in avatars %}
+									<img src="{{ asset('images/avatar/'~ avatar.getName() ~'.jpg') }}" class="avatar-choice {% if avatar.getName() == current_avatar_name %} selected{% endif %}" data-avatar-name="{{ avatar.getName() }}" />
+								{% endfor %}
+							</div>
+						</div>
+					</div>
+				{% else %}
+					<img src="{{ asset('images/avatar/'~ current_avatar_name ~'.jpg') }}" class="avatar" />
+					<h1>{{ user.getUsername() }}</h1>
+					<p class="gray-color">{{ user.getUsername() }} {{'Profile_index.avatar.admin_mode.registered_since'|trans({'%date%':user.getCreatedAt()|date('d/m/Y')})}}
+						<ul class="gray-color">
+							{% for role in user.getRoles() %}
+								<li>{{ (role)|trans }}</li>
+							{% endfor %}
+						</ul>
+					</p>
+					<div class="clearfix"></div>
+				{% endif %}
+				#}
+					
+				{% render 'MVNerdsCommentBundle:Comment:renderComments' with {'object': user.getProfile(), 'objectType': 'profile'} %}
+				
+				{#{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}#}
+			</div>
+			
+			<div class="span4 right-content">
+				{% render 'MVNerdsProfileBundle:Profile:renderLastestCommentsBlock' with {'user': user} %}
+					
+				{# PUBLICITÉ #}
+				<div class="sidebar-ad-container">
+					<script type="text/javascript"><!--
+					google_ad_client = "ca-pub-9866334543391692";
+					/* Rectangle MVNerds 2.0 */
+					google_ad_slot = "3578997199";
+					google_ad_width = 300;
+					google_ad_height = 250;
+					//-->
+					</script>
+					<script type="text/javascript"
+					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+					</script>	
 				</div>
 			</div>
-		{% endif %}
-		
-		<h2 id="summoner-pmri-list">{{'ItemBuilder.pmri.h2'|trans}}</h2>
-		{% if user_items_builds|length > 0 %}
-			{% if admin_mode == false %}
-				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_table.html.twig' with {'item_builds': user_items_builds}  %}
-			{% else %}
-				{% include 'MVNerdsItemHandlerBundle:ItemBuilder:item_table.html.twig' with {'item_builds': user_items_builds, 'admin_mode': true}  %}
-			{% endif %}
-		{% else %}
-			<p class="empty-list">{{ user.getUsername() }} {{'ItemBuilder.pmri.p1'|trans}}</p>
-		{% endif %}
-		
-		{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}
+		</div>
 	</div>
+	
 {% endblock %}

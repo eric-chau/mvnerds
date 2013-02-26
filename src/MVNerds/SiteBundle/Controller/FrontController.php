@@ -7,6 +7,20 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class FrontController extends Controller
 {
+	/**
+	 * @Route("/configure-profile-slug")
+	 */
+	public function configureProfileSlugAction()
+	{
+		$profiles = \MVNerds\CoreBundle\Model\ProfileQuery::create()->find();
+		foreach ($profiles as $profile) {
+			$profile->setSlug('profile-'. $profile->getId());
+			$profile->save();
+		}
+		
+		return new \Symfony\Component\HttpFoundation\Response('OK !');
+	}
+	
     /**
      * @Route("/{_locale}", name="site_homepage", defaults={"_locale" = "fr"})
      */
@@ -39,10 +53,12 @@ class FrontController extends Controller
 	}
 	
 	/**
-     * @Route("/test-api")
+     * @Route("/test-api/{summonerName}")
      */
-    public function testAPIAction()
+    public function testAPIAction($summonerName)
     {
-		$this->get('mvnerds.elophant_api_manager')->getSummonerAccoundId('kopovlie', 'euw');
+		$this->get('mvnerds.elophant_api_manager')->getSummonerAccoundId($summonerName, 'euw');
     }
+	
+	
 }

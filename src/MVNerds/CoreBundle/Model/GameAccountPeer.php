@@ -2,11 +2,11 @@
 
 namespace MVNerds\CoreBundle\Model;
 
-use MVNerds\CoreBundle\Model\om\BaseProfile;
+use MVNerds\CoreBundle\Model\om\BaseGameAccountPeer;
 
 
 /**
- * Skeleton subclass for representing a row from the 'profile' table.
+ * Skeleton subclass for performing query and update operations on the 'game_account' table.
  *
  * 
  *
@@ -16,9 +16,6 @@ use MVNerds\CoreBundle\Model\om\BaseProfile;
  *
  * @package    propel.generator.src.MVNerds.CoreBundle.Model
  */
-class Profile extends BaseProfile {
-	public function getAvatarName()
-	{
-		return $this->getAvatar()->getName();
-	}
-} // Profile
+class GameAccountPeer extends BaseGameAccountPeer {
+
+} // GameAccountPeer

@@ -692,13 +692,13 @@ class ItemBuilderController extends Controller
 	
 	/**
 	 * 
-	 * @Route("/{itemBuildSlug}/{dl}", name="pmri_list_detail", defaults={"dl"=null}, options={"expose"=true})
+	 * @Route("/{slug}/{dl}", name="pmri_list_detail", defaults={"dl"=null}, options={"expose"=true})
 	 */
-	public function viewAction($itemBuildSlug, $dl)
+	public function viewAction($slug, $dl)
 	{
 		try {
 			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
-			$itemBuild = $this->get('mvnerds.item_build_manager')->findBySlug($itemBuildSlug);
+			$itemBuild = $this->get('mvnerds.item_build_manager')->findBySlug($slug);
 			$itemBuild->setView($itemBuild->getView() + 1);
 			$itemBuild->keepUpdateDateUnchanged();
 			$itemBuild->save();

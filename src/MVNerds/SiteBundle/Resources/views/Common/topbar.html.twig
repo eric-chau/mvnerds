@@ -32,16 +32,16 @@
 							<div class="span4">
 								<ul>
 									<li class="header"><a href="{{path('lol_video_index')}}"><i class="icon-facetime-video"></i> LoL Video Center</a></li>
-									<li class="header"><a href="#"><i class="icon-shopping-cart"></i> Skin Trade Place</a></li>
+									{#<li class="header"><a href="#"><i class="icon-shopping-cart"></i> Skin Trade Place</a></li>#}
 								</ul>
 							</div>
 								
 							<div class="span4">
 								<ul>
 									<li class="header"><a href="#"><i class="icon-globe"></i> Most Valuable Nerds</a></li>
-									<li><a href="#"><i class="icon-stop"></i> Aller sur les forums de discussions</a></li>
 									<li><a href="#"><i class="icon-stop"></i> Les membres de la communauté</a></li>
-									<li><a href="#"><i class="icon-stop"></i> L'équipe League of Legends</a></li>
+									{#<li><a href="#"><i class="icon-stop"></i> Aller sur les forums de discussions</a></li>
+									<li><a href="#"><i class="icon-stop"></i> L'équipe League of Legends</a></li>#}
 								</ul>
 							</div>
 						</div>
@@ -60,7 +60,7 @@
 			<li class="user-container">
 				{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 					<img src="{{ asset('medias/images/avatar/' ~ app.user.getUserAvatarName() ~ '.jpg') }}" /> 
-					<a href="#" class="username">{{ app.user.getUsername() }}</a> 
+					<a href="{{ path('summoner_profile_index') }}" class="username">{{ app.user.getUsername() }}</a> 
 					
 					<a href="{{ path('security_summoner_logout') }}" class="signout">Déconnexion</a>
 				{% else %}

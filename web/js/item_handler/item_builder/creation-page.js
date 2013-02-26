@@ -210,7 +210,7 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 					}else {
 						displayMessage('Les modifications ont bien été enregistrées.', 'success');
 					}
-					window.location = Routing.generate('pmri_list_detail', {_locale: locale, itemBuildSlug: data});
+					window.location = Routing.generate('pmri_list_detail', {_locale: locale, slug: data});
 				} else {
 					//si c'est un nouveau build
 					
@@ -226,7 +226,7 @@ function generateRecItemBuilder(saveBuild, itemBuildSlug) {
 					} else {
 						isBuildSaved = true;
 						//si c'est un enregistrement suivi d'un téléchargement
-						window.location = Routing.generate('pmri_list_detail', {_locale: locale, itemBuildSlug: data, dl: 'dl'});
+						window.location = Routing.generate('pmri_list_detail', {_locale: locale, slug: data, dl: 'dl'});
 					}
 					$('#loading-save-build').remove();
 				}

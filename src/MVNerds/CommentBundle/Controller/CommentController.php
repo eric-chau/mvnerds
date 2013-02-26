@@ -8,6 +8,7 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Exception;
 
 class CommentController extends Controller
 {
@@ -18,7 +19,7 @@ class CommentController extends Controller
 		return $this->render('MVNerdsCommentBundle:Comment:render_comments_block.html.twig', array(
 			'object'		=> $object,
 			'comments'		=> $commentArray['comments'],
-			'object_type'		=> $objectType
+			'object_type'	=> $objectType
 		));
 	}
 	
@@ -241,5 +242,42 @@ class CommentController extends Controller
 		$this->get('mvnerds.comment_manager')->doReportComment($this->getUser(), $commentID);
 
 		return $this->render('MVNerdsCommentBundle:Common:report_success.html.twig');
+	}
+	
+	/**
+	 * @Route("/{_locale}/comment-{commentId}/redirect-to-related-object", name="profile_redirect_to_related_object")
+	 */
+	public function redirectCommentToRelatedObjectDetailAction($commentId)
+	{
+		$relatedObject = null;
+		try {
+			$relatedObject = $this->get('mvnerds.comment_manager')->getRelatedObjectByCommentId($commentId / 47);
+		}
+		catch (Exception $e) {
+			throw new AccessDeniedException();
+		}
+		
+		$type = get_class($relatedObject);
+		$routeName = '';
+		switch ($type) {
+			case 'MVNerds\CoreBundle\Model\ItemBuild':
+				$routeName = 'pmri_list_detail';
+				break;
+			case 'MVNerds\\CoreBundle\\Model\\Video':
+				$routeName = 'videos_detail';
+				break;
+			case 'MVNerds\\CoreBundle\\Model\\Champion':
+				$routeName = 'champion_detail';
+				break;
+			case 'MVNerds\\CoreBundle\\Model\\News':
+				$routeName = 'news_detail';
+				break;
+			default:
+				throw new HttpException(500, 'Unknow type.');
+		}
+		
+		return $this->redirect($this->generateUrl($routeName, array(
+			'slug' => $relatedObject->getSlug()
+		)));
 	}
 }

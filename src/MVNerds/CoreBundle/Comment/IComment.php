@@ -9,4 +9,6 @@ interface IComment
 	public function getCommentCount();
 	
 	public function setCommentCount($v);
+	
+	public function getSlug();
 }

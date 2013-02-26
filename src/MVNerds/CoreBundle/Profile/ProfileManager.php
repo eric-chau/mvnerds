@@ -7,6 +7,8 @@ use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use MVNerds\CoreBundle\Model\User;
 use MVNerds\CoreBundle\Model\AvatarPeer;
 use MVNerds\CoreBundle\Model\AvatarQuery;
+use MVNerds\CoreBundle\Model\ProfilePeer;
+use MVNerds\CoreBundle\Model\ProfileQuery;
 
 class ProfileManager
 {
@@ -70,6 +72,19 @@ class ProfileManager
 		$profile->save();
 		
 		return true;
-		
+	}
+	
+	public function findBySlug($slug)
+	{
+		$profile = ProfileQuery::create()
+			->add(ProfilePeer::SLUG, $slug)
+		->findOne();
+
+		if (null === $profile)
+		{
+			throw new InvalidArgumentException('No profile with slug:' . $slug . '!');
+		}
+
+		return $profile;
 	}
 }

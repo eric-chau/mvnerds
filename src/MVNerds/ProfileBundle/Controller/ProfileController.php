@@ -11,8 +11,9 @@ use Symfony\Component\HttpFoundation\Response;
 
 use MVNerds\ItemHandlerBundle\Form\Model\ChangeLoLDirectoryModel;
 use MVNerds\ItemHandlerBundle\Form\Type\ChangeLoLDirectoryType;
+use MVNerds\CoreBundle\Model\User;
 
-class FrontController extends Controller
+class ProfileController extends Controller
 {
     /**
 	 * Affiche la page de profil de l'invocateur authentifié et connecté
@@ -25,10 +26,11 @@ class FrontController extends Controller
 		$user = $this->getUser();
 		
 		return $this->render('MVNerdsProfileBundle:Profile:profile_index.html.twig', array(
-			'user'				=> $user,
-			'user_items_builds' => $this->get('mvnerds.item_build_manager')->findByUserId($user->getId()),
-			'form'				=> $this->createForm(new ChangeLoLDirectoryType(), new ChangeLoLDirectoryModel($this->get('mvnerds.preference_manager'), $user))->createView(),
-			'avatars'		=> $this->get('mvnerds.profile_manager')->findAvatarByUserRoles($user)
+			'user'					=> $user,
+			'user_items_builds'		=> $this->get('mvnerds.item_build_manager')->findByUserId($user->getId()),
+			'form'					=> $this->createForm(new ChangeLoLDirectoryType(), new ChangeLoLDirectoryModel($this->get('mvnerds.preference_manager'), $user))->createView(),
+			'avatars'				=> $this->get('mvnerds.profile_manager')->findAvatarByUserRoles($user),
+			'user_comment_count'	=> $this->get('mvnerds.comment_manager')->countCommentForUser($user)
 		));
 	}
 	
@@ -51,17 +53,18 @@ class FrontController extends Controller
 		$user = $this->get('mvnerds.user_manager')->findBySlug($userSlug);
 		
 		if (null != $this->getUser() && $this->getUser()->getId() == $user->getId()) {
-			return $this->forward('MVNerdsProfileBundle:Front:loggedSummonerIndex');
+			return $this->forward('MVNerdsProfileBundle:Profile:loggedSummonerIndex');
 		}
 		
 		return $this->render('MVNerdsProfileBundle:Profile:profile_index.html.twig', array(
-			'user'				=> $user,
-			'user_items_builds' => $this->get('mvnerds.item_build_manager')->findPublicByUserId($user->getId())
+			'user'					=> $user,
+			'user_items_builds'		=> $this->get('mvnerds.item_build_manager')->findPublicByUserId($user->getId()),
+			'user_comment_count'	=> $this->get('mvnerds.comment_manager')->countCommentForUser($user)
 		));
 	}
 	
 	/**
-	 * @Route("/save-summoner-preference", name="summoner_profile_save_preference", options={"expose"=true})
+	 * @Route("/profile/save-summoner-preference", name="summoner_profile_save_preference", options={"expose"=true})
 	 * @Secure(roles="ROLE_USER")
 	 */
 	public function saveSummonerPreferenceAction()
@@ -90,7 +93,7 @@ class FrontController extends Controller
 	}
 	
 	/**
-	 * @Route("/save-new-avatar", name="summoner_profile_save_avatar", options={"expose"=true})
+	 * @Route("/profile/save-new-avatar", name="summoner_profile_save_avatar", options={"expose"=true})
 	 * @Secure(roles="ROLE_USER")
 	 */
 	public function saveSummonerAvatarAction()
@@ -109,7 +112,7 @@ class FrontController extends Controller
 	}
 	
 	/**
-	 * @Route("/change-password", name="summoner_profile_change_password", options={"expose"=true})
+	 * @Route("/profile/change-password", name="summoner_profile_change_password", options={"expose"=true})
 	 * @Secure(roles="ROLE_USER")
 	 */
 	public function changeSummonerPasswordAction()
@@ -117,5 +120,16 @@ class FrontController extends Controller
 		$this->get('mvnerds.user_manager')->initForgotPasswordProcess($this->getUser());
 		
 		return new Response(json_encode(true));
+	}
+	
+	/**
+	 * 
+	 */
+	public function renderLastestCommentsBlockAction(User $user)
+	{
+		return $this->render('MVNerdsProfileBundle:Profile:lastest_comments_block.html.twig', array(
+			'comments'	=> $this->get('mvnerds.comment_manager')->getLastestCommentsByUser($user),
+			'user'		=> $user
+		));
 	}
 }

@@ -40,7 +40,7 @@
 			</trans-unit>
 			<trans-unit id="9">
 				<source>ItemBuilder.ChangeLoLDirectory.label</source>
-				<target>Emplacement du répertoire League of Legends</target>
+				<target>Emplacement du dossier League of Legends</target>
 			</trans-unit>
 			<trans-unit id="10">
 				<source>ItemBuilder.pmri.h2</source>

@@ -5,7 +5,6 @@ namespace MVNerds\CoreBundle\User;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use Swift_Message;
-use Exception;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 use MVNerds\LaunchSiteBundle\CustomException\DisabledUserException;
@@ -44,6 +43,8 @@ class UserManager
 		$user->setPlainPassword($userParams['password']);
 		$profile = new Profile();
 		$profile->setAvatarId(10);
+		$profile->save();
+		$profile->setSlug('profile-'. $profile->getId());
 		$user->setProfile($profile);
 		
 		// Finally

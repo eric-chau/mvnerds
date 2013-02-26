@@ -66,7 +66,7 @@
 {% block breadcrumbs %}
 	{{ parent() }}
 	
-	> <a href="{{ path('pmri_list') }}">Pimp My Recommended Items</a> > <a href="{{ path('pmri_list_detail', {'itemBuildSlug':item_build.getSlug()}) }}">{{ item_build.getName() }}</a>
+	> <a href="{{ path('pmri_list') }}">Pimp My Recommended Items</a> > <a href="{{ path('pmri_list_detail', {'slug':item_build.getSlug()}) }}">{{ item_build.getName() }}</a>
 {% endblock %}
 
 {% block main_content %}

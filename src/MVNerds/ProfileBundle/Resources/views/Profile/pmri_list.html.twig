@@ -1,0 +1,19 @@
+<div class="pmri-list">
+	<table>
+		<thead>
+			<tr>
+				<th class="champion">{{'item_table.th.champion'|trans}}</th>
+				<th class="name {% if admin_mode == false %}full{% endif %}">{{'item_table.th.name'|trans}}</th>
+				<th class="game-mode {% if admin_mode == false %}full{% endif %}">{{'item_table.th.game_mode'|trans}}</th>
+				{% if admin_mode %}
+					<th></th>
+				{% endif %}
+			</tr>
+		</thead>
+		<tbody>
+			{% for item_build in item_builds %}
+				{% include 'MVNerdsProfileBundle:Profile:pmri_row.html.twig' with {'item_build': item_build, 'admin_mode': admin_mode} %}
+			{% endfor %}
+		</tbody>
+	</table>
+</div>

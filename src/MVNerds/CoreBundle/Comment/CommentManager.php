@@ -216,4 +216,25 @@ class CommentManager
 		
 		return true;
 	}
+	
+	public function getLastestCommentsByUser(User $user, $limit = 5)
+	{
+		return CommentQuery::create()
+			->add(CommentPeer::USER_ID, $user->getId())
+			->orderByCreateTime(\Criteria::DESC)
+			->limit($limit)
+		->find();
+	}
+	
+	public function getRelatedObjectByCommentId($commentID)
+	{
+		$comment = $this->findById($commentID);
+		$objectQuery = $comment->getObjectNamespace() . 'Query';
+		$objectPeer = $comment->getObjectNamespace() . 'Peer';
+		
+		// Finally
+		return $objectQuery::create()
+			->add($objectPeer::ID, $comment->getObjectId())
+		->findOne();
+	}
 }

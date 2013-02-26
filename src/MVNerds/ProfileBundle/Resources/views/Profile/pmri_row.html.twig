@@ -1,0 +1,42 @@
+{% set user = item_build.getUser() %}
+<tr>
+	<td class="champion">
+		{% if item_build.getChampionItemBuilds()|length <= 1 %}
+			<img src="{{ asset('medias/images/champions/square/' ~ item_build.getChampionItemBuilds().getFirst().getChampion().getSlug() ~ '.png') }}" />
+		{% else %}
+			<img src="{{asset('images/avatar/anonymous.jpg')}}" 
+				 alt="image_question" 
+				 class="bootstrap-popover" 
+				 data-placement="right" data-trigger="hover" data-title="{{item_build.getName()}}" 
+				 data-content="
+					<div class='champion-square-list'>
+						{% for champion_item_build in item_build.getChampionItemBuilds() %}
+							<div class='champion-square36 {{ champion_item_build.getChampion().getSlug() }}' ></div>
+						{% endfor %}
+					</div>
+				"
+			/>
+		{% endif %}
+	</td>
+
+	<td class="name">
+		{% include 'MVNerdsItemHandlerBundle:PMRI:pmri_list_table_row_name.html.twig' with {'item_build': item_build} %}
+	</td>
+
+	<td class="game-mode">
+		{{ item_build.getGameMode().getLabel()|trans }}
+	</td>
+
+	{% if admin_mode %}
+		<td class="admin-actions">
+			<a class="action view-action tooltip-anchor" href="{{path('pmri_list_detail', {slug: item_build.getSlug()})}}" rel="tooltip" data-placement="top" data-original-title="{{ 'item_table.admin.view'|trans }}"><i class="icon-share"></i></a>
+			<a class="action download-action tooltip-anchor" data-name="{{item_build.getName()}}" data-slug="{{item_build.getSlug()}}" rel="tooltip" data-placement="top" data-original-title="{{ 'item_table.admin.download'|trans }}"><i class="icon-download-alt"></i></a><br />
+			<a href="{{ path('pmri_edit', {'itemBuildSlug': item_build.getSlug()}) }}" class="action edit-action tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="{{ 'item_table.admin.edit'|trans }}"><i class="icon-edit"></i></a>
+			<a href="#delete-build-{{ item_build.getSlug() }}-modal" class="action delete-action tooltip-anchor" data-toggle="modal" rel="tooltip" data-placement="top" data-original-title="{{ 'item_table.admin.delete'|trans }}"><i class="icon-remove-sign"></i></a>
+		</td>
+	{% endif %}
+</tr>
+
+{% if admin_mode %}
+	{% include 'MVNerdsProfileBundle:Profile:delete_item_build_modal.html.twig' with {'item_build': item_build} %}
+{% endif %}

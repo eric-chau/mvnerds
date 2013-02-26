@@ -468,12 +468,25 @@
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
     <column defaultValue="1" name="avatar_id" required="true" type="INTEGER" />
     <column name="team_id" type="INTEGER" />
+    <column name="game_account_id" type="INTEGER" />
     <foreign-key foreignTable="team">
       <reference foreign="id" local="team_id" />
     </foreign-key>
     <foreign-key foreignTable="avatar">
       <reference foreign="id" local="avatar_id" />
     </foreign-key>
+    <foreign-key foreignTable="game_account">
+      <reference foreign="id" local="game_account_id" />
+    </foreign-key>
+    <behavior name="mvnerds_commentable" />
+    <behavior name="sluggable">
+      <parameter name="slug_column" value="slug" />
+      <parameter name="slug_pattern" value="profile-{id}" />
+      <parameter name="replace_pattern" value="/[^\w\/]+/u" />
+      <parameter name="replacement" value="-" />
+      <parameter name="separator" value="-" />
+      <parameter name="permanent" value="false" />
+    </behavior>
   </table>
   <table name="vote">
     <column name="object_id" primaryKey="true" required="true" type="INTEGER" />
@@ -663,7 +676,7 @@
     <behavior name="sluggable">
       <parameter name="slug_column" value="slug" />
       <parameter name="slug_pattern" value="{name}" />
-      <parameter name="replace_pattern" value="/[^\w\/]+/u" />
+      <parameter name="replace_pattern" value="/[^\w]+/u" />
       <parameter name="replacement" value="-" />
       <parameter name="separator" value="-" />
       <parameter name="permanent" value="false" />
@@ -671,11 +684,15 @@
   </table>
   <table name="skin">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="video_id" type="INTEGER" />
     <column name="champion_id" required="true" type="INTEGER" />
     <column name="name" required="true" size="100" type="VARCHAR" />
     <column name="cost" required="true" size="45" type="VARCHAR" />
     <foreign-key foreignTable="champion">
       <reference foreign="id" local="champion_id" />
+    </foreign-key>
+    <foreign-key foreignTable="video">
+      <reference foreign="id" local="video_id" />
     </foreign-key>
     <behavior name="i18n">
       <parameter name="i18n_columns" value="name" />
@@ -785,5 +802,17 @@
     <foreign-key foreignTable="user">
       <reference foreign="id" local="user_id" />
     </foreign-key>
+  </table>
+  <table name="game_account">
+    <column name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="summoner_name" required="true" size="50" type="VARCHAR" />
+    <column name="summoner_id" type="INTEGER" />
+    <column name="summoner_account_id" type="INTEGER" />
+    <column name="region" required="true" size="5" type="VARCHAR" />
+    <column defaultValue="0" name="is_active" required="true" type="BOOLEAN" />
+    <behavior name="timestampable">
+      <parameter name="create_column" value="create_time" />
+      <parameter name="update_column" value="update_time" />
+    </behavior>
   </table>
 </database>
