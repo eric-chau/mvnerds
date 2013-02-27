@@ -1,6 +1,6 @@
 <?php
 
-namespace MVNerds\CoreBundle\View;
+namespace MVNerds\ViewBundle\Propel;
 
 use \Behavior;
 

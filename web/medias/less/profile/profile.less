@@ -49,6 +49,10 @@ div.span8.left-content {
 	}
 
 	div.profile-body {
+		div.game-account-container, div.pmri-container, div.lol-video-container {
+			margin: 0 0 40px 0;
+		}
+
 		div.preference-block {
 			background-color: #ddd;
 			border: 1px solid #ccc;
@@ -135,8 +139,6 @@ div.span8.left-content {
 		}
 
 		div.pmri-list {
-			margin: 0 0 20px 0;
-
 			table {
 				border-spacing: 0 3px;
 				width: 638px !important;
@@ -306,6 +308,50 @@ div.span4.right-content {
 				font-style: italic;
 				margin: 10px;
 				text-align: center !important;
+			}
+		}
+	}
+}
+
+div#link-lol-account-modal {
+	div.modal-body {
+		p.error {
+			color: @MVNerdsRed;
+			font-weight: bold;
+			margin: 0 0 10px 0;
+			text-align: center;
+		}
+
+		form {
+			margin: auto;
+			text-align: right;
+			width: 85%;
+		}
+
+		div.activation-code-container {
+			background-color: #ddd;
+			border: 2px dashed @MVNerdsRed;
+			font-size: 20px;
+			font-weight: bold;
+			margin: 0 auto 35px auto;
+			padding: 10px 0;
+			position: relative;
+			text-align: center;
+			width: 60%;
+
+			a.copy-to-clipboard-btn {
+				bottom: -27px;
+				display: block;
+				position: absolute;
+				right: -4px;
+			}
+		}
+
+		div.end-of-process-action {
+			text-align: center;
+
+			i.loader {
+				font-size: 24px;
 			}
 		}
 	}

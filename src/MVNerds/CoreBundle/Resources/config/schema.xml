@@ -69,6 +69,8 @@
       <parameter name="separator" value="-" />
       <parameter name="permanent" value="false" />
     </behavior>
+    <behavior name="mvnerds_commentable" />
+    <behavior name="mvnerds_viewable" />
   </table>
   <table name="tournament">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -475,7 +477,10 @@
     <foreign-key foreignTable="avatar">
       <reference foreign="id" local="avatar_id" />
     </foreign-key>
-    <foreign-key foreignTable="game_account">      <reference foreign="id" local="game_account_id" />    </foreign-key>    <behavior name="mvnerds_commentable" />    <behavior name="sluggable">      <parameter name="slug_column" value="slug" />      <parameter name="slug_pattern" value="profile-{id}" />      <parameter name="replace_pattern" value="/[^\w\/]+/u" />      <parameter name="replacement" value="-" />      <parameter name="separator" value="-" />      <parameter name="permanent" value="false" />    </behavior>  </table>
+    <foreign-key foreignTable="game_account">
+      <reference foreign="id" local="game_account_id" />
+    </foreign-key>
+  </table>
   <table name="vote">
     <column name="object_id" primaryKey="true" required="true" type="INTEGER" />
     <column description="namespace de classe php associee" name="object_namespace" primaryKey="true" required="true" size="255" type="VARCHAR" />
@@ -671,7 +676,10 @@
     <foreign-key foreignTable="champion" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="champion_id" />
     </foreign-key>
-    <foreign-key foreignTable="video" onDelete="CASCADE" onUpdate="CASCADE">      <reference foreign="id" local="video_id" />    </foreign-key>    <behavior name="i18n">
+    <foreign-key foreignTable="video" onDelete="CASCADE" onUpdate="CASCADE">
+      <reference foreign="id" local="video_id" />
+    </foreign-key>
+    <behavior name="i18n">
       <parameter name="i18n_columns" value="name" />
       <parameter name="default_locale" value="en" />
       <parameter name="locale_column" value="lang" />
@@ -781,11 +789,12 @@
     </foreign-key>
   </table>
   <table name="game_account">
-    <column name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
     <column name="summoner_name" required="true" size="50" type="VARCHAR" />
     <column name="summoner_id" type="INTEGER" />
     <column name="summoner_account_id" type="INTEGER" />
     <column name="region" required="true" size="5" type="VARCHAR" />
+    <column name="activation_code" required="true" size="25" type="VARCHAR" />
     <column defaultValue="0" name="is_active" required="true" type="BOOLEAN" />
     <behavior name="timestampable">
       <parameter name="create_column" value="create_time" />

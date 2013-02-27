@@ -3,6 +3,12 @@
 namespace MVNerds\CoreBundle\ElophantAPI;
 
 use Buzz\Browser;
+use Exception;
+use RuntimeException;
+
+use MVNerds\CoreBundle\Exception\ElophantAFKException;
+use MVNerds\CoreBundle\Exception\InvalidSummonerNameException;
+use MVNerds\CoreBundle\Model\GameAccount;
 
 class ElophantAPIManager
 {
@@ -24,11 +30,67 @@ class ElophantAPIManager
 		'V' => 5
 	);
 	
+	public function getGameAccountFromRegionAndUsername($region, $summonerName)
+	{
+		// Récupération l'ID du compte
+		$url = $this->apiBaseUrl . $region . '/summoner/' . rawurlencode($summonerName) . '?key=' . $this->developerAPIKey;
+		try {
+			$response = $this->buzz->get($url);
+		}
+		catch (RuntimeException $e) {
+			throw new ElophantAFKException();
+		}
+		
+		$contentObject = json_decode($response->getContent());
+		if (!$contentObject->success) {
+			throw new InvalidSummonerNameException();
+		}
+		
+		$contentObject = $contentObject->data;
+		$gameAccount = new GameAccount();
+		$gameAccount->setSummonerName($summonerName);
+		$gameAccount->setRegion($region);
+		$gameAccount->setSummonerAccountId($contentObject->acctId);
+		$gameAccount->setSummonerId($contentObject->summonerId);
+		$gameAccount->generateActivationCode();
+				
+		return $gameAccount;
+	}
+	
+	public function checkActivationCodeWithMasteriesPage(GameAccount $gameAccount)
+	{
+		$url = $this->apiBaseUrl . $gameAccount->getRegion() . '/mastery_pages/' . $gameAccount->getSummonerId() . '?key=' . $this->developerAPIKey;
+		try {
+			$response = $this->buzz->get($url);
+		}
+		catch (RuntimeException $e) {
+			throw new ElophantAFKException();
+		}
+		
+		$contentObject = json_decode($response->getContent());
+		if (!$contentObject->success) {
+			throw new InvalidSummonerNameException();
+		}
+		
+		$contentObject = $contentObject->data;
+		$success = false;
+		foreach ($contentObject->bookPages as $page) {
+			if (strcmp($page->name, $gameAccount->getActivationCode()) == 0) {
+				$success = true;
+				$gameAccount->activate();
+				$gameAccount->save();
+				break;
+			}
+		}
+		
+		return $success;
+	}
+	
+	
 	public function getSummonerAccoundId($summonerName, $region)
 	{
 		// Récupération l'ID du compte
 		$url = $this->apiBaseUrl . $region . '/summoner/' . rawurlencode($summonerName) . '?key=' . $this->developerAPIKey;
-		//var_dump($url);
 		
 		$response = $this->buzz->get($url);
 		$responseArray = json_decode($response->getContent());
@@ -44,7 +106,9 @@ class ElophantAPIManager
 	{
 		// Récupération des champions et leurs elophant ids
 		$url = $this->apiBaseUrl . '/champions?key=' . $this->developerAPIKey;
-		$response = $this->buzz->get($url);
+		$response = null;
+
+		
 		$responseArray = json_decode($response->getContent());
 		$championsArray = array();
 		foreach ($responseArray->data as $championInfos) {

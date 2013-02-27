@@ -17,5 +17,19 @@ use MVNerds\CoreBundle\Model\om\BaseGameAccount;
  * @package    propel.generator.src.MVNerds.CoreBundle.Model
  */
 class GameAccount extends BaseGameAccount {
-
+	
+	public function isActive()
+	{
+		return $this->getIsActive();
+	}
+	
+	public function activate()
+	{
+		$this->setIsActive(true);
+	}
+	
+	public function generateActivationCode()
+	{
+		$this->setActivationCode('MVNerds Code ' . substr(md5(uniqid(rand(), true)), 0, 12));
+	}
 } // GameAccount

@@ -55,7 +55,8 @@ propel:
         mvnerds_commentable:	MVNerds\CommentBundle\Propel\MVNerdsCommentableBehavior
         mvnerds_votable:	MVNerds\VoteBundle\Propel\MVNerdsVotableBehavior
         mvnerds_reportable:	MVNerds\ReportBundle\Propel\MVNerdsReportableBehavior
-        mvnerds_viewable:	MVNerds\CoreBundle\View\MVNerdsViewableBehavior
+        mvnerds_viewable:	MVNerds\ViewBundle\Propel\MVNerdsViewableBehavior
+        extra_properties: vendor\CarpeHora\ExtraPropertiesBehavior\src\ExtraPropertiesBehavior
 
 # Swiftmailer Configuration
 swiftmailer:

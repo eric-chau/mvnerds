@@ -1,0 +1,34 @@
+<h4>Étape 2 : renommer une de vos pages de maîtrises</h4>
+
+<p>
+	La liaison est quasiment établie ! Afin de nous assurer que vous êtes bien le titulaire du compte de jeu <strong>{{ summoner_name }}</strong>,
+	connectez-vous sur le jeu League of Legends et renommé une de vos pages de maîtrises par le code d'activation suivant :
+</p>
+
+<div class="activation-code-container">
+	<span id="activation-code">{{ activation_code }}</span>
+	<a href="#" class="copy-to-clipboard-btn btn small blue">Copier dans le presse-papier</a>
+</div>
+
+<h4>Étape 3 : confirmation du compte League of Legends</h4>
+
+<p>
+	Une fois la manipulation demandée à l'étape 2 accomplie, patientez quelques minutes le temps que votre modification se propage sur les serveurs. Cliquez
+	ensuite sur le bouton ci-dessous pour nous permettre de valider et de terminer cette procédure de liaison de compte.
+</p>
+
+<div class="end-of-process-action">
+	<p class="error hide"></p>
+	<i class="icon-spin icon-spinner loader hide"></i> <a href="#" class="btn large green link-account-last-check">Terminer la liaison</a>
+</div>
+
+<script type="text/javascript">
+	$(document).ready(function() 
+	{
+		// Activation de l'event du clique sur le bouton de copie vers le presse-papier
+		$('a.copy-to-clipboard-btn').zclip({
+			path: '/medias/js/ZeroClipboard.swf',
+			copy: $('span#activation-code').html()
+		});	
+	});
+</script>

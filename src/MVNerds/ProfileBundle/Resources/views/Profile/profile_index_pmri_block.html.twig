@@ -1,0 +1,36 @@
+<div class="pmri-container">
+	<h2>
+		Pimp My Recommended Items 
+		{% if admin_mode %}
+			<a href="#" class="user-preference-toggle" data-block-id="pmri-user-preferences"><span class="label red">mes préférences utilisateur</span></a>
+		{% endif %}
+	</h2>
+
+	{% if admin_mode %}
+		<div id="pmri-user-preferences" class="preference-block">
+			<form action="#" method="POST">
+				<div>
+					{{ form_label(form.lolDirectory) }}
+					{{ form_widget(form.lolDirectory) }}
+					<a href="#" class="reset-field"><i class="icon-remove-sign"></i></a>
+					<a href="#" class="save-field disabled" data-preference="LEAGUE_OF_LEGENDS_DIRECTORY"><i class="icon-ok-sign"></i>enregistrer</a>
+				</div>
+
+				{{ form_rest(form) }}
+			</form>
+		</div>
+	{% endif %}
+
+		{% if user_items_builds|length > 0 %}
+			{% include 'MVNerdsProfileBundle:Profile:pmri_list.html.twig' with {'item_builds': user_items_builds, 'admin_mode': admin_mode}  %}
+		{% else %}
+			<p class="empty-list"><i>
+				{% if admin_mode %}
+					Vous n'avez pas encore enregistré de liste d'objet conseillé.
+				{% else %}
+					{{ user.getUsername() }} {{'ItemBuilder.pmri.p1'|trans}}
+				{% endif %}
+			</i></p>
+		{% endif %}
+	</div>
+</div>

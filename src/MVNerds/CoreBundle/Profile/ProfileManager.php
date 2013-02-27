@@ -3,12 +3,13 @@
 namespace MVNerds\CoreBundle\Profile;
 
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
+use Criteria;
 
 use MVNerds\CoreBundle\Model\User;
+use MVNerds\CoreBundle\Model\UserQuery;
+use MVNerds\CoreBundle\Model\UserPeer;
 use MVNerds\CoreBundle\Model\AvatarPeer;
 use MVNerds\CoreBundle\Model\AvatarQuery;
-use MVNerds\CoreBundle\Model\ProfilePeer;
-use MVNerds\CoreBundle\Model\ProfileQuery;
 
 class ProfileManager
 {
@@ -74,17 +75,14 @@ class ProfileManager
 		return true;
 	}
 	
-	public function findBySlug($slug)
+	public function getGameAccountByUser(User $user)
 	{
-		$profile = ProfileQuery::create()
-			->add(ProfilePeer::SLUG, $slug)
+		$user = UserQuery::create()
+			->joinWith('Profile')
+			->joinWith('Profile.GameAccount', Criteria::LEFT_JOIN)
+			->add(UserPeer::ID, $user->getId())
 		->findOne();
-
-		if (null === $profile)
-		{
-			throw new InvalidArgumentException('No profile with slug:' . $slug . '!');
-		}
-
-		return $profile;
+		
+		return $user->getProfile()->getGameAccount();
 	}
 }

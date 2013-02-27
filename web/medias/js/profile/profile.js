@@ -146,4 +146,103 @@ $(document).ready(function()
 			}
 		})
 	});
+
+	/***************************************************************************************
+		GESTION DE LA LIAISON D'UN COMPTE MVNERDS ET UN COMPTE LEAGUE OF LEGENDS
+	***************************************************************************************/
+
+	var $checkSummonerAccountButton = $('button.btn-check-lol-account-existence');
+
+	// Event d'écoute sur le change du texte sur le champ de texte #lol-summoner-name
+	$('input#lol-summoner-name').on('click keyup change', function(event)
+	{
+
+		if (event.which == 13) {
+			checkSummonerAccountButton.trigger('click');
+		}
+
+		if ($.trim($(this).val()) != '') {
+			$checkSummonerAccountButton.removeClass('disabled');
+		}
+		else {
+			$checkSummonerAccountButton.addClass('disabled');
+		}
+	});
+
+	// Activation de l'event du click sur le bouton "Vérifier" pour vérifier l'exitence d'un compte
+	$checkSummonerAccountButton.on('click', function(event)
+	{
+		event.preventDefault();
+		if ($(this).hasClass('disabled')) {
+			return false;
+		}
+
+		var $this = $(this),
+			$form = $this.parent(),
+			$summonerNameInput = $form.find('input#lol-summoner-name'),
+			$loader = $form.find('i.loader'),
+			$pError = $('div.modal p.error');
+		
+		$this.addClass('disabled');
+		$loader.removeClass('hide');
+		$pError.slideUp();
+		
+		$.ajax({
+			url: Routing.generate('profile_check_lol_account_existence', {'_locale': locale}),
+			data: {
+				'region': $form.find('select#region-selector').val(),
+				'summoner_name': $.trim($summonerNameInput.val())
+			},
+			type: 'POST',
+			dataType: 'html',
+			success: function(response) {
+				$loader.addClass('hide');
+				$('div.modal div.step').html(response);
+			},
+			error: function(response) {
+				$loader.addClass('hide');
+				$summonerNameInput.val('').focus();
+				$pError.html(response.responseText);
+				$pError.slideDown();
+			}
+		});
+	});
+
+	// Activation de l'event du click sur le bouton "Terminer la liaison"
+	$('div.modal div.step').on('click', 'a.link-account-last-check', function(event) {
+		event.preventDefault();
+		if ($(this).hasClass('disabled')) {
+			return false;
+		}
+
+		var $this = $(this),
+			$parent = $this.parent(),
+			$loader = $parent.find('i.loader'),
+			$pError = $('div.modal p.error');
+
+		$this.addClass('disabled');
+		$loader.removeClass('hide');
+		$pError.slideUp();
+
+		$.ajax({
+			url: Routing.generate('profile_end_of_link_account_process', {'_locale': locale}),
+			type: 'GET',
+			dataType: 'html',
+			success: function(response) {
+				document.location.reload(true);
+			},
+			error: function(response) {
+				$loader.addClass('hide');
+				$this.removeClass('disabled');
+				$pError.html(response.responseText);
+				$pError.slideDown();
+			}
+		});
+	});
+
+	// Activation de l'event de click sur le bouton "Renseigner mon compte de jeu"
+	$('a.launch-link-account-process-btn').on('click', function() {
+		$('div#link-lol-account-modal').modal('show');
+		return false;
+	});
 });

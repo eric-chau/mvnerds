@@ -20,9 +20,8 @@
 	{% if app.environment == 'dev' %}
 		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/profile/profile.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/mvnerds/mvnerds-modal.css') }}">
-		{#<link href="{{ asset('css/item_builder/listing-page.css') }}" rel="stylesheet" type="text/css">
-		<link href="{{ asset('css/item_builder/modal.css') }}" rel="stylesheet" type="text/css">
-		<link href="{{ asset('css/champion_handler/champion-square25-sprite.css') }}" rel="stylesheet" type="text/css">#}
+		{#
+		#}
 	{% else %}
 		{% stylesheets 
 			'medias/css/profile/profile.css'
@@ -41,12 +40,16 @@
 	{% if app.environment == 'dev' %}
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-modal.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/jquery.zclip.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/profile/profile.js') }}"></script>
 		{#<script type="text/javascript" src="{{ asset('js/item_handler/item_builder/dl-modal.js') }}"></script>#}
 	{% else %}
 		{% javascripts
 			'medias/js/bootstrap/bootstrap-tooltip.js'
 			'medias/js/bootstrap/bootstrap-popover.js'
+			'medias/js/bootstrap/bootstrap-modal.js'
+			'medias/js/jquery.zclip.min.js'
 			'medias/js/profile/profile.js'
 			output='js/profile.js'
 			filter='yui_js'
@@ -78,6 +81,8 @@
 		<div class="row-fluid">
 			<div class="span8 left-content">
 				{% set current_avatar_name = user.getProfile().getAvatar().getName() %}
+				
+				{# PROFILE HEADER #}
 				<div class="profile-header">
 					<img src="{{ asset('medias/images/avatar/'~ current_avatar_name ~'.jpg') }}" />
 					<h1>{{ user.getUsername() }}</h1>
@@ -93,45 +98,19 @@
 					</div>
 					<div class="user-stat">
 						<i class="icon-eye-open"></i>
-						<strong>{{ user_comment_count }}</strong>
+						<strong>{% render 'MVNerdsViewBundle:View:renderSimpleViewCount' with {'object': user} %}</strong>
 						<span>Consultations</span>
 					</div>
 				</div>
 				<div class="clearfix"></div>
 				
+				{# PROFILE BODY #}
 				<div class="profile-body">
-					<h2>Mon compte de jeu lié : <i>non trouvé</i></h2>
+					{# COMPTE DE JEU LIÉ #}
+					{% include 'MVNerdsProfileBundle:Profile:profile_index_game_account_block.html.twig' %}
 					
-					<p>{{ user.getUsername() }} n'a pas encore lié son compte League of Legends à son compte MVNerds.</p>
-					
-					<h2>
-						Pimp My Recommended Items 
-						{% if admin_mode %}
-							<a href="#" class="user-preference-toggle" data-block-id="pmri-user-preferences"><span class="label red">mes préférences utilisateur</span></a>
-						{% endif %}
-					</h2>
-					
-					{% if admin_mode %}
-						<div id="pmri-user-preferences" class="preference-block">
-							<form action="#" method="POST">
-								<div>
-									{{ form_label(form.lolDirectory) }}
-									{{ form_widget(form.lolDirectory) }}
-									<a href="#" class="reset-field"><i class="icon-remove-sign"></i></a>
-									<a href="#" class="save-field disabled" data-preference="LEAGUE_OF_LEGENDS_DIRECTORY"><i class="icon-ok-sign"></i>enregistrer</a>
-								</div>
-
-								{{ form_rest(form) }}
-							</form>
-						</div>
-					{% endif %}
-
-						{% if user_items_builds|length > 0 %}
-							{% include 'MVNerdsProfileBundle:Profile:pmri_list.html.twig' with {'item_builds': user_items_builds, 'admin_mode': admin_mode}  %}
-						{% else %}
-							<p class="empty-list">{{ user.getUsername() }} {{'ItemBuilder.pmri.p1'|trans}}</p>
-						{% endif %}
-					</div>
+					{# PIMP MY RECOMMENDED ITEMS #}
+					{% include 'MVNerdsProfileBundle:Profile:profile_index_pmri_block.html.twig' %}
 				
 				{#
 				{% if admin_mode %}
@@ -178,7 +157,7 @@
 				{% endif %}
 				#}
 					
-				{% render 'MVNerdsCommentBundle:Comment:renderComments' with {'object': user.getProfile(), 'objectType': 'profile'} %}
+				{% render 'MVNerdsCommentBundle:Comment:renderComments' with {'object': user, 'objectType': 'user'} %}
 				
 				{#{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}#}
 			</div>

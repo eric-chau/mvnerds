@@ -1,0 +1,20 @@
+<div class="game-account-container">	
+	{% if game_account == null or game_account.isActive() == false %}
+		<h2>Mon compte de jeu lié : <i>{% if game_account == null %}non trouvé{% else %}validation en cours{% endif %}</i></h2>
+
+		<p>
+			{% if admin_mode %}
+				Vous n'avez pas encore lié votre compte League of Legends à votre compte MVNerds. <br /><br />
+				Souhaitez-vous le faire ?
+				<a href="#" class="btn launch-link-account-process-btn">{% if game_account == null %}Renseigner mon compte de jeu{% else %}Finaliser la validation{% endif %}</a>
+			{% else %}
+				{{ user.getUsername() }} n'a pas encore lié son compte League of Legends à son compte MVNerds.
+			{% endif %}
+
+		</p>
+
+		{% include 'MVNerdsProfileBundle:Modal:link_lol_accout_modal.html.twig' %}
+	{% else %}
+		<h2>Mon compte de jeu lié : <strong>{{ game_account.getSummonerName() }}</strong></h2>
+	{% endif %}
+</div>

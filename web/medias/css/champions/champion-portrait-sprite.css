@@ -659,3 +659,9 @@
 .champion-portrait.thresh {
     background-position: -924px -2940px;
 }
+
+.champion-portrait.quinn {
+    background-image: url('/medias/images/champions/quinn-portrait.jpg');
+    height: 419px;
+    width: 230px;
+}

@@ -663,3 +663,9 @@
     
     background-position: -0px -0px;
 }
+
+.champion-square36.quinn {
+    background-image: url('/medias/images/champions/quinn36.png');
+    height: 36px;
+    width: 36px;
+}

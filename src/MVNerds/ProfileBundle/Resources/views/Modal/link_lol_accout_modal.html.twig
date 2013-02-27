@@ -1,0 +1,47 @@
+<div id="link-lol-account-modal" class="modal hide fade">
+	<div class="modal-header">
+		<h3>Lier mes comptes MVNerds et League of Legends</h3>
+	</div>
+	<div class="modal-body">
+		<div class="step">
+			{% if game_account != null %}
+				{% include 'MVNerdsProfileBundle:Modal:link_lol_accout_modal_step_2.html.twig' with {'activation_code': game_account.getActivationCode(), 'summoner_name': game_account.getSummonerName()} %}
+			{% else %}
+				<p>
+					Liez dès maintenant votre compte MVNerds à votre compte League of Legends ! Vous aurez alors accès à vos ligues et vos statistiques
+					en parties classées sans avoir à vous connecter sur le jeu. De nouvelles possibilités sont également en préparation.
+				</p>
+
+				<h4>Étape 1 : mon compte League of Legends</h4>
+
+				<p>
+					Renseignez tous les champs du formulaire ci-dessous pour que l'on puisse procéder à une vérification de l'existence de votre compte.
+				</p>
+
+				<p class="note">
+					<i class="icon-warning-sign"></i> Ne communiquez pas le nom de votre compte. Nous voulons votre nom d'invocateur, celui qui apparaît
+					à l'écran lorsque vous êtes en jeu.
+				</p>
+
+				<p class="error hide"></p>
+				<form action="#" method="POST">
+					<div class="field">
+						<label for="region-selector">Région</label> 
+						<select id="region-selector">
+							<option value="euw">Europe Ouest (EUW)</option>
+							<option value="eune">Europe Nord et Est (EUNE)</option>
+							<option value="na">Amérique du Nord (NA)</option>
+							<option value="br">Brésil (BR)</option>
+						</select>
+					</div>
+
+					<div class="field">
+						<label for="lol-summoner-name">Nom d'invocateur</label>
+						<input type="text" id="lol-summoner-name" />
+					</div>
+					<i class="icon-spin icon-spinner loader hide"></i> <button class="btn green disabled btn-check-lol-account-existence">Vérifier</button>
+				</form>
+			{% endif %}
+		</div>
+	</div>						
+</div>

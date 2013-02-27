@@ -1,3 +1,8 @@
+mv_nerds_view:
+    resource: "@MVNerdsViewBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 mv_nerds_report:
     resource: "@MVNerdsReportBundle/Controller/"
     type:     annotation

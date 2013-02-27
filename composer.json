@@ -23,7 +23,8 @@
 		
 		"friendsofsymfony/jsrouting-bundle": "dev-master",
 		"kriswallsmith/buzz": "dev-master",
-		"sensio/buzz-bundle": "dev-master"
+		"sensio/buzz-bundle": "dev-master",
+		"CarpeHora/ExtraPropertiesBehavior": "dev-master"
     },
     "scripts": {
         "post-install-cmd": [
