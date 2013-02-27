@@ -38,18 +38,24 @@
 	{{ parent() }}
 
 	{% if app.environment == 'dev' %}
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-modal.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-modal.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/jquery.mousewheel.min.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/jquery.zclip.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/site/alerts-ajax-handler.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/item-handler/dl-modal.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/profile/profile.js') }}"></script>
 		{#<script type="text/javascript" src="{{ asset('js/item_handler/item_builder/dl-modal.js') }}"></script>#}
 	{% else %}
 		{% javascripts
+			'medias/js/bootstrap/bootstrap-modal.js'
 			'medias/js/bootstrap/bootstrap-tooltip.js'
 			'medias/js/bootstrap/bootstrap-popover.js'
-			'medias/js/bootstrap/bootstrap-modal.js'
+			'medias/js/jquery.mousewheel.min.js'
 			'medias/js/jquery.zclip.min.js'
+			'medias/js/site/alerts-ajax-handler.js'
+			'medias/js/item-handler/dl-modal.js'
 			'medias/js/profile/profile.js'
 			output='js/profile.js'
 			filter='yui_js'
@@ -159,7 +165,7 @@
 					
 				{% render 'MVNerdsCommentBundle:Comment:renderComments' with {'object': user, 'objectType': 'user'} %}
 				
-				{#{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}#}
+				{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}
 			</div>
 			
 			<div class="span4 right-content">

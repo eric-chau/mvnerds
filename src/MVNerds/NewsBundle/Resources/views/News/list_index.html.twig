@@ -5,17 +5,7 @@
 {% block css %}
 	{{ parent() }}
 
-	{% if app.environment == 'dev' %}
-		<link href="{{ asset('medias/css/news/list-page.css') }}" rel="stylesheet" type="text/css">
-	{% else %}
-		{% stylesheets 
-			'medias/css/news/list-page.css'
-			output='css/news-index.css'
-			filter='yui_css'
-		%}
-		<link rel="stylesheet" href="{{ asset_url }}" />
-		{% endstylesheets %}
-	{% endif %}
+	<link href="{{ asset('medias/css/news/list-page.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block javascripts %}
