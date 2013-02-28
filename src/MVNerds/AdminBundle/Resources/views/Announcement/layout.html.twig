@@ -1,0 +1,11 @@
+{% extends 'MVNerdsAdminBundle::layout.html.twig' %}
+
+{% block css %}
+	{{ parent() }}
+
+	<link rel="stylesheet" href="{{ asset('css/admin/champion.css') }}">
+{% endblock %}
+
+{% block topbar %}
+	{% include 'MVNerdsAdminBundle::top_bar.html.twig' with {'section': 'announcement'} %}
+{% endblock %}

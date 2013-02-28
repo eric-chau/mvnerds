@@ -1,0 +1,35 @@
+{% extends 'MVNerdsAdminBundle:Announcement:layout.html.twig' %}
+
+{% block title %}Administration des annonces - MVNerds{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-alert.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-modal.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-tooltip.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
+	
+{% endblock %}
+
+	
+{% block content %}	
+	<h1>Annonce</h1>
+	
+	{% autoescape false %}
+		{{ render_success_flash() }}
+	{% endautoescape %}
+	{% autoescape false %}
+		{{ render_error_flash() }}
+	{% endautoescape %}
+
+	<div class="content-container">
+		<form action="{{path('admin_announcement_store')}}" method="post">
+			<label for="announcement">Annonce : </label>
+			<input type="text" name="announcement" id="announcement" value="{{announcement}}"/>
+			
+			<br /><br />
+			<input type="submit" value="Enregistrer"/>
+		</form>
+	</div>
+{% endblock %}

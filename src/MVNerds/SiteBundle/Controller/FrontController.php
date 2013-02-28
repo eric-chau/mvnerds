@@ -4,6 +4,9 @@ namespace MVNerds\SiteBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Response;
+
+use MVNerds\AdminBundle\Controller\AnnouncementController;
 
 class FrontController extends Controller
 {
@@ -163,5 +166,19 @@ class FrontController extends Controller
 	public function termsOfUseAction()
 	{
 		return $this->render('MVNerdsSiteBundle:Footer:terms_of_use.html.twig');
+	}
+	
+	/**
+	 * Permet d'afficher un message d'annonce mvnerds lorsqu'il a été saisi depuis l admin
+	 */
+	public function renderAnnouncementAction()
+	{
+		if (($announcement = apc_fetch(AnnouncementController::MVN_ANNOUNCEMENT_KEY))) {
+			return $this->render('MVNerdsSiteBundle:Common:announcement.html.twig', array(
+				'announcement' => $announcement
+			));
+		}
+		
+		return new Response();
 	}
 }

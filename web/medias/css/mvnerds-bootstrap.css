@@ -372,6 +372,13 @@ div#topbar {
 div#topbar div.container {
   position: relative;
 }
+div#topbar div.container.announcement {
+  color: #fb9701;
+  text-align: center;
+  padding: 2px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
 div#topbar ul.menu,
 div#topbar ul.right-container {
   display: inline-block;
