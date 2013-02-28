@@ -39,6 +39,11 @@
 				<source>champion.skill.position.4</source>
 				<target>R - Ultimate</target>
 			</trans-unit>
+
+			<trans-unit id="200">
+				<source>champion.skin.video.unavailable</source>
+				<target>There is no video available for this skin.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

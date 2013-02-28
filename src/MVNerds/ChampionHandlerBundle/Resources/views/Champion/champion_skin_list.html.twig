@@ -20,7 +20,17 @@
 							</span>
 						</h5>
 						<div class="video-container">
-							<iframe width="400" height="225" src="http://www.youtube.com/embed/cZvr7tt0a9s?rel=0" frameborder="0" allowfullscreen></iframe>
+							{% if skin.getVideo() != null %}
+								{% set video = skin.getVideo() %}
+								
+								{% if video.getVideoType() == 'youtube' %}
+									{% include 'MVNerdsVideoBundle:Videos:youtube.html.twig' with {'link': video.getLink(), 'width': 440, 'height': 230}%}
+								{% elseif video.getVideoType() == 'dailymotion' %}
+									{% include 'MVNerdsVideoBundle:Videos:dailymotion.html.twig' with {'link': video.getLink(), 'width': 440, 'height': 230} %}
+								{% endif %}
+							{% else %}
+								<p>{{'champion.skin.video.unavailable' | trans }}</p>
+							{% endif %}
 						</div>
 					</div>
 				</div>

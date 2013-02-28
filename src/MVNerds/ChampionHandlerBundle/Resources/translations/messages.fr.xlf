@@ -39,6 +39,11 @@
 				<source>champion.skill.position.4</source>
 				<target>R - Ultime</target>
 			</trans-unit>
+			
+			<trans-unit id="200">
+				<source>champion.skin.video.unavailable</source>
+				<target>Il n'y a pas de vidéo de présentation disponible pour ce skin.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

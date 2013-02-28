@@ -1,5 +1,8 @@
-<object width="618" height="348">
+{% set width = width is defined  ? width : 618 %}
+{% set height = height is defined ? height : 348 %}
+
+<object width="{{width}}" height="{{height}}">
 	<param name="movie" value="{{link}}?version=3"></param>
 	<param name="allowScriptAccess" value="always"></param>
-	<embed src="{{link}}?version=3" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="618" height="348"></embed>
+	<embed src="{{link}}?version=3" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="{{width}}" height="{{height}}"></embed>
 </object>

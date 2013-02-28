@@ -86,9 +86,9 @@
 				</div>
 				
 				<div class="video-player-container">
-					{% if video_type == 'youtube' %}
+					{% if video.getVideoType() == 'youtube' %}
 						{% include 'MVNerdsVideoBundle:Videos:youtube.html.twig' with {'link': video.getLink()}%}
-					{% elseif video_type == 'dailymotion' %}
+					{% elseif video.getVideoType() == 'dailymotion' %}
 						{% include 'MVNerdsVideoBundle:Videos:dailymotion.html.twig' with {'link': video.getLink()} %}
 					{% endif %}
 				</div>

@@ -215,19 +215,11 @@ class LoLVideoController extends Controller
 			return $this->redirect($this->generateUrl('lol_video_index'));
 		}
 		
-		$videoType = null;
-		if (strpos($video->getLink(), 'youtube.com') !== false) {
-			$videoType = 'youtube';
-		} elseif (strpos($video->getLink(), 'dailymotion.com') !== false) {
-			$videoType = 'dailymotion';
-		}
-		
 		$relatedVideos = $videoManager->findRelatedVideos($video);
 				
 		$params = array(
 			'video'			=> $video,
 			'can_edit'		=> false,
-			'video_type'		=> $videoType,
 			'related_videos'	=> $relatedVideos
 		);
 		
