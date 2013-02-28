@@ -1,0 +1,58 @@
+{% extends 'MVNerdsSiteBundle::layout.html.twig' %}
+	
+{% block css %}
+	{{ parent() }}
+
+	<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/site/contact-us.css') }}">
+{% endblock %}
+		
+{% block javascripts %}
+	{{ parent() }}
+	
+	<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-alert.js') }}"></script>
+{% endblock %}
+
+{% block main_content %}
+	<div class="container main-container border-top">
+		<h1>{{'Footer.links.contact'|trans}}</h1>
+
+		<p>{{ 'Contact.p1'|trans}}</p>
+		<div class="contact-us">
+			<div class="contact-errors">
+				{% autoescape false %}
+					{{ render_success_flash() }}
+				{% endautoescape %}
+				{% autoescape false %}
+					{{ render_error_flash() }}
+				{% endautoescape %}
+			</div>
+			<form id="contact-us-form" action="{{ path('launch_site_contact_us') }}" method="POST" class="form-horizontal">
+				<div class="field">
+					<label for="contact-mail" class="control-label">{{ 'Contact.form.mail.label'|trans}}</label>
+					<input id="contact-mail" class="contact" name="contact-mail" type="email" placeholder="{{ 'Contact.form.mail.placeholder'|trans}}" />
+				</div>
+				<div class="field">
+					<label for="contact-category" class="control-label">{{ 'Contact.form.category.label'|trans}}</label>
+					<select id="contact-category" name="contact-category" type="text" placeholder="{{ 'Contact.form.subject.label'|trans}}">
+						<option value="{{'Contact.form.category.BUG' | trans}}">{{'Contact.form.category.BUG' | trans}}</option>
+						<option value="{{'Contact.form.category.SUGGESTION' | trans}}">{{'Contact.form.category.SUGGESTION' | trans}}</option>
+						<option value="{{'Contact.form.category.PARTNERSHIP' | trans}}">{{'Contact.form.category.PARTNERSHIP' | trans}}</option>
+						<option value="{{'Contact.form.category.FEEDBACK' | trans}}">{{'Contact.form.category.FEEDBACK' | trans}}</option>
+						<option value="{{'Contact.form.category.OTHER' | trans}}">{{'Contact.form.category.OTHER' | trans}}</option>
+					</select>
+				</div>
+				<div class="field">
+					<label for="contact-subject" class="control-label">{{ 'Contact.form.subject.label'|trans}}</label>
+					<input id="contact-subject" name="contact-subject" type="text" placeholder="{{ 'Contact.form.subject.label'|trans}}" />
+				</div>
+				<div class="field">
+					<label for="contact-message" class="control-label">{{ 'Contact.form.message.label'|trans}}</label>
+					<textarea id="contact-message" name="contact-message" placeholder="{{ 'Contact.form.message.label'|trans}}" rows="5"></textarea>
+				</div>
+					
+				<button type="submit" class="btn submit-btn">{{ 'General.send'|trans}}</button>
+			</form>
+		</div>
+	</div>
+	<div class="clearfix"></div>
+{% endblock %}
