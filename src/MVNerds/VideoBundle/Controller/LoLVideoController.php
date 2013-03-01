@@ -25,7 +25,6 @@ class LoLVideoController extends Controller
 		$videoManager->findAllActiveAjax();
 		return $this->render('MVNerdsVideoBundle:LoLVideoCenter:lol_video_index.html.twig', array(
 			'video_categories'	=> $videoManager->findAllVideoCatgories(),
-			'videos'		=> $videoManager->findAllActive(),
 			'video'			=> new Video()
 		));
 	}

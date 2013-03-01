@@ -20,6 +20,24 @@ use MVNerds\CoreBundle\Model\UserPeer;
 
 class ProfileController extends Controller
 {
+	/**
+	 * Permet d'accéder à la page de listing de tous les membres
+	 * @Route("/{_locale}/profile/list", name="users_list_index")
+	 */
+	public function listAction() 
+	{
+		return $this->render('MVNerdsProfileBundle:Profile:users_list_index.html.twig');
+	}
+	
+	/**
+	 * Permet de lister tous les utilisateurs en AJAX
+	 * @Route("/{_locale}/list-ajax", name="users_list_ajax", options={"expose"=true})
+	 */
+	public function listAjaxAction() 
+	{
+		
+	}
+	
     /**
 	 * Affiche la page de profil de l'invocateur authentifié et connecté
 	 * 
