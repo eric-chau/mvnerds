@@ -8,6 +8,11 @@
  * @license    MIT License
  */
 
+namespace MVNerds\PropelBundle\Behavior;
+
+use \Behavior;
+use \Unique;
+
 /**
  * Adds a slug column
  *

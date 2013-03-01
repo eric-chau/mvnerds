@@ -6,21 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class FrontController extends Controller
-{
-	/**
-	 * @Route("/configure-profile-slug")
-	 */
-	public function configureProfileSlugAction()
-	{
-		$profiles = \MVNerds\CoreBundle\Model\ProfileQuery::create()->find();
-		foreach ($profiles as $profile) {
-			$profile->setSlug('profile-'. $profile->getId());
-			$profile->save();
-		}
-		
-		return new \Symfony\Component\HttpFoundation\Response('OK !');
-	}
-	
+{	
     /**
      * @Route("/{_locale}", name="site_homepage", defaults={"_locale" = "fr"})
      */

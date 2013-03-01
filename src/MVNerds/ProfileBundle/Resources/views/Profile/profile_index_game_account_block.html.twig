@@ -6,7 +6,14 @@
 			{% if admin_mode %}
 				Vous n'avez pas encore lié votre compte League of Legends à votre compte MVNerds. <br /><br />
 				Souhaitez-vous le faire ?
-				<a href="#" class="btn launch-link-account-process-btn">{% if game_account == null %}Renseigner mon compte de jeu{% else %}Finaliser la validation{% endif %}</a>
+				{% if game_account == null %}
+					<a href="#" class="btn launch-link-account-process-btn">Renseigner mon compte de jeu</a>
+				{% else %}
+					<a href="#" class="btn launch-link-account-process-btn">Finaliser la validation</a>
+					<a href="#" class="btn no-color small cancel-link-account-process-btn">Annuler la liaison</a>
+					<i class="icon-spin icon-spinner loader hide"></i>
+				{% endif %}
+				
 			{% else %}
 				{{ user.getUsername() }} n'a pas encore lié son compte League of Legends à son compte MVNerds.
 			{% endif %}

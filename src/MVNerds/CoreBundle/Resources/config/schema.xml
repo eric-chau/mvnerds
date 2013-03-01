@@ -3,6 +3,7 @@
   <table name="champion">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
     <column name="name" required="true" size="45" type="VARCHAR" />
+    <column name="slug" required="true" size="50" type="VARCHAR" />
     <column name="title" size="255" type="VARCHAR" />
     <column name="lore" type="LONGVARCHAR" />
     <column name="base_damage" required="true" scale="3" type="FLOAT" />
@@ -31,14 +32,6 @@
     <column name="ip_cost" required="true" type="SMALLINT" />
     <column name="rp_cost" required="true" type="SMALLINT" />
     <column defaultValue="0" name="bonus_attack_range_per_level" required="true" type="SMALLINT" />
-    <behavior name="sluggable">
-      <parameter name="slug_column" value="slug" />
-      <parameter name="slug_pattern" value="{name}" />
-      <parameter name="replace_pattern" value="/[^\w\/]+/u" />
-      <parameter name="replacement" value="-" />
-      <parameter name="separator" value="-" />
-      <parameter name="permanent" value="false" />
-    </behavior>
     <behavior name="i18n">
       <parameter name="i18n_columns" value="name,title,lore" />
       <parameter name="default_locale" value="fr" />
@@ -266,6 +259,7 @@
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
     <column name="type_id" required="true" type="INTEGER" />
     <column name="label" required="true" size="100" type="VARCHAR" />
+    <column name="slug" required="true" size="100" type="VARCHAR" />
     <column name="description" type="LONGVARCHAR" />
     <foreign-key foreignTable="tag_type">
       <reference foreign="id" local="type_id" />
@@ -276,14 +270,6 @@
       <parameter name="locale_column" value="lang" />
       <parameter name="i18n_table" value="tag_i18n" />
       <parameter name="i18n_phpname" value="TagI18n" />
-    </behavior>
-    <behavior name="sluggable">
-      <parameter name="slug_column" value="slug" />
-      <parameter name="slug_pattern" value="{label}" />
-      <parameter name="replace_pattern" value="/[^\w\/]+/u" />
-      <parameter name="replacement" value="-" />
-      <parameter name="separator" value="-" />
-      <parameter name="permanent" value="false" />
     </behavior>
   </table>
   <table name="champion_tag">
@@ -319,6 +305,7 @@
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
     <column defaultValue="NULL" description="Un item peut etre specifique a un champion" name="champion_id" type="INTEGER" />
     <column name="name" required="true" size="45" type="VARCHAR" />
+    <column name="slug" required="true" size="50" type="VARCHAR" />
     <column name="cost" required="true" type="SMALLINT" />
     <column name="sell_value" required="true" type="SMALLINT" />
     <column name="riot_code" required="true" size="5" type="VARCHAR" />
@@ -334,14 +321,6 @@
       <parameter name="i18n_table" value="item_i18n" />
       <parameter name="i18n_phpname" value="ItemI18n" />
     </behavior>
-    <behavior name="sluggable">
-      <parameter name="slug_column" value="slug" />
-      <parameter name="slug_pattern" value="{name}" />
-      <parameter name="replace_pattern" value="/[^\w\/]+/u" />
-      <parameter name="replacement" value="-" />
-      <parameter name="separator" value="-" />
-      <parameter name="permanent" value="false" />
-    </behavior>
   </table>
   <table name="primary_effect">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -353,14 +332,6 @@
       <parameter name="locale_column" value="lang" />
       <parameter name="i18n_table" value="primary_effect_i18n" />
       <parameter name="i18n_phpname" value="PrimaryEffectI18n" />
-    </behavior>
-    <behavior name="sluggable">
-      <parameter name="slug_column" value="slug" />
-      <parameter name="slug_pattern" value="{label}" />
-      <parameter name="replace_pattern" value="/[^\w\/]+/u" />
-      <parameter name="replacement" value="-" />
-      <parameter name="separator" value="-" />
-      <parameter name="permanent" value="false" />
     </behavior>
   </table>
   <table name="item_primary_effect">
@@ -510,14 +481,6 @@
       <parameter name="create_column" value="create_time" />
       <parameter name="update_column" value="update_time" />
     </behavior>
-    <behavior name="sluggable">
-      <parameter name="slug_column" value="slug" />
-      <parameter name="slug_pattern" value="{title}" />
-      <parameter name="replace_pattern" value="/[^\w\/]+/u" />
-      <parameter name="replacement" value="-" />
-      <parameter name="separator" value="-" />
-      <parameter name="permanent" value="false" />
-    </behavior>
     <behavior name="i18n">
       <parameter name="i18n_columns" value="title, content, preview" />
       <parameter name="default_locale" value="fr" />
@@ -642,6 +605,7 @@
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
     <column name="champion_id" required="true" type="INTEGER" />
     <column name="name" required="true" size="45" type="VARCHAR" />
+    <column name="slug" required="true" size="100" type="VARCHAR" />
     <column name="description" required="true" type="LONGVARCHAR" />
     <column defaultValue="0" name="cost" required="true" size="45" type="VARCHAR" />
     <column defaultValue="0" name="range" required="true" size="45" type="VARCHAR" />
@@ -658,20 +622,13 @@
       <parameter name="i18n_table" value="skill_i18n" />
       <parameter name="i18n_phpname" value="SkillI18n" />
     </behavior>
-    <behavior name="sluggable">
-      <parameter name="slug_column" value="slug" />
-      <parameter name="slug_pattern" value="{name}" />
-      <parameter name="replace_pattern" value="/[^\w]+/u" />
-      <parameter name="replacement" value="-" />
-      <parameter name="separator" value="-" />
-      <parameter name="permanent" value="false" />
-    </behavior>
   </table>
   <table name="skin">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
     <column name="video_id" type="INTEGER" />
     <column name="champion_id" required="true" type="INTEGER" />
     <column name="name" required="true" size="100" type="VARCHAR" />
+    <column name="slug" required="true" size="100" type="VARCHAR" />
     <column name="cost" required="true" size="45" type="VARCHAR" />
     <foreign-key foreignTable="champion" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="champion_id" />
@@ -685,14 +642,6 @@
       <parameter name="locale_column" value="lang" />
       <parameter name="i18n_table" value="skin_i18n" />
       <parameter name="i18n_phpname" value="SkinI18n" />
-    </behavior>
-    <behavior name="sluggable">
-      <parameter name="slug_column" value="slug" />
-      <parameter name="slug_pattern" value="{name}" />
-      <parameter name="replace_pattern" value="/[^\w]+/u" />
-      <parameter name="replacement" value="-" />
-      <parameter name="separator" value="-" />
-      <parameter name="permanent" value="true" />
     </behavior>
   </table>
   <table name="video">

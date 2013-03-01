@@ -245,4 +245,26 @@ $(document).ready(function()
 		$('div#link-lol-account-modal').modal('show');
 		return false;
 	});
+
+	// Activation de l'event de click sur le bouton "Annuler la procédure"
+	$('div.game-account-container').on('click', 'a.cancel-link-account-process-btn', function(event)
+	{
+		event.preventDefault();
+		if ($(this).hasClass('disabled')) {
+			return false;
+		}
+
+		$(this).parent().find('a').each(function() {
+			$(this).addClass('disabled');
+		});
+		$(this).parent().find('i.loader').removeClass('hide');
+		$.ajax({
+			url: Routing.generate('profile_cancel_link_account_process', {'_locale': locale}),
+			type: 'get',
+			dataType: 'json',
+			success: function(response) {
+				document.location.reload(true);
+			}
+		});
+	});
 });

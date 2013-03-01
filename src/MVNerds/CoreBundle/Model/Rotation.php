@@ -18,21 +18,16 @@ use MVNerds\CoreBundle\Model\om\BaseRotation;
  */
 class Rotation extends BaseRotation {
 
-	public function removeChampionRotation(ChampionRotation $l)
+	public function removeChampionRotation($championRotation)
 	{
 		if ($this->collChampionRotations === null) {
 			return $this;
 		}
-		if ($this->collChampionRotations->contains($l)) {
-			$this->doRemoveChampionRotation($l);
+		if ($this->collChampionRotations->contains($championRotation)) {
+			$this->doRemoveChampionRotation($championRotation);
 		}
 
 		return $this;
-	}
-	
-	public function removeRotationI18n(RotationI18n $l)
-	{
-		die('ko');
 	}
 	
 	protected function doRemoveChampionRotation($championRotation)

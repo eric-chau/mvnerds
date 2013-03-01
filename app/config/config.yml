@@ -14,10 +14,11 @@ framework:
     validation:      ~
     templating:      { engines: ['twig'] } #assets_version: SomeVersionScheme
     default_locale:  %default_locale%
-    trust_proxy_headers: false # Whether or not the Request object should trust proxy headers (X_FORWARDED_FOR/HTTP_CLIENT_IP)
     session:         
         cookie_lifetime: 3600
     translator: { fallback: %default_locale% }
+    trusted_proxies: ~
+    fragments:       ~
 
 # Twig Configuration
 twig:
@@ -51,12 +52,6 @@ propel:
         dsn:                  %database_driver%:host=%database_host%;dbname=%database_name%;charset=UTF8
         options:              {}
         attributes:           {}
-    behaviors:
-        mvnerds_commentable:	MVNerds\CommentBundle\Propel\MVNerdsCommentableBehavior
-        mvnerds_votable:	MVNerds\VoteBundle\Propel\MVNerdsVotableBehavior
-        mvnerds_reportable:	MVNerds\ReportBundle\Propel\MVNerdsReportableBehavior
-        mvnerds_viewable:	MVNerds\ViewBundle\Propel\MVNerdsViewableBehavior
-        extra_properties: vendor\CarpeHora\ExtraPropertiesBehavior\src\ExtraPropertiesBehavior
 
 # Swiftmailer Configuration
 swiftmailer:

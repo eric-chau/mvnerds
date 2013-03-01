@@ -109,7 +109,7 @@
 				
 				{% include 'MVNerdsItemHandlerBundle:PMRI:pmri_detail_item_block_list.html.twig' %}
 				
-				{% render 'MVNerdsCommentBundle:Comment:renderComments' with {'object': item_build, 'objectType': 'item_build'} %}
+				{{ render(controller('MVNerdsCommentBundle:Comment:renderComments', {'object': item_build, 'objectType': 'item_build'})) }}
 			</div>
 			
 			<div class="span4 right-content">
@@ -143,7 +143,7 @@
 					<div class="body">
 						<div class="block-media">
 							<img src="{{ asset('medias/images/avatar/' ~ item_build.getUser().getUserAvatarName()~ '.jpg') }}" />
-							{% render 'MVNerdsVoteBundle:Vote:renderVoteBlock' with {'object': item_build, 'objectType': 'item_build'} %}
+							{{ render(controller('MVNerdsVoteBundle:Vote:renderVoteBlock', {'object': item_build, 'objectType': 'item_build'})) }}
 						</div>
 						<div class="stats">
 							<i class="icon-user"></i> 

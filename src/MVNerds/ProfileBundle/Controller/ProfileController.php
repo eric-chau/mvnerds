@@ -8,6 +8,7 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 use Criteria;
 
 use MVNerds\CoreBundle\Exception\ElophantAFKException;
@@ -15,8 +16,6 @@ use MVNerds\CoreBundle\Exception\InvalidSummonerNameException;
 use MVNerds\ItemHandlerBundle\Form\Model\ChangeLoLDirectoryModel;
 use MVNerds\ItemHandlerBundle\Form\Type\ChangeLoLDirectoryType;
 use MVNerds\CoreBundle\Model\User;
-use MVNerds\CoreBundle\Model\UserQuery;
-use MVNerds\CoreBundle\Model\UserPeer;
 
 class ProfileController extends Controller
 {
@@ -29,7 +28,7 @@ class ProfileController extends Controller
 	public function loggedSummonerIndexAction()
 	{		
 		$user = $this->getUser();
-		
+				
 		return $this->render('MVNerdsProfileBundle:Profile:profile_index.html.twig', array(
 			'user'					=> $user,
 			'user_items_builds'		=> $this->get('mvnerds.item_build_manager')->findByUserId($user->getId()),
@@ -148,6 +147,10 @@ class ProfileController extends Controller
 		catch (InvalidSummonerNameException $e) {
 			return new Response($translator->trans('Profile.error.invalid_summoner_name.' . $summonerName), 400);
 		}
+		
+		if ($this->get('mvnerds.profile_manager')->isSummonerNameAlreadyLinked($summonerName)) {
+			return new Response($translator->trans('Profile.error.summoner_name_already_linked.' . $summonerName), 400);
+		}
 				
 		$profile = $this->getUser()->getProfile();
 		$profile->setGameAccount($gameAccount);
@@ -172,9 +175,17 @@ class ProfileController extends Controller
 		$gameAccount = $this->get('mvnerds.profile_manager')->getGameAccountByUser($this->getUser());
 		
 		if (null == $gameAccount || $gameAccount->isActive()) {
-			return $this->redirect($this->generateUrl('summoner_profile_index'));
+			throw new AccessDeniedException('Pas de compte associé ou alors déjà actif !');
 		}
 		
+		// On bloque l'utilisateur a une vérification toutes les minutes
+		$session = $this->get('session');
+		$lastCheckCodeActivationTime = $session->get('profile_last_check_code_activation_time', null);
+		if (null != $lastCheckCodeActivationTime && $lastCheckCodeActivationTime + 60 >= time()) {
+			return new Response($this->get('translator')->trans('Profile.error.wait_more_please'), 400);
+		}
+		
+		$session->set('profile_last_check_code_activation_time', time());
 		$success = false;
 		try {
 			$success = $this->get('mvnerds.elophant_api_manager')->checkActivationCodeWithMasteriesPage($gameAccount);
@@ -182,15 +193,30 @@ class ProfileController extends Controller
 		catch (ElophantAFKException $e) {
 			return new Response($this->get('translator')->trans('Profile.error.elophant_afk'), 503);
 		}
-		catch (Exception $e) {
-			
-		}
 		
 		if (!$success) {
 			return new Response($this->get('translator')->trans('Profile.error.activation_code_not_found'), 400);
 		}
 		
+		$session->remove('profile_last_check_code_activation_time');
+		$this->get('mvnerds.profile_manager')->removeInactiveGameAccountBySummonerName($gameAccount->getSummonerName());
+		
 		return new Response(json_encode($success), 200);
+	}
+	
+	/**
+	 * @Route("/{_locale}/profile/cancel-link-account-process", name="profile_cancel_link_account_process", options={"expose"=true})
+	 */
+	public function cancelLinkAccountProcessAction()
+	{
+		$request = $this->getRequest();
+		if (!$request->isXmlHttpRequest()) {
+			throw new HttpException(500, 'La requête doit être AJAXienne !');
+		}
+		
+		$this->get('mvnerds.profile_manager')->removeGameAccountFromProfile($this->getUser()->getProfile());
+		
+		return new Response(json_encode(true), 200);
 	}
 	
 	/**
