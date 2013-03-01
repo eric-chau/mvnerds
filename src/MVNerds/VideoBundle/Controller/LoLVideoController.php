@@ -216,10 +216,10 @@ class LoLVideoController extends Controller
 		}
 		
 		$relatedVideos = $videoManager->findRelatedVideos($video);
-				
+		
 		$params = array(
-			'video'			=> $video,
-			'can_edit'		=> false,
+			'video'				=> $video,
+			'can_edit'			=> false,
 			'related_videos'	=> $relatedVideos
 		);
 		
