@@ -1,1 +1,4 @@
-<iframe frameborder="0" width="618" height="348" src="{{link}}"></iframe>
+{% set width = width is defined  ? width : 618 %}
+{% set height = height is defined ? height : 348 %}
+
+<iframe frameborder="0" width="{{width}}" height="{{height}}" src="{{link}}"></iframe>

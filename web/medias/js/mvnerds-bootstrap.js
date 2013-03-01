@@ -1,8 +1,12 @@
 $(function() {
 	// Activation des dropdowns dont celui de la topbar
-	$('.dropdown-toggle').dropdown();
+	if ( $('.dropdown-toggle').dropdown != undefined) {
+		$('.dropdown-toggle').dropdown();
+	}
 	// Activation des popovers
-	$('.bootstrap-popover').popover();
+	if ( $('.bootstrap-popover').popover != undefined) {
+		$('.bootstrap-popover').popover();
+	}
 	
 	//Blocage du clic des liens désactivés
 	$('a.disabled').on('click', function(){

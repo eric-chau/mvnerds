@@ -18,6 +18,8 @@ use MVNerds\CoreBundle\Model\om\BaseVideo;
  */
 class Video extends BaseVideo {
 
+	public $videoType = null;
+	
 	//Permet de récupérer l'image d'aperçu de la vidéo à partir du lien de celle-ci
 	public function getThumbnailUrl()
 	{
@@ -40,5 +42,19 @@ class Video extends BaseVideo {
 		}
 		
 		return '';
+	}
+	
+	//Permet de récupérer le type de la vidéo afin d'include la bonne template
+	public function getVideoType()
+	{
+		if (null == $this->videoType) {
+			if (strpos($this->getLink(), 'youtube.com') !== false) {
+				$this->videoType = 'youtube';
+			} elseif (strpos($this->getLink(), 'dailymotion.com') !== false) {
+				$this->videoType = 'dailymotion';
+			}
+		}
+		
+		return $this->videoType;
 	}
 } // Video

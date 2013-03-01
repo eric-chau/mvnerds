@@ -178,7 +178,9 @@ img {
 }
 input[type="text"],
 input[type="password"],
-input[type="email"] {
+input[type="email"],
+textarea,
+select {
   background-color: #e4e6e5;
   border: 1px solid #999;
   color: #111111;
@@ -187,9 +189,13 @@ input[type="email"] {
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
+textarea:focus,
+select:focus,
 input[type="text"]:hover,
 input[type="password"]:hover,
-input[type="email"]:hover {
+input[type="email"]:hover,
+textarea:hover,
+select:hover {
   color: #c87801;
   -webkit-transition: color 0.2s linear;
   -moz-transition: color 0.2s linear;
@@ -366,6 +372,13 @@ div#topbar {
 }
 div#topbar div.container {
   position: relative;
+}
+div#topbar div.container.announcement {
+  color: #fb9701;
+  text-align: center;
+  padding: 2px;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 div#topbar ul.menu,
 div#topbar ul.right-container {
