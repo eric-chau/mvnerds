@@ -19,8 +19,8 @@ class MVNerdsCommentableBehavior extends Behavior
 	
 	public function objectFilter(&$script)
 	{
-		$pattern = '/abstract class (\w+) extends (\w+)  implements (\w+)/i';
-		$replace = 'abstract class ${1} extends ${2}  implements ${3}, IComment';
+		$pattern = '/abstract class (\w+) extends (\w+) implements (\w+)/i';
+		$replace = 'abstract class ${1} extends ${2} implements ${3}, IComment';
 		$script = preg_replace($pattern, $replace, $script);
 	}
 	

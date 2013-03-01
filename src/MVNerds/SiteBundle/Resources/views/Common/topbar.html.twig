@@ -21,9 +21,9 @@
 						<div class="row-fluid menu-detail">
 							<div class="span4">
 								<ul>
-									<li class="header"><a href="#"><i class="icon-file"></i> Most Valuable News</a></li>
-									<li class="header"><a href="{{ path('champion_benchmark_index') }}"><i class="icon-random"></i> Champion Benchmark</a></li>
-									<li class="header"><a href="{{ path('pmri_list') }}"><i class="icon-wrench"></i> Pimp my recommended items</a></li>
+									<li class="header"><a href="#"><i class="icon-file"></i>Most Valuable News</a></li>
+									<li class="header"><a href="{{ path('champion_benchmark_index') }}"><i class="icon-random"></i>Champion Benchmark</a></li>
+									<li class="header"><a href="{{ path('pmri_list') }}"><i class="icon-wrench"></i>Pimp my recommended items</a></li>
 									<li><a href="{{ path('pmri_create') }}"><i class="icon-stop"></i> {{'Sidebar.pmri.create_list'|trans}}</a></li>
 									<li><a href="{{ path('pmri_list') }}"><i class="icon-stop"></i> {{ 'Sidebar.pmri.view_list'|trans }}</a></li>
 								</ul>
@@ -31,7 +31,7 @@
 								
 							<div class="span4">
 								<ul>
-									<li class="header"><a href="{{path('lol_video_index')}}"><i class="icon-facetime-video"></i> LoL Video Center</a></li>
+									<li class="header"><a href="{{path('lol_video_index')}}"><i class="icon-facetime-video"></i>LoL Video Center</a></li>
 									{#<li class="header"><a href="#"><i class="icon-shopping-cart"></i> Skin Trade Place</a></li>#}
 								</ul>
 							</div>
@@ -72,6 +72,6 @@
 		
 	</div>
 		
-	{% render 'MVNerdsSiteBundle:Front:RenderAnnouncement' %}
+	{{ render(controller('MVNerdsSiteBundle:Front:RenderAnnouncement')) }}
 		
 </div>

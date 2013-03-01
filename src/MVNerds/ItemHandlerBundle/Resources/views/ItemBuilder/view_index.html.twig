@@ -149,7 +149,7 @@
 			{{url('pmri_list_detail', {'slug':itemBuild.getSlug()})}}" data-lang="{{locale}}" data-url="{{url('pmri_list_detail', {'slug':itemBuild.getSlug()})}}"></a>
 		</div>
 		
-		{% render 'MVNerdsCommentBundle:Comment:renderLightComments' with {'object': itemBuild} %}
+		{{ render(controller('MVNerdsCommentBundle:Comment:renderLightComments', {'object': itemBuild})) }}
 	</div>
 	
 	{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}

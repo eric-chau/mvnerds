@@ -120,45 +120,40 @@ class Champion extends BaseChampion
 		$this->level = $level;
 	}
 	
-	public function removeChampionTag(ChampionTag $l)
+	public function removeChampionTag($championTag)
 	{
 		if ($this->collChampionTags === null) {
 			return $this;
 		}
-		if ($this->collChampionTags->contains($l)) {
-			$this->doRemoveChampionTag($l);
+		if ($this->collChampionTags->contains($championTag)) {
+			$this->doRemoveChampionTag($championTag);
 		}
 
 		return $this;
 	}
 	
-	public function removeSkill(Skill $l)
+	public function removeSkill($skill)
 	{
 		if ($this->collSkills === null) {
 			return $this;
 		}
-		if ($this->collSkills->contains($l)) {
-			$this->doRemoveSkill($l);
+		if ($this->collSkills->contains($skill)) {
+			$this->doRemoveSkill($skill);
 		}
 
 		return $this;
 	}
 	
-	public function removeSkin(Skin $l)
+	public function removeSkin($skin)
 	{
 		if ($this->collSkins === null) {
 			return $this;
 		}
-		if ($this->collSkins->contains($l)) {
-			$this->doRemoveSkin($l);
+		if ($this->collSkins->contains($skin)) {
+			$this->doRemoveSkin($skin);
 		}
 
 		return $this;
-	}
-	
-	public function removeChampionI18n(ChampionI18n $l)
-	{
-		die('ko');
 	}
 	
 	protected function doRemoveChampionTag($championTag)

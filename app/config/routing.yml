@@ -1,27 +1,10 @@
-mv_nerds_view:
-    resource: "@MVNerdsViewBundle/Controller/"
-    type:     annotation
-    prefix:   /
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
-mv_nerds_report:
-    resource: "@MVNerdsReportBundle/Controller/"
+mv_nerd_admin:
+    resource: "@MVNerdsAdminBundle/Controller/"
     type:     annotation
-    prefix:   /
-
-mv_nerds_video:
-    resource: "@MVNerdsVideoBundle/Controller/"
-    type:     annotation
-    prefix:   /{_locale}
-
-mv_nerds_site:
-    resource: "@MVNerdsSiteBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-mv_nerds_vote:
-    resource: "@MVNerdsVoteBundle/Controller/"
-    type:		annotation
-    prefix:   /{_locale}
+    prefix:   /{_locale}/administration
 
 mv_nerds_comment:
     resource: "@MVNerdsCommentBundle/Controller/"
@@ -33,50 +16,57 @@ mv_nerds_profile:
     type:     annotation
     prefix:   /
 
+mv_nerd_main:
+    resource: "@MVNerdsMainBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mv_nerds_site:
+    resource: "@MVNerdsSiteBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mv_nerds_view:
+    resource: "@MVNerdsViewBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mv_nerds_report:
+    resource: "@MVNerdsReportBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+mv_nerds_vote:
+    resource: "@MVNerdsVoteBundle/Controller/"
+    type:		annotation
+    prefix:   /{_locale}
+
+mv_nerds_video:
+    resource: "@MVNerdsVideoBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}
+
 mv_nerds_news:
     resource: "@MVNerdsNewsBundle/Controller/"
     type:     annotation
     prefix:   /{_locale}
 
-MVNerdsItemHandler:
+mv_nerd_item_handler:
     resource: "@MVNerdsItemHandlerBundle/Controller/"
     type:     annotation
     prefix:   /{_locale}
-
-MVNerdsMainBundle_main:
-    resource: "@MVNerdsMainBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-fos_js_routing:
-    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
-
-MVNerdsLaunchSite_homepage:
-    resource: "@MVNerdsLaunchSiteBundle/Controller/"
-    type:     annotation
-    prefix:   /
 
 mv_nerds_champion_handler:
     resource: "@MVNerdsChampionHandlerBundle/Controller/"
     type:     annotation
     prefix:   /{_locale}
 
-#mv_nerds_did_you_know:
-#    resource: "@MVNerdsDidYouKnowBundle/Controller/"
+#MVNerdsLaunchSite_homepage:
+#    resource: "@MVNerdsLaunchSiteBundle/Controller/"
 #    type:     annotation
 #    prefix:   /
-
-MVNerdsAdminBundle_homepage:
-    resource: "@MVNerdsAdminBundle/Controller/"
-    type:     annotation
-    prefix:   /{_locale}/administration
-
-mv_nerds_core:
-    resource: "@MVNerdsCoreBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-# Internal routing configuration to handle ESI
-#_internal:
-#    resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
-#    prefix:   /_internal
+#
+#mv_nerds_core:
+#    resource: "@MVNerdsCoreBundle/Controller/"
+#    type:     annotation
+#    prefix:   /

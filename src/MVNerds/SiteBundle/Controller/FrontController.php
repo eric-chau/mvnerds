@@ -9,33 +9,17 @@ use Symfony\Component\HttpFoundation\Response;
 use MVNerds\AdminBundle\Controller\AnnouncementController;
 
 class FrontController extends Controller
-{
-
-	/**
-	 * @Route("/configure-profile-slug")
-	 */
-	public function configureProfileSlugAction()
-	{
-		$profiles = \MVNerds\CoreBundle\Model\ProfileQuery::create()->find();
-		foreach ($profiles as $profile)
-		{
-			$profile->setSlug('profile-' . $profile->getId());
-			$profile->save();
-		}
-
-		return new \Symfony\Component\HttpFoundation\Response('OK !');
-	}
-
-	/**
-	 * @Route("/{_locale}", name="site_homepage", defaults={"_locale" = "fr"})
-	 */
-	public function indexAction()
-	{
-		return $this->render('MVNerdsSiteBundle:Front:index.html.twig', array(
-					'lastest_items_builds' => $this->get('mvnerds.item_build_manager')->findLatestBuilds(),
-					'popular_items_builds' => $this->get('mvnerds.item_build_manager')->findMostDownloadedBuilds()
-				));
-	}
+{	
+    /**
+     * @Route("/{_locale}", name="site_homepage", defaults={"_locale" = "fr"})
+     */
+    public function indexAction()
+    {
+        return $this->render('MVNerdsSiteBundle:Front:index.html.twig', array(
+			'lastest_items_builds' => $this->get('mvnerds.item_build_manager')->findLatestBuilds(),
+			'popular_items_builds' => $this->get('mvnerds.item_build_manager')->findMostDownloadedBuilds()
+		));
+    }
 
 	/**
 	 * Renvoi la liste des champions formater pour l'affichage dans le footer du site

@@ -5,11 +5,14 @@ namespace MVNerds\CoreBundle\Profile;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Criteria;
 
-use MVNerds\CoreBundle\Model\User;
+use MVNerds\CoreBundle\Model\AvatarQuery;
+use MVNerds\CoreBundle\Model\AvatarPeer;
+use MVNerds\CoreBundle\Model\GameAccountQuery;
+use MVNerds\CoreBundle\Model\GameAccountPeer;
+use MVNerds\CoreBundle\Model\Profile;
 use MVNerds\CoreBundle\Model\UserQuery;
 use MVNerds\CoreBundle\Model\UserPeer;
-use MVNerds\CoreBundle\Model\AvatarPeer;
-use MVNerds\CoreBundle\Model\AvatarQuery;
+use MVNerds\CoreBundle\Model\User;
 
 class ProfileManager
 {
@@ -84,5 +87,34 @@ class ProfileManager
 		->findOne();
 		
 		return $user->getProfile()->getGameAccount();
+	}
+	
+	public function removeGameAccountFromProfile(Profile $profile)
+	{
+		$gameAccount = $profile->getGameAccount();
+		if (null != $gameAccount) {
+			$gameAccount->delete();
+		}
+		
+		$profile->setGameAccount(null);
+		$profile->save();
+	}
+	
+	public function isSummonerNameAlreadyLinked($summonerName)
+	{
+		$gameAccount = GameAccountQuery::create()
+			->add(GameAccountPeer::SUMMONER_NAME, $summonerName)
+			->add(GameAccountPeer::IS_ACTIVE, true)
+		->findOne();
+		
+		return ($gameAccount != null);
+	}
+	
+	public function removeInactiveGameAccountBySummonerName($summonerName)
+	{
+		GameAccountQuery::create()
+			->add(GameAccountPeer::SUMMONER_NAME, $summonerName)
+			->add(GameAccountPeer::IS_ACTIVE, false)
+		->delete();
 	}
 }

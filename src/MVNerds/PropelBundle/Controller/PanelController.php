@@ -55,7 +55,7 @@ class PanelController extends BasePanelController
 		//var_dump($queries[$query]); die;
 		
         return $this->container->get('templating')->renderResponse(
-            'BNSAppPropelBundle:Panel:explain.html.twig',
+            'MVNerdsPropelBundle:Panel:explain.html.twig',
             array(
                 'data'			=> $results,
                 'query'			=> $query,

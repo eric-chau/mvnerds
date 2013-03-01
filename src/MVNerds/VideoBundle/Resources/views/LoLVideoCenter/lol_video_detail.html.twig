@@ -68,7 +68,7 @@
 				
 				{#{% include 'MVNerdsReportBundle:Report:detailed_report_block.html.twig' with {'object_type': 'video', 'can_report': can_report_video, 'object': video, 'report_motives': report_motives} %}#}
 				
-				{% render 'MVNerdsReportBundle:Report:renderReportBlock' with {'object': video, 'objectType': 'video', 'isDetailed': true} %}
+				{{ render(controller('MVNerdsReportBundle:Report:renderReportBlock', {'object': video, 'objectType': 'video', 'isDetailed': true})) }}
 				
 				{# PUBLICITÉ #}
 				<div class="ad-container">
@@ -104,7 +104,7 @@
 					</p>
 				</div>
 				
-				{% render 'MVNerdsCommentBundle:Comment:renderComments' with {'object': video, 'objectType': 'video'} %}
+				{{ render(controller('MVNerdsCommentBundle:Comment:renderComments', {'object': video, 'objectType': 'video'})) }}
 			</div>
 			
 			<div class="span4 right-content">
@@ -124,7 +124,7 @@
 					<div class="body">
 						<div class="block-media">
 							<img src="{{ asset('medias/images/avatar/' ~ video.getUser().getUserAvatarName()~ '.jpg') }}" />
-							{% render 'MVNerdsVoteBundle:Vote:renderVoteBlock' with {'object': video, 'objectType': 'video'} %}
+							{{ render(controller('MVNerdsVoteBundle:Vote:renderVoteBlock', {'object': video, 'objectType': 'video'})) }}
 						</div>
 						<div class="clearfix"></div>
 						

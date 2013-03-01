@@ -43,6 +43,7 @@
   background-color: #147fb1;
   color: #ffffff !important;
   padding: 7px 10px;
+  vertical-align: middle;
 }
 .btn.small {
   font-size: 12px;
@@ -448,8 +449,13 @@ div#topbar ul.menu li.dropdown ul.dropdown-menu li div.menu-detail ul li.header 
   color: #db4a38;
   text-decoration: underline;
 }
+div#topbar ul.menu li.dropdown ul.dropdown-menu li div.menu-detail ul li.header a:hover i {
+  text-decoration: none;
+}
 div#topbar ul.menu li.dropdown ul.dropdown-menu li div.menu-detail ul li.header a i {
+  display: inline-block;
   font-size: 14px;
+  margin: 0 3px 0 0;
   top: 0;
 }
 div#topbar ul.menu li.dropdown ul.dropdown-menu li div.menu-detail ul li a {

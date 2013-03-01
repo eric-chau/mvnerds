@@ -85,7 +85,7 @@
 			<div class="content">
 				<div id="champion-comparison">
 					{% if page == 'champions'%}
-						{% render 'MVNerdsChampionHandlerBundle:Front:championComparison' %}
+						{{ render(controller('MVNerdsChampionHandlerBundle:Front:championComparison')) }}
 					{% elseif page == 'compare' %}
 						{% include 'MVNerdsChampionHandlerBundle:ChampionBenchmark:compare_index.html.twig' %}
 					{% endif %}

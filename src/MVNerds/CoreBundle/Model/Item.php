@@ -45,13 +45,13 @@ class Item extends BaseItem {
 		return $gameModes;
 	}	
 	
-	public function removeItemGameMode(ItemGameMode $l)
+	public function removeItemGameMode($itemGameMode)
 	{
 		if ($this->collItemGameModes === null) {
 			return $this;
 		}
-		if ($this->collItemGameModes->contains($l)) {
-			$this->doRemoveItemGameMode($l);
+		if ($this->collItemGameModes->contains($itemGameMode)) {
+			$this->doRemoveItemGameMode($itemGameMode);
 		}
 
 		return $this;
@@ -69,13 +69,13 @@ class Item extends BaseItem {
 		return $this;
 	}
 	
-	public function removeItemPrimaryEffect(ItemPrimaryEffect $l)
+	public function removeItemPrimaryEffect($itemPrimaryEffect)
 	{
 		if ($this->collItemPrimaryEffects === null) {
 			return $this;
 		}
-		if ($this->collItemPrimaryEffects->contains($l)) {
-			$this->doRemoveItemPrimaryEffects($l);
+		if ($this->collItemPrimaryEffects->contains($itemPrimaryEffect)) {
+			$this->doRemoveItemPrimaryEffects($itemPrimaryEffect);
 		}
 
 		return $this;
@@ -93,13 +93,13 @@ class Item extends BaseItem {
 		return $this;
 	}
 	
-	public function removeItemSecondaryEffect(ItemSecondaryEffect $l)
+	public function removeItemSecondaryEffect($itemSecondaryEffect)
 	{
 		if ($this->collItemSecondaryEffects === null) {
 			return $this;
 		}
-		if ($this->collItemSecondaryEffects->contains($l)) {
-			$this->doRemoveItemSecondaryEffects($l);
+		if ($this->collItemSecondaryEffects->contains($itemSecondaryEffect)) {
+			$this->doRemoveItemSecondaryEffects($itemSecondaryEffect);
 		}
 
 		return $this;
@@ -117,13 +117,13 @@ class Item extends BaseItem {
 		return $this;
 	}
 	
-	public function removeItemTag(ItemTag $l)
+	public function removeItemTag($itemTag)
 	{
 		if ($this->collItemTags === null) {
 			return $this;
 		}
-		if ($this->collItemTags->contains($l)) {
-			$this->doRemoveItemTag($l);
+		if ($this->collItemTags->contains($itemTag)) {
+			$this->doRemoveItemTag($itemTag);
 		}
 
 		return $this;
@@ -142,13 +142,13 @@ class Item extends BaseItem {
 		return $this;
 	}
 	
-	public function removeItemI18n(ItemI18n $l)
+	public function removeItemI18n($itemI18n)
 	{
 		if ($this->collItemI18ns === null) {
 			return $this;
 		}
-		if (!$this->collItemI18ns->contains($l)) { // only add it if the **same** object is not already associated
-			$this->doRemoveItemI18n($l);
+		if (!$this->collItemI18ns->contains($itemI18n)) { // only add it if the **same** object is not already associated
+			$this->doRemoveItemI18n($itemI18n);
 		}
 
 		return $this;

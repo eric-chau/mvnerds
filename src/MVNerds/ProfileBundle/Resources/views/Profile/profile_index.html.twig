@@ -104,7 +104,7 @@
 					</div>
 					<div class="user-stat">
 						<i class="icon-eye-open"></i>
-						<strong>{% render 'MVNerdsViewBundle:View:renderSimpleViewCount' with {'object': user} %}</strong>
+						<strong>{{ render(controller('MVNerdsViewBundle:View:renderSimpleViewCount', {'object': user})) }}</strong>
 						<span>Consultations</span>
 					</div>
 				</div>
@@ -163,13 +163,13 @@
 				{% endif %}
 				#}
 					
-				{% render 'MVNerdsCommentBundle:Comment:renderComments' with {'object': user, 'objectType': 'user'} %}
+				{{ render(controller('MVNerdsCommentBundle:Comment:renderComments', {'object': user, 'objectType': 'user'})) }}
 				
 				{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}
 			</div>
 			
 			<div class="span4 right-content">
-				{% render 'MVNerdsProfileBundle:Profile:renderLastestCommentsBlock' with {'user': user} %}
+				{{ render(controller('MVNerdsProfileBundle:Profile:renderLastestCommentsBlock', {'user': user})) }}
 					
 				{# PUBLICITÉ #}
 				<div class="sidebar-ad-container">

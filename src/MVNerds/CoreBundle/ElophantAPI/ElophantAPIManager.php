@@ -41,6 +41,7 @@ class ElophantAPIManager
 			throw new ElophantAFKException();
 		}
 		
+		$this->updateRequestSendCount();
 		$contentObject = json_decode($response->getContent());
 		if (!$contentObject->success) {
 			throw new InvalidSummonerNameException();
@@ -67,9 +68,10 @@ class ElophantAPIManager
 			throw new ElophantAFKException();
 		}
 		
+		$this->updateRequestSendCount();
 		$contentObject = json_decode($response->getContent());
 		if (!$contentObject->success) {
-			throw new InvalidSummonerNameException();
+			throw new ElophantAFKException();
 		}
 		
 		$contentObject = $contentObject->data;
@@ -84,22 +86,6 @@ class ElophantAPIManager
 		}
 		
 		return $success;
-	}
-	
-	
-	public function getSummonerAccoundId($summonerName, $region)
-	{
-		// Récupération l'ID du compte
-		$url = $this->apiBaseUrl . $region . '/summoner/' . rawurlencode($summonerName) . '?key=' . $this->developerAPIKey;
-		
-		$response = $this->buzz->get($url);
-		$responseArray = json_decode($response->getContent());
-		$summonerAccountID = $responseArray->data->summonerId;
-		var_dump($this->getSummonerLeagues($summonerAccountID));
-		die;
-				
-		//$this->getSummonerLastTenGames($summonerAccountID, $region);
-		die;
 	}
 	
 	public function getSummonerLastTenGames($summonerAccountID, $region)
@@ -190,5 +176,36 @@ class ElophantAPIManager
 	public function setBuzz(Browser $buzz) 
 	{
 		$this->buzz = $buzz;
+	}
+	
+	private function updateRequestSendCount($value = 1)
+	{
+		$requestSendInfos = apc_fetch('elophant_request_count_per_fifteen_minutes');
+		if (false == $requestSendInfos) {
+			$requestSendInfos = array(
+				'request_count' => $value,
+				'since_time'	=> time()
+			);
+		}
+		else {
+			if (($requestSendInfos['since_time'] + 15 * 60) > time()) {
+				$requestSendInfos['request_count'] += $value;
+			}
+			else {
+				$requestCountHistory = apc_fetch('elophant_request_count_history');
+				if (false == $requestCountHistory) {
+					$requestCountHistory = array();
+				}
+				
+				$requestCountHistory[] = $requestSendInfos;
+				apc_store('elophant_request_count_history', $requestCountHistory);
+				$requestSendInfos = array(
+					'request_count' => $value,
+					'since_time'	=> time()
+				);
+			}
+		}
+				
+		apc_store('elophant_request_count_per_fifteen_minutes', $requestSendInfos);
 	}
 }

@@ -45,8 +45,8 @@ class MVNerdsVotableBehavior extends Behavior
 	
 	public function objectFilter(&$script)
 	{
-		$pattern = '/abstract class (\w+) extends (\w+)  implements (\w+)/i';
-		$replace = 'abstract class ${1} extends ${2}  implements ${3}, IVote';
+		$pattern = '/abstract class (\w+) extends (\w+) implements (\w+)/i';
+		$replace = 'abstract class ${1} extends ${2} implements ${3}, IVote';
 		$script = preg_replace($pattern, $replace, $script);
 	}
 	

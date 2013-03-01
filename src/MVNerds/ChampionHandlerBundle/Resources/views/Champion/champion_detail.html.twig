@@ -96,7 +96,7 @@
 
 				{% include 'MVNerdsChampionHandlerBundle:Champion:champion_skin_list.html.twig' with {'champion': champion} %}
 				
-				{% render 'MVNerdsCommentBundle:Comment:renderComments' with {'object': champion, 'objectType': 'champion'} %}
+				{{ render(controller('MVNerdsCommentBundle:Comment:renderComments', {'object': champion, 'objectType': 'champion'})) }}
 			</div>
 			
 			<div class="span4 right-content">
