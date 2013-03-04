@@ -9,7 +9,7 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use MVNerds\CoreBundle\Model\Video;
-use MVNerds\CoreBundle\Model\UserReport;
+
 /**
  * @Route("/lol-video-center")
  */
@@ -25,7 +25,6 @@ class LoLVideoController extends Controller
 		$videoManager->findAllActiveAjax();
 		return $this->render('MVNerdsVideoBundle:LoLVideoCenter:lol_video_index.html.twig', array(
 			'video_categories'	=> $videoManager->findAllVideoCatgories(),
-			'videos'		=> $videoManager->findAllActive(),
 			'video'			=> new Video()
 		));
 	}
@@ -104,8 +103,7 @@ class LoLVideoController extends Controller
 	public function listAjaxAction()
 	{
 		$request = $this->getRequest();
-		if (!$request->isXmlHttpRequest())
-		{
+		if (!$request->isXmlHttpRequest()) {
 			throw new HttpException(500, 'Request must be AJAX');
 		}
 		
@@ -113,32 +111,28 @@ class LoLVideoController extends Controller
 			'',
 			'',
 			'',
-			'user.USERNAME',
-			'Create_Time',
-			'Update_Time',
-			'Title',
-			'View',
-			'video_category.UNIQUE_NAME',
-			'Comment_Count',
-			'LIKE_COUNT / (LIKE_COUNT + DISLIKE_COUNT) * 100'
+			'user.username',
+			'create_time',
+			'update_time',
+			'title',
+			'video.view',
+			'video_category.unique_name',
+			'video.comment_count',
+			'like_count / (like_count + dislike_count) * 100'
 		);
 		
 		$limitStart = 0;
 		$limitLength = -1;
 		//Pagination
-		if ( isset( $_GET['iDisplayStart'] ) && $_GET['iDisplayLength'] != '-1' )
-		{
+		if ( isset( $_GET['iDisplayStart'] ) && $_GET['iDisplayLength'] != '-1' ) {
 			$limitStart = $_GET['iDisplayStart'];
 			$limitLength = $_GET['iDisplayLength'];
 		}
 		//Tri
 		$orderArr = array();
-		if ( isset( $_GET['iSortCol_0'] ) )
-		{
-			for ( $i=0 ; $i<intval( $_GET['iSortingCols'] ) ; $i++ )
-			{
-				if ( $_GET[ 'bSortable_'.intval($_GET['iSortCol_'.$i]) ] == "true" )
-				{
+		if ( isset( $_GET['iSortCol_0'] ) ) {
+			for ( $i=0 ; $i<intval( $_GET['iSortingCols'] ) ; $i++ ) {
+				if ( $_GET[ 'bSortable_'.intval($_GET['iSortCol_'.$i]) ] == "true" ) {
 					$orderArr[$aColumns[intval($_GET['iSortCol_'.$i])]] = ($_GET['sSortDir_'.$i]);
 				}
 			}
@@ -148,12 +142,9 @@ class LoLVideoController extends Controller
 		}
 		//Recherche par colonne
 		$whereArr = array();
-		for ( $i=0 ; $i<count($aColumns) ; $i++ )
-		{
-			if ( isset($_GET['bSearchable_'.$i]) && $_GET['bSearchable_'.$i] == "true" && $_GET['sSearch_'.$i] != '' )
-			{
-				if ($aColumns[$i] == 'user.USERNAME' || $aColumns[$i] == 'Title' || $aColumns[$i] == 'video_category.UNIQUE_NAME')
-				{
+		for ( $i=0 ; $i<count($aColumns) ; $i++ ) {
+			if ( isset($_GET['bSearchable_'.$i]) && $_GET['bSearchable_'.$i] == "true" && $_GET['sSearch_'.$i] != '' ) {
+				if ($aColumns[$i] == 'user.username' || $aColumns[$i] == 'title' || $aColumns[$i] == 'video_category.unique_name') {
 					$whereArr[$aColumns[$i]] = ($_GET['sSearch_'.$i]);
 				}
 			}
@@ -172,8 +163,7 @@ class LoLVideoController extends Controller
 			'aaData' => array()
 		);
 		
-		foreach($videos as $video)
-		{	
+		foreach($videos as $video) {	
 			$voteCount = $video->getLikeCount() + $video->getDislikeCount();
 			$rating = $voteCount > 0 ? $video->getLikeCount() / ($voteCount) * 100 : 0;
 			
@@ -201,9 +191,6 @@ class LoLVideoController extends Controller
 	{
 		/* @var $videoManager \MVNerds\CoreBundle\Video\VideoManager */
 		$videoManager = $this->get('mvnerds.video_manager');
-		
-		/* @var $reportManager \MVNerds\CoreBundle\Report\ReportManager */
-		$reportManager = $this->get('mvnerds.report_manager');
 		
 		try {
 			/* @var $video \MVNerds\CoreBundle\Model\Video */

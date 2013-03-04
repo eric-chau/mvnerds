@@ -93,12 +93,12 @@ class ItemBuilderController extends Controller
 			'Champions',
 			'Download',
 			'Update_Time',
-			'user.USERNAME',
+			'user.username',
 			'Create_Time',
-			'Comment_Count',
+			'item_build.comment_count',
 			'Name',
-			'View',
-			'LIKE_COUNT / (LIKE_COUNT + DISLIKE_COUNT) * 100'			
+			'item_build.view',
+			'like_count / (like_count + dislike_count) * 100'
 		);
 		
 		$limitStart = 0;
@@ -131,7 +131,7 @@ class ItemBuilderController extends Controller
 		{
 			if ( isset($_GET['bSearchable_'.$i]) && $_GET['bSearchable_'.$i] == "true" && $_GET['sSearch_'.$i] != '' )
 			{
-				if ($aColumns[$i] == 'user.USERNAME' || $aColumns[$i] == 'Name')
+				if ($aColumns[$i] == 'user.username' || $aColumns[$i] == 'Name')
 				{
 					$whereArr[$aColumns[$i]] = ($_GET['sSearch_'.$i]);
 				} 

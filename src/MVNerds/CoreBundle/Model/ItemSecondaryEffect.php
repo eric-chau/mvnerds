@@ -18,29 +18,29 @@ use MVNerds\CoreBundle\Model\om\BaseItemSecondaryEffect;
  */
 class ItemSecondaryEffect extends BaseItemSecondaryEffect {
 
-	public function removeItemSecondaryEffectI18n(ItemSecondaryEffectI18n $l)
-	{
-		if ($this->collItemSecondaryEffectI18ns === null) {
-			return $this;
-		}
-		
-		if (!$this->collItemSecondaryEffectI18ns->contains($l)) {
-			$this->doRemoveItemSecondaryEffectI18n($l);
-		}
-
-		return $this;
-	}
-	
-	public function doRemoveItemSecondaryEffectI18n(ItemSecondaryEffectI18n $itemSecondaryEffectI18n)
-	{
-		
-		foreach ($this->collItemSecondaryEffectI18ns as $key => $o) {
-			if ($o == $itemSecondaryEffectI18n) {
-				unset($this->collItemSecondaryEffectI18ns[$key]);
-				break;
-			}
-		}
-		$this->save();
-		$itemSecondaryEffectI18n->delete();
-	}
+//	public function removeItemSecondaryEffectI18n(ItemSecondaryEffectI18n $l)
+//	{
+//		if ($this->collItemSecondaryEffectI18ns === null) {
+//			return $this;
+//		}
+//		
+//		if (!$this->collItemSecondaryEffectI18ns->contains($l)) {
+//			$this->doRemoveItemSecondaryEffectI18n($l);
+//		}
+//
+//		return $this;
+//	}
+//	
+//	public function doRemoveItemSecondaryEffectI18n(ItemSecondaryEffectI18n $itemSecondaryEffectI18n)
+//	{
+//		
+//		foreach ($this->collItemSecondaryEffectI18ns as $key => $o) {
+//			if ($o == $itemSecondaryEffectI18n) {
+//				unset($this->collItemSecondaryEffectI18ns[$key]);
+//				break;
+//			}
+//		}
+//		$this->save();
+//		$itemSecondaryEffectI18n->delete();
+//	}
 } // ItemSecondaryEffect

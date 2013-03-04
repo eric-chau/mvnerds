@@ -52,7 +52,7 @@ class ChampionManager
 	{
 		return ChampionQuery::create()
 			->joinI18n($this->userLocale, 'i18n')
-			->withColumn('i18n.name', 'name')
+			->withColumn('name', 'name')
 			->select(array('name'))
 			->OrderBy('name')
 		->find();

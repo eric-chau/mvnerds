@@ -331,4 +331,60 @@ class UserManager
 		$locale = $session->get('locale', null);
 		$this->userLocale = null === $locale? 'fr' : $locale;
 	}
+	
+	public function findAllActiveAjax($limitStart = 0, $limitLength = 2, $orderArr = array('created_at' => 'desc'), $whereArr = array())
+	{
+		$userQuery = UserQuery::create()
+			->offset($limitStart)
+			->limit($limitLength)
+			->add(UserPeer::IS_ACTIVE, true)
+			->joinWith('Profile')
+			->joinWith('Profile.Avatar');
+		
+		foreach($orderArr as $orderCol => $orderDir) {
+			switch ($orderDir) {
+				case 'asc':
+					$userQuery->addAscendingOrderByColumn($orderCol);
+					break;
+				case 'desc':
+					$userQuery->addDescendingOrderByColumn($orderCol);
+					break;
+				default:
+					throw new PropelException('ModelCriteria::orderBy() only accepts Criteria::ASC or Criteria::DESC as argument');
+			}
+		}
+		
+		foreach($whereArr as $whereCol => $whereVal) {
+			$userQuery->add($whereCol, '%' . $whereVal . '%', \Criteria::LIKE);
+		}
+		
+		$users = $userQuery->find();
+		
+		if (null === $users) {
+			throw new InvalidArgumentException('No video found !');
+		}
+		
+		return $users;
+	}
+	
+	public function countAllActive()
+	{
+		$usersCount = UserQuery::create()
+			->add(UserPeer::IS_ACTIVE, true)
+		->count();
+		
+		return $usersCount;
+	}
+	
+	public function countAllActiveAjax($whereArr = array())
+	{
+		$userQuery = UserQuery::create()
+			->add(UserPeer::IS_ACTIVE, true);
+	
+		foreach($whereArr as $whereCol => $whereVal) {
+			$userQuery->add($whereCol, '%' . $whereVal . '%', \Criteria::LIKE);
+		}
+		
+		return $userQuery->count();
+	}
 }

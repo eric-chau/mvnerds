@@ -18,7 +18,7 @@ use MVNerds\CoreBundle\Model\om\BaseVideo;
  */
 class Video extends BaseVideo {
 
-	public $videoType = null;
+	protected $videoType = null;
 	
 	//Permet de récupérer l'image d'aperçu de la vidéo à partir du lien de celle-ci
 	public function getThumbnailUrl()
