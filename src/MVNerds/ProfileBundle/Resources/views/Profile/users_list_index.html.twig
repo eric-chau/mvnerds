@@ -58,12 +58,12 @@
 			<div class="span8 left-content">
 				<h1>Les membres de la communauté</h1>
 				
-				<table id="videos-table" class="table data-table">
+				<table id="users-table" class="table data-table">
 					<thead>
 						<tr>
-							<th class="preview">Avatar</th>
-							<th class="title">Pseudo</th>
-							<th class="category"></th>
+							<th>Avatar</th>
+							<th>Pseudo</th>
+							<th>Date d'inscription</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -82,25 +82,15 @@
 						<ul id="sort-list">
 							<li><a href="#" class="sort-link" data-option-value="0"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.oldest'|trans}}</a></li>
 							<li><a href="#" class="sort-link selected" data-option-value="1"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.newest'|trans}}</a></li>
-							<li><a href="#" class="sort-link" data-option-value="2"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.updated'|trans}}</a></li>
-							<li><a href="#" class="sort-link" data-option-value="3"><i class=" icon-ok-sign"></i>{{'video_list_index.sort.title-asc'|trans}}</a></li>
-							<li><a href="#" class="sort-link" data-option-value="4"><i class=" icon-ok-sign"></i>{{'video_list_index.sort.title-desc'|trans}}</a></li>
-							<li><a href="#" class="sort-link" data-option-value="5"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.views'|trans}}</a></li>
-							<li><a href="#" class="sort-link" data-option-value="6"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.most-commented'|trans}}</a></li>
-							<li><a href="#" class="sort-link" data-option-value="7"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.most-voted'|trans}}</a></li>
-							<li><a href="#" class="sort-link" data-option-value="8"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.less-voted'|trans}}</a></li>
+							<li><a href="#" class="sort-link" data-option-value="2"><i class=" icon-ok-sign"></i>{{'video_list_index.sort.title-asc'|trans}}</a></li>
+							<li><a href="#" class="sort-link" data-option-value="3"><i class=" icon-ok-sign"></i>{{'video_list_index.sort.title-desc'|trans}}</a></li>
 						</ul>
 						
 						<p>Rechercher par :</p>
 						<ul class="filters-list more-filter">
 							<li id="filter-title">
-								<label for="title-filter-input">{{'item_build_list_index.sort.filter-by-title'|trans}}</label>
-								<input type="text" id="title-filter-input" class="input-mini"/>
-							</li>
-							
-							<li id="filter-author">
-								<label for="author-filter-input">{{'item_build_list_index.sort.filter-by-author'|trans}}</label>
-								<input type="text" id="author-filter-input" class="input-mini"/>
+								<label for="username-filter-input">{{'item_build_list_index.sort.filter-by-pseudo'|trans}}</label>
+								<input type="text" id="username-filter-input" class="input-mini"/>
 							</li>
 							
 							<li id="filter-search">

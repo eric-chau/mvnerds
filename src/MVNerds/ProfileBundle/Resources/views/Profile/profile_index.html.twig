@@ -90,7 +90,7 @@
 				
 				{# PROFILE HEADER #}
 				<div class="profile-header">
-					<img src="{{ asset('medias/images/avatar/'~ current_avatar_name ~'.jpg') }}" />
+					{% include 'MVNerdsProfileBundle:Profile:user_avatar.html.twig' with {'name': current_avatar_name} %}
 					<h1>{{ user.getUsername() }}</h1>
 					<div class="user-stat">
 						<i class="icon-pencil"></i>

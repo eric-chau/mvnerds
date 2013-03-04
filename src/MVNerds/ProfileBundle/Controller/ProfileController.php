@@ -34,7 +34,69 @@ class ProfileController extends Controller
 	 */
 	public function listAjaxAction() 
 	{
+		$request = $this->getRequest();
+		if (!$request->isXmlHttpRequest()) {
+			throw new HttpException(500, 'Request must be AJAX');
+		}
 		
+		$aColumns = array(
+			'',
+			'username',
+			'',
+			'created_at'
+		);
+		
+		$limitStart = 0;
+		$limitLength = -1;
+		//Pagination
+		if ( isset( $_GET['iDisplayStart'] ) && $_GET['iDisplayLength'] != '-1' ) {
+			$limitStart = $_GET['iDisplayStart'];
+			$limitLength = $_GET['iDisplayLength'];
+		}
+		//Tri
+		$orderArr = array();
+		if ( isset( $_GET['iSortCol_0'] ) ) {
+			for ( $i=0 ; $i<intval( $_GET['iSortingCols'] ) ; $i++ ) {
+				if ( $_GET[ 'bSortable_'.intval($_GET['iSortCol_'.$i]) ] == "true" ) {
+					$orderArr[$aColumns[intval($_GET['iSortCol_'.$i])]] = ($_GET['sSortDir_'.$i]);
+				}
+			}
+		}
+		if (count($orderArr) <= 0) {
+			$orderArr = array('created_at' => 'desc');
+		}
+		//Recherche par colonne
+		$whereArr = array();
+		for ( $i=0 ; $i<count($aColumns) ; $i++ ) {
+			if ( isset($_GET['bSearchable_'.$i]) && $_GET['bSearchable_'.$i] == "true" && $_GET['sSearch_'.$i] != '' ) {
+				if ($aColumns[$i] == 'username') {
+					$whereArr[$aColumns[$i]] = ($_GET['sSearch_'.$i]);
+				}
+			}
+		}
+		
+		$userManager = $this->get('mvnerds.user_manager');
+		
+		$users = $userManager->findAllActiveAjax($limitStart, $limitLength, $orderArr, $whereArr);
+		
+		$jsonUsers = array(
+			"tab" => $users->count(),
+			"sEcho" => intval($_GET['sEcho']),
+			"iTotalRecords" => $userManager->countAllActive(),
+			"iTotalDisplayRecords" => $userManager->countAllActiveAjax($whereArr),
+			'aaData' => array()
+		);
+		
+		foreach($users as $user) {
+			
+			$jsonUsers['aaData'][] = array(
+				$this->renderView('MVNerdsProfileBundle:Profile:user_avatar.html.twig', array('name' => $user->getProfile()->getAvatar()->getName())),
+				$user->getUsername(),
+				$user->getCreatedAt('d/m/Y'),
+				$user->getCreatedAt('YmdHims')
+			);
+		}
+		return new Response(json_encode($jsonUsers));
 	}
 	
     /**
