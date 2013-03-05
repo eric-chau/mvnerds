@@ -53,8 +53,9 @@ $(document).ready(function() {
 		"sDom": "lrtip",
 		"aoColumns": [
                       {"bSearchable": false, "bSortable":false},//Avatar
-                      {"bSearchable": true, "bSortable":true},//Pseudo
+                      {"bSearchable": false, "bSortable":false},//Pseudo
                       {"bSearchable": false, "bSortable":false},//Date inscription
+		    {"bVisible": false, "bSearchable": true, "bSortable":true},//Pseudo
                       {"bVisible": false, "bSearchable": false, "bSortable":true},//create_time
 		],
 		"sPaginationType": 'full_numbers',

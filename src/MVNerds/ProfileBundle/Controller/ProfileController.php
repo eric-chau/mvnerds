@@ -91,8 +91,9 @@ class ProfileController extends Controller
 			
 			$jsonUsers['aaData'][] = array(
 				$this->renderView('MVNerdsProfileBundle:Profile:user_avatar.html.twig', array('name' => $user->getProfile()->getAvatar()->getName())),
-				$user->getUsername(),
+				$this->renderView('MVNerdsProfileBundle:Profile:user_username.html.twig', array('user' => $user)),
 				$user->getCreatedAt('d/m/Y'),
+				$user->getUsername(),
 				$user->getCreatedAt('YmdHims')
 			);
 		}

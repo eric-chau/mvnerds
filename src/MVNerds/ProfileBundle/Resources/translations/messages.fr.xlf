@@ -71,6 +71,27 @@
 				<source>ROLE_COMMUNITY_MANAGER</source>
 				<target>Community Manager</target>
 			</trans-unit>
+			
+			<trans-unit id="200">
+				<source>user.sort.last_registered</source>
+				<target>Derniers inscrits</target>
+			</trans-unit>
+			<trans-unit id="201">
+				<source>user.sort.first_registered</source>
+				<target>Premiers inscrits</target>
+			</trans-unit>
+			<trans-unit id="202">
+				<source>user.sort.username_asc</source>
+				<target>Pseudo croissant</target>
+			</trans-unit>
+			<trans-unit id="203">
+				<source>user.sort.username_desc</source>
+				<target>Pseudo décroissant</target>
+			</trans-unit>
+			<trans-unit id="204">
+				<source>user.filter.username</source>
+				<target>Pseudo</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

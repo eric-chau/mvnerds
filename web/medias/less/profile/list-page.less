@@ -71,10 +71,8 @@ div.span8.left-content {
 	table#users-table {
 		border-spacing: 0 3px;
 		width: 638px !important;
-
-		th {
-			text-align: left;
-
+		
+		thead {
 			&:first-child {
 				width: 100px !important;
 			}
@@ -86,8 +84,11 @@ div.span8.left-content {
 			&:first-child+tr+tr {
 				width: 108px !important;
 			}
-		}
 
+			th {
+				text-align: left;			
+			}
+		}
 		tbody {
 			tr {
 				background-color: #ddd;
@@ -108,7 +109,7 @@ div.span8.left-content {
 						}
 					}
 
-					&.first-child+td {
+					&:first-child+td {
 						a {
 							font-weight: bold;
 
