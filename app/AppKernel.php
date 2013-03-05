@@ -34,7 +34,7 @@ class AppKernel extends Kernel
             new MVNerds\ReportBundle\MVNerdsReportBundle(),
             new MVNerds\VideoBundle\MVNerdsVideoBundle(),
             new MVNerds\NewsBundle\MVNerdsNewsBundle(),
-//            new MVNerds\LaunchSiteBundle\MVNerdsLaunchSiteBundle(),
+            new MVNerds\LaunchSiteBundle\MVNerdsLaunchSiteBundle(),
             new MVNerds\ItemHandlerBundle\MVNerdsItemHandlerBundle(),
             new MVNerds\ChampionHandlerBundle\MVNerdsChampionHandlerBundle(),
 		);

@@ -139,6 +139,97 @@ div.span8.left-content div.profile-body div.preference-block a i.icon-ok-sign {
 div.span8.left-content div.profile-body div.preference-block a i.loader {
   color: #db4a38 !important;
 }
+div.span8.left-content div.profile-body div.game-account-container div.general-stats {
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  margin: 0 0 10px 0;
+  padding: 5px;
+  text-align: center;
+  text-transform: uppercase;
+}
+div.span8.left-content div.profile-body div.game-account-container div.general-stats i {
+  color: #999;
+  display: inline-block;
+  font-size: 10px;
+  margin: 0 10px;
+  position: relative;
+  top: -1px;
+}
+div.span8.left-content div.profile-body div.game-account-container div.general-stats span {
+  color: #19a0df;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 0 3px 0 0;
+}
+div.span8.left-content div.profile-body div.game-account-container div.general-stats span.kills {
+  color: #759e1a;
+}
+div.span8.left-content div.profile-body div.game-account-container div.general-stats span.deaths {
+  color: #db4a38;
+}
+div.span8.left-content div.profile-body div.game-account-container div.general-stats strong {
+  color: #e28801;
+  display: inline-block;
+  margin: 0 0 0 10px;
+}
+div.span8.left-content div.profile-body div.game-account-container div.leagues-container {
+  margin: 0 0 10px 0;
+}
+div.span8.left-content div.profile-body div.game-account-container div.leagues-container div.league {
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  padding: 5px 0 0 0;
+  position: relative;
+  text-align: center;
+}
+div.span8.left-content div.profile-body div.game-account-container div.leagues-container div.league h5 {
+  margin: 0;
+}
+div.span8.left-content div.profile-body div.game-account-container div.leagues-container div.league div.label {
+  bottom: 0;
+  color: #999;
+  font-weight: bold;
+  position: absolute;
+  width: 100%;
+}
+div.span8.left-content div.profile-body div.game-account-container div.more-stats-container {
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  margin: 0 0 5px 0;
+  padding: 5px;
+}
+div.span8.left-content div.profile-body div.game-account-container div.more-stats-container h5 {
+  margin: 0;
+  text-align: center;
+}
+div.span8.left-content div.profile-body div.game-account-container div.more-stats-container div.span4 dl {
+  margin: 25px 0 5px 0;
+}
+div.span8.left-content div.profile-body div.game-account-container div.more-stats-container div.span4 dl dt,
+div.span8.left-content div.profile-body div.game-account-container div.more-stats-container div.span4 dl dd {
+  display: inline-block;
+}
+div.span8.left-content div.profile-body div.game-account-container div.more-stats-container div.span4 dl dt {
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1.2em;
+  margin: 0 0 5px 0;
+  text-align: right;
+  text-transform: uppercase;
+  width: 105px;
+}
+div.span8.left-content div.profile-body div.game-account-container div.more-stats-container div.span4 dl dd {
+  color: #db4a38;
+  font-weight: bold;
+  vertical-align: top;
+}
+div.span8.left-content div.profile-body div.game-account-container div.last-update {
+  color: #777;
+  font-size: 12px;
+  text-align: right;
+}
 div.span8.left-content div.profile-body div.pmri-list table {
   border-spacing: 0 3px;
   width: 638px !important;
