@@ -23,5 +23,129 @@
 		{% include 'MVNerdsProfileBundle:Modal:link_lol_accout_modal.html.twig' %}
 	{% else %}
 		<h2>Mon compte de jeu lié : <strong>{{ game_account.getSummonerName() }}</strong></h2>
+		
+		<div class="general-stats">
+			<span class="kills">{{ game_account.getChampionKills() }}</span> champions tués <i class="icon-circle-blank"></i> 
+			<span class="deaths">{{ game_account.getDeaths() }}</span> morts <i class="icon-circle-blank"></i>
+			<span cmass="assists">{{ game_account.getAssists() }}</span> assistances 
+			{% set kda = (game_account.getChampionKills() + game_account.getAssists()) / game_account.getDeaths() %}
+			<strong>({{ kda|number_format(2, ',', ' ') }} KDA)</strong>
+		</div>
+		
+		<div class="leagues-container row-fluid">
+			<div class="span4 league">
+				<h5>Équipe classée (3c3)</h5>
+				<img src="{{ asset('medias/images/league-medals/' ~ game_account.getRankedTeam3x3League() ~ '.png') }}" />
+				<div class="label">{{ game_account.getRankedTeam3x3League()|trans }}</div>
+			</div>
+			
+			<div class="span4 league">
+				<h5>File Solo/Duo</h5>
+				<img src="{{ asset('medias/images/league-medals/' ~ game_account.getRankedSolo5x5League() ~ '.png') }}" />
+				<div class="label">{{ game_account.getRankedSolo5x5League()|trans }}</div>
+			</div>
+			
+			<div class="span4 league">
+				<h5>Équipe classée (5c5)</h5>
+				<img src="{{ asset('medias/images/league-medals/' ~ game_account.getRankedTeam5x5League() ~ '.png') }}" />
+				<div class="label">{{ game_account.getRankedTeam5x5League()|trans }}</div>
+			</div>
+		</div>
+		
+		<div class="more-stats-container">
+			<h5>Plus de statistiques</h5>
+			
+			<div class="content row-fluid">
+				<div class="span4">
+					<dl>
+						<dt>Tués max</dt>
+						<dd>{{ game_account.getMaxChampionsKilled() }}</dd>
+
+						<dt>Meurtre en série</dt>
+						<dd>{{ game_account.getKillingSpree() }}</dd>
+
+						<dt>Max meurtre en série</dt>
+						<dd>{{ game_account.getLargestKillingSpree() }}</dd>
+
+						<dt>Doublés</dt>
+						<dd>{{ game_account.getDoubleKills() }}</dd>
+
+						<dt>Triplé</dt>
+						<dd>{{ game_account.getTripleKills() }}</dd>
+
+						<dt>Quadruplés</dt>
+						<dd>{{ game_account.getQuadraKills() }}</dd>
+
+						<dt>Quintuplés</dt>
+						<dd>{{ game_account.getPentaKills() }}</dd>
+					</dl>
+				</div>
+				
+				<div class="span4">
+					<dl>
+						<dt>Morts max</dt>
+						<dd>{{ game_account.getMaxDeaths() }}</dd>
+
+						<dt>Temps passé mort</dt>
+						<dd>
+							{% set death_time = game_account.getTimeSpentDead() %}
+							{% if death_time < 60 %} {# TEST si c'est inférieur à <= 60 SECONDES #}
+								{{ death_time }} sec
+							{% else %}
+								{% set death_time = death_time / 60 %}
+								{% if death_time < 60 %} {# TEST si c'est inférieur à <= 60 MINUTES #}
+									~{{ death_time|number_format(0, '', '') }} minutes
+								{% else %}
+									{% set death_time = death_time / 60 %}
+									{% if death_time < 24 %}
+										~{{ death_time|number_format(0, '', '') }} heure{% if death_time > 1 %}s{% endif %}
+									{% else %}
+										~{{ (death_time / 24)|number_format(0, '', '') }} jour{% if death_time / 24 >= 2 %}s{% endif %}
+									{% endif %}
+								{% endif %}
+							{% endif %}
+						</dd>
+
+						<dt>Max temps passé en vie</dt>
+						<dd>{{ (game_account.getMaxTimeSpentLiving() / 60)|number_format(0, '', '') }} min</dd>
+						
+						<dt>Partie la plus longue</dt>
+						<dd>{{ (game_account.getMaxTimeGameDuration() / 60)|number_format(0, '', '') }} min</dd>
+					</dl>
+				</div>
+				
+				<div class="span4">
+					<dl>
+						<dt>Sbires tués</dt>
+						<dd>{{ game_account.getMinionKills()|number_format(0, ',', ' ') }}</dd>
+
+						<dt>Monstres tués</dt>
+						<dd>{{ game_account.getMonsterKills()|number_format(0, ',', ' ') }}</dd>
+						
+						<dt>Tourelles détruites</dt>
+						<dd>{{ game_account.getTurretsKilled() }}</dd>
+						
+						<dt>PO gagnées</dt>
+						<dd>{{ game_account.getGoldEarned()|number_format(0, ',', ' ') }}</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+		
+		<div class="last-update">
+			{% set last_update_time = game_account.getLastUpdateTime() %}
+			Dernière mise à jour <strong>
+			{% if last_update_time + 60 > date().getTimestamp() %}
+				il y a quelques secondes 
+			{% else %}
+				{% set second_ago = date().getTimestamp() - last_update_time %}
+				{% if second_ago < 60 * 15 %}
+					il y a {{ (second_ago / 60)|number_format(0, '', '') }} minute{% if (second_ago / 60) >= 2 %}s{% endif %}
+				{% else %}
+					le {{ last_update_time|date('d/m/Y H:i') }}
+				{% endif %}
+			{% endif %}
+			</strong>.
+		</div>
 	{% endif %}
 </div>

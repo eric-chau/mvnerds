@@ -138,6 +138,117 @@ div.span8.left-content {
 			}
 		}
 
+		div.game-account-container {
+			div.general-stats {
+				background-color: #ddd;
+				border: 1px solid #ccc;
+				font-size: 12px;
+				margin: 0 0 10px 0;
+				padding: 5px;
+				text-align: center;
+				text-transform: uppercase;
+
+				i {
+					color: #999;
+					display: inline-block;
+					font-size: 10px;
+					margin: 0 10px;
+					position: relative;
+					top: -1px;
+				}
+
+				span {
+					color: @MVNerdsBlue;
+					display: inline-block;
+					font-size: 16px;
+					font-weight: bold;
+					margin: 0 3px 0 0;
+
+					&.kills {
+						color: @MVNerdsGreen;
+					}
+
+					&.deaths {
+						color: @MVNerdsRed;
+					}
+				}
+
+				strong {
+					color: darken(@LoLOrangeAD, 5%);
+					display: inline-block;
+					margin: 0 0 0 10px;
+				}
+			}
+
+			div.leagues-container {
+				margin: 0 0 10px 0;
+
+				div.league {
+					background-color: #ddd;
+					border: 1px solid #ccc;
+					padding: 5px 0 0 0;
+					position: relative;
+					text-align: center;
+
+					h5 {
+						margin: 0;
+					}
+
+					div.label {
+						bottom: 0;
+						color: #999;
+						font-weight: bold;
+						position: absolute;
+						width: 100%;
+					}
+				}
+			}
+
+			div.more-stats-container {
+				background-color: #ddd;
+				border: 1px solid #ccc;
+				margin: 0 0 5px 0;
+				padding: 5px;
+
+				h5 {
+					margin: 0;
+					text-align: center;
+				}
+
+				div.span4 {
+					dl {
+						margin: 25px 0 5px 0;
+
+						dt, dd {
+							display: inline-block;
+						}
+
+						dt {
+							font-size: 12px;
+							font-weight: normal;
+							line-height: 1.2em;
+							margin: 0 0 5px 0;
+							text-align: right;
+							text-transform: uppercase;
+							width: 105px;
+						}
+
+						dd {
+							color: @MVNerdsRed;
+							font-weight: bold;
+							vertical-align: top;
+						}
+					}
+				}
+			}
+
+			div.last-update {
+				color: #777;
+				font-size: 12px;
+				text-align: right;
+			}
+		}
+
 		div.pmri-list {
 			table {
 				border-spacing: 0 3px;

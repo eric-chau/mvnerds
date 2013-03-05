@@ -42,11 +42,14 @@ class FrontController extends Controller
 	}
 
 	/**
-	 * @Route("/test-api/{summonerName}")
+	 * @Route("/test/propel")
 	 */
-	public function testAPIAction($summonerName)
+	public function testAPIAction()
 	{
-		$this->get('mvnerds.elophant_api_manager')->getSummonerAccoundId($summonerName, 'euw');
+		$rankedStats = new \MVNerds\CoreBundle\GameAccount\RankedStats();
+		$rankedStats->setSolo5x5League('PLATINIUM', 'V');
+		
+		return $this->render('::layout.html.twig');
 	}
 
 	/**

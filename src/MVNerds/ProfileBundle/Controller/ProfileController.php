@@ -9,9 +9,8 @@ use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
-use Criteria;
 
-use MVNerds\CoreBundle\Exception\ElophantAFKException;
+use MVNerds\CoreBundle\Exception\ServiceUnavailableException;
 use MVNerds\CoreBundle\Exception\InvalidSummonerNameException;
 use MVNerds\ItemHandlerBundle\Form\Model\ChangeLoLDirectoryModel;
 use MVNerds\ItemHandlerBundle\Form\Type\ChangeLoLDirectoryType;
@@ -108,14 +107,19 @@ class ProfileController extends Controller
 	public function loggedSummonerIndexAction()
 	{		
 		$user = $this->getUser();
-				
+		$gameAccount = $this->get('mvnerds.profile_manager')->getGameAccountByUser($user);
+		
+		if (null !=$gameAccount) {
+			$this->get('mvnerds.elophant_api_manager')->updateRankedStatsIfNeeded($gameAccount);
+		}
+		
 		return $this->render('MVNerdsProfileBundle:Profile:profile_index.html.twig', array(
 			'user'					=> $user,
 			'user_items_builds'		=> $this->get('mvnerds.item_build_manager')->findByUserId($user->getId()),
 			'form'					=> $this->createForm(new ChangeLoLDirectoryType(), new ChangeLoLDirectoryModel($this->get('mvnerds.preference_manager'), $user))->createView(),
 			'avatars'				=> $this->get('mvnerds.profile_manager')->findAvatarByUserRoles($user),
 			'user_comment_count'	=> $this->get('mvnerds.comment_manager')->countCommentForUser($user),
-			'game_account'			=> $this->get('mvnerds.profile_manager')->getGameAccountByUser($user)
+			'game_account'			=> $gameAccount
 		));
 	}
 	
@@ -206,7 +210,7 @@ class ProfileController extends Controller
 	{
 		$request = $this->getRequest();
 		if (!$request->isXmlHttpRequest() || !$request->isMethod('POST')) {
-			throw HttpException(500, 'La requête doit être AJAXienne et en POST !');
+			throw new HttpException(500, 'La requête doit être AJAXienne et en POST !');
 		}
 		
 		$region = $request->get('region', null);
@@ -221,7 +225,7 @@ class ProfileController extends Controller
 		try {
 			$gameAccount = $elophantManager->getGameAccountFromRegionAndUsername($region, $summonerName);
 		}
-		catch (ElophantAFKException $e) {
+		catch (ServiceUnavailableException $e) {
 			return new Response($translator->trans('Profile.error.elophant_afk'), 503);
 		}
 		catch (InvalidSummonerNameException $e) {
@@ -270,7 +274,7 @@ class ProfileController extends Controller
 		try {
 			$success = $this->get('mvnerds.elophant_api_manager')->checkActivationCodeWithMasteriesPage($gameAccount);
 		}
-		catch (ElophantAFKException $e) {
+		catch (ServiceUnavailableException $e) {
 			return new Response($this->get('translator')->trans('Profile.error.elophant_afk'), 503);
 		}
 		
@@ -311,11 +315,16 @@ class ProfileController extends Controller
 			return $this->forward('MVNerdsProfileBundle:Profile:loggedSummonerIndex');
 		}
 		
+		$gameAccount = $this->get('mvnerds.profile_manager')->getGameAccountByUser($user);
+		if (null !=$gameAccount) {
+			$this->get('mvnerds.elophant_api_manager')->updateRankedStatsIfNeeded($gameAccount);
+		}
+		
 		return $this->render('MVNerdsProfileBundle:Profile:profile_index.html.twig', array(
 			'user'					=> $user,
 			'user_items_builds'		=> $this->get('mvnerds.item_build_manager')->findPublicByUserId($user->getId()),
 			'user_comment_count'	=> $this->get('mvnerds.comment_manager')->countCommentForUser($user),
-			'game_account'			=> $this->get('mvnerds.profile_manager')->getGameAccountByUser($user)
+			'game_account'			=> $gameAccount
 		));
 	}
 }
