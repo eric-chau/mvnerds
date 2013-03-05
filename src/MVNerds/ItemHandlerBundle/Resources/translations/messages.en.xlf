@@ -484,6 +484,14 @@
 				<source>item_build_list_index.btn.my_lists</source>
 				<target>My lists</target>
 			</trans-unit>
+			<trans-unit id="3017">
+				<source>item_build_list_index.sort.most-voted</source>
+				<target>Best rated</target>
+			</trans-unit>
+			<trans-unit id="3018">
+				<source>item_build_list_index.sort.less-voted</source>
+				<target>Worst rated</target>
+			</trans-unit>
 
 			<!-- VIEW INDEX -->
 			<trans-unit id="4000">
