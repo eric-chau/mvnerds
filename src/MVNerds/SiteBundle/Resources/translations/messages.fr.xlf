@@ -94,6 +94,121 @@
 					ou deux, vérifiez les filtres de spams et / ou de courriers indésirables de votre messagerie.
 				</target>
 			</trans-unit>
+
+			<trans-unit id="100">
+				<source>Site.slogan</source>
+				<target>Guides, Builds et Outils pour League of Legends</target>
+			</trans-unit>
+
+			<!-- BREADCRUMBS -->
+			<trans-unit id="200">
+				<source>Breadcrumbs.you-are-on</source>
+				<target>Vous êtes sur</target>
+			</trans-unit>
+			<trans-unit id="201">
+				<source>Breadcrumbs.home</source>
+				<target>Accueil</target>
+			</trans-unit>
+
+			<!-- SIDEBAR -->
+			<trans-unit id="300">
+				<source>Sidebar.PMRI.new-lists</source>
+				<target>Nouvelles listes</target>
+			</trans-unit>
+			<trans-unit id="301">
+				<source>Sidebar.PMRI.most-dl</source>
+				<target>Les plus téléchargées</target>
+			</trans-unit>
+			<trans-unit id="302">
+				<source>Sidebar.see-more</source>
+				<target>Voir plus</target>
+			</trans-unit>
+			<trans-unit id="303">
+				<source>Sidebar.champion.title</source>
+				<target>Comparez les champions entre eux et profitez de :</target>
+			</trans-unit>
+			<trans-unit id="304">
+				<source>Sidebar.champion.ul.li1</source>
+				<target>Une liste de champions originale</target>
+			</trans-unit>
+			<trans-unit id="305">
+				<source>Sidebar.champion.ul.li2</source>
+				<target>Un système de filtrage efficace</target>
+			</trans-unit>
+			<trans-unit id="306">
+				<source>Sidebar.champion.ul.li3</source>
+				<target>Un outil de comparaison performant</target>
+			</trans-unit>
+			<trans-unit id="307">
+				<source>Sidebar.champion.try-it-now</source>
+				<target>Tester maintenant</target>
+			</trans-unit>
+			<trans-unit id="308">
+				<source>Sidebar.video.description</source>
+				<target>
+					Venez essayer le tout nouveau module "LoLVideoCenter" ! 
+					Ce module va vous permettre de consulter un tas de vidéos liées au jeu League of Legends. 
+					En tant que membre MVNerds vous avez la possibilité de poster autant de vidéos que vous le souhaitez, que ce soit des vidéos amusantes, utiles, ou tout autre type de vidéo en relation avec LoL!
+				</target>
+			</trans-unit>
+			<trans-unit id="309">
+				<source>Sidebar.video.know-more</source>
+				<target>En savoir plus</target>
+			</trans-unit>
+
+			<!-- ChHAMPION ROTATION -->
+			<trans-unit id="400">
+				<source>Champion-rotation.title</source>
+				<target>Rotation de champions</target>
+			</trans-unit>
+			<trans-unit id="401">
+				<source>Champion-rotation.search.placeholder</source>
+				<target>Nom d'un champion...</target>
+			</trans-unit>
+
+			<!-- FOOTER -->
+			<trans-unit id="500">
+				<source>Footer.title</source>
+				<target>Quick access to champions</target>
+			</trans-unit>
+			<trans-unit id="501">
+				<source>Footer.riot.p1</source>
+				<target>League of Legends et Riot Games sont des marques déposées de Riot Games, Inc.</target>
+			</trans-unit>
+			<trans-unit id="502">
+				<source>Footer.riot.p2</source>
+				<target>Tous les éléments extraits ou recopiés du jeu League of Legends, présents sur le site, appartiennent à Riot Games Inc.</target>
+			</trans-unit>
+			<trans-unit id="503">
+				<source>Footer.links.contact</source>
+				<target>Nous contacter</target>
+			</trans-unit>
+			<trans-unit id="504">
+				<source>Footer.links.privacy-policy</source>
+				<target>Politique de confidentialité</target>
+			</trans-unit>
+			<trans-unit id="505">
+				<source>Footer.links.terms-of-use</source>
+				<target>Conditions générales d'utilisation</target>
+			</trans-unit>
+			<trans-unit id="506">
+				<source>Footer.links.legal</source>
+				<target>Mentions légales</target>
+			</trans-unit>
+			<trans-unit id="507">
+				<source>Footer.links.statistics</source>
+				<target>Statistiques</target>
+			</trans-unit>
+			<trans-unit id="508">
+				<source>Footer.links.about-us</source>
+				<target>A propos de nous</target>
+			</trans-unit>
+
+			<!-- TOPBAR -->
+			<trans-unit id="600">
+				<source>Topbar.members</source>
+				<target>Les membres de la communauté</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
