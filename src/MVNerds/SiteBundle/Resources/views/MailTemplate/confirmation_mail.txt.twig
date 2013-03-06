@@ -1,0 +1,11 @@
+Félicitation invocateur {{ user.getUsername() }},
+
+toute la communauté MVNerds est heureuse de t'accueillir ! Une dernière étape doit être accompli. Clique sur ce lien pour activer ton compte :
+
+{{ url('site_account_activation', {'slug': user.getSlug(), 'activationCode': user.getActivationCode()}) }}
+
+A très vite sur MVNerds.com,
+
+Amicalement,
+
+Toute l'équipe MVNerds

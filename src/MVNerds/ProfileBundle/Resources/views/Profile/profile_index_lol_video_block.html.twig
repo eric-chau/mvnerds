@@ -1,0 +1,15 @@
+<div class="lol-video-container">
+	<h2>LoL Video Center</h2>
+
+	{% if user_items_builds|length > 0 %}
+		{% include 'MVNerdsProfileBundle:Profile:lol_video_list.html.twig' with {'videos': videos, 'admin_mode': admin_mode}  %}
+	{% else %}
+		<p class="empty-list"><i>
+			{% if admin_mode %}
+				Vous n'avez pas encore publié de vidéo.
+			{% else %}
+				{{ user.getUsername() }} n'a pas encore publié de vidéo.
+			{% endif %}
+		</i></p>
+	{% endif %}
+</div>

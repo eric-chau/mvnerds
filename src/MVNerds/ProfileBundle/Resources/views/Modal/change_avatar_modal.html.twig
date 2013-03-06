@@ -1,0 +1,22 @@
+<div id="change-avatar-modal" class="modal hide fade">
+	<div class="modal-header">
+		<i class="icon-remove" data-dismiss="modal"></i>
+		<h3>{{'Profile_index.avatar.h2'|trans}}</h3>
+	</div>
+	<div class="modal-body">
+		<p>
+			Retrouvez ci-dessous les avatars qui sont à votre disposition. Choisissez celui qui vous plaît.
+		</p>
+		
+		<div class="avatars-container">
+			{% for avatar in avatars %}
+				<img src="{{ asset('images/avatar/'~ avatar.getName() ~'.jpg') }}" class="avatar-choice {% if avatar.getName() == current_avatar_name %} disabled{% endif %}" data-avatar-name="{{ avatar.getName() }}" />
+			{% endfor %}
+		</div>
+	</div>		
+	<div class="modal-footer">
+		<i class="icon-spinner icon-spin loader hide"></i>
+		<a href="#" data-dismiss="modal" class="btn">{{'create_item_build.modal_dl_build.btn.cancel'|trans}}</a>
+		<a href="#" class="btn green btn-save-avatar disabled" data-current-avatar-name="{{ current_avatar_name }}">Enregistrer</a>
+	</div>
+</div>

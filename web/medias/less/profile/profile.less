@@ -249,7 +249,7 @@ div.span8.left-content {
 			}
 		}
 
-		div.pmri-list {
+		div.pmri-list, div.video-list {
 			table {
 				border-spacing: 0 3px;
 				width: 638px !important;
@@ -257,11 +257,11 @@ div.span8.left-content {
 				th {
 					text-align: left;
 
-					&.champion {
+					&.champion, &.preview {
 						width: 80px !important;
 					}
 
-					&.name {
+					&.name, &.title {
 						width: 340px !important;
 
 						&.full {
@@ -269,7 +269,7 @@ div.span8.left-content {
 						}
 					}
 
-					&.game-mode.full {
+					&.game-mode.full, &.category.full {
 						width: 198px !important;
 					}
 				}
@@ -286,7 +286,7 @@ div.span8.left-content {
 						td {
 							padding: 3px 0;
 
-							&.champion {
+							&.champion, &.preview {
 								text-align: center;
 
 								img {
@@ -294,7 +294,7 @@ div.span8.left-content {
 								}
 							}
 
-							&.name {
+							&.name, &.title {
 								a {
 									font-weight: bold;
 
@@ -421,6 +421,16 @@ div.span4.right-content {
 				text-align: center !important;
 			}
 		}
+
+		div.footer a {
+			&.disabled span.msg {
+				color: #ccc;
+			}
+
+			i {
+				color: white;
+			}
+		}
 	}
 }
 
@@ -470,6 +480,35 @@ div#link-lol-account-modal {
 
 				&.error {
 					margin: 0 0 10px 0;
+				}
+			}
+		}
+	}
+}
+
+div#change-avatar-modal {
+	div.modal-body {
+		div.avatars-container {
+			margin: 0 0 5px 2px;
+
+			img.avatar-choice {
+				border: 1px solid #666;
+				cursor: pointer;
+				margin: 0 0 3px 0;
+				opacity: .9;
+				padding: 1px;
+				width: 88px;
+
+				&.disabled {
+					cursor: not-allowed;
+					opacity: .3;
+				}
+
+				&.selected {
+					border: 3px solid @LoLOrangeAD;
+					opacity: 1;
+					padding: 0;
+					width: 86px;
 				}
 			}
 		}

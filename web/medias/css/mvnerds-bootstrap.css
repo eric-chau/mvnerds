@@ -793,6 +793,9 @@ div.container.main-container div.span4.right-content div.block div.footer a {
   text-align: right;
   text-transform: uppercase;
 }
+div.container.main-container div.span4.right-content div.block div.footer a.disabled {
+  cursor: not-allowed;
+}
 div.container.main-container div.span4.right-content div.sidebar-ad-container {
   -webkit-box-shadow: 0 0 5px 5px #cccccc;
   -moz-box-shadow: 0 0 5px 5px #cccccc;

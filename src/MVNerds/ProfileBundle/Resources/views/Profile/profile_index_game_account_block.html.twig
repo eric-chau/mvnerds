@@ -24,12 +24,21 @@
 	{% else %}
 		<h2>Mon compte de jeu lié : <strong>{{ game_account.getSummonerName() }}</strong></h2>
 		
+		<p class="note">
+			Ces statistiques sont celles de {{ user.getUsername() }} en parties classées pour la saison 3 ( saison courante).
+		</p>
+		
 		<div class="general-stats">
 			<span class="kills">{{ game_account.getChampionKills() }}</span> champions tués <i class="icon-circle-blank"></i> 
 			<span class="deaths">{{ game_account.getDeaths() }}</span> morts <i class="icon-circle-blank"></i>
 			<span cmass="assists">{{ game_account.getAssists() }}</span> assistances 
 			{% set kda = (game_account.getChampionKills() + game_account.getAssists()) / game_account.getDeaths() %}
 			<strong>({{ kda|number_format(2, ',', ' ') }} KDA)</strong>
+		</div>
+		
+		<div class="general-stats">
+			<span class="kills">{{ game_account.getTotalVictory() }}</span> victoires <i class="icon-circle-blank"></i> 
+			<span class="deaths">{{ game_account.getTotalDefeat() }}</span> défaites		
 		</div>
 		
 		<div class="leagues-container row-fluid">
@@ -100,7 +109,7 @@
 									{% if death_time < 24 %}
 										~{{ death_time|number_format(0, '', '') }} heure{% if death_time > 1 %}s{% endif %}
 									{% else %}
-										~{{ (death_time / 24)|number_format(0, '', '') }} jour{% if death_time / 24 >= 2 %}s{% endif %}
+										~{{ (death_time / 24)|number_format(2, ',', '') }} jour{% if death_time / 24 >= 2 %}s{% endif %}
 									{% endif %}
 								{% endif %}
 							{% endif %}
