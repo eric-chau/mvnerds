@@ -80,14 +80,14 @@ $(document).ready(function() {
 	//On change filter input
 	$usernameFilterInput.on('keyup change', function(e){
 		if (e.keyCode == 13 || e.keyCode == 8) {
-			membersTable.fnFilter($(this).val(), 1);
+			membersTable.fnFilter($(this).val(), 3);
 		}
 	});
 	
 	$('#search-filter-btn').on('click', function(e){
 		e.preventDefault();
 		if ($usernameFilterInput.val() != '') {
-			membersTable.fnFilter($usernameFilterInput.val(), 1);
+			membersTable.fnFilter($usernameFilterInput.val(), 3);
 		}
 	});
 	

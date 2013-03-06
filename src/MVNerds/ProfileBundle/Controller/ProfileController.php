@@ -40,8 +40,9 @@ class ProfileController extends Controller
 		
 		$aColumns = array(
 			'',
-			'username',
 			'',
+			'',
+			'username',
 			'created_at'
 		);
 		
