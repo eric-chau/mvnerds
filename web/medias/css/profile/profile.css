@@ -230,55 +230,90 @@ div.span8.left-content div.profile-body div.game-account-container div.last-upda
   font-size: 12px;
   text-align: right;
 }
-div.span8.left-content div.profile-body div.pmri-list table {
+div.span8.left-content div.profile-body div.pmri-list table,
+div.span8.left-content div.profile-body div.video-list table {
   border-spacing: 0 3px;
   width: 638px !important;
 }
-div.span8.left-content div.profile-body div.pmri-list table th {
+div.span8.left-content div.profile-body div.pmri-list table th,
+div.span8.left-content div.profile-body div.video-list table th {
   text-align: left;
 }
-div.span8.left-content div.profile-body div.pmri-list table th.champion {
+div.span8.left-content div.profile-body div.pmri-list table th.champion,
+div.span8.left-content div.profile-body div.video-list table th.champion,
+div.span8.left-content div.profile-body div.pmri-list table th.preview,
+div.span8.left-content div.profile-body div.video-list table th.preview {
   width: 80px !important;
 }
-div.span8.left-content div.profile-body div.pmri-list table th.name {
+div.span8.left-content div.profile-body div.pmri-list table th.name,
+div.span8.left-content div.profile-body div.video-list table th.name,
+div.span8.left-content div.profile-body div.pmri-list table th.title,
+div.span8.left-content div.profile-body div.video-list table th.title {
   width: 340px !important;
 }
-div.span8.left-content div.profile-body div.pmri-list table th.name.full {
+div.span8.left-content div.profile-body div.pmri-list table th.name.full,
+div.span8.left-content div.profile-body div.video-list table th.name.full,
+div.span8.left-content div.profile-body div.pmri-list table th.title.full,
+div.span8.left-content div.profile-body div.video-list table th.title.full {
   width: 360px !important;
 }
-div.span8.left-content div.profile-body div.pmri-list table th.game-mode.full {
+div.span8.left-content div.profile-body div.pmri-list table th.game-mode.full,
+div.span8.left-content div.profile-body div.video-list table th.game-mode.full,
+div.span8.left-content div.profile-body div.pmri-list table th.category.full,
+div.span8.left-content div.profile-body div.video-list table th.category.full {
   width: 198px !important;
 }
-div.span8.left-content div.profile-body div.pmri-list table tbody tr {
+div.span8.left-content div.profile-body div.pmri-list table tbody tr,
+div.span8.left-content div.profile-body div.video-list table tbody tr {
   background-color: #ddd;
   margin: 0 0 5px 0;
 }
-div.span8.left-content div.profile-body div.pmri-list table tbody tr:hover {
+div.span8.left-content div.profile-body div.pmri-list table tbody tr:hover,
+div.span8.left-content div.profile-body div.video-list table tbody tr:hover {
   background-color: #41b4ea;
   -webkit-transition: background-color 0.25s linear;
   -moz-transition: background-color 0.25s linear;
   -o-transition: background-color 0.25s linear;
   transition: background-color 0.25s linear;
 }
-div.span8.left-content div.profile-body div.pmri-list table tbody tr td {
+div.span8.left-content div.profile-body div.pmri-list table tbody tr td,
+div.span8.left-content div.profile-body div.video-list table tbody tr td {
   padding: 3px 0;
 }
-div.span8.left-content div.profile-body div.pmri-list table tbody tr td.champion {
+div.span8.left-content div.profile-body div.pmri-list table tbody tr td.champion,
+div.span8.left-content div.profile-body div.video-list table tbody tr td.champion,
+div.span8.left-content div.profile-body div.pmri-list table tbody tr td.preview,
+div.span8.left-content div.profile-body div.video-list table tbody tr td.preview {
   text-align: center;
 }
-div.span8.left-content div.profile-body div.pmri-list table tbody tr td.champion img {
+div.span8.left-content div.profile-body div.pmri-list table tbody tr td.champion img,
+div.span8.left-content div.profile-body div.video-list table tbody tr td.champion img,
+div.span8.left-content div.profile-body div.pmri-list table tbody tr td.preview img,
+div.span8.left-content div.profile-body div.video-list table tbody tr td.preview img {
   width: 54px;
 }
-div.span8.left-content div.profile-body div.pmri-list table tbody tr td.name a {
+div.span8.left-content div.profile-body div.pmri-list table tbody tr td.name a,
+div.span8.left-content div.profile-body div.video-list table tbody tr td.name a,
+div.span8.left-content div.profile-body div.pmri-list table tbody tr td.title a,
+div.span8.left-content div.profile-body div.video-list table tbody tr td.title a {
   font-weight: bold;
 }
-div.span8.left-content div.profile-body div.pmri-list table tbody tr td.name a:hover {
+div.span8.left-content div.profile-body div.pmri-list table tbody tr td.name a:hover,
+div.span8.left-content div.profile-body div.video-list table tbody tr td.name a:hover,
+div.span8.left-content div.profile-body div.pmri-list table tbody tr td.title a:hover,
+div.span8.left-content div.profile-body div.video-list table tbody tr td.title a:hover {
   text-decoration: underline;
 }
-div.span8.left-content div.profile-body div.pmri-list table tbody tr td.name div.created-by a {
+div.span8.left-content div.profile-body div.pmri-list table tbody tr td.name div.created-by a,
+div.span8.left-content div.profile-body div.video-list table tbody tr td.name div.created-by a,
+div.span8.left-content div.profile-body div.pmri-list table tbody tr td.title div.created-by a,
+div.span8.left-content div.profile-body div.video-list table tbody tr td.title div.created-by a {
   color: #db4a38;
 }
-div.span8.left-content div.profile-body div.pmri-list table tbody tr td.name div.created-by a:hover {
+div.span8.left-content div.profile-body div.pmri-list table tbody tr td.name div.created-by a:hover,
+div.span8.left-content div.profile-body div.video-list table tbody tr td.name div.created-by a:hover,
+div.span8.left-content div.profile-body div.pmri-list table tbody tr td.title div.created-by a:hover,
+div.span8.left-content div.profile-body div.video-list table tbody tr td.title div.created-by a:hover {
   color: white;
   -webkit-transition: color 0.25s linear;
   -moz-transition: color 0.25s linear;
@@ -286,27 +321,34 @@ div.span8.left-content div.profile-body div.pmri-list table tbody tr td.name div
   transition: color 0.25s linear;
   text-decoration: none;
 }
-div.span8.left-content div.profile-body div.pmri-list table tbody tr td.name span.one-stat {
+div.span8.left-content div.profile-body div.pmri-list table tbody tr td.name span.one-stat,
+div.span8.left-content div.profile-body div.video-list table tbody tr td.name span.one-stat,
+div.span8.left-content div.profile-body div.pmri-list table tbody tr td.title span.one-stat,
+div.span8.left-content div.profile-body div.video-list table tbody tr td.title span.one-stat {
   display: inline-block;
   margin: 0 10px 0 0;
 }
-div.span8.left-content div.profile-body div.pmri-list table tbody tr td.admin-actions {
+div.span8.left-content div.profile-body div.pmri-list table tbody tr td.admin-actions,
+div.span8.left-content div.profile-body div.video-list table tbody tr td.admin-actions {
   background-color: #222;
   text-align: center;
 }
-div.span8.left-content div.profile-body div.pmri-list table tbody tr td.admin-actions a.action {
+div.span8.left-content div.profile-body div.pmri-list table tbody tr td.admin-actions a.action,
+div.span8.left-content div.profile-body div.video-list table tbody tr td.admin-actions a.action {
   cursor: pointer;
   display: inline-block;
   margin: 5px;
 }
-div.span8.left-content div.profile-body div.pmri-list table tbody tr td.admin-actions a.action:hover i {
+div.span8.left-content div.profile-body div.pmri-list table tbody tr td.admin-actions a.action:hover i,
+div.span8.left-content div.profile-body div.video-list table tbody tr td.admin-actions a.action:hover i {
   color: white;
   -webkit-transition: color 0.25s linear;
   -moz-transition: color 0.25s linear;
   -o-transition: color 0.25s linear;
   transition: color 0.25s linear;
 }
-div.span8.left-content div.profile-body div.pmri-list table tbody tr td.admin-actions a.action i {
+div.span8.left-content div.profile-body div.pmri-list table tbody tr td.admin-actions a.action i,
+div.span8.left-content div.profile-body div.video-list table tbody tr td.admin-actions a.action i {
   color: #777;
 }
 div.span4.right-content div.block div.body div.last-comment-row {
@@ -380,6 +422,12 @@ div.span4.right-content div.block div.body p.empty-list {
   margin: 10px;
   text-align: center !important;
 }
+div.span4.right-content div.block div.footer a.disabled span.msg {
+  color: #ccc;
+}
+div.span4.right-content div.block div.footer a i {
+  color: white;
+}
 div#link-lol-account-modal div.modal-body p.error {
   color: #db4a38;
   font-weight: bold;
@@ -419,6 +467,27 @@ div#link-lol-account-modal div.modal-body div.end-of-process-action p {
 }
 div#link-lol-account-modal div.modal-body div.end-of-process-action p.error {
   margin: 0 0 10px 0;
+}
+div#change-avatar-modal div.modal-body div.avatars-container {
+  margin: 0 0 5px 2px;
+}
+div#change-avatar-modal div.modal-body div.avatars-container img.avatar-choice {
+  border: 1px solid #666;
+  cursor: pointer;
+  margin: 0 0 3px 0;
+  opacity: .9;
+  padding: 1px;
+  width: 88px;
+}
+div#change-avatar-modal div.modal-body div.avatars-container img.avatar-choice.disabled {
+  cursor: not-allowed;
+  opacity: .3;
+}
+div#change-avatar-modal div.modal-body div.avatars-container img.avatar-choice.selected {
+  border: 3px solid #fb9701;
+  opacity: 1;
+  padding: 0;
+  width: 86px;
 }
 div.comments-container form.leave-comment-form {
   background-color: #92281b;

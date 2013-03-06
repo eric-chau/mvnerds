@@ -7,7 +7,7 @@
 		<p>Vous êtes sur le point de supprimer votre liste d'objets conseillés <strong>{{ item_build.getName() }}</strong>. Êtes-vous sûr de vouloir faire cela ?</p>
 	</div>
 	<div class="modal-footer">
-		<a href="#" data-dismiss="modal" class="btn-cancel">Annuler</a>
-		<a href="{{ path('item_builder_delete_build', {'itemBuildSlug': item_build.getSlug()}) }}" class="btn-download">Confirmer</a>
+		<a href="#" data-dismiss="modal" class="btn">Annuler</a>
+		<a href="{{ path('item_builder_delete_build', {'itemBuildSlug': item_build.getSlug()}) }}" class="btn red btn-download">Confirmer</a>
 	</div>
 </div>

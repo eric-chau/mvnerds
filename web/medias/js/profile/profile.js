@@ -103,8 +103,8 @@ $(document).ready(function()
 		}
 
 		var newAvatarName = $('img.avatar-choice.selected').data('avatar-name'),
-			$loader = $this.parent().find('img.loader');
-		$loader.toggle('hide');
+			$loader = $('div#change-avatar-modal').find('i.loader');
+		$loader.removeClass('hide');
 		$this.addClass('disabled');
 		$.ajax({
 			url: Routing.generate('summoner_profile_save_avatar'),
@@ -115,21 +115,32 @@ $(document).ready(function()
 			dataType: 'json',
 			success: function(response)
 			{
-				$loader.toggle('hide');
+				$loader.addClass('hide');
 				if (response) {
-					$('div#user-container img, div.current-avatar img.avatar').attr('src', '/images/avatar/'+ newAvatarName +'.jpg');
-					$this.attr('data-current-avatar-name', newAvatarName);
-					currentAvatarName = newAvatarName;
+					$('img.user-current-avatar').attr('src', '/images/avatar/'+ newAvatarName +'.jpg');
+					$('div#topbar li.user-container img').attr('src', '/images/avatar/'+ newAvatarName +'.jpg');
+					$('form#leave-comment-form img.user-avatar').attr('src', '/images/avatar/'+ newAvatarName +'.jpg');
+					$('div#change-avatar-modal div.modal-body div.avatars-container').find('img').removeClass('disabled');
+					$('div#change-avatar-modal div.modal-body div.avatars-container').find('img.selected').toggleClass('selected disabled');
+					$('div#change-avatar-modal').modal('hide');
 				}
 			}
 		});
 	});
-
+	
+	// Activation du click sur le bouton "Changer mon mot de passe"
 	$('a.btn-change-password').on('click', function()
 	{
+		if ($(this).hasClass('disabled')) {
+			return false;
+		}
+
 		var $this = $(this),
-			$loader = $this.parent().find('img.loader');
-		$loader.show();
+			$loader = $this.find('i.loader');
+		$loader.removeClass('hide');
+		$this.find('span.msg.initial').addClass('hide');
+		$this.find('span.msg.wip').removeClass('hide');
+		$this.addClass('disabled');
 
 		$.ajax({
 			url: Routing.generate('summoner_profile_change_password'),
@@ -137,13 +148,24 @@ $(document).ready(function()
 			dataType: 'json',
 			success: function(response)
 			{
+				$loader.addClass('hide');
 				if (response) {
-					$loader.hide();
-					$this.hide();
-					$this.parent().find('span').show();
-					$this.remove();
+					$this.find('span.msg.wip').addClass('hide');
+					$this.find('span.msg.success').removeClass('hide');
 				}
+				else {
+					$this.removeClass('disabled');
+					$this.find('span.msg.wip').addClass('hide');
+					$this.find('span.msg.initial').removeClass('hide');					
+				}
+			},
+			error: function() {
+				$loader.addClass('hide');
+				$this.removeClass('disabled');
+				$this.find('span.msg.wip').addClass('hide');
+				$this.find('span.msg.initial').removeClass('hide');	
 			}
+
 		})
 	});
 
@@ -266,5 +288,18 @@ $(document).ready(function()
 				document.location.reload(true);
 			}
 		});
+	});
+
+	// Activation de la modal de changement d'avatar
+	$('a.change-avatar-btn').on('click', function() {
+		$('div#change-avatar-modal').modal('show');
+		return false;
+	});
+
+	// Toggle des préférences utilisateurs
+	$('a.user-preference-toggle').on('click', function(event) {
+		event.preventDefault();
+		$(this).find('span').toggleClass('disabled');
+		$('div#' + $(this).data('block-id')).slideToggle();
 	});
 });

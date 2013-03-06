@@ -1,0 +1,19 @@
+<div class="video-list">
+	<table>
+		<thead>
+			<tr>
+				<th class="preview">Aperçu</th>
+				<th class="title {% if admin_mode == false %}full{% endif %}">Titre</th>
+				<th class="category {% if admin_mode == false %}full{% endif %}">Catégorie</th>
+				{% if admin_mode %}
+					<th></th>
+				{% endif %}
+			</tr>
+		</thead>
+		<tbody>
+			{% for video in videos %}
+				{% include 'MVNerdsProfileBundle:Profile:lol_video_row.html.twig' with {'video': video, 'admin_mode': admin_mode} %}
+			{% endfor %}
+		</tbody>
+	</table>
+</div>

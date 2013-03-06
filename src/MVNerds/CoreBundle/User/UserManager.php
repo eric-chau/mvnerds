@@ -58,10 +58,10 @@ class UserManager
 		
 		if ($this->userLocale == 'en') {
 			$mailSubject  = 'Summoner, you are now registered on MVNerds.com';
-			$mailTemplate = 'MVNerdsLaunchSiteBundle:Login:confirmation_mail_en.txt.twig';
+			$mailTemplate = 'MVNerdsSiteBundle:MailTemplate:confirmation_mail_en.txt.twig';
 		} else {
 			$mailSubject = 'Invocateur, vous êtes inscrit sur MVNerds.com !';
-			$mailTemplate = 'MVNerdsLaunchSiteBundle:Login:confirmation_mail.txt.twig';
+			$mailTemplate = 'MVNerdsSiteBundle:MailTemplate:confirmation_mail.txt.twig';
 		}
 		// Send confirmation mail to user
 		$message = Swift_Message::newInstance($mailSubject)
@@ -253,10 +253,10 @@ class UserManager
 		
 		if ($this->userLocale == 'en') {
 			$mailSubject  = 'Reset your MVNerds password!';
-			$mailTemplate = 'MVNerdsLaunchSiteBundle:Login:forgot_password_mail_en.txt.twig';
+			$mailTemplate = 'MVNerdsSiteBundle:MailTemplate:forgot_password_mail_en.txt.twig';
 		} else {
 			$mailSubject = 'Réinitialiser votre mot de passe MVNerds !';
-			$mailTemplate = 'MVNerdsLaunchSiteBundle:Login:forgot_password_mail.txt.twig';
+			$mailTemplate = 'MVNerdsSiteBundle:MailTemplate:forgot_password_mail.txt.twig';
 		}
 		
 		$message = Swift_Message::newInstance()

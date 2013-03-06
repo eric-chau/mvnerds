@@ -1,0 +1,25 @@
+<tr>
+	<td class="preview">
+		{% include 'MVNerdsVideoBundle:LoLVideoCenter:lol_video_index_table_preview_cell.html.twig' with {'video': video} %}
+	</td>
+
+	<td class="title">
+		{% include 'MVNerdsVideoBundle:LoLVideoCenter:lol_video_index_table_title_cell.html.twig' with {'video': video, 'user': video.getUser()} %}
+	</td>
+
+	<td class="category">
+		{{ video.getVideoCategory().getUniqueName()|trans }}
+	</td>
+
+	{% if admin_mode %}
+		<td class="admin-actions">
+			<a class="action view-action tooltip-anchor" href="{{path('videos_detail', {slug: video.getSlug()})}}" rel="tooltip" data-placement="top" data-original-title="{{ 'item_table.admin.view'|trans }}"><i class="icon-share"></i></a>
+			<a href="#" class="action edit-action tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="{{ 'item_table.admin.edit'|trans }}"><i class="icon-edit"></i></a>
+			<a href="#delete-video-{{ video.getSlug() }}-modal" class="action delete-action tooltip-anchor" data-toggle="modal" rel="tooltip" data-placement="top" data-original-title="{{ 'item_table.admin.delete'|trans }}"><i class="icon-remove-sign"></i></a>
+		</td>
+	{% endif %}
+</tr>
+
+{% if admin_mode %}
+	{% include 'MVNerdsProfileBundle:Modal:delete_video_modal.html.twig' with {'video': video} %}
+{% endif %}

@@ -90,7 +90,7 @@
 				
 				{# PROFILE HEADER #}
 				<div class="profile-header">
-					{% include 'MVNerdsProfileBundle:Profile:user_avatar.html.twig' with {'name': current_avatar_name} %}
+					<img src="{{ asset('medias/images/avatar/'~ current_avatar_name ~'.jpg') }}" class="user-current-avatar" />
 					<h1>{{ user.getUsername() }}</h1>
 					<div class="user-stat">
 						<i class="icon-pencil"></i>
@@ -117,51 +117,10 @@
 					
 					{# PIMP MY RECOMMENDED ITEMS #}
 					{% include 'MVNerdsProfileBundle:Profile:profile_index_pmri_block.html.twig' %}
-				
-				{#
-				{% if admin_mode %}
-					<h1>{{'Profile_index.h1'|trans}} {{ user.getUsername() }}</h1>
-					<p>
-						{{'Profile_index.p1'|trans({'%date%':user.getCreatedAt()|date('d/m/Y')})}}
-						{% for role in user.getRoles() %}
-							<strong>{{ (role)|trans|lower }}</strong>{% if loop.index + 1 == loop.length %} {{'General.and'|trans}} {% else %}{% if loop.index == loop.length %}.{% else %},{% endif %}{% endif %}
-						{% endfor %}
-					</p>
-
-					<p class="change-password">
-						Vous souhaitez changer votre mot de passe ? <a href="#" class="btn-change-password">Démarrer la procédure</a> 
-						<img src="{{ asset('images/commons/loader16-bg-141414.gif') }}" class="loader hide" />
-						<span class="process-ok hide">Nous avons bien pris en compte votre demande, vous allez recevoir un email vous détaillant la démarche à suivre.</span>
-					</p>
-
-					<h2>{{'Profile_index.avatar.h2'|trans}}</h2>
-					<div class="user-custom-avatar-container">
-						<div class="row-fluid">
-							<div class="span3 current-avatar">
-								<strong>{{'Profile_index.avatar.current_avatar'|trans}}</strong>
-								<img src="{{ asset('images/avatar/'~ current_avatar_name ~'.jpg') }}" class="avatar" />
-								<a href="#" class="btn-save-avatar disabled" data-current-avatar-name="{{ current_avatar_name }}">{{'Profile_index.avatar.save_new_avatar'|trans}}</a> <img src="{{ asset('images/commons/loader16-bg-141414.gif') }}" class="loader hide" />
-							</div>
-							<div class="span9 avatar-selection">
-								{% for avatar in avatars %}
-									<img src="{{ asset('images/avatar/'~ avatar.getName() ~'.jpg') }}" class="avatar-choice {% if avatar.getName() == current_avatar_name %} selected{% endif %}" data-avatar-name="{{ avatar.getName() }}" />
-								{% endfor %}
-							</div>
-						</div>
-					</div>
-				{% else %}
-					<img src="{{ asset('images/avatar/'~ current_avatar_name ~'.jpg') }}" class="avatar" />
-					<h1>{{ user.getUsername() }}</h1>
-					<p class="gray-color">{{ user.getUsername() }} {{'Profile_index.avatar.admin_mode.registered_since'|trans({'%date%':user.getCreatedAt()|date('d/m/Y')})}}
-						<ul class="gray-color">
-							{% for role in user.getRoles() %}
-								<li>{{ (role)|trans }}</li>
-							{% endfor %}
-						</ul>
-					</p>
-					<div class="clearfix"></div>
-				{% endif %}
-				#}
+						
+					{# LOL VIDEO CENTER #}
+					{% include 'MVNerdsProfileBundle:Profile:profile_index_lol_video_block.html.twig' %}
+				</div>
 					
 				{{ render(controller('MVNerdsCommentBundle:Comment:renderComments', {'object': user, 'objectType': 'user'})) }}
 				
@@ -169,8 +128,27 @@
 			</div>
 			
 			<div class="span4 right-content">
-				{{ render(controller('MVNerdsProfileBundle:Profile:renderLastestCommentsBlock', {'user': user})) }}
+				{% if admin_mode %}
+					<div class="block">
+						<div class="footer blue">
+							<a href="#" class="change-avatar-btn">{{'Profile_index.avatar.h2'|trans}}</a>
+						</div>
+					</div>
 					
+					{% include 'MVNerdsProfileBundle:Modal:change_avatar_modal.html.twig' %}
+					
+					<div class="block">
+						<div class="footer blue">
+							<a href="#" class="btn-change-password">
+								<i class="icon-spinner icon-spin loader hide"></i> 
+								<span class="msg initial">Changer mon mot de passe</span>
+								<span class="msg wip hide">Traitement en cours</span>
+								<span class="msg success hide">Terminé, vérifiez vos e-mails</span>
+							</a>
+						</div>
+					</div>
+				{% endif %}
+				
 				{# PUBLICITÉ #}
 				<div class="sidebar-ad-container">
 					<script type="text/javascript"><!--
@@ -185,6 +163,8 @@
 					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
 					</script>	
 				</div>
+					
+				{{ render(controller('MVNerdsProfileBundle:Profile:renderLastestCommentsBlock', {'user': user})) }}
 			</div>
 		</div>
 	</div>

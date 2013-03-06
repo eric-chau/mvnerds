@@ -125,8 +125,6 @@ class RegistrationController extends Controller
 	 */
 	public function resetPasswordAction($slug, $activationCode)
 	{
-		$this->forbidIfConnected();
-		
 		try {
 			$this->get('mvnerds.user_manager')->isValidResetPasswordAction($slug, $activationCode);
 		}

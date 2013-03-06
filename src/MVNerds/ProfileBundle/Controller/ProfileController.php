@@ -118,6 +118,7 @@ class ProfileController extends Controller
 		return $this->render('MVNerdsProfileBundle:Profile:profile_index.html.twig', array(
 			'user'					=> $user,
 			'user_items_builds'		=> $this->get('mvnerds.item_build_manager')->findByUserId($user->getId()),
+			'videos'				=> $this->get('mvnerds.video_manager')->findByUser($user),
 			'form'					=> $this->createForm(new ChangeLoLDirectoryType(), new ChangeLoLDirectoryModel($this->get('mvnerds.preference_manager'), $user))->createView(),
 			'avatars'				=> $this->get('mvnerds.profile_manager')->findAvatarByUserRoles($user),
 			'user_comment_count'	=> $this->get('mvnerds.comment_manager')->countCommentForUser($user),
@@ -325,6 +326,7 @@ class ProfileController extends Controller
 		return $this->render('MVNerdsProfileBundle:Profile:profile_index.html.twig', array(
 			'user'					=> $user,
 			'user_items_builds'		=> $this->get('mvnerds.item_build_manager')->findPublicByUserId($user->getId()),
+			'videos'				=> $this->get('mvnerds.video_manager')->findByUser($user),
 			'user_comment_count'	=> $this->get('mvnerds.comment_manager')->countCommentForUser($user),
 			'game_account'			=> $gameAccount
 		));
