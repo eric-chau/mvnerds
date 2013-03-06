@@ -80,19 +80,14 @@ $(document).ready(function()
 
 	$('img.avatar-choice').on('click', function()
 	{
-		if ($(this).hasClass('selected')) {
+		if ($(this).hasClass('selected') || $(this).hasClass('disabled')) {
 			return false;
 		}
 
-		$('img.avatar-choice.selected').toggleClass('selected');
-		$(this).toggleClass('selected');
+		$('img.avatar-choice.selected').removeClass('selected');
+		$(this).addClass('selected');
 
-		if (currentAvatarName != $(this).data('avatar-name')) {
-			$saveAvatarBtn.removeClass('disabled');
-		}
-		else {
-			$saveAvatarBtn.addClass('disabled');
-		}
+		$saveAvatarBtn.removeClass('disabled');
 	});
 
 	$saveAvatarBtn.on('click', function()
@@ -119,7 +114,7 @@ $(document).ready(function()
 				if (response) {
 					$('img.user-current-avatar').attr('src', '/images/avatar/'+ newAvatarName +'.jpg');
 					$('div#topbar li.user-container img').attr('src', '/images/avatar/'+ newAvatarName +'.jpg');
-					$('form#leave-comment-form img.user-avatar').attr('src', '/images/avatar/'+ newAvatarName +'.jpg');
+					$('form.leave-comment-form img.user-avatar').attr('src', '/images/avatar/'+ newAvatarName +'.jpg');
 					$('div#change-avatar-modal div.modal-body div.avatars-container').find('img').removeClass('disabled');
 					$('div#change-avatar-modal div.modal-body div.avatars-container').find('img.selected').toggleClass('selected disabled');
 					$('div#change-avatar-modal').modal('hide');
