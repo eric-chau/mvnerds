@@ -470,6 +470,7 @@ div#link-lol-account-modal div.modal-body div.end-of-process-action i.loader {
 }
 div#link-lol-account-modal div.modal-body div.end-of-process-action p {
   margin: 0;
+  text-align: center !important;
 }
 div#link-lol-account-modal div.modal-body div.end-of-process-action p.error {
   margin: 0 0 10px 0;

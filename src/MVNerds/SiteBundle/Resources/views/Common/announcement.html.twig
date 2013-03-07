@@ -1,3 +1,9 @@
-<div class="container announcement">
-	{{announcement}}
+<div id="announcement-container">
+	{{ announcement }}
 </div>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+		$('div#topbar li.alert a').addClass('unread');
+	});
+</script>

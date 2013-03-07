@@ -65,13 +65,4 @@ $(document).ready(function()
 	
 	// Affiche l'item modal lors du clic sur un objet
 	initModalItem($('.item-block-container'));
-
-	// Ajustement de la font-size en fonction de la longueur du nom d'utilisateur
-	var $linkToResize = $('div.stats strong a'),
-		maxLinkWidth = 97,
-		fontOriginalSize = 18;
-		
-	for (fontOriginalSize--; $linkToResize.width() > maxLinkWidth; fontOriginalSize--) {
-		$linkToResize.css('font-size', fontOriginalSize);
-	}
 });
