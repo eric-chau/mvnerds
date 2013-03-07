@@ -1,12 +1,18 @@
 $(document).ready(function() {
 	
 	//Lors d un report simple (sans description)
-	$('a.report-action').on('click', function() {
-		var $this = $(this);
-		
-		var objectSlug = $this.data('slug')
-		var objectId = $this.data('id')
-		
+	$('div.container.main-container').on('click', 'a.report-action', function(event) {
+		event.preventDefault();
+		if ($(this).hasClass('disabled')) {
+			return false;
+		}
+
+		var $this = $(this),
+			objectSlug = $this.data('slug'),
+			objectId = $this.data('id');
+
+		$this.find('i.loader').removeClass('hide');
+		$this.addClass('disabled');
 		if (objectSlug != undefined && objectSlug != '') {
 			data = {object_slug: objectSlug, object_type: $this.data('type')};
 		} else if (objectId != undefined && objectId != '') {
@@ -15,11 +21,17 @@ $(document).ready(function() {
 		
 		$.ajax({
 			type: 'POST',
-			url:  Routing.generate('report_report', {'_locale': locale}),
+			url:  Routing.generate('report_report'),
 			data: data,
 			dataType: 'json'
 		}).done(function(){
-			$this.remove();
+			if (locale == 'fr') {
+				$this.parent().html('<span>Vous avez signalé ce contenu</span>');
+			}
+			else {
+				$this.parent().html('<span>You already reported this content</span>');
+			}
+
 			displayMessage('Votre signalement a bien été pris en compte.', SUCCESS_ALERT);
 		}).fail(function(data){
 			displayMessage(data.responseText, ERROR_ALERT);

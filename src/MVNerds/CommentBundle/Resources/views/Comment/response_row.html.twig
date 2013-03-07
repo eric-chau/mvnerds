@@ -29,7 +29,9 @@
 					{% if response.getUser().getId() == app.user.getId() %}
 						<li><a href="#" class="edit-response-action">Éditer cette réponse</a></li>
 					{% endif %}
-					<li><a href="#">Signaler comme abus</a></li>
+					<li>
+						{% render(controller('MVNerdsReportBundle:Report:renderReportBlock', {'object': response, 'objectType': 'comment_response', 'isDetailed': false, 'hasSlug': false})) %}
+					</li>
 				</ul>
 			</div>
 		</div>

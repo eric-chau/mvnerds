@@ -158,7 +158,8 @@
 			COMMENT MANAGER SERVICE
 		-->
 		<service id="mvnerds.comment_manager" class="MVNerds\CoreBundle\Comment\CommentManager" />    
-		
+		<service id="mvnerds.comment_response_manager" class="MVNerds\CoreBundle\Comment\CommentResponseManager" />    
+
 		<!-- 
 			VOTE MANAGER SERVICE
 		-->
@@ -199,6 +200,10 @@
 		<!-- 
 			REPORT MANAGER SERVICE
 		-->
-		<service id="mvnerds.report_manager" class="MVNerds\CoreBundle\Report\ReportManager" />    
+		<service id="mvnerds.report_manager" class="MVNerds\CoreBundle\Report\ReportManager">
+			<call method="setSession">
+				<argument type="service" id="session" />
+			</call>
+		</service>
 	</services>		
 </container>

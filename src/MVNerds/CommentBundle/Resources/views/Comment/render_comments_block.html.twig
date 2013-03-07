@@ -16,3 +16,6 @@
 	{% endif %}
 </script>
 <script type="text/javascript" src="{{ asset('medias/js/comment/comment.js') }}"></script>
+{% if app.user != null %}
+	<script type="text/javascript" src="{{ asset('medias/js/report/report.js') }}"></script>
+{% endif %}

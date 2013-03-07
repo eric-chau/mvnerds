@@ -506,6 +506,7 @@
       <parameter name="foreign_table" value="user_report_comment" />
       <parameter name="expression" value="count(comment_id)" />
     </behavior>
+    <behavior name="mvnerds_reportable" />
   </table>
   <table name="news_category">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -698,6 +699,7 @@
       <parameter name="create_column" value="create_time" />
       <parameter name="update_column" value="update_time" />
     </behavior>
+    <behavior name="mvnerds_reportable" />
   </table>
   <table name="rotation">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />

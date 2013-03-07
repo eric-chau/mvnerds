@@ -1,5 +1,15 @@
 {% if can_report %}
-	<div class="simple-report-block">
-		<a href="#" class="report-action" data-type="{{object_type}}" data-slug="{{object_slug}}">Signaler pour abus</a>
-	</div>
+	<a href="#" 
+	   class="report-action" 
+	   data-type="{{object_type}}" 
+	   {% if object_slug is defined %}
+			data-slug="{{object_slug}}"
+		{% else %}
+			data-id="{{object_id}}"
+		{% endif %}
+	>
+		Signaler ce contenu pour abus <i class="icon-spin icon-spinner loader hide"></i>
+	</a>
+{% else %}
+	<span>Vous avez signalé ce contenu</span>
 {% endif %}

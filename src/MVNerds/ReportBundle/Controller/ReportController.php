@@ -32,7 +32,7 @@ class ReportController extends Controller
 		$objectId = $request->get('object_id', null);
 		$objectType = $request->get('object_type', null);
 		$descriptionIndex = $request->get('description_index', null);
-		if ($objectSlug == null || $objectType == null) {
+		if (($objectSlug == null && $objectId == null) || $objectType == null) {
 			throw new HttpException(500, 'Missing parameters !');
 		}
 		$description = null;
@@ -51,7 +51,7 @@ class ReportController extends Controller
 			if ($objectSlug != null) {
 				$object = $this->get('mvnerds.' . $objectType . '_manager')->findBySlug($objectSlug);
 			} elseif ($objectId != null) {
-				$object = $this->get('mvnerds.' . $objectType . '_manager')->findById($objectId);
+				$object = $this->get('mvnerds.' . $objectType . '_manager')->findById($objectId / 47);
 			}
 		} catch (Exception $e) {
 			throw new InvalidArgumentException('Object not found for slug:`'. $objectSlug .'` or for ID: `'. $objectId . '`');
@@ -66,11 +66,10 @@ class ReportController extends Controller
 		}
 	}
 	
-	public function renderReportBlockAction(IReport $object, $objectType, $isDetailed = false)
+	public function renderReportBlockAction(IReport $object, $objectType, $isDetailed = false, $hasSlug = true)
 	{
 		/* @var $reportManager \MVNerds\CoreBundle\Report\ReportManager */
 		$reportManager  = $this->get('mvnerds.report_manager');
-	
 		
 		if (($user = $this->getUser())) {
 			try {
@@ -83,19 +82,24 @@ class ReportController extends Controller
 			$canReport = false;
 		}
 		
+		$params = array(
+			'can_report'	=> $canReport,
+			'object_type'	=> $objectType
+		);
+		
+		if ($hasSlug) {
+			$params['object_slug'] = $object->getSlug();
+		}
+		else {
+			$params['object_id'] = $object->getId() * 47;
+		}
+		
 		if ($isDetailed) {
-			return $this->render('MVNerdsReportBundle:Report:detailed_report_block.html.twig', array(
-				'can_report'		=> $canReport,
-				'object_slug'		=> $object->getSlug(),
-				'object_type'		=> $objectType,
-				'report_motives'	=> UserReport::$REPORT_MOTIVES[$objectType]
-			));
+			$params['report_motives'] = UserReport::$REPORT_MOTIVES[$objectType];
+			
+			return $this->render('MVNerdsReportBundle:Report:detailed_report_block.html.twig', $params);
 		} else {
-			return $this->render('MVNerdsReportBundle:Report:simple_report_block.html.twig', array(
-				'can_report'		=> $canReport,
-				'object_slug'		=> $object->getSlug(),
-				'object_type'		=> $objectType
-			));
+			return $this->render('MVNerdsReportBundle:Report:simple_report_block.html.twig', $params);
 		}
 	}
 }

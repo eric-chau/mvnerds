@@ -194,6 +194,7 @@ div.comments-container {
 							.border-radius(0);
 							left: auto;
 							margin: 0;
+							min-width: 210px;
 							padding: 3px 0;
 							right: -5px !important;
 							text-align: left;
@@ -201,15 +202,34 @@ div.comments-container {
 
 							li {
 								&:hover {
-									background-color: @MVNerdsGreen;
-								
 									a {
+										background-color: @MVNerdsGreen;
 										color: white; 
 									}
 								}
 
 								a {
 									font-size: 12px; .transition(none);
+
+									&.disabled {
+										cursor: not-allowed;
+									}
+
+									i {
+										display: inline-block;
+										font-size: 14px;
+										margin: 0 0 0 3px;
+										position: relative;
+										top: 0;
+									}
+								}
+
+								span {
+									color: #666;
+									display: inline-block;
+									font-size: 12px;
+									font-style: italic;
+									padding: 3px 20px;
 								}
 							}
 						}
@@ -301,15 +321,34 @@ div.comments-container {
 
 									li {
 										&:hover {
-											background-color: #999;
-										
 											a {
+												background-color: #999;
 												color: white; 
 											}
 										}
 
 										a {
 											font-size: 12px; .transition(none);
+
+											&.disabled {
+												cursor: not-allowed;
+											}
+
+											i {
+												display: inline-block;
+												font-size: 14px;
+												margin: 0 0 0 3px;
+												position: relative;
+												top: 0;
+											}
+										}
+
+										span {
+											color: #666;
+											display: inline-block;
+											font-size: 12px;
+											font-style: italic;
+											padding: 3px 20px;
 										}
 									}
 								}

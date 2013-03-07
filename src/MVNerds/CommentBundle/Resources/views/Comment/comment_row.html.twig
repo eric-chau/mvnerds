@@ -49,16 +49,11 @@
 						{% if comment.getUser().getId() == app.user.getId() %}
 							<li><a href="#" class="edit-comment-action">Éditer ce commentaire</a></li>
 						{% endif %}
-						<li><a href="#">Signaler comme abus</a></li>
+						<li>
+							{% render(controller('MVNerdsReportBundle:Report:renderReportBlock', {'object': comment, 'objectType': 'comment', 'isDetailed': false, 'hasSlug': false})) %}
+						</li>
 					</ul>
 				</div>
-				{#<div class="report-container">
-					{% if comment.didIReportThisComment(app.user) %}
-						{% include 'MVNerdsCommentBundle:Common:report_success.html.twig' %}
-					{% else %}
-						<a href="#" class="report{% if show_comment == false %} hide{% endif %}" data-comment-id="{{ comment.getId() }}">{{'Comments.signal'|trans}}</a>
-					{% endif %}
-				</div>#}
 			</div>
 		{% endif %}
 		
