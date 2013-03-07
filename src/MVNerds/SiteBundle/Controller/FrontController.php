@@ -16,8 +16,10 @@ class FrontController extends Controller
     public function indexAction()
     {
         return $this->render('MVNerdsSiteBundle:Front:index.html.twig', array(
-			'lastest_items_builds' => $this->get('mvnerds.item_build_manager')->findLatestBuilds(),
-			'popular_items_builds' => $this->get('mvnerds.item_build_manager')->findMostDownloadedBuilds()
+			'lastest_items_builds'	=> $this->get('mvnerds.item_build_manager')->findLatestBuilds(),
+			'popular_items_builds'	=> $this->get('mvnerds.item_build_manager')->findMostDownloadedBuilds(),
+			'newest_videos'		=> $this->get('mvnerds.video_manager')->findNewestVideos(),
+			'most_viewed_videos'	=> $this->get('mvnerds.video_manager')->findMostViewedVideos()
 		));
     }
 

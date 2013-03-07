@@ -211,4 +211,41 @@ class VideoManager
 		
 		return $videoQuery->count();
 	}
+	
+	/**
+	 * Récupère les vidéos les plus récentes
+	 */
+	public function findNewestVideos()
+	{
+		$videos = VideoQuery::create()
+			->joinWith('User')
+			->add(VideoPeer::STATUS, VideoPeer::STATUS_ACTIVE)
+			->orderById(\Criteria::DESC)
+			->limit(5)
+		->find();
+				
+		if (null === $videos) {
+			throw new InvalidArgumentException('No item build found !');
+		}
+		return $videos;
+	}	
+	
+	/**
+	 * Récupère les vid"éos les plus consultées
+	 */
+	public function findMostViewedVideos()
+	{
+		$videos = VideoQuery::create()
+			->joinWith('User')
+			->add(VideoPeer::STATUS, VideoPeer::STATUS_ACTIVE)
+			->orderByView(\Criteria::DESC)
+			->limit(5)
+		->find();
+		
+		if (null === $videos) {
+			throw new InvalidArgumentException('No item build found !');
+		}
+
+		return $videos;
+	}
 }

@@ -155,6 +155,14 @@
 				<source>Sidebar.video.know-more</source>
 				<target>En savoir plus</target>
 			</trans-unit>
+			<trans-unit id="310">
+				<source>Sidebar.video.most-viewed-videos</source>
+				<target>Les plus vues</target>
+			</trans-unit>
+			<trans-unit id="311">
+				<source>Sidebar.video.new-videos</source>
+				<target>Nouvelles vidéos</target>
+			</trans-unit>
 
 			<!-- ChHAMPION ROTATION -->
 			<trans-unit id="400">
