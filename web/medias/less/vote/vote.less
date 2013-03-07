@@ -9,6 +9,7 @@ div.vote-block {
 			font-size: 28px;
 			font-weight: bold;
 			padding: 5px 0;
+			position: relative;
 
 			&.red {
 				color: @MVNerdsRed;
@@ -21,6 +22,15 @@ div.vote-block {
 			&.green {
 				color: @MVNerdsGreen;
 			}
+
+			span.msg {
+				color: #666 !important;
+				display: inline-block;
+				font-size: 12px;
+				left: 20px;
+				position: absolute;
+				text-transform: uppercase;
+			}
 		}
 
 		&.vote-actions {
@@ -29,7 +39,7 @@ div.vote-block {
 			padding: 5px 0;
 
 			a {
-				color: @MVNerdsGreen;
+				color: @MVNerdsGreen !important;
 				display: inline-block;
 				margin: 0 20px;
 
@@ -42,7 +52,7 @@ div.vote-block {
 				}
 
 				&.dislike {
-					color: @MVNerdsRed;
+					color: @MVNerdsRed !important;
 
 					&:hover i {
 						color: white; .transition(color .25s linear);

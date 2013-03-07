@@ -1,0 +1,25 @@
+<div id="report-modal" class="modal hide fade">
+	<div class="modal-header">
+		<i class="icon-remove" data-dismiss="modal"></i>
+		<h3><i class="icon-warning-sign"></i> Signaler cette vidéo</h3>
+	</div>
+	<div class="modal-body">
+		<p>
+			Vous êtes sur le point de signaler cette vidéo comme un contenu abusif. Choisissez un motif :
+		</p>
+		
+		<form class="report-form" action="#">
+			{% for motive in report_motives %}
+				<div class="motive">
+					<input type="radio" name="report-motive" value="{{loop.index0}}" id="motive-{{ loop.index0 }}" {{loop.index0 == 0 ? 'checked="checked"'}}>
+					<label for="motive-{{ loop.index0 }}">{{ motive }}</label>
+				</div>
+			{% endfor %}
+		</form>
+	</div>
+	<div class="modal-footer">
+		<i class="icon-spinner icon-spin loader hide"></i>
+		<a href="#" data-dismiss="modal" class="btn">{{'create_item_build.modal_dl_build.btn.cancel'|trans}}</a>
+		<a href="#" class="btn red report-form-action" data-type="{{ object_type }}" data-slug="{{ object_slug }}">Signaler</a>
+	</div>
+</div>

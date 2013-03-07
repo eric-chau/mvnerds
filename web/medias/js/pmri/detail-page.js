@@ -68,7 +68,7 @@ $(document).ready(function()
 
 	// Ajustement de la font-size en fonction de la longueur du nom d'utilisateur
 	var $linkToResize = $('div.stats strong a'),
-		maxLinkWidth = 98,
+		maxLinkWidth = 97,
 		fontOriginalSize = 18;
 		
 	for (fontOriginalSize--; $linkToResize.width() > maxLinkWidth; fontOriginalSize--) {

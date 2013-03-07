@@ -1,15 +1,20 @@
+<div class="stats detailed-report-block">
+	<i class="icon-warning-sign"></i>
+	
+	{% if can_report %}
+		<strong><a href="#" class="show-report-action" >Report</a></strong>
+	{% else %}
+		{% if app.user == null %}
+			<strong>
+				<a href="{{ path('security_store_current_route_and_redirect_to_login') }}"{% if app.request.getLocale() == 'fr' %} style="font-size: 12px"{% endif %}>Se connecter</a>
+			</strong>
+		{% else %}
+			<strong{% if app.request.getLocale() == 'fr' %} style="font-size: 13px"{% endif %}>Déjà Signalé</strong>
+		{% endif %}
+	{% endif %}
+	<br /> Signaler pour abus
+</div>
+
 {% if can_report %}
-	<div class="detailed-report-block">
-		<a href="#" class="show-report-action" >Signaler pour abus</a>
-		
-		<div class="report-motive" style="display:none;">
-			<form class="report-form" action="#">
-				{% for motive in report_motives %}
-					<input type="radio" name="report-motive" value="{{loop.index0}}" {{loop.index0 == 0 ? 'checked="checked"'}}>{{motive}} <br />
-				{% endfor %}
-				
-				<button type="submit" class="report-form-action" data-type="{{object_type}}" data-slug="{{object_slug}}">Signaler</button>
-			</form>
-		</div>
-	</div>
+	{% include 'MVNerdsReportBundle:Report:report_modal.html.twig' %}
 {% endif %}

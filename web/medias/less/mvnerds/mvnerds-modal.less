@@ -58,12 +58,18 @@ div.modal {
 			margin: 0 5px;
 		}
 
-		p.note {
-			padding: 0 0 0 20px;
+		p {
+			color: @MVNerdsMainTextColor !important;
+			padding: 0 !important;
+			text-align: left !important;
+		
+			&.note {
+				padding: 0 0 0 20px;
 
-			i {
-				display: inline-block;
-				margin: 0 5px 0 0;
+				i {
+					display: inline-block;
+					margin: 0 5px 0 0;
+				}
 			}
 		}
 
@@ -81,6 +87,10 @@ div.modal {
 
 		input[type="text"] {
 			width: 200px;
+		}
+
+		input[type="radio"] {
+			background-color: @bodyMainBGColor;
 		}
 
 		select {

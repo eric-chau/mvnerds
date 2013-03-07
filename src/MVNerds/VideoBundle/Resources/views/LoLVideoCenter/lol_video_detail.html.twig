@@ -65,11 +65,7 @@
 		<div class="row-fluid">
 			<div class="span8 left-content">
 				<h1>Vidéo "<span class="video-title">{{ video.getTitle() }}"</span></h1>
-				
-				{#{% include 'MVNerdsReportBundle:Report:detailed_report_block.html.twig' with {'object_type': 'video', 'can_report': can_report_video, 'object': video, 'report_motives': report_motives} %}#}
-				
-				{{ render(controller('MVNerdsReportBundle:Report:renderReportBlock', {'object': video, 'objectType': 'video', 'isDetailed': true})) }}
-				
+								
 				{# PUBLICITÉ #}
 				<div class="ad-container">
 					<script type="text/javascript"><!--
@@ -148,6 +144,8 @@
 							<strong>{{ video.getCommentCount() }}</strong><br /> commentaires
 						</div>
 						<div class="clearfix"></div>
+						
+						{{ render(controller('MVNerdsReportBundle:Report:renderReportBlock', {'object': video, 'objectType': 'video', 'isDetailed': true})) }}
 					</div>
 					<div class="footer">
 						<a href="#">Aller sur le profil de l'auteur</a>

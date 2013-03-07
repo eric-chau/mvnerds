@@ -22,27 +22,41 @@ $(document).ready(function() {
 	});
 	
 	//Toggle de la zone de report détaillée lors du clic sur le bouton show-report-action
-	$('.show-report-action').on('click', function () {
-		$(this).parent().find('div.report-motive').toggle(300, 'linear');
+	$('.show-report-action').on('click', function(event) {
+		event.preventDefault();
+		$('div#report-modal').modal('show');
 	});
 	
 	//Lors de la soumission du report détaillé
 	$('.report-form-action').on('click', function() {
-		var $this = $(this);
-		
-		var descriptionIndex = $this.parent().find('input[name=report-motive]:checked').val();
+		if ($(this).hasClass('disabled')) {
+			return false;
+		}
+
+		var $this = $(this),
+			$loader = $this.parent().find('i.loader');
+		$loader.removeClass('hide');
+		$this.addClass('disabled');
+		var descriptionIndex = $('div#report-modal form.report-form').find('input[name=report-motive]:checked').val();
 		
 		data = {object_slug: $this.data('slug'), object_type: $this.data('type'), description_index: descriptionIndex};
 		
 		$.ajax({
 			type: 'POST',
-			url:  Routing.generate('report_report', {'_locale': locale}),
+			url:  Routing.generate('report_report'),
 			data: data,
 			dataType: 'json'
 		}).done(function(){
-			$this.parent().parent().parent().remove();
+			$('div#report-modal').modal('hide');
+			if (locale == 'fr') {
+				$('a.show-report-action').parent().html('Déjà signalé').css('font-size', 13);
+			}
+			else {
+				$('a.show-report-action').parent().html('Done');
+			}
 			displayMessage('Votre signalement a bien été pris en compte.', SUCCESS_ALERT);
 		}).fail(function(data){
+			$('div#report-modal').modal('hide');
 			displayMessage(data.responseText, ERROR_ALERT);
 		});
 		

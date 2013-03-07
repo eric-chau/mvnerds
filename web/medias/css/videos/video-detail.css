@@ -473,6 +473,7 @@ div.vote-block div.rating {
   font-size: 28px;
   font-weight: bold;
   padding: 5px 0;
+  position: relative;
 }
 div.vote-block div.rating.red {
   color: #db4a38;
@@ -483,13 +484,21 @@ div.vote-block div.rating.orange {
 div.vote-block div.rating.green {
   color: #759e1a;
 }
+div.vote-block div.rating span.msg {
+  color: #666 !important;
+  display: inline-block;
+  font-size: 12px;
+  left: 20px;
+  position: absolute;
+  text-transform: uppercase;
+}
 div.vote-block div.vote-actions {
   color: #999;
   font-size: 12px;
   padding: 5px 0;
 }
 div.vote-block div.vote-actions a {
-  color: #759e1a;
+  color: #759e1a !important;
   display: inline-block;
   margin: 0 20px;
 }
@@ -504,7 +513,7 @@ div.vote-block div.vote-actions a.disabled {
   cursor: not-allowed;
 }
 div.vote-block div.vote-actions a.dislike {
-  color: #db4a38;
+  color: #db4a38 !important;
 }
 div.vote-block div.vote-actions a.dislike:hover i {
   color: white;
@@ -517,4 +526,19 @@ div.vote-block div.vote-actions a i {
   display: block;
   font-size: 20px;
   margin: 0 0 3px 0;
+}
+div#report-modal div.modal-body form {
+  padding: 0 40px;
+}
+div#report-modal div.modal-body form div.motive {
+  margin: 0 0 5px 0;
+}
+div#report-modal div.modal-body form div.motive input[type="radio"] {
+  background-color: #e4e6e5;
+  display: inline-block;
+  margin: 0 10px 0 0;
+}
+div#report-modal div.modal-body form div.motive label {
+  text-align: left;
+  width: 300px;
 }

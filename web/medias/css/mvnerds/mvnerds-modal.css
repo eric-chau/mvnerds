@@ -83,6 +83,11 @@ div.modal div.modal-body textarea {
   display: inline-block;
   margin: 0 5px;
 }
+div.modal div.modal-body p {
+  color: #111111 !important;
+  padding: 0 !important;
+  text-align: left !important;
+}
 div.modal div.modal-body p.note {
   padding: 0 0 0 20px;
 }
@@ -103,6 +108,9 @@ div.modal div.modal-body select {
 }
 div.modal div.modal-body input[type="text"] {
   width: 200px;
+}
+div.modal div.modal-body input[type="radio"] {
+  background-color: #e4e6e5;
 }
 div.modal div.modal-body select {
   padding: 2px 2px 2px 5px;

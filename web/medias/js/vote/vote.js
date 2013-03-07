@@ -3,7 +3,13 @@ var $likeBtn, $dislikeBtn, $voteBtns;
 $(document).ready(function() {
 	
 	$('div.vote-block').on('click', '.btn-vote:not(.disabled)', function() {
-		console.log('like : ' + $(this).data('like'));
+		var $this = $(this),
+			$icon = $this.find('i'),
+			$parent = $this.parent();
+
+		var initalIconClass = $icon.attr('class');
+		$icon.attr('class', 'icon-spin icon-spinner');
+
 		data = {object_slug: objectSlug, object_type: objectType, like: $(this).data('like')};
 		
 		$.ajax({
@@ -11,8 +17,8 @@ $(document).ready(function() {
 			url:  Routing.generate('vote_vote', {'_locale': locale}),
 			data: data,
 			dataType: 'json'
-		}).done(function(data){
-			console.log(data);
+		}).done(function(data) {
+			$icon.attr('class', initalIconClass);
 			$('.like_count').html(data.likeCount);
 			$('.dislike_count').html(data.dislikeCount);
 			$('.vote_count').html(data.likeCount + data.dislikeCount);
@@ -28,7 +34,7 @@ $(document).ready(function() {
 			} else {
 			   rating_css_class = 'rating green';
 			}
-			$('div.vote-block div.rating').attr('class', rating_css_class).html(Math.round(rating) + '%');
+			$('div.vote-block div.rating').attr('class', rating_css_class).find('span.rating').html(Math.round(rating) + '%');
 			
 			if (data.canLike) {
 				$('.btn-vote-like').removeClass('disabled');
@@ -43,7 +49,7 @@ $(document).ready(function() {
 				$('.btn-vote-dislike').addClass('disabled');
 			}
 		}).fail(function(data){
-			console.log(data);
+			$icon.attr('class', initalIconClass);
 		});
 		
 		return false;
