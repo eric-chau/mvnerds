@@ -20,8 +20,8 @@
 		<div class="slogan">
 			<img src="{{ asset('medias/images/site/mvnerds-logo.png') }}" />
 			<p>
-				<span class="brand"><strong>MOST VALUABLE NERDS</strong> - Guides, Builds and Tools for League of Legends</span><br />
-				Vous êtes sur <span class="location">{% block breadcrumbs %}<a href="{{ path('site_homepage') }}">Accueil</a>{% endblock %}</span>
+				<span class="brand"><strong>MOST VALUABLE NERDS</strong> - {{'Site.slogan' | trans}}</span><br />
+				{{'Breadcrumbs.you-are-on' | trans}} <span class="location">{% block breadcrumbs %}<a href="{{ path('site_homepage') }}">{{'Breadcrumbs.home' | trans}}</a>{% endblock %}</span>
 			</p>
 		</div>
 		<div class="social-container">

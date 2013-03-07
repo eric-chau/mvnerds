@@ -94,6 +94,119 @@
 					ou deux, vérifiez les filtres de spams et / ou de courriers indésirables de votre messagerie. | A TRADUIRE
 				</target>
 			</trans-unit>
+			
+			<trans-unit id="100">
+				<source>Site.slogan</source>
+				<target>Guides, Builds and Tools for League of Legends</target>
+			</trans-unit>
+
+			<!-- BREADCRUMBS -->
+			<trans-unit id="200">
+				<source>Breadcrumbs.you-are-on</source>
+				<target>You are on</target>
+			</trans-unit>
+			<trans-unit id="201">
+				<source>Breadcrumbs.home</source>
+				<target>Home</target>
+			</trans-unit>
+
+			<!-- SIDEBAR -->
+			<trans-unit id="300">
+				<source>Sidebar.PMRI.new-lists</source>
+				<target>New lists</target>
+			</trans-unit>
+			<trans-unit id="301">
+				<source>Sidebar.PMRI.most-dl</source>
+				<target>Most downloaded</target>
+			</trans-unit>
+			<trans-unit id="302">
+				<source>Sidebar.see-more</source>
+				<target>See more</target>
+			</trans-unit>
+			<trans-unit id="303">
+				<source>Sidebar.champion.title</source>
+				<target>Compare champions and get advantage of :</target>
+			</trans-unit>
+			<trans-unit id="304">
+				<source>Sidebar.champion.ul.li1</source>
+				<target>An original champions list</target>
+			</trans-unit>
+			<trans-unit id="305">
+				<source>Sidebar.champion.ul.li2</source>
+				<target>An efficient filtering system</target>
+			</trans-unit>
+			<trans-unit id="306">
+				<source>Sidebar.champion.ul.li3</source>
+				<target>A powerfull comparison tool</target>
+			</trans-unit>
+			<trans-unit id="307">
+				<source>Sidebar.champion.try-it-now</source>
+				<target>Try it now</target>
+			</trans-unit>
+			<trans-unit id="308">
+				<source>Sidebar.video.description</source>
+				<target>
+					Try our whole new module "LoLVideoCenter" ! This module will allow you to watch a bunch of League of Legends related videos.
+					As a MVNerds member you have the possibility to publish as many videos as you want, they can be funny, usefull, or any other video related to LoL.
+				</target>
+			</trans-unit>
+			<trans-unit id="309">
+				<source>Sidebar.video.know-more</source>
+				<target>More</target>
+			</trans-unit>
+			
+			<!-- ChHAMPION ROTATION -->
+			<trans-unit id="400">
+				<source>Champion-rotation.title</source>
+				<target>Champion Rotation</target>
+			</trans-unit>
+			<trans-unit id="401">
+				<source>Champion-rotation.search.placeholder</source>
+				<target>Champion name...</target>
+			</trans-unit>
+
+			<!-- FOOTER -->
+			<trans-unit id="500">
+				<source>Footer.title</source>
+				<target>Quick access to champions</target>
+			</trans-unit>
+			<trans-unit id="501">
+				<source>Footer.riot</source>
+				<target>
+					League of Legends and Riot Games Inc. are trademarks or registered trademarks of Riot Games, Inc. 
+					All the elements extracted or copied from the game League of Legends, presents on the website, belong to Riot Games Inc.
+				</target>
+			</trans-unit>
+			<trans-unit id="503">
+				<source>Footer.links.contact</source>
+				<target>Contact us</target>
+			</trans-unit>
+			<trans-unit id="504">
+				<source>Footer.links.privacy-policy</source>
+				<target>Privacy policy</target>
+			</trans-unit>
+			<trans-unit id="505">
+				<source>Footer.links.terms-of-use</source>
+				<target>Terms of use</target>
+			</trans-unit>
+			<trans-unit id="506">
+				<source>Footer.links.legal</source>
+				<target>Legal</target>
+			</trans-unit>
+			<trans-unit id="507">
+				<source>Footer.links.statistics</source>
+				<target>Statistics</target>
+			</trans-unit>
+			<trans-unit id="508">
+				<source>Footer.links.about-us</source>
+				<target>About us</target>
+			</trans-unit>
+
+			<!-- TOPBAR -->
+			<trans-unit id="600">
+				<source>Topbar.members</source>
+				<target>Community members</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

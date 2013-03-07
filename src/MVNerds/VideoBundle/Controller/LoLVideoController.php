@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 use MVNerds\CoreBundle\Model\Video;
 
@@ -88,8 +89,8 @@ class LoLVideoController extends Controller
 			return new Response($translator->trans('error.missing_link'), 400);
 		}
 		
-		if ( isset( $_POST['description'] ) && ($description = $_POST['description']) != '' ) {
-			$video->setDescription($description);
+		if ( isset( $_POST['description'] )) {
+			$video->setDescription($_POST['description']);
 		}
 		
 		$video->save();
@@ -219,5 +220,28 @@ class LoLVideoController extends Controller
 		}
 		
 		return $this->render('MVNerdsVideoBundle:LoLVideoCenter:lol_video_detail.html.twig', $params);
+	}
+	
+	/**
+	 * @Route("/delete/{slug}", name="videos_delete")
+	 * @Secure(roles="ROLE_USER")
+	 */
+	public function deleteAction($slug) 
+	{
+		/* @var $videoManager \MVNerds\CoreBundle\Video\VideoManager */
+		$videoManager = $this->get('mvnerds.video_manager');
+			
+		try {
+			/* @var $video \MVNerds\CoreBundle\Model\Video */
+			$video = $videoManager->findBySlug($slug);
+		} catch (\Exception $e ) {
+			return $this->redirect($this->generateUrl('summoner_profile_index'));
+		}
+		
+		if($this->getUser()->getId() == $video->getUserId() || $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+			$video->delete();
+		}
+		
+		return $this->redirect($this->generateUrl('summoner_profile_index'));
 	}
 }

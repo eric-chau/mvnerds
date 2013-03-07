@@ -1,7 +1,7 @@
 <div id="footer">
 	<div class="container">
 		<div class="champions-block">
-			<h5><i class="icon-screenshot"></i> Accès rapide aux champions</h5>
+			<h5><i class="icon-screenshot"></i> {{'Footer.title' | trans}}</h5>
 			{{ render(controller('MVNerdsSiteBundle:Front:renderFooterChampion')) }}
 		</div>
 		<div class="mvnerds-legal">
@@ -10,18 +10,17 @@
 					<img src="{{ asset('medias/images/site/mvnerds-logo-nocolor.png') }}" />
 				</div>
 				<div class="span9 main-content">
-					<strong>Most Valuable Nerds</strong> - Guides, builds et outils pour les joueurs de League of Legends !
+					<strong>Most Valuable Nerds</strong> - {{'Site.slogan' | trans}}
 					
 					<p>
-						League of Legends et Riot Games sont des marques déposées de Riot Games, Inc.
-						Tous les éléments extraits ou recopiés du jeu League of Legends, présents sur le site, appartiennent à Riot Games Inc.
+						{{'Footer.riot' | trans }}
 					</p>
 					
 					<ul>
-						<li><i class="icon-link"></i> <a href="{{path('site_contact_us')}}">Nous contacter</a></li>
-						<li><i class="icon-link"></i> <a href="{{path('site_privacy_policy')}}">Politique de confidentialité</a></li>
-						<li><i class="icon-link"></i> <a href="{{path('site_terms_of_use')}}">Conditions générales d'utilisation</a></li>
-						<li><i class="icon-link"></i> <a href="{{path('site_legal')}}">Mentions légales</a></li>
+						<li><i class="icon-link"></i> <a href="{{path('site_contact_us')}}">{{'Footer.links.contact' | trans}}</a></li>
+						<li><i class="icon-link"></i> <a href="{{path('site_privacy_policy')}}">{{'Footer.links.privacy-policy' | trans}}</a></li>
+						<li><i class="icon-link"></i> <a href="{{path('site_terms_of_use')}}">{{'Footer.links.terms-of-use' | trans}}</a></li>
+						<li><i class="icon-link"></i> <a href="{{path('site_legal')}}">{{'Footer.links.legal' | trans}}</a></li>
 					</ul>
 				</div>
 			</div>

@@ -4,7 +4,14 @@ $(document).ready(function() {
 	$('a.report-action').on('click', function() {
 		var $this = $(this);
 		
-		data = {object_slug: $this.data('slug'), object_type: $this.data('type')};
+		var objectSlug = $this.data('slug')
+		var objectId = $this.data('id')
+		
+		if (objectSlug != undefined && objectSlug != '') {
+			data = {object_slug: objectSlug, object_type: $this.data('type')};
+		} else if (objectId != undefined && objectId != '') {
+			data = {object_id: objectId, object_type: $this.data('type')};
+		}
 		
 		$.ajax({
 			type: 'POST',

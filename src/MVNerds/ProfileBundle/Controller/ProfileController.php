@@ -40,8 +40,9 @@ class ProfileController extends Controller
 		
 		$aColumns = array(
 			'',
-			'username',
 			'',
+			'',
+			'username',
 			'created_at'
 		);
 		
@@ -90,8 +91,9 @@ class ProfileController extends Controller
 			
 			$jsonUsers['aaData'][] = array(
 				$this->renderView('MVNerdsProfileBundle:Profile:user_avatar.html.twig', array('name' => $user->getProfile()->getAvatar()->getName())),
-				$user->getUsername(),
+				$this->renderView('MVNerdsProfileBundle:Profile:user_username.html.twig', array('user' => $user)),
 				$user->getCreatedAt('d/m/Y'),
+				$user->getUsername(),
 				$user->getCreatedAt('YmdHims')
 			);
 		}
@@ -113,10 +115,13 @@ class ProfileController extends Controller
 			$this->get('mvnerds.elophant_api_manager')->updateRankedStatsIfNeeded($gameAccount);
 		}
 		
+		$videoManager = $this->get('mvnerds.video_manager');
+		
 		return $this->render('MVNerdsProfileBundle:Profile:profile_index.html.twig', array(
 			'user'					=> $user,
 			'user_items_builds'		=> $this->get('mvnerds.item_build_manager')->findByUserId($user->getId()),
-			'videos'				=> $this->get('mvnerds.video_manager')->findByUser($user),
+			'videos'				=> $videoManager->findByUser($user),
+			'video_categories'			=> $videoManager->findAllVideoCatgories(),
 			'form'					=> $this->createForm(new ChangeLoLDirectoryType(), new ChangeLoLDirectoryModel($this->get('mvnerds.preference_manager'), $user))->createView(),
 			'avatars'				=> $this->get('mvnerds.profile_manager')->findAvatarByUserRoles($user),
 			'user_comment_count'	=> $this->get('mvnerds.comment_manager')->countCommentForUser($user),
@@ -321,11 +326,14 @@ class ProfileController extends Controller
 			$this->get('mvnerds.elophant_api_manager')->updateRankedStatsIfNeeded($gameAccount);
 		}
 		
+		$videoManager = $this->get('mvnerds.video_manager');
+		
 		return $this->render('MVNerdsProfileBundle:Profile:profile_index.html.twig', array(
 			'user'					=> $user,
 			'user_items_builds'		=> $this->get('mvnerds.item_build_manager')->findPublicByUserId($user->getId()),
-			'videos'				=> $this->get('mvnerds.video_manager')->findByUser($user),
-			'user_comment_count'	=> $this->get('mvnerds.comment_manager')->countCommentForUser($user),
+			'videos'				=> $videoManager->findByUser($user),
+			'video_categories'			=> $videoManager->findAllVideoCatgories(),
+			'user_comment_count'		=> $this->get('mvnerds.comment_manager')->countCommentForUser($user),
 			'game_account'			=> $gameAccount
 		));
 	}
