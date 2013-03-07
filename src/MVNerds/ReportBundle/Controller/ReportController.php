@@ -29,6 +29,7 @@ class ReportController extends Controller
 		
 		//Récupération et vérification des paramètres
 		$objectSlug = $request->get('object_slug', null);
+		$objectId = $request->get('object_id', null);
 		$objectType = $request->get('object_type', null);
 		$descriptionIndex = $request->get('description_index', null);
 		if ($objectSlug == null || $objectType == null) {
@@ -47,9 +48,13 @@ class ReportController extends Controller
 		
 		//On essaie de récupérer l objet depuis la BDD
 		try {
-			$object = $this->get('mvnerds.' . $objectType . '_manager')->findBySlug($objectSlug);
+			if ($objectSlug != null) {
+				$object = $this->get('mvnerds.' . $objectType . '_manager')->findBySlug($objectSlug);
+			} elseif ($objectId != null) {
+				$object = $this->get('mvnerds.' . $objectType . '_manager')->findById($objectId);
+			}
 		} catch (Exception $e) {
-			throw new InvalidArgumentException('Object not found for slug:`'. $objectSlug .'`');
+			throw new InvalidArgumentException('Object not found for slug:`'. $objectSlug .'` or for ID: `'. $objectId . '`');
 		}
 		
 		//On essaie d effectuer le report de $object par $user
@@ -88,7 +93,8 @@ class ReportController extends Controller
 		} else {
 			return $this->render('MVNerdsReportBundle:Report:simple_report_block.html.twig', array(
 				'can_report'		=> $canReport,
-				'object_slug'		=> $object->getSlug()
+				'object_slug'		=> $object->getSlug(),
+				'object_type'		=> $objectType
 			));
 		}
 	}
