@@ -44,6 +44,10 @@ class ElophantAPIManager
 		$this->updateRequestSendCount();
 		$contentObject = json_decode($response->getContent());
 		
+		if (null == $contentObject) {
+			throw new ServiceUnavailableException();
+		}
+		
 		if (!$contentObject->success) {
 			if ($contentObject->error == 'No active connection found for the given region.') {
 				throw new ServiceUnavailableException();
