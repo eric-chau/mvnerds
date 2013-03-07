@@ -15,8 +15,11 @@
 			{% include 'MVNerdsSiteBundle:Common:topbar.html.twig' %}
 		{% endif %}
 	{% endblock %}
-			
+	
 	<div class="container header border-bottom">
+		
+		{{ render(controller('MVNerdsSiteBundle:Front:RenderAnnouncement')) }}
+		
 		<div class="slogan">
 			<img src="{{ asset('medias/images/site/mvnerds-logo.png') }}" />
 			<p>

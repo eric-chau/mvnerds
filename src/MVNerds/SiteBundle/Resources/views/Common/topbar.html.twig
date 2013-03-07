@@ -38,8 +38,8 @@
 								
 							<div class="span4">
 								<ul>
-									<li class="header"><a href="#"><i class="icon-globe"></i> Most Valuable Nerds</a></li>
-									<li><a href="{{path('users_list_index')}}"><i class="icon-stop"></i>{{ 'Topbar.members'|trans }}</a></li>
+									<li class="header"><a href="#"><i class="icon-globe"></i>Most Valuable Nerds</a></li>
+									<li><a href="{{path('users_list_index')}}"><i class="icon-stop"></i> {{ 'Topbar.members'|trans }}</a></li>
 									{#<li><a href="#"><i class="icon-stop"></i> Aller sur les forums de discussions</a></li>
 									<li><a href="#"><i class="icon-stop"></i> L'équipe League of Legends</a></li>#}
 								</ul>
@@ -52,7 +52,7 @@
 			
 		<ul class="right-container">
 			<li class="alert">
-				<a href="#" class="unread"><i class="icon-info-sign"></i></a>
+				<a href="#" class=""><i class="icon-info-sign"></i></a>
 			</li>
 			{#<li class="notification">
 				<i class="icon-exclamation-sign"></i>
@@ -70,8 +70,5 @@
 			</li>
 		</ul>
 		
-	</div>
-		
-	{{ render(controller('MVNerdsSiteBundle:Front:RenderAnnouncement')) }}
-		
+	</div>		
 </div>
