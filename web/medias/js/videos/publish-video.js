@@ -51,18 +51,20 @@ function publishVideo() {
 	});
 }
 
-$(document).ready(function() {
+//Permet de récupérer les champs d une modal via son id
+function initModalData(modalId) {
+	$modalPublish = $(modalId);
+	
 	//Récupération des champs du formulaire
-	$title = $('#video-publish-title')
-	$category = $('#video-publish-category')
-	$link = $('#video-publish-link')
-	$description = $('#video-publish-description')
-	$slug = $('#video-publish-slug')
-	
-	$modalPublish = $('#modal-video-publish');
-	
-	$loading = $('#modal-video-loading-img');
-	
+	$title = $modalPublish.find('.video-publish-title');
+	$category = $modalPublish.find('.video-publish-category');
+	$link = $modalPublish.find('.video-publish-link');
+	$description = $modalPublish.find('.video-publish-description');
+	$slug = $modalPublish.find('.video-publish-slug');
+	$loading = $modalPublish.find('.modal-video-loading-img');
+}
+
+$(document).ready(function() {	
 	//Initialisation des messages d'erreurs
 	errorMsgs['title'] = [];
 	errorMsgs['title']['fr'] = 'Le titre de la vidéo n\'est pas valide.';
@@ -76,12 +78,18 @@ $(document).ready(function() {
 	
 	//Clic sur le bouton publish de la page de listing des vidéos ou de la page de détail
 	$('#video-publish-action, #video-edit-action').click(function() {
+		var target = $(this).data('target');
+		if (target != undefined && target != '') {
+			initModalData('#' + target);
+		} else {
+			initModalData('#modal-video-publish-');
+		}
 		$modalPublish.modal('show');
 		return false;
 	});
 	
 	//Clic sur le bouton publish de la modal
-	$('#modal-btn-publish').click(function(e) {
+	$('.modal .modal-btn-publish').click(function(e) {
 		e.preventDefault();
 		$loading.show();
 		try {
@@ -90,5 +98,14 @@ $(document).ready(function() {
 			displayMessage(err, ERROR_ALERT);
 			$loading.hide();
 		}
+	});
+	
+	$('div.video-list a.edit-action').click(function() {
+		var target = $(this).data('target');
+		initModalData('#' + target);
+		
+		$modalPublish.modal('show');
+		
+		return false;
 	});
 });

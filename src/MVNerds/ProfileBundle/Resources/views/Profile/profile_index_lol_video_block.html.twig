@@ -1,7 +1,7 @@
 <div class="lol-video-container">
 	<h2>LoL Video Center</h2>
 
-	{% if user_items_builds|length > 0 %}
+	{% if videos|length > 0 %}
 		{% include 'MVNerdsProfileBundle:Profile:lol_video_list.html.twig' with {'videos': videos, 'admin_mode': admin_mode}  %}
 	{% else %}
 		<p class="empty-list"><i>

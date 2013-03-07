@@ -112,7 +112,7 @@
 					{# Bouton d'édition #}
 					<div class="block">
 						<div class="footer blue">
-							<a href="#" id="video-edit-action">{{ 'item_table.admin.edit'|trans }}</a>
+							<a href="#" id="video-edit-action" data-target="modal-video-publish-{{video.getSlug()}}">{{ 'item_table.admin.edit'|trans }}</a>
 						</div>
 					</div>
 				{% endif %}
