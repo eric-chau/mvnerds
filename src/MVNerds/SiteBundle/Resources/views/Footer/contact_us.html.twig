@@ -26,7 +26,7 @@
 					{{ render_error_flash() }}
 				{% endautoescape %}
 			</div>
-			<form id="contact-us-form" action="{{ path('launch_site_contact_us') }}" method="POST" class="form-horizontal">
+			<form id="contact-us-form" action="{{ path('site_contact_us') }}" method="POST" class="form-horizontal">
 				<div class="field">
 					<label for="contact-mail" class="control-label">{{ 'Contact.form.mail.label'|trans}}</label>
 					<input id="contact-mail" class="contact" name="contact-mail" type="email" placeholder="{{ 'Contact.form.mail.placeholder'|trans}}" />
