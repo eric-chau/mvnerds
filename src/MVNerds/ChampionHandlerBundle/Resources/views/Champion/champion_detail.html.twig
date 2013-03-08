@@ -27,11 +27,15 @@
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/champions/champion-detail.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/jquery.dataTables.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/champions/pmri-list.js') }}"></script>
 	{% else %}
 		{% javascripts
 			'medias/js/bootstrap/bootstrap-tooltip.js'
 			'medias/js/bootstrap/bootstrap-popover.js'
 			'medias/js/champions/champion-detail.js'
+			'medias/js/jquery.dataTables.min.js'
+			'medias/js/champions/pmri-list.js'
 			output='js/champion-detail.js'
 			filter='yui_js'
 		%}
@@ -95,6 +99,23 @@
 				</div>
 
 				{% include 'MVNerdsChampionHandlerBundle:Champion:champion_skin_list.html.twig' with {'champion': champion} %}
+				
+				<div class="pmri-container">
+					<h2>Pimp My Recommended Items</h2>
+					
+					<table id="item-builds-table" class="table data-table" data-filter="{{champion.getName()}}">
+						<thead>
+							<tr>
+								<th class="champion">{{'item_table.th.champion'|trans}}</th>
+								<th class="name">{{'item_table.th.name'|trans}}</th>
+								<th class="game-mode">{{'item_table.th.game_mode'|trans}}</th>
+							</tr>
+						</thead>
+						<tbody>
+							{# Contenu chargé en AJAX par DataTable #}
+						</tbody>
+					</table>
+				</div>
 				
 				{{ render(controller('MVNerdsCommentBundle:Comment:renderComments', {'object': champion, 'objectType': 'champion'})) }}
 			</div>

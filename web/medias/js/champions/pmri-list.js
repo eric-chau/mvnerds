@@ -63,7 +63,6 @@ $(document).ready(function() {
 		"bProcessing": true,
 		"bServerSide": true,
 		"sAjaxSource": Routing.generate('item_builder_list_ajax', {_locale: locale}),
-		"oSearch" :{"sSearch":  ((filter != undefined) ? filter : '')},
 		"bLengthChange": false,
 		"aaSorting": [],
 		"iDisplayLength": 12,
@@ -115,6 +114,8 @@ $(document).ready(function() {
 		[11, 'asc']//Les moins bien notées
 	];
 	
+	itemBuildsTable.fnSort([sortTable[2]]);
+	
 	var $dropdownSort = $('ul#sort-list');
 	$dropdownSort.find('li a.sort-link').on('click', function(e){
 		e.preventDefault();
@@ -123,12 +124,8 @@ $(document).ready(function() {
 		itemBuildsTable.fnSort([sortTable[$(this).attr('data-option-value')]]);
 	});
 	
-	//On change filter input
-	$('#champion-filter-input').on('keyup', function(e){
-		if (e.keyCode == 13 || e.keyCode == 8) {
-			itemBuildsTable.fnFilter($(this).val(), 3);
-		}
-	});
+	itemBuildsTable.fnFilter(filter, 3);
+	
 	$('#author-filter-input').on('keyup change', function(e){
 		if (e.keyCode == 13 || e.keyCode == 8) {
 			itemBuildsTable.fnFilter($(this).val(), 6);
