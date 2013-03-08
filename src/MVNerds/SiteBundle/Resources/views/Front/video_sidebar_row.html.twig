@@ -4,11 +4,13 @@
 	<a href="{{ path('videos_detail', {'slug': video.getSlug()}) }}">
 		{% include 'MVNerdsVideoBundle:LoLVideoCenter:lol_video_index_table_preview_cell.html.twig' with {'video': video} %}
 	</a>
-	<a href="{{ path('videos_detail', {'slug': video.getSlug()}) }}"><strong class="title">{{ video.getTitle() }}</strong></a><br />
-	
-	{{'item_table.td.created_by'|trans}} <a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}" title="{{'item_table.td.consult_profile_of'|trans}} {{ user.getUsername }}">{{user.getUsername()}}</a> {{'item_table.td.created_the'|trans}} {{video.getCreateTime('d/m/Y')}}<br />
-	<span class="stat first"><i class="icon-comments icon-white" title="comments"></i> {{video.getCommentCount()}}</span>
-	<span class="stat"><i class="icon-eye-open icon-white" title="views"></i> {{video.getView()}}</span>
-	<span class="stat"><i class="icon-thumbs-up icon-white" title="{{ 'item_table.td.icon.title.like'|trans }}"></i> {{ video.getLikeCount() }}</span>
-	<span class="stat"><i class="icon-thumbs-down icon-white" title="{{ 'item_table.td.icon.title.dislike'|trans }}"></i> {{ video.getDislikeCount() }}</span>
+	<div class="content-info">
+		<a href="{{ path('videos_detail', {'slug': video.getSlug()}) }}"><strong class="title">{{ video.getTitle() }}</strong></a><br />
+
+		{{'item_table.td.created_by'|trans}} <a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}" title="{{'item_table.td.consult_profile_of'|trans}} {{ user.getUsername }}">{{user.getUsername()}}</a> {{'item_table.td.created_the'|trans}} {{video.getCreateTime('d/m/Y')}}<br />
+		<span class="stat first"><i class="icon-comments icon-white" title="comments"></i> {{video.getCommentCount()}}</span>
+		<span class="stat"><i class="icon-eye-open icon-white" title="views"></i> {{video.getView()}}</span>
+		<span class="stat"><i class="icon-thumbs-up icon-white" title="{{ 'item_table.td.icon.title.like'|trans }}"></i> {{ video.getLikeCount() }}</span>
+		<span class="stat"><i class="icon-thumbs-down icon-white" title="{{ 'item_table.td.icon.title.dislike'|trans }}"></i> {{ video.getDislikeCount() }}</span>
+	</div>
 </div>

@@ -24,8 +24,7 @@ div.span4.right-content {
 	}
 
 	div.pmri-row, div.video-row {
-		background-color: #333;
-		color: #999;
+		background-color: #333;		
 		margin: 5px 0;
 		min-height: 0;
 		padding: 4px 0 4px 10px;
@@ -33,7 +32,6 @@ div.span4.right-content {
 
 		&:hover {
 			background-color: darken(@MVNerdsBlue, 10%);
-			color: #fff; .transition(all .25s linear);
 
 			i.icon-double-angle-right {
 				display: block;
@@ -42,6 +40,15 @@ div.span4.right-content {
 			strong.title {
 				color: white;
 			}
+
+			div.content-info {
+				color: #fff; .transition(all .25s linear);
+			}
+		}
+
+		div.content-info {
+			color: #999;
+			margin: 0 0 0 64px;
 		}
 
 		a {
@@ -90,6 +97,10 @@ div.span4.right-content {
 	}
 
 	div.video-row {
+		div.content-info {
+			margin: 0 0 0 82px;
+		}
+
 		img {
 			height: 54px;
 			max-width: 72px;
