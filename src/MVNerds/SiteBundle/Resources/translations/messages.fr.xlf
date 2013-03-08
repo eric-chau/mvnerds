@@ -180,12 +180,11 @@
 				<target>Quick access to champions</target>
 			</trans-unit>
 			<trans-unit id="501">
-				<source>Footer.riot.p1</source>
-				<target>League of Legends et Riot Games sont des marques déposées de Riot Games, Inc.</target>
-			</trans-unit>
-			<trans-unit id="502">
-				<source>Footer.riot.p2</source>
-				<target>Tous les éléments extraits ou recopiés du jeu League of Legends, présents sur le site, appartiennent à Riot Games Inc.</target>
+				<source>Footer.riot</source>
+				<target>
+					League of Legends et Riot Games sont des marques déposées de Riot Games, Inc.
+					Tous les éléments extraits ou recopiés du jeu League of Legends, présents sur le site, appartiennent à Riot Games Inc.
+				</target>
 			</trans-unit>
 			<trans-unit id="503">
 				<source>Footer.links.contact</source>
