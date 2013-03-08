@@ -125,31 +125,6 @@
 					</div>
 				</div>
 				
-				{# VIDEO Blocks - Nouvelles videos et vidéos les plus consultées #}
-				<div class="block">
-					<div class="header">
-						<h3>LoL Video Center</h3>
-					</div>
-					<div class="body">
-						<ul class="nav nav-tabs" id="video-tab">
-							<li class="active"><a href="#newest-videos">{{'Sidebar.video.new-videos' | trans}}</a></li>
-							<li><a href="#most-viewed-videos">{{'Sidebar.video.most-viewed-videos' | trans}}</a></li>
-						</ul>
-
-						<div class="tab-content">
-							<div class="tab-pane active" id="newest-videos">
-								{% include 'MVNerdsSiteBundle:Front:video_sidebar_list.html.twig' with {'videos': newest_videos} %}
-							</div>
-							<div class="tab-pane" id="most-viewed-videos">
-								{% include 'MVNerdsSiteBundle:Front:video_sidebar_list.html.twig' with {'videos': most_viewed_videos} %}
-							</div>
-						</div>
-					</div>
-					<div class="footer">
-						<a href="{{ path('lol_video_index') }}">{{'Sidebar.see-more' | trans}}</a>
-					</div>
-				</div>
-
 				{# Block de présentation du module de comparateur de champions #}
 				{% include 'MVNerdsSiteBundle:Front:champion_benchmark_sidebar_block.html.twig' %}
 			</div>

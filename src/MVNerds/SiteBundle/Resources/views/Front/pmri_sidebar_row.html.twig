@@ -9,11 +9,14 @@
 			<img src="{{asset('images/avatar/anonymous.jpg')}}" alt="image_question" class="bootstrap-popover" data-placement="left" data-trigger="hover" data-title="{{item_build.getName()}}" data-content="<div class='champion-square-list'>{%for champion in item_build.getChampionItemBuilds() %}<div class='champion-square36 {{champion.getChampion().getSlug()}}' ></div>{% endfor %}</div>"/>
 		{% endif %}
 	</a>
-	<a href="{{ path('pmri_list_detail', {'slug': item_build.getSlug()}) }}"><strong class="title">{{ item_build.getName() }}</strong></a><br />
-	{{'item_table.td.created_by'|trans}} <a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}" title="{{'item_table.td.consult_profile_of'|trans}} {{ user.getUsername }}">{{user.getUsername()}}</a> {{'item_table.td.created_the'|trans}} {{item_build.getCreateTime('d/m/Y')}}<br />
-	<span class="stat"><i class="icon-comments icon-white" title="comments"></i> {{item_build.getCommentCount()}}</span>
-	<span class="stat"><i class="icon-download-alt icon-white" title="downloads"></i> {{item_build.getDownload()}}</span>
-	<span class="stat"><i class="icon-eye-open icon-white" title="views"></i> {{item_build.getView()}}</span>
-	<span class="stat"><i class="icon-thumbs-up icon-white" title="{{ 'item_table.td.icon.title.like'|trans }}"></i> {{ item_build.getLikeCount() }}</span>
-	<span class="stat"><i class="icon-thumbs-down icon-white" title="{{ 'item_table.td.icon.title.dislike'|trans }}"></i> {{ item_build.getDislikeCount() }}</span>
+	
+	<div class="content-info">
+		<a href="{{ path('pmri_list_detail', {'slug': item_build.getSlug()}) }}"><strong class="title">{{ item_build.getName() }}</strong></a><br />
+		{{'item_table.td.created_by'|trans}} <a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}" title="{{'item_table.td.consult_profile_of'|trans}} {{ user.getUsername }}">{{user.getUsername()}}</a> {{'item_table.td.created_the'|trans}} {{item_build.getCreateTime('d/m/Y')}}<br />
+		<span class="stat"><i class="icon-comments icon-white" title="comments"></i> {{item_build.getCommentCount()}}</span>
+		<span class="stat"><i class="icon-download-alt icon-white" title="downloads"></i> {{item_build.getDownload()}}</span>
+		<span class="stat"><i class="icon-eye-open icon-white" title="views"></i> {{item_build.getView()}}</span>
+		<span class="stat"><i class="icon-thumbs-up icon-white" title="{{ 'item_table.td.icon.title.like'|trans }}"></i> {{ item_build.getLikeCount() }}</span>
+		<span class="stat"><i class="icon-thumbs-down icon-white" title="{{ 'item_table.td.icon.title.dislike'|trans }}"></i> {{ item_build.getDislikeCount() }}</span>
+	</div>
 </div>
