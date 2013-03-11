@@ -55,6 +55,10 @@
 				<source>INTERVIEW</source>
 				<target>Interview</target>
 			</trans-unit>
+			<trans-unit id="110">
+				<source>COMPETITION</source>
+				<target>Compétition</target>
+			</trans-unit>
 
 			<!-- TRADUCTION DES MESSAGES D ERREURS DU LoLVideoController -->
 			<trans-unit id="1000">

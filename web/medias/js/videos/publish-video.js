@@ -64,6 +64,13 @@ function initModalData(modalId) {
 	$loading = $modalPublish.find('.modal-video-loading-img');
 }
 
+//Permet d'organiser les catégories dans l'ordre alphabétique
+function orderCategories($target) {
+	$target.parent().html($target.sort( function(a, b) {
+		return $(a).html().toLowerCase() > $(b).html().toLowerCase() ? 1 : -1
+	}));
+}
+
 $(document).ready(function() {	
 	//Initialisation des messages d'erreurs
 	errorMsgs['title'] = [];
@@ -108,4 +115,6 @@ $(document).ready(function() {
 		
 		return false;
 	});
+	
+	orderCategories($('.video-publish-category option'));
 });
