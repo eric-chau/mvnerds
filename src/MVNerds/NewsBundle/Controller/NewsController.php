@@ -25,7 +25,7 @@ class NewsController extends Controller
 			$news = $newsManager->findAllPublic();
 		}
 		
-		return $this->render('MVNerdsNewsBundle:News:list_index.html.twig', array(
+		return $this->render('MVNerdsNewsBundle:News:news_index.html.twig', array(
 			'news'	=> $news,
 			'news_categories' => $newsManager->findAllNewsCategories()
 		));
@@ -142,9 +142,9 @@ class NewsController extends Controller
 			$news->save();
 			$news->setContent($this->get('mvnerds.bbcode_manager')->BBCode2Html($news->getContent()));
 		} catch (\Exception $e) {
-			return $this->redirect($this->generateUrl('launch_site_front'));
+			return $this->redirect($this->generateUrl('site_homepage'));
 		}
-		return $this->render('MVNerdsNewsBundle:Front:view_index.html.twig', array(
+		return $this->render('MVNerdsNewsBundle:News:news_detail.html.twig', array(
 			'news' => $news
 		));
 	}

@@ -15,11 +15,20 @@ class FrontController extends Controller
      */
     public function indexAction()
     {
+		$news = null;
+		if ($this->get('security.context')->isGranted('ROLE_NEWSER'))
+		{
+			$news = $this->get('mvnerds.news_manager')->findNotPrivateHighlights();
+		} else {
+			$news = $this->get('mvnerds.news_manager')->findPublicHighlights();
+		}
+		
         return $this->render('MVNerdsSiteBundle:Front:index.html.twig', array(
 			'lastest_items_builds'	=> $this->get('mvnerds.item_build_manager')->findLatestBuilds(),
 			'popular_items_builds'	=> $this->get('mvnerds.item_build_manager')->findMostDownloadedBuilds(),
-			'newest_videos'		=> $this->get('mvnerds.video_manager')->findNewestVideos(),
-			'most_viewed_videos'	=> $this->get('mvnerds.video_manager')->findMostViewedVideos()
+			'newest_videos'			=> $this->get('mvnerds.video_manager')->findNewestVideos(),
+			'most_viewed_videos'	=> $this->get('mvnerds.video_manager')->findMostViewedVideos(),
+			'news'					=> $news
 		));
     }
 

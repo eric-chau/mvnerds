@@ -177,12 +177,11 @@ $(document).ready(function() {
 	}).done(function(data){
 		$('#champion-filter-input').attr('data-source', data);
 	}).fail(function() {
-		console.log('error');
+		
 	});
 
 	// Vérifie si c'est la première fois ou non que l'utilisateur accède au module PMRI
 	var howItWorksValue = getItemFromLS('display_how_it_works');
-	console.log(howItWorksValue);
 	if (howItWorksValue == undefined || howItWorksValue == 'true') {
 		$('a.how-it-works-toggle').find('span.label').toggleClass('disabled');
 		$('div.how-it-works').slideDown();

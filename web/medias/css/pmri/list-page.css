@@ -110,6 +110,13 @@ div.span8.left-content table#item-builds-table tbody tr:hover {
   -o-transition: background-color 0.25s linear;
   transition: background-color 0.25s linear;
 }
+div.span8.left-content table#item-builds-table tbody tr:hover span.one-stat i {
+  color: inherit !important;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
 div.span8.left-content table#item-builds-table tbody tr td {
   padding: 3px 0;
 }
@@ -139,6 +146,11 @@ div.span8.left-content table#item-builds-table tbody tr td.name div.created-by a
 div.span8.left-content table#item-builds-table tbody tr td.name span.one-stat {
   display: inline-block;
   margin: 0 10px 0 0;
+}
+div.span8.left-content table#item-builds-table tbody tr td.name span.one-stat i {
+  color: #999;
+  display: inline-block;
+  margin: 0 3px 0 0;
 }
 div.span4.right-content div.block div.body ul#sort-list {
   list-style: none;

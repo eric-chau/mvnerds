@@ -49,12 +49,12 @@ $(document).ready(function() {
 		"sAjaxSource": Routing.generate('users_list_ajax', {_locale: locale}),
 		"bLengthChange": false,
 		"aaSorting": [],
-		"iDisplayLength": 10,
+		"iDisplayLength": 12,
 		"sDom": "lrtip",
 		"aoColumns": [
-                      {"bSearchable": false, "bSortable":false},//Avatar
-                      {"bSearchable": false, "bSortable":false},//Pseudo
-                      {"bSearchable": false, "bSortable":false},//Date inscription
+                      {"bSearchable": false, "bSortable":false, 'sClass': 'avatar'},//Avatar
+                      {"bSearchable": false, "bSortable":false, 'sClass': 'username'},//Pseudo
+                      {"bSearchable": false, "bSortable":false, 'sClass': 'game-account'},//Date inscription
 		    {"bVisible": false, "bSearchable": true, "bSortable":true},//Pseudo
                       {"bVisible": false, "bSearchable": false, "bSortable":true},//create_time
 		],

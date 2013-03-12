@@ -1,0 +1,162 @@
+{% extends 'MVNerdsSiteBundle::layout.html.twig' %}
+
+{% block title %}{{ news.getTitle() }} - Most Valuable News | MVNerds{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/news/news-detail.css') }}">
+	{% else %}
+		{% stylesheets 
+			'medias/css/news/news-detail.css'
+			output='css/news-detail.css'
+			filter='yui_css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
+	{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		{#<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-modal.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>#}
+		<script type="text/javascript" src="{{ asset('medias/js/news/news-detail.js') }}"></script>
+	{% else %}
+		{% javascripts
+			'medias/js/news/news-detail.js'
+			output='js/news-detail.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	{% endif %}
+{% endblock %}
+
+{% block topbar %}
+	{% set module = 'news' %}
+		
+	{{ parent() }}
+{% endblock %}
+		
+{% block breadcrumbs %}
+	{{ parent() }}
+	
+	> <a href="{{ path('news_index') }}">Most Valuable News</a> > <a href="{{ path('news_detail', {'slug':news.getSlug()}) }}">{{ news.getTitle() }}</a>
+{% endblock %}
+
+{% block main_content %}
+	<div class="container main-container border-top">
+		<div class="row-fluid">
+			<div class="span8 left-content">
+				<h1>{{ news.getTitle() }}</h1>
+				
+				<img src="{{ news.getImageName() }}" class="news-main-img" />
+				
+				{# PUBLICITÉ #}
+				<div class="ad-container">
+					<img class="unblock-ad-img" src="{{asset('/images/unblock-ad-46860.jpg')}}"/>
+					<script type="text/javascript"><!--
+					google_ad_client = "ca-pub-9866334543391692";
+					/* MVNerds 2.0 Contenu principal */
+					google_ad_slot = "9485929999";
+					google_ad_width = 468;
+					google_ad_height = 60;
+					//-->
+					</script>
+					<script type="text/javascript"
+					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+					</script>
+				</div>
+				
+				<div class="related-news-container">
+					<div class="related-news">
+						<h5>à lire aussi</h5>
+						<ul>
+							<li><a href="#">Vulcun recrute les désormais ex-FeaR</a></li>
+							<li><a href="#">TSM sont maintenant sponsorisés par SnapDragon</a></li>
+							<li><a href="#">EG est maintenant partenaire avec RaidCall</a></li>
+						</ul>
+					</div>
+				</div>
+				
+				<p class="preview">
+					<strong>{{ news.getPreview() }}</strong>
+				</p>
+				
+				<div class="clearfix"></div>
+				
+				<div class="news-content">
+					{{ news.getContent()|raw }}
+				</div>
+				
+				{{ render(controller('MVNerdsCommentBundle:Comment:renderComments', {'object': news, 'objectType': 'news'})) }}
+			</div>
+			
+			<div class="span4 right-content">
+				<div class="block">
+					<div class="header">
+						<h3>À propos</h3>
+					</div>
+					<div class="body">
+						<div class="block-media">
+							<img src="{{ asset('medias/images/avatar/' ~ news.getUser().getUserAvatarName()~ '.jpg') }}" />
+						</div>
+						<div class="stats">
+							<i class="icon-user"></i> 
+							<strong><a href="{{ path('summoner_profile_view', {'userSlug': news.getUser().getSlug()}) }}" title="Consulter le profil de {{ news.getUser().getUsername }}" class="resize-required">{{news.getUser().getUserName()}}</a></strong><br /> auteur
+						</div>
+						
+						<div class="stats odd">
+							<i class="icon-time"></i> 
+							<strong>{{ news.getUpdateTime('d/m/Y') }}</strong><br /> publication
+						</div>
+						
+						<div class="stats">
+							<i class="icon-folder-open-alt"></i> 
+							<strong class="resize-required">{{ news.getNewsCategory().getUniqueName()|trans }}</strong><br /> catégorie
+						</div>
+							
+						<div class="stats odd">
+							<i class="icon-eye-open"></i> 
+							<strong>{{ news.getView() }}</strong><br /> vues
+						</div>
+						
+						<div class="stats">
+							<i class="icon-comments-alt"></i> 
+							<strong>{{ news.getCommentCount() }}</strong><br /> commentaires
+						</div>
+							
+						
+						<div class="clearfix"></div>
+					</div>
+					<div class="footer">
+						<a href="{{ path('summoner_profile_view', {'userSlug': news.getUser().getSlug()}) }}" title="Consulter le profil de {{ news.getUser().getUsername }}">
+							Aller sur le profil de l'auteur
+						</a>
+					</div>
+				</div>
+				
+				{# PUBLICITÉ #}
+				<div class="sidebar-ad-container">
+					<script type="text/javascript"><!--
+					google_ad_client = "ca-pub-9866334543391692";
+					/* Rectangle MVNerds 2.0 */
+					google_ad_slot = "3578997199";
+					google_ad_width = 300;
+					google_ad_height = 250;
+					//-->
+					</script>
+					<script type="text/javascript"
+					src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+					</script>	
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+	

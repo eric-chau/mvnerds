@@ -36,9 +36,22 @@
 		<script type="text/javascript">
 			var locale = '{{ app.request.getLocale() }}';
 		</script>
+		
 		<script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-		<script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
-		<script src="{{ asset('medias/js/jquery-1.8.3.min.js') }}" type="text/javascript"></script>		
+		{% if app.environment == 'dev' %}
+			<script type="text/javascript" src="/js/fos_js_routes.js"></script>
+			<script type="text/javascript" src="{{ asset('medias/js/jquery-1.8.3.min.js') }}"></script>		
+		{% else %}
+			{% javascripts
+				'bundles/fosjsrouting/js/router.js'
+				'/js/fos_js_routes.js'
+				'medias/js/jquery-1.8.3.min.js'
+				output='js/mvnerds-bootstrap.js'
+				filter='yui_js'
+			%}
+			<script src="{{ asset_url }}"></script>
+			{% endjavascripts %}
+		{% endif %}
 	</head>
 	<body>
 		<!--[if IE]>
@@ -59,7 +72,7 @@
 				'medias/js/bootstrap/bootstrap-typeahead.js'
 				'medias/js/mvnerds-bootstrap.js'
 				'medias/js/utils.js'
-				output='js/mvnerds-bootstrap.js'
+				output='js/mvnerds-bootstrap2.js'
 				filter='yui_js'
 			%}
 			<script src="{{ asset_url }}"></script>

@@ -20,8 +20,6 @@
 	{% if app.environment == 'dev' %}
 		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/profile/profile.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/mvnerds/mvnerds-modal.css') }}">
-		{#
-		#}
 	{% else %}
 		{% stylesheets 
 			'medias/css/profile/profile.css'
@@ -47,7 +45,6 @@
 		<script type="text/javascript" src="{{ asset('medias/js/item-handler/dl-modal.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/profile/profile.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/videos/publish-video.js') }}"></script>
-		{#<script type="text/javascript" src="{{ asset('js/item_handler/item_builder/dl-modal.js') }}"></script>#}
 	{% else %}
 		{% javascripts
 			'medias/js/bootstrap/bootstrap-modal.js'
@@ -68,7 +65,7 @@
 {% endblock %}
 
 {% block topbar %}
-	{% set module = 'lol_video_center' %}
+	{% set module = 'profile' %}
 		
 	{{ parent() }}
 {% endblock %}

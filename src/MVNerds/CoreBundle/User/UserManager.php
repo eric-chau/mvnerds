@@ -339,7 +339,8 @@ class UserManager
 			->limit($limitLength)
 			->add(UserPeer::IS_ACTIVE, true)
 			->joinWith('Profile')
-			->joinWith('Profile.Avatar');
+			->joinWith('Profile.Avatar')
+			->joinWith('Profile.GameAccount', \Criteria::LEFT_JOIN);
 		
 		foreach($orderArr as $orderCol => $orderDir) {
 			switch ($orderDir) {

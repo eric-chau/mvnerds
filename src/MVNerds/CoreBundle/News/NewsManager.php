@@ -23,7 +23,6 @@ class NewsManager
 	public function deleteBySlug($slug)
 	{
 		$news = NewsQuery::create()
-			->joinWithI18n($this->userLocale)
 			->add(NewsPeer::SLUG, $slug)
 		->findOne();
 
@@ -46,7 +45,6 @@ class NewsManager
 	public function findBySlug($slug)
 	{
 		$news = NewsQuery::create()
-			->joinWithI18n($this->userLocale)
 			->joinWith('NewsCategory')
 			->joinWith('User', \Criteria::LEFT_JOIN)
 			->add(NewsPeer::SLUG, $slug)
@@ -65,7 +63,6 @@ class NewsManager
 		$news = NewsQuery::create()
 			->filterBySlug($slug)
 			->filterByStatus(NewsPeer::STATUS_PUBLIC)
-			->joinWithI18n($this->userLocale)
 			->joinWith('NewsCategory')
 			->joinWith('User', \Criteria::LEFT_JOIN)
 		->findOne();
@@ -82,7 +79,6 @@ class NewsManager
 	{
 		return NewsQuery::create()
 			->orderByCreateTime('desc')
-			->joinWithI18n($this->userLocale)
 			->joinWith('NewsCategory')
 			->joinWith('User', \Criteria::LEFT_JOIN)
 			->where(NewsPeer::STATUS . ' LIKE ?', NewsPeer::STATUS_PUBLIC)
@@ -93,7 +89,6 @@ class NewsManager
 	{
 		return NewsQuery::create()
 			->orderByCreateTime('desc')
-			->joinWithI18n($this->userLocale)
 			->joinWith('NewsCategory')
 			->joinWith('User', \Criteria::LEFT_JOIN)
 			->where(NewsPeer::STATUS . ' NOT LIKE ?', NewsPeer::STATUS_PRIVATE)
@@ -103,7 +98,6 @@ class NewsManager
 	public function findAll()
 	{
 		return NewsQuery::create()
-			->joinWithI18n($this->userLocale)
 			->joinWith('NewsCategory')
 			->joinWith('User', \Criteria::LEFT_JOIN)
 		->find();
@@ -122,8 +116,6 @@ class NewsManager
 			->orderByCreateTime(\Criteria::DESC)
 			->limit(5)
 		->find();
-
-		$news->populateRelation('NewsI18n');
 		
 		if (null === $news)
 		{
@@ -147,8 +139,6 @@ class NewsManager
 			->limit(5)
 		->find();
 		
-		$news->populateRelation('NewsI18n');
-		
 		if (null === $news)
 		{
 			throw new InvalidArgumentException('No news found !');
@@ -163,8 +153,7 @@ class NewsManager
 			->offset($limitStart)
 			->limit($limitLength)
 			->joinWith('User', \Criteria::LEFT_JOIN)
-			->joinWith('NewsCategory', \Criteria::LEFT_JOIN)
-			->join('NewsI18n', \Criteria::LEFT_JOIN);
+			->joinWith('NewsCategory', \Criteria::LEFT_JOIN);
 		
 		if ($onlyPublic) {
 			$newsQuery->add(NewsPeer::STATUS, NewsPeer::STATUS_PUBLIC);
@@ -215,8 +204,7 @@ class NewsManager
 	{
 		$newsQuery = NewsQuery::create()
 			->joinWith('User', \Criteria::LEFT_JOIN)
-			->joinWith('NewsCategory', \Criteria::LEFT_JOIN)
-			->join('NewsI18n', \Criteria::LEFT_JOIN);
+			->joinWith('NewsCategory', \Criteria::LEFT_JOIN);
 	
 		if ($onlyPublic) {
 			$newsQuery->add(NewsPeer::STATUS, NewsPeer::STATUS_PUBLIC);

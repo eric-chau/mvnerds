@@ -72,21 +72,17 @@ div.span8.left-content {
 		border-spacing: 0 3px;
 		width: 638px !important;
 		
-		thead {
-			&:first-child {
+		thead tr th {
+			&.avatar {
 				width: 100px !important;
 			}
 
-			&:first-child+tr {
-				width: 430px !important;
+			&.username {
+				width: 220px !important;
 			}
 
-			&:first-child+tr+tr {
-				width: 108px !important;
-			}
-
-			th {
-				text-align: left;			
+			&.game-account {
+				width: 300px !important;
 			}
 		}
 		tbody {
@@ -96,20 +92,25 @@ div.span8.left-content {
 
 				&:hover {
 					background-color: lighten(@MVNerdsBlue, 10%); .transition(background-color .25s linear);
+
+					span.one-stat i {
+						color: inherit !important; .transition(color .25s linear);
+					}
 				}
 
 				td {
 					padding: 3px 0;
+					text-align: center;
 
-					&:first-child {
-						text-align: center;
-
-						img {
-							width: 54px;
-						}
+					&.avatar img {
+						border: 2px solid #999;
+						display: inline-block;
+						width: 48px;
 					}
 
-					&:first-child+td {
+					&.username {
+						text-align: left;
+
 						a {
 							font-weight: bold;
 
@@ -132,6 +133,48 @@ div.span8.left-content {
 						span.one-stat {
 							display: inline-block;
 							margin: 0 10px 0 0;
+
+							i {
+								color: #999;
+								display: inline-block;
+								margin: 0 3px 0 0;
+							}
+						}
+					}
+
+					&.game-account {
+						position: relative;
+
+						div.summoner-name {
+							color: #999;
+							font-size: 10px;
+							font-weight: bold;
+							position: absolute;
+							text-transform: uppercase;
+							top: 2px;
+							width: 100%;
+
+							strong {
+								color: @MVNerdsRed;
+								font-size: 12px;
+								text-transform: none;
+							}
+						}
+
+						div.span4.league {
+							text-align: center;
+
+							img {
+								width: 64px;
+							}
+
+							div.label {
+								bottom: 0;
+								font-size: 10px;
+								position: absolute;
+								text-transform: uppercase;
+								width: 99px;
+							}
 						}
 					}
 				}

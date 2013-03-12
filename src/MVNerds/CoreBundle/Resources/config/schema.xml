@@ -486,6 +486,7 @@
     <behavior name="sluggable">
       <parameter name="slug_pattern" value="{title}" />
     </behavior>
+    <behavior name="extra_properties" />
   </table>
   <table name="comment">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />

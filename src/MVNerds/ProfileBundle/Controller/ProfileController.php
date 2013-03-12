@@ -20,11 +20,11 @@ class ProfileController extends Controller
 {
 	/**
 	 * Permet d'accéder à la page de listing de tous les membres
-	 * @Route("/{_locale}/profile/list", name="users_list_index")
+	 * @Route("/{_locale}/profile-list", name="profile_list")
 	 */
 	public function listAction() 
 	{
-		return $this->render('MVNerdsProfileBundle:Profile:users_list_index.html.twig');
+		return $this->render('MVNerdsProfileBundle:Profile:profile_list.html.twig');
 	}
 	
 	/**
@@ -90,9 +90,9 @@ class ProfileController extends Controller
 		foreach($users as $user) {
 			
 			$jsonUsers['aaData'][] = array(
-				$this->renderView('MVNerdsProfileBundle:Profile:user_avatar.html.twig', array('name' => $user->getProfile()->getAvatar()->getName())),
-				$this->renderView('MVNerdsProfileBundle:Profile:user_username.html.twig', array('user' => $user)),
-				$user->getCreatedAt('d/m/Y'),
+				$this->renderView('MVNerdsProfileBundle:Profile:profile_list_avatar_cell.html.twig', array('user' => $user)),
+				$this->renderView('MVNerdsProfileBundle:Profile:profile_list_username_cell.html.twig', array('user' => $user)),
+				$this->renderView('MVNerdsProfileBundle:Profile:profile_list_game_account_cell.html.twig', array('user' => $user)),
 				$user->getUsername(),
 				$user->getCreatedAt('YmdHims')
 			);

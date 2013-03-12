@@ -85,32 +85,34 @@ class BBCodeManager
 						 '/\[list\=(.*?)\](.*?)\[\/list\]/ms',
 						 '/\[list\](.*?)\[\/list\]/ms',
 						 '/\[\*\]\s?(.*?)\n/ms',
-						 '/\[center](.*?)\[\/center]/ms'
+						 '/\[center](.*?)\[\/center]/ms',
+						 '/\[h2\](.*?)\[\/h2\]/ms'
 		);
 		// And replace them by...
 		$out = array(	 '<strong>\1</strong>',
 						 '<em>\1</em>',
 						 '<u>\1</u>',
 						 '<img src="\2" alt="\2" style="width:\1px;"/>',
-						 '<img src="\1" alt="\1" />',
+						 '<img src="\1" alt="\1" class="content-img" />',
 						//'<div class="media-ressource"><iframe width="640" height="360" src="http://www.youtube.com/embed/\1" frameborder="0" allowfullscreen></iframe></div>',
 						 '<div class="media-ressource"><object width="640" height="360"> <param name="movie" value="http://www.youtube.com/v/\1?version=3"></param><param name="allowScriptAccess" value="always"></param><embed src="http://www.youtube.com/v/\1?version=3" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="640" height="360"></embed></object></div>',
 						 '<a href="mailto:\1">\1</a>',
 						 '<a href="\1">\2</a>',
 						 '<span style="font-size:\1%">\2</span>',
 						 '<span style="color:\1">\2</span>',
-						 '<blockquote>\1</blockquote>',
+						 '<blockquote><i class="icon-quote-left"></i> \1 <i class="icon-quote-right"></i></blockquote>',
 						 '<ol start="\1">\2</ol>',
-						 '<ul>\1</ul>',
+						 '<ul class="bbcode">\1</ul>',
 						 '<li>\1</li>',
-						'<div class="center-content">\1</div>'
+						 '<div class="center-content">\1</div>',
+						 '<h2>\1</h2>'
 		);
 		$text = preg_replace($in, $out, $text);
 
 		// paragraphs
 		$text = str_replace("\r", "", $text);
 		$text = "<p>".preg_replace("/(\n){2,}/", "</p><p>", $text)."</p>";
-		$text = nl2br($text);
+		//$text = nl2br($text);
 
 		$text = preg_replace_callback('/<pre>(.*?)<\/pre>/ms', array($this, "removeBr"),$text);
 		$text = preg_replace('/<p><pre>(.*?)<\/pre><\/p>/ms', "<pre>\\1</pre>", $text);

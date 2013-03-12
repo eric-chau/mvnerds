@@ -95,6 +95,10 @@ div.span8.left-content {
 
 				&:hover {
 					background-color: lighten(@MVNerdsBlue, 10%); .transition(background-color .25s linear);
+
+					span.one-stat i {
+						color: inherit !important; .transition(color .25s linear);
+					}
 				}
 
 				td {
@@ -131,6 +135,12 @@ div.span8.left-content {
 						span.one-stat {
 							display: inline-block;
 							margin: 0 10px 0 0;
+
+							i {
+								color: #999;
+								display: inline-block;
+								margin: 0 3px 0 0;
+							}
 						}
 					}
 				}

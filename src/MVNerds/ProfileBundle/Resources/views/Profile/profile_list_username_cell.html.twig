@@ -1,0 +1,6 @@
+<a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}" class="title">{{user.getUsername()}}</a>
+<div class="created-by">
+	Membre depuis le {{ user.getCreatedAt('d/m/Y') }}	
+</div>
+<span class="one-stat"><i class="icon-comments icon-white" title="{{ 'item_table.td.icon.title.comment'|trans }}"></i> {{ user.getCommentCount() }}</span>
+<span class="one-stat"><i class="icon-eye-open icon-white" title="{{ 'item_table.td.icon.title.view'|trans }}"></i> {{ user.getView() }}</span>

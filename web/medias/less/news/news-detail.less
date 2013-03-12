@@ -1,0 +1,109 @@
+// Twitter Bootstraps imports
+@import "../bootstrap/mixins.less";
+
+// MVNerds imports
+@import "../mvnerds/mvnerds-variables.less";
+
+div.span8.left-content {
+	h1 {
+		margin: 0 0 20px 0;
+	}
+
+	h2 {
+		border-bottom: 1px solid #666;
+		margin: 0 0 10px 0;
+		padding: 0 0 5px 0;
+	}
+
+	img.news-main-img {
+		border: 3px solid #999;
+		display: block;
+		margin: 0 auto 20px auto;
+		max-width: 600px;
+	}
+
+	div.related-news-container {
+		float: right;
+		margin: 0 0 10px 10px;
+		width: 250px;
+
+		div.related-news {
+			background-color: #ddd;
+			border: 1px solid #ccc;
+			padding: 7px;
+
+			h5 {
+				font-size: .8em;
+				font-weight: bold;
+				margin: 0 0 5px 0;
+				text-transform: uppercase;
+			}
+
+			ul {
+
+				li {
+					color: #999;
+					font-size: 12px;
+					line-height: 15px;
+
+					a {
+						color: darken(@MVNerdsBlue, 10%);
+						font-size: 12px;
+
+						&:hover {
+							text-decoration: underline;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	img.content-img {
+		border: 3px solid #bbb;
+		display: block;
+		margin: 15px auto;
+		max-width: 600px;
+	}
+
+	ul.bbcode {
+		margin: 0 0 10px 30px;
+	}
+
+	blockquote {
+		background-color: #ddd;
+		border-color: darken(@LoLOrangeAD, 5%);
+		padding: 10px 5px 10px 15px;
+
+		i {
+			color: #bbb;
+			display: inline-block;
+			margin-right: 3px;
+
+			&.icon-quote-right {
+				margin: 0 0 0 3px;
+			}
+		}
+	}
+}
+
+div.span4.right-content {
+	div.block {
+		div.body {
+			div.block-media {
+				height: 108px;
+				margin: 0 0 4px 0;
+
+				img {
+					border: 1px solid #666;
+					display: inline-block;
+					margin: 0 10px 0 8px;
+					padding: 3px;
+					width: 100px !important;
+				}	
+			}
+		}
+	}
+}
+
+@import "../comment/comment.less";
