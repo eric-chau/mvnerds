@@ -50,14 +50,7 @@ $(document).ready(function() {
 		};
 	}
 	
-	//Recherche par défaut
-	var defaultSearch = '';
-	if (location.hash != '') {
-		$('#champion-filter-input').val(location.hash.slice(1));
-		$moreFilterIcon.toggleClass('icon-plus-sign icon-minus-sign');
-		$('ul.filters-list.more-filter').slideToggle();
-		defaultSearch = $('#champion-filter-input').val();
-	}
+	
 	
 	itemBuildsTable = $('#item-builds-table').dataTable({
 		"bProcessing": true,

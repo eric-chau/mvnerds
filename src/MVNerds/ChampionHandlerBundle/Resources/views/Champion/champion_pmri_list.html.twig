@@ -1,6 +1,6 @@
 <div class="pmri-container">
 	<h2>Pimp My Recommended Items</h2>
-
+	{% if item_builds| length > 0 %}
 	<table id="item-builds-table" class="table">
 		<thead>
 			<tr>
@@ -19,4 +19,10 @@
 			{% endfor %}
 		</tbody>
 	</table>
+	
+	<a class="btn green" id="more-pmri" href="{{path('pmri_list_slug', {'slug': champion.getSlug()})}}">Voir plus de listes d'objets recommandées pour {{champion.getName()}}</a>
+	
+	{% else %}
+		<p>Il n'y a pas de listes d'objets dédiées à {{champion.getName()}}</p>
+	{% endif %}
 </div>

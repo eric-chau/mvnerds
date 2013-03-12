@@ -126,7 +126,7 @@
 							
 							<li id="filter-champion">
 								<label for="champion-filter-input">{{'item_build_list_index.sort.filter-by-champion'|trans}}</label>
-								<input type="text" id="champion-filter-input" class="input-mini" data-provide="typeahead"/>
+								<input type="text" id="champion-filter-input" class="input-mini" data-provide="typeahead" value="{{ champion_name != null ? champion_name : ''}}"/>
 							</li>
 							
 							<li id="filter-author">

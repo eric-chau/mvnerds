@@ -349,6 +349,11 @@ div.span8.left-content table#item-builds-table tbody tr td.name span.one-stat {
   display: inline-block;
   margin: 0 10px 0 0;
 }
+div.span8.left-content #more-pmri {
+  display: block;
+  margin: 5px 0;
+  text-align: center;
+}
 div.span4.right-content div.block div.header {
   cursor: pointer;
   position: relative;
