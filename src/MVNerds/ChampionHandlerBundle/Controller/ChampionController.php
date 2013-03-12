@@ -23,7 +23,8 @@ class ChampionController extends Controller
 		}		
 		
 		return $this->render('MVNerdsChampionHandlerBundle:Champion:champion_detail.html.twig', array(
-			'champion' => $champion
+			'champion' => $champion,
+			'item_builds' => $this->get('mvnerds.item_build_manager')->findBestBuildsForChampion($champion)
 		));
 	}
 	
