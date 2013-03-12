@@ -67,11 +67,24 @@ class ItemBuilderController extends Controller
 	
 	/**
 	 * 
-	 * @Route("/list", name="pmri_list")
+	 * @Route("/list", name="pmri_list", defaults={"slug" = null})
+	 * @Route("/list/", name="pmri_list", defaults={"slug" = null})
+	 * @Route("/list/{slug}", name="pmri_list_slug")
 	 */
-	public function listAction() 
+	public function listAction($slug) 
 	{
-		return $this->render('MVNerdsItemHandlerBundle:PMRI:pmri_list_index.html.twig');
+		try {
+			$champion = $this->get('mvnerds.champion_manager')->findBySlug($slug);
+			
+			return $this->render('MVNerdsItemHandlerBundle:PMRI:pmri_list_index.html.twig', array(
+				'champion_name' => $champion->getName()
+			));
+		} catch (\Exception $e) {
+			return $this->render('MVNerdsItemHandlerBundle:PMRI:pmri_list_index.html.twig', array(
+				'champion_name' => ''
+			));
+		}
+		
 	}
 	
 	/**

@@ -5,11 +5,14 @@ namespace MVNerds\CoreBundle\ItemBuild;
 use Symfony\Component\DependencyInjection\Exception\InvalidArgumentException;
 use Symfony\Component\HttpFoundation\Session\Session;
 use \PropelException;
+use \Propel;
+use \PropelObjectFormatter;
 
 use MVNerds\CoreBundle\Model\Item;
 use MVNerds\CoreBundle\Model\ItemBuild;
 use MVNerds\CoreBundle\Model\ItemBuildQuery;
 use MVNerds\CoreBundle\Model\ItemBuildPeer;
+use MVNerds\CoreBundle\Model\ChampionItemBuildPeer;
 
 class ItemBuildManager
 {
@@ -265,6 +268,40 @@ class ItemBuildManager
 		
 		if (null === $itemBuilds)
 		{
+			throw new InvalidArgumentException('No item build found !');
+		}
+
+		return $itemBuilds;
+	}	
+	
+	/**
+	 * Récupère les 10 meilleurs builds pour un champion donné
+	 */
+	public function findBestBuildsForChampion($champion)
+	{
+		$con = Propel::getConnection(ItemBuildPeer::DATABASE_NAME);
+		$sql = "SELECT item_build.* FROM item_build 
+				WHERE status = :status
+				AND item_build.id IN (SELECT cib1.item_build_id FROM champion_item_build AS cib1 WHERE cib1.champion_id = :championId 
+				AND (SELECT COUNT(*) FROM champion_item_build AS cib2 WHERE cib2.item_build_id = cib1.item_build_id) = 1) 
+				ORDER BY like_count / (like_count + dislike_count) * 100 DESC, item_build.download DESC
+				LIMIT 10";
+		
+		$stmt = $con->prepare($sql);
+		$stmt->execute(array(':championId' => $champion->getId(), ':status' => ItemBuildPeer::STATUS_PUBLIC));
+		
+		$formatter = new PropelObjectFormatter();
+		$formatter->setClass('MVNerds\CoreBundle\Model\ItemBuild');
+		$itemBuilds = $formatter->format($stmt);
+	
+		$championItemBuildsCriteria = \MVNerds\CoreBundle\Model\ChampionItemBuildQuery::create()
+				->joinWith('Champion')
+				->joinWith('Champion.ChampionI18n');
+		$itemBuilds->populateRelation('ChampionItemBuild', $championItemBuildsCriteria);
+		$itemBuilds->populateRelation('User');
+		$itemBuilds->populateRelation('GameMode');
+		
+		if (null === $itemBuilds) {
 			throw new InvalidArgumentException('No item build found !');
 		}
 

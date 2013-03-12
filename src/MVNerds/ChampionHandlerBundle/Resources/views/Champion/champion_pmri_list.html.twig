@@ -1,0 +1,28 @@
+<div class="pmri-container">
+	<h2>Pimp My Recommended Items</h2>
+	{% if item_builds| length > 0 %}
+	<table id="item-builds-table" class="table">
+		<thead>
+			<tr>
+				<th class="champion">{{'item_table.th.champion'|trans}}</th>
+				<th class="name">{{'item_table.th.name'|trans}}</th>
+				<th class="game-mode">{{'item_table.th.game_mode'|trans}}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item_build in item_builds %}
+				<tr>
+					<td class="champion">{% include 'MVNerdsItemHandlerBundle:PMRI:pmri_list_table_row_champion.html.twig' with {'item_build': item_build} %}</td>
+					<td class="name">{% include 'MVNerdsItemHandlerBundle:PMRI:pmri_list_table_row_name.html.twig' with {'item_build': item_build, 'user': item_build.getUser()} %}</td>
+					<td>{{item_build.getGameMode().getLabel() | trans}}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	
+	<a class="btn green" id="more-pmri" href="{{path('pmri_list_slug', {'slug': champion.getSlug()})}}">Voir plus de listes d'objets recommandées pour {{champion.getName()}}</a>
+	
+	{% else %}
+		<p>Il n'y a pas de listes d'objets dédiées à {{champion.getName()}}</p>
+	{% endif %}
+</div>

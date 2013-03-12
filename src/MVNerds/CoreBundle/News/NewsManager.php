@@ -9,9 +9,12 @@ use MVNerds\CoreBundle\Model\News;
 use MVNerds\CoreBundle\Model\NewsQuery;
 use MVNerds\CoreBundle\Model\NewsPeer;
 use MVNerds\CoreBundle\Model\NewsCategoryQuery;
+use MVNerds\CoreBundle\Model\NewsCategoryPeer;
 
 class NewsManager
 {
+	const NB_RELATED_NEWS  = 5;
+	
 	private $userLocale;
 	
 	/**
@@ -246,4 +249,26 @@ class NewsManager
 		return NewsCategoryQuery::create()
 		->find();
 	}
+	
+	/**
+	 * Récupère les derniers highlights non privés
+	 */
+	public function findRelatedNews(News $news)
+	{
+		$news = NewsQuery::create()
+			->joinWith('User')
+			->joinWith('NewsCategory')
+			->add(NewsPeer::STATUS, NewsPeer::STATUS_PUBLIC)
+			->add(NewsCategoryPeer::ID, $news->getNewsCategoryId())
+			->orderByCreateTime(\Criteria::DESC)
+			->limit(self::NB_RELATED_NEWS)
+		->find();
+		
+		if (null === $news)
+		{
+			throw new InvalidArgumentException('No news found !');
+		}
+
+		return $news;
+	}	
 }

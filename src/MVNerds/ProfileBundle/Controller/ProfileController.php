@@ -63,7 +63,7 @@ class ProfileController extends Controller
 			}
 		}
 		if (count($orderArr) <= 0) {
-			$orderArr = array('created_at' => 'desc');
+			$orderArr = array('created_at' => 'asc');
 		}
 		//Recherche par colonne
 		$whereArr = array();

@@ -144,4 +144,6 @@ $(document).ready(function() {
 		$label.toggleClass('disabled');
 		saveItemInLS('display_how_it_works_videos', $label.hasClass('disabled'));
 	});
+	
+	orderCategories($('#category-filter-input option'));
 });

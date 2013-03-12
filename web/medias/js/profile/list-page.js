@@ -63,10 +63,10 @@ $(document).ready(function() {
 	});
 	
 	var sortTable = [
-		[3, 'asc'],//Les + anciens
-		[3, 'desc'],//Les + récents
-		[1, 'asc'],//Pseudo croissant
-		[1, 'desc'],//Pseudo décroissant
+		[4, 'desc'],//Les + anciens
+		[4, 'asc'],//Les + récents
+		[3, 'asc'],//Pseudo croissant
+		[3, 'desc'],//Pseudo décroissant
 	];
 	
 	var $dropdownSort = $('ul#sort-list');
