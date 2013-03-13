@@ -79,6 +79,11 @@ class ElophantAPIManager
 		
 		$this->updateRequestSendCount();
 		$contentObject = json_decode($response->getContent());
+		
+		if (null == $contentObject) {
+			throw new ServiceUnavailableException();
+		}
+		
 		if (!$contentObject->success) {
 			throw new ServiceUnavailableException();
 		}
@@ -129,6 +134,10 @@ class ElophantAPIManager
 		
 		$this->updateRequestSendCount();
 		$contentObject = json_decode($response->getContent());
+		
+		if (null == $contentObject) {
+			throw new ServiceUnavailableException();
+		}
 		
 		if (!$contentObject->success) {
 			throw new ServiceUnavailableException();
@@ -202,6 +211,10 @@ class ElophantAPIManager
 		
 		$this->updateRequestSendCount();
 		$contentObject = json_decode($response->getContent());
+		
+		if (null == $contentObject) {
+			throw new ServiceUnavailableException();
+		}
 		
 		if (!$contentObject->success) {
 			throw new ServiceUnavailableException();

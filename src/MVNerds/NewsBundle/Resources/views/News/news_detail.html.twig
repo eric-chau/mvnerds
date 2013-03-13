@@ -12,6 +12,7 @@
 			'medias/css/news/news-detail.css'
 			output='css/news-detail.css'
 			filter='yui_css'
+			filter='cssembed'
 		%}
 		<link rel="stylesheet" href="{{ asset_url }}" />
 		{% endstylesheets %}
@@ -24,16 +25,16 @@
 	{% if app.environment == 'dev' %}
 		{#<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-modal.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>#}
-		<script type="text/javascript" src="{{ asset('medias/js/news/news-detail.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/news/news-detail.js') }}"></script>#}
 	{% else %}
-		{% javascripts
+		{#{% javascripts
 			'medias/js/news/news-detail.js'
 			output='js/news-detail.js'
 			filter='yui_js'
 		%}
 		<script src="{{ asset_url }}"></script>
-		{% endjavascripts %}
+		{% endjavascripts %}#}
 	{% endif %}
 {% endblock %}
 

@@ -42,3 +42,5 @@ web/css/compiled/
 /web/js/pmri-index.js
 /web/js/pmri-list-detail.js
 /web/js/site-index.js
+
+/app/config/parameters.yml
