@@ -77,9 +77,13 @@
 					<div class="related-news">
 						<h5>à lire aussi</h5>
 						<ul>
-							<li><a href="#">Vulcun recrute les désormais ex-FeaR</a></li>
-							<li><a href="#">TSM sont maintenant sponsorisés par SnapDragon</a></li>
-							<li><a href="#">EG est maintenant partenaire avec RaidCall</a></li>
+							{% if related_news|length > 0 %}
+								{% for one_related_news in related_news %}
+									<li><a href="{{ path('news_detail', {'slug': one_related_news.getSlug()}) }}">{{ one_related_news.getTitle() }}</a></li>
+								{% endfor %}
+							{% else %}
+									<i>Aucune actualité trouvée</i>
+							{% endif %}
 						</ul>
 					</div>
 				</div>

@@ -5,7 +5,73 @@
 @import "../mvnerds/mvnerds-variables.less";
 
 div.span8.left-content {
+	h1 a {
+		color: @MVNerdsRed;
+	}
 
+	h1, h2 {
+		a {
+			font-family: inherit;
+			font-size: inherit;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	a.read-more-news {
+		float: right;
+		margin: 0;
+
+		i {
+			display: inline-block;
+			margin: 0 0 0 3px;
+			position: relative;
+			top: -1px;
+		}
+	}
+
+	div.news-block {
+		position: relative;
+
+		div.news-category {
+			bottom: 90px;
+			color: #666;
+			font-family: 'Arial', sans-serif;
+			font-size: 14px;
+			font-weight: bold;
+			left: -92px;
+			position: absolute;
+			.rotate(-90deg);
+			text-transform: uppercase;
+			width: 200px;
+		}
+
+		div.media {
+			margin: 0 10px 0 23px;
+		}
+
+		div.preview {
+			margin: 0 0 19px 0;
+		}
+
+		div.more-news-infos {
+			line-height: 20px;
+			text-align: right;
+
+			i {
+				display: inline-block;
+				margin: 0 2px 0 0;
+			}
+
+			a {
+				margin: 0 0 0 5px;
+				position: relative;
+				top: -1px;
+			}
+		}
+	}
 }
 
 div.span4.right-content {

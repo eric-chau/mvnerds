@@ -25,6 +25,66 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+div.span8.left-content h1 a {
+  color: #db4a38;
+}
+div.span8.left-content h1 a,
+div.span8.left-content h2 a {
+  font-family: inherit;
+  font-size: inherit;
+}
+div.span8.left-content h1 a:hover,
+div.span8.left-content h2 a:hover {
+  text-decoration: underline;
+}
+div.span8.left-content a.read-more-news {
+  float: right;
+  margin: 0;
+}
+div.span8.left-content a.read-more-news i {
+  display: inline-block;
+  margin: 0 0 0 3px;
+  position: relative;
+  top: -1px;
+}
+div.span8.left-content div.news-block {
+  position: relative;
+}
+div.span8.left-content div.news-block div.news-category {
+  bottom: 90px;
+  color: #666;
+  font-family: 'Arial', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  left: -92px;
+  position: absolute;
+  -webkit-transform: rotate(-90deg);
+  -moz-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  text-transform: uppercase;
+  width: 200px;
+}
+div.span8.left-content div.news-block div.media {
+  margin: 0 10px 0 23px;
+}
+div.span8.left-content div.news-block div.preview {
+  margin: 0 0 19px 0;
+}
+div.span8.left-content div.news-block div.more-news-infos {
+  line-height: 20px;
+  text-align: right;
+}
+div.span8.left-content div.news-block div.more-news-infos i {
+  display: inline-block;
+  margin: 0 2px 0 0;
+}
+div.span8.left-content div.news-block div.more-news-infos a {
+  margin: 0 0 0 5px;
+  position: relative;
+  top: -1px;
+}
 div.span4.right-content div.block div.body ul.nav-tabs li.active a {
   color: white !important;
 }

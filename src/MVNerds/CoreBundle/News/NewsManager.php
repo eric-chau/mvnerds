@@ -9,11 +9,10 @@ use MVNerds\CoreBundle\Model\News;
 use MVNerds\CoreBundle\Model\NewsQuery;
 use MVNerds\CoreBundle\Model\NewsPeer;
 use MVNerds\CoreBundle\Model\NewsCategoryQuery;
-use MVNerds\CoreBundle\Model\NewsCategoryPeer;
 
 class NewsManager
 {
-	const NB_RELATED_NEWS  = 5;
+	const NB_RELATED_NEWS  = 3;
 	
 	private $userLocale;
 	
@@ -117,7 +116,7 @@ class NewsManager
 			->where(NewsPeer::STATUS . ' LIKE ?', NewsPeer::STATUS_PUBLIC)
 			->add(NewsPeer::IS_HIGHLIGHT, '1')
 			->orderByCreateTime(\Criteria::DESC)
-			->limit(5)
+			->limit(10)
 		->find();
 		
 		if (null === $news)
@@ -139,7 +138,7 @@ class NewsManager
 			->where(NewsPeer::STATUS . ' NOT LIKE ?', NewsPeer::STATUS_PRIVATE)
 			->add(NewsPeer::IS_HIGHLIGHT, '1')
 			->orderByCreateTime(\Criteria::DESC)
-			->limit(5)
+			->limit(10)
 		->find();
 		
 		if (null === $news)
@@ -255,20 +254,16 @@ class NewsManager
 	 */
 	public function findRelatedNews(News $news)
 	{
-		$news = NewsQuery::create()
+		$newsCollection = NewsQuery::create()
 			->joinWith('User')
 			->joinWith('NewsCategory')
-			->add(NewsPeer::STATUS, NewsPeer::STATUS_PUBLIC)
-			->add(NewsCategoryPeer::ID, $news->getNewsCategoryId())
+			->add(NewsPeer::STATUS, 2) // Correspond à PUBLIC
+			->add(NewsPeer::NEWS_CATEGORY_ID, $news->getNewsCategoryId())
+			->add(NewsPeer::ID, $news->getId(), \Criteria::NOT_EQUAL)
 			->orderByCreateTime(\Criteria::DESC)
 			->limit(self::NB_RELATED_NEWS)
 		->find();
-		
-		if (null === $news)
-		{
-			throw new InvalidArgumentException('No news found !');
-		}
 
-		return $news;
+		return $newsCollection;
 	}	
 }

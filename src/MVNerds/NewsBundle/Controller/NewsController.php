@@ -145,7 +145,8 @@ class NewsController extends Controller
 			return $this->redirect($this->generateUrl('site_homepage'));
 		}
 		return $this->render('MVNerdsNewsBundle:News:news_detail.html.twig', array(
-			'news' => $news
+			'news'			=> $news,
+			'related_news'	=> $this->get('mvnerds.news_manager')->findRelatedNews($news)
 		));
 	}
 }
