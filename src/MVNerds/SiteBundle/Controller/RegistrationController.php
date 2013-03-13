@@ -8,16 +8,16 @@ use Symfony\Component\HttpFoundation\Response;
 use Exception;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-use MVNerds\LaunchSiteBundle\CustomException\DisabledUserException;
-use MVNerds\LaunchSiteBundle\CustomException\UnknowUserException;
-use MVNerds\LaunchSiteBundle\CustomException\UserAlreadyEnabledException;
-use MVNerds\LaunchSiteBundle\CustomException\WrongActivationCodeException;
+use MVNerds\CoreBundle\Exception\DisabledUserException;
+use MVNerds\CoreBundle\Exception\UnknowUserException;
+use MVNerds\CoreBundle\Exception\UserAlreadyEnabledException;
+use MVNerds\CoreBundle\Exception\WrongActivationCodeException;
 use MVNerds\CoreBundle\Model\PioneerUserPeer;
 use MVNerds\CoreBundle\Model\PioneerUserQuery;
-use MVNerds\LaunchSiteBundle\Form\Model\SummonerModel;
-use MVNerds\LaunchSiteBundle\Form\Type\SummonerType;
-use MVNerds\LaunchSiteBundle\Form\Model\ResetPasswordModel;
-use MVNerds\LaunchSiteBundle\Form\Type\ResetPasswordType;
+use MVNerds\SiteBundle\Form\Model\SummonerModel;
+use MVNerds\SiteBundle\Form\Type\SummonerType;
+use MVNerds\SiteBundle\Form\Model\ResetPasswordModel;
+use MVNerds\SiteBundle\Form\Type\ResetPasswordType;
 
 class RegistrationController extends Controller
 {

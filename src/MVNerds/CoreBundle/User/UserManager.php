@@ -7,10 +7,10 @@ use Symfony\Component\Security\Core\Encoder\EncoderFactory;
 use Swift_Message;
 use Symfony\Component\HttpFoundation\Session\Session;
 
-use MVNerds\LaunchSiteBundle\CustomException\DisabledUserException;
-use MVNerds\LaunchSiteBundle\CustomException\UnknowUserException;
-use MVNerds\LaunchSiteBundle\CustomException\UserAlreadyEnabledException;
-use MVNerds\LaunchSiteBundle\CustomException\WrongActivationCodeException;
+use MVNerds\CoreBundle\Exception\DisabledUserException;
+use MVNerds\CoreBundle\Exception\UnknowUserException;
+use MVNerds\CoreBundle\Exception\UserAlreadyEnabledException;
+use MVNerds\CoreBundle\Exception\WrongActivationCodeException;
 use MVNerds\CoreBundle\Model\PioneerUserPeer;
 use MVNerds\CoreBundle\Model\PioneerUserQuery;
 use MVNerds\CoreBundle\Model\Profile;
