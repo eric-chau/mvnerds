@@ -1,6 +1,7 @@
 $(document).ready(function() {
 	
 	var 	$usernameFilterInput = $('input#username-filter-input');
+	var 	$gameAccountFilterInput = $('input#game-account-filter-input');
 	
 	var langage;
 	if(locale != undefined && locale == 'en') {
@@ -57,6 +58,7 @@ $(document).ready(function() {
                       {"bSearchable": false, "bSortable":false, 'sClass': 'game-account'},//Date inscription
 		    {"bVisible": false, "bSearchable": true, "bSortable":true},//Pseudo
                       {"bVisible": false, "bSearchable": false, "bSortable":true},//create_time
+                      {"bVisible": false, "bSearchable": true, "bSortable":false},//GameAccount
 		],
 		"sPaginationType": 'full_numbers',
 		"oLanguage": langage
@@ -83,11 +85,19 @@ $(document).ready(function() {
 			membersTable.fnFilter($(this).val(), 3);
 		}
 	});
+	//On change filter input
+	$gameAccountFilterInput.on('click', function(e){
+			console.log($(this).is(':checked'));
+			membersTable.fnFilter($(this).is(':checked'), 5);
+	});
 	
 	$('#search-filter-btn').on('click', function(e){
 		e.preventDefault();
 		if ($usernameFilterInput.val() != '') {
 			membersTable.fnFilter($usernameFilterInput.val(), 3);
+		}
+		if ($gameAccountFilterInput.is(':checked')) {
+			membersTable.fnFilter(true, 5);
 		}
 	});
 	

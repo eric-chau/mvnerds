@@ -92,6 +92,10 @@
 				<source>user.filter.username</source>
 				<target>Pseudo</target>
 			</trans-unit>
+			<trans-unit id="205">
+				<source>user.filter.game_account</source>
+				<target>Compte de jeu lié</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

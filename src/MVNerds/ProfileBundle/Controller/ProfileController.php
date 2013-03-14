@@ -43,7 +43,8 @@ class ProfileController extends Controller
 			'',
 			'',
 			'username',
-			'created_at'
+			'created_at',
+			'GameAccount'
 		);
 		
 		$limitStart = 0;
@@ -67,23 +68,30 @@ class ProfileController extends Controller
 		}
 		//Recherche par colonne
 		$whereArr = array();
+		$gameAccount = false;
 		for ( $i=0 ; $i<count($aColumns) ; $i++ ) {
 			if ( isset($_GET['bSearchable_'.$i]) && $_GET['bSearchable_'.$i] == "true" && $_GET['sSearch_'.$i] != '' ) {
-				if ($aColumns[$i] == 'username') {
-					$whereArr[$aColumns[$i]] = ($_GET['sSearch_'.$i]);
+				if ($aColumns[$i] == 'username' || $aColumns[$i] == 'GameAccount') {
+					if ($aColumns[$i] == 'GameAccount') {
+						if ($_GET['sSearch_'.$i] == 'true') {
+							$gameAccount = true;
+						}
+					} else {
+						$whereArr[$aColumns[$i]] = ($_GET['sSearch_'.$i]);
+					}
 				}
 			}
 		}
 		
 		$userManager = $this->get('mvnerds.user_manager');
 		
-		$users = $userManager->findAllActiveAjax($limitStart, $limitLength, $orderArr, $whereArr);
+		$users = $userManager->findAllActiveAjax($limitStart, $limitLength, $orderArr, $whereArr, $gameAccount);
 		
 		$jsonUsers = array(
 			"tab" => $users->count(),
 			"sEcho" => intval($_GET['sEcho']),
 			"iTotalRecords" => $userManager->countAllActive(),
-			"iTotalDisplayRecords" => $userManager->countAllActiveAjax($whereArr),
+			"iTotalDisplayRecords" => $userManager->countAllActiveAjax($whereArr, $gameAccount),
 			'aaData' => array()
 		);
 		
@@ -94,7 +102,8 @@ class ProfileController extends Controller
 				$this->renderView('MVNerdsProfileBundle:Profile:profile_list_username_cell.html.twig', array('user' => $user)),
 				$this->renderView('MVNerdsProfileBundle:Profile:profile_list_game_account_cell.html.twig', array('user' => $user)),
 				$user->getUsername(),
-				$user->getCreatedAt('YmdHims')
+				$user->getCreatedAt('YmdHims'),
+				''
 			);
 		}
 		return new Response(json_encode($jsonUsers));
