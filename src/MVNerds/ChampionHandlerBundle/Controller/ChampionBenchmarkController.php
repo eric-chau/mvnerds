@@ -128,7 +128,7 @@ class ChampionBenchmarkController extends Controller
 		else
 		{
 			// On redirige l'utilisateur vers la liste des champions
-			return $this->redirect($this->generateUrl('launch_site_front'));
+			return $this->redirect($this->generateUrl('champion_benchmark_index'));
 		}
 	}
 	/**
@@ -238,8 +238,8 @@ class ChampionBenchmarkController extends Controller
 			}
 			else
 			{
-				// On redirige l'utilisateur vers la liste des utilisateurs
-				return $this->redirect($this->generateUrl('launch_site_front'));
+				// On redirige l'utilisateur vers la liste des champions
+				return $this->redirect($this->generateUrl('champion_benchmark_index'));
 			}
 		}
 		$flashManager->setSuccessMessage('Flash.success.remove_from_compare.champions');
@@ -259,7 +259,7 @@ class ChampionBenchmarkController extends Controller
 			}
 			else
 			{
-				return $this->redirect($this->generateUrl('launch_site_front'));
+				return $this->redirect($this->generateUrl('champion_benchmark_index'));
 			}
 		}
 	}
@@ -288,8 +288,8 @@ class ChampionBenchmarkController extends Controller
 		}
 		else
 		{
-			// On redirige l'utilisateur vers la liste des utilisateurs
-			return $this->redirect($this->generateUrl('launch_site_front'));
+			// On redirige l'utilisateur vers la liste des champions
+			return $this->redirect($this->generateUrl('champion_benchmark_index'));
 		}
 	}
 
@@ -349,7 +349,7 @@ class ChampionBenchmarkController extends Controller
 		else
 		{
 			//Sinon on redirige vers l index des champions
-			return $this->redirect($this->generateUrl('launch_site_front'));
+			return $this->redirect($this->generateUrl('champion_benchmark_index'));
 		}
 	}
 
@@ -369,7 +369,7 @@ class ChampionBenchmarkController extends Controller
 		else
 		{
 			//Sinon on redirige vers l index des champions
-			return $this->redirect($this->generateUrl('launch_site_front'));
+			return $this->redirect($this->generateUrl('champion_benchmark_index'));
 		}
 	}
 

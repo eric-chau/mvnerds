@@ -1,5 +1,5 @@
 .champion-portrait {
-	background-image: url('/medias/images/champions/portrait-sprite.jpg');
+	background-image: url('../../images/champions/portrait-sprite.jpg');
 	height: 419px;
 	width: 230px;
 }
@@ -661,7 +661,7 @@
 }
 
 .champion-portrait.quinn {
-    background-image: url('/medias/images/champions/quinn-portrait.jpg');
+    background-image: url('../../images/champions/quinn-portrait.jpg');
     height: 419px;
     width: 230px;
 }

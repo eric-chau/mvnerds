@@ -6,11 +6,11 @@
 
     <!--
     <parameters>
-        <parameter key="mv_nerds_launch_site.example.class">MVNerds\LaunchSiteBundle\Example</parameter>
+        <parameter key="mv_nerds_profile.example.class">MVNerds\ProfileBundle\Example</parameter>
     </parameters>
 
     <services>
-        <service id="mv_nerds_launch_site.example" class="%mv_nerds_launch_site.example.class%">
+        <service id="mv_nerds_profile.example" class="%mv_nerds_profile.example.class%">
             <argument type="service" id="service_id" />
             <argument>plain_value</argument>
             <argument>%parameter_name%</argument>

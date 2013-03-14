@@ -1,5 +1,0 @@
-{% if itemBuild.getChampionItemBuilds()|length <= 1 %}
-	<div class="champion-square25 {{ itemBuild.getChampionItemBuilds().getFirst().getChampion().getSlug() }}" >&nbsp;</div>
-{% else %}
-	<img src="{{asset('images/avatar/anonymous.jpg')}}" alt="image_question" class="bootstrap-popover" data-placement="right" data-trigger="hover" data-title="{{itemBuild.getName()}}" data-content="<div class='center-content'>{%for championItemBuild in itemBuild.getChampionItemBuilds() %}<div class='champion-square25 {{championItemBuild.getChampion().getSlug()}}' ></div>{% endfor %}</div>"/>
-{% endif %}

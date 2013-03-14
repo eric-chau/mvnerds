@@ -40,13 +40,14 @@
 		
 		<script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
 		{% if app.environment == 'dev' %}
-			<script type="text/javascript" src="/js/fos_js_routes.js"></script>
+			<script type="text/javascript" src="{{ asset('js/fos_js_routes.js') }}"></script>
 			<script type="text/javascript" src="{{ asset('medias/js/jquery-1.8.3.min.js') }}"></script>		
 		{% else %}
 			{% javascripts
 				'bundles/fosjsrouting/js/router.js'
-				'/js/fos_js_routes.js'
+				'js/fos_js_routes.js'
 				'medias/js/jquery-1.8.3.min.js'
+				'medias/js/google_analytics.js'
 				output='js/mvnerds-bootstrap.js'
 				filter='yui_js'
 			%}
