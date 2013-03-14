@@ -395,7 +395,7 @@ jQuery(function() {
 				$('#comparison-list-dropdown').addClass('open');
 			},
 			stop: function(){
-				$('#comparison-list').css('border', 'none');
+				$('#comparison-list').css('border', '3px solid rgba(53, 53, 53, 0.7)');
 			}
 		});
 	});
@@ -404,10 +404,10 @@ jQuery(function() {
 	$comparisonList.droppable({
 		accept: '#champion-list li.champion',
 		over: function(){
-			$('#comparison-list').css('border', '1px solid black');
+			$('#comparison-list').css('border', '3px solid rgba(53, 53, 53, 0.7)');
 		},
 		out: function(){
-			$('#comparison-list').css('border', '1px dashed black');
+			$('#comparison-list').css('border', '1px dashed black')
 		},
 		drop: function( event, ui ) {
 			addChampionToList(ui.draggable.context.id);
