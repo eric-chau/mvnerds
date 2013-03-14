@@ -21,7 +21,7 @@
 						<div class="row-fluid menu-detail">
 							<div class="span4">
 								<ul>
-									<li class="header"><a href="#"><i class="icon-file"></i>Most Valuable News</a></li>
+									<li class="header"><a href="{{ path('news_index') }}"><i class="icon-file"></i>Most Valuable News</a></li>
 									<li class="header"><a href="{{ path('champion_benchmark_index') }}"><i class="icon-random"></i>Champion Benchmark</a></li>
 									<li class="header"><a href="{{ path('pmri_list') }}"><i class="icon-wrench"></i>Pimp my recommended items</a></li>
 									<li><a href="{{ path('pmri_create') }}"><i class="icon-stop"></i> {{'Sidebar.pmri.create_list'|trans}}</a></li>
@@ -31,7 +31,7 @@
 								
 							<div class="span4">
 								<ul>
-									<li class="header"><a href="{{path('lol_video_index')}}"><i class="icon-facetime-video"></i>LoL Video Center</a></li>
+									<li class="header"><a href="{{ path('lol_video_index') }}"><i class="icon-facetime-video"></i>LoL Video Center</a></li>
 									{#<li class="header"><a href="#"><i class="icon-shopping-cart"></i> Skin Trade Place</a></li>#}
 								</ul>
 							</div>
@@ -39,7 +39,7 @@
 							<div class="span4">
 								<ul>
 									<li class="header"><a href="#"><i class="icon-globe"></i>Most Valuable Nerds</a></li>
-									<li><a href="{{path('profile_list')}}"><i class="icon-stop"></i> {{ 'Topbar.members'|trans }}</a></li>
+									<li><a href="{{ path('profile_list') }}"><i class="icon-stop"></i> {{ 'Topbar.members'|trans }}</a></li>
 									{#<li><a href="#"><i class="icon-stop"></i> Aller sur les forums de discussions</a></li>
 									<li><a href="#"><i class="icon-stop"></i> L'équipe League of Legends</a></li>#}
 								</ul>
