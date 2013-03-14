@@ -13,6 +13,7 @@
 		<!-- AUTO SET LOCALE SERVICES -->
 		<service id="locale.listener" class="%locale.listener.class%">
 			<argument>%default_locale%</argument>
+			<argument>%maintenance_in_progress%</argument>
 			<tag name="kernel.event_listener" event="kernel.request" method="setLocale" />
 			<call method="setSession">
 				<argument type="service" id="session" />

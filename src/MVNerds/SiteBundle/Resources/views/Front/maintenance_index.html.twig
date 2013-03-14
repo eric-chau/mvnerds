@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+	<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" xmlns:fb="http://ogp.me/ns/fb#"> <![endif]-->
+	<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" xmlns:fb="http://ogp.me/ns/fb#"> <![endif]-->
+	<!--[if IE 8]>         <html class="no-js lt-ie9" xmlns:fb="http://ogp.me/ns/fb#"> <![endif]-->
+	<!--[if gt IE 8]><!--> <html class="no-js" xmlns:fb="http://ogp.me/ns/fb#"> <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<title>{% block title %}Guides, Builds and Tools for League of Legends - LoL | MVNerds{% endblock %}</title>
+		<meta name="description" content="{{'Overview.content.p1'|trans}}">
+		<meta name="viewport" content="width=device-width">
+		
+		<link href='http://fonts.googleapis.com/css?family=Quantico' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Ubuntu' rel='stylesheet' type='text/css'>
+		<style>
+			body {
+				background: url('http://mvnerds.com/images/launch_site/maintenance_bg.png'); 
+				text-align: center;
+			}
+
+			div.maintenance-container {
+				left: 50%;
+				margin-left: -300px;
+				margin-top: -193px;
+				position: absolute;
+				top: 40%;
+				width: 600px;
+			}
+
+			div.logo {
+				background: url('http://mvnerds.com/images/launch_site/mvnerds_logo.png') no-repeat top center;
+				height: 167px;
+				margin: auto;
+				margin-bottom: 40px;
+				width: 415px; 
+			}
+
+			div#brand {
+				color: #db4a38;
+				font-family: 'Quantico', sans-serif;
+				font-size: 2.2em;
+				font-weight: bold;
+				padding-top: 106px;
+				text-shadow: 1px 1px 1px rgba(80, 80, 80, 0.3);
+			}
+
+			div#brand em {
+				color: #19a0df;
+				font-style: normal;
+			}
+
+			div.message {
+				background-color: #eee;
+				border: 5px solid rgba(0, 0, 0, .3);
+
+				padding: 20px;
+			}
+
+			div.message p {
+				font-family: 'Ubuntu', sans-serif;
+				font-size: 16px;
+				font-weight: bold;
+				line-height: 1.4em;
+				margin: 0;
+				text-align: left;
+			}
+
+			div.message p.first{
+				margin-bottom: 30px;
+			}
+		</style>
+		
+		<link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}" />
+	</head>
+	<body>
+		<div class="maintenance-container">
+			<div class="message">
+				<div class="logo">
+					<div id="brand">MOST <font color="#db4a38">V</font><font color="#bf5650">A</font><font color="#a46368">L</font><font color="#886f80">U</font><font color="#6c7b97">A</font><font color="#5087af">B</font><font color="#3594c7">L</font><font color="#19a0df">E</font> <em>NERDS</em></div>
+				</div>
+
+				<p class="first">
+					Nous sommes en train d'effectuer des mises à jour pour MVNerds afin d'améliorer votre expérience utilisateur ! Nous seront de retour d'ici quelques minutes.
+				</p>
+
+				<p>
+					We're performing upgrades on MVNerds to enhance your user experience! We will be right back.
+				</p>
+			</div>
+		</div>
+	</body>
+</html>

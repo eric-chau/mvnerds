@@ -10,6 +10,18 @@ use MVNerds\AdminBundle\Controller\AnnouncementController;
 
 class FrontController extends Controller
 {	
+	/**
+	 * @Route("/maintenance", name="site_maintenance")
+	 */
+	public function maintenanceAction()
+	{
+		if (!$this->container->getParameter('maintenance_in_progress')) {
+			return $this->redirect($this->generateUrl('site_homepage'));
+		}
+		
+		return $this->render('MVNerdsSiteBundle:Front:maintenance_index.html.twig');
+	}
+	
     /**
      * @Route("/{_locale}", name="site_homepage", defaults={"_locale" = "fr"})
      */
