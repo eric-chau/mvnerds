@@ -15,11 +15,15 @@
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/site/alerts-ajax-handler.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/champion-benchmark/process-scroll.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/champion-benchmark/sort.js') }}"></script>
 	{% else %}
 		{% javascripts
 			'medias/js/bootstrap/bootstrap-tooltip.js'
 			'medias/js/bootstrap/bootstrap-popover.js'
 			'medias/js/bootstrap/bootstrap-modal.js'
+			'medias/js/champion-benchmark/process-scroll.js'
+			'medias/js/champion-benchmark/sort.js'
 			output='js/champion-benchmark-compare.js'
 			filter='yui_js'
 		%}

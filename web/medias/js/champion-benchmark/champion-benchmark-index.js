@@ -340,6 +340,8 @@ function addFilteredChampions(){
 	return false;
 }
 
+
+
 jQuery(function() {
 	
 	nbComparedChampions = $('#comparison-list li.champion-comparable').size();

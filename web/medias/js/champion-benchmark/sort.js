@@ -61,7 +61,7 @@ function sortByColumn(column, order){
 }
 
 jQuery(function(){
-	$championComparator = $('#champion-comparison');
+	$championComparator = $('#champion-comparator');
 	//Lors du click sur un header de stat
 	$championComparator.on('click', 'div#compare-champion-div-header div.table-header div.sort:not(.sort-asc):not(.sort-desc)', function(){
 		$(this).find('i').removeClass('icon-sort');
