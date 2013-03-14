@@ -225,7 +225,7 @@ div.span8.left-content div.skins-container div.skin div.skin-detail div.video-co
   color: #aaa;
 }
 div.span8.left-content .cost i {
-  background-image: url('/medias/images/commons/rp_logo.png') !important;
+  background-image: url('../../images/commons/rp_logo.png') !important;
   background-repeat: no-repeat;
   background-size: 16px 16px;
   display: inline-block;
@@ -235,7 +235,7 @@ div.span8.left-content .cost i {
   width: 16px;
 }
 div.span8.left-content .cost i.icon-ip {
-  background-image: url('/medias/images/commons/ip_logo.png') !important;
+  background-image: url('../../images/commons/ip_logo.png') !important;
 }
 div.span8.left-content div#item-builds-table_wrapper {
   position: relative;

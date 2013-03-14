@@ -1,5 +1,5 @@
 .champion-square {
-	background-image: url('/medias/images/champions/square-sprite.jpg');
+	background-image: url('../../images/champions/square-sprite.jpg');
 	height: 100px;
 	width: 100px;
 }
@@ -665,7 +665,7 @@
 }
 
 .champion-square.quinn {
-    background-image: url('/medias/images/champions/quinn.png');
+    background-image: url('../../images/champions/quinn.png');
     height: 100px;
     width: 100px;
 }

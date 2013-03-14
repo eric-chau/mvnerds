@@ -319,7 +319,7 @@ div.container.main-container div#champion-list ul li.champion div.preview div.sp
   text-align: right;
 }
 div.container.main-container div#champion-list ul li.champion div.preview div.span6 p i {
-  background-image: url('/medias/images/commons/rp_logo.png') !important;
+  background-image: url('../../images/commons/rp_logo.png') !important;
   background-repeat: no-repeat;
   background-size: 16px 16px;
   display: inline-block;
@@ -329,7 +329,7 @@ div.container.main-container div#champion-list ul li.champion div.preview div.sp
   width: 16px;
 }
 div.container.main-container div#champion-list ul li.champion div.preview div.span6 p i.icon-ip {
-  background-image: url('/medias/images/commons/ip_logo.png') !important;
+  background-image: url('../../images/commons/ip_logo.png') !important;
 }
 div.container.main-container div#champion-list ul li.champion div.preview div.span6 p.indication {
   font-size: 12px;
