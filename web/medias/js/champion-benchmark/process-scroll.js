@@ -49,7 +49,8 @@ function processScroll()
 	}
 }
 
-jQuery(function() {
+jQuery(function() {	
+	$('.tooltip-anchor').tooltip();
 	
 	initBenchmark();
 	
