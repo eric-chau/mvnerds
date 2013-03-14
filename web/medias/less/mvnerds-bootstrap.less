@@ -209,18 +209,56 @@ div.tab-content {
 }
 
 div.ad-container {
+	margin: 10px 0;
 	position: relative;
-	height: 60px;
+	text-align: center;
 
-	img.unblock-ad-img {
-		display: block;
-		position: absolute;
+	div.unblock-ad-msg {
+		border: 2px solid #999;
+		height: 56px;
 		left: 85px;
+		position: absolute;
+		top: 0;
+		width: 464px;
 		z-index: 0;
+
+		&.large {
+			font-size: inherit;
+			font-weight: bold;
+			height: 86px;
+			left: 136px;
+			width: 724px;
+
+			i {
+				font-size: 40px;
+				color: @MVNerdsRed;
+				top: 5px;
+				display: block;
+				font-size: 30px;
+				left: 5px;
+				opacity: .5;
+				position: absolute;
+			}
+
+			img {
+				margin: 10px auto 5px auto;
+			}
+		}
+
+		p {
+			font-size: 12px;
+			font-weight: bold;
+			margin: 13px 0 0 0;
+		}
+
+		img {
+			display: block;
+			margin: 13px 5px 0 5px;
+			float: left;
+		}
 	}
-	
-	margin-top: -60px;
 }
+
 div.sidebar-ad-container {
 	border: 1px solid #666;
 	margin: 0 0 20px 0;
@@ -228,12 +266,26 @@ div.sidebar-ad-container {
 	position: relative;
 	height: 250px; 
 
-	img.unblock-ad-img {
+	div.unblock-ad-msg {
+		background-color: rgba(228,230,229,.8);
+		border: 2px solid #999;
+		height: 246px;
+		left: 10px;
 		position: absolute;
+		top: 10px;
+		width: 296px;
 		z-index: 0;
-	}
-	ins {
-		margin-top: -250px;
+
+		p {
+			font-weight: bold;
+			margin: 20px 5px;
+			text-align: center;
+		}
+
+		img {
+			display: block;
+			margin: 65px auto 30px auto;
+		}
 	}
 }
 

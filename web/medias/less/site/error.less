@@ -1,0 +1,62 @@
+// Twitter Bootstraps imports
+@import "../bootstrap/mixins.less";
+
+// MVNerds imports
+@import "../mvnerds/mvnerds-variables.less";
+
+div.container.main-container {
+	div.amumu-container {
+		float: right;
+		position: relative;
+
+		img {
+			display: block;
+		}
+
+		div.amumu-message {
+			color: @MVNerdsRed;
+			font-size: 18px;
+			font-weight: bold;
+			left: 0;
+			position: absolute;
+			top: 270px;
+			.rotate(-10deg);
+		}
+
+		div.draw-by {
+			bottom: 0;
+			font-size: 12px;
+			position: absolute;
+			right: 0;
+			text-transform: uppercase;
+		}
+	}
+
+	li, p, a {
+		font-size: 16px;
+	}
+
+	ul {
+		margin: 0 0 20px 0;
+
+		li a {
+			color: darken(@MVNerdsBlue, 10%);
+			font-weight: bold;
+
+			&:hover {
+				text-decoration: underline;
+
+				i {
+					text-decoration: none;
+				}
+			}
+
+			i {
+				color: darken(@MVNerdsRed, 5%);
+				display: inline-block;
+				margin: 0 0 0 3px;
+				.rotate(10deg);
+			}
+		}
+	}
+}

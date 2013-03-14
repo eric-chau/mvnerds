@@ -315,15 +315,48 @@ div.tab-content div.tab-pane.active {
   display: block;
 }
 div.ad-container {
+  margin: 10px 0;
   position: relative;
-  height: 60px;
-  margin-top: -60px;
+  text-align: center;
 }
-div.ad-container img.unblock-ad-img {
-  display: block;
-  position: absolute;
+div.ad-container div.unblock-ad-msg {
+  border: 2px solid #999;
+  height: 56px;
   left: 85px;
+  position: absolute;
+  top: 0;
+  width: 464px;
   z-index: 0;
+}
+div.ad-container div.unblock-ad-msg.large {
+  font-size: inherit;
+  font-weight: bold;
+  height: 86px;
+  left: 136px;
+  width: 724px;
+}
+div.ad-container div.unblock-ad-msg.large i {
+  font-size: 40px;
+  color: #db4a38;
+  top: 5px;
+  display: block;
+  font-size: 30px;
+  left: 5px;
+  opacity: .5;
+  position: absolute;
+}
+div.ad-container div.unblock-ad-msg.large img {
+  margin: 10px auto 5px auto;
+}
+div.ad-container div.unblock-ad-msg p {
+  font-size: 12px;
+  font-weight: bold;
+  margin: 13px 0 0 0;
+}
+div.ad-container div.unblock-ad-msg img {
+  display: block;
+  margin: 13px 5px 0 5px;
+  float: left;
 }
 div.sidebar-ad-container {
   border: 1px solid #666;
@@ -332,12 +365,24 @@ div.sidebar-ad-container {
   position: relative;
   height: 250px;
 }
-div.sidebar-ad-container img.unblock-ad-img {
+div.sidebar-ad-container div.unblock-ad-msg {
+  background-color: rgba(228, 230, 229, 0.8);
+  border: 2px solid #999;
+  height: 246px;
+  left: 10px;
   position: absolute;
+  top: 10px;
+  width: 296px;
   z-index: 0;
 }
-div.sidebar-ad-container ins {
-  margin-top: -250px;
+div.sidebar-ad-container div.unblock-ad-msg p {
+  font-weight: bold;
+  margin: 20px 5px;
+  text-align: center;
+}
+div.sidebar-ad-container div.unblock-ad-msg img {
+  display: block;
+  margin: 65px auto 30px auto;
 }
 div.popover {
   border: 2px solid #111;
@@ -687,12 +732,8 @@ div#announcement-container {
   text-align: center;
 }
 div.container.main-container {
-  min-height: 417px;
+  min-height: 438px;
   padding: 20px 10px;
-}
-div.container.main-container div.ad-container {
-  margin: 0 0 10px 0;
-  text-align: center;
 }
 div.container.main-container div.span8.left-content {
   border: 1px solid #666;
