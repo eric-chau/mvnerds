@@ -20,9 +20,9 @@
 		</tbody>
 	</table>
 	
-	<a class="btn green" id="more-pmri" href="{{path('pmri_list_slug', {'slug': champion.getSlug()})}}">Voir plus de listes d'objets recommandées pour {{champion.getName()}}</a>
+	<a class="btn green" id="more-pmri" href="{{path('pmri_list_filter_by_champion', {'championSlug': champion.getSlug()})}}">Voir plus de listes d'objets recommandées pour {{champion.getName()}}</a>
 	
 	{% else %}
-		<p>Il n'y a pas de listes d'objets dédiées à {{champion.getName()}}</p>
+		<p><i>Désolé, aucune liste d'objets recommandés n'a été trouvé pour {{champion.getName()}}. <a href="{{ path('pmri_create') }}">Souhaitez-vous remédier à son chagrin ?</a></i></p>
 	{% endif %}
 </div>

@@ -67,14 +67,13 @@ class ItemBuilderController extends Controller
 	
 	/**
 	 * 
-	 * @Route("/list", name="pmri_list", defaults={"slug" = null})
-	 * @Route("/list/", name="pmri_list", defaults={"slug" = null})
-	 * @Route("/list/{slug}", name="pmri_list_slug")
+	 * @Route("/", name="pmri_list", defaults={"championSlug" = null})
+	 * @Route("/filter-by-champion/{championSlug}", name="pmri_list_filter_by_champion")
 	 */
-	public function listAction($slug) 
+	public function listAction($championSlug) 
 	{
 		try {
-			$champion = $this->get('mvnerds.champion_manager')->findBySlug($slug);
+			$champion = $this->get('mvnerds.champion_manager')->findBySlug($championSlug);
 			
 			return $this->render('MVNerdsItemHandlerBundle:PMRI:pmri_list_index.html.twig', array(
 				'champion_name' => $champion->getName()
@@ -621,7 +620,7 @@ class ItemBuilderController extends Controller
 			/* @var $itemBuild \MVNerds\CoreBundle\Model\ItemBuild */
 			$itemBuild = $itemBuildManager->findBySlug($itemBuildSlug);
 		} catch (\Exception $e ) {
-			return $this->redirect($this->generateUrl('item_builder_list'));
+			return $this->redirect($this->generateUrl('pmri_list'));
 		}
 		
 		if( ! ($this->getUser()->getId() == $itemBuild->getUserId() || $this->get('security.context')->isGranted('ROLE_ADMIN')))
@@ -720,7 +719,7 @@ class ItemBuilderController extends Controller
 			$itemBuild->save();
 		} 
 		catch (\Exception $e) {
-			return $this->redirect($this->generateUrl('item_builder_list'));
+			return $this->redirect($this->generateUrl('pmri_list'));
 		}
 		
 		$lolDir = null;

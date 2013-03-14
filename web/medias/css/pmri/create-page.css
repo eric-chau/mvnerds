@@ -107,22 +107,28 @@ div.container.main-container div.step div.champion-container div#champion-list u
   border: 1px solid #999;
   cursor: pointer;
   margin: 0 0 16px 0;
+  opacity: .4;
   padding: 3px;
   position: relative;
 }
+div.container.main-container div.step div.champion-container div#champion-list ul#champion-isotope-list li.champion:hover {
+  opacity: 1;
+  -webkit-transition: opacity 0.25s linear;
+  -moz-transition: opacity 0.25s linear;
+  -o-transition: opacity 0.25s linear;
+  transition: opacity 0.25s linear;
+}
 div.container.main-container div.step div.champion-container div#champion-list ul#champion-isotope-list li.champion.active {
-  border-color: #db4a38;
-  -webkit-transition: border-color 0.25s linear;
-  -moz-transition: border-color 0.25s linear;
-  -o-transition: border-color 0.25s linear;
-  transition: border-color 0.25s linear;
+  border: 2px solid #19a0df;
+  opacity: 1;
+  padding: 1px;
 }
 div.container.main-container div.step div.champion-container div#champion-list ul#champion-isotope-list li.champion.active i {
   opacity: 1;
 }
 div.container.main-container div.step div.champion-container div#champion-list ul#champion-isotope-list li.champion i {
   bottom: -8px;
-  color: #db4a38;
+  color: #19a0df;
   display: inline-block;
   font-size: 22px;
   opacity: 0;

@@ -30,6 +30,7 @@ class ItemBuildManager
 		$itemBuild = ItemBuildQuery::create()
 			->joinWith('User', \Criteria::LEFT_JOIN)
 			->joinWith('User.Profile')
+			->joinWith('Profile.GameAccount', \Criteria::LEFT_JOIN)
 			->joinWith('Profile.Avatar')
 			->joinWith('ChampionItemBuild', \Criteria::LEFT_JOIN)
 			->joinWith('GameMode', \Criteria::LEFT_JOIN)

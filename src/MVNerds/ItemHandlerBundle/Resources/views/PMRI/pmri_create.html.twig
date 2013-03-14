@@ -7,10 +7,12 @@
 
 	{% if app.environment == 'dev' %}
 		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/pmri/create-page.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/mvnerds/mvnerds-modal.css') }}">
 		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/jquery.mCustomScrollbar.css') }}">
 	{% else %}
 		{% stylesheets 
 			'medias/css/pmri/create-page.css'
+			'medias/css/mvnerds/mvnerds-modal.css'
 			'medias/css/jquery.mCustomScrollbar.css'
 			output='css/pmri-create.css'
 			filter='yui_css'
@@ -201,29 +203,6 @@
 	
 	{% include 'MVNerdsItemHandlerBundle:Modal:change_lol_directory_modal.html.twig' %}
 	{% include 'MVNerdsItemHandlerBundle:Modal:item_modal.html.twig' %}
-	
-	<div id="modal-authenticate-build" class="modal hide fade">
-		<div class="modal-header">
-			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			<h3>{{'create_item_build.modal_authenticate.h3' | trans}}</h3>
-		</div>
-		<div class="modal-body" style="min-height:235px;">
-			<p>
-				{{'create_item_build.modal_authenticate.p1' | trans}}
-			</p>
-			{#<p>
-				{{'create_item_build.modal_authenticate.p2' | trans}}
-			</p>#}
-			<p>
-				{{'create_item_build.modal_authenticate.p3' | trans}}
-			</p>
-		</div>
-		<div class="modal-footer">
-			<a href="#" data-dismiss="modal" class="btn-cancel">{{'create_item_build.modal_authenticate.btn.cancel' | trans}}</a>
-			<a href="{{path('security_store_current_route_and_redirect_to_login')}}" id="modal-btn-authentication" data-target="" class="btn-download">{{'create_item_build.modal_authenticate.btn.sign_in' | trans}}</a>
-			<a href="{{path('security_store_current_route_and_redirect_to_registration')}}" id="modal-btn-inscription" data-target="" class="btn-download">{{'create_item_build.modal_authenticate.btn.inscription' | trans}}</a>
-			<a href="{{path('security_summoner_login')}}" id="modal-btn-only-generate-build" data-target="" class="btn-download"><i class="icon-download-alt"></i>{{'create_item_build.modal_authenticate.btn.download_only' | trans}}</a>
-		</div>
-	</div>
+	{% include 'MVNerdsItemHandlerBundle:Modal:authenticate_modal.html.twig' %}
 {% endblock %}
 	

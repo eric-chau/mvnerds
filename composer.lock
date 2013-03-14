@@ -1102,12 +1102,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/propelorm/PropelBundle.git",
-                "reference": "d6e4ed86d2b5bafb480e62843b48e55bbb6b2c21"
+                "reference": "6b2913c80d3cce1c8af60fba8c99466552083741"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/propelorm/PropelBundle/zipball/d6e4ed86d2b5bafb480e62843b48e55bbb6b2c21",
-                "reference": "d6e4ed86d2b5bafb480e62843b48e55bbb6b2c21",
+                "url": "https://api.github.com/repos/propelorm/PropelBundle/zipball/6b2913c80d3cce1c8af60fba8c99466552083741",
+                "reference": "6b2913c80d3cce1c8af60fba8c99466552083741",
                 "shasum": ""
             },
             "require": {
@@ -1141,7 +1141,7 @@
                 "persistence",
                 "propel"
             ],
-            "time": "2013-02-16 00:57:35"
+            "time": "2013-03-13 09:48:58"
         },
         {
             "name": "propel/propel1",
@@ -1656,12 +1656,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "02da7da5a6ee0e00d4f7cde0544125f459b440aa"
+                "reference": "7966d8f8310295b95173361ff2d4960c7e93c0ba"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/02da7da5a6ee0e00d4f7cde0544125f459b440aa",
-                "reference": "02da7da5a6ee0e00d4f7cde0544125f459b440aa",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/7966d8f8310295b95173361ff2d4960c7e93c0ba",
+                "reference": "7966d8f8310295b95173361ff2d4960c7e93c0ba",
                 "shasum": ""
             },
             "require": {
@@ -1747,7 +1747,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2013-03-11 22:11:53"
+            "time": "2013-03-14 11:41:06"
         },
         {
             "name": "twig/extensions",

@@ -146,6 +146,48 @@
 							<img src="{{ asset('medias/images/avatar/' ~ item_build.getUser().getUserAvatarName()~ '.jpg') }}" />
 							{{ render(controller('MVNerdsVoteBundle:Vote:renderVoteBlock', {'object': item_build, 'objectType': 'item_build'})) }}
 						</div>
+						
+						<div class="game-account-infos">
+							{% set game_account = item_build.getUser().getProfile().getGameAccount() %}
+							{% if game_account != null %}
+								<div class="summoner-name">Nom d'invocateur : <strong>{{ game_account.getSummonerName() }}</strong></div>
+								<div class="row-fluid">
+									<div class="span4 league">
+										{% if game_account.getRankedTeam3x3League() != null %}
+											<img src="{{ asset('medias/images/league-medals/' ~ game_account.getRankedTeam3x3League() ~ '.png') }}" />
+										{% else %}
+											<img src="{{ asset('medias/images/league-medals/unranked.png') }}" />
+										{% endif %}
+										<div class="label">Équipe classée (3c3)</div>
+									</div>
+
+									<div class="span4 league">
+										{% if game_account.getRankedSolo5x5League() != null %}
+											<img src="{{ asset('medias/images/league-medals/' ~ game_account.getRankedSolo5x5League() ~ '.png') }}" />
+										{% else %}
+											<img src="{{ asset('medias/images/league-medals/unranked.png') }}" />
+										{% endif %}
+										<div class="label">File Solo/Duo</div>
+									</div>
+
+									<div class="span4 league">
+										{% if game_account.getRankedTeam5x5League() != null %}
+											<img src="{{ asset('medias/images/league-medals/' ~ game_account.getRankedTeam5x5League() ~ '.png') }}" />
+										{% else %}
+											<img src="{{ asset('medias/images/league-medals/unranked.png') }}" />
+										{% endif %}
+										<div class="label">Équipe classée (5c5)</div>
+									</div>
+								</div>
+							{% else %}
+								{% if app.user != null and app.user.getId() == item_build.getUser().getId() %}
+									<i>Vous n'avez pas encore renseigné votre compte League of Legends. <a href="{{ path('summoner_profile_index') }}">Souhaitez-vous le faire maintenant ?</a></i>
+								{% else %}
+									<i>{{ item_build.getUser().getUsername() }} n'a pas encore renseigné son compte League of Legends.</i>
+								{% endif %}
+							{% endif %}
+						</div>
+						
 						<div class="stats">
 							<i class="icon-user"></i> 
 							<strong><a href="{{ path('summoner_profile_view', {'userSlug': item_build.getUser().getSlug()}) }}" title="Consulter le profil de {{ item_build.getUser().getUsername }}" class="resize-required">{{item_build.getUser().getUserName()}}</a></strong><br /> auteur

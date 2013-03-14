@@ -93,11 +93,18 @@ div.container.main-container {
 						border: 1px solid #999;
 						cursor: pointer;
 						margin: 0 0 16px 0;
+						opacity: .4;
 						padding: 3px;
 						position: relative;
 
+						&:hover {
+							opacity: 1; .transition(opacity .25s linear);
+						}
+
 						&.active { 
-							border-color: @MVNerdsRed; .transition(border-color .25s linear);
+							border: 2px solid @MVNerdsBlue; 
+							opacity: 1;
+							padding: 1px;
 
 							i {
 								opacity: 1;
@@ -106,7 +113,7 @@ div.container.main-container {
 
 						i {
 							bottom: -8px;
-							color: @MVNerdsRed;
+							color: @MVNerdsBlue;
 							display: inline-block;
 							font-size: 22px;
 							opacity: 0;
