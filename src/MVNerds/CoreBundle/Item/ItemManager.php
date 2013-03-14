@@ -33,9 +33,9 @@ class ItemManager
 	public function getPublicItemsName()
 	{
 		return ItemQuery::create()
+			->joinWithI18n($this->userLocale)
 			->add(ItemPeer::IS_OBSOLETE, '0')
-			->joinI18n($this->userLocale, 'i18n')
-			->withColumn('i18n.name', 'name')
+			->withColumn('item_i18n.name', 'name')
 			->select(array('name'))
 			->OrderBy('name')
 		->find();
