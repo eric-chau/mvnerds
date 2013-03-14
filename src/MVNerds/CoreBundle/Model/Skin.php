@@ -16,8 +16,7 @@ use MVNerds\CoreBundle\Model\om\BaseSkin;
  *
  * @package    propel.generator.src.MVNerds.CoreBundle.Model
  */
-class Skin extends BaseSkin {
-	
+class Skin extends BaseSkin {	
 	public function getImage() {
 		return '';
 	}

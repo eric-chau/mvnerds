@@ -17,5 +17,4 @@ use MVNerds\CoreBundle\Model\om\BaseTag;
  * @package    propel.generator.src.MVNerds.CoreBundle.Model
  */
 class Tag extends BaseTag {
-
 } // Tag

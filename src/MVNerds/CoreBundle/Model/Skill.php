@@ -16,7 +16,7 @@ use MVNerds\CoreBundle\Model\om\BaseSkill;
  *
  * @package    propel.generator.src.MVNerds.CoreBundle.Model
  */
-class Skill extends BaseSkill {
+class Skill extends BaseSkill {	
 	public function getImage() {
 		return '';
 	}

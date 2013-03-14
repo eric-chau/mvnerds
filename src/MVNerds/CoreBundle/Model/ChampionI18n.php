@@ -18,4 +18,47 @@ use MVNerds\CoreBundle\Model\om\BaseChampionI18n;
  */
 class ChampionI18n extends BaseChampionI18n {
 
+	protected $championSlug;
+	
+	public function setName($name) 
+	{
+		parent::setName($name);
+		
+		if ('fr' == $this->getLang()) {
+			$in = array(
+				'/[éèê]/u',
+				'/[àâ]/u',
+				'/[ïî]/u',
+				'/[ç]/u',
+				'/[^\w]+/u'
+			);
+			
+			$out = array(
+				'e',
+				'a',
+				'i',
+				'c',
+				'-'
+			);
+			
+			$slug = preg_replace($in, $out, mb_strtolower($this->getName(), 'UTF-8'));
+			if (( $champion = $this->getChampion())) {
+				$champion->setSlug($slug);
+			} else {
+				$this->championSlug = $slug;
+			}
+			
+		}
+
+		  return $this;
+	}
+	
+	public function setChampion(Champion $v = null)
+	{
+		if ($this->championSlug != null) {
+			$v->setSlug($this->championSlug);
+		}
+		
+		parent::setChampion($v);
+	}
 } // ChampionI18n
