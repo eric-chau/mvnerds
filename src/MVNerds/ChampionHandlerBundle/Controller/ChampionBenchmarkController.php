@@ -255,7 +255,7 @@ class ChampionBenchmarkController extends Controller
 			if($comparisonManager->isComparable())
 			{
 				// On redirige l'utilisateur vers la liste des utilisateurs
-				return $this->redirect($this->generateUrl('launch_site_front_compare_champions').'#champion-comparator');
+				return $this->redirect($this->generateUrl('champion_benchmark_compare').'#champion-comparator');
 			}
 			else
 			{
@@ -330,7 +330,7 @@ class ChampionBenchmarkController extends Controller
 		$comparisonManager->cleanReferenceChampion();
 
 		//On redirige vers la comparaison des champions
-		return $this->redirect($this->generateUrl('launch_site_front_compare_champions'));
+		return $this->redirect($this->generateUrl('champion_benchmark_compare'));
 	}
 
 	/**

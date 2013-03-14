@@ -18,6 +18,8 @@ use MVNerds\CoreBundle\Role\RoleManager;
 use MVNerds\CoreBundle\Model\User;
 use MVNerds\CoreBundle\Model\UserPeer;
 use MVNerds\CoreBundle\Model\UserQuery;
+use MVNerds\CoreBundle\Model\ProfilePeer;
+use MVNerds\CoreBundle\Model\GameAccountPeer;
 
 class UserManager 
 {	
@@ -332,7 +334,7 @@ class UserManager
 		$this->userLocale = null === $locale? 'fr' : $locale;
 	}
 	
-	public function findAllActiveAjax($limitStart = 0, $limitLength = 2, $orderArr = array('created_at' => 'desc'), $whereArr = array())
+	public function findAllActiveAjax($limitStart = 0, $limitLength = 2, $orderArr = array('created_at' => 'desc'), $whereArr = array(), $gameAccount = false)
 	{
 		$userQuery = UserQuery::create()
 			->offset($limitStart)
@@ -359,6 +361,11 @@ class UserManager
 			$userQuery->add($whereCol, '%' . $whereVal . '%', \Criteria::LIKE);
 		}
 		
+		if ($gameAccount) {
+			$userQuery->add(ProfilePeer::GAME_ACCOUNT_ID, null, \Criteria::NOT_EQUAL);
+			$userQuery->add(GameAccountPeer::IS_ACTIVE, true);
+		}
+		
 		$users = $userQuery->find();
 		
 		if (null === $users) {
@@ -377,13 +384,20 @@ class UserManager
 		return $usersCount;
 	}
 	
-	public function countAllActiveAjax($whereArr = array())
+	public function countAllActiveAjax($whereArr = array(), $gameAccount = false)
 	{
 		$userQuery = UserQuery::create()
-			->add(UserPeer::IS_ACTIVE, true);
+			->add(UserPeer::IS_ACTIVE, true)
+			->joinWith('Profile')
+			->joinWith('Profile.GameAccount', \Criteria::LEFT_JOIN);
 	
 		foreach($whereArr as $whereCol => $whereVal) {
 			$userQuery->add($whereCol, '%' . $whereVal . '%', \Criteria::LIKE);
+		}
+		
+		if ($gameAccount) {
+			$userQuery->add(ProfilePeer::GAME_ACCOUNT_ID, null, \Criteria::NOT_EQUAL);
+			$userQuery->add(GameAccountPeer::IS_ACTIVE, true);
 		}
 		
 		return $userQuery->count();

@@ -90,6 +90,18 @@
 				<source>PBE</source>
 				<target>P.B.E</target>
 			</trans-unit>
+			<trans-unit id="2005">
+				<source>LOL_PATCHNOTE</source>
+				<target>Notes de patch LoL</target>
+			</trans-unit>
+			<trans-unit id="2006">
+				<source>MVNERDS_PATCHNOTE</source>
+				<target>Notes de patch MVNerds</target>
+			</trans-unit>
+			<trans-unit id="2007">
+				<source>PRO_TEAM</source>
+				<target>Equipe professionnelle</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

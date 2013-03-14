@@ -102,3 +102,11 @@ function deactivateButton($buttonLi) {
 jQuery.nl2br = function(varTest){
 	return varTest.replace(/(\r\n|\n\r|\r|\n)/g, "<br>");
 };
+
+
+//Permet d'organiser les catégories d'un select dans l'ordre alphabétique
+function orderCategories($target) {
+	$target.parent().html($target.sort( function(a, b) {
+		return $(a).html().toLowerCase() > $(b).html().toLowerCase() ? 1 : -1
+	}));
+}

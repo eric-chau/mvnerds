@@ -18,4 +18,47 @@ use MVNerds\CoreBundle\Model\om\BaseItemI18n;
  */
 class ItemI18n extends BaseItemI18n {
 
+	protected $itemSlug;
+	
+	public function setName($name) 
+	{
+		parent::setName($name);
+		
+		if ('fr' == $this->getLang()) {
+			$in = array(
+				'/[éèê]/u',
+				'/[àâ]/u',
+				'/[ïî]/u',
+				'/[ç]/u',
+				'/[^\w]+/u'
+			);
+			
+			$out = array(
+				'e',
+				'a',
+				'i',
+				'c',
+				'-'
+			);
+			
+			$slug = preg_replace($in, $out, mb_strtolower($this->getName(), 'UTF-8'));
+			if (( $item = $this->getItem())) {
+				$item->setSlug($slug);
+			} else {
+				$this->itemSlug = $slug;
+			}
+			
+		}
+
+		  return $this;
+	}
+	
+	public function setItem(Item $v = null)
+	{
+		if ($this->itemSlug != null) {
+			$v->setSlug($this->itemSlug);
+		}
+		
+		parent::setItem($v);
+	}
 } // ItemI18n

@@ -149,7 +149,7 @@ class NewsManager
 		return $news;
 	}	
 	
-	public function findAllAjax($onlyPublic = true, $limitStart = 0, $limitLength = 2, $orderArr = array('Create_Time' => 'desc'), $whereArr = array())
+	public function findAllAjax($onlyPublic = true, $limitStart = 0, $limitLength = 2, $orderArr = array('create_time' => 'desc'), $whereArr = array())
 	{
 		$newsQuery = NewsQuery::create()
 			->offset($limitStart)
@@ -158,9 +158,9 @@ class NewsManager
 			->joinWith('NewsCategory', \Criteria::LEFT_JOIN);
 		
 		if ($onlyPublic) {
-			$newsQuery->add(NewsPeer::STATUS, NewsPeer::STATUS_PUBLIC);
+			$newsQuery->filterByStatus(NewsPeer::STATUS_PUBLIC);
 		} else {
-			$newsQuery->add(NewsPeer::STATUS, NewsPeer::STATUS_PRIVATE, \Criteria::NOT_LIKE);
+			$newsQuery->filterByStatus(NewsPeer::STATUS_PRIVATE, \Criteria::NOT_LIKE);
 		}
 		
 		foreach($orderArr as $orderCol => $orderDir)
@@ -194,9 +194,9 @@ class NewsManager
 	public function countAll($onlyPublic = true)
 	{
 		if ($onlyPublic) {
-			$newsCount = NewsQuery::create()->add(NewsPeer::STATUS, NewsPeer::STATUS_PUBLIC)->count();
+			$newsCount = NewsQuery::create()->filterByStatus(NewsPeer::STATUS_PUBLIC)->count();
 		} else {
-			$newsCount = NewsQuery::create()->add(NewsPeer::STATUS, NewsPeer::STATUS_PRIVATE, \Criteria::NOT_LIKE)->count();	
+			$newsCount = NewsQuery::create()->filterByStatus(NewsPeer::STATUS_PRIVATE, \Criteria::NOT_LIKE)->count();	
 		}
 		
 		return $newsCount;
@@ -209,9 +209,9 @@ class NewsManager
 			->joinWith('NewsCategory', \Criteria::LEFT_JOIN);
 	
 		if ($onlyPublic) {
-			$newsQuery->add(NewsPeer::STATUS, NewsPeer::STATUS_PUBLIC);
+			$newsQuery->filterByStatus(NewsPeer::STATUS_PUBLIC);
 		} else {
-			$newsQuery->add(NewsPeer::STATUS, NewsPeer::STATUS_PRIVATE, \Criteria::NOT_LIKE);
+			$newsQuery->filterByStatus(NewsPeer::STATUS_PRIVATE, \Criteria::NOT_LIKE);
 		}
 		
 		foreach($whereArr as $whereCol => $whereVal)
@@ -257,7 +257,7 @@ class NewsManager
 		$newsCollection = NewsQuery::create()
 			->joinWith('User')
 			->joinWith('NewsCategory')
-			->add(NewsPeer::STATUS, 2) // Correspond à PUBLIC
+			->filterByStatus(NewsPeer::STATUS_PUBLIC) // Correspond à PUBLIC
 			->add(NewsPeer::NEWS_CATEGORY_ID, $news->getNewsCategoryId())
 			->add(NewsPeer::ID, $news->getId(), \Criteria::NOT_EQUAL)
 			->orderByCreateTime(\Criteria::DESC)

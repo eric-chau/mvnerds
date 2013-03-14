@@ -1,0 +1,58 @@
+{% extends 'MVNerdsSiteBundle::layout.html.twig' %}
+
+{% block css %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/champions/champion-detail.css') }}">
+		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/champions/champion-square-sprite.css') }}">
+	{% else %}
+		{% stylesheets 
+			'medias/css/champions/champion-detail.css'
+			'medias/css/champions/champion-square-sprite.css'
+			output='css/champion-detail.css'
+			filter='yui_css'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
+	{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	
+	{% if app.environment == 'dev' %}
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/champions/champion-detail.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/jquery.dataTables.min.js') }}"></script>
+	{% else %}
+		{% javascripts
+			'medias/js/bootstrap/bootstrap-tooltip.js'
+			'medias/js/bootstrap/bootstrap-popover.js'
+			'medias/js/champions/champion-detail.js'
+			'medias/js/jquery.dataTables.min.js'
+			output='js/champion-detail.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	{% endif %}
+{% endblock %}
+		
+{% block main_content %}
+	<div class="container main-container border-top">
+		<div class="row-fluid">
+			{% for champion in champions %}
+				<div class="champion-square36 {{champion.getSlug()}}" style=""></div>
+				{% for skill in champion.getSkills() %}
+					<img src ="/medias/images/champions/skills/{{skill.getSlug()}}.png"/>
+				{% endfor %}
+					<br />
+				<br />
+			{% endfor %}
+				
+		</div>
+	</div>
+{% endblock %}
+	
