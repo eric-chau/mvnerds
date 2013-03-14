@@ -149,7 +149,7 @@ class NewsManager
 		return $news;
 	}	
 	
-	public function findAllAjax($onlyPublic = true, $limitStart = 0, $limitLength = 2, $orderArr = array('Create_Time' => 'desc'), $whereArr = array())
+	public function findAllAjax($onlyPublic = true, $limitStart = 0, $limitLength = 2, $orderArr = array('create_time' => 'desc'), $whereArr = array())
 	{
 		$newsQuery = NewsQuery::create()
 			->offset($limitStart)

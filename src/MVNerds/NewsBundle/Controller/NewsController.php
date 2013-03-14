@@ -46,13 +46,13 @@ class NewsController extends Controller
 			'',
 			'',
 			'',
-			'user.USERNAME',
-			'Create_Time',
-			'Update_Time',
-			'news_i18n.Title',
-			'View',
+			'user.username',
+			'create_time',
+			'update_time',
+			'title',
+			'news.view',
 			'news_category.UNIQUE_NAME',
-			'Comment_Count'
+			'news.comment_count'
 		);
 		
 		$limitStart = 0;
@@ -72,7 +72,7 @@ class NewsController extends Controller
 			}
 		}
 		if (count($orderArr) <= 0) {
-			$orderArr = array('Create_Time' => 'desc');
+			$orderArr = array('create_time' => 'desc');
 		}
 		//Recherche par colonne
 		$whereArr = array();
@@ -80,7 +80,7 @@ class NewsController extends Controller
 		{
 			if ( isset($_GET['bSearchable_'.$i]) && $_GET['bSearchable_'.$i] == "true" && $_GET['sSearch_'.$i] != '' )
 			{
-				if ($aColumns[$i] == 'user.USERNAME' || $aColumns[$i] == 'news_i18n.Title' || $aColumns[$i] == 'news_category.UNIQUE_NAME')
+				if ($aColumns[$i] == 'user.username' || $aColumns[$i] == 'title' || $aColumns[$i] == 'news_category.UNIQUE_NAME')
 				{
 					$whereArr[$aColumns[$i]] = ($_GET['sSearch_'.$i]);
 				}
