@@ -1,0 +1,62 @@
+{% extends 'MVNerdsSiteBundle::layout.html.twig' %}
+
+{% block title %}Oups, une erreur est survenue - Most Valuable Nerds | MVNerds{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/site/error.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	
+	<script type="text/javascript" src="{{ asset('medias/js/site/error-page.js') }}"></script>
+{% endblock %}
+	
+{% block topbar %}
+	{% set module = 'error' %}
+		
+	{{ parent() }}
+{% endblock %}
+		
+{% block breadcrumbs %}
+	{{ parent() }}
+	
+	> Une erreur est survenue
+{% endblock %}
+
+{% block main_content %}
+	<div class="container main-container border-top">
+		{# PUBLICITÉ #}
+		{% include 'MVNerdsSiteBundle:Common:ad_728x90.html.twig' %}
+		
+		<div class="amumu-container">
+			<img src="{{ asset('medias/images/site/amumu-error-page.png') }}" />
+			<div class="amumu-message hide">Merci *.*</div>
+			<div class="draw-by">By Kawiko</div>
+		</div>
+		<h1>Oups, une erreur est survenue</h1>
+
+		<p>
+			Plusieurs problèmes peuvent être la cause de cette erreur. Les plus courants sont :
+		</p>
+		
+		<ul>
+			<li>La page demandée n'existe pas ou n'existe plus</li>
+			<li>Le service sollicité est temporairement indisponible</li>
+			<li>Vous avez tentez d'accéder à une page qui requiert d'être authentifié</li>
+		</ul>
+		
+		<p>Que voulez-vous faire ?</p>
+		
+		<ul>
+			<li><a href="{{ path('site_homepage') }}">Retourner à la page d'accueil</a></li>
+			{% if app.user == null %}
+				<li><a href="{{ path('security_summoner_login') }}">Me connecter à mon compte MVNerds</a></li>
+			{% endif %}
+			<li><a href="{{ path('site_contact_us') }}">Utiliser le formulaire de contact pour signaler un bug</a></li>
+			<li><a href="#" class="hug-amumu">Faire un câlin à Amumu<i class="icon-heart"></i></a></li>
+		</ul>
+	</div>
+{% endblock %}
