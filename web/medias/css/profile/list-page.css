@@ -238,25 +238,16 @@ div.span4.right-content div.block div.body ul.filters-list li label {
   display: inline-block;
   margin: 0 10px 0 0;
   text-align: right;
-  width: 80px;
+  width: 121px;
 }
-div.span4.right-content div.block div.body ul.filters-list li input[type="text"],
-div.span4.right-content div.block div.body ul.filters-list li select {
+div.span4.right-content div.block div.body ul.filters-list li input[type="text"] {
   background-color: #333;
   border: 1px solid #666;
   color: #999;
+  width: 130px;
 }
-div.span4.right-content div.block div.body ul.filters-list li input[type="text"]:focus,
-div.span4.right-content div.block div.body ul.filters-list li select:focus {
+div.span4.right-content div.block div.body ul.filters-list li input[type="text"]:focus {
   color: #fb9701;
-}
-div.span4.right-content div.block div.body ul.filters-list li select {
-  color: #fb9701;
-  padding: 2px 2px 2px 5px;
-  width: 159px;
-}
-div.span4.right-content div.block div.body ul.filters-list li select:focus {
-  color: #888;
 }
 div.alert {
   border: 3px solid rgba(0, 0, 0, 0.5);

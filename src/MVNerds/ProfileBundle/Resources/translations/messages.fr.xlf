@@ -82,15 +82,15 @@
 			</trans-unit>
 			<trans-unit id="202">
 				<source>user.sort.username_asc</source>
-				<target>Pseudo croissant</target>
+				<target>Nom utilisateur croissant</target>
 			</trans-unit>
 			<trans-unit id="203">
 				<source>user.sort.username_desc</source>
-				<target>Pseudo décroissant</target>
+				<target>Nom utilisateur décroissant</target>
 			</trans-unit>
 			<trans-unit id="204">
 				<source>user.filter.username</source>
-				<target>Pseudo</target>
+				<target>Nom d'utilisateur</target>
 			</trans-unit>
 			<trans-unit id="205">
 				<source>user.filter.game_account</source>
