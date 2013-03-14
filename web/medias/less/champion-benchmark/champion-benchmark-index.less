@@ -9,160 +9,179 @@ ul {
 }
 
 div.container.main-container {
-	ul.action-buttons {
-		margin: 0 0 5px 0;
-		position: relative;
-		text-align: right;
+	div.actions-bar {
 
-		li.action {
-			border: 1px solid #ccc;
-			display: inline-block;
-			margin-left: 10px;
+		&.active {
+			left: 0;
+			right: 0;
+			position: fixed;
+			top: 32px;
+			z-index: 1000;
+			min-width: 1064px;
+			margin-top: 0;
+			background-color: #333;
 
-			&:hover {
-				border-color: #666; .transition(border-color .25s linear);
+			div#actions-bar-content {
+				width: 1000px;
+				margin: 0 auto;
 			}
+		}
 
-			&#comparison-list-dropdown {
-				position: static !important;
+		ul.action-buttons {
+			margin: 0 0 5px 0;
+			position: relative;
+			text-align: right;
 
-				ul#comparison-list {
-					background-color: rgba(228,230,229,.95);
-					padding: 0 !important;
-					text-align: left;
-					width: 994px;
+			li.action {
+				border: 1px solid #ccc;
+				display: inline-block;
+				margin-left: 10px;
 
-					li {
-						border: 0;
+				&:hover {
+					border-color: #666; .transition(border-color .25s linear);
+				}
 
-						&.list-header {
-							color: #666;
-							font-weight: bold;
-							letter-spacing: 3px;
-							margin: 0 0 5px 0;
-							padding: 5px;
-							text-align: center;
-							text-transform: uppercase;
+				&#comparison-list-dropdown {
+					position: static !important;
 
-							i {
-								color: @MVNerdsRed;
+					ul#comparison-list {
+						background-color: rgba(228,230,229,.95);
+						padding: 0 !important;
+						text-align: left;
+						width: 994px;
 
-								&.hide {
-									display: none !important;
-								}
-							}
-						}
+						li {
+							border: 0;
 
-						&.indication {
-							border: 1px dashed #999;
-							color: #666;
-							font-size: 12px;
-							font-style: italic;
-							margin: 0 5px 5px 5px !important;
-							padding: 10px;
-							text-align: center;
-						}
-
-						&.champion-comparable {
-							display: inline-block;
-							margin: 3px 0 0 0 !important;
-							width: 196px;
-
-							a.champion-comparable-remove {
-								display: block;
-								line-height: 1.4em;
-								padding: 2px 10px;
-								position: relative;
-
-								&:hover {
-									background-color: @MVNerdsBlue; 
-
-									div.champion-comparable-name, i {
-										color: white; .transition(color .15s linear);
-									}
-								}
-
-								div.champion-square25, div.champion-comparable-name {
-									display: inline-block;
-									vertical-align: middle;
-								}
-
-								div.champion-comparable-name {
-									font-weight: bold;
-									text-align: center;
-									width: 150px;
-								}
+							&.list-header {
+								color: #666;
+								font-weight: bold;
+								letter-spacing: 3px;
+								margin: 0 0 5px 0;
+								padding: 5px;
+								text-align: center;
+								text-transform: uppercase;
 
 								i {
-									position: absolute;
-									right: 6px;
-									top: 7px;
+									color: @MVNerdsRed;
+
+									&.hide {
+										display: none !important;
+									}
 								}
 							}
-						}
 
-						&#li-clean {
-							a {
-								border-top: 1px dashed #666;
-								line-height: 1.4em;
-								margin: 5px 0 0 0;
-								padding: 3px 5px;
+							&.indication {
+								border: 1px dashed #999;
+								color: #666;
+								font-size: 12px;
+								font-style: italic;
+								margin: 0 5px 5px 5px !important;
+								padding: 10px;
+								text-align: center;
+							}
 
-								&:hover {
-									background-color: #666;
-									color: white; .transition(all .25s linear);
+							&.champion-comparable {
+								display: inline-block;
+								margin: 3px 0 0 0 !important;
+								width: 196px;
+
+								a.champion-comparable-remove {
+									display: block;
+									line-height: 1.4em;
+									padding: 2px 10px;
+									position: relative;
+
+									&:hover {
+										background-color: @MVNerdsBlue; 
+
+										div.champion-comparable-name, i {
+											color: white; .transition(color .15s linear);
+										}
+									}
+
+									div.champion-square25, div.champion-comparable-name {
+										display: inline-block;
+										vertical-align: middle;
+									}
+
+									div.champion-comparable-name {
+										font-weight: bold;
+										text-align: center;
+										width: 150px;
+									}
+
+									i {
+										position: absolute;
+										right: 6px;
+										top: 7px;
+									}
 								}
+							}
 
-								&.disabled {
-									display: none;
+							&#li-clean {
+								a {
+									border-top: 1px dashed #666;
+									line-height: 1.4em;
+									margin: 5px 0 0 0;
+									padding: 3px 5px;
+
+									&:hover {
+										background-color: #666;
+										color: white; .transition(all .25s linear);
+									}
+
+									&.disabled {
+										display: none;
+									}
 								}
 							}
 						}
 					}
 				}
-			}
 
-			&.btn-compare {
-				&:hover {
-					border-color: @MVNerdsRed; .transition(border-color .25s linear);
+				&.btn-compare {
+					&:hover {
+						border-color: @MVNerdsRed; .transition(border-color .25s linear);
+					}
+
+					a {
+						color: @MVNerdsRed;
+					}
+				}
+
+				&.disabled {
+					&:hover {
+						border-color: #ccc;
+					}
+
+					a {
+						color: #ccc;
+						cursor: not-allowed;
+					}
 				}
 
 				a {
-					color: @MVNerdsRed;
+					display: block;
+					line-height: 27px;
+					padding: 0 5px;
+
+					&.btn {
+						margin: 0;
+					}
+				}
+
+				&.search-action {
+					border: 0;
+
+					input[type="text"] {
+						padding: 3px 5px;
+					}
 				}
 			}
 
-			&.disabled {
-				&:hover {
-					border-color: #ccc;
-				}
 
-				a {
-					color: #ccc;
-					cursor: not-allowed;
-				}
-			}
-
-			a {
-				display: block;
-				line-height: 27px;
-				padding: 0 5px;
-
-				&.btn {
-					margin: 0;
-				}
-			}
-
-			&.search-action {
-				border: 0;
-				
-				input[type="text"] {
-					padding: 3px 5px;
-				}
-			}
 		}
-
-		
 	}
 
 	div#champion-list {
@@ -411,7 +430,7 @@ ul#filters-list {
 			}
 		}
 	}
-
+	
 	div.div-action-buttons {
 		div.span6, div.span12 {
 			a {
