@@ -58,8 +58,11 @@
 					{% for index in 1..18 %}
 						<a class="action level-selector-action {{ index == lvl? 'active' : '' }}" href="{{path('champion_benchmark_compare', {'lvl': index}) }}">{{index}}</a>
 					{% endfor %}
+					
+					<a href="{{ path('champion_benchmark_index') }}" class="btn small back-to-list-btn"><i class=" icon-double-angle-left"></i> {{ 'Champion_comparison.back_to_list'|trans }}</a>
 				</div>
-
+				<div class="separator"></div>
+				
 				<div class="row-fluid table-header">
 					<div class="span1 no-margin sort" data-target="champion-name">
 						<p>Champion</p> <br /><i class="icon-white icon-sort"></i>

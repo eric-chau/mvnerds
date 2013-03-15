@@ -178,13 +178,13 @@ $(document).ready(function() {
 	});
 
 	// Vérifie si c'est la première fois ou non que l'utilisateur accède au module PMRI
-	var howItWorksValue = getItemFromLS('display_how_it_works');
+	var howItWorksValue = getItemFromLS('display_how_it_works_pmri');
 	if (howItWorksValue == undefined || howItWorksValue == 'true') {
 		$('a.how-it-works-toggle').find('span.label').toggleClass('disabled');
 		$('div.how-it-works').slideDown();
 
 		if (howItWorksValue == undefined) {
-			saveItemInLS('display_how_it_works', false);
+			saveItemInLS('display_how_it_works_pmri', false);
 		}
 	}
 
@@ -195,6 +195,6 @@ $(document).ready(function() {
 		$('div.how-it-works').slideToggle();
 		$label = $(this).find('span.label');
 		$label.toggleClass('disabled');
-		saveItemInLS('display_how_it_works', $label.hasClass('disabled'));
+		saveItemInLS('display_how_it_works_pmri', $label.hasClass('disabled'));
 	});
 });

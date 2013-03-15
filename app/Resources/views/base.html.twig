@@ -26,19 +26,16 @@
 		
 		<script type="text/javascript">var locale = '{{ app.request.getLocale() }}';</script>
 		<script type="text/javascript" src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
-		<script type="text/javascript" src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+		<script type="text/javascript" src="{{ asset('js/fos_js_routes.js') }}"></script>
 		{#<script type="text/javascript" src="{{ asset('js/jquery-ui-1.9.0.custom.min.js') }}"></script>#}
 		<script type="text/javascript" src="{{ asset('js/plugins.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/utils.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('js/jquery.isotope.min.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('js/jquery.form.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-dropdown.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-tooltip.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-transition.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-alert.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-modal.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-typeahead.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('js/guiders-1.2.8.js') }}"></script>
 	</head>
 	<body>
 		<!--[if IE]>
@@ -47,7 +44,6 @@
 
 		{% block body %}{% endblock %}
 		
-		<script type="text/javascript" src="{{ asset('js/sidebar.js') }}"></script>
 		{% block javascripts %}{% endblock %}
 	</body>
 </html>

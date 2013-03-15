@@ -20,7 +20,7 @@ guiders.createGuider({
   description: "Click on any champion to view their statistics at level 1, their purchase price in influence points and riot points.",
   id: "second",
   next: "third",
-  highlight: "div.champions-handler-container ul#isotope-list li.champion",
+  highlight: "div.champion-benchmark-container ul#isotope-list li.champion",
   overlay: true,
   title: "Champion quick overview"
 });
@@ -31,9 +31,9 @@ guiders.createGuider({
   description: "You are offered two possibilities to add a champion in the list of comparison:<ul><li>Drag and drop a champion into comparison list</li><li>Double click on a champion</li></ul><i>Note: The first champion on the list (the higher up one, on the left) is considered as the reference champion.</i>",
   id: "third",
   next: "fourth",
-  highlight: "div.champions-handler-container ul.action-buttons li#comparison-list-dropdown",
+  highlight: "div.champion-benchmark-container ul.action-buttons li.comparison-list",
   overlay: true,
-  title: "Comparison List <span class='shortcut'>(Shortcut: L)</span>"
+  title: "Comparison List <span class='shortcut'>(Shortcut: L)</spanv>"
 });
 
 // STEP #4 : Affiner le filtrage
@@ -42,7 +42,7 @@ guiders.createGuider({
   description: "The quickest way to find a champion is to type in the beginning or full name of it. You can also filter champions according to their default tags.<br /><i>Note: in the bottom on the right of the menu 'Filter', a button appears when you apply a filter. It enables to add all filtered champions together to the comparison list.</i>",
   id: "fourth",
   next: "finally",
-  highlight: "div.champions-handler-container ul.action-buttons li#filters-block, div.champions-handler-container ul.action-buttons li.search-action",
+  highlight: "div.champion-benchmark-container ul.action-buttons li#filters-block, div.champion-benchmark-container ul.action-buttons li.search-action",
   overlay: true,
   title: "Filter by tags and search <span class='shortcut'>(Shortcut: F and S)</span>"
 });
@@ -52,7 +52,7 @@ guiders.createGuider({
   buttons: [prevButton, {name: "End of guide tour, thank you !", classString: "btn-close", onclick: onCloseCallBack}],
   description: "Two champions from the list are needed to make a comparison. Note that you can compare 64 champions simultaneously.",
    id: "finally",
-  highlight: "div.champions-handler-container ul.action-buttons li.red-button",
+  highlight: "div.champion-benchmark-container ul.action-buttons li.btn-compare",
   overlay: true,
   title: "To compare champions <span class='shortcut'>(Shortcut: C)</span>"
 });
