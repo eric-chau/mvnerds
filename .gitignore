@@ -44,3 +44,9 @@ web/css/compiled/
 /web/js/site-index.js
 
 app/config/parameters.yml
+/web/css/news-detail.css
+/web/css/profile-list.css
+/web/js/mvnerds-bootstrap2.js
+/web/js/news-index.js
+/web/js/profile-list.js
+/web/js/profile.js

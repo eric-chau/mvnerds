@@ -29,18 +29,22 @@ ul {
   list-style: none;
 }
 div.container.main-container div.actions-bar.active {
+  background-color: #333;
   left: 0;
-  right: 0;
-  position: fixed;
-  top: 32px;
-  z-index: 1000;
   min-width: 1064px;
   margin-top: 0;
-  background-color: #333;
+  padding: 7px 0 2px 0;
+  position: fixed;
+  right: 0;
+  top: 35px;
+  z-index: 1000;
 }
 div.container.main-container div.actions-bar.active div#actions-bar-content {
-  width: 1000px;
   margin: 0 auto;
+  width: 1000px;
+}
+div.container.main-container div.actions-bar.active div#actions-bar-content i.icon-search {
+  color: #999;
 }
 div.container.main-container div.actions-bar ul.action-buttons {
   margin: 0 0 5px 0;
