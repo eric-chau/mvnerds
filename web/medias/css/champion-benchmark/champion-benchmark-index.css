@@ -209,11 +209,24 @@ div.container.main-container div#champion-list ul li.champion.champion-maxi {
   background-color: #ccc;
   cursor: default;
   height: 588px;
-  overflow: hidden;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
   width: 472px;
+  overflow: hidden;
+  z-index: 900;
 }
 div.container.main-container div#champion-list ul li.champion.champion-maxi:hover {
   background-color: #ccc;
+}
+div.container.main-container div#champion-list ul li.champion.animate-champion-portrait {
+  width: 100px;
+  height: 100px;
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
 }
 div.container.main-container div#champion-list ul li.champion div.portrait {
   opacity: .8;

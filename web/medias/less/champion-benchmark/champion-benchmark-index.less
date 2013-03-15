@@ -208,12 +208,20 @@ div.container.main-container {
 					background-color: #ccc;
 					cursor: default;
 					height: 588px;
-					overflow: hidden;
+					.transition(all .3s linear); 
 					width: 472px;
+					overflow: hidden;
+					z-index: 900;
 
 					&:hover {
 						background-color: #ccc;
 					}
+				}
+
+				&.animate-champion-portrait {
+					width: 100px;
+					height: 100px;
+					.transition(all .3s linear);
 				}
 
 				div.portrait {
