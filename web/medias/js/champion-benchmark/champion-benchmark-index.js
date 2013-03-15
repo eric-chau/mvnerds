@@ -240,21 +240,22 @@ function initIsotope($isotope){
 function maximizeChampion($champ, $isotope){	
 	//Si on trouve un autre champion déjà maximisé on le referme
 	var $maxiChampion = $isotope.find('li.champion-maxi');
-	if($maxiChampion != undefined){
+	if($maxiChampion.length > 0){
 		minimizeChampion($maxiChampion , $isotope);
 	}
 	
-	$champ.find('div.portrait').fadeOut(250);
+	$champ.find('div.portrait').fadeOut(150);
 	$champ.addClass('champion-maxi');
-	setTimeout(function() 
-	{
+	$isotope.isotope( 'reLayout');
+	setTimeout(function() {
 		$champ.find('div.preview').fadeIn(250);
 		$champ.find('div.champion-portrait').fadeIn(250);
 		
 		$isotope.isotope( 'reLayout', function(){
 			
 			setTimeout(function(){
-				scrollToChampion($('#'+$champ.attr('id')))				
+				scrollToChampion($('#'+$champ.attr('id')));
+				$isotope.isotope('reLayout');
 				},
 				150
 			);
@@ -267,20 +268,17 @@ function maximizeChampion($champ, $isotope){
 
 function minimizeChampion($champ, $isotope){
 	$champ.find('div.champion-portrait').fadeOut(150);
-	$champ.find('div.preview').fadeOut(150);
-	setTimeout(function() 
-	{
-		$champ.find('div.portrait').fadeIn(300);
+	$champ.find('div.preview').fadeOut(150, function() {
 		
+
 		$champ.toggleClass('animate-champion-portrait champion-maxi');
 		setTimeout(function() 
-		{
+		{$champ.find('div.portrait').fadeIn(300);
 			$isotope.isotope( 'reLayout');
 			$champ.removeClass('animate-champion-portrait');
 		},
 		320);
-	},
-	150);
+	});
 
 	$champ.draggable('enable');
 
@@ -395,7 +393,7 @@ jQuery(function() {
 				$('#comparison-list-dropdown').addClass('open');
 			},
 			stop: function(){
-				$('#comparison-list').css('border', 'none');
+				$('#comparison-list').css('border', '3px solid rgba(53, 53, 53, 0.7)');
 			}
 		});
 	});
@@ -404,10 +402,10 @@ jQuery(function() {
 	$comparisonList.droppable({
 		accept: '#champion-list li.champion',
 		over: function(){
-			$('#comparison-list').css('border', '1px solid black');
+			$('#comparison-list').css('border', '3px solid rgba(53, 53, 53, 0.7)');
 		},
 		out: function(){
-			$('#comparison-list').css('border', '1px dashed black');
+			$('#comparison-list').css('border', '1px dashed black')
 		},
 		drop: function( event, ui ) {
 			addChampionToList(ui.draggable.context.id);
