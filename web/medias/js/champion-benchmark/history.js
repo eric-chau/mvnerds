@@ -15,7 +15,7 @@ jQuery(function() {
 				initialPath = null;
 				return;
 			}else {
-				var championsPageUrl = Routing.generate('pmri_create', {_locale: locale});
+				var championsPageUrl = location.protocol + '//' + location.host + $('a.back-to-list-btn').attr('href');
 				if (document.referrer == championsPageUrl) {
 					location.href=championsPageUrl;
 				} else {
