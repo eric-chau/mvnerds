@@ -58,7 +58,7 @@
 				<i class="icon-exclamation-sign"></i>
 			</li>#}
 			<li class="user-container">
-				{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+				{% if app.user is not null and is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 					<img src="{{ asset('medias/images/avatar/' ~ app.user.getUserAvatarName() ~ '.jpg') }}" /> 
 					<a href="{{ path('summoner_profile_index') }}" class="username">{{ app.user.getUsername() }}</a> 
 					
