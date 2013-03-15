@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ChampionBenchmarkController extends Controller
 {
 	/**
-	 * @Route("/", name="champion_benchmark_index")
+	 * @Route("/", name="champion_benchmark_index", options={"expose"=true})
 	 */
 	public function indexAction()
 	{
