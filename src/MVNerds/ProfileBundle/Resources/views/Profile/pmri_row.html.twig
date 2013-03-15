@@ -4,7 +4,7 @@
 		{% if item_build.getChampionItemBuilds()|length <= 1 %}
 			<img src="{{ asset('medias/images/champions/square/' ~ item_build.getChampionItemBuilds().getFirst().getChampion().getSlug() ~ '.png') }}" />
 		{% else %}
-			<img src="{{asset('images/avatar/anonymous.jpg')}}" 
+			<img src="{{asset('medias/images/avatar/anonymous.jpg')}}" 
 				 alt="image_question" 
 				 class="bootstrap-popover" 
 				 data-placement="right" data-trigger="hover" data-title="{{item_build.getName()}}" 

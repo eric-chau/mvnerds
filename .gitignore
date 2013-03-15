@@ -24,3 +24,4 @@ web/medias/js/compiled/
 web/medias/css/compiled/
 
 app/config/parameters.yml
+/web/medias/js/mvnerds-bootstrap2.js

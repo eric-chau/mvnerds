@@ -2,12 +2,12 @@
 
 <p>
 	La liaison est quasiment établie ! Afin de nous assurer que vous êtes bien le titulaire du compte de jeu <strong>{{ summoner_name }}</strong>,
-	connectez-vous sur le jeu League of Legends et renommé une de vos pages de maîtrises par le code d'activation suivant :
+	connectez-vous sur le jeu League of Legends et renommé une de vos pages de maîtrises par le code de vérification suivant :
 </p>
 
 <div class="activation-code-container">
 	<span id="activation-code">{{ activation_code }}</span>
-	<a href="#" class="copy-to-clipboard-btn btn small blue">Copier dans le presse-papier</a>
+	{#<span class="copy-to-clipboard-btn btn small blue">Copier dans le presse-papier</span>#}
 </div>
 
 <h4>Étape 3 : confirmation du compte League of Legends</h4>
@@ -26,14 +26,3 @@
 		<a href="#" class="btn no-color small cancel-link-account-process-btn">Annuler la liaison</a>
 	</p>
 </div>
-
-<script type="text/javascript">
-	$(document).ready(function() 
-	{
-		// Activation de l'event du clique sur le bouton de copie vers le presse-papier
-		$('a.copy-to-clipboard-btn').zclip({
-			path: '/medias/js/ZeroClipboard.swf',
-			copy: $('span#activation-code').html()
-		});	
-	});
-</script>

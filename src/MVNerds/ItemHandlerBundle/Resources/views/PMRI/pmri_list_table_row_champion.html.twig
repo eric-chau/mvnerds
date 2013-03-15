@@ -2,5 +2,5 @@
 	{% set champion = item_build.getChampionItemBuilds().getFirst().getChampion() %}
 	<img src="{{asset('medias/images/champions/square/' ~ champion.getSlug() ~ '.png')}}" alt="{{champion.getName() }}" />
 {% else %}
-	<img src="{{asset('images/avatar/anonymous.jpg')}}" alt="image_question" class="bootstrap-popover" data-placement="right" data-trigger="hover" data-title="{{item_build.getName()}}" data-content="<div class='champion-square-list'>{%for champion in item_build.getChampionItemBuilds() %}<div class='champion-square36 {{champion.getChampion().getSlug()}}' ></div>{% endfor %}</div>"/>
+	<img src="{{asset('medias/images/avatar/anonymous.jpg')}}" alt="image_question" class="bootstrap-popover" data-placement="right" data-trigger="hover" data-title="{{item_build.getName()}}" data-content="<div class='champion-square-list'>{%for champion in item_build.getChampionItemBuilds() %}<div class='champion-square36 {{champion.getChampion().getSlug()}}' ></div>{% endfor %}</div>"/>
 {% endif %}

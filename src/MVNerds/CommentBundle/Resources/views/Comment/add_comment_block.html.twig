@@ -7,9 +7,9 @@
 	<div class="row-fluid">
 		<div class="span2">
 			{% if is_anonymous %}
-				<img src="{{ asset('images/avatar/anonymous.jpg') }}" class="user-avatar" />
+				<img src="{{ asset('medias/images/avatar/anonymous.jpg') }}" class="user-avatar" />
 			{% else %}
-				<img src="{{ asset('images/avatar/' ~ app.user.getUserAvatarName() ~ '.jpg') }}" class="user-avatar" />
+				<img src="{{ asset('medias/images/avatar/' ~ app.user.getUserAvatarName() ~ '.jpg') }}" class="user-avatar" />
 			{% endif %}
 		</div>
 		<div class="span10">

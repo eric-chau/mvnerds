@@ -10,7 +10,7 @@
 		
 		<div class="avatars-container">
 			{% for avatar in avatars %}
-				<img src="{{ asset('images/avatar/'~ avatar.getName() ~'.jpg') }}" class="avatar-choice {% if avatar.getName() == current_avatar_name %} disabled{% endif %}" data-avatar-name="{{ avatar.getName() }}" />
+				<img src="{{ asset('medias/images/avatar/'~ avatar.getName() ~'.jpg') }}" class="avatar-choice {% if avatar.getName() == current_avatar_name %} disabled{% endif %}" data-avatar-name="{{ avatar.getName() }}" />
 			{% endfor %}
 		</div>
 	</div>		
