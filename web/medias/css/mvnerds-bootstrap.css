@@ -315,9 +315,13 @@ div.tab-content div.tab-pane.active {
   display: block;
 }
 div.ad-container {
+  height: 60px;
   margin: 10px 0;
   position: relative;
   text-align: center;
+}
+div.ad-container.large {
+  height: 90px;
 }
 div.ad-container div.unblock-ad-msg {
   border: 2px solid #999;
@@ -346,7 +350,8 @@ div.ad-container div.unblock-ad-msg.large i {
   position: absolute;
 }
 div.ad-container div.unblock-ad-msg.large img {
-  margin: 10px auto 5px auto;
+  float: none;
+  margin: 15px auto 5px auto;
 }
 div.ad-container div.unblock-ad-msg p {
   font-size: 12px;

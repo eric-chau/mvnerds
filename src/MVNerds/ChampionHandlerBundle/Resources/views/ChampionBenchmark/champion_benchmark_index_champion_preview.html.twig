@@ -66,6 +66,7 @@
 	<div class="span6 right-side">
 		<a href="{{ path('champion_detail', {'slug': champion.getSlug()}) }}">En savoir plus sur {{ champion.getName() }}</a>
 		<a href="#" class="btn-action-champion-preview btn-add-to-list" data-champion-slug="{{ champion.getSlug() }}">Ajouter à la liste</a>
-		<div class="champion-portrait {{ champion.getSlug() }}"></div>
+		<img src="{{ asset('medias/images/champions/portrait/' ~ champion.getSlug() ~ '.jpg') }}" />
+		{#<div class="champion-portrait {{ champion.getSlug() }}"></div>#}
 	</div>
 </div>

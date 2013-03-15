@@ -10,7 +10,7 @@
 	{% else %}
 		{% stylesheets 
 			'medias/css/profile/list-page.css'
-			output='css/profile-list.css'
+			output='medias/css/compiled/profile-list.css'
 			filter='yui_css'
 			filter='cssembed'
 		%}
@@ -33,7 +33,7 @@
 			'medias/js/bootstrap/bootstrap-popover.js'
 			'medias/js/jquery.dataTables.min.js'
 			'medias/js/profile/list-page.js'
-			output='js/profile-list.js'
+			output='medias/js/compiled/profile-list.js'
 			filter='yui_js'
 		%}
 		<script src="{{ asset_url }}"></script>

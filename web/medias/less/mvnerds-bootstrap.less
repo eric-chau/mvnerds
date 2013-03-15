@@ -209,9 +209,14 @@ div.tab-content {
 }
 
 div.ad-container {
+	height: 60px;
 	margin: 10px 0;
 	position: relative;
 	text-align: center;
+
+	&.large {
+		height: 90px;
+	}
 
 	div.unblock-ad-msg {
 		border: 2px solid #999;
@@ -241,7 +246,8 @@ div.ad-container {
 			}
 
 			img {
-				margin: 10px auto 5px auto;
+				float: none;
+				margin: 15px auto 5px auto;
 			}
 		}
 

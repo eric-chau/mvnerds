@@ -1,7 +1,7 @@
 var $btnCompare = $('a#btn-compare'),
   $searchInputText = $('input[type="text"]#filter-value'),
   $btnComparisonList = $('a#drop-comparison-list'),
-  $btnHelp = $('li.help-action'),
+  $btnHelp = $('a.start-guide-tour-btn'),
   $btnFilter = $('a#drop-filter-list'),
   isFirstActionAfterGT = false;
 
@@ -74,14 +74,14 @@ function shortcutListener(event) {
   if (ctrlDown) {
     return false;
   }
-
+  console.log(event.which);
   switch(event.which) {
     case compareShortcut: 
       if ($btnCompare.hasClass('disabled')) {
         return false;
       }
 
-      $btnCompare.trigger('click');
+      document.location = $btnCompare.attr('href');
       break;
     case searchShortcut:
       $('.dropdown.open .dropdown-toggle').dropdown('toggle');

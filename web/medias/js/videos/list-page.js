@@ -146,4 +146,25 @@ $(document).ready(function() {
 	});
 	
 	orderCategories($('#category-filter-input option'));
+
+	// Vérifie si c'est la première fois ou non que l'utilisateur accède au module PMRI
+	var howItWorksValue = getItemFromLS('display_how_it_works_lol_video_center');
+	if (howItWorksValue == undefined || howItWorksValue == 'true') {
+		$('a.how-it-works-toggle').find('span.label').toggleClass('disabled');
+		$('div.how-it-works').slideDown();
+
+		if (howItWorksValue == undefined) {
+			saveItemInLS('display_how_it_works_lol_video_center', false);
+		}
+	}
+
+	// Toggle du "comment ça marche ?"
+	$('a.how-it-works-toggle').on('click', function(event)
+	{
+		event.stopPropagation();
+		$('div.how-it-works').slideToggle();
+		$label = $(this).find('span.label');
+		$label.toggleClass('disabled');
+		saveItemInLS('display_how_it_works_lol_video_center', $label.hasClass('disabled'));
+	});
 });

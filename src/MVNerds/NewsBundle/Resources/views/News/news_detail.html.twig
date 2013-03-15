@@ -5,37 +5,7 @@
 {% block css %}
 	{{ parent() }}
 
-	{% if app.environment == 'dev' %}
-		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/news/news-detail.css') }}">
-	{% else %}
-		{% stylesheets 
-			'medias/css/news/news-detail.css'
-			output='css/news-detail.css'
-			filter='yui_css'
-			filter='cssembed'
-		%}
-		<link rel="stylesheet" href="{{ asset_url }}" />
-		{% endstylesheets %}
-	{% endif %}
-{% endblock %}
-
-{% block javascripts %}
-	{{ parent() }}
-
-	{% if app.environment == 'dev' %}
-		{#<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-modal.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
-		<script type="text/javascript" src="{{ asset('medias/js/news/news-detail.js') }}"></script>#}
-	{% else %}
-		{#{% javascripts
-			'medias/js/news/news-detail.js'
-			output='js/news-detail.js'
-			filter='yui_js'
-		%}
-		<script src="{{ asset_url }}"></script>
-		{% endjavascripts %}#}
-	{% endif %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/news/news-detail.css') }}">
 {% endblock %}
 
 {% block topbar %}

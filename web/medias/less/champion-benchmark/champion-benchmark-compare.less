@@ -56,7 +56,6 @@ div.row-fluid {
 }
 
 div#compare-champion-div-header {
-	padding-top: 20px;
 
 	&.active {
 		background-color: #e4e6e5;
@@ -67,6 +66,10 @@ div#compare-champion-div-header {
 		right: 0;
 		top: 32px;
 		width: 1000px;
+
+		div.benchmark {
+			margin-bottom: 0;
+		}
 	}
 
 	div.table-header {
@@ -75,10 +78,15 @@ div#compare-champion-div-header {
 		}
 
 		div.span1 {
-			background-color: #111;
+			background-color: #ddd;
+			border: 1px solid #ccc;
 			height: 43px;
 			line-height: 43px;
 			position: relative;
+
+			&:hover i {
+				color: darken(@MVNerdsBlue, 5%); .transition(color .25s linear);
+			}
 
 			&.sort{
 				line-height: inherit;
@@ -90,14 +98,15 @@ div#compare-champion-div-header {
 			}
 
 			p {
+				color: #111;
 				display: inline-block;
-				color: #eee;
-				font-size: 8px;
+				font-family: 'Verdana', 'Arial', sans-serif;
+				font-size: 9px;
 				font-weight: bold;
 			}
 
 			i {
-				color: white;
+				color: #999;
 				left: 50%;
 				margin: 0 0 0 -4px;
 				position: absolute;
@@ -108,7 +117,7 @@ div#compare-champion-div-header {
 
 	div#level-selector{
 		line-height: 40px;
-		margin-bottom: 5px;
+		position: relative;
 		text-transform: uppercase;
 		
 		h6 {
@@ -116,18 +125,22 @@ div#compare-champion-div-header {
 			font-size: 11px;
 			line-height: 28px;
 			margin: 0;
-			margin-right: 20px;
+			margin-right: 10px;
 		}
 
 		a.action {
 			border: 1px solid @bodyMainBGColor;
 			display: inline-block;
-			font-size: 12px;
+			font-size: 14px;
 			line-height: 1.4em;
-			margin: 6px 1px;
-			padding: 5px;
+			padding: 4px;
 			text-align: center;
 			width: 25px;
+
+			&:hover {
+				border-color: #999;
+				.transition(all .25s linear);
+			}
 
 			&.active {
 				background-color: darken(@MVNerdsRed, 10%);
@@ -136,17 +149,27 @@ div#compare-champion-div-header {
 
 				&:hover {
 					background-color: @MVNerdsRed;
+					border-color: @bodyMainBGColor;
 				}
 			}
-			&:hover {
-				border-color: #999;
-				.transition(all .25s linear);
-			}
+		}
+
+		a.back-to-list-btn {
+			bottom: 10px;
+			font-weight: bold;
+			margin: 0;
+			position: absolute;
+			right: 0;
+			text-transform: none;
 		}
 	}
 
+	div.separator {
+		margin: 10px 0 20px 0;
+	}
+
 	div.benchmark {
-		background-color: #141414;
+		background-color: #333;
 		margin: 10px 0;
 
 		div.span1 {
@@ -155,6 +178,7 @@ div#compare-champion-div-header {
 
 			p {
 				color: @LoLOrangeAD;
+				font-size: 16px;
 				font-weight: bold;
 
 				img {
@@ -164,7 +188,7 @@ div#compare-champion-div-header {
 
 			a {
 				i {
-					color: darken(@LoLOrangeAD, 30%);
+					color: darken(@LoLOrangeAD, 20%);
 
 					&:hover {
 						color: @LoLOrangeAD;
@@ -222,7 +246,7 @@ div.champion-list {
 				}
 
 				&.minor-plus {
-					color: darken(@MVNerdsGreen, 20%);
+					color: darken(@MVNerdsGreen, 10%);
 				}
 
 				&.minor-minus {

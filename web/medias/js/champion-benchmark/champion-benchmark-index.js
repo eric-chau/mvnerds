@@ -455,4 +455,25 @@ jQuery(function() {
 	$isotope.initTypeahead($filterInput, Routing.generate('champions_names',{_locale: locale}));
 	initFilterList($isotope);
 	initCleanAction($isotope, $filterInput);
+
+	// Vérifie si c'est la première fois ou non que l'utilisateur accède au module PMRI
+	var howItWorksValue = getItemFromLS('display_how_it_works_champion_benchmark');
+	if (howItWorksValue == undefined || howItWorksValue == 'true') {
+		$('a.how-it-works-toggle').find('span.label').toggleClass('disabled');
+		$('div.how-it-works').slideDown();
+
+		if (howItWorksValue == undefined) {
+			saveItemInLS('display_how_it_works_champion_benchmark', false);
+		}
+	}
+
+	// Toggle du "comment ça marche ?"
+	$('a.how-it-works-toggle').on('click', function(event)
+	{
+		event.stopPropagation();
+		$('div.how-it-works').slideToggle();
+		$label = $(this).find('span.label');
+		$label.toggleClass('disabled');
+		saveItemInLS('display_how_it_works_champion_benchmark', $label.hasClass('disabled'));
+	});
 });

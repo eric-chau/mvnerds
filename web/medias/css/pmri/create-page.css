@@ -621,7 +621,7 @@ div#item-modal {
   -webkit-border-radius: 0 !important;
   -moz-border-radius: 0 !important;
   border-radius: 0 !important;
-  max-height: 500px;
+  max-height: 550px;
   margin: -250px 0 0 -300px;
   width: 600px;
 }
@@ -643,7 +643,7 @@ div#item-modal div.modal-header i.icon-remove:hover {
 }
 div#item-modal div.modal-body {
   padding: 0 15px 15px 15px;
-  max-height: 461px !important;
+  max-height: 535px !important;
 }
 div#item-modal div.modal-body div.item-modal-parents {
   border-bottom: 1px solid #444;

@@ -17,7 +17,7 @@
 			'medias/css/champions/champion-portrait-sprite.css'
 			'medias/css/champions/champion-square25-sprite.css'
 			'medias/css/champion-benchmark/champion-benchmark-index.css'
-			output='css/champion-benchmark-index.css'
+			output='medias/css/compiled/champion-benchmark-index.css'
 			filter='yui_css'
 			filter='cssembed'
 		%}
@@ -34,24 +34,38 @@
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/jquery.isotope.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/guiders-1.2.8.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/site/isotope-filter.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/site/alerts-ajax-handler.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/champion-benchmark/champion-benchmark-index.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/champion-benchmark/process-scroll.js')}}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/champion-benchmark/shortcut.js')}}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/champion-benchmark/common-guide-tour.js')}}"></script>
 	{% else %}
 		{% javascripts
 			'medias/js/bootstrap/bootstrap-tooltip.js'
 			'medias/js/bootstrap/bootstrap-popover.js'
 			'medias/js/jquery.isotope.min.js'
+			'medias/js/guiders-1.2.8.js'
 			'medias/js/site/isotope-filter.js'
 			'medias/js/site/alerts-ajax-handler.js'
 			'medias/js/champion-benchmark/champion-benchmark-index.js'
 			'medias/js/champion-benchmark/process-scroll.js'
-			output='js/champion-benchmark-index.js'
+			'medias/js/champion-benchmark/shortcut.js'
+			'medias/js/champion-benchmark/common-guide-tour.js'
+			'medias/js/champion-benchmark/guide-tour.js'
+			'medias/js/champion-benchmark/guide-tour-fr.js'
+			output='medias/js/compiled/champion-benchmark-index.js'
 			filter='yui_js'
 		%}
 		<script src="{{ asset_url }}"></script>
 		{% endjavascripts %}
+	{% endif %}
+		
+	{% if locale == 'fr' %}
+		<script type="text/javascript" src="{{ asset('medias/js/champion-benchmark/guide-tour-fr.js')}}"></script>
+	{% else %}
+		<script type="text/javascript" src="{{ asset('medias/js/champion-benchmark/guide-tour.js')}}"></script>		
 	{% endif %}
 {% endblock %}
 
@@ -69,17 +83,32 @@
 
 {% block main_content %}
 	<div class="container main-container border-top">
-		<h1>Champion Benchmark</h1>
+		<h1>Champion Benchmark <a href="#" class="how-it-works-toggle"><span class="label red">comment ça marche ?</span></a></h1>
+		
+		<div class="how-it-works hide">
+			<p>
+				Le Champion Benchmark vous permet de comparer les champions entre eux. Si vous souhaitez tout savoir de son fonctionnnement, cliquez sur le bouton ci-dessous
+				pour démarrer la visite guidée.
+			</p>
+
+			<div class="guide-tour-container">
+				<a href="#" class="btn large green start-guide-tour-btn">Débuter la visite guidée</a>
+			</div>
+			
+			<div class="separator"></div>
+		</div>
 		
 		{# PUBLICITÉ #}
 		{% include 'MVNerdsSiteBundle:Common:ad_728x90.html.twig' %}
 		
-{% include 'MVNerdsChampionHandlerBundle:ActionBar:actionbar.html.twig' with {'is_comparison_page': false} %}
-		
-		<div id="champion-comparison">
-			<div id="champion-comparison-center">
-				<div id="champion-list">
-					{% include 'MVNerdsChampionHandlerBundle:ChampionBenchmark:champion_benchmark_index_champion_grid.html.twig' %}
+		<div class="champion-benchmark-container">
+			{% include 'MVNerdsChampionHandlerBundle:ActionBar:actionbar.html.twig' with {'is_comparison_page': false} %}
+
+			<div id="champion-comparison">
+				<div id="champion-comparison-center">
+					<div id="champion-list">
+						{% include 'MVNerdsChampionHandlerBundle:ChampionBenchmark:champion_benchmark_index_champion_grid.html.twig' %}
+					</div>
 				</div>
 			</div>
 		</div>

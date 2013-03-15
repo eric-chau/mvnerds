@@ -66,9 +66,6 @@ div.row-fluid div.span1 a i:hover {
   -o-transition: color 0.25s linear;
   transition: color 0.25s linear;
 }
-div#compare-champion-div-header {
-  padding-top: 20px;
-}
 div#compare-champion-div-header.active {
   background-color: #e4e6e5;
   left: 0px;
@@ -79,14 +76,25 @@ div#compare-champion-div-header.active {
   top: 32px;
   width: 1000px;
 }
+div#compare-champion-div-header.active div.benchmark {
+  margin-bottom: 0;
+}
 div#compare-champion-div-header div.table-header.row-fluid {
   margin-bottom: 10px;
 }
 div#compare-champion-div-header div.table-header div.span1 {
-  background-color: #111;
+  background-color: #ddd;
+  border: 1px solid #ccc;
   height: 43px;
   line-height: 43px;
   position: relative;
+}
+div#compare-champion-div-header div.table-header div.span1:hover i {
+  color: #1690c8;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
 }
 div#compare-champion-div-header div.table-header div.span1.sort {
   line-height: inherit;
@@ -96,13 +104,14 @@ div#compare-champion-div-header div.table-header div.span1.sort p {
   cursor: pointer;
 }
 div#compare-champion-div-header div.table-header div.span1 p {
+  color: #111;
   display: inline-block;
-  color: #eee;
-  font-size: 8px;
+  font-family: 'Verdana', 'Arial', sans-serif;
+  font-size: 9px;
   font-weight: bold;
 }
 div#compare-champion-div-header div.table-header div.span1 i {
-  color: white;
+  color: #999;
   left: 50%;
   margin: 0 0 0 -4px;
   position: absolute;
@@ -110,7 +119,7 @@ div#compare-champion-div-header div.table-header div.span1 i {
 }
 div#compare-champion-div-header div#level-selector {
   line-height: 40px;
-  margin-bottom: 5px;
+  position: relative;
   text-transform: uppercase;
 }
 div#compare-champion-div-header div#level-selector h6 {
@@ -118,25 +127,16 @@ div#compare-champion-div-header div#level-selector h6 {
   font-size: 11px;
   line-height: 28px;
   margin: 0;
-  margin-right: 20px;
+  margin-right: 10px;
 }
 div#compare-champion-div-header div#level-selector a.action {
   border: 1px solid #e4e6e5;
   display: inline-block;
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.4em;
-  margin: 6px 1px;
-  padding: 5px;
+  padding: 4px;
   text-align: center;
   width: 25px;
-}
-div#compare-champion-div-header div#level-selector a.action.active {
-  background-color: #be3322;
-  color: white;
-  font-weight: bold;
-}
-div#compare-champion-div-header div#level-selector a.action.active:hover {
-  background-color: #db4a38;
 }
 div#compare-champion-div-header div#level-selector a.action:hover {
   border-color: #999;
@@ -145,8 +145,28 @@ div#compare-champion-div-header div#level-selector a.action:hover {
   -o-transition: all 0.25s linear;
   transition: all 0.25s linear;
 }
+div#compare-champion-div-header div#level-selector a.action.active {
+  background-color: #be3322;
+  color: white;
+  font-weight: bold;
+}
+div#compare-champion-div-header div#level-selector a.action.active:hover {
+  background-color: #db4a38;
+  border-color: #e4e6e5;
+}
+div#compare-champion-div-header div#level-selector a.back-to-list-btn {
+  bottom: 10px;
+  font-weight: bold;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  text-transform: none;
+}
+div#compare-champion-div-header div.separator {
+  margin: 10px 0 20px 0;
+}
 div#compare-champion-div-header div.benchmark {
-  background-color: #141414;
+  background-color: #333;
   margin: 10px 0;
 }
 div#compare-champion-div-header div.benchmark div.span1 {
@@ -155,13 +175,14 @@ div#compare-champion-div-header div.benchmark div.span1 {
 }
 div#compare-champion-div-header div.benchmark div.span1 p {
   color: #fb9701;
+  font-size: 16px;
   font-weight: bold;
 }
 div#compare-champion-div-header div.benchmark div.span1 p img {
   width: 54px;
 }
 div#compare-champion-div-header div.benchmark div.span1 a i {
-  color: #633b00;
+  color: #955a01;
 }
 div#compare-champion-div-header div.benchmark div.span1 a i:hover {
   color: #fb9701;
@@ -211,7 +232,7 @@ div.champion-list div.champion-row p span.diff.minus {
   color: #db4a38;
 }
 div.champion-list div.champion-row p span.diff.minor-plus {
-  color: #34460c;
+  color: #557213;
 }
 div.champion-list div.champion-row p span.diff.minor-minus {
   color: #92281b;

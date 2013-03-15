@@ -28,19 +28,26 @@
 ul {
   list-style: none;
 }
+div.container.main-container div.guide-tour-container {
+  text-align: center;
+}
 div.container.main-container div.actions-bar.active {
+  background-color: #333;
   left: 0;
-  right: 0;
-  position: fixed;
-  top: 32px;
-  z-index: 1000;
   min-width: 1064px;
   margin-top: 0;
-  background-color: #333;
+  padding: 7px 0 2px 0;
+  position: fixed;
+  right: 0;
+  top: 35px;
+  z-index: 1000;
 }
 div.container.main-container div.actions-bar.active div#actions-bar-content {
-  width: 1000px;
   margin: 0 auto;
+  width: 1000px;
+}
+div.container.main-container div.actions-bar.active div#actions-bar-content i.icon-search {
+  color: #999;
 }
 div.container.main-container div.actions-bar ul.action-buttons {
   margin: 0 0 5px 0;
@@ -498,4 +505,131 @@ div.alert.alert-success {
 }
 div.alert.alert-error {
   background-color: #db4a38;
+}
+div.guider {
+  background: #e4e6e5;
+  border: 5px solid rgba(0, 0, 0, 0.5);
+  position: absolute;
+  outline: none;
+  padding: 4px 12px;
+  min-width: 500px;
+  z-index: 100000005 !important;
+}
+div.guider .guider_buttons {
+  height: 36px;
+  margin-bottom: 3px;
+  width: 100%;
+}
+div.guider .guider_buttons .guider_button {
+  background-color: #147fb1;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  float: right;
+  font-size: 14px;
+  margin-left: 6px;
+  min-width: 40px;
+  padding: 5px 8px;
+  text-align: center;
+  text-decoration: none;
+}
+div.guider .guider_buttons .guider_button:hover {
+  background-color: #19a0df;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+div.guider .guider_buttons .guider_button:hover.btn-close {
+  background-color: #db4a38;
+}
+div.guider .guider_buttons .guider_button.btn-close {
+  background-color: #be3322;
+}
+div.guider .guider_buttons .guider_button em {
+  font-weight: bold;
+  font-style: normal;
+  text-decoration: underline;
+}
+div.guider .guider_content {
+  position: relative;
+}
+div.guider .guider_content h2 {
+  color: #759e1a;
+  float: left;
+  font-size: 21px;
+  width: 100%;
+}
+div.guider .guider_content h2 span.shortcut {
+  color: #999;
+  display: inline-block;
+  float: right;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+div.guider .guider_close {
+  float: right;
+  padding: 10px 0 0;
+}
+div.guider .guider_content p {
+  clear: both;
+  margin-bottom: 35px;
+}
+div.guider .guider_content p ul {
+  list-style: square;
+  margin: 1.4em 0 0 0;
+  padding: 0 0 0 30px;
+}
+div.guider .guider_content p i {
+  color: #777;
+  display: block;
+  font-size: 12px;
+  margin: 1.4em 0 0 0;
+}
+div.guider .guider_arrow {
+  width: 42px;
+  height: 42px;
+  position: absolute;
+  display: none;
+  background-repeat: no-repeat;
+  z-index: 100000006 !important;
+}
+div.guider .guider_arrow_right {
+  display: block;
+  background-position: 0px 0px;
+  right: -42px;
+}
+div.guider .guider_arrow_down {
+  display: block;
+  background-position: 0px -42px;
+  bottom: -42px;
+}
+div.guider .guider_arrow_up {
+  display: block;
+  background-position: 0px -126px;
+  top: -42px;
+}
+div.guider .guider_arrow_left {
+  display: block;
+  background-position: 0px -84px;
+  left: -42px;
+}
+#guider_overlay {
+  background-color: #000;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  opacity: 0.7;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+  filter: alpha(opacity=70);
+  z-index: 10;
+}
+.guider_highlight {
+  position: relative;
+  z-index: 101;
+}
+div.champions-handler-container ul.action-buttons li.guider_highlight {
+  position: relative !important;
 }

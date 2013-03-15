@@ -8,13 +8,12 @@ if (locale == 'fr') {
 
 $(document).ready(function()
 {
-  $('div.champions-handler-container ul.action-buttons').on('click', 'li.help-action', function()
+  $('a.start-guide-tour-btn').on('click', function(event)
   {
     $('#champion-comparison').on('mouseover', 'li.champion:not(.champion-maxi)', function(){$(this).draggable('disable')});
     isGuideTourDisplay = true;
     $('.dropdown-toggle').addClass('disabled');
-    saveItemInLS('is_not_first_visit', true);
-    $('body,html').animate({scrollTop:$('div.champions-handler-container').position().top},500);
+    $('body,html').animate({scrollTop:$('div.champion-benchmark-container').position().top - 50},500);
     guiders.show('first');
 
     $('body').unbind('keyup');
@@ -50,7 +49,7 @@ $(document).ready(function()
     isGuideTourDisplay = false;
     $('#champion-comparison').on('mouseover', 'li.champion:not(.champion-maxi)', function(){$(this).draggable('enable')});
     $('.dropdown-toggle').removeClass('disabled');
-    $('body,html').animate({scrollTop:$('div.champions-handler-container').position().top},500);
+    $('body,html').animate({scrollTop:$('div.champion-benchmark-container').position().top - 50},500);
   });
 });
 
