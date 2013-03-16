@@ -266,6 +266,36 @@
 				<source>Listing-pages.sort-by</source>
 				<target>Sort by</target>
 			</trans-unit>
+
+			<!-- SIDEBAR POURQUOI CREER UN COMPTE MVNERDS-->
+			<trans-unit id="800">
+				<source>why-create-an-account.title</source>
+				<target>Pourquoi créer un compte MVNerds ?</target>
+			</trans-unit>
+			<trans-unit id="801">
+				<source>why-create-an-account.p1</source>
+				<target>Créer un compte MVNerds est très rapide et vous offre de nombreux avantages :</target>
+			</trans-unit>
+			<trans-unit id="802">
+				<source>why-create-an-account.li1</source>
+				<target>Enregistrement de vos listes d'objets personnalisées sur votre profil.</target>
+			</trans-unit>
+			<trans-unit id="803">
+				<source>why-create-an-account.li2</source>
+				<target>Publication illimitée de vidéos.</target>
+			</trans-unit>
+			<trans-unit id="804">
+				<source>why-create-an-account.li3</source>
+				<target>Association avec votre compte de jeu League of Legends.</target>
+			</trans-unit>
+			<trans-unit id="805">
+				<source>why-create-an-account.li4</source>
+				<target>Contribuer à la vie de la communauté en votant et en laissant des commentaires.</target>
+			</trans-unit>
+			<trans-unit id="806">
+				<source>why-create-an-account.li5</source>
+				<target>Et bien d'autres choses !</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

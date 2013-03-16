@@ -38,8 +38,8 @@
 			<trans-unit id="9">
 				<source>Login.no_account.message</source>
 				<target>
-					Créez-vous un compte MVNerds et profitez des avantages qui vous sont offerts. Beaucoup de nouvelles fonctionnalités vont arriver, 
-					soyez en avance sur les autres joueurs de League of Legends. N'hésitez plus !
+					Create an MVNerds account and enjoy all the advantages offered to you. 
+					Many new fonctionnalities will arrive soon, be ahead of the other League of Legends players.
 				</target>
 			</trans-unit>
 			<trans-unit id="10">
@@ -75,8 +75,7 @@
 			<trans-unit id="24">
 				<source>Login.ForgotPassword.modal.intro.message</source>
 				<target>
-					Vous avez oublié votre mot de passe ? Pas de panique, renseignez votre adresse e-mail avec laquelle vous avez créé votre compte dans le champ ci-dessous.
-					Vous allez recevoir un e-mail vous invitant à choisir un nouveau mot de passe.
+					Fill the e-mail field with your registration e-mail and submit the form. You will then receive an e-mail that will allow you to choose a new password.
 				</target>
 			</trans-unit>
 			<trans-unit id="25">
@@ -264,6 +263,36 @@
 			<trans-unit id="711">
 				<source>Listing-pages.sort-by</source>
 				<target>Sort by</target>
+			</trans-unit>
+
+			<!-- SIDEBAR POURQUOI CREER UN COMPTE MVNERDS-->
+			<trans-unit id="800">
+				<source>why-create-an-account.title</source>
+				<target>Why create an MVNerds account ?</target>
+			</trans-unit>
+			<trans-unit id="801">
+				<source>why-create-an-account.p1</source>
+				<target>Create an MVNerds account is quick and will offer you many advantages :</target>
+			</trans-unit>
+			<trans-unit id="802">
+				<source>why-create-an-account.li1</source>
+				<target>Save your custom recommended items lists on your profile.</target>
+			</trans-unit>
+			<trans-unit id="803">
+				<source>why-create-an-account.li2</source>
+				<target>Unlimited video publication.</target>
+			</trans-unit>
+			<trans-unit id="804">
+				<source>why-create-an-account.li3</source>
+				<target>Join your MVNerds account to your League of Legends account.</target>
+			</trans-unit>
+			<trans-unit id="805">
+				<source>why-create-an-account.li4</source>
+				<target>Contribute to the life of the community by voting, and posting comments.</target>
+			</trans-unit>
+			<trans-unit id="806">
+				<source>why-create-an-account.li5</source>
+				<target>And many other things !</target>
 			</trans-unit>
 		</body>
 	</file>
