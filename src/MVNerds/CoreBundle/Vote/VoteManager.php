@@ -144,7 +144,7 @@ class VoteManager
 		$rating = round($object->getLikeCount() / $votesCount * 100);
 		
 		if ($object->getVoteStatus() != 'FEATURED' &&  $votesCount >= self::MIN_VOTES && $rating >= self::MIN_RATING) {
-			$object->setReportStatus('APPROVED');
+			$object->setVoteStatus('APPROVED');
 			if (method_exists($object, 'keepUpdateDateUnchanged')) {
 				$object->keepUpdateDateUnchanged();
 			}
