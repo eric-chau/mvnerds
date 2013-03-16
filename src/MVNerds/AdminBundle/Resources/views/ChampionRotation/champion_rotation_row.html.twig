@@ -4,7 +4,7 @@
 	</div>
 	<div class="span8">
 		{% for championRotation in rotation.getChampionRotations() %}
-			<img class="champion-image" src="{{ asset('images/champions/square/' ~ championRotation.getChampion().getSlug() ~ '.png') }}" alt="image du champion {{ championRotation.getChampion().getName() }}" title = "{{ championRotation.getChampion().getName() }}"/>
+			<img class="champion-image" src="{{ asset('medias/images/champions/square/' ~ championRotation.getChampion().getSlug() ~ '.png') }}" alt="image du champion {{ championRotation.getChampion().getName() }}" title = "{{ championRotation.getChampion().getName() }}"/>
 		{% endfor %}
 	</div>
 	<div class="span1">

@@ -112,9 +112,9 @@ $(document).ready(function()
 			{
 				$loader.addClass('hide');
 				if (response) {
-					$('img.user-current-avatar').attr('src', '/images/avatar/'+ newAvatarName +'.jpg');
-					$('div#topbar li.user-container img').attr('src', '/images/avatar/'+ newAvatarName +'.jpg');
-					$('form.leave-comment-form img.user-avatar').attr('src', '/images/avatar/'+ newAvatarName +'.jpg');
+					$('img.user-current-avatar').attr('src', '/medias/images/avatar/'+ newAvatarName +'.jpg');
+					$('div#topbar li.user-container img').attr('src', '/medias/images/avatar/'+ newAvatarName +'.jpg');
+					$('form.leave-comment-form img.user-avatar').attr('src', '/medias/images/avatar/'+ newAvatarName +'.jpg');
 					$('div#change-avatar-modal div.modal-body div.avatars-container').find('img').removeClass('disabled');
 					$('div#change-avatar-modal div.modal-body div.avatars-container').find('img.selected').toggleClass('selected disabled');
 					$('div#change-avatar-modal').modal('hide');

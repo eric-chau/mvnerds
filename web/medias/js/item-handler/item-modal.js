@@ -84,7 +84,7 @@ function setItemModalContent(item) {
 		
 		$itemModal.find('.modal-body .item-modal-geneology').html($geneology);
 		
-		$itemModal.find('.modal-body .item-modal-detail .item-modal-header .item-modal-header-image img').attr('src', '/images/items/' + item.code + '.png');
+		$itemModal.find('.modal-body .item-modal-detail .item-modal-header .item-modal-header-image img').attr('src', '/medias/images/items/' + item.code + '.png');
 		$itemModal.find('.modal-body .item-modal-detail .item-modal-header .item-modal-header-data .item-modal-header-name').html(item.name);
 		$itemModal.find('.modal-body .item-modal-detail .item-modal-header .item-modal-header-data .item-modal-header-cost-value').html(item.totalCost + ' ('+item.cost+')');
 		

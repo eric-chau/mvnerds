@@ -68,7 +68,7 @@
 								{%set itemCount = itemTab['count']%}
 								{% if not item.getIsObsolete() %}
 									<div class="portrait" data-slug="{{item.getSlug()}}" data-game-modes="{{item.getGameModesToString()}}" data-champion="{% if item.getChampion() %}{{item.getChampion.getSlug()}}{% endif %}" style="display: inline-block;">
-										<img draggable="false" class="item-image" src="{{ asset('images/items/' ~ item.getRiotCode() ~ '.png') }}" alt="image de l'item {{ item.getName() }}" />
+										<img draggable="false" class="item-image" src="{{ asset('medias/images/items/' ~ item.getRiotCode() ~ '.png') }}" alt="image de l'item {{ item.getName() }}" />
 										{% if (itemCount > 1) %}
 											<span class="item-count">{{itemCount}}</span>
 										{% endif %}

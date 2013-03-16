@@ -2,7 +2,7 @@
 	<div class="span2">
 		{# draggable a false pour empecher de drag l img sous chrome et firefox mais cette propriété n est pas détectée sous IE #}
 		{#c'est pourquoi seulement l'image pourra être glissée et pas toute la div il faut donc quand meme affecter les events dragStart etc..#}
-		<img draggable="false" ondragstart="dragStart(event)" ondragend="dragEnd(event)" id="{{champion.getSlug()}}" class="champion-image" src="{{ asset('images/champions/square/' ~ champion.getSlug() ~ '.png') }}" alt="image du champion {{ champion.getName() }}" title = "{{ champion.getName() }}"/>
+		<img draggable="false" ondragstart="dragStart(event)" ondragend="dragEnd(event)" id="{{champion.getSlug()}}" class="champion-image" src="{{ asset('medias/images/champions/square/' ~ champion.getSlug() ~ '.png') }}" alt="image du champion {{ champion.getName() }}" title = "{{ champion.getName() }}"/>
 	</div>
 	<div class="span2">
 		{{ champion.getName() }}

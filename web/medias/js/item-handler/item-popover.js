@@ -1,7 +1,7 @@
 function initPopoverItem($container) {
 	$container.on('hover', '.item', function(e) {
 		if($(this).data('popover') == undefined) {
-			var title = "<img class='tooltip-item-img' src='/images/items/" + $(this).data('code') + ".png'/>" + $(this).data('title');
+			var title = "<img class='tooltip-item-img' src='/medias/images/items/" + $(this).data('code') + ".png'/>" + $(this).data('title');
 						
 			$(this).popover({
 				trigger: 'hover',

@@ -7,7 +7,7 @@
 	{# On affiche d'abord l'image du champion #}
 	<th>Aperçu</th>
 	<td>
-		<img src="{{ asset('images/champions/square/' ~ champion.getSlug() ~ '.png') }}" alt="image du champion {{ champion.getName() }}" title = "{{ champion.getName() }}"/>
+		<img src="{{ asset('medias/images/champions/square/' ~ champion.getSlug() ~ '.png') }}" alt="image du champion {{ champion.getName() }}" title = "{{ champion.getName() }}"/>
 	</td>
 	{# on parcours tous les champs du champion #}
 	{% for i in 0.. nbFields - 1 %}
