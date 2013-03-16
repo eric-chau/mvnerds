@@ -288,53 +288,117 @@
 			</trans-unit>
 
 
-			<trans-unit id="700">
-				<source>generic_listing_page.filter_options_title</source>
-				<target>Options de filtrage</target>
-			</trans-unit>
-			<trans-unit id="701">
-				<source>generic_listing_page.sort_by</source>
-				<target>Trier par :</target>
-			</trans-unit>
-			<trans-unit id="702">
-				<source>generic_listing_page.search_by</source>
-				<target>Rechercher par :</target>
-			</trans-unit>
-			<trans-unit id="703">
-				<source>generic_listing_page.search_title</source>
-				<target>Rechercher</target>
-			</trans-unit>
-			<trans-unit id="705">
+			<trans-unit id="755">
 				<source>generic_detail_page.about.views</source>
 				<target>vues</target>
 			</trans-unit>
-			<trans-unit id="706">
+			<trans-unit id="756">
 				<source>generic_detail_page.about.downloads</source>
 				<target>téléchargés</target>
 			</trans-unit>
-			<trans-unit id="707">
+			<trans-unit id="757">
 				<source>generic_detail_page.about.comments</source>
 				<target>commentaires</target>
 			</trans-unit>
-			<trans-unit id="708">
+			<trans-unit id="758">
 				<source>generic_detail_page.about.go_to_author_profile</source>
 				<target>Aller sur le profil de l'auteur</target>
 			</trans-unit>
-			<trans-unit id="709">
+			<trans-unit id="759">
 				<source>generic_detail_page.about.author</source>
 				<target>auteur</target>
 			</trans-unit>
-			<trans-unit id="710">
+			<trans-unit id="760">
 				<source>generic_detail_page.about.category</source>
 				<target>catégorie</target>
 			</trans-unit>
-			<trans-unit id="711">
+			<trans-unit id="761">
 				<source>generic_detail_page.about.publish_date</source>
 				<target>date de publication</target>
 			</trans-unit>
-			<trans-unit id="712">
+			<trans-unit id="762">
 				<source>generic_detail_page.about.title</source>
 				<target>À propos</target>
+			</trans-unit>
+
+			<!-- LISTING PAGES -->
+			<trans-unit id="700">
+				<source>Listing-pages.filtering-options</source>
+				<target>Options de filtrage</target>
+			</trans-unit>
+			<trans-unit id="701">
+				<source>Listing-pages.th.preview</source>
+				<target>Aperçu</target>
+			</trans-unit>
+			<trans-unit id="702">
+				<source>Listing-pages.th.title</source>
+				<target>Titre</target>
+			</trans-unit>
+			<trans-unit id="703">
+				<source>Listing-pages.th.category</source>
+				<target>Catégorie</target>
+			</trans-unit>
+			<trans-unit id="704">
+				<source>Listing-pages.th.avatar</source>
+				<target>Avatar</target>
+			</trans-unit>
+			<trans-unit id="705">
+				<source>Listing-pages.th.username</source>
+				<target>Nom d'utilisateur</target>
+			</trans-unit>
+			<trans-unit id="706">
+				<source>Listing-pages.th.game-account</source>
+				<target>Compte de jeu</target>
+			</trans-unit>
+			<trans-unit id="707">
+				<source>Listing-pages.th.name</source>
+				<target>Nom</target>
+			</trans-unit>
+			<trans-unit id="708">
+				<source>Listing-pages.th.map</source>
+				<target>Carte</target>
+			</trans-unit>
+			<trans-unit id="709">
+				<source>Listing-pages.how-does-it-work</source>
+				<target>Comment ça marche ?</target>
+			</trans-unit>
+			<trans-unit id="710">
+				<source>Listing-pages.search-by</source>
+				<target>Rechercher par :</target>
+			</trans-unit>
+			<trans-unit id="711">
+				<source>Listing-pages.sort-by</source>
+				<target>Trier par :</target>
+			</trans-unit>
+
+			<!-- SIDEBAR POURQUOI CREER UN COMPTE MVNERDS-->
+			<trans-unit id="800">
+				<source>why-create-an-account.title</source>
+				<target>Pourquoi créer un compte MVNerds ?</target>
+			</trans-unit>
+			<trans-unit id="801">
+				<source>why-create-an-account.p1</source>
+				<target>Créer un compte MVNerds est très rapide et vous offre de nombreux avantages :</target>
+			</trans-unit>
+			<trans-unit id="802">
+				<source>why-create-an-account.li1</source>
+				<target>Enregistrement de vos listes d'objets personnalisées sur votre profil.</target>
+			</trans-unit>
+			<trans-unit id="803">
+				<source>why-create-an-account.li2</source>
+				<target>Publication illimitée de vidéos.</target>
+			</trans-unit>
+			<trans-unit id="804">
+				<source>why-create-an-account.li3</source>
+				<target>Association avec votre compte de jeu League of Legends.</target>
+			</trans-unit>
+			<trans-unit id="805">
+				<source>why-create-an-account.li4</source>
+				<target>Contribuer à la vie de la communauté en votant et en laissant des commentaires.</target>
+			</trans-unit>
+			<trans-unit id="806">
+				<source>why-create-an-account.li5</source>
+				<target>Et bien d'autres choses !</target>
 			</trans-unit>
 		</body>
 	</file>

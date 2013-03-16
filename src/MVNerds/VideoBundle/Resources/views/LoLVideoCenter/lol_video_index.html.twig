@@ -65,25 +65,14 @@
 	<div class="container main-container border-top">
 		<div class="row-fluid">
 			<div class="span8 left-content">
-				<h1>LoL Video Center <a href="#" class="how-it-works-toggle"><span class="label red">comment ça marche ?</span></a></h1>
-				
-				<div class="how-it-works hide">
-					<p>
-						Joueurs de League of Legends, le LoL Video Center vous permet de partager vos vidéos préférés en rapport avec League of Legends.
-					</p>
-					<p>
-						Postez des vidéos fun, utiles, ou ayant un quelconque rapport avec LoL !
-					</p>
-					
-					<div class="separator"></div>
-				</div>
+				<h1>LoL Video Center</h1>
 				
 				<table id="videos-table" class="table data-table">
 					<thead>
 						<tr>
-							<th class="preview">Aperçu</th>
-							<th class="title">Titre</th>
-							<th class="category">Catégorie</th>
+							<th class="preview">{{'Listing-pages.th.preview' | trans}}</th>
+							<th class="title">{{'Listing-pages.th.title' | trans}}</th>
+							<th class="category">{{'Listing-pages.th.category' | trans}}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -97,23 +86,23 @@
 					{# Bouton de création #}
 					<div class="block">
 						<div class="footer red">
-							<a href="#" id="video-publish-action">Publier une vidéo</a>
+							<a href="#" id="video-publish-action">{{'video_list_index.publish-video' | trans}}</a>
 						</div>
 					</div>
 				
 					<div class="block">
 						<div class="footer blue">
-							<a href="{{path('summoner_profile_index')}}#summoner-videos-list">Voir mes vidéos</a>
+							<a href="{{path('summoner_profile_index')}}#summoner-videos-list">{{'video_list_index.my-videos' | trans}}</a>
 						</div>
 					</div>
 				{% endif %}
 				
 				<div class="block">
 					<div class="header">
-						<h3>{{ 'generic_listing_page.filter_options_title'|trans }}</h3>
+						<h3>{{'Listing-pages.filtering-options' | trans}}</h3>
 					</div>
 					<div class="body">
-						<p>{{ 'generic_listing_page.sort_by'|trans }}</p>
+						<p>{{'Listing-pages.sort-by' | trans}}</p>
 						<ul id="sort-list">
 							<li><a href="#" class="sort-link" data-option-value="0"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.oldest'|trans}}</a></li>
 							<li><a href="#" class="sort-link selected" data-option-value="1"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.newest'|trans}}</a></li>
@@ -126,7 +115,7 @@
 							<li><a href="#" class="sort-link" data-option-value="8"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.less-voted'|trans}}</a></li>
 						</ul>
 						
-						<p>{{ 'generic_listing_page.search_by'|trans }}</p>
+						<p>{{'Listing-pages.search-by' | trans}}</p>
 						<ul class="filters-list more-filter">
 							<li id="filter-title">
 								<label for="title-filter-input">{{'item_build_list_index.sort.filter-by-title'|trans}}</label>
@@ -149,7 +138,7 @@
 							</li>
 							
 							<li id="filter-search">
-								<a href="#" class="btn green" id="search-filter-btn">{{ 'generic_listing_page.search_title'|trans }} <i class="icon-search icon-white"></i></a>
+								<a href="#" class="btn green" id="search-filter-btn">{{'Actionsbar.Search.placeholder'|trans}} <i class="icon-search icon-white"></i></a>
 							</li>
 						</ul>
 					</div>

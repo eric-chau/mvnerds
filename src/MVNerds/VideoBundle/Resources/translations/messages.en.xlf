@@ -14,6 +14,14 @@
 				<source>video_list_index.sort.filter-by-category</source>
 				<target>Categories</target>
 			</trans-unit>
+			<trans-unit id="3">
+				<source>video_list_index.publish-video</source>
+				<target>Publish a video</target>
+			</trans-unit>
+			<trans-unit id="4">
+				<source>video_list_index.my-videos</source>
+				<target>My videos</target>
+			</trans-unit>
 			
 			<trans-unit id="100">
 				<source>FUN</source>
@@ -58,6 +66,40 @@
 			<trans-unit id="110">
 				<source>COMPETITION</source>
 				<target>Competitive</target>
+			</trans-unit>
+			
+			<!-- VIDEO PUBLISH MODAL -->
+			<trans-unit id="200">
+				<source>video_publish_modal.publish-video</source>
+				<target>Publish a video</target>
+			</trans-unit>
+			<trans-unit id="201">
+				<source>video_publish_modal.title</source>
+				<target>Title</target>
+			</trans-unit>
+			<trans-unit id="202">
+				<source>video_publish_modal.category</source>
+				<target>Category</target>
+			</trans-unit>
+			<trans-unit id="203">
+				<source>video_publish_modal.video-link</source>
+				<target>Video link</target>
+			</trans-unit>
+			<trans-unit id="204">
+				<source>video_publish_modal.description</source>
+				<target>Description</target>
+			</trans-unit>
+			<trans-unit id="205">
+				<source>video_publish_modal.instructions</source>
+				<target>Please fill this form in order to publish your video.</target>
+			</trans-unit>
+			<trans-unit id="206">
+				<source>video_publish_modal.edit-video</source>
+				<target>Edit a video</target>
+			</trans-unit>
+			<trans-unit id="207">
+				<source>video_publish_modal.publish</source>
+				<target>Publish</target>
 			</trans-unit>
 
 			<!-- TRADUCTION DES MESSAGES D ERREURS DU LoLVideoController -->

@@ -53,9 +53,9 @@
 				<table id="news-table" class="table data-table">
 					<thead>
 						<tr>
-							<th class="preview">Aperçu</th>
-							<th class="title">Titre</th>
-							<th class="category">Catégorie</th>
+							<th class="preview">{{'Listing-pages.th.preview' | trans}}</th>
+							<th class="title">{{'Listing-pages.th.title' | trans}}</th>
+							<th class="category">{{'Listing-pages.th.category' | trans}}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -68,10 +68,10 @@
 				
 				<div class="block">
 					<div class="header">
-						<h3>{{ 'generic_listing_page.filter_options_title'|trans }}</h3>
+						<h3>{{'Listing-pages.filtering-options' | trans}}</h3>
 					</div>
 					<div class="body">
-						<p>{{ 'generic_listing_page.sort_by'|trans }}</p>
+						<p>{{'Listing-pages.sort-by' | trans}}<p>
 						<ul id="sort-list">
 							<li><a href="#" class="sort-link" data-option-value="0"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.oldest'|trans}}</a></li>
 							<li><a href="#" class="sort-link selected" data-option-value="1"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.newest'|trans}}</a></li>
@@ -82,7 +82,7 @@
 							<li><a href="#" class="sort-link" data-option-value="6"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.most-commented'|trans}}</a></li>
 						</ul>
 						
-						<p>{{ 'generic_listing_page.search_by'|trans }}</p>
+						<p>{{'Listing-pages.search-by' | trans}}</p>
 						<ul class="filters-list more-filter">
 							<li id="filter-title">
 								<label for="title-filter-input">{{'item_build_list_index.sort.filter-by-title'|trans}}</label>
@@ -105,7 +105,7 @@
 							</li>
 							
 							<li id="filter-search">
-								<a href="#" class="btn green" id="search-filter-btn">{{ 'generic_listing_page.search_title'|trans }} <i class="icon-search icon-white"></i></a>
+								<a href="#" class="btn green" id="search-filter-btn">{{'Actionsbar.Search.placeholder'|trans}} <i class="icon-search icon-white"></i></a>
 							</li>
 						</ul>
 					</div>
