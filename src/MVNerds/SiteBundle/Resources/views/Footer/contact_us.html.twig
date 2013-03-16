@@ -20,10 +20,10 @@
 		<div class="contact-us">
 			<div class="contact-errors">
 				{% autoescape false %}
-					{{ render_success_flash() }}
+					{#{{ render_success_flash() }}#}
 				{% endautoescape %}
 				{% autoescape false %}
-					{{ render_error_flash() }}
+					{#{{ render_error_flash() }}#}
 				{% endautoescape %}
 			</div>
 			<form id="contact-us-form" action="{{ path('site_contact_us') }}" method="POST" class="form-horizontal">
