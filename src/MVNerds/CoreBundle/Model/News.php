@@ -30,22 +30,24 @@ class News extends BaseNews {
 	 * ACTIVEE POUR POUVOIR UTILISER LA METHODE 
 	 * GUESS_EXTENTION
 	 */
-	public function setImage(UploadedFile $v)
+	public function setImage($v)
 	{
-		//On récupère l extension de l'image
-		$extension = $v->guessExtension();
-		if (!$extension) {
-			$extension = 'bin';
+		if ($v != null) {
+			//On récupère l extension de l'image
+			$extension = $v->guessExtension();
+			if (!$extension) {
+				$extension = 'bin';
+			}
+			//on génère un nom aléatoire jusqu'a en trouver un qui n'existe pas encore
+			do {
+				$imageName = rand(1, 99999) . '.' . $extension;
+			} while (file_exists(__DIR__ . '/../../../../web/medias/images/news/' . $imageName));
+
+			//On crée une copie de l'image en local
+			$v->move( __DIR__ . '/../../../../web/medias/images/news/' ,$imageName);
+
+			//On set le champ en BDD pour l'image
+			$this->setImageName('/medias/images/news/' . $imageName);
 		}
-		//on génère un nom aléatoire jusqu'a en trouver un qui n'existe pas encore
-		do {
-			$imageName = rand(1, 99999) . '.' . $extension;
-		} while (file_exists(__DIR__ . '/../../../../web/medias/images/news/' . $imageName));
-		
-		//On crée une copie de l'image en local
-		$v->move( __DIR__ . '/../../../../web/medias/images/news/' ,$imageName);
-		
-		//On set le champ en BDD pour l'image
-		$this->setImageName('/medias/images/news/' . $imageName);
 	}
 } // News

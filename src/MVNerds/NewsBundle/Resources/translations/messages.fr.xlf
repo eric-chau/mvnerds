@@ -92,15 +92,19 @@
 			</trans-unit>
 			<trans-unit id="2005">
 				<source>LOL_PATCHNOTE</source>
-				<target>Notes de patch LoL</target>
+				<target>LoL Patchnote</target>
 			</trans-unit>
 			<trans-unit id="2006">
 				<source>MVNERDS_PATCHNOTE</source>
-				<target>Notes de patch MVNerds</target>
+				<target>MVNerds Patchnote</target>
 			</trans-unit>
 			<trans-unit id="2007">
 				<source>PRO_TEAM</source>
 				<target>Equipe professionnelle</target>
+			</trans-unit>
+			<trans-unit id="2008">
+				<source>LOL</source>
+				<target>League of Legends</target>
 			</trans-unit>
 
 			<trans-unit id="2100">

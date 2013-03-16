@@ -34,7 +34,9 @@ class NewsType extends AbstractType
 //			'attr'		=> array('placeholder' => 'Ex : mon-image.jpg')
 //		));
 		
-		$builder->add('image', 'file');
+		$builder->add('image', 'file', array(
+			'required' => false
+		));
 		
 		$builder->add('is_highlight', 'checkbox', array(
 			'label' => 'Est un highlight ?',
