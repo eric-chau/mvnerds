@@ -18,7 +18,8 @@ class LocaleListener implements EventSubscriberInterface
 	private $allowedIP = array(
 		'127.0.0.1',
 		'79.95.143.27',
-		'213.245.227.123'		
+		'213.245.227.123',
+		'79.86.168.84'		
 	);
 	
 	public function __construct($defaultLocale, $isMaintenanceTime) {
