@@ -9,7 +9,6 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 use MVNerds\CoreBundle\Vote\IVote;
-use MVNerds\CoreBundle\Model\Vote;
 /**
  * @Route("/vote")
  */

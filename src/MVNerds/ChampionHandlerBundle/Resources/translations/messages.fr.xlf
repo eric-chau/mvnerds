@@ -44,6 +44,42 @@
 				<source>champion.skin.video.unavailable</source>
 				<target>Il n'y a pas de vidéo de présentation disponible pour ce skin.</target>
 			</trans-unit>
+
+			<trans-unit id="250">
+				<source>champion_benckmark.compare.breadcrumbs.%count%</source>
+				<target>Comparaison de %count% champions en cours</target>
+			</trans-unit>
+			<trans-unit id="251">
+				<source>champion_benckmark.title</source>
+				<target>Comparateur de champions de League of Legends</target>
+			</trans-unit>
+			<trans-unit id="252">
+				<source>champion_benckmark.how_it_work_label</source>
+				<target>comment ça marche ?</target>
+			</trans-unit>
+			<trans-unit id="253">
+				<source>champion_benckmark.index.hiw_text</source>
+				<target>
+					Le Champion Benchmark vous permet de comparer les champions entre eux. Si vous souhaitez tout savoir de son fonctionnnement, cliquez sur le bouton ci-dessous
+					pour démarrer la visite guidée.
+				</target>
+			</trans-unit>
+			<trans-unit id="254">
+				<source>champion_benckmark.index.start_guide_tour_btn</source>
+				<target>Débuter la visite guidée</target>
+			</trans-unit>
+			<trans-unit id="255">
+				<source>champion_benckmark.index.preview.close_btn</source>
+				<target>Fermer</target>
+			</trans-unit>
+			<trans-unit id="256">
+				<source>champion_benckmark.index.preview.learn_more_btn</source>
+				<target>En savoir plus sur</target>
+			</trans-unit>
+			<trans-unit id="257">
+				<source>champion_benckmark.index.preview.add_to_list_btn</source>
+				<target>Ajouter à la liste</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

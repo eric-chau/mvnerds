@@ -33,14 +33,14 @@
 				
 				<div class="related-news-container">
 					<div class="related-news">
-						<h5>à lire aussi</h5>
+						<h5>{{ 'news_detail_page.read_more'|trans }}</h5>
 						<ul>
 							{% if related_news|length > 0 %}
 								{% for one_related_news in related_news %}
 									<li><a href="{{ path('news_detail', {'slug': one_related_news.getSlug()}) }}">{{ one_related_news.getTitle() }}</a></li>
 								{% endfor %}
 							{% else %}
-									<i>Aucune actualité trouvée</i>
+									<i>{{ 'news_detail_page.no_news'|trans }}</i>
 							{% endif %}
 						</ul>
 					</div>
@@ -62,7 +62,7 @@
 			<div class="span4 right-content">
 				<div class="block">
 					<div class="header">
-						<h3>À propos</h3>
+						<h3>{{ 'generic_detail_page.about.title'|trans }}</h3>
 					</div>
 					<div class="body">
 						<div class="block-media">
@@ -70,27 +70,27 @@
 						</div>
 						<div class="stats">
 							<i class="icon-user"></i> 
-							<strong><a href="{{ path('summoner_profile_view', {'slug': news.getUser().getSlug()}) }}" title="Consulter le profil de {{ news.getUser().getUsername }}" class="resize-required">{{news.getUser().getUserName()}}</a></strong><br /> auteur
+							<strong><a href="{{ path('summoner_profile_view', {'slug': news.getUser().getSlug()}) }}" title="Consulter le profil de {{ news.getUser().getUsername }}" class="resize-required">{{news.getUser().getUserName()}}</a></strong><br /> {{ 'generic_detail_page.about.author'|trans }}
 						</div>
 						
 						<div class="stats odd">
 							<i class="icon-time"></i> 
-							<strong>{{ news.getUpdateTime('d/m/Y') }}</strong><br /> publication
+							<strong>{{ news.getUpdateTime('d/m/Y') }}</strong><br /> {{ 'generic_detail_page.about.publish_date'|trans }}
 						</div>
 						
 						<div class="stats">
 							<i class="icon-folder-open-alt"></i> 
-							<strong class="resize-required">{{ news.getNewsCategory().getUniqueName()|trans }}</strong><br /> catégorie
+							<strong class="resize-required">{{ news.getNewsCategory().getUniqueName()|trans }}</strong><br /> {{ 'generic_detail_page.about.category'|trans }}
 						</div>
 							
 						<div class="stats odd">
 							<i class="icon-eye-open"></i> 
-							<strong>{{ news.getView() }}</strong><br /> vues
+							<strong>{{ news.getView() }}</strong><br /> {{ 'generic_detail_page.about.views'|trans }}
 						</div>
 						
 						<div class="stats">
 							<i class="icon-comments-alt"></i> 
-							<strong>{{ news.getCommentCount() }}</strong><br /> commentaires
+							<strong>{{ news.getCommentCount() }}</strong><br /> {{ 'generic_detail_page.about.comments'|trans }}
 						</div>
 							
 						
@@ -98,7 +98,7 @@
 					</div>
 					<div class="footer">
 						<a href="{{ path('summoner_profile_view', {'slug': news.getUser().getSlug()}) }}" title="Consulter le profil de {{ news.getUser().getUsername }}">
-							Aller sur le profil de l'auteur
+							{{ 'generic_detail_page.about.go_to_author_profile'|trans }}
 						</a>
 					</div>
 				</div>

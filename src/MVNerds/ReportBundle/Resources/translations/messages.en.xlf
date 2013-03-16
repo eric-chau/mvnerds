@@ -4,35 +4,35 @@
         <body>
             <trans-unit id="1">
                 <source>Report.simple_action_btn</source>
-                <target>Signaler ce contenu pour abus</target>
+                <target>Report this content for abuse</target>
             </trans-unit>
             <trans-unit id="2">
                 <source>Report.you_reported_content_text</source>
-                <target>Vous avez signalé ce contenu</target>
+                <target>You reported this content</target>
             </trans-unit>
             <trans-unit id="3">
                 <source>Report.detailed.login</source>
-                <target>Se connecter</target>
+                <target>Login</target>
             </trans-unit>
             <trans-unit id="4">
                 <source>Report.detailed.already_reported</source>
-                <target>Déjà signalé</target>
+                <target>Already reported</target>
             </trans-unit>
             <trans-unit id="5">
                 <source>Report.detailed.action_btn</source>
-                <target>Signaler pour abus</target>
+                <target>Report for Abuse</target>
             </trans-unit>
             <trans-unit id="6">
                 <source>Report.detailed.modal.report_this_video</source>
-                <target>Signaler cette vidéo</target>
+                <target>Report this video</target>
             </trans-unit>
             <trans-unit id="7">
                 <source>Report.detailed.modal.intro</source>
-                <target>Vous êtes sur le point de signaler cette vidéo comme un contenu abusif. Choisissez un motif :</target>
+                <target>You are about to report this video as abusive. Choose a reason:</target>
             </trans-unit>
             <trans-unit id="8">
                 <source>Report.detailed.modal.report_btn</source>
-                <target>Signaler</target>
+                <target>Report</target>
             </trans-unit>
         </body>
     </file>

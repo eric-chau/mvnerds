@@ -1,6 +1,6 @@
 {% extends 'MVNerdsSiteBundle::layout.html.twig' %}
 
-{% block title %}Oups, une erreur est survenue - Most Valuable Nerds | MVNerds{% endblock %}
+{% block title %}{{ 'Error_page.title'|trans }} - Most Valuable Nerds | MVNerds{% endblock %}
 
 {% block css %}
 	{{ parent() }}
@@ -23,7 +23,7 @@
 {% block breadcrumbs %}
 	{{ parent() }}
 	
-	> Une erreur est survenue
+	> {{ 'Error_page.breadcrumbs'|trans }}
 {% endblock %}
 
 {% block main_content %}
@@ -33,30 +33,30 @@
 		
 		<div class="amumu-container">
 			<img src="{{ asset('medias/images/site/amumu-error-page.png') }}" />
-			<div class="amumu-message hide">Merci *.*</div>
+			<div class="amumu-message hide">{{ 'Error_page.amumu_thank_you'|trans }} *.*</div>
 			<div class="draw-by">By Kawiko</div>
 		</div>
-		<h1>Oups, une erreur est survenue</h1>
+		<h1>{{ 'Error_page.title'|trans }}</h1>
 
 		<p>
-			Plusieurs problèmes peuvent être la cause de cette erreur. Les plus courants sont :
+			{{ 'Error_page.possible_error_source.text'|trans }}
 		</p>
 		
 		<ul>
-			<li>La page demandée n'existe pas ou n'existe plus</li>
-			<li>Le service sollicité est temporairement indisponible</li>
-			<li>Vous avez tentez d'accéder à une page qui requiert d'être authentifié</li>
+			<li>{{ 'Error_page.error_possibity_1'|trans }}</li>
+			<li>{{ 'Error_page.error_possibity_2'|trans }}</li>
+			<li>{{ 'Error_page.error_possibity_3'|trans }}</li>
 		</ul>
 		
-		<p>Que voulez-vous faire ?</p>
+		<p>{{ 'Error_page.what_to_do'|trans }}</p>
 		
 		<ul>
-			<li><a href="{{ path('site_homepage') }}">Retourner à la page d'accueil</a></li>
+			<li><a href="{{ path('site_homepage') }}">{{ 'Error_page.back_to_homepage'|trans }}</a></li>
 			{% if app.user == null %}
-				<li><a href="{{ path('security_summoner_login') }}">Me connecter à mon compte MVNerds</a></li>
+				<li><a href="{{ path('security_summoner_login') }}">{{ 'Error_page.login_link'|trans }}</a></li>
 			{% endif %}
-			<li><a href="{{ path('site_contact_us') }}">Utiliser le formulaire de contact pour signaler un bug</a></li>
-			<li><a href="#" class="hug-amumu">Faire un câlin à Amumu<i class="icon-heart"></i></a></li>
+			<li><a href="{{ path('site_contact_us') }}">{{ 'Error_page.report_bug_link'|trans }}</a></li>
+			<li><a href="#" class="hug-amumu"><i class="icon-heart"></i>{{ 'Error_page.hug_amumu_link'|trans }}</a></li>
 		</ul>
 	</div>
 {% endblock %}

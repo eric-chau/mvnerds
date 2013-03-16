@@ -74,19 +74,19 @@
 	<div class="container main-container border-top">
 		<div class="row-fluid">
 			<div class="span8 left-content">
-				<h1>Liste "{{ item_build.getName() }}"</h1>
+				<h1>{{ 'pmri_detail.title.list'|trans }} "{{ item_build.getName() }}"</h1>
 				
 				{# PUBLICITÉ #}
 				{% include 'MVNerdsSiteBundle:Common:ad_468x60.html.twig' %}
 				
 				<div class="map-container">
-					<h2>Carte et description</h2>
+					<h2>{{ 'pmri_detail.desc_and_map_title'|trans }}</h2>
 					<p>
 						<div class="game-mode {{ item_build.getGameMode().getLabel() }}" data-game-mode="{{ item_build.getGameMode().getLabel() }}">
 							<span class="message">{{ item_build.getGameMode().getLabel()|trans }}</span>
 						</div>
 						{% if item_build.getDescription() == '' %}
-							<i>{{ item_build.getUser().getUsername() }} n'a pas fourni de description.</i>
+							<i>{{ item_build.getUser().getUsername() }} {{ 'pmri_detail.no_description'|trans }}</i>
 						{% else %}
 							{{ item_build.getDescription()|nl2br }}
 						{% endif %}
@@ -127,7 +127,7 @@
 					
 				<div class="block">
 					<div class="header">
-						<h3>À propos</h3>
+						<h3>{{ 'generic_detail_page.about.title'|trans }}</h3>
 					</div>
 					<div class="body">
 						<div class="block-media">
@@ -138,7 +138,7 @@
 						<div class="game-account-infos">
 							{% set game_account = item_build.getUser().getProfile().getGameAccount() %}
 							{% if game_account != null %}
-								<div class="summoner-name">Nom d'invocateur : <strong>{{ game_account.getSummonerName() }}</strong></div>
+								<div class="summoner-name">{{ 'profile_list.summoner_name_label'|trans }} <strong>{{ game_account.getSummonerName() }}</strong></div>
 								<div class="row-fluid">
 									<div class="span4 league">
 										{% if game_account.getRankedTeam3x3League() != null %}
@@ -146,7 +146,7 @@
 										{% else %}
 											<img src="{{ asset('medias/images/league-medals/unranked.png') }}" />
 										{% endif %}
-										<div class="label">Équipe classée (3c3)</div>
+										<div class="label">{{ 'profile_index.game_account.team3x3_queue_label'| trans }}</div>
 									</div>
 
 									<div class="span4 league">
@@ -155,7 +155,7 @@
 										{% else %}
 											<img src="{{ asset('medias/images/league-medals/unranked.png') }}" />
 										{% endif %}
-										<div class="label">File Solo/Duo</div>
+										<div class="label">{{ 'profile_index.game_account.solo_queue_label'|trans }}</div>
 									</div>
 
 									<div class="span4 league">
@@ -164,54 +164,54 @@
 										{% else %}
 											<img src="{{ asset('medias/images/league-medals/unranked.png') }}" />
 										{% endif %}
-										<div class="label">Équipe classée (5c5)</div>
+										<div class="label">{{ 'profile_index.game_account.team5x5_queue_label'|trans }}</div>
 									</div>
 								</div>
 							{% else %}
 								{% if app.user != null and app.user.getId() == item_build.getUser().getId() %}
-									<i>Vous n'avez pas encore renseigné votre compte League of Legends. <a href="{{ path('summoner_profile_index') }}">Souhaitez-vous le faire maintenant ?</a></i>
+									<i>{{ 'pmri_detail.about.game_account_block.no_link.admin'|trans }} <a href="{{ path('summoner_profile_index') }}">{{ 'pmri_detail.about.game_account_block.want_to_link.admin'|trans }}</a></i>
 								{% else %}
-									<i>{{ item_build.getUser().getUsername() }} n'a pas encore renseigné son compte League of Legends.</i>
+									<i>{{ item_build.getUser().getUsername() }} {{ 'pmri_detail.about.game_account_block.no_link'|trans }}</i>
 								{% endif %}
 							{% endif %}
 						</div>
 						
 						<div class="stats">
 							<i class="icon-user"></i> 
-							<strong><a href="{{ path('summoner_profile_view', {'slug': item_build.getUser().getSlug()}) }}" title="Consulter le profil de {{ item_build.getUser().getUsername }}" class="resize-required">{{item_build.getUser().getUserName()}}</a></strong><br /> auteur
+							<strong><a href="{{ path('summoner_profile_view', {'slug': item_build.getUser().getSlug()}) }}" title="Consulter le profil de {{ item_build.getUser().getUsername }}" class="resize-required">{{item_build.getUser().getUserName()}}</a></strong><br /> {{ 'generic_detail_page.about.author'|trans }}
 						</div>
 						
 						<div class="stats odd">
 							<i class="icon-time"></i> 
-							<strong>{{ item_build.getUpdateTime('d/m/Y') }}</strong><br /> mise à jour
+							<strong>{{ item_build.getUpdateTime('d/m/Y') }}</strong><br /> {{ 'pmri_detail.about.last_update'|trans }}
 						</div>
 							
 						<div class="stats">
 							{% set status = item_build.getStatus() %}
 							<i class="{% if status == 'private' %}icon-lock{% else %}icon-unlock{% endif %}"></i> 
-							<strong class="{% if status == 'private' %}red{% else %}green{% endif %}">{{ status }}</strong><br /> status
+							<strong class="{% if status == 'private' %}red{% else %}green{% endif %}">{{ status }}</strong><br /> {{ 'pmri_detail.about.status'|trans }}
 						</div>
 						
 						<div class="stats odd">
 							<i class="icon-eye-open"></i> 
-							<strong>{{ item_build.getView() }}</strong><br /> vues
+							<strong>{{ item_build.getView() }}</strong><br /> {{ 'generic_detail_page.about.views'|trans }}
 						</div>
 						
 						<div class="stats">
 							<i class="icon-download"></i> 
-							<strong>{{ item_build.getDownload() }}</strong><br /> téléchargés
+							<strong>{{ item_build.getDownload() }}</strong><br /> {{ 'generic_detail_page.about.downloads'|trans }}
 						</div>	
 						
 						<div class="stats odd">
 							<i class="icon-comments-alt"></i> 
-							<strong>{{ item_build.getCommentCount() }}</strong><br /> commentaires
+							<strong>{{ item_build.getCommentCount() }}</strong><br /> {{ 'generic_detail_page.about.comments'|trans }}
 						</div>
 							
 						
 						<div class="clearfix"></div>
 					</div>
 					<div class="footer">
-						<a href="#">Aller sur le profil de l'auteur</a>
+						<a href="{{ path('summoner_profile_view', {'slug': item_build.getUser().getSlug()}) }}">{{ 'generic_detail_page.about.go_to_author_profile'|trans }}</a>
 					</div>
 				</div>
 					

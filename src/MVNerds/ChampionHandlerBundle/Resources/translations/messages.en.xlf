@@ -44,6 +44,42 @@
 				<source>champion.skin.video.unavailable</source>
 				<target>There is no video available for this skin.</target>
 			</trans-unit>
+
+			<trans-unit id="250">
+				<source>champion_benckmark.compare.breadcrumbs.%count%</source>
+				<target>Comparison of %count% champions</target>
+			</trans-unit>
+			<trans-unit id="251">
+				<source>champion_benckmark.title</source>
+				<target>League of Legends champions comparator</target>
+			</trans-unit>
+			<trans-unit id="252">
+				<source>champion_benckmark.how_it_work_label</source>
+				<target>how does it work?</target>
+			</trans-unit>
+			<trans-unit id="253">
+				<source>champion_benckmark.index.hiw_text</source>
+				<target>
+					The Champion Benchmark allows you to compare the champions between them. If you wish to know everything about the fonctionnnement, click the button below
+					 to start the guided tour.
+				</target>
+			</trans-unit>
+			<trans-unit id="254">
+				<source>champion_benckmark.index.start_guide_tour_btn</source>
+				<target>Start the tour</target>
+			</trans-unit>
+			<trans-unit id="255">
+				<source>champion_benckmark.index.preview.close_btn</source>
+				<target>Close</target>
+			</trans-unit>
+			<trans-unit id="256">
+				<source>champion_benckmark.index.preview.learn_more_btn</source>
+				<target>Learn more about</target>
+			</trans-unit>
+			<trans-unit id="257">
+				<source>champion_benckmark.index.preview.add_to_list_btn</source>
+				<target>Add to list</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

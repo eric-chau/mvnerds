@@ -570,6 +570,58 @@
 				<source>items_filter_type.other</source>
 				<target>Autre</target>
 			</trans-unit>
+			
+			<trans-unit id="5100">
+				<source>pmri_detail.title.list</source>
+				<target>Liste</target>
+			</trans-unit>
+			<trans-unit id="5101">
+				<source>pmri_detail.desc_and_map_title</source>
+				<target>Carte et description</target>
+			</trans-unit>
+			<trans-unit id="5102">
+				<source>pmri_detail.no_description</source>
+				<target>n'a pas fourni de description.</target>
+			</trans-unit>
+			<trans-unit id="5103">
+				<source>pmri_detail.about.game_account_block.no_link</source>
+				<target>n'a pas encore renseigné son compte League of Legends.</target>
+			</trans-unit>
+			<trans-unit id="5104">
+				<source>pmri_detail.about.game_account_block.no_link.admin</source>
+				<target>Vous n'avez pas encore renseigné votre compte League of Legends.</target>
+			</trans-unit>
+			<trans-unit id="5105">
+				<source>pmri_detail.about.game_account_block.want_to_link.admin</source>
+				<target>Souhaitez-vous le faire maintenant ?</target>
+			</trans-unit>
+			<trans-unit id="5106">
+				<source>pmri_detail.about.status</source>
+				<target>Statut</target>
+			</trans-unit>
+			<trans-unit id="5107">
+				<source>pmri_detail.about.last_update</source>
+				<target>mise à jour</target>
+			</trans-unit>
+
+			<trans-unit id="5108">
+				<source>pmri_index.how_it_work.text.1</source>
+				<target>
+					Joueurs de League of Legends, le PMRI est fait pour vous ! C'est un utilitaire qui vous permet de changer la liste des objets recommandés de vos champions préférés. C'est la liste qui est accessible depuis l'onglet "Conseillés" de la nouvelle boutique en jeu de League of Legends.
+				</target>
+			</trans-unit>
+			<trans-unit id="5109">
+				<source>pmri_index.how_it_work.text.2</source>
+				<target>
+					Vous n'avez aucun logiciel à installer, l'outil est entièrement gratuit et en ligne. Nous nous sommes appuyé sur l'API fournie par Riot Games pour réaliser l'outil Pimp My Recommended Items, vous ne risquez donc rien pour votre compte de jeu ! PMRI vous offre la possibilité de créer vos listes et de les enregistrer sur notre site. De cette manière vous pouvez partager vos créations avec vos amis et toute la communauté MVNerds !
+				</target>
+			</trans-unit>
+			<trans-unit id="5110">
+				<source>pmri_index.how_it_work.text.3</source>
+				<target>
+					N'hésitez pas à visionner la vidéo de présentation !
+				</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -4,7 +4,7 @@
 		<h5>{{ champion.getTitle() }}</h5>
 	</div>
 	<div class="span6">
-		<div class="close-preview" data-dissmiss="{{ champion.getSlug() }}">Fermer <i class="icon-remove"></i></div>
+		<div class="close-preview" data-dissmiss="{{ champion.getSlug() }}">{{ 'champion_benckmark.index.preview.close_btn'|trans }} <i class="icon-remove"></i></div>
 		<p>
 			<i class="icon-ip"></i> {{ champion.getIpCost() }} {{'General.or'|trans}} <i class="icon-rp"></i> {{ champion.getRpCost() }}
 		</p>
@@ -64,8 +64,8 @@
 		<p class="indication">{{'Champion_preview.stat.indication.part1'|trans}} {{ champion.getName() }} {{'Champion_preview.stat.indication.part2'|trans}}.</p>
 	</div>
 	<div class="span6 right-side">
-		<a href="{{ path('champion_detail', {'slug': champion.getSlug()}) }}">En savoir plus sur {{ champion.getName() }}</a>
-		<a href="#" class="btn-action-champion-preview btn-add-to-list" data-champion-slug="{{ champion.getSlug() }}">Ajouter à la liste</a>
+		<a href="{{ path('champion_detail', {'slug': champion.getSlug()}) }}">{{ 'champion_benckmark.index.preview.learn_more_btn'|trans }} {{ champion.getName() }}</a>
+		<a href="#" class="btn-action-champion-preview btn-add-to-list" data-champion-slug="{{ champion.getSlug() }}">{{ 'champion_benckmark.index.preview.add_to_list_btn'|trans }}</a>
 		<img src="{{ asset('medias/images/champions/portrait/' ~ champion.getSlug() ~ '.jpg') }}" />
 		{#<div class="champion-portrait {{ champion.getSlug() }}"></div>#}
 	</div>

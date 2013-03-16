@@ -1,6 +1,6 @@
 {% extends 'MVNerdsSiteBundle::layout.html.twig' %}
 
-{% block title %}Champion Benchark - Comparateur de champions{# TRADUCTION #} de League of Legends | MVNerds{% endblock %} 
+{% block title %}Champion Benchark - {{ 'champion_benckmark.title'|trans }} | MVNerds{% endblock %} 
 
 {% block css %}
 	{{ parent() }}
@@ -43,7 +43,7 @@
 {% block breadcrumbs %}
 	{{ parent() }}
 	
-	> <a href="{{ path('champion_benchmark_index') }}">Champion Benchmark</a> > Comparaison de {{ comparison_list|length }} champions en cours
+	> <a href="{{ path('champion_benchmark_index') }}">Champion Benchmark</a> > {{ 'champion_benckmark.compare.breadcrumbs.%count%'|trans({'%count%': comparison_list|length}) }}
 {% endblock %}
 
 {% block main_content %}
@@ -100,7 +100,7 @@
 						<p>{{'Champion_preview.stat.movement_speed'|trans}}</p> <br /><i class="icon-white icon-sort"></i>
 					</div>
 					<div class="span1">
-						<p>Mes actions</p>
+						<p>Actions</p>
 					</div>
 				</div>
 

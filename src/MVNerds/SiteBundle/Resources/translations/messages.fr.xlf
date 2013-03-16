@@ -216,6 +216,110 @@
 				<source>Topbar.members</source>
 				<target>Les membres de la communauté</target>
 			</trans-unit>
+			<trans-unit id="601">
+				<source>Topbar.dropdown.title</source>
+				<target>Menu de navigation</target>
+			</trans-unit>
+			<trans-unit id="602">
+				<source>Topbar.logout_btn</source>
+				<target>Déconnexion</target>
+			</trans-unit>
+			<trans-unit id="603">
+				<source>Topbar.login_btn</source>
+				<target>se connecter</target>
+			</trans-unit>
+			<trans-unit id="604">
+				<source>Topbar.or</source>
+				<target>ou</target>
+			</trans-unit>
+			<trans-unit id="605">
+				<source>Topbar.register_btn</source>
+				<target>s'enregistrer</target>
+			</trans-unit>
+
+			<!-- ERROR PAGE -->
+			<trans-unit id="650">
+				<source>Error_page.title</source>
+				<target>Oups, une erreur est survenue</target>
+			</trans-unit>
+			<trans-unit id="651">
+				<source>Error_page.breadcrumbs</source>
+				<target>Une erreur est survenue</target>
+			</trans-unit>
+			<trans-unit id="652">
+				<source>Error_page.amumu_thank_you</source>
+				<target>Merci</target>
+			</trans-unit>
+			<trans-unit id="653">
+				<source>Error_page.possible_error_source.text</source>
+				<target>Plusieurs problèmes peuvent être la cause de cette erreur. Les plus courants sont :</target>
+			</trans-unit>
+			<trans-unit id="654">
+				<source>Error_page.error_possibity_1</source>
+				<target>La page demandée n'existe pas ou n'existe plus</target>
+			</trans-unit>
+			<trans-unit id="655">
+				<source>Error_page.error_possibity_2</source>
+				<target>Le service sollicité est temporairement indisponible</target>
+			</trans-unit>
+			<trans-unit id="656">
+				<source>Error_page.error_possibity_3</source>
+				<target>Vous avez tenté d'accéder à une page qui requiert d'être authentifié</target>
+			</trans-unit>
+			<trans-unit id="657">
+				<source>Error_page.what_to_do</source>
+				<target>Que voulez-vous faire ?</target>
+			</trans-unit>
+			<trans-unit id="658">
+				<source>Error_page.back_to_homepage</source>
+				<target>Retourner à la page d'accueil</target>
+			</trans-unit>
+			<trans-unit id="659">
+				<source>Error_page.login_link</source>
+				<target>Me connecter à mon compte MVNerds</target>
+			</trans-unit>
+			<trans-unit id="660">
+				<source>Error_page.report_bug_link</source>
+				<target>Utiliser le formulaire de contact pour signaler un bug</target>
+			</trans-unit>
+			<trans-unit id="661">
+				<source>Error_page.hug_amumu_link</source>
+				<target>Faire un câlin à Amumu</target>
+			</trans-unit>
+
+
+			<trans-unit id="755">
+				<source>generic_detail_page.about.views</source>
+				<target>vues</target>
+			</trans-unit>
+			<trans-unit id="756">
+				<source>generic_detail_page.about.downloads</source>
+				<target>téléchargés</target>
+			</trans-unit>
+			<trans-unit id="757">
+				<source>generic_detail_page.about.comments</source>
+				<target>commentaires</target>
+			</trans-unit>
+			<trans-unit id="758">
+				<source>generic_detail_page.about.go_to_author_profile</source>
+				<target>Aller sur le profil de l'auteur</target>
+			</trans-unit>
+			<trans-unit id="759">
+				<source>generic_detail_page.about.author</source>
+				<target>auteur</target>
+			</trans-unit>
+			<trans-unit id="760">
+				<source>generic_detail_page.about.category</source>
+				<target>catégorie</target>
+			</trans-unit>
+			<trans-unit id="761">
+				<source>generic_detail_page.about.publish_date</source>
+				<target>date de publication</target>
+			</trans-unit>
+			<trans-unit id="762">
+				<source>generic_detail_page.about.title</source>
+				<target>À propos</target>
+			</trans-unit>
 
 			<!-- LISTING PAGES -->
 			<trans-unit id="700">
@@ -260,11 +364,11 @@
 			</trans-unit>
 			<trans-unit id="710">
 				<source>Listing-pages.search-by</source>
-				<target>Search by</target>
+				<target>Rechercher par :</target>
 			</trans-unit>
 			<trans-unit id="711">
 				<source>Listing-pages.sort-by</source>
-				<target>Sort by</target>
+				<target>Trier par :</target>
 			</trans-unit>
 
 			<!-- SIDEBAR POURQUOI CREER UN COMPTE MVNERDS-->

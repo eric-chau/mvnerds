@@ -567,6 +567,58 @@
 				<source>items_filter_type.other</source>
 				<target>Other</target>
 			</trans-unit>
+
+			<trans-unit id="5100">
+				<source>pmri_detail.title.list</source>
+				<target>List</target>
+			</trans-unit>
+			<trans-unit id="5101">
+				<source>pmri_detail.desc_and_map_title</source>
+				<target>Map and description</target>
+			</trans-unit>
+			<trans-unit id="5102">
+				<source>pmri_detail.no_description</source>
+				<target>has not provided a description.</target>
+			</trans-unit>
+			<trans-unit id="5103">
+				<source>pmri_detail.about.game_account_block.no_link</source>
+				<target>has not yet inform his League of Legends account.</target>
+			</trans-unit>
+			<trans-unit id="5104">
+				<source>pmri_detail.about.game_account_block.no_link.admin</source>
+				<target>You have not yet entered your League of Legends account.</target>
+			</trans-unit>
+			<trans-unit id="5105">
+				<source>pmri_detail.about.game_account_block.want_to_link.admin</source>
+				<target>Would you do it now?</target>
+			</trans-unit>
+			<trans-unit id="5106">
+				<source>pmri_detail.about.status</source>
+				<target>Status</target>
+			</trans-unit>
+			<trans-unit id="5107">
+				<source>pmri_detail.about.last_update</source>
+				<target>Last update</target>
+			</trans-unit>
+
+			<trans-unit id="5108">
+				<source>pmri_index.how_it_work.text.1</source>
+				<target>
+					League of Legends players, the PMRI is for you! This is a utility that allows you to change the list of recommended items for your favorite champions. This is the list that is accessible from the tab "Recommended" of the new in-game shop.
+				</target>
+			</trans-unit>
+			<trans-unit id="5109">
+				<source>pmri_index.how_it_work.text.2</source>
+				<target>
+					You have no software to install, the tool is completely free and online. We relied on the API provided by Riot Games for achieving tool Pimp My Recommended Items, so you do not risk anything for your game account! PMRI allows you to create your lists and save them on our site. This way you can share your creations with your friends and the whole MVNerds' community!
+				</target>
+			</trans-unit>
+			<trans-unit id="5110">
+				<source>pmri_index.how_it_work.text.3</source>
+				<target>
+					Feel free to watch the video presentation!
+				</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

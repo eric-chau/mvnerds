@@ -12,6 +12,6 @@
 
 {% if comments|length >= 10 %}
 	<div class="load-more-comments">
-		<i class="icon-spinner icon-spin loader hide"></i> <a href="#" class="load-comments btn">Lire plus de commentaires</a>
+		<i class="icon-spinner icon-spin loader hide"></i> <a href="#" class="load-comments btn">{{ 'Comments.read_more_comments'|trans }}</a>
 	</div>
 {% endif %}

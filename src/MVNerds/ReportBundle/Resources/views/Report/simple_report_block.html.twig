@@ -8,8 +8,8 @@
 			data-id="{{object_id}}"
 		{% endif %}
 	>
-		Signaler ce contenu pour abus <i class="icon-spin icon-spinner loader hide"></i>
+		{{ 'Report.simple_action_btn'|trans }} <i class="icon-spin icon-spinner loader hide"></i>
 	</a>
 {% else %}
-	<span>Vous avez signalé ce contenu</span>
+	<span>{{ 'Report.you_reported_content_text'|trans }}</span>
 {% endif %}
