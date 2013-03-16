@@ -1,6 +1,6 @@
 <div id="link-lol-account-modal" class="modal hide fade">
 	<div class="modal-header">
-		<h3>Lier mes comptes MVNerds et League of Legends</h3>
+		<h3>{{ 'profile_index.game_account.modal.title'|trans }}</h3>
 	</div>
 	<div class="modal-body">
 		<div class="step">
@@ -8,38 +8,36 @@
 				{% include 'MVNerdsProfileBundle:Modal:link_lol_accout_modal_step_2.html.twig' with {'activation_code': game_account.getActivationCode(), 'summoner_name': game_account.getSummonerName()} %}
 			{% else %}
 				<p>
-					Liez dès maintenant votre compte MVNerds à votre compte League of Legends ! Vous aurez alors accès à vos ligues et vos statistiques
-					en parties classées sans avoir à vous connecter sur le jeu. De nouvelles possibilités sont également en préparation.
+					{{ 'profile_index.game_account.modal.intro'|trans }}
 				</p>
 
-				<h4>Étape 1 : mon compte League of Legends</h4>
+				<h4></h4>
 
 				<p>
-					Renseignez tous les champs du formulaire ci-dessous pour que l'on puisse procéder à une vérification de l'existence de votre compte.
+					{{ 'profile_index.game_account.modal.step1.text'|trans }}
 				</p>
 
 				<p class="note">
-					<i class="icon-warning-sign"></i> Ne communiquez pas le nom de votre compte. Nous voulons votre nom d'invocateur, celui qui apparaît
-					à l'écran lorsque vous êtes en jeu.
+					<i class="icon-warning-sign"></i> {{ 'profile_index.game_account.modal.step1.note'|trans }}
 				</p>
 
 				<p class="error hide"></p>
 				<form action="#" method="POST">
 					<div class="field">
-						<label for="region-selector">Région</label> 
+						<label for="region-selector">{{ 'profile_index.game_account.modal.step1.region_label'|trans }}</label> 
 						<select id="region-selector">
-							<option value="euw">Europe Ouest (EUW)</option>
-							<option value="eune">Europe Nord et Est (EUNE)</option>
-							<option value="na">Amérique du Nord (NA)</option>
-							<option value="br">Brésil (BR)</option>
+							<option value="euw">{{ 'profile_index.game_account.modal.step1.euw_label'|trans }}</option>
+							<option value="eune">{{ 'profile_index.game_account.modal.step1.eune_label'|trans }}</option>
+							<option value="na">{{ 'profile_index.game_account.modal.step1.na_label'|trans }}</option>
+							<option value="br">{{ 'profile_index.game_account.modal.step1.br_label'|trans }}</option>
 						</select>
 					</div>
 
 					<div class="field">
-						<label for="lol-summoner-name">Nom d'invocateur</label>
+						<label for="lol-summoner-name">{{ 'profile_index.game_account.modal.step1.summoner_name_label'|trans }}</label>
 						<input type="text" id="lol-summoner-name" />
 					</div>
-					<i class="icon-spin icon-spinner loader hide"></i> <button class="btn green disabled btn-check-lol-account-existence">Vérifier</button>
+					<i class="icon-spin icon-spinner loader hide"></i> <button class="btn green disabled btn-check-lol-account-existence">{{ 'profile_index.game_account.modal.step1.check_btn'|trans }}</button>
 				</form>
 			{% endif %}
 		</div>

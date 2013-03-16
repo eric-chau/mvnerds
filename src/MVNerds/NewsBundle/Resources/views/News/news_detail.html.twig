@@ -70,7 +70,7 @@
 						</div>
 						<div class="stats">
 							<i class="icon-user"></i> 
-							<strong><a href="{{ path('summoner_profile_view', {'userSlug': news.getUser().getSlug()}) }}" title="Consulter le profil de {{ news.getUser().getUsername }}" class="resize-required">{{news.getUser().getUserName()}}</a></strong><br /> auteur
+							<strong><a href="{{ path('summoner_profile_view', {'slug': news.getUser().getSlug()}) }}" title="Consulter le profil de {{ news.getUser().getUsername }}" class="resize-required">{{news.getUser().getUserName()}}</a></strong><br /> auteur
 						</div>
 						
 						<div class="stats odd">
@@ -97,7 +97,7 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="footer">
-						<a href="{{ path('summoner_profile_view', {'userSlug': news.getUser().getSlug()}) }}" title="Consulter le profil de {{ news.getUser().getUsername }}">
+						<a href="{{ path('summoner_profile_view', {'slug': news.getUser().getSlug()}) }}" title="Consulter le profil de {{ news.getUser().getUsername }}">
 							Aller sur le profil de l'auteur
 						</a>
 					</div>

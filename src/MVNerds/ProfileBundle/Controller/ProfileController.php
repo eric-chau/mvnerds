@@ -241,14 +241,14 @@ class ProfileController extends Controller
 			$gameAccount = $elophantManager->getGameAccountFromRegionAndUsername($region, $summonerName);
 		}
 		catch (ServiceUnavailableException $e) {
-			return new Response($translator->trans('Profile.error.elophant_afk'), 503);
+			return new Response($translator->trans('profile_index.elophant.afk'), 503);
 		}
 		catch (InvalidSummonerNameException $e) {
-			return new Response($translator->trans('Profile.error.invalid_summoner_name.' . $summonerName), 400);
+			return new Response($translator->trans('profile_index.game_account.error.invalid.summoner_name.%name%', array('%name' => $summonerName)), 400);
 		}
 		
 		if ($this->get('mvnerds.profile_manager')->isSummonerNameAlreadyLinked($summonerName)) {
-			return new Response($translator->trans('Profile.error.summoner_name_already_linked.' . $summonerName), 400);
+			return new Response($translator->trans('profile_index.game_account.error.name_already_linked.%name%', array('%name' => $summonerName)), 400);
 		}
 				
 		$profile = $this->getUser()->getProfile();
@@ -281,7 +281,7 @@ class ProfileController extends Controller
 		$session = $this->get('session');
 		$lastCheckCodeActivationTime = $session->get('profile_last_check_code_activation_time', null);
 		if (null != $lastCheckCodeActivationTime && $lastCheckCodeActivationTime + 60 >= time()) {
-			return new Response($this->get('translator')->trans('Profile.error.wait_more_please'), 400);
+			return new Response($this->get('translator')->trans('profile_index.game_account.error.activation_code_not_found'), 400);
 		}
 		
 		$session->set('profile_last_check_code_activation_time', time());
@@ -290,11 +290,11 @@ class ProfileController extends Controller
 			$success = $this->get('mvnerds.elophant_api_manager')->checkActivationCodeWithMasteriesPage($gameAccount);
 		}
 		catch (ServiceUnavailableException $e) {
-			return new Response($this->get('translator')->trans('Profile.error.elophant_afk'), 503);
+			return new Response($this->get('translator')->trans('profile_index.elophant.afk'), 503);
 		}
 		
 		if (!$success) {
-			return new Response($this->get('translator')->trans('Profile.error.activation_code_not_found'), 400);
+			return new Response($this->get('translator')->trans('profile_index.game_account.error.activation_code_not_found'), 400);
 		}
 		
 		$session->remove('profile_last_check_code_activation_time');
@@ -319,12 +319,12 @@ class ProfileController extends Controller
 	}
 	
 	/**
-	 * @Route("/{_locale}/profile/{userSlug}", name="summoner_profile_view")
+	 * @Route("/{_locale}/profile/{slug}", name="summoner_profile_view")
 	 */
 	
-	public function viewProfileAction($userSlug)
+	public function viewProfileAction($slug)
 	{
-		$user = $this->get('mvnerds.user_manager')->findBySlug($userSlug);
+		$user = $this->get('mvnerds.user_manager')->findBySlug($slug);
 		
 		if (null != $this->getUser() && $this->getUser()->getId() == $user->getId()) {
 			return $this->forward('MVNerdsProfileBundle:Profile:loggedSummonerIndex');

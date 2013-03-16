@@ -1,6 +1,6 @@
 {% extends 'MVNerdsSiteBundle::layout.html.twig' %}
 
-{% block title %}Les membres de la communauté - MVNerds{% endblock %}
+{% block title %}{{ 'profile_list.page_title'|trans }} - Most Valuable Nerds | MVNerds{% endblock %}
 
 {% block css %}
 	{{ parent() }}
@@ -50,21 +50,21 @@
 {% block breadcrumbs %}
 	{{ parent() }}
 	
-	> <a href="{{ path('profile_list') }}">Les membres de la communauté</a>
+	> <a href="{{ path('profile_list') }}">{{ 'profile_list.page_title'|trans }}</a>
 {% endblock %}
 
 {% block main_content %}
 	<div class="container main-container border-top">
 		<div class="row-fluid">
 			<div class="span8 left-content">
-				<h1>Les membres de la communauté</h1>
+				<h1>{{ 'profile_list.page_title'|trans }}</h1>
 				
 				<table id="users-table" class="table data-table">
 					<thead>
 						<tr>
 							<th class="avatar">Avatar</th>
-							<th class="username">Nom d'utilisateur</th>
-							<th class="game-account">Compte de jeu</th>
+							<th class="username">{{'profile_list.col.username'|trans }}</th>
+							<th class="game-account">{{ 'profile_list.col.game_account'|trans }}</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -76,10 +76,10 @@
 			<div class="span4 right-content">				
 				<div class="block">
 					<div class="header">
-						<h3>Options de filtrage</h3>
+						<h3>{{ 'profile_list.filter.title'|trans }}</h3>
 					</div>
 					<div class="body">
-						<p>Trier par :</p>
+						<p>{{ 'profile_list.filter.sort_by'|trans }}</p>
 						<ul id="sort-list">
 							<li><a href="#" class="sort-link" data-option-value="0"><i class=" icon-ok-sign"></i>{{'user.sort.last_registered'|trans}}</a></li>
 							<li><a href="#" class="sort-link selected" data-option-value="1"><i class=" icon-ok-sign"></i>{{'user.sort.first_registered'|trans}}</a></li>
@@ -87,7 +87,7 @@
 							<li><a href="#" class="sort-link" data-option-value="3"><i class=" icon-ok-sign"></i>{{'user.sort.username_desc'|trans}}</a></li>
 						</ul>
 						
-						<p>Rechercher par :</p>
+						<p>{{ 'profile_list.filter.search_by'|trans }}</p>
 						<ul class="filters-list more-filter">
 							<li id="filter-title">
 								<label for="username-filter-input">{{'user.filter.username'|trans}}</label>
@@ -100,7 +100,7 @@
 							</li>
 							
 							<li id="filter-search">
-								<a href="#" class="btn green" id="search-filter-btn">Rechercher <i class="icon-search icon-white"></i></a>
+								<a href="#" class="btn green" id="search-filter-btn">{{ 'profile_list.filter.search_btn'|trans }} <i class="icon-search icon-white"></i></a>
 							</li>
 						</ul>
 					</div>

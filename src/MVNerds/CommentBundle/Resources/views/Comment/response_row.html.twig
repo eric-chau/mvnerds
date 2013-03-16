@@ -1,6 +1,6 @@
 <div class="response-block" data-response-id="{{ response.getId() * 47 }}" id="response-{{ response.getId() * 47 }}">
 	<div class="posted-by">
-		<strong><a href="{{ path('summoner_profile_view', {'userSlug': response.getUser().getSlug()}) }}" title="{{'Check the profile of'|trans}} {{ response.getUser().getUsername }}">{{ response.getUser().getUsername() }}</a></strong> {{'Comments.reply_by'|trans}}:
+		<strong><a href="{{ path('summoner_profile_view', {'slug': response.getUser().getSlug()}) }}" title="{{'Check the profile of'|trans}} {{ response.getUser().getUsername }}">{{ response.getUser().getUsername() }}</a></strong> {{'Comments.reply_by'|trans}}:
 		<div class="response-date">{% include ':Extension:custom_format_date.html.twig' with {'object': response.getCreateTime()} %}</div>
 	</div>
 		

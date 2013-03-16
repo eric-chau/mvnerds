@@ -1,3 +1,3 @@
-<a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}">
+<a href="{{ path('summoner_profile_view', {'slug': user.getSlug()}) }}">
 	<img src="{{ asset('medias/images/avatar/'~ user.getUserAvatarName() ~'.jpg') }}" class="user-avatar" />
 </a>

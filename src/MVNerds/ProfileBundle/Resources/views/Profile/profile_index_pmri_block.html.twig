@@ -2,7 +2,7 @@
 	<h2>
 		Pimp My Recommended Items 
 		{% if admin_mode %}
-			<a href="#" class="user-preference-toggle" data-block-id="pmri-user-preferences"><span class="label red disabled">mes préférences utilisateur</span></a>
+			<a href="#" class="user-preference-toggle" data-block-id="pmri-user-preferences"><span class="label red disabled">{{ 'profile_index.pmri.user_preferences'|trans }}</span></a>
 		{% endif %}
 	</h2>
 
@@ -13,7 +13,7 @@
 					{{ form_label(form.lolDirectory) }}
 					{{ form_widget(form.lolDirectory) }}
 					<a href="#" class="reset-field"><i class="icon-remove-sign"></i></a>
-					<a href="#" class="save-field disabled" data-preference="LEAGUE_OF_LEGENDS_DIRECTORY"><i class="icon-ok-sign"></i>enregistrer</a>
+					<a href="#" class="save-field disabled" data-preference="LEAGUE_OF_LEGENDS_DIRECTORY"><i class="icon-ok-sign"></i>{{ 'profile_index.pmri.user_preferences.save_button'|trans }}</a>
 				</div>
 
 				{{ form_rest(form) }}
@@ -26,7 +26,7 @@
 	{% else %}
 		<p class="empty-list"><i>
 			{% if admin_mode %}
-				Vous n'avez pas encore enregistré de liste d'objet conseillé.
+				{{ 'profile_index.pmri.no_list.admin'|trans }}
 			{% else %}
 				{{ user.getUsername() }} {{'ItemBuilder.pmri.p1'|trans}}
 			{% endif %}

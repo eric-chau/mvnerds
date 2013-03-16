@@ -178,7 +178,7 @@
 						
 						<div class="stats">
 							<i class="icon-user"></i> 
-							<strong><a href="{{ path('summoner_profile_view', {'userSlug': item_build.getUser().getSlug()}) }}" title="Consulter le profil de {{ item_build.getUser().getUsername }}" class="resize-required">{{item_build.getUser().getUserName()}}</a></strong><br /> auteur
+							<strong><a href="{{ path('summoner_profile_view', {'slug': item_build.getUser().getSlug()}) }}" title="Consulter le profil de {{ item_build.getUser().getUsername }}" class="resize-required">{{item_build.getUser().getUserName()}}</a></strong><br /> auteur
 						</div>
 						
 						<div class="stats odd">

@@ -1,8 +1,8 @@
 {% set game_account = user.getProfile().getGameAccount() %}
 {% if game_account == null %}
-	<i>Non renseigné</i>
+	<i>{{ 'profile_list.no_info'|trans }}</i>
 {% else %}
-	<div class="summoner-name">Nom d'invocateur : <strong>{{ game_account.getSummonerName() }}</strong></div>
+	<div class="summoner-name">{{ 'profile_list.summoner_name_label'|trans }} <strong>{{ game_account.getSummonerName() }}</strong></div>
 	<div class="row-fluid">
 		<div class="span4 league">
 			{% if game_account.getRankedTeam3x3League() != null %}
@@ -10,7 +10,7 @@
 			{% else %}
 				<img src="{{ asset('medias/images/league-medals/unranked.png') }}" />
 			{% endif %}
-			<div class="label">Équipe classée (3c3)</div>
+			<div class="label">{{ 'profile_index.game_account.team3x3_queue_label'|trans }}</div>
 		</div>
 
 		<div class="span4 league">
@@ -19,7 +19,7 @@
 			{% else %}
 				<img src="{{ asset('medias/images/league-medals/unranked.png') }}" />
 			{% endif %}
-			<div class="label">File Solo/Duo</div>
+			<div class="label">{{ 'profile_index.game_account.solo_queue_label'|trans }}</div>
 		</div>
 
 		<div class="span4 league">
@@ -28,7 +28,7 @@
 			{% else %}
 				<img src="{{ asset('medias/images/league-medals/unranked.png') }}" />
 			{% endif %}
-			<div class="label">Équipe classée (5c5)</div>
+			<div class="label">{{ 'profile_index.game_account.team5x5_queue_label'|trans }}</div>
 		</div>
 	</div>
 {% endif %}

@@ -2,9 +2,9 @@
 	<table>
 		<thead>
 			<tr>
-				<th class="preview">Aperçu</th>
-				<th class="title {% if admin_mode == false %}full{% endif %}">Titre</th>
-				<th class="category {% if admin_mode == false %}full{% endif %}">Catégorie</th>
+				<th class="preview">{{ 'profile_index.lol_video_center.col.preview'|trans }}</th>
+				<th class="title {% if admin_mode == false %}full{% endif %}">{{ 'profile_index.lol_video_center.col.title'|trans }}</th>
+				<th class="category {% if admin_mode == false %}full{% endif %}">{{ 'profile_index.lol_video_center.col.category'|trans }}</th>
 				{% if admin_mode %}
 					<th></th>
 				{% endif %}

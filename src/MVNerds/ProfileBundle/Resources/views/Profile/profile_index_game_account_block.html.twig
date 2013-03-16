@@ -1,115 +1,115 @@
 <div class="game-account-container">	
 	{% if game_account == null or game_account.isActive() == false %}
-		<h2>Mon compte de jeu lié : <i>{% if game_account == null %}non trouvé{% else %}validation en cours{% endif %}</i></h2>
+		<h2>{{ 'profile_index.game_account.title'|trans }} : <i>{% if game_account == null %}{{ 'profile_index.game_account.title.not_found'|trans }}{% else %}{{ 'profile_index.game_account.title.wip'|trans }}{% endif %}</i></h2>
 
 		<p>
 			{% if admin_mode %}
-				Vous n'avez pas encore lié votre compte League of Legends à votre compte MVNerds. <br /><br />
-				Souhaitez-vous le faire ?
+				{{ 'profile_index.game_account.intro'|trans }}<br /><br />
+				{{ 'profile_index.game_account.intro2'|trans }}
 				{% if game_account == null %}
-					<a href="#" class="btn launch-link-account-process-btn">Renseigner mon compte de jeu</a>
+					<a href="#" class="btn launch-link-account-process-btn">{{ 'profile_index.game_account.register'|trans }}</a>
 				{% else %}
-					<a href="#" class="btn launch-link-account-process-btn">Finaliser la validation</a>
-					<a href="#" class="btn no-color small cancel-link-account-process-btn">Annuler la liaison</a>
+					<a href="#" class="btn launch-link-account-process-btn">{{ 'profile_index.game_account.end_process'|trans }}</a>
+					<a href="#" class="btn no-color small cancel-link-account-process-btn">{{ 'profile_index.game_account.cancel_process'|trans }}</a>
 					<i class="icon-spin icon-spinner loader hide"></i>
 				{% endif %}
 				
 			{% else %}
-				{{ user.getUsername() }} n'a pas encore lié son compte League of Legends à son compte MVNerds.
+				{{ user.getUsername() }} {{ 'profile_index.game_account.no_link_yet'|trans }}
 			{% endif %}
 		</p>
 
 		{% include 'MVNerdsProfileBundle:Modal:link_lol_accout_modal.html.twig' %}
 	{% else %}
-		<h2>Mon compte de jeu lié : <strong>{{ game_account.getSummonerName() }}</strong></h2>
+		<h2>{{ 'profile_index.game_account.title'|trans }} : <strong>{{ game_account.getSummonerName() }}</strong></h2>
 		
 		<p class="note">
-			Ces statistiques sont celles de {{ user.getUsername() }} en parties classées pour la saison 3 ( saison courante).
+			{{ 'profile_index.game_account.indication.%name%'|trans({'%name%': user.getUsername() }) }}
 		</p>
 		
 		<div class="general-stats">
-			<span class="kills">{{ game_account.getChampionKills() }}</span> champions tués <i class="icon-circle-blank"></i> 
-			<span class="deaths">{{ game_account.getDeaths() }}</span> morts <i class="icon-circle-blank"></i>
-			<span cmass="assists">{{ game_account.getAssists() }}</span> assistances 
+			<span class="kills">{{ game_account.getChampionKills() }}</span> {{ 'profile_index.game_account.champions_killed'|trans }} <i class="icon-circle-blank"></i> 
+			<span class="deaths">{{ game_account.getDeaths() }}</span> {{ 'profile_index.game_account.deaths'|trans }} <i class="icon-circle-blank"></i>
+			<span cmass="assists">{{ game_account.getAssists() }}</span> {{ 'profile_index.game_account.assists'|trans }} 
 			{% set kda = (game_account.getChampionKills() + game_account.getAssists()) / game_account.getDeaths() %}
 			<strong>({{ kda|number_format(2, ',', ' ') }} KDA)</strong>
 		</div>
 		
 		<div class="general-stats">
-			<span class="kills">{{ game_account.getTotalVictory() }}</span> victoires <i class="icon-circle-blank"></i> 
-			<span class="deaths">{{ game_account.getTotalDefeat() }}</span> défaites		
+			<span class="kills">{{ game_account.getTotalVictory() }}</span> {{ 'profile_index.game_account.victory'|trans }} <i class="icon-circle-blank"></i> 
+			<span class="deaths">{{ game_account.getTotalDefeat() }}</span> {{ 'profile_index.game_account.defeat'|trans }}		
 		</div>
 		
 		<div class="leagues-container row-fluid">
 			<div class="span4 league">
-				<h5>Équipe classée (3c3)</h5>
+				<h5>{{ 'profile_index.game_account.team3x3_queue_label'|trans }}</h5>
 				{% if game_account.getRankedTeam3x3League() != null %}
 					<img src="{{ asset('medias/images/league-medals/' ~ game_account.getRankedTeam3x3League() ~ '.png') }}" />
 					<div class="label">{{ game_account.getRankedTeam3x3League()|trans }}</div>
 				{% else %}
 					<img src="{{ asset('medias/images/league-medals/unranked.png') }}" />
-					<div class="label">Non classé</div>
+					<div class="label">{{ 'profile_index.game_account.league.unranked'|trans }}</div>
 				{% endif %}
 			</div>
 			
 			<div class="span4 league">
-				<h5>File Solo/Duo</h5>
+				<h5>{{ 'profile_index.game_account.solo_queue_label'|trans }}</h5>
 				{% if game_account.getRankedSolo5x5League() != null %}
 					<img src="{{ asset('medias/images/league-medals/' ~ game_account.getRankedSolo5x5League() ~ '.png') }}" />
 					<div class="label">{{ game_account.getRankedSolo5x5League()|trans }}</div>
 				{% else %}
 					<img src="{{ asset('medias/images/league-medals/unranked.png') }}" />
-					<div class="label">Non classé</div>
+					<div class="label">{{ 'profile_index.game_account.league.unranked'|trans }}</div>
 				{% endif %}
 			</div>
 			
 			<div class="span4 league">
-				<h5>Équipe classée (5c5)</h5>
+				<h5>{{ 'profile_index.game_account.team5x5_queue_label'|trans }}</h5>
 				{% if game_account.getRankedTeam5x5League() != null %}
 					<img src="{{ asset('medias/images/league-medals/' ~ game_account.getRankedTeam5x5League() ~ '.png') }}" />
 					<div class="label">{{ game_account.getRankedTeam5x5League()|trans }}</div>
 				{% else %}
 					<img src="{{ asset('medias/images/league-medals/unranked.png') }}" />
-					<div class="label">Non classé</div>
+					<div class="label">{{ 'profile_index.game_account.league.unranked'|trans }}</div>
 				{% endif %}
 			</div>
 		</div>
 		
 		<div class="more-stats-container">
-			<h5>Plus de statistiques</h5>
+			<h5>{{ 'profile_index.game_account.more_statistics'|trans }}</h5>
 			
 			<div class="content row-fluid">
 				<div class="span4">
 					<dl>
-						<dt>Tués max</dt>
+						<dt>{{ 'profile_index.game_account.max_killed'|trans }}</dt>
 						<dd>{{ game_account.getMaxChampionsKilled() }}</dd>
 
-						<dt>Meurtre en série</dt>
+						<dt>{{ 'profile_index.game_account.killing_spree'|trans }}</dt>
 						<dd>{{ game_account.getKillingSpree() }}</dd>
 
-						<dt>Max meurtre en série</dt>
+						<dt>{{ 'profile_index.game_account.max_killing_spree'|trans }}</dt>
 						<dd>{{ game_account.getLargestKillingSpree() }}</dd>
 
-						<dt>Doublés</dt>
+						<dt>{{ 'profile_index.game_account.double_kill'|trans }}</dt>
 						<dd>{{ game_account.getDoubleKills() }}</dd>
 
-						<dt>Triplé</dt>
+						<dt>{{ 'profile_index.game_account.triple_kill'|trans }}</dt>
 						<dd>{{ game_account.getTripleKills() }}</dd>
 
-						<dt>Quadruplés</dt>
+						<dt>{{ 'profile_index.game_account.quadra_kill'|trans }}</dt>
 						<dd>{{ game_account.getQuadraKills() }}</dd>
 
-						<dt>Quintuplés</dt>
+						<dt>{{ 'profile_index.game_account.penta_kill'|trans }}</dt>
 						<dd>{{ game_account.getPentaKills() }}</dd>
 					</dl>
 				</div>
 				
 				<div class="span4">
 					<dl>
-						<dt>Morts max</dt>
+						<dt>{{ 'profile_index.game_account.max_deaths'|trans }}</dt>
 						<dd>{{ game_account.getMaxDeaths() }}</dd>
 
-						<dt>Temps passé mort</dt>
+						<dt>{{ 'profile_index.game_account.time_spent_dead'|trans }}</dt>
 						<dd>
 							{% set death_time = game_account.getTimeSpentDead() %}
 							{% if death_time < 60 %} {# TEST si c'est inférieur à <= 60 SECONDES #}
@@ -121,34 +121,34 @@
 								{% else %}
 									{% set death_time = death_time / 60 %}
 									{% if death_time < 24 %}
-										~{{ death_time|number_format(0, '', '') }} heure{% if death_time > 1 %}s{% endif %}
+										~{{ death_time|number_format(0, '', '') }} {{ 'profile_index.game_account.hour'|trans }}{% if death_time > 1 %}s{% endif %}
 									{% else %}
-										~{{ (death_time / 24)|number_format(2, ',', '') }} jour{% if death_time / 24 >= 2 %}s{% endif %}
+										~{{ (death_time / 24)|number_format(2, ',', '') }} {{ 'profile_index.game_account.day'|trans }}{% if death_time / 24 >= 2 %}s{% endif %}
 									{% endif %}
 								{% endif %}
 							{% endif %}
 						</dd>
 
-						<dt>Max temps passé en vie</dt>
+						<dt>{{ 'profile_index.game_account.max_living_time'|trans }}</dt>
 						<dd>{{ (game_account.getMaxTimeSpentLiving() / 60)|number_format(0, '', '') }} min</dd>
 						
-						<dt>Partie la plus longue</dt>
+						<dt>{{ 'profile_index.game_account.max_game_duration'|trans }}</dt>
 						<dd>{{ (game_account.getMaxTimeGameDuration() / 60)|number_format(0, '', '') }} min</dd>
 					</dl>
 				</div>
 				
 				<div class="span4">
 					<dl>
-						<dt>Sbires tués</dt>
+						<dt>{{ 'profile_index.game_account.minions_killed'|trans }}</dt>
 						<dd>{{ game_account.getMinionKills()|number_format(0, ',', ' ') }}</dd>
 
-						<dt>Monstres tués</dt>
+						<dt>{{ 'profile_index.game_account.monster_killed'|trans }}</dt>
 						<dd>{{ game_account.getMonsterKills()|number_format(0, ',', ' ') }}</dd>
 						
-						<dt>Tourelles détruites</dt>
+						<dt>{{ 'profile_index.game_account.turrets_destroyed'|trans }}</dt>
 						<dd>{{ game_account.getTurretsKilled() }}</dd>
 						
-						<dt>PO gagnées</dt>
+						<dt>{{ 'profile_index.game_account.gold_earned'|trans }}</dt>
 						<dd>{{ game_account.getGoldEarned()|number_format(0, ',', ' ') }}</dd>
 					</dl>
 				</div>
@@ -157,18 +157,22 @@
 		
 		<div class="last-update">
 			{% set last_update_time = game_account.getLastUpdateTime() %}
-			Dernière mise à jour <strong>
+			{{ 'profile_index.game_account.last_update'|trans }} <strong>
 			{% if last_update_time + 60 > date().getTimestamp() %}
-				il y a quelques secondes 
+				{{ 'profile_index.game_account.few_second_ago'|trans }}.
 			{% else %}
 				{% set second_ago = date().getTimestamp() - last_update_time %}
 				{% if second_ago < 60 * 15 %}
-					il y a {{ (second_ago / 60)|number_format(0, '', '') }} minute{% if (second_ago / 60) >= 2 %}s{% endif %}
+					{{ 'profile_index.game_account.ago'|transchoice((second_ago / 60)|number_format(0, '', '')) }}.
 				{% else %}
-					le {{ last_update_time|date('d/m/Y H:i') }}
+					{% if locale == 'fr' %}
+						{{ 'profile_index.game_account.the'|trans }} {{ last_update_time|date('d/m/Y') }} {{ 'profile_index.game_account.at'|trans }} {{ last_update_time|date('H:i')|replace({':':'h'}) }}.
+					{% else %}
+						{{ 'profile_index.game_account.the'|trans }} {{ last_update_time|date('m/d/Y') }} {{ 'profile_index.game_account.at'|trans }} {{ last_update_time|date('H:i') }}.
+					{% endif %}
 				{% endif %}
 			{% endif %}
-			</strong>.
+			</strong>
 		</div>
 	{% endif %}
 </div>

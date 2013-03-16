@@ -1,6 +1,6 @@
 <a class="title" href="{{path('videos_detail', {slug: video.getSlug()})}}">{{video.getTitle()}}</a>
 <div class="created-by">{{'item_table.td.created_by'|trans}} 
-	<a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}" title="{{'item_table.td.consult_profile_of'|trans}} {{ user.getUsername }}">{{user.getUsername()}}</a>,
+	<a href="{{ path('summoner_profile_view', {'slug': user.getSlug()}) }}" title="{{'item_table.td.consult_profile_of'|trans}} {{ user.getUsername }}">{{user.getUsername()}}</a>,
 	{{'item_table.td.updated_the'|trans}} 
 	{% if video.getUpdateTime('d/m/Y') == date().format('d/m/Y') %}
 		<strong>{{'Comments.today'|trans}}</strong>

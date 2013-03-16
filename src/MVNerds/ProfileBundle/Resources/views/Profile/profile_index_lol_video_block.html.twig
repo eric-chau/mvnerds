@@ -6,9 +6,9 @@
 	{% else %}
 		<p class="empty-list"><i>
 			{% if admin_mode %}
-				Vous n'avez pas encore publié de vidéo.
+				{{'profile_index.lol_video_center.no_video.admin'|trans }}
 			{% else %}
-				{{ user.getUsername() }} n'a pas encore publié de vidéo.
+				{{'profile_index.lol_video_center.no_video.%name%'|trans({'%name%': user.getUsername()}) }}
 			{% endif %}
 		</i></p>
 	{% endif %}

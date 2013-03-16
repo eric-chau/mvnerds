@@ -127,7 +127,7 @@
 						
 						<div class="stats">
 							<i class="icon-user"></i> 
-							<strong><a href="{{ path('summoner_profile_view', {'userSlug': video.getUser().getSlug()}) }}" title="Consulter le profil de {{ video.getUser().getUsername }}" class="resize-required">{{video.getUser().getUserName()}}</a></strong><br /> auteur
+							<strong><a href="{{ path('summoner_profile_view', {'slug': video.getUser().getSlug()}) }}" title="Consulter le profil de {{ video.getUser().getUsername }}" class="resize-required">{{video.getUser().getUserName()}}</a></strong><br /> auteur
 						</div>
 						
 						<div class="stats odd">
