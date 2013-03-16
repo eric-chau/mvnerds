@@ -110,7 +110,7 @@
   border-bottom-color: #db4a38;
 }
 body {
-  background: #e4e6e5 url('../images/site/main-background.jpg') no-repeat center center fixed;
+  background: #e4e6e5 url('../images/site/main-background.jpg') no-repeat center top fixed;
   margin: 0;
 }
 h1,
