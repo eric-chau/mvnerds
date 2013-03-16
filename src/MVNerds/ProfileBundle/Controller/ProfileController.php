@@ -244,11 +244,11 @@ class ProfileController extends Controller
 			return new Response($translator->trans('profile_index.elophant.afk'), 503);
 		}
 		catch (InvalidSummonerNameException $e) {
-			return new Response($translator->trans('profile_index.game_account.error.invalid.summoner_name.%name%', array('%name' => $summonerName)), 400);
+			return new Response($translator->trans('profile_index.game_account.error.invalid.summoner_name.%name%', array('%name%' => $summonerName)), 400);
 		}
 		
 		if ($this->get('mvnerds.profile_manager')->isSummonerNameAlreadyLinked($summonerName)) {
-			return new Response($translator->trans('profile_index.game_account.error.name_already_linked.%name%', array('%name' => $summonerName)), 400);
+			return new Response($translator->trans('profile_index.game_account.error.name_already_linked.%name%', array('%name%' => $summonerName)), 400);
 		}
 				
 		$profile = $this->getUser()->getProfile();

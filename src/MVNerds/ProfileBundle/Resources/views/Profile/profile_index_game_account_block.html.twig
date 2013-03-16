@@ -157,6 +157,10 @@
 		
 		<div class="last-update">
 			{% set last_update_time = game_account.getLastUpdateTime() %}
+			{% if last_update_time + 60 * 15 > date().getTimestamp() %}
+				<span class="powered-by">Powered by <a href="http://www.elophant.com" target="_blank">elophant.com</a> -</span> 
+			{% endif %}
+				
 			{{ 'profile_index.game_account.last_update'|trans }} <strong>
 			{% if last_update_time + 60 > date().getTimestamp() %}
 				{{ 'profile_index.game_account.few_second_ago'|trans }}.

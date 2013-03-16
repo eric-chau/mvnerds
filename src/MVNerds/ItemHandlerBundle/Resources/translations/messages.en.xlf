@@ -600,6 +600,25 @@
 				<source>pmri_detail.about.last_update</source>
 				<target>Last update</target>
 			</trans-unit>
+
+			<trans-unit id="5108">
+				<source>pmri_index.how_it_work.text.1</source>
+				<target>
+					League of Legends players, the PMRI is for you! This is a utility that allows you to change the list of recommended items for your favorite champions. This is the list that is accessible from the tab "Recommended" of the new in-game shop.
+				</target>
+			</trans-unit>
+			<trans-unit id="5109">
+				<source>pmri_index.how_it_work.text.2</source>
+				<target>
+					You have no software to install, the tool is completely free and online. We relied on the API provided by Riot Games for achieving tool Pimp My Recommended Items, so you do not risk anything for your game account! PMRI allows you to create your lists and save them on our site. This way you can share your creations with your friends and the whole MVNerds' community!
+				</target>
+			</trans-unit>
+			<trans-unit id="5110">
+				<source>pmri_index.how_it_work.text.3</source>
+				<target>
+					Feel free to watch the video presentation!
+				</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
