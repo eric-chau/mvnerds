@@ -90,7 +90,7 @@
 				<source>Overview.content.p2</source>
 				<target>
 					This first version of the website is a beta one. It offers you our very first module : the 'Champions benchmark'.
-					This tool allows you to compare easily and effectively a large number of champions. Try it now !
+					This tool allows you to compare easily and effectively a large number of champions. Try it now!
 				</target>
 			</trans-unit>
 			<trans-unit id="3003">
@@ -581,7 +581,7 @@
 			</trans-unit>
 			<trans-unit id="17003">
 				<source>champion_benchmark_preview.btn.try_it</source>
-				<target>Try it now !</target>
+				<target>Try it now!</target>
 			</trans-unit>
 
 			<!-- CAROUSEL INDEX -->
@@ -601,7 +601,7 @@
 
 			<trans-unit id="20000">
 				<source>registration_success.h1</source>
-				<target>Registration is over - Thank you !</target>
+				<target>Registration is over - Thank you!</target>
 			</trans-unit>
 			<trans-unit id="20001">
 				<source>registration_success.p1</source>
@@ -643,7 +643,7 @@
 			</trans-unit>
 			<trans-unit id="20202">
 				<source>account_activation.p2</source>
-				<target>All the MVNerds team thanks you !</target>
+				<target>All the MVNerds team thanks you!</target>
 			</trans-unit>
 			<trans-unit id="20203">
 				<source>account_activation.a.profile</source>
@@ -675,6 +675,22 @@
 			<trans-unit id="20209">
 				<source>account_activation_fail.p4</source>
 				<target>The MVNerds team</target>
+			</trans-unit>
+			<trans-unit id="20210">
+				<source>account_activation_fail.title</source>
+				<target>An error occured during your account activation | MVNerds</target>
+			</trans-unit>
+			<trans-unit id="20211">
+				<source>account_activation_fail.breadcrumbs</source>
+				<target>Error during your account activation</target>
+			</trans-unit>
+			<trans-unit id="20212">
+				<source>account_activation.title</source>
+				<target>The user account %username%, is now activated | MVNerds</target>
+			</trans-unit>
+			<trans-unit id="20213">
+				<source>account_activation.breadcrumbs</source>
+				<target>Your account %username%, is now activated.</target>
 			</trans-unit>
 
 
