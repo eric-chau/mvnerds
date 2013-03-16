@@ -46,7 +46,7 @@
 	<div class="container main-container border-top">
 		<div class="row-fluid">
 			<div class="span8 left-content">
-				<h1>Pimp My Recommended <a href="#" class="how-it-works-toggle"><span class="label red">comment ça marche ?</span></a></h1>
+				<h1>Pimp My Recommended <a href="#" class="how-it-works-toggle"><span class="label red">{{'Listing-pages.how-does-it-work' | trans}}</span></a></h1>
 				
 				<div class="how-it-works hide">
 					<p>
@@ -99,10 +99,10 @@
 				
 				<div class="block">
 					<div class="header">
-						<h3>Options de filtrage</h3>
+						<h3>{{'Listing-pages.filtering-options' | trans}}</h3>
 					</div>
 					<div class="body">
-						<p>Trier par :</p>
+						<p>{{'Listing-pages.sort-by' | trans}} :</p>
 						<ul id="sort-list">
 							<li><a href="#" class="sort-link" data-option-value="0"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.name-asc'|trans}}</a></li>
 							<li><a href="#" class="sort-link" data-option-value="1"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.name-desc'|trans}}</a></li>
@@ -117,7 +117,7 @@
 							<li><a href="#" class="sort-link" data-option-value="10"><i class=" icon-ok-sign"></i>{{'item_build_list_index.sort.less-voted'|trans}}</a></li>
 						</ul>
 						
-						<p>Rechercher par :</p>
+						<p>{{'Listing-pages.search-by' | trans}} :</p>
 						<ul class="filters-list more-filter">
 							<li id="filter-title">
 								<label for="title-filter-input">{{'item_build_list_index.sort.filter-by-title'|trans}}</label>
@@ -135,7 +135,7 @@
 							</li>
 							
 							<li id="filter-search">
-								<a href="#" class="btn green" id="search-filter-btn">Rechercher <i class="icon-search icon-white"></i></a>
+								<a href="#" class="btn green" id="search-filter-btn">{{'Actionsbar.Search.placeholder'|trans}} <i class="icon-search icon-white"></i></a>
 							</li>
 						</ul>
 					</div>

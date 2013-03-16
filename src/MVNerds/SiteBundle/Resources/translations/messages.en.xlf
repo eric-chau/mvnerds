@@ -215,6 +215,56 @@
 				<source>Topbar.members</source>
 				<target>Community members</target>
 			</trans-unit>
+
+			<!-- LISTING PAGES -->
+			<trans-unit id="700">
+				<source>Listing-pages.filtering-options</source>
+				<target>Filtering options</target>
+			</trans-unit>
+			<trans-unit id="701">
+				<source>Listing-pages.th.preview</source>
+				<target>Preview</target>
+			</trans-unit>
+			<trans-unit id="702">
+				<source>Listing-pages.th.title</source>
+				<target>Title</target>
+			</trans-unit>
+			<trans-unit id="703">
+				<source>Listing-pages.th.category</source>
+				<target>Category</target>
+			</trans-unit>
+			<trans-unit id="704">
+				<source>Listing-pages.th.avatar</source>
+				<target>Avatar</target>
+			</trans-unit>
+			<trans-unit id="705">
+				<source>Listing-pages.th.username</source>
+				<target>Username</target>
+			</trans-unit>
+			<trans-unit id="706">
+				<source>Listing-pages.th.game-account</source>
+				<target>Game account</target>
+			</trans-unit>
+			<trans-unit id="707">
+				<source>Listing-pages.th.name</source>
+				<target>Name</target>
+			</trans-unit>
+			<trans-unit id="708">
+				<source>Listing-pages.th.map</source>
+				<target>Map</target>
+			</trans-unit>
+			<trans-unit id="709">
+				<source>Listing-pages.how-does-it-work</source>
+				<target>How does it work ?</target>
+			</trans-unit>
+			<trans-unit id="710">
+				<source>Listing-pages.search-by</source>
+				<target>Search by</target>
+			</trans-unit>
+			<trans-unit id="711">
+				<source>Listing-pages.sort-by</source>
+				<target>Sort by</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
