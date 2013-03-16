@@ -44,7 +44,7 @@
 			<div class="span4 league">
 				<h5>{{ 'profile_index.game_account.team3x3_queue_label'|trans }}</h5>
 				{% if game_account.getRankedTeam3x3League() != null %}
-					<img src="{{ asset('medias/images/league-medals/' ~ game_account.getRankedTeam3x3League() ~ '.png') }}" />
+					<img src="{{ asset('medias/images/league-medals/' ~ (game_account.getRankedTeam3x3League() | lower )~ '.png') }}" />
 					<div class="label">{{ game_account.getRankedTeam3x3League()|trans }}</div>
 				{% else %}
 					<img src="{{ asset('medias/images/league-medals/unranked.png') }}" />
@@ -55,7 +55,7 @@
 			<div class="span4 league">
 				<h5>{{ 'profile_index.game_account.solo_queue_label'|trans }}</h5>
 				{% if game_account.getRankedSolo5x5League() != null %}
-					<img src="{{ asset('medias/images/league-medals/' ~ game_account.getRankedSolo5x5League() ~ '.png') }}" />
+					<img src="{{ asset('medias/images/league-medals/' ~ (game_account.getRankedSolo5x5League() | lower )~ '.png') }}" />
 					<div class="label">{{ game_account.getRankedSolo5x5League()|trans }}</div>
 				{% else %}
 					<img src="{{ asset('medias/images/league-medals/unranked.png') }}" />
@@ -66,7 +66,7 @@
 			<div class="span4 league">
 				<h5>{{ 'profile_index.game_account.team5x5_queue_label'|trans }}</h5>
 				{% if game_account.getRankedTeam5x5League() != null %}
-					<img src="{{ asset('medias/images/league-medals/' ~ game_account.getRankedTeam5x5League() ~ '.png') }}" />
+					<img src="{{ asset('medias/images/league-medals/' ~ (game_account.getRankedTeam5x5League()| lower ) ~ '.png') }}" />
 					<div class="label">{{ game_account.getRankedTeam5x5League()|trans }}</div>
 				{% else %}
 					<img src="{{ asset('medias/images/league-medals/unranked.png') }}" />
