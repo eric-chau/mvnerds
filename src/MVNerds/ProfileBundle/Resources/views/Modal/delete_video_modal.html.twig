@@ -1,13 +1,13 @@
 <div id="delete-video-{{ video.getSlug() }}-modal" class="modal hide fade">
 	<div class="modal-header">
 		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-		<h3>Suppression d'une vidéo</h3>
+		<h3>{{ 'profile_index.lol_video_center.delete_modal.title'|trans }}</h3>
 	</div>
 	<div class="modal-body">
-		<p>Vous êtes sur le point de supprimer votre vidéo <strong>{{ video.getTitle() }}</strong>. Êtes-vous sûr de vouloir faire cela ?</p>
+		<p>{{ 'profile_index.lol_video_center.delete_modal.text_1'|trans }} <strong>{{ video.getTitle() }}</strong>. {{ 'profile_index.lol_video_center.delete_modal.text_2'|trans }}</p>
 	</div>
 	<div class="modal-footer">
-		<a href="#" data-dismiss="modal" class="btn">Annuler</a>
-		<a href="{{path('videos_delete', {'slug': video.getSlug()})}}" class="btn red btn-download">Confirmer</a>
+		<a href="#" data-dismiss="modal" class="btn">{{ 'profile_index.lol_video_center.delete_modal.cancel_btn'|trans }}</a>
+		<a href="{{path('videos_delete', {'slug': video.getSlug()})}}" class="btn red btn-download">{{ 'profile_index.lol_video_center.delete_modal.confirm_btn'|trans }}</a>
 	</div>
 </div>

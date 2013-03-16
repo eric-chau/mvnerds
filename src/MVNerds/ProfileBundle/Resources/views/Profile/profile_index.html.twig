@@ -74,9 +74,9 @@
 	
 	> 
 	{% if admin_mode == false %}
-		<a href="{{ path('summoner_profile_view', {'userSlug': user.getSlug()}) }}">Profil de {{ user.getSlug() }}</a>
+		<a href="{{ path('summoner_profile_view', {'slug': user.getSlug()}) }}">{{ 'profile_index.breadcrum'|trans }} {{ user.getSlug() }}</a>
 	{% else %}
-		<a href="{{ path('summoner_profile_index') }}">Mon profil</a>
+		<a href="{{ path('summoner_profile_index') }}">{{ 'profile_index.breadcrum.admin'|trans }}</a>
 	{% endif %}
 {% endblock %}
 
@@ -93,12 +93,12 @@
 					<div class="user-stat">
 						<i class="icon-pencil"></i>
 						<strong>{{ user.getCreatedAt('d/m/Y') }}</strong>
-						<span>Date d'inscription</span>
+						<span>{{ 'profile_index.registration_date'|trans }}</span>
 					</div>
 					<div class="user-stat">
 						<i class="icon-comments-alt"></i>
 						<strong>{{ user_comment_count }}</strong>
-						<span>Commentaires postés</span>
+						<span>{{ 'profile_index.comments_posted_count'|trans }}</span>
 					</div>
 					<div class="user-stat">
 						<i class="icon-eye-open"></i>
@@ -139,9 +139,9 @@
 						<div class="footer blue">
 							<a href="#" class="btn-change-password">
 								<i class="icon-spinner icon-spin loader hide"></i> 
-								<span class="msg initial">Changer mon mot de passe</span>
-								<span class="msg wip hide">Traitement en cours</span>
-								<span class="msg success hide">Terminé, vérifiez vos e-mails</span>
+								<span class="msg initial">{{ 'profile_index.change_password'|trans }}</span>
+								<span class="msg wip hide">{{ 'profile_index.change_password.wip'|trans }}</span>
+								<span class="msg success hide">[{{ 'profile_index.change_password.success'|trans }}</span>
 							</a>
 						</div>
 					</div>

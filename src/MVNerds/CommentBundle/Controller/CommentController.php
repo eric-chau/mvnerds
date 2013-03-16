@@ -258,10 +258,14 @@ class CommentController extends Controller
 		}
 		
 		$type = get_class($relatedObject);
+		
 		$routeName = '';
 		switch ($type) {
 			case 'MVNerds\CoreBundle\Model\ItemBuild':
 				$routeName = 'pmri_list_detail';
+				break;
+			case 'MVNerds\CoreBundle\Model\User':
+				$routeName = 'summoner_profile_view';
 				break;
 			case 'MVNerds\\CoreBundle\\Model\\Video':
 				$routeName = 'videos_detail';

@@ -1,6 +1,6 @@
 <div class="block">
 	<div class="header">
-		<h3><i class="icon-comments-alt"></i> Mes derniers commentaires</h3>
+		<h3><i class="icon-comments-alt"></i> </h3>
 	</div>
 	<div class="body">
 		{% for comment in comments %}
@@ -10,22 +10,24 @@
 					<div class="date">{% include ':Extension:custom_format_date.html.twig' with {'object': comment.getCreateTime()} %}</div>
 					<div class="related-object-link">
 						<a href="{{ path('profile_redirect_to_related_object', {'_locale': app.request.getLocale(), 'commentId': comment.getId() * 47}) }}">
-							Voir 
+							{{ 'profile_index.lastest_comments_block.view_label'|trans }} 
 							{% if comment.getObjectNamespace() == 'MVNerds\\CoreBundle\\Model\\ItemBuild' %}
-								la liste liée
+								{{ 'profile_index.lastest_comments_block.view_label.pmri'|trans }}
 							{% elseif comment.getObjectNamespace() == 'MVNerds\\CoreBundle\\Model\\Video' %}
-								la vidéo liée
+								{{ 'profile_index.lastest_comments_block.view_label.video'|trans }}
 							{% elseif comment.getObjectNamespace() == 'MVNerds\\CoreBundle\\Model\\News' %}
-								la news liée
+								{{ 'profile_index.lastest_comments_block.view_label.news'|trans }}
 							{% elseif comment.getObjectNamespace() == 'MVNerds\\CoreBundle\\Model\\Champion' %}
-								le champion lié
+								{{ 'profile_index.lastest_comments_block.view_label.champion'|trans }}
+							{% elseif comment.getObjectNamespace() == 'MVNerds\\CoreBundle\\Model\\User' %}
+								{{ 'profile_index.lastest_comments_block.view_label.user'|trans }}
 							{% endif %}
 						</a>
 					</div>
 				</div>
 			</div>
 		{% else %}
-			<p class="empty-list">{{ user.getUsername() }} n'a pas encore écrit de commentaire</p>
+			<p class="empty-list">{{ user.getUsername() }} {{ 'profile_index.lastest_comments_block.no_comment'|trans }}</p>
 		{% endfor %}
 	</div>
 </div>

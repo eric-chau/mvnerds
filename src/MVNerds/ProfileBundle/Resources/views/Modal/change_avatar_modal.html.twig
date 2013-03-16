@@ -5,7 +5,7 @@
 	</div>
 	<div class="modal-body">
 		<p>
-			Retrouvez ci-dessous les avatars qui sont à votre disposition. Choisissez celui qui vous plaît.
+			{{ 'profile_index.avatar.modal.text'|trans }}
 		</p>
 		
 		<div class="avatars-container">
@@ -17,6 +17,6 @@
 	<div class="modal-footer">
 		<i class="icon-spinner icon-spin loader hide"></i>
 		<a href="#" data-dismiss="modal" class="btn">{{'create_item_build.modal_dl_build.btn.cancel'|trans}}</a>
-		<a href="#" class="btn green btn-save-avatar disabled" data-current-avatar-name="{{ current_avatar_name }}">Enregistrer</a>
+		<a href="#" class="btn green btn-save-avatar disabled" data-current-avatar-name="{{ current_avatar_name }}">{{ 'profile_index.avatar.modal.save_button'|trans }}</a>
 	</div>
 </div>

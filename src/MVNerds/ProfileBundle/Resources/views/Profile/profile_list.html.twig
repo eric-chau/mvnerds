@@ -1,6 +1,6 @@
 {% extends 'MVNerdsSiteBundle::layout.html.twig' %}
 
-{% block title %}Les membres de la communauté - MVNerds{% endblock %}
+{% block title %}{{ 'profile_list.page_title'|trans }} - Most Valuable Nerds | MVNerds{% endblock %}
 
 {% block css %}
 	{{ parent() }}
@@ -50,14 +50,14 @@
 {% block breadcrumbs %}
 	{{ parent() }}
 	
-	> <a href="{{ path('profile_list') }}">Les membres de la communauté</a>
+	> <a href="{{ path('profile_list') }}">{{ 'profile_list.page_title'|trans }}</a>
 {% endblock %}
 
 {% block main_content %}
 	<div class="container main-container border-top">
 		<div class="row-fluid">
 			<div class="span8 left-content">
-				<h1>Les membres de la communauté</h1>
+				<h1>{{ 'profile_list.page_title'|trans }}</h1>
 				
 				<table id="users-table" class="table data-table">
 					<thead>

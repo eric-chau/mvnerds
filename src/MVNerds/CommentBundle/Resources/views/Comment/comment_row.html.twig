@@ -12,7 +12,7 @@
 		<i class="icon-caret-left"></i>
 		
 		<div class="posted-by">
-			<strong><a href="{{ path('summoner_profile_view', {'userSlug': comment.getUser().getSlug()}) }}" title="{{'Check the profile of'|trans}} {{ comment.getUser().getUsername }}">{{ comment.getUser().getUsername() }}</a></strong> {{'Comments.posted_by'|trans}}:
+			<strong><a href="{{ path('summoner_profile_view', {'slug': comment.getUser().getSlug()}) }}" title="{{'Check the profile of'|trans}} {{ comment.getUser().getUsername }}">{{ comment.getUser().getUsername() }}</a></strong> {{'Comments.posted_by'|trans}}:
 			<div class="comment-date">{% include ':Extension:custom_format_date.html.twig' with {'object': comment.getCreateTime()} %}</div>
 		</div>
 		

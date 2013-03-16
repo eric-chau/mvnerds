@@ -96,6 +96,574 @@
 				<source>user.filter.game_account</source>
 				<target>Compte de jeu lié</target>
 			</trans-unit>
+
+			<trans-unit id="300">
+				<source>profile_index.breadcrum.admin</source>
+				<target>Mon profil</target>
+			</trans-unit>
+			<trans-unit id="301">
+				<source>profile_index.breadcrum</source>
+				<target>Profile de</target>
+			</trans-unit>
+			<trans-unit id="302">
+				<source>profile_index.registration_date</source>
+				<target>Date d'inscription</target>
+			</trans-unit>
+			<trans-unit id="303">
+				<source>profile_index.comments_posted_count</source>
+				<target>Commentaires postés</target>
+			</trans-unit>
+			<trans-unit id="304">
+				<source>profile_index.change_password</source>
+				<target>Changer mon mot de passe</target>
+			</trans-unit>
+			<trans-unit id="305">
+				<source>profile_index.change_password.wip</source>
+				<target>Traitement en cours</target>
+			</trans-unit>
+			<trans-unit id="306">
+				<source>profile_index.change_password.success</source>
+				<target>Terminé, vérifiez vos e-mails</target>
+			</trans-unit>
+			<trans-unit id="307">
+				<source>profile_index.game_account.title</source>
+				<target>Mon compte de jeu lié</target>
+			</trans-unit>
+			<trans-unit id="308">
+				<source>profile_index.game_account.title.not_found</source>
+				<target>Non trouvé</target>
+			</trans-unit>
+			<trans-unit id="309">
+				<source>profile_index.game_account.title.wip</source>
+				<target>validation en cours</target>
+			</trans-unit>
+			<trans-unit id="310">
+				<source>profile_index.game_account.intro</source>
+				<target>Vous n'avez pas encore lié votre compte League of Legends à votre compte MVNerds.</target>
+			</trans-unit>
+			<trans-unit id="311">
+				<source>profile_index.game_account.intro2</source>
+				<target>Souhaitez-vous le faire ?</target>
+			</trans-unit>
+			<trans-unit id="312">
+				<source>profile_index.game_account.register</source>
+				<target>Renseigner mon compte de jeu</target>
+			</trans-unit>
+			<trans-unit id="313">
+				<source>profile_index.game_account.end_process</source>
+				<target>Finaliser la validation</target>
+			</trans-unit>
+			<trans-unit id="314">
+				<source>profile_index.game_account.cancel_process</source>
+				<target>Annuler la liaison</target>
+			</trans-unit>
+			<trans-unit id="315">
+				<source>profile_index.game_account.no_link_yet</source>
+				<target>n'a pas encore lié son compte League of Legends à son compte MVNerds.</target>
+			</trans-unit>
+			<trans-unit id="316">
+				<source>profile_index.game_account.indication.%name%</source>
+				<target>Ces statistiques sont celles de %name% en parties classées pour la saison 3 ( saison courante).</target>
+			</trans-unit>
+			<trans-unit id="317">
+				<source>profile_index.game_account.champions_killed</source>
+				<target>champions tués</target>
+			</trans-unit>
+			<trans-unit id="318">
+				<source>profile_index.game_account.deaths</source>
+				<target>morts</target>
+			</trans-unit>
+			<trans-unit id="319">
+				<source>profile_index.game_account.assists</source>
+				<target>assistances</target>
+			</trans-unit>
+			<trans-unit id="320">
+				<source>profile_index.game_account.victory</source>
+				<target>victoires</target>
+			</trans-unit>
+			<trans-unit id="321">
+				<source>profile_index.game_account.defeat</source>
+				<target>défaites</target>
+			</trans-unit>
+			<trans-unit id="322">
+				<source>profile_index.game_account.team3x3_queue_label</source>
+				<target>Équipe classée (3c3)</target>
+			</trans-unit>
+			<trans-unit id="323">
+				<source>profile_index.game_account.solo_queue_label</source>
+				<target>File Solo/Duo</target>
+			</trans-unit>
+			<trans-unit id="324">
+				<source>profile_index.game_account.team5x5_queue_label</source>
+				<target>Équipe classée (5c5)</target>
+			</trans-unit>
+			<trans-unit id="325">
+				<source>profile_index.game_account.league.unranked</source>
+				<target>Non classé</target>
+			</trans-unit>
+			<trans-unit id="326">
+				<source>profile_index.game_account.more_statistics</source>
+				<target>Plus de statistiques</target>
+			</trans-unit>
+			<trans-unit id="327">
+				<source>profile_index.game_account.max_killed</source>
+				<target>Tués max</target>
+			</trans-unit>
+			<trans-unit id="328">
+				<source>profile_index.game_account.killing_spree</source>
+				<target>Meurtre en série</target>
+			</trans-unit>
+			<trans-unit id="329">
+				<source>profile_index.game_account.max_killing_spree</source>
+				<target>Max meurtre en série</target>
+			</trans-unit>
+			<trans-unit id="330">
+				<source>profile_index.game_account.double_kill</source>
+				<target>Doublés</target>
+			</trans-unit>
+			<trans-unit id="331">
+				<source>profile_index.game_account.triple_kill</source>
+				<target>Triplé</target>
+			</trans-unit>
+			<trans-unit id="332">
+				<source>profile_index.game_account.quadra_kill</source>
+				<target>Quadruplés</target>
+			</trans-unit>
+			<trans-unit id="333">
+				<source>profile_index.game_account.penta_kill</source>
+				<target>Quintuplés</target>
+			</trans-unit>
+			<trans-unit id="334">
+				<source>profile_index.game_account.max_deaths</source>
+				<target>Morts max</target>
+			</trans-unit>
+			<trans-unit id="335">
+				<source>profile_index.game_account.time_spent_dead</source>
+				<target>Temps passé mort</target>
+			</trans-unit>
+			<trans-unit id="336">
+				<source>profile_index.game_account.hour</source>
+				<target>heure</target>
+			</trans-unit>
+			<trans-unit id="337">
+				<source>profile_index.game_account.day</source>
+				<target>jour</target>
+			</trans-unit>
+			<trans-unit id="338">
+				<source>profile_index.game_account.max_living_time</source>
+				<target>Max temps passé en vie</target>
+			</trans-unit>
+			<trans-unit id="339">
+				<source>profile_index.game_account.max_game_duration</source>
+				<target>Partie la plus longue</target>
+			</trans-unit>
+			<trans-unit id="340">
+				<source>profile_index.game_account.minions_killed</source>
+				<target>Sbires tués</target>
+			</trans-unit>
+			<trans-unit id="341">
+				<source>profile_index.game_account.monster_killed</source>
+				<target>Monstres tués</target>
+			</trans-unit>
+			<trans-unit id="342">
+				<source>profile_index.game_account.turrets_destroyed</source>
+				<target>Tourelles détruites</target>
+			</trans-unit>
+			<trans-unit id="343">
+				<source>profile_index.game_account.gold_earned</source>
+				<target>PO gagnées</target>
+			</trans-unit>
+			<trans-unit id="344">
+				<source>profile_index.game_account.last_update</source>
+				<target>Dernière mise à jour</target>
+			</trans-unit>
+			<trans-unit id="345">
+				<source>profile_index.game_account.few_second_ago</source>
+				<target>il y a quelques secondes</target>
+			</trans-unit>
+			<trans-unit id="346">
+				<source>profile_index.game_account.ago</source>
+				<target>[0,1]il y a une minute|]1,Inf] il y a %count% minutes</target>
+			</trans-unit>
+			<trans-unit id="347">
+				<source>profile_index.game_account.the</source>
+				<target>le</target>
+			</trans-unit>
+			<trans-unit id="299">
+				<source>profile_index.game_account.at</source>
+				<target>à</target>
+			</trans-unit>
+			
+			<trans-unit id="348">
+				<source>profile_index.lol_video_center.no_video.admin</source>
+				<target>Vous n'avez pas encore publié de vidéo.</target>
+			</trans-unit>
+			<trans-unit id="349">
+				<source>profile_index.lol_video_center.no_video.%name%</source>
+				<target>%name% n'a pas encore publié de vidéo.</target>
+			</trans-unit>
+			<trans-unit id="350">
+				<source>profile_index.lol_video_center.col.preview</source>
+				<target>Aperçu</target>
+			</trans-unit>
+			<trans-unit id="351">
+				<source>profile_index.lol_video_center.col.title</source>
+				<target>Titre</target>
+			</trans-unit>
+			<trans-unit id="352">
+				<source>profile_index.lol_video_center.col.category</source>
+				<target>Catégorie</target>
+			</trans-unit>
+			<trans-unit id="353">
+				<source>profile_index.lol_video_center.delete_modal.title</source>
+				<target>Suppression d'une vidéo</target>
+			</trans-unit>
+			<trans-unit id="354">
+				<source>profile_index.lol_video_center.delete_modal.text_1</source>
+				<target>Vous êtes sur le point de supprimer votre vidéo</target>
+			</trans-unit>
+			<trans-unit id="358">
+				<source>profile_index.lol_video_center.delete_modal.text_2</source>
+				<target>Êtes-vous sûr de vouloir faire cela ?</target>
+			</trans-unit>
+			<trans-unit id="355">
+				<source>profile_index.lol_video_center.delete_modal.cancel_btn</source>
+				<target>Annuler</target>
+			</trans-unit>
+			<trans-unit id="356">
+				<source>profile_index.lol_video_center.delete_modal.confirm_btn</source>
+				<target>Confirmer</target>
+			</trans-unit>
+			<trans-unit id="357">
+				<source>profile_index.lol_video_center.delete_modal.text.1</source>
+				<target>Vous êtes sur le point de supprimer votre vidéo</target>
+			</trans-unit>
+			
+			<trans-unit id="359">
+				<source>profile_index.pmri.user_preferences</source>
+				<target>mes préférences utilisateur</target>
+			</trans-unit>
+			<trans-unit id="360">
+				<source>profile_index.pmri.user_preferences.save_button</source>
+				<target>Enregistrer</target>
+			</trans-unit>
+			<trans-unit id="361">
+				<source>profile_index.pmri.no_list.admin</source>
+				<target>Vous n'avez pas encore enregistré de liste d'objet conseillé.</target>
+			</trans-unit>
+
+			<trans-unit id="362">
+				<source>profile_index.lastest_comments_block.title</source>
+				<target>Mes derniers commentaires</target>
+			</trans-unit>
+			<trans-unit id="363">
+				<source>profile_index.lastest_comments_block.view_label</source>
+				<target>Voir</target>
+			</trans-unit>
+			<trans-unit id="364">
+				<source>profile_index.lastest_comments_block.view_label.pmri</source>
+				<target>la liste liée</target>
+			</trans-unit>
+			<trans-unit id="365">
+				<source>profile_index.lastest_comments_block.view_label.video</source>
+				<target>la vidéo liée</target>
+			</trans-unit>
+			<trans-unit id="366">
+				<source>profile_index.lastest_comments_block.view_label.news</source>
+				<target>la news liée</target>
+			</trans-unit>
+			<trans-unit id="367">
+				<source>profile_index.lastest_comments_block.view_label.champion</source>
+				<target>le champion lié</target>
+			</trans-unit>
+			<trans-unit id="368">
+				<source>profile_index.lastest_comments_block.view_label.user</source>
+				<target>le profil lié</target>
+			</trans-unit>
+			<trans-unit id="369">
+				<source>profile_index.lastest_comments_block.no_comment</source>
+				<target>n'a pas encore écrit de commentaire</target>
+			</trans-unit>
+
+			<trans-unit id="370">
+				<source>profile_index.pmri.delete_modal.title</source>
+				<target>Suppression d'une liste d'objets conseillés</target>
+			</trans-unit>
+			<trans-unit id="371">
+				<source>profile_index.pmri.delete_modal.text.1</source>
+				<target>Vous êtes sur le point de supprimer votre liste d'objets conseillés</target>
+			</trans-unit>
+			<trans-unit id="372">
+				<source>profile_index.pmri.delete_modal.text.2</source>
+				<target>Êtes-vous sûr de vouloir faire cela ?</target>
+			</trans-unit>
+			<trans-unit id="373">
+				<source>profile_index.pmri.delete_modal.cancel_btn</source>
+				<target>Annuler</target>
+			</trans-unit>
+			<trans-unit id="374">
+				<source>profile_index.pmri.delete_modal.confirm_btn</source>
+				<target>Confirmer</target>
+			</trans-unit>
+			
+			<trans-unit id="375">
+				<source>profile_index.avatar.modal.text</source>
+				<target>Retrouvez ci-dessous les avatars qui sont à votre disposition. Choisissez celui qui vous plaît.</target>
+			</trans-unit>
+			<trans-unit id="376">
+				<source>profile_index.avatar.modal.save_button</source>
+				<target>Enregistrer</target>
+			</trans-unit>
+
+			<trans-unit id="377">
+				<source>profile_index.game_account.modal.title</source>
+				<target>Lier mes comptes MVNerds et League of Legends</target>
+			</trans-unit>
+			<trans-unit id="378">
+				<source>profile_index.game_account.modal.intro</source>
+				<target>
+					Liez dès maintenant votre compte MVNerds à votre compte League of Legends ! Vous aurez alors accès à vos ligues et vos statistiques
+					en parties classées sans avoir à vous connecter sur le jeu. De nouvelles possibilités sont également en préparation.
+				</target>
+			</trans-unit>
+			<trans-unit id="379">
+				<source>profile_index.game_account.modal.step1.title</source>
+				<target>Étape 1 : mon compte League of Legends</target>
+			</trans-unit>
+			<trans-unit id="380">
+				<source>profile_index.game_account.modal.step1.text</source>
+				<target>Renseignez tous les champs du formulaire ci-dessous pour que l'on puisse procéder à une vérification de l'existence de votre compte.</target>
+			</trans-unit>
+			<trans-unit id="381">
+				<source>profile_index.game_account.modal.step1.note</source>
+				<target>
+					Ne communiquez pas le nom de votre compte. Nous voulons votre nom d'invocateur, celui qui apparaît
+					à l'écran lorsque vous êtes en jeu.
+				</target>
+			</trans-unit>
+			<trans-unit id="382">
+				<source>profile_index.game_account.modal.step1.region_label</source>
+				<target>Région</target>
+			</trans-unit>
+			<trans-unit id="383">
+				<source>profile_index.game_account.modal.step1.euw_label</source>
+				<target>Europe Ouest (EUW)</target>
+			</trans-unit>
+			<trans-unit id="384">
+				<source>profile_index.game_account.modal.step1.eune_label</source>
+				<target>Europe Nord et Est (EUNE)</target>
+			</trans-unit>
+			<trans-unit id="385">
+				<source>profile_index.game_account.modal.step1.na_label</source>
+				<target>Amérique du Nord (NA)</target>
+			</trans-unit>
+			<trans-unit id="386">
+				<source>profile_index.game_account.modal.step1.br_label</source>
+				<target>Brésil (BR)</target>
+			</trans-unit>
+			<trans-unit id="387">
+				<source>profile_index.game_account.modal.step1.summoner_name_label</source>
+				<target>Nom d'invocateur</target>
+			</trans-unit>
+			<trans-unit id="388">
+				<source>profile_index.game_account.modal.step1.check_btn</source>
+				<target>Vérifier</target>
+			</trans-unit>
+			
+			<trans-unit id="389">
+				<source>profile_index.game_account.modal.step2.title</source>
+				<target>Étape 2 :  renommer une de vos pages de maîtrises</target>
+			</trans-unit>
+			<trans-unit id="390">
+				<source>profile_index.game_account.modal.step2.text.1</source>
+				<target>La liaison est quasiment établie ! Afin de nous assurer que vous êtes bien le titulaire du compte de jeu</target>
+			</trans-unit>
+			<trans-unit id="391">
+				<source>profile_index.game_account.modal.step2.text.2</source>
+				<target>connectez-vous sur le jeu League of Legends et renommez une de vos pages de maîtrises par le code de vérification suivant :</target>
+			</trans-unit>
+			<trans-unit id="392">
+				<source>profile_index.game_account.modal.step3.title</source>
+				<target>Étape 3 : confirmation du compte League of Legends</target>
+			</trans-unit>
+			<trans-unit id="393">
+				<source>profile_index.game_account.modal.step3.text</source>
+				<target>
+					Une fois la manipulation demandée à l'étape 2 accomplie, patientez quelques minutes le temps que votre modification se propage sur les serveurs. Cliquez
+					ensuite sur le bouton ci-dessous pour nous permettre de valider et de terminer cette procédure de liaison de compte.
+				</target>
+			</trans-unit>
+			<trans-unit id="394">
+				<source>profile_index.game_account.modal.step3.end_link_process_btn</source>
+				<target>Terminer la liaison</target>
+			</trans-unit>
+			<trans-unit id="395">
+				<source>profile_index.game_account.modal.step3.cancel_process_btn</source>
+				<target>Annuler la liaison</target>
+			</trans-unit>
+
+			<trans-unit id="396">
+				<source>profile_index.elophant.afk</source>
+				<target>Désolé, le service est temporairement indisponible.</target>
+			</trans-unit>
+			<trans-unit id="397">
+				<source>profile_index.game_account.error.invalid.summoner_name.%name%</source>
+				<target>Le couple nom d'invocation (%name%)/région que vous avez saisi est invalide.</target>
+			</trans-unit>
+			<trans-unit id="398">
+				<source>profile_index.game_account.error.name_already_linked.%name%</source>
+				<target>Le nom d'invocateur %name% est déjà lié à un compte MVNerds.</target>
+			</trans-unit>
+			<trans-unit id="399">
+				<source>profile_index.game_account.error.activation_code_not_found</source>
+				<target>Le code d'activation est introuvable, veuillez patienter quelques intants avant de réessayer.</target>
+			</trans-unit>
+
+			<trans-unit id="400">
+				<source>BRONZE_V</source>
+				<target>Bronze V</target>
+			</trans-unit>
+			<trans-unit id="401">
+				<source>BRONZE_IV</source>
+				<target>Bronze IV</target>
+			</trans-unit>
+			<trans-unit id="402">
+				<source>BRONZE_III</source>
+				<target>Bronze III</target>
+			</trans-unit>
+			<trans-unit id="403">
+				<source>BRONZE_II</source>
+				<target>Bronze II</target>
+			</trans-unit>
+			<trans-unit id="404">
+				<source>BRONZE_I</source>
+				<target>Bronze I</target>
+			</trans-unit>
+			<trans-unit id="405">
+				<source>SILVER_V</source>
+				<target>Argent V</target>
+			</trans-unit>
+			<trans-unit id="406">
+				<source>SILVER_IV</source>
+				<target>Argent IV</target>
+			</trans-unit>
+			<trans-unit id="407">
+				<source>SILVER_III</source>
+				<target>Argent III</target>
+			</trans-unit>
+			<trans-unit id="408">
+				<source>SILVER_II</source>
+				<target>Argent II</target>
+			</trans-unit>
+			<trans-unit id="409">
+				<source>SILVER_I</source>
+				<target>Argent I</target>
+			</trans-unit>
+			<trans-unit id="410">
+				<source>GOLD_V</source>
+				<target>Or V</target>
+			</trans-unit>
+			<trans-unit id="411">
+				<source>GOLD_IV</source>
+				<target>Or IV</target>
+			</trans-unit>
+			<trans-unit id="412">
+				<source>GOLD_III</source>
+				<target>Or III</target>
+			</trans-unit>
+			<trans-unit id="413">
+				<source>GOLD_II</source>
+				<target>Or II</target>
+			</trans-unit>
+			<trans-unit id="414">
+				<source>GOLD_I</source>
+				<target>Or I</target>
+			</trans-unit>
+			<trans-unit id="415">
+				<source>PLATINUM_V</source>
+				<target>Platine V</target>
+			</trans-unit>
+			<trans-unit id="416">
+				<source>PLATINUM_IV</source>
+				<target>Platine IV</target>
+			</trans-unit>
+			<trans-unit id="417">
+				<source>PLATINUM_III</source>
+				<target>Platine III</target>
+			</trans-unit>
+			<trans-unit id="418">
+				<source>PLATINUM_II</source>
+				<target>Platine II</target>
+			</trans-unit>
+			<trans-unit id="419">
+				<source>PLATINUM_I</source>
+				<target>Platine I</target>
+			</trans-unit>
+			<trans-unit id="420">
+				<source>DIAMOND_V</source>
+				<target>Diamant V</target>
+			</trans-unit>
+			<trans-unit id="421">
+				<source>DIAMOND_IV</source>
+				<target>Diamant IV</target>
+			</trans-unit>
+			<trans-unit id="422">
+				<source>DIAMOND_III</source>
+				<target>Diamant III</target>
+			</trans-unit>
+			<trans-unit id="423">
+				<source>DIAMOND_II</source>
+				<target>Diamant II</target>
+			</trans-unit>
+			<trans-unit id="424">
+				<source>DIAMOND_I</source>
+				<target>Diamant I</target>
+			</trans-unit>
+			<trans-unit id="425">
+				<source>CHALLENGER</source>
+				<target>Challenger</target>
+			</trans-unit>
+
+			<trans-unit id="430">
+				<source>profile_list.page_title</source>
+				<target>Les membres de la communauté</target>
+			</trans-unit>
+			<trans-unit id="431">
+				<source>profile_list.col.username</source>
+				<target>Nom d'utilisateur</target>
+			</trans-unit>
+			<trans-unit id="432">
+				<source>profile_list.col.game_account</source>
+				<target>Compte de jeu</target>
+			</trans-unit>
+			<trans-unit id="433">
+				<source>profile_list.filter.title</source>
+				<target>Options de filtrage</target>
+			</trans-unit>
+			<trans-unit id="434">
+				<source>profile_list.filter.sort_by</source>
+				<target>Trier par :</target>
+			</trans-unit>
+			<trans-unit id="435">
+				<source>profile_list.filter.search_by</source>
+				<target>Rechercher par :</target>
+			</trans-unit>
+			<trans-unit id="436">
+				<source>profile_list.filter.search_btn</source>
+				<target>Rechercher</target>
+			</trans-unit>
+			<trans-unit id="437">
+				<source>profile_list.summoner_name_label</source>
+				<target>Nom d'invocateur :</target>
+			</trans-unit>
+			<trans-unit id="438">
+				<source>profile_list.no_info</source>
+				<target>Non renseigné</target>
+			</trans-unit>
+			<trans-unit id="439">
+				<source>profile_list.member_since</source>
+				<target>Membre depuis le</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

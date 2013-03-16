@@ -1,8 +1,8 @@
-<h4>Étape 2 : renommer une de vos pages de maîtrises</h4>
+<h4>{{ 'profile_index.game_account.modal.step2.title'|trans }}</h4>
 
 <p>
-	La liaison est quasiment établie ! Afin de nous assurer que vous êtes bien le titulaire du compte de jeu <strong>{{ summoner_name }}</strong>,
-	connectez-vous sur le jeu League of Legends et renommé une de vos pages de maîtrises par le code de vérification suivant :
+	{{ 'profile_index.game_account.modal.step2.text.1'|trans }} <strong>{{ summoner_name }}</strong>,
+	{{ 'profile_index.game_account.modal.step2.text.2'|trans }}
 </p>
 
 <div class="activation-code-container">
@@ -10,11 +10,10 @@
 	{#<span class="copy-to-clipboard-btn btn small blue">Copier dans le presse-papier</span>#}
 </div>
 
-<h4>Étape 3 : confirmation du compte League of Legends</h4>
+<h4>{{ 'profile_index.game_account.modal.step3.title'|trans }}</h4>
 
 <p>
-	Une fois la manipulation demandée à l'étape 2 accomplie, patientez quelques minutes le temps que votre modification se propage sur les serveurs. Cliquez
-	ensuite sur le bouton ci-dessous pour nous permettre de valider et de terminer cette procédure de liaison de compte.
+	{{ 'profile_index.game_account.modal.step3.text'|trans }}
 </p>
 
 <div class="end-of-process-action">
@@ -22,7 +21,7 @@
 	
 	<p>
 		<i class="icon-spin icon-spinner loader hide"></i> 
-		<a href="#" class="btn large green link-account-last-check">Terminer la liaison</a>
-		<a href="#" class="btn no-color small cancel-link-account-process-btn">Annuler la liaison</a>
+		<a href="#" class="btn large green link-account-last-check">{{ 'profile_index.game_account.modal.step3.end_link_process_btn'|trans }}</a>
+		<a href="#" class="btn no-color small cancel-link-account-process-btn">{{ 'profile_index.game_account.modal.step3.cancel_process_btn'|trans }}</a>
 	</p>
 </div>
