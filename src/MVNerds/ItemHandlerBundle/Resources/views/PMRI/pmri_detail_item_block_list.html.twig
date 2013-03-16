@@ -1,5 +1,5 @@
 <div class="item-block-container">
-	<h2>Les blocs d'objets</h2>
+	<h2>{{ 'pmri_detail.items_blocks.title'|trans }}</h2>
 	{% for item_block in item_build.getItemBuildBlocks() %}
 		{% if loop.index0 % 2 == 0 %}
 			<div class="row-fluid">

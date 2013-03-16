@@ -36,13 +36,13 @@ $(function() {
 
 	// Ajustement de la font-size en fonction de la longueur des blocs
 	$('.resize-required').each(function() {
-		resizeTextUntilCustomSize($(this), 95, 18);
+		resizeTextUntilCustomSize($(this), 88, 18);
 	});
 });
 
 function resizeTextUntilCustomSize(jQueryObject, maxWidth, fontOriginalSize)
 {
-	for (fontOriginalSize--; jQueryObject.width() > maxWidth; fontOriginalSize--) {
+	for (fontOriginalSize--; jQueryObject.width() >= maxWidth; fontOriginalSize--) {
 		jQueryObject.css('font-size', fontOriginalSize);
 	}
 }
