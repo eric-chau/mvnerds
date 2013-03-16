@@ -80,6 +80,31 @@
 				<source>champion_benckmark.index.preview.add_to_list_btn</source>
 				<target>Ajouter à la liste</target>
 			</trans-unit>
+			
+			<trans-unit id="300">
+				<source>champion_detail.statistics.title</source>
+				<target>Caractéristiques</target>
+			</trans-unit>
+			<trans-unit id="301">
+				<source>champion_detail.statistics.indication.%name%</source>
+				<target>Les valeurs des caractéristiques entre parenthèse et en rouge correspondent à celles de %name% au niveau 18.</target>
+			</trans-unit>
+			<trans-unit id="302">
+				<source>champion_detail.lore.title</source>
+				<target>Histoire</target>
+			</trans-unit>
+			<trans-unit id="303">
+				<source>champion_detail.pmri.no_list_found.1</source>
+				<target>Désolé, aucune liste d'objets recommandés n'a été trouvé pour </target>
+			</trans-unit>
+			<trans-unit id="304">
+				<source>champion_detail.pmri.no_list_found.2</source>
+				<target>Souhaitez-vous remédier à son chagrin ?</target>
+			</trans-unit>
+			<trans-unit id="305">
+				<source>champion_detail.pmri.see_more_list_btn</source>
+				<target>Voir plus de listes d'objets recommandées pour</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

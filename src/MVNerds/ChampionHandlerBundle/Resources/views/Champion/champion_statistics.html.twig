@@ -1,5 +1,5 @@
 <div class="statistics-container">
-	<h2>Caractéristiques</h2>
+	<h2>{{ 'champion_detail.statistics.title'|trans }}</h2>
 
 	<dl>
 		<dt>{{'Champion_preview.stat.health'|trans}}</dt>
@@ -131,5 +131,5 @@
 		</dd>
 	</dl>
 
-	<p class="note"><i class="icon-info-sign"></i> Les valeurs des caractéristiques entre parethèse et en rouge correspondent à celles de {{ champion.getName() }} au niveau 18.</p>
+	<p class="note"><i class="icon-info-sign"></i> {{ 'champion_detail.statistics.indication.%name%'|trans({'%name%': champion.getName()}) }}</p>
 </div>

@@ -80,6 +80,32 @@
 				<source>champion_benckmark.index.preview.add_to_list_btn</source>
 				<target>Add to list</target>
 			</trans-unit>
+
+			<trans-unit id="300">
+				<source>champion_detail.statistics.title</source>
+				<target>Statistics</target>
+			</trans-unit>
+			<trans-unit id="301">
+				<source>champion_detail.statistics.indication.%name%</source>
+				<target>Statistics ​​in brackets and red correspond to those %name% at level 18.</target>
+			</trans-unit>
+			<trans-unit id="302">
+				<source>champion_detail.lore.title</source>
+				<target>Lore</target>
+			</trans-unit>
+			<trans-unit id="303">
+				<source>champion_detail.pmri.no_list_found.1</source>
+				<target>Sorry, no recommended items list was found for </target>
+			</trans-unit>
+			<trans-unit id="304">
+				<source>champion_detail.pmri.no_list_found.2</source>
+				<target>Would you like to create?</target>
+			</trans-unit>
+			<trans-unit id="305">
+				<source>champion_detail.pmri.see_more_list_btn</source>
+				<target>See more recommended items list for</target>
+			</trans-unit>
+			
 		</body>
 	</file>
 </xliff>

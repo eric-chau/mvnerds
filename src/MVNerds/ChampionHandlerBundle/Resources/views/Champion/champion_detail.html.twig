@@ -80,7 +80,7 @@
 				{% include 'MVNerdsChampionHandlerBundle:Champion:champion_statistics.html.twig' with {'champion': champion} %}
 				
 				<div class="lore-container">
-					<h2>Histoire</h2>
+					<h2>{{ 'champion_detail.lore.title'|trans }}</h2>
 					
 					<p>{{ champion.getLore()|nl2br }}</p>
 					<a href="#" class="read-more"><i class="icon-double-angle-down"></i></a>
