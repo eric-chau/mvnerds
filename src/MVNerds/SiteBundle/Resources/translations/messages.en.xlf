@@ -145,7 +145,7 @@
 			<trans-unit id="308">
 				<source>Sidebar.video.description</source>
 				<target>
-					Try our whole new module "LoLVideoCenter" ! This module will allow you to watch a bunch of League of Legends related videos.
+					Try our whole new module "LoLVideoCenter"! This module will allow you to watch a bunch of League of Legends related videos.
 					As a MVNerds member you have the possibility to publish as many videos as you want, they can be funny, usefull, or any other video related to LoL.
 				</target>
 			</trans-unit>

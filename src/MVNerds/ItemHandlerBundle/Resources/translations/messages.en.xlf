@@ -600,6 +600,10 @@
 				<source>pmri_detail.about.last_update</source>
 				<target>Last update</target>
 			</trans-unit>
+			<trans-unit id="5099">
+				<source>pmri_detail.items_blocks.title</source>
+				<target>Items blocks</target>
+			</trans-unit>
 
 			<trans-unit id="5108">
 				<source>pmri_index.how_it_work.text.1</source>
