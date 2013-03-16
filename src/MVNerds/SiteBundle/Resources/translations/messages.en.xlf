@@ -372,7 +372,7 @@
 			<!-- SIDEBAR POURQUOI CREER UN COMPTE MVNERDS-->
 			<trans-unit id="800">
 				<source>why-create-an-account.title</source>
-				<target>Why create an MVNerds account ?&lt;strong&gt;HAHAHAHA&lt;/strong&gt;</target>
+				<target>Why create an MVNerds account</target>
 			</trans-unit>
 			<trans-unit id="801">
 				<source>why-create-an-account.p1</source>
