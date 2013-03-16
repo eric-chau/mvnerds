@@ -1,6 +1,6 @@
 {% extends 'MVNerdsSiteBundle::layout.html.twig' %}
 
-{% block title %}Erreur lors de l'activation de votre compte | MVNerds{% endblock %}
+{% block title %}{{'account_activation_fail.title' | trans}}{% endblock %}
 
 {% block topbar %}
 	{% set module = 'registration' %}
@@ -11,7 +11,7 @@
 {% block breadcrumbs %}
 	{{ parent() }}
 	
-	> Erreur lors de l'activation de votre compte
+	> {{'account_activation_fail.breadcrumbs' | trans}}
 {% endblock %}
 
 {% block main_content %}

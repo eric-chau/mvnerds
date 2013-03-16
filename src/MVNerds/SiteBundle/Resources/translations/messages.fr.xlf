@@ -296,6 +296,92 @@
 				<source>why-create-an-account.li5</source>
 				<target>Et bien d'autres choses !</target>
 			</trans-unit>
+
+			<!-- RESET PASSWORD -->
+			<trans-unit id="900">
+				<source>ResetPassword.breadcrumbs</source>
+				<target>Changement du mot de passe</target>
+			</trans-unit>
+			<trans-unit id="901">
+				<source>ResetPassword.title</source>
+				<target>Changement du mot de passe</target>
+			</trans-unit>
+			<trans-unit id="902">
+				<source>ResetPassword.h1</source>
+				<target>Changement du mot de passe</target>
+			</trans-unit>
+			<trans-unit id="903">
+				<source>ResetPassword.p1</source>
+				<target>
+					, votre demande de réinitialisation a bien été prise en compte. Nous vous invitons dès maintenant
+					à choisir un nouveau mot de passe (ce dernier doit comporter au minimum 6 caractères).
+				</target>
+			</trans-unit>
+			<trans-unit id="904">
+				<source>ResetPassword.send</source>
+				<target>Envoyer</target>
+			</trans-unit>
+			<trans-unit id="905">
+				<source>ResetPassword.fail.breadcrumbs</source>
+				<target>Échec de la réinitialisation de mot de passe</target>
+			</trans-unit>
+			<trans-unit id="906">
+				<source>ResetPassword.fail.title</source>
+				<target>Échec de la réinitialisation de mot de passe</target>
+			</trans-unit>
+			<trans-unit id="907">
+				<source>ResetPassword.fail.h1</source>
+				<target>L'opération de changement de mot de passe a échoué</target>
+			</trans-unit>
+			<trans-unit id="908">
+				<source>ResetPassword.fail.p1</source>
+				<target>
+					Vous avez tenter de changer le mot de passe du compte d'invocateur &lt;strong&gt;%slug%&lt;/strong&gt; avec le code d'activation &lt;strong&gt;%activation_code%&lt;/strong&gt;.
+					L'opération a échoué, le nom du compte et / ou le code activation ne sont pas corrects.
+				</target>
+			</trans-unit>
+			<trans-unit id="909">
+				<source>ResetPassword.fail.p2</source>
+				<target>
+					Pour une question de pratique, nous vous invitons à suivre le lien qui vous ait parvenu par email à l'adresse que vous avez renseigné. Si le problème
+					persiste, n'hésitez pas à nous faire parvenir un email détaillant les manipulations que vous avez effectué, merci.
+				</target>
+			</trans-unit>
+			<trans-unit id="910">
+				<source>ResetPassword.fail.p3</source>
+				<target>
+					Invocateur %username%, votre compte n'est pas encore activé. Vous avez normalement reçu un email à l'adresse %email%
+					vous invitant à activer votre compte en cliquant sur un lien.
+				</target>
+			</trans-unit>
+			<trans-unit id="911">
+				<source>ResetPassword.fail.p4</source>
+				<target>— L'équipe MVNerds</target>
+			</trans-unit>
+			<trans-unit id="912">
+				<source>ResetPassword.success.breadcrumbs</source>
+				<target>Réinitialisation de mot de passe terminée</target>
+			</trans-unit>
+			<trans-unit id="913">
+				<source>ResetPassword.success.title</source>
+				<target>Réinitialisation de mot de passe terminée</target>
+			</trans-unit>
+			<trans-unit id="914">
+				<source>ResetPassword.success.h1</source>
+				<target>Réinitialisation de mot de passe terminée</target>
+			</trans-unit>
+			<trans-unit id="915">
+				<source>ResetPassword.success.p1</source>
+				<target>
+					Invocateur %username%, vous pouvez maintenant vous connecter à votre compte MVNerds avec votre nouveau mot de passe.
+				</target>
+			</trans-unit>
+			<trans-unit id="916">
+				<source>ResetPassword.success.what-next</source>
+				<target>
+					Que voulez-vous faire ?
+				</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

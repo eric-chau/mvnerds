@@ -679,6 +679,22 @@
 				<source>account_activation_fail.p4</source>
 				<target>— L'équipe MVNerds</target>
 			</trans-unit>
+			<trans-unit id="20210">
+				<source>account_activation_fail.title</source>
+				<target>Le compte</target>
+			</trans-unit>
+			<trans-unit id="20211">
+				<source>account_activation_fail.breadcrumbs</source>
+				<target>Erreur lors de l'activation de votre compte</target>
+			</trans-unit>
+			<trans-unit id="20212">
+				<source>account_activation.title</source>
+				<target>Le compte %username%, est activé | MVNerds</target>
+			</trans-unit>
+			<trans-unit id="20213">
+				<source>account_activation.breadcrumbs</source>
+				<target>Votre compte %username%, est activé.</target>
+			</trans-unit>
 
 
 			<trans-unit id="21000">

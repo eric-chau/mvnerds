@@ -1,6 +1,6 @@
 {% extends 'MVNerdsSiteBundle::layout.html.twig' %}
 
-{% block title %}Le compte {{ user.getUsername() }} est activé | MVNerds{% endblock %}
+{% block title %}{{'account_activation.p1'|trans({'%username%':user.getUsername()})}}{% endblock %}
 
 {% block topbar %}
 	{% set module = 'registration' %}
@@ -11,7 +11,7 @@
 {% block breadcrumbs %}
 	{{ parent() }}
 	
-	> Votre compte {{ user.getUsername() }} est activé
+	> {{'account_activation.p1'|trans({'%username%':user.getUsername()})}}
 {% endblock %}
 
 {% block main_content %}

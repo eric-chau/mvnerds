@@ -145,7 +145,7 @@
 			<trans-unit id="308">
 				<source>Sidebar.video.description</source>
 				<target>
-					Try our whole new module "LoLVideoCenter" ! This module will allow you to watch a bunch of League of Legends related videos.
+					Try our whole new module "LoLVideoCenter"! This module will allow you to watch a bunch of League of Legends related videos.
 					As a MVNerds member you have the possibility to publish as many videos as you want, they can be funny, usefull, or any other video related to LoL.
 				</target>
 			</trans-unit>
@@ -268,7 +268,7 @@
 			<!-- SIDEBAR POURQUOI CREER UN COMPTE MVNERDS-->
 			<trans-unit id="800">
 				<source>why-create-an-account.title</source>
-				<target>Why create an MVNerds account ?</target>
+				<target>Why create an MVNerds account ?&lt;strong&gt;HAHAHAHA&lt;/strong&gt;</target>
 			</trans-unit>
 			<trans-unit id="801">
 				<source>why-create-an-account.p1</source>
@@ -292,7 +292,92 @@
 			</trans-unit>
 			<trans-unit id="806">
 				<source>why-create-an-account.li5</source>
-				<target>And many other things !</target>
+				<target>And many other things!</target>
+			</trans-unit>
+
+			<!-- RESET PASSWORD -->
+			<trans-unit id="900">
+				<source>ResetPassword.breadcrumbs</source>
+				<target>Reset password</target>
+			</trans-unit>
+			<trans-unit id="901">
+				<source>ResetPassword.title</source>
+				<target>Reset password</target>
+			</trans-unit>
+			<trans-unit id="902">
+				<source>ResetPassword.h1</source>
+				<target>Change password</target>
+			</trans-unit>
+			<trans-unit id="903">
+				<source>ResetPassword.p1</source>
+				<target>
+					, your request has been recieved We invite you to choose a new password (it must contains at least 6 characters).
+				</target>
+			</trans-unit>
+			<trans-unit id="904">
+				<source>ResetPassword.send</source>
+				<target>Send</target>
+			</trans-unit>
+			<trans-unit id="905">
+				<source>ResetPassword.fail.breadcrumbs</source>
+				<target>Reset password operation failed</target>
+			</trans-unit>
+			<trans-unit id="906">
+				<source>ResetPassword.fail.title</source>
+				<target>Reset password operation failed</target>
+			</trans-unit>
+			<trans-unit id="907">
+				<source>ResetPassword.fail.h1</source>
+				<target>Reset password operation failed</target>
+			</trans-unit>
+			<trans-unit id="908">
+				<source>ResetPassword.fail.p1</source>
+				<target>
+					You tried to change the password of the summoner &lt;strong&gt;%slug%&lt;/strong&gt; with the activation code &lt;strong&gt;%activation_code%&lt;/strong&gt;.
+					The operation has failed, the account name and / or the activation code is/are wrong.
+				</target>
+			</trans-unit>
+			<trans-unit id="909">
+				<source>ResetPassword.fail.p2</source>
+				<target>
+					We invite to follow the link provided in the e-mail sent at the address you gave during your registration. If the problem persists, contact us 
+					and explain the manipulations you made.
+				</target>
+			</trans-unit>
+			<trans-unit id="910">
+				<source>ResetPassword.fail.p3</source>
+				<target>
+					Summoner %username%, your account is not activated yet. You must have recieved an e-mail at this address %email%
+					inviting you to active your account by clicking on a link.
+				</target>
+			</trans-unit>
+			<trans-unit id="911">
+				<source>ResetPassword.fail.p4</source>
+				<target>— The MVNerds Team</target>
+			</trans-unit>
+			<trans-unit id="912">
+				<source>ResetPassword.success.breadcrumbs</source>
+				<target>Password reseted</target>
+			</trans-unit>
+			<trans-unit id="913">
+				<source>ResetPassword.success.title</source>
+				<target>Password reseted</target>
+			</trans-unit>
+			<trans-unit id="914">
+				<source>ResetPassword.success.h1</source>
+				<target>Password reseted</target>
+			</trans-unit>
+			<trans-unit id="915">
+				<source>ResetPassword.success.p1</source>
+				<target>
+					Summoner %username%, you can now login to your MVNerds account with your new password.
+				</target>
+			</trans-unit>
+			<trans-unit id="916">
+				<source>ResetPassword.success.what-next</source>
+				<target>
+					What next?
+				</target>
 			</trans-unit>
 		</body>
 	</file>

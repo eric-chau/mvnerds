@@ -16,7 +16,7 @@
 			</trans-unit>
 			<trans-unit id="4">
 				<source>Comments.no_reactions</source>
-				<target>No reaction has been left yet. Be the first !</target>
+				<target>No reaction has been left yet. Be the first!</target>
 			</trans-unit>
 			<trans-unit id="5">
 				<source>Comments.signal</source>
