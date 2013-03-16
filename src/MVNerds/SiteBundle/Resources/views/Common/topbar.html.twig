@@ -17,7 +17,7 @@
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#"><strong>Plus</strong></a>
 				<ul class="dropdown-menu">
 					<li>
-						<div class="menu-header">Menu de navigation</div>
+						<div class="menu-header">{{ 'Topbar.dropdown.title'|trans }}</div>
 						<div class="row-fluid menu-detail">
 							<div class="span4">
 								<ul>
@@ -62,10 +62,10 @@
 					<img src="{{ asset('medias/images/avatar/' ~ app.user.getUserAvatarName() ~ '.jpg') }}" /> 
 					<a href="{{ path('summoner_profile_index') }}" class="username">{{ app.user.getUsername() }}</a> 
 					
-					<a href="{{ path('security_summoner_logout') }}" class="signout">Déconnexion</a>
+					<a href="{{ path('security_summoner_logout') }}" class="signout">{{ 'Topbar.logout_btn'|trans }}</a>
 				{% else %}
-					<a href="{{ path('security_summoner_login', {'_locale': locale}) }}">se connecter</a> ou 
-					<a href="{{ path('site_summoner_registration') }}">s'enregistrer</a>
+					<a href="{{ path('security_summoner_login', {'_locale': locale}) }}">{{ 'Topbar.login_btn'|trans }}</a> {{ 'Topbar.or'|trans }} 
+					<a href="{{ path('site_summoner_registration') }}">{{ 'Topbar.register_btn'|trans }}</a>
 				{% endif %}
 			</li>
 		</ul>

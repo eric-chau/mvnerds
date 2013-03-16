@@ -74,6 +74,47 @@
 				<source>Comments.reply_by</source>
 				<target>a répondu </target>
 			</trans-unit>
+
+			<trans-unit id="20">
+				<source>Comments.log_in</source>
+				<target>Connectez-vous</target>
+			</trans-unit>
+			<trans-unit id="21">
+				<source>Comments.or</source>
+				<target>ou</target>
+			</trans-unit>
+			<trans-unit id="22">
+				<source>Comments.register</source>
+				<target>enregistrez-vous</target>
+			</trans-unit>
+			<trans-unit id="23">
+				<source>Comments.log_in_register_text</source>
+				<target>pour publier un commentaire.</target>
+			</trans-unit>
+			<trans-unit id="24">
+				<source>Comments.cancel</source>
+				<target>Annuler</target>
+			</trans-unit>
+			<trans-unit id="25">
+				<source>Comments.read_more_comments</source>
+				<target>Lire plus de commentaires</target>
+			</trans-unit>
+			<trans-unit id="26">
+				<source>Comments.reply_btn</source>
+				<target>Répondre</target>
+			</trans-unit>
+			<trans-unit id="27">
+				<source>Comments.save_btn</source>
+				<target>Enregistrer</target>
+			</trans-unit>
+			<trans-unit id="28">
+				<source>Comments.edit_comment_btn</source>
+				<target>Éditer ce commentaire</target>
+			</trans-unit>
+			<trans-unit id="29">
+				<source>Comments.edit_response_btn</source>
+				<target>Éditer cette réponse</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

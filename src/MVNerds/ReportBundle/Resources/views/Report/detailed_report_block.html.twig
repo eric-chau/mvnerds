@@ -6,13 +6,13 @@
 	{% else %}
 		{% if app.user == null %}
 			<strong>
-				<a href="{{ path('security_store_current_route_and_redirect_to_login') }}"{% if app.request.getLocale() == 'fr' %} style="font-size: 12px"{% endif %}>Se connecter</a>
+				<a href="{{ path('security_store_current_route_and_redirect_to_login') }}"{% if app.request.getLocale() == 'fr' %} style="font-size: 12px"{% endif %}>{{ 'Report.detailed.login'|trans }}</a>
 			</strong>
 		{% else %}
-			<strong{% if app.request.getLocale() == 'fr' %} style="font-size: 13px"{% endif %}>Déjà Signalé</strong>
+			<strong{% if app.request.getLocale() == 'fr' %} style="font-size: 13px"{% endif %}>{{ 'Report.detailed.already_reported'|trans }}</strong>
 		{% endif %}
 	{% endif %}
-	<br /> Signaler pour abus
+	<br /> {{ 'Report.detailed.action_btn'|trans }}
 </div>
 
 {% if can_report %}

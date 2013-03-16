@@ -28,7 +28,7 @@
 		{% if is_granted('IS_AUTHENTICATED_REMEMBERED') and comment.getUser().getId() == app.user.getId() %}
 			<div class="comment-edition-mode hide">
 				<textarea>{{ comment.getContent() }}</textarea>
-				<i class="icon-spinner icon-spin loader hide"></i> <a href="#" class="cancel-comment-edition btn no-color small">Annuler</a> <a href="#" class="save-comment-edition btn small green disabled">Enregistrer</a>
+				<i class="icon-spinner icon-spin loader hide"></i> <a href="#" class="cancel-comment-edition btn no-color small">{{ 'Comments.cancel'|trans }}</a> <a href="#" class="save-comment-edition btn small green disabled">{{ 'Comments.save_btn'|trans }}</a>
 			</div>
 		{% endif %}
 		
@@ -41,13 +41,13 @@
 				</div>
 				
 				{% if show_comment %}
-					<a href="#" class="reply-action" data-username="{{ comment.getUser().getUsername() }}"><strong>Répondre</strong></a> · 
+					<a href="#" class="reply-action" data-username="{{ comment.getUser().getUsername() }}"><strong>{{ 'Comments.reply_btn'|trans }}</strong></a> · 
 				{% endif %}
 				<div class="more-actions-container">
 					<a href="#" class="more-actions dropdown-toggle" data-toggle="dropdown"><i class="icon-cogs"></i></a>
 					<ul class="dropdown-menu comment" data-comment-id="{{ crypted_id }}">
 						{% if comment.getUser().getId() == app.user.getId() %}
-							<li><a href="#" class="edit-comment-action">Éditer ce commentaire</a></li>
+							<li><a href="#" class="edit-comment-action">{{ 'Comments.edit_comment_btn'|trans }}</a></li>
 						{% endif %}
 						<li>
 							{% render(controller('MVNerdsReportBundle:Report:renderReportBlock', {'object': comment, 'objectType': 'comment', 'isDetailed': false, 'hasSlug': false})) %}

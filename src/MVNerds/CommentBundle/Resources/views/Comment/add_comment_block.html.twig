@@ -15,14 +15,14 @@
 		<div class="span10">
 			{% if is_anonymous %}
 				<div class="anonymous-user-comment-field">
-					<a href="{{ path('security_store_current_route_and_redirect_to_login') }}">Connectez-vous</a> ou <a href="{{ path('site_summoner_registration') }}">enregistrez-vous</a> pour publier un commentaire !
+					<a href="{{ path('security_store_current_route_and_redirect_to_login') }}">{{ 'Comments.log_in'|trans }}</a> {{ 'Comments.or'|trans }} <a href="{{ path('site_summoner_registration') }}">{{ 'Comments.register'|trans }}</a> {{ 'Comments.log_in_register_text'|trans }}
 				</div>
 			{% else %}
 				<textarea placeholder="{{'Comments.write_comment'|trans}}" class="comment-msg"></textarea>
 			{% endif %}
 			<div class="comment-actions">
 				<i class="icon-spinner icon-spin loader hide"></i> 
-				<a href="#" class="btn small no-color hide btn-cancel-reply-mode">Annuler</a> 
+				<a href="#" class="btn small no-color hide btn-cancel-reply-mode">{{ 'Comments.cancel'|trans }}</a> 
 				<a href="#" class="btn green small btn-send-comment disabled">{{'Comments.comment'|trans}}</a>
 			</div>
 		</div>

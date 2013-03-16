@@ -570,6 +570,41 @@
 				<source>items_filter_type.other</source>
 				<target>Autre</target>
 			</trans-unit>
+			
+			<trans-unit id="5100">
+				<source>pmri_detail.title.list</source>
+				<target>Liste</target>
+			</trans-unit>
+			<trans-unit id="5101">
+				<source>pmri_detail.desc_and_map_title</source>
+				<target>Carte et description</target>
+			</trans-unit>
+			<trans-unit id="5102">
+				<source>pmri_detail.no_description</source>
+				<target>n'a pas fourni de description.</target>
+			</trans-unit>
+			<trans-unit id="5103">
+				<source>pmri_detail.about.game_account_block.no_link</source>
+				<target>n'a pas encore renseigné son compte League of Legends.</target>
+			</trans-unit>
+			<trans-unit id="5104">
+				<source>pmri_detail.about.game_account_block.no_link.admin</source>
+				<target>Vous n'avez pas encore renseigné votre compte League of Legends.</target>
+			</trans-unit>
+			<trans-unit id="5105">
+				<source>pmri_detail.about.game_account_block.want_to_link.admin</source>
+				<target>Souhaitez-vous le faire maintenant ?</target>
+			</trans-unit>
+			<trans-unit id="5106">
+				<source>pmri_detail.about.status</source>
+				<target>Statut</target>
+			</trans-unit>
+			<trans-unit id="5107">
+				<source>pmri_detail.about.last_update</source>
+				<target>mise à jour</target>
+			</trans-unit>
+
+			
 		</body>
 	</file>
 </xliff>

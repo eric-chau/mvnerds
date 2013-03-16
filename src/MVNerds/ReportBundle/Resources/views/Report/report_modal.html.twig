@@ -1,11 +1,11 @@
 <div id="report-modal" class="modal hide fade">
 	<div class="modal-header">
 		<i class="icon-remove" data-dismiss="modal"></i>
-		<h3><i class="icon-warning-sign"></i> Signaler cette vidéo</h3>
+		<h3><i class="icon-warning-sign"></i> {{ 'Report.detailed.modal.report_this_video'|trans }}</h3>
 	</div>
 	<div class="modal-body">
 		<p>
-			Vous êtes sur le point de signaler cette vidéo comme un contenu abusif. Choisissez un motif :
+			{{ 'Report.detailed.modal.intro'|trans }}
 		</p>
 		
 		<form class="report-form" action="#">
@@ -20,6 +20,6 @@
 	<div class="modal-footer">
 		<i class="icon-spinner icon-spin loader hide"></i>
 		<a href="#" data-dismiss="modal" class="btn">{{'create_item_build.modal_dl_build.btn.cancel'|trans}}</a>
-		<a href="#" class="btn red report-form-action" data-type="{{ object_type }}" data-slug="{{ object_slug }}">Signaler</a>
+		<a href="#" class="btn red report-form-action" data-type="{{ object_type }}" data-slug="{{ object_slug }}">{{ 'Report.detailed.modal.report_btn'|trans }}</a>
 	</div>
 </div>

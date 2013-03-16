@@ -102,6 +102,15 @@
 				<source>PRO_TEAM</source>
 				<target>Pro Team</target>
 			</trans-unit>
+
+			<trans-unit id="2100">
+				<source>news_detail_page.read_more</source>
+				<target>to read also</target>
+			</trans-unit>
+			<trans-unit id="2101">
+				<source>news_detail_page.no_news</source>
+				<target>No news found</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

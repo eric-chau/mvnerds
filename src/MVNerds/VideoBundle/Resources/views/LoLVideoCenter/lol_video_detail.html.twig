@@ -116,7 +116,7 @@
 					
 				<div class="block">
 					<div class="header">
-						<h3>À propos</h3>
+						<h3>{{ 'generic_detail_page.about.title'|trans }}</h3>
 					</div>
 					<div class="body">
 						<div class="block-media">
@@ -127,27 +127,27 @@
 						
 						<div class="stats">
 							<i class="icon-user"></i> 
-							<strong><a href="{{ path('summoner_profile_view', {'slug': video.getUser().getSlug()}) }}" title="Consulter le profil de {{ video.getUser().getUsername }}" class="resize-required">{{video.getUser().getUserName()}}</a></strong><br /> auteur
+							<strong><a href="{{ path('summoner_profile_view', {'slug': video.getUser().getSlug()}) }}" title="Consulter le profil de {{ video.getUser().getUsername }}" class="resize-required">{{video.getUser().getUserName()}}</a></strong><br /> {{ 'generic_detail_page.about.author'|trans }}
 						</div>
 						
 						<div class="stats odd">
 							<i class="icon-time"></i> 
-							<strong>{{ video.getCreateTime('d/m/Y') }}</strong><br /> date de création
+							<strong>{{ video.getCreateTime('d/m/Y') }}</strong><br /> {{ 'generic_detail_page.about.publish_date'|trans }}
 						</div>
 						
 						<div class="stats">
 							<i class="icon-folder-open-alt"></i> 
-							<strong class="resize-required">{{ video.getVideoCategory().getUniqueName()|trans }}</strong><br /> catégorie
+							<strong class="resize-required">{{ video.getVideoCategory().getUniqueName()|trans }}</strong><br /> {{ 'generic_detail_page.about.category'|trans }}
 						</div>
 						
 						<div class="stats odd">
 							<i class="icon-eye-open"></i> 
-							<strong>{{ video.getView() }}</strong><br /> vues
+							<strong>{{ video.getView() }}</strong><br /> {{ 'generic_detail_page.about.views'|trans }}
 						</div>
 						
 						<div class="stats">
 							<i class="icon-comments-alt"></i> 
-							<strong>{{ video.getCommentCount() }}</strong><br /> commentaires
+							<strong>{{ video.getCommentCount() }}</strong><br /> {{ 'generic_detail_page.about.comments'|trans }}
 						</div>
 						
 						{{ render(controller('MVNerdsReportBundle:Report:renderReportBlock', {'object': video, 'objectType': 'video', 'isDetailed': true})) }}
@@ -155,7 +155,7 @@
 						<div class="clearfix"></div>
 					</div>
 					<div class="footer">
-						<a href="#">Aller sur le profil de l'auteur</a>
+						<a href="{{ path('summoner_profile_view', {'slug': video.getUser().getSlug()}) }}">{{ 'generic_detail_page.about.go_to_author_profile'|trans }}</a>
 					</div>
 				</div>
 					
