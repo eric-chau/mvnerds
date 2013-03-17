@@ -29,13 +29,13 @@ class MailingController extends Controller
 			if ($subject && strlen($subject) > 5) {
 				if ($message && strlen($message) > 10) {
 					
-					//$mails = $this->get('mvnerds.user_manager')->getActiveUsersMail()->toArray();
+					$mails = $this->get('mvnerds.user_manager')->getActiveUsersMail()->toArray();
 					
 					$message = \Swift_Message::newInstance()
 						->setContentType("text/html")
 						->setSubject($subject)
 						->setFrom('noreply@mvnerds.com', 'MVNerds')
-						->setBcc(array('hani.yagoub@gmail.com', 'eriic.chau@gmail.com'))
+						->setBcc($mails)
 						->setBody($this->renderView('MVNerdsAdminBundle:Mailing:mailing.html.twig', array(
 							'message'	=> $message,
 					)));
