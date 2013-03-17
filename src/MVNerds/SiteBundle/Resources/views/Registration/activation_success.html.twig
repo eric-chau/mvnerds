@@ -11,7 +11,7 @@
 {% block breadcrumbs %}
 	{{ parent() }}
 	
-	> {{'account_activation.p1'|trans({'%username%':user.getUsername()})}}
+	> {{'account_activation.breadcrumbs'|trans({'%username%':user.getUsername()})}}
 {% endblock %}
 
 {% block main_content %}
