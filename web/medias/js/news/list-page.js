@@ -116,5 +116,5 @@ $(document).ready(function() {
 	//CHAMP DE RECHERCHE
 	$('#item-builds-table_filter label').addClass('search-box');
 	
-	orderCategories($('#category-filter-input option'));
+	orderCategories($('#category-filter-input'));
 });

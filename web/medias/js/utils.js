@@ -106,7 +106,9 @@ jQuery.nl2br = function(varTest){
 
 //Permet d'organiser les catégories d'un select dans l'ordre alphabétique
 function orderCategories($target) {
-	$target.parent().html($target.sort( function(a, b) {
-		return $(a).html().toLowerCase() > $(b).html().toLowerCase() ? 1 : -1
-	}));
+	$target.each(function() {
+		$(this).html($(this).find('option').sort( function(a, b) {
+			return $(a).html().toLowerCase() > $(b).html().toLowerCase() ? 1 : -1
+		}))
+	});
 }

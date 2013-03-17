@@ -145,7 +145,7 @@ $(document).ready(function() {
 		saveItemInLS('display_how_it_works_videos', $label.hasClass('disabled'));
 	});
 	
-	orderCategories($('#category-filter-input option'));
+	orderCategories($('#category-filter-input'));
 
 	// Vérifie si c'est la première fois ou non que l'utilisateur accède au module PMRI
 	var howItWorksValue = getItemFromLS('display_how_it_works_lol_video_center');

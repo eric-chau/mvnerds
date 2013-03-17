@@ -16,7 +16,7 @@ function isVideoValid() {
 
 //Permet de vérifier si le lien passé en paramètres est valide (youtube ou dailymotion)
 function isVideoLinkValid(link) {
-	var patt=/(youtube\.com\/watch\?.*v=)/;
+	var patt=/(youtube\.com\/.*v=)/;
 	if (	patt.test(link) || 
 		link.indexOf('youtube.com/v/', 0) >= 0 || 
 		link.indexOf('youtu.be/', 0) >= 0 ||
@@ -110,5 +110,5 @@ $(document).ready(function() {
 		return false;
 	});
 	
-	orderCategories($('.video-publish-category option'));
+	orderCategories($('.video-publish-category'));
 });

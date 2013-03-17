@@ -96,7 +96,7 @@ class VideoManager
 		$formatedLink = false;
 		
 		// On vérifie si la vidéo provient de youtube
-		if (preg_match('/(youtube\.com\/watch\?.*v=)/', $escapedLink) !== false || strpos($escapedLink, 'youtu.be/') !== false || strpos($escapedLink, 'youtube.com/v/') !== false) { 
+		if (preg_match('/(youtube\.com\/.*v=)/', $escapedLink) !== false || strpos($escapedLink, 'youtu.be/') !== false || strpos($escapedLink, 'youtube.com/v/') !== false) { 
 			$embed = 'http://www.youtube.com/v/';
 			
 			if (strpos($escapedLink, 'youtube.com/v/') !== false) {
@@ -107,8 +107,8 @@ class VideoManager
 				$replaced = str_replace('youtu.be/', '', $escapedLink);
 				preg_match('/(t=([0-9]+[hms])+)/', $replaced, $time);
 				$exploded = explode('?', $replaced);
-			} elseif (preg_match('/(youtube\.com\/watch\?.*v=)/', $escapedLink) !== false) {
-				$replaced = preg_replace('/(youtube\.com\/watch\?.*v=)/', '', $escapedLink);
+			} elseif (preg_match('/(youtube\.com\/.*v=)/', $escapedLink) !== false) {
+				$replaced = preg_replace('/(youtube\.com\/.*v=)/', '', $escapedLink);
 				preg_match('/(t=([0-9]+[hms])+)/', $replaced, $time);
 				$exploded = preg_split('/[&#]/', $replaced);
 			}
