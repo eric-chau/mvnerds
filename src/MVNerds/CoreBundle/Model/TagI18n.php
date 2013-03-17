@@ -25,23 +25,7 @@ class TagI18n extends BaseTagI18n {
 		parent::setLabel($label);
 		
 		if ('fr' == $this->getLang()) {
-			$in = array(
-				'/[éèê]/u',
-				'/[àâ]/u',
-				'/[ïî]/u',
-				'/[ç]/u',
-				'/[^\w]+/u'
-			);
-			
-			$out = array(
-				'e',
-				'a',
-				'i',
-				'c',
-				'-'
-			);
-			
-			$slug = preg_replace($in, $out, mb_strtolower($this->getLabel(), 'UTF-8'));
+			$slug = \MVNerds\CoreBundle\Utils\MVNerdsSluggify::mvnerdsSluggify($this->getLabel());
 			if (( $tag = $this->getTag())) {
 				$tag->setSlug($slug);
 			} else {

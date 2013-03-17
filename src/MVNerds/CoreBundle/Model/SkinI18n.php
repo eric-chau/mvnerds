@@ -25,23 +25,7 @@ class SkinI18n extends BaseSkinI18n {
 		parent::setName($name);
 		
 		if ('fr' == $this->getLang()) {
-			$in = array(
-				'/[éèê]/u',
-				'/[àâ]/u',
-				'/[ïî]/u',
-				'/[ç]/u',
-				'/[^\w]+/u'
-			);
-			
-			$out = array(
-				'e',
-				'a',
-				'i',
-				'c',
-				'-'
-			);
-			
-			$slug = preg_replace($in, $out, mb_strtolower($this->getName(), 'UTF-8'));
+			$slug = \MVNerds\CoreBundle\Utils\MVNerdsSluggify::mvnerdsSluggify($this->getName());
 			if (( $skin = $this->getSkin())) {
 				$skin->setSlug($slug);
 			} else {

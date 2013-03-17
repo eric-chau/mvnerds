@@ -25,7 +25,7 @@ class Skin extends BaseSkin {
 			$imageUrl = preg_replace('/ /', '%20', $imageUrl);
 			
 			if ( null === $this->getSlug() || $this->getSlug() == '') {
-				$slug = $this->createSlug();
+				$slug = \MVNerds\CoreBundle\Utils\MVNerdsSluggify::mvnerdsSluggify($this->getName());
 			} else {
 				$slug = $this->getSlug();
 			}
