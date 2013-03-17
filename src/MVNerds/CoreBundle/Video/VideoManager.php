@@ -96,19 +96,60 @@ class VideoManager
 		$formatedLink = false;
 		
 		// On vérifie si la vidéo provient de youtube
-		if (strpos($escapedLink, 'youtube.com/watch?v=') !== false || strpos($escapedLink, 'youtu.be/') !== false || strpos($escapedLink, 'youtube.com/v/') !== false) { 
+		if (preg_match('/(youtube\.com\/watch\?.*v=)/', $escapedLink) !== false || strpos($escapedLink, 'youtu.be/') !== false || strpos($escapedLink, 'youtube.com/v/') !== false) { 
 			$embed = 'http://www.youtube.com/v/';
 			
 			if (strpos($escapedLink, 'youtube.com/v/') !== false) {
-				$exploded = array(str_replace('youtube.com/v/', '', $escapedLink));
+				$replaced = str_replace('youtube.com/v/', '', $escapedLink);
+				preg_match('/(start=[0-9]+)/', $replaced, $time);
+				$exploded = array($replaced);
 			} elseif (strpos($escapedLink, 'youtu.be/') !== false) {
-				$exploded = explode('?', str_replace('youtu.be/', '', $escapedLink));
-			} elseif (strpos($escapedLink, 'youtube.com') !== false) {
-				$exploded = explode('&', str_replace('youtube.com/watch?v=', '', $escapedLink));
+				$replaced = str_replace('youtu.be/', '', $escapedLink);
+				preg_match('/(t=([0-9]+[hms])+)/', $replaced, $time);
+				$exploded = explode('?', $replaced);
+			} elseif (preg_match('/(youtube\.com\/watch\?.*v=)/', $escapedLink) !== false) {
+				$replaced = preg_replace('/(youtube\.com\/watch\?.*v=)/', '', $escapedLink);
+				preg_match('/(t=([0-9]+[hms])+)/', $replaced, $time);
+				$exploded = preg_split('/[&#]/', $replaced);
+			}
+			
+			$finalTime = '';
+			$finalSeconds = 0;
+			if ($time != null && count($time) > 1 ) {
+				if (strpos($time[0], 'start=') !== false) {
+					preg_match('/([0-9]+)/', $time[0], $seconds);
+				} elseif (strpos($time[0], 't=') !== false) {
+					preg_match('/([0-9]+h)/', $time[0], $hours);
+					preg_match('/([0-9]+m)/', $time[0], $minutes);
+					preg_match('/([0-9]+s)/', $time[0], $seconds);
+				}
+				
+				if(isset($hours) && $hours != null && count($hours) > 0 && $hours[0] != '') {
+					$hours = str_replace('h', '', $hours[0]);
+					if (is_numeric($hours)) {
+						$finalSeconds += $hours*60*60;
+					}
+				}
+				if(isset($minutes) && $minutes != null && count($minutes) > 0 && $minutes[0] != '') {
+					$minutes = str_replace('m', '', $minutes[0]);
+					if (is_numeric($minutes)) {
+						$finalSeconds += $minutes*60;
+					}
+				}
+				if(isset($seconds) && $seconds != null && count($seconds) > 0 && $seconds[0] != '') {
+					$seconds = str_replace('s', '', $seconds[0]);
+					if (is_numeric($seconds)) {
+						$finalSeconds += $seconds;
+					}
+				}
+				
+				if ($finalSeconds > 0) {
+					$finalTime = '&start=' . $finalSeconds;
+				}
 			}
 			
 			if ($exploded != null && count($exploded) > 0 && $exploded[0] != '') {
-				$formatedLink = $embed . $exploded[0];
+				$formatedLink = $embed . $exploded[0] . $finalTime;
 			}
 		} 
 		// Sinon on vérifie si elle provient de dailymotion

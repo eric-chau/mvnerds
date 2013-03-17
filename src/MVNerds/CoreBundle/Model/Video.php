@@ -29,9 +29,10 @@ class Video extends BaseVideo {
 		//Si c'est un lien embed youtube
 		if (strpos($videoLink, 'http://www.youtube.com/v/') !== false) {
 			$embed = 'http://img.youtube.com/vi/';
-			$videoId = str_replace('http://www.youtube.com/v/', '', $videoLink);
+			$replaced = str_replace('http://www.youtube.com/v/', '', $videoLink);
+			$exploded = explode('&', $replaced);
 			
-			return $embed . $videoId . '/0.jpg';
+			return $embed . $exploded[0] . '/0.jpg';
 		} 
 		// Sinon si c est un lien embed dailymotion
 		elseif (strpos($videoLink, 'http://www.dailymotion.com/embed/video/') !== false) {
