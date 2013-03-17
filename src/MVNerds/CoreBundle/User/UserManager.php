@@ -210,6 +210,17 @@ class UserManager
 		->find();
 	}
 	
+	/**
+	 * Récupère tous les mails des utilisateurs actifs de la base de données
+	 */
+	public function getActiveUsersMail()
+	{
+		return UserQuery::create()
+			->add(UserPeer::IS_ACTIVE, true)
+			->select(array('email'))
+		->find();
+	}
+	
 	
 	/**
 	 * Permet de persister en base de données l'utilisateur $user

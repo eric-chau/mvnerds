@@ -98,9 +98,9 @@ class FrontController extends Controller
 					if ($message && strlen($message) > 10) {
 						$message = \Swift_Message::newInstance()
 							->setSubject('Contact from : '.$mail)
-							->setFrom($mail)
+							->setFrom($mail, $mail)
 							->setTo('hani.yagoub@gmail.com')
-							->setBody($this->renderView('MVNerdsLaunchSiteBundle:Front:contact_mail.txt.twig', array(
+							->setBody($this->renderView('MVNerdsSiteBundle:Footer:contact_mail.txt.twig', array(
 								'mail'		=> $mail,
 								'subject'	=> $subject,
 								'message'	=> $message,

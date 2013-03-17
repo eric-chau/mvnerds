@@ -1,0 +1,37 @@
+{% extends 'MVNerdsAdminBundle:Mailing:layout.html.twig' %}
+
+{% block title %}Administration des mails - MVNerds{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-alert.js') }}"></script>
+	
+{% endblock %}
+
+	
+{% block content %}	
+	<h1>Mail</h1>
+	
+	{% autoescape false %}
+		{{ render_success_flash() }}
+	{% endautoescape %}
+	{% autoescape false %}
+		{{ render_error_flash() }}
+	{% endautoescape %}
+
+	<div class="content-container">
+		<form action="{{ path('admin_mailing_index') }}" method="POST">
+			<div class="field">
+				<label for="mailing-subject" class="control-label">{{ 'Contact.form.subject.label'|trans}}</label>
+				<input id="mailing-subject" name="mailing-subject" type="text" placeholder="{{ 'Contact.form.subject.label'|trans}}" />
+			</div><br />
+			<div class="field">
+				<label for="mailing-message" class="control-label">{{ 'Contact.form.message.label'|trans}}</label>
+				<textarea id="mailing-message" name="mailing-message" placeholder="{{ 'Contact.form.message.label'|trans}}" rows="20" style="height: inherit!important;max-height: 1000px!important;"></textarea>
+			</div>
+
+			<input type="submit" value="Envoyer"/>
+		</form>
+	</div>
+{% endblock %}
