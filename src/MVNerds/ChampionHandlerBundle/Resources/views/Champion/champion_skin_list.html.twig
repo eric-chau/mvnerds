@@ -2,7 +2,7 @@
 	<h2>Skins</h2>
 	<div id="skin-list">
 		{% for skin in champion.getSkins() %}
-			{% if loop.index0 != 0 %}
+			{% if skin.getCost() != 'Classic' %}
 				<div class="skin">
 					<img src="{{asset('/medias/images/champions/skins/' ~ skin.getSlug() ~ '.png')}}" alt="image du skin {{skin.getName()}}"/>
 					<div class="skin-infos">
