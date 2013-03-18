@@ -347,6 +347,11 @@ class ItemBuilderController extends Controller
 			}
 			$itemBuildBlocks->append($itemBuildBlock);
 		}
+		if ($itemBuild->getItemBuildBlocks() != null) {
+			foreach($itemBuild->getItemBuildBlocks() as $ibb) {
+				$ibb->delete();
+			}
+		}
 		$itemBuild->setItemBuildBlocks($itemBuildBlocks);
 		
 		$itemBuild->setName($buildName);
@@ -373,12 +378,11 @@ class ItemBuilderController extends Controller
 		}
 		//Si on a au moins un champion dans la liste
 		if($championItemBuilds->count() > 0) {
-			$itemBuild->setChampionItemBuilds($championItemBuilds);			
+			$itemBuild->setChampionItemBuilds($championItemBuilds);		
 			
 			if (null != $saveBuild && $saveBuild == 'true' && $this->get('security.context')->isGranted('ROLE_USER')) {
 				$user = $this->getUser();
 				$nbItemBuilds = $itemBuildManager->countNbBuildsByUserId($user->getId());
-				$itemBuild->setUser($user);
 				
 				if ($isEdition || $this->get('security.context')->isGranted('ROLE_ADMIN')) 
 				{
@@ -386,6 +390,7 @@ class ItemBuilderController extends Controller
 				}
 				elseif ($nbItemBuilds < self::MAX_ITEM_BUILDS) 
 				{
+					$itemBuild->setUser($user);
 					$itemBuild->save();
 				}
 			}
