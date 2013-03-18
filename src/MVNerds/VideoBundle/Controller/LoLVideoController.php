@@ -135,6 +135,10 @@ class LoLVideoController extends Controller
 			for ( $i=0 ; $i<intval( $_GET['iSortingCols'] ) ; $i++ ) {
 				if ( $_GET[ 'bSortable_'.intval($_GET['iSortCol_'.$i]) ] == "true" ) {
 					$orderArr[$aColumns[intval($_GET['iSortCol_'.$i])]] = ($_GET['sSortDir_'.$i]);
+					//Si on veut trier par votes
+					if (intval($_GET['iSortCol_'.$i]) == 10) {
+						$orderArr['like_count'] = 'desc';
+					}
 				}
 			}
 		}

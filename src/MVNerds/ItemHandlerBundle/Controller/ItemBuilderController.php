@@ -123,13 +123,14 @@ class ItemBuilderController extends Controller
 		}
 		//Tri
 		$orderArr = array();
-		if ( isset( $_GET['iSortCol_0'] ) )
-		{
-			for ( $i=0 ; $i<intval( $_GET['iSortingCols'] ) ; $i++ )
-			{
-				if ( $_GET[ 'bSortable_'.intval($_GET['iSortCol_'.$i]) ] == "true" )
-				{
+		if ( isset( $_GET['iSortCol_0'] ) ) {
+			for ( $i=0 ; $i<intval( $_GET['iSortingCols'] ) ; $i++ ) {
+				if ( $_GET[ 'bSortable_'.intval($_GET['iSortCol_'.$i]) ] == "true" ) {
 					$orderArr[$aColumns[intval($_GET['iSortCol_'.$i])]] = ($_GET['sSortDir_'.$i]);
+					//Si on veut trier par votes
+					if (intval($_GET['iSortCol_'.$i]) == 11) {
+						$orderArr['like_count'] = 'desc';
+					}
 				}
 			}
 		}
