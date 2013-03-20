@@ -24,6 +24,7 @@ class ChampionRotationManager
 			->joinWith('ChampionRotation.Champion')
 			->joinWith('Champion.ChampionI18n')
 			->orderByCreateTime(\Criteria::DESC)
+			->orderBy('ChampionI18n.Name', \Criteria::ASC)
 		->find();
 
 		if (0 == count($rotations)) {
