@@ -1,0 +1,34 @@
+<div id="link-game-account-invitation-modal" class="modal hide">
+	<div class="modal-header">
+		<h3>Nouveau : renseignez votre compte League of Legends</h3>
+	</div>
+	<div class="modal-body">
+		<img src="http://mvnerds.com/medias/images/news/profile-preview.png" />
+		<p>
+			{{ app.user.getUsername() }}, vous avez maintenant la possibilité de lier votre compte MVNerds et votre compte League of Legends. Cela vous permettra
+			d'accéder à vos statistiques en parties classées sans avoir à vous connecter au jeu ou de consulter des statistiques personnelles plus détaillées.
+		</p>
+		<p>
+			N'hésitez plus et venez vous aussi renseigner votre compte de jeu League of Legends !
+		</p>
+	</div>
+	<div class="modal-footer">
+		<a href="#" data-dismiss="modal" class="btn no-color small">Annuler</a>
+		<a href="#" data-dismiss="modal"  class="btn small red never-remind-me-again-btn">Ne plus me rappeler</a>
+		<a href="{{ path('summoner_profile_index') }}?open-link-game-account-modal=1" class="btn green">Le faire maintenant</a>
+	</div>
+</div>
+
+<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-modal.js') }}"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		if (getItemFromLS('do_not_remind_link_game_account_invitation') == undefined) {
+			$('div#link-game-account-invitation-modal').modal('show');
+		}
+		
+		$('a.never-remind-me-again-btn').on('click', function(event) {
+			event.preventDefault();
+			saveItemInLS('do_not_remind_link_game_account_invitation', true);
+		});
+	});
+</script>

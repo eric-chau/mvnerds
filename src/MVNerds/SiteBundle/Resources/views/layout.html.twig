@@ -5,6 +5,8 @@
 	{{ parent() }}
 
 	<link href='{{ asset('medias/css/champions/champion-square36-sprite.css') }}' rel='stylesheet' type='text/css'>
+	<link href='{{ asset('medias/css/mvnerds/mvnerds-modal.css') }}' rel='stylesheet' type='text/css'>
+	<link href='{{ asset('medias/css/profile/link-account-invitation-modal.css') }}' rel='stylesheet' type='text/css'>
 {% endblock %}
 
 {% block body %}
@@ -46,6 +48,10 @@
 	{% include 'MVNerdsSiteBundle:Common:champion-rotation.html.twig' %}
 
 	{% block main_content %}{% endblock %}
+	
+	{% if app.user is not null %}
+		{{ render(controller('MVNerdsProfileBundle:Profile:renderLinkGameAccountModal')) }}
+	{% endif %}
 		
 	{% include 'MVNerdsSiteBundle:Common:footer.html.twig' %}
 {% endblock %}

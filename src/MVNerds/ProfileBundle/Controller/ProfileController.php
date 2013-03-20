@@ -130,11 +130,12 @@ class ProfileController extends Controller
 			'user'					=> $user,
 			'user_items_builds'		=> $this->get('mvnerds.item_build_manager')->findByUserId($user->getId()),
 			'videos'				=> $videoManager->findByUser($user),
-			'video_categories'			=> $videoManager->findAllVideoCatgories(),
+			'video_categories'		=> $videoManager->findAllVideoCatgories(),
 			'form'					=> $this->createForm(new ChangeLoLDirectoryType(), new ChangeLoLDirectoryModel($this->get('mvnerds.preference_manager'), $user))->createView(),
 			'avatars'				=> $this->get('mvnerds.profile_manager')->findAvatarByUserRoles($user),
 			'user_comment_count'	=> $this->get('mvnerds.comment_manager')->countCommentForUser($user),
-			'game_account'			=> $gameAccount
+			'game_account'			=> $gameAccount,
+			'open_link_GA_modal'	=> $this->getRequest()->get('open-link-game-account-modal', null) == '1'? true : false
 		));
 	}
 	
@@ -345,6 +346,24 @@ class ProfileController extends Controller
 			'user_comment_count'		=> $this->get('mvnerds.comment_manager')->countCommentForUser($user),
 			'game_account'			=> $gameAccount
 		));
+	}
+	
+	public function renderLinkGameAccountModalAction()
+	{
+		if (null != $this->getUser() && null == $this->getUser()->getProfile()->getGameAccount()) {
+			$session = $this->get('session');
+			$requestCountBeforeDisplay = $session->get('request_count_before_display', null);
+			if (null == $requestCountBeforeDisplay || 0 == $requestCountBeforeDisplay) {
+				$session->set('request_count_before_display', 5);
+				
+				return $this->render('MVNerdsProfileBundle:Modal:link_game_account_invitation_modal.html.twig');
+			}
+			else {
+				$session->set('request_count_before_display', $requestCountBeforeDisplay - 1);
+			}
+		}
+		
+		return new Response();
 	}
 }
 

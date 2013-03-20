@@ -155,4 +155,11 @@
 		</div>
 	</div>
 	
+	{% if open_link_GA_modal is defined and open_link_GA_modal %}
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$('div#link-lol-account-modal').modal('show');
+			});
+		</script>
+	{% endif %}
 {% endblock %}
