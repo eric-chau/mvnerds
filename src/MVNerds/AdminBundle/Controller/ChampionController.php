@@ -80,7 +80,7 @@ class ChampionController extends Controller
 			{
 				$champion = $form->getData();
 				// TODO: effectuer au moins la valiation en XML avant de sauvegarder les modifications effectuées sur le champion
-				$this->get('mvnerds.champion_manager')->save($champion);
+				$champion->save();
 
 				// Ajout d'un message de flash pour notifier que les informations de l'utilisateur ont bien été modifié
 				$this->get('mvnerds.flash_manager')->setSuccessMessage('Les informations du champion ' . $champion->getName() . ' ont bien été mises à jour.');
