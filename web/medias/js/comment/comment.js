@@ -247,6 +247,7 @@ $(document).ready(function()
 				$commentMsg.removeAttr('disabled');
 				$commentMsg.val('');
 				window.scrollTo($block.position().left, $block.position().top - 40);
+				$commentCount.html(parseInt($commentCount.html()) + $content.find('div.response-block').length);
 			}
 		});
 	});

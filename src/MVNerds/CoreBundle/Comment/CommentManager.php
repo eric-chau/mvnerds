@@ -47,8 +47,16 @@ class CommentManager
 		
 		// Finally
 		$response->save();
+		$this->increaseCommentCountFromNewResponse($comment);
 		
 		return $response;
+	}
+	
+	private function increaseCommentCountFromNewResponse(Comment $comment) {
+		$objectQuery = $comment->getObjectNamespace() . 'Query';
+		$object = $objectQuery::create()->findOneById($comment->getObjectId());
+
+		$this->increaseObjectCommentCountByOne($object);
 	}
 	
 	public function editComment($commentID, User $user, $commentString)

@@ -17,14 +17,5 @@ use MVNerds\CoreBundle\Model\User;
  * @package    propel.generator.src.MVNerds.CoreBundle.Model
  */
 class Comment extends BaseComment {
-	public function didIReportThisComment(User $user)
-	{
-		foreach ($this->getUserReportComments() as $userReportComment) {
-			if ($user->getId() == $userReportComment->getUserId()) {
-				return true;
-			}
-		}
-		
-		return false;
-	}
+	
 } // Comment
