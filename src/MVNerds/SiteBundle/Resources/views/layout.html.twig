@@ -23,7 +23,7 @@
 		{{ render(controller('MVNerdsSiteBundle:Front:RenderAnnouncement')) }}
 		
 		<div class="slogan">
-			<img src="{{ asset('medias/images/site/mvnerds-logo.png') }}" />
+			<a href="{{ path('site_homepage') }}"><img src="{{ asset('medias/images/site/mvnerds-logo.png') }}" /></a>
 			<p>
 				<span class="brand"><strong>MOST VALUABLE NERDS</strong> - {{'Site.slogan' | trans}}</span><br />
 				{{'Breadcrumbs.you-are-on' | trans}} <span class="location">{% block breadcrumbs %}<a href="{{ path('site_homepage') }}">{{'Breadcrumbs.home' | trans}}</a>{% endblock %}</span>

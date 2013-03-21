@@ -17,7 +17,7 @@
 
 		<div class="preview">{{ one_news.getPreview() }}</div>
 		<div class="more-news-infos">
-			<i class="icon-comments-alt"></i> {{ one_news.getCommentCount() }} commentaires
+			<i class="icon-comments-alt"></i> {{ one_news.getCommentCount() }} commentaire{% if one_news.getCommentCount() > 1 %}s{% endif %}
 			<a href="{{ path('news_detail', {'slug': one_news.getSlug()}) }}" class="btn green small">Lire plus</a>
 		</div>
 		<div class="clearfix"></div>

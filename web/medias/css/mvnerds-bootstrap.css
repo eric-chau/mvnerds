@@ -606,14 +606,22 @@ div.container.header div.social-container,
 div.container.header div.slogan {
   display: inline-block;
 }
-div.container.header div.slogan img {
+div.container.header div.slogan {
+  background-color: rgba(228, 230, 229, 0.8);
+  padding: 0 5px 0 0;
+}
+div.container.header div.slogan a {
+  display: inline-block;
+  vertical-align: top;
+}
+div.container.header div.slogan a img {
   margin: 0 5px 0 0;
 }
 div.container.header div.slogan p {
   display: inline-block;
   line-height: 1.2em;
   margin: 0;
-  padding: 0;
+  padding: 0 5px 0 0;
 }
 div.container.header div.slogan p span.location {
   font-weight: bold;
@@ -625,7 +633,7 @@ div.container.header div.slogan p span.location a:hover {
   text-decoration: underline;
 }
 div.container.header div.slogan span.brand {
-  color: #aaa;
+  color: #666;
 }
 div.container.header div.social-container {
   position: absolute;
@@ -635,13 +643,13 @@ div.container.header div.social-container p div.wrapper-simple {
   display: inline-block;
 }
 div.container.header div.social-container p a {
-  border: 1px solid #999;
-  color: #999;
+  border: 1px solid white;
+  color: white;
   display: inline-block;
   font-size: 18px;
   font-weight: bold;
   height: 27px;
-  margin: 0 0 0 5px;
+  margin: 0;
   padding: 3px;
   text-align: center;
   text-transform: uppercase;
@@ -651,7 +659,6 @@ div.container.header div.social-container p a.twitter-link {
   width: 21px;
 }
 div.container.header div.social-container p a.switch-locale {
-  background-color: #aaa;
   color: #fff;
   padding: 3px 5px;
 }
@@ -703,7 +710,7 @@ div.container.champion-rotation div.champion-rotation-content div.free-champions
 }
 div.container.champion-rotation div.champion-rotation-content div.free-champions a div {
   margin: 0 2px;
-  opacity: .5;
+  opacity: .7;
 }
 div.container.champion-rotation div.champion-rotation-content div.free-champions a div:hover {
   opacity: 1;
@@ -713,11 +720,13 @@ div.container.champion-rotation div.champion-rotation-content div.free-champions
   transition: opacity 0.2s linear;
 }
 div.container.champion-rotation div.champion-search-input {
+  background-color: rgba(228, 230, 229, 0.85);
   position: absolute;
   right: 0;
-  top: 9px;
+  top: 7px;
 }
 div.container.champion-rotation div.champion-search-input input[type="text"] {
+  border: 3px solid #666;
   font-size: 16px;
   padding-right: 26px;
 }
@@ -726,7 +735,7 @@ div.container.champion-rotation div.champion-search-input i {
   font-size: 22px;
   position: absolute;
   right: 6px;
-  top: 2px;
+  top: 4px;
 }
 div#announcement-container {
   border: 1px solid #db4a38;
@@ -737,7 +746,7 @@ div#announcement-container {
   text-align: center;
 }
 div.container.main-container {
-  background-color: rgba(228, 230, 229, 0.5);
+  background-color: rgba(228, 230, 229, 0.85);
   min-height: 438px;
   padding: 20px 10px;
 }

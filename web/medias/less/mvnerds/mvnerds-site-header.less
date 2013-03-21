@@ -7,15 +7,23 @@ div.container.header {
 	}
 
 	div.slogan {
-		img {
-			margin: 0 5px 0 0;
+		background-color: rgba(228,230,229,.8);
+		padding: 0 5px 0 0;
+
+		a {
+			display: inline-block;
+			vertical-align: top;
+
+			img {
+				margin: 0 5px 0 0;
+			}
 		}
 
 		p {
 			display: inline-block;
 			line-height: 1.2em;
 			margin: 0;
-			padding: 0;
+			padding: 0 5px 0 0;
 
 			span.location {
 				font-weight: bold;
@@ -31,7 +39,7 @@ div.container.header {
 		}
 
 		span.brand {
-			color: #aaa;
+			color: #666;
 		}
 	}
 
@@ -45,13 +53,13 @@ div.container.header {
 			}
 
 			a {
-				border: 1px solid #999;
-				color: #999;
+				border: 1px solid white;
+				color: white;
 				display: inline-block;
 				font-size: 18px;
 				font-weight: bold;
 				height: 27px;
-				margin: 0 0 0 5px;
+				margin: 0;
 				padding: 3px;
 				text-align: center;
 				text-transform: uppercase;
@@ -61,7 +69,6 @@ div.container.header {
 				}
 
 				&.switch-locale {
-					background-color: #aaa;
 					color: #fff;
 					padding: 3px 5px;
 				}
