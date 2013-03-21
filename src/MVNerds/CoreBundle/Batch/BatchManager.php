@@ -61,8 +61,10 @@ class BatchManager
 			$paths[] = $path . 'League of Legends/RADS/solutions/lol_game_client_sln/releases/';
 		}
 		
+		$slug = $itemBuild->getSlug();
+		
 		//Nomage du fichier bat
-		$batFileName = $this->itemBuildsPath . $itemBuild->getSlug() . '.bat';
+		$batFileName = $this->itemBuildsPath . $slug . '.bat';
 		//Ouverture du fichier en écriture
 		$batFile = fopen($batFileName, 'w');
 		
@@ -86,24 +88,27 @@ class BatchManager
 		//Récupération du mode de jeu du build
 		$gameMode = $itemBuild->getGameMode()->getLabel();
 		
+		$rawListName = $itemBuild->getName();
+		$listName = \MVNerds\CoreBundle\Utils\MVNerdsSluggify::mvnerdsSluggifyWithSpaces($rawListName);
+		
 		//Récupération du nom de fichier json en fonction du mode de jeu
-		$fileName='0_RecItems_MVNerds';
+		$fileName='MVNerds';
 		if ($gameMode == 'dominion') {
 			$jsonGameMode = 'ODIN';
 			$jsonMap = '8';
-			$fileName .= '_Dominion.json';
+			$fileName .= '_Dominion_'. $slug .'.json';
 		} elseif ($gameMode == 'aram') {
 			$jsonGameMode = 'ARAM';
 			$jsonMap = '3';
-			$fileName .= '_ARAM.json';
+			$fileName .= '_ARAM_'. $slug .'.json';
 		} elseif ($gameMode == 'twisted-treeline') {
 			$jsonGameMode = 'CLASSIC';
 			$jsonMap = '10';
-			$fileName .= '_TwistedTreeline.json';
+			$fileName .= '_TwistedTreeline_'. $slug .'.json';
 		} else {
 			$jsonGameMode = 'CLASSIC';
 			$jsonMap = '1';
-			$fileName .= '_SummonerRift.json';
+			$fileName .= '_SummonerRift_'. $slug .'.json';
 		}
 		
 		//Parcours de tous les blocks
@@ -172,9 +177,9 @@ class BatchManager
 			fwrite($batFile, 'cd "'.$escapedChampName."\"\n");
 			fwrite($batFile, "md \"Recommended\"\n");
 			fwrite($batFile, "cd \"Recommended\"\n");
-			fwrite($batFile, 'echo { > '.$fileName."\n");		
+			fwrite($batFile, 'echo { > '.$fileName."\n");
 			fwrite($batFile, "echo \t\"champion\":\"". $escapedChampName ."\", >> ".$fileName."\n");		
-			fwrite($batFile, "echo \t\"title\":\"default\", >> ".$fileName."\n");	
+			fwrite($batFile, "echo \t\"title\":\"".$listName."\", >> ".$fileName."\n");	
 			fwrite($batFile, "echo \t\"type\":\"mvnerds\", >> ".$fileName."\n");
 			fwrite($batFile, "echo \t\"map\":\"". $jsonMap ."\", >> ".$fileName."\n");
 			fwrite($batFile, "echo \t\"mode\":\"". $jsonGameMode ."\", >> ".$fileName."\n");

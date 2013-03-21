@@ -32,4 +32,29 @@ class MVNerdsSluggify
 		
 		return $slug;
 	}
+	
+	public static function mvnerdsSluggifyWithSpaces($v)
+	{
+		$in = array(
+			'/[éèê]/u',
+			'/[àâ]/u',
+			'/[ïî]/u',
+			'/[ç]/u',
+			'/[öô]/u',
+			'/[^\w ]+/u'
+		);
+
+		$out = array(
+			'e',
+			'a',
+			'i',
+			'c',
+			'o',
+			'-'
+		);
+
+		$slug = preg_replace($in, $out, mb_strtolower($v, 'UTF-8'));
+		
+		return $slug;
+	}
 }
