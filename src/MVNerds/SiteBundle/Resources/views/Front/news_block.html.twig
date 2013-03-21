@@ -11,7 +11,7 @@
 		</div>
 		<div class="media">
 			<a href="{{ path('news_detail', {'slug': one_news.getSlug()}) }}">
-				<img src="{{ one_news.getImageName() }}" />
+				<img src="{{ asset('medias/images/news/mini_' ~ one_news.getImageName() )}}" />
 			</a>
 		</div>
 

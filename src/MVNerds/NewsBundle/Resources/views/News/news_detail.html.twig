@@ -44,7 +44,7 @@
 			<div class="span8 left-content">
 				<h1>{{ news.getTitle() }}</h1>
 				
-				<img src="{{ news.getImageName() }}" class="news-main-img" />
+				<img src="{{ asset('medias/images/news/' ~ news.getImageName() )}}" class="news-main-img" />
 				
 				{# PUBLICITÉ #}
 				{% include 'MVNerdsSiteBundle:Common:ad_468x60.html.twig' %}
