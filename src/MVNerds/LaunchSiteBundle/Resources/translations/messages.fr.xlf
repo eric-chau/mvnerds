@@ -715,43 +715,43 @@
 				</target>
 			</trans-unit>
 			<trans-unit id="20218">
-				<source>registration.l1</source>
+				<source>registration.li1</source>
 				<target>Nom d'invocateur :</target>
 			</trans-unit>
 			<trans-unit id="20219">
-				<source>registration.l2</source>
+				<source>registration.li2</source>
 				<target>Doit être composé au minimum de 3 caractères.</target>
 			</trans-unit>
 			<trans-unit id="20220">
-				<source>registration.l3</source>
+				<source>registration.li3</source>
 				<target>Doit être unique et disponible.</target>
 			</trans-unit>
 			<trans-unit id="20221">
-				<source>registration.l4</source>
+				<source>registration.li4</source>
 				<target>N'utilisez pas un nom d'invocateur d'un autre joueur. Si vous faites l'objet d'une réclamation, des sanctions seront prises à votre encontre.</target>
 			</trans-unit>
 			<trans-unit id="20222">
-				<source>registration.l5</source>
+				<source>registration.li5</source>
 				<target>Mot de passe :</target>
 			</trans-unit>
 			<trans-unit id="20223">
-				<source>registration.l6</source>
+				<source>registration.li6</source>
 				<target>Doit être composé au minimum de 6 caractères.</target>
 			</trans-unit>
 			<trans-unit id="20224">
-				<source>registration.l7</source>
+				<source>registration.li7</source>
 				<target>N'hésitez pas à inclure des caractères spéciaux pour plus de sécurité.</target>
 			</trans-unit>
 			<trans-unit id="20225">
-				<source>registration.l8</source>
+				<source>registration.li8</source>
 				<target>Adresse email :</target>
 			</trans-unit>
 			<trans-unit id="20226">
-				<source>registration.l9</source>
+				<source>registration.li9</source>
 				<target>Renseignez une adresse valide, elle vous permettra d'activer votre compte.</target>
 			</trans-unit>
 			<trans-unit id="20227">
-				<source>registration.l10</source>
+				<source>registration.li10</source>
 				<target>Votre adresse email ne sera pas visible des autres utilisateurs MVNerds et ne sera en aucun cas communiqué à d'autres personnes ou entreprises 
 					sans votre autorisation. Nous nous réservons le droit de transmettre votre e-mail dans des cas de force majeure.
 				</target>
