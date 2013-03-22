@@ -49,6 +49,10 @@
 		<div class="row-fluid">
 			<div class="span8 left-content">
 				<h1>Most Valuable News</h1>
+				
+				{% if locale != 'fr' %}
+					<div class="only-french-news-indication"><i class="icon-info-sign"></i> Sorry, MVNerds' news are only available in French.</div>					
+				{% endif %}
 								
 				<table id="news-table" class="table data-table">
 					<thead>

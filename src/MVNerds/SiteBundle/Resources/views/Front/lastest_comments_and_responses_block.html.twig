@@ -1,12 +1,12 @@
 <div class="block">
 	<div class="header">
-		<h3>Ce qu'il se dit</h3>
+		<h3>{{ 'Index.what_going_on_block.title'|trans }}</h3>
 	</div>
 	<div class="body">
 		<div class="comments-responses-list">
 			{% for key, comment_or_response in comments_or_responses %}
 				<div class="comment-response-row">
-					<strong><a href="{{ path('summoner_profile_view', {'slug': comment_or_response.getUser().getSlug()}) }}">{{ comment_or_response.getUser().getUsername() }}</a></strong> a dit : 
+					<strong><a href="{{ path('summoner_profile_view', {'slug': comment_or_response.getUser().getSlug()}) }}">{{ comment_or_response.getUser().getUsername() }}</a></strong> {{ 'Index.what_going_on_block.someone_said'|trans }}
 					<i class="icon-quote-left"></i> 
 					{% if key|trim('response')|length != key|length %}
 						{% set comment = comment_or_response.getComment() %}

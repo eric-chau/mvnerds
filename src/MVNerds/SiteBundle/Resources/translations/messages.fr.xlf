@@ -486,6 +486,35 @@
 					Que voulez-vous faire ?
 				</target>
 			</trans-unit>
+
+			<trans-unit id="950">
+				<source>Index.what_going_on_block.title</source>
+				<target>Ce qu'il se dit</target>
+			</trans-unit>
+			<trans-unit id="951">
+				<source>Index.what_going_on_block.someone_said</source>
+				<target>a dit</target>
+			</trans-unit>
+			<trans-unit id="952">
+				<source>Index.news.read_more</source>
+				<target>Lire plus</target>
+			</trans-unit>
+			<trans-unit id="953">
+				<source>Index.news.see_more_news</source>
+				<target>Voir plus d'actualité</target>
+			</trans-unit>
+			<trans-unit id="954">
+				<source>Index.news.comment_label</source>
+				<target>commentaire</target>
+			</trans-unit>
+			<trans-unit id="955">
+				<source>Index.news.publish_by</source>
+				<target>par</target>
+			</trans-unit>
+			<trans-unit id="956">
+				<source>Topbar.more_button</source>
+				<target>plus</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

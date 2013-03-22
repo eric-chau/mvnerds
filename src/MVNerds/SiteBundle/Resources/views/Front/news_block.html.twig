@@ -13,13 +13,13 @@
 
 		<div class="preview">{{ one_news.getPreview() }}</div>
 		<div class="more-news-infos">
-			<i class="icon-comments-alt"></i> {{ one_news.getCommentCount() }} commentaire{% if one_news.getCommentCount() > 1 %}s{% endif %}
-			<a href="{{ path('news_detail', {'slug': one_news.getSlug()}) }}" class="btn green small">Lire plus</a>
+			<i class="icon-comments-alt"></i> {{ one_news.getCommentCount() }} {{ 'Index.news.comment_label'|trans }}{% if one_news.getCommentCount() > 1 %}s{% endif %}
+			<a href="{{ path('news_detail', {'slug': one_news.getSlug()}) }}" class="btn green small">{{ 'Index.news.read_more'|trans }}</a>
 		</div>
 		<div class="clearfix"></div>
 	</div>
 	<div class="separator"></div>
 {% endfor %}
 	
-<a href="{{ path('news_index') }}" class="btn red read-more-news">Lire plus d'actualité <i class="icon-double-angle-right"></i></a>
+<a href="{{ path('news_index') }}" class="btn red read-more-news">{{ 'Index.news.see_more_news'|trans }} <i class="icon-double-angle-right"></i></a>
 	

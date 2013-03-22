@@ -42,6 +42,10 @@
 	<div class="container main-container border-top">
 		<div class="row-fluid">
 			<div class="span8 left-content">
+				{% if locale != 'fr' %}
+					<div class="only-french-news-indication"><i class="icon-info-sign"></i> Sorry, MVNerds' news are only available in French.</div>					
+				{% endif %}
+				
 				<h1>{{ news.getTitle() }}</h1>
 				
 				<img src="{{ asset('medias/images/news/' ~ news.getImageName() )}}" class="news-main-img" />

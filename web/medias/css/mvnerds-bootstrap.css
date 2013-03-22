@@ -110,7 +110,7 @@
   border-bottom-color: #db4a38;
 }
 body {
-  background: #e4e6e5 url('../images/site/main-background.jpg') no-repeat center top fixed;
+  background: #e4e6e5 url('../images/site/main-bg.jpg') no-repeat center top fixed;
   margin: 0;
 }
 h1,
@@ -756,6 +756,21 @@ div.container.main-container div.span8.left-content {
   -moz-box-shadow: 0 0 5px 5px #cccccc;
   box-shadow: 0 0 5px 5px #cccccc;
   padding: 10px;
+}
+div.container.main-container div.span8.left-content div.only-french-news-indication {
+  background-color: #db4a38;
+  color: white;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  padding: 5px 0;
+  text-align: center;
+}
+div.container.main-container div.span8.left-content div.only-french-news-indication i {
+  display: inline-block;
+  font-size: 16px;
+  margin: 0 3px 0 0;
+  position: relative;
+  top: 2px;
 }
 div.container.main-container div.span4.right-content div.block {
   -webkit-box-shadow: 0 0 5px 5px #cccccc;

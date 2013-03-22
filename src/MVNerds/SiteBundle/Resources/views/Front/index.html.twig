@@ -32,6 +32,10 @@
 	<div class="container main-container border-top">		
 		<div class="row-fluid">
 			<div class="span8 left-content">
+				{% if locale != 'fr' %}
+					<div class="only-french-news-indication"><i class="icon-info-sign"></i> Sorry, MVNerds' news are only available in French.</div>					
+				{% endif %}
+				
 				<div class="main-news-block">
 					<h1><a href="{{ path('news_detail', {'slug': main_news.getSlug()}) }}">{{ main_news.getTitle() }}</a> <span class="label">{{ main_news.getNewsCategory().getUniqueName()|trans }}</span></h1>
 					
@@ -43,11 +47,11 @@
 
 					<div class="more-news-infos">
 						<span class="posted-by">
-							{% include ':Extension:custom_format_date.html.twig' with {'object': main_news.getCreateTime()} %} par 
+							{% include ':Extension:custom_format_date.html.twig' with {'object': main_news.getCreateTime()} %} {{ 'Index.news.publish_by'|trans }} 
 							<strong><a href="{{ path('summoner_profile_view', {'slug': main_news.getUser().getSlug()}) }}">{{ main_news.getUser().getUsername() }}</a></strong>
 						</span>  
-						<i class="icon-comments-alt"></i> {{  main_news.getCommentCount() }} commentaire{% if  main_news.getCommentCount() > 1 %}s{% endif %}
-						<a href="{{ path('news_detail', {'slug':  main_news.getSlug()}) }}" class="btn red">Lire plus</a>
+						<i class="icon-comments-alt"></i> {{  main_news.getCommentCount() }} {{ 'Index.news.comment_label'|trans }}{% if  main_news.getCommentCount() > 1 %}s{% endif %}
+						<a href="{{ path('news_detail', {'slug':  main_news.getSlug()}) }}" class="btn red">{{ 'Index.news.read_more'|trans }}</a>
 					</div>
 				</div>
 				
