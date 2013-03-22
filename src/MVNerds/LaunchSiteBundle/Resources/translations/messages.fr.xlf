@@ -637,7 +637,7 @@
 
 			<trans-unit id="20200">
 				<source>account_activation.h1</source>
-				<target>Votre compte est actif, félicitation !</target>
+				<target>Votre compte est actif, félicitations !</target>
 			</trans-unit>
 			<trans-unit id="20201">
 				<source>account_activation.p1</source>
