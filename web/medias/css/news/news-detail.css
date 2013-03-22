@@ -106,6 +106,90 @@ div.span4.right-content div.block div.body div.block-media img {
   padding: 3px;
   width: 100px !important;
 }
+div.span4.right-content div.block div.body ul.nav-tabs li.active a {
+  color: white !important;
+}
+div.span4.right-content div.block div.body ul.nav-tabs li a {
+  color: #999 !important;
+}
+div.span4.right-content div.block div.body ul.nav-tabs li a:hover {
+  color: white !important;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div.span4.right-content div.video-row {
+  background-color: #333;
+  margin: 5px 0;
+  min-height: 0;
+  padding: 4px 0 4px 10px;
+  position: relative;
+}
+div.span4.right-content div.video-row:hover {
+  background-color: #147fb1;
+}
+div.span4.right-content div.video-row:hover i.icon-double-angle-right {
+  display: block;
+}
+div.span4.right-content div.video-row:hover strong.title {
+  color: white;
+}
+div.span4.right-content div.video-row:hover div.content-info {
+  color: #fff;
+  -webkit-transition: all 0.25s linear;
+  -moz-transition: all 0.25s linear;
+  -o-transition: all 0.25s linear;
+  transition: all 0.25s linear;
+}
+div.span4.right-content div.video-row div.content-info {
+  color: #999;
+  margin: 0 0 0 64px;
+}
+div.span4.right-content div.video-row a {
+  color: #db4a38;
+  font-weight: bold;
+}
+div.span4.right-content div.video-row a:hover {
+  color: #fff;
+}
+div.span4.right-content div.video-row i.icon-double-angle-right {
+  display: none;
+  font-size: 40px;
+  margin-top: -20px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+}
+div.span4.right-content div.video-row img {
+  float: left;
+  margin: 0 10px 0 0;
+  position: relative;
+  top: 2px;
+  width: 54px;
+}
+div.span4.right-content div.video-row span.stat {
+  display: inline-block;
+  margin: 0 7px 0 0;
+}
+div.span4.right-content div.video-row span.stat i {
+  display: inline-block;
+  margin: 0 3px 0 0;
+}
+div.span4.right-content div.video-row strong.title {
+  color: #999;
+}
+div.span4.right-content div.video-row strong.title:hover {
+  text-decoration: underline;
+}
+div.span4.right-content div.video-row div.content-info {
+  margin: 0 0 0 82px;
+}
+div.span4.right-content div.video-row img {
+  height: 54px;
+  max-width: 72px;
+  width: inherit;
+}
 div.comments-container form.leave-comment-form {
   background-color: #92281b;
   -webkit-transition: background-color 0.25s linear;
