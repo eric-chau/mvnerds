@@ -248,4 +248,12 @@ class LoLVideoController extends Controller
 		
 		return $this->redirect($this->generateUrl('summoner_profile_index'));
 	}
+	
+	public function renderVideosAction()
+	{
+		return $this->render('MVNerdsVideoBundle:LoLVideoCenter:render_videos_block.html.twig', array(
+			'newest_videos'			=> $this->get('mvnerds.video_manager')->findNewestVideos(),
+			'most_viewed_videos'	=> $this->get('mvnerds.video_manager')->findMostViewedVideos()
+		));
+	}
 }

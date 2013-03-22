@@ -8,6 +8,24 @@
 	<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/news/news-detail.css') }}">
 {% endblock %}
 
+{% block javascripts %}
+	{{ parent() }}
+	
+	{% if app.environment == 'dev' %}
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tab.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/news/news-detail.js') }}"></script>
+	{% else %}
+		{% javascripts
+			'medias/js/bootstrap/bootstrap-tab.js'
+			'medias/js/news/news-detail.js'
+			output='medias/js/compiled/news-detail.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	{% endif %}
+{% endblock %}
+	
 {% block topbar %}
 	{% set module = 'news' %}
 		
@@ -26,7 +44,7 @@
 			<div class="span8 left-content">
 				<h1>{{ news.getTitle() }}</h1>
 				
-				<img src="{{ news.getImageName() }}" class="news-main-img" />
+				<img src="{{ asset('medias/images/news/' ~ news.getImageName() )}}" class="news-main-img" />
 				
 				{# PUBLICITÉ #}
 				{% include 'MVNerdsSiteBundle:Common:ad_468x60.html.twig' %}
@@ -105,6 +123,8 @@
 				
 				{# PUBLICITÉ #}
 				{% include 'MVNerdsSiteBundle:Common:ad_300x250.html.twig' %}
+					
+				{{ render(controller('MVNerdsVideoBundle:LoLVideo:renderVideos')) }}
 			</div>
 		</div>
 	</div>

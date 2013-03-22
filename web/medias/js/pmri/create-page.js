@@ -887,4 +887,29 @@ $(document).ready(function()
 		$(this).parent().parent().find('div.item-sidebar-block-div').slideToggle();
 		$(this).find('i').toggleClass('icon-resize-small icon-resize-full');
 	});
+	
+	//Si c'est une édition 
+	if ($('.edit-indication').length > 0) {
+		var activeChampions = $('ul#champion-isotope-list li.champion.active');
+		//s il y a plus d un champion selectionné on ne peut pas laisser les items dedies a des champions particuliers
+		if (activeChampions.length > 1) {
+			$itemIsotopeList.hideChampionSpecificItems();
+			checkRecItemsByChampionSpecific();
+		}else if(activeChampions.length > 0) {
+			$('#btn-clear-champions').removeClass('disabled').parent('li').removeClass('hide');
+			
+			var championSlug = activeChampions.first().data('name');
+			var relatedItems = $('ul#item-isotope-list li.item div.portrait[data-champion="'+championSlug+'"]');
+			if (relatedItems != undefined && relatedItems.length > 0) {
+				$itemIsotopeList.showChampionSpecificItems(championSlug);
+			} else {
+				$itemIsotopeList.hideChampionSpecificItems();
+			}
+			
+			checkRecItemsByChampionSpecific(championSlug);
+		} else {
+			$('#btn-clear-champions').addClass('disabled');
+			$itemIsotopeList.showChampionSpecificItems();
+		}
+	}
 });
