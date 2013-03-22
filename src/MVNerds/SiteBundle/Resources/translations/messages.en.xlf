@@ -483,6 +483,11 @@
 					What next?
 				</target>
 			</trans-unit>
+
+			<trans-unit id="1000">
+				<source>remove-adds.message</source>
+				<target>Ads are our only source of money. If you like our services, please disable adBlock.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

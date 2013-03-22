@@ -486,6 +486,11 @@
 					Que voulez-vous faire ?
 				</target>
 			</trans-unit>
+			
+			<trans-unit id="1000">
+				<source>remove-adds.message</source>
+				<target>La publicité est notre seule source de revenus. Si vous aimez nos services, veuillez désactiver adBlock.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
