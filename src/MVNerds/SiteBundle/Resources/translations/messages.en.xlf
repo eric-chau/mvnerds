@@ -484,6 +484,11 @@
 				</target>
 			</trans-unit>
 
+			<trans-unit id="1000">
+				<source>remove-adds.message</source>
+				<target>Ads are our only source of money. If you like our services, please disable adBlock.</target>
+			</trans-unit>
+
 			<trans-unit id="950">
 				<source>Index.what_going_on_block.title</source>
 				<target>What's going on</target>
