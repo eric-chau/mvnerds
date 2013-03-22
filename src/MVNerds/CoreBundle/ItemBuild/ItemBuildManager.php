@@ -27,28 +27,31 @@ class ItemBuildManager
 	 */
 	public function findBySlug($slug)
 	{
+		
 		$itemBuild = ItemBuildQuery::create()
-			->joinWith('User', \Criteria::LEFT_JOIN)
+			->joinWith('User')
 			->joinWith('User.Profile')
 			->joinWith('Profile.GameAccount', \Criteria::LEFT_JOIN)
 			->joinWith('Profile.Avatar')
-			->joinWith('ChampionItemBuild', \Criteria::LEFT_JOIN)
-			->joinWith('GameMode', \Criteria::LEFT_JOIN)
-			->joinWith('ChampionItemBuild.Champion', \Criteria::LEFT_JOIN)
-			->joinWith('Champion.ChampionI18n', \Criteria::LEFT_JOIN)
-			->joinWith('ItemBuildBlock', \Criteria::LEFT_JOIN)
-			->joinWith('ItemBuildBlock.ItemBuildBlockItem', \Criteria::LEFT_JOIN)
+			->joinWith('GameMode')
+			->joinWith('ItemBuildBlock')
+			->joinWith('ItemBuildBlock.ItemBuildBlockItem')
 			->useItemBuildBlockQuery()
 				->orderByPosition()
 				->useItemBuildBlockItemQuery()
 					->orderByPosition()
 				->endUse()
 			->endUse()
-			->joinWith('ItemBuildBlockItem.Item', \Criteria::LEFT_JOIN)
-			->joinWith('Item.ItemI18n', \Criteria::LEFT_JOIN)
-			->addJoinCondition('ItemI18n', 'ItemI18n.Lang = ?', $this->userLocale)
+			->joinWith('ItemBuildBlockItem.Item')
+			->joinWith('Item.ItemI18n')
+			->where('ItemI18n.Lang LIKE ?', $this->userLocale)
 			->add(ItemBuildPeer::SLUG, $slug)
 		->find();
+		
+		$championItemBuildsCriteria = \MVNerds\CoreBundle\Model\ChampionItemBuildQuery::create()
+				->joinWith('Champion')
+				->joinWith('Champion.ChampionI18n');
+		$itemBuild->populateRelation('ChampionItemBuild', $championItemBuildsCriteria);
 
 		if (null === $itemBuild || null === $itemBuild[0])
 		{
