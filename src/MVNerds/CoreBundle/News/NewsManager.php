@@ -100,6 +100,7 @@ class NewsManager
 	public function findAll()
 	{
 		return NewsQuery::create()
+			->orderByCreateTime('desc')
 			->joinWith('NewsCategory')
 			->joinWith('User', \Criteria::LEFT_JOIN)
 		->find();
