@@ -40,6 +40,7 @@ class FrontController extends Controller
 			'popular_items_builds'	=> $this->get('mvnerds.item_build_manager')->findMostDownloadedBuilds(),
 			'newest_videos'			=> $this->get('mvnerds.video_manager')->findNewestVideos(),
 			'most_viewed_videos'	=> $this->get('mvnerds.video_manager')->findMostViewedVideos(),
+			'main_news'				=> $news->shift(),
 			'news'					=> $news
 		));
     }
@@ -190,5 +191,30 @@ class FrontController extends Controller
 		}
 		
 		return new Response();
+	}
+	
+	public function renderLastestCommentsAndResponsesBlockAction()
+	{
+		$commentsAndResponses = $this->get('mvnerds.comment_manager')->getLastestCommentsAndResponses(11);
+		$contentMaxLength = 39;
+		if ('en' == $this->get('session')->get('locale')) {
+			$contentMaxLength = 41;
+		}
+		
+		foreach ($commentsAndResponses as $commentORresponse) {
+			$usernameLengthOffset = strlen($commentORresponse->getUser()->getUsername()) - 5;
+			if ($usernameLengthOffset < 0) {
+				$usernameLengthOffset = 0;
+			}
+			
+			$contentLength = strlen($commentORresponse->getContent());
+			if ($contentLength > $contentMaxLength - $usernameLengthOffset) {
+				$commentORresponse->setContent(substr($commentORresponse->getContent(), 0, $contentMaxLength - $usernameLengthOffset -1) . '…');
+			}
+		}
+		
+		return $this->render('MVNerdsSiteBundle:Front:lastest_comments_and_responses_block.html.twig', array(
+			'comments_or_responses' => $commentsAndResponses
+		));
 	}
 }

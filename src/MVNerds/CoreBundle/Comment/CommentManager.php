@@ -141,7 +141,7 @@ class CommentManager
 		->count() + 1; // +1 car on doit compter également le commentaire qui sert de référence ($firstCommentID)
 	}
 	
-	public function getLastestComments(IComment $object, $lastCommentID)
+	public function getLastestCommentsFromCommentID(IComment $object, $lastCommentID)
 	{
 		$comments = CommentQuery::create()
 			->joinWith('User')
@@ -174,6 +174,7 @@ class CommentManager
 	public function findResponseById($id)
 	{
 		$response = CommentResponseQuery::create()
+			->joinWith('Comment')
 			->add(CommentResponsePeer::ID, $id)
 		->findOne();
 		
@@ -244,5 +245,54 @@ class CommentManager
 		return $objectQuery::create()
 			->add($objectPeer::ID, $comment->getObjectId())
 		->findOne();
+	}
+	
+	public function getLastestComments($limit = 10)
+	{
+		return CommentQuery::create()
+			->joinWith('User')
+			->orderByCreateTime(\Criteria::DESC)
+			->limit($limit)
+		->find();
+	}
+	
+	public function getLastestResponses($limit = 10)
+	{
+		return CommentResponseQuery::create()
+			->joinWith('User')
+			->orderByCreateTime(\Criteria::DESC)
+			->limit($limit)
+		->find();
+	}
+	
+	public function getLastestCommentsAndResponses($limit = 10)
+	{
+		$comments = $this->getLastestComments($limit);
+		$responses = $this->getLastestResponses($limit);
+		
+		$results = array();
+		foreach ($responses as $response) {
+			foreach ($comments as $comment) {
+				if ($response->getCreateTime()->getTimestamp() > $comment->getCreateTime()->getTimestamp()) {
+					$results['response-' . $response->getId()] = $response;
+					break;
+				}
+				else {
+					if (!key_exists('comment-' . $comment->getId(), $results)) {
+						$results['comment-' . $comment->getId()] = $comment;
+					}
+					
+					if ($limit <= count($results)) {
+						break;
+					}
+				}
+			}
+			
+			if ($limit <= count($results)) {
+				break;
+			}
+		}
+		
+		return $results;
 	}
 }

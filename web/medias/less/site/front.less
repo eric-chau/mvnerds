@@ -4,11 +4,77 @@
 // MVNerds imports
 @import "../mvnerds/mvnerds-variables.less";
 
-div.span8.left-content {
-	h1 a {
-		color: @MVNerdsRed;
+div.main-news-block {
+	background-color: #333;
+	margin: 0 0 10px 0;
+	padding: 5px 10px;
+
+	h1 {
+		border-bottom: 1px solid @MVNerdsYellow;
+		color: @MVNerdsYellow;
+		margin: 0 0 15px 0;
+
+		a:hover {
+			border-color: white;
+			color: white; .transition(all .25s linear);
+			text-decoration: none !important;
+		}
 	}
 
+	p {
+		color: #aaa;
+		margin: 0 0 10px 0;
+	}
+
+	a.main-news-image {
+		display: block;
+		margin: 0 auto 15px auto;
+		position: relative;
+		
+		&:hover img {
+			border-color: @MVNerdsYellow; .transition(border-color .25s linear);
+		}
+
+		img {
+			border: 2px solid white;
+			display: block;
+			margin: 0 auto 0 auto;
+			max-width: 600px;
+		}
+
+		div.category-container {
+			bottom: 0;
+			position: absolute;
+			right: 0;
+
+		}
+	}
+
+	div.more-news-infos {
+		color: #999;
+		margin: 0 0 5px 0;
+		text-align: right;
+
+		a.btn {
+			margin: 0 0 0 20px;
+		}
+
+		span.posted-by {
+			display: inline-block;
+			margin: 0 30px 0 0;
+
+			a {
+				color: darken(@MVNerdsBlue, 10%);
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}
+
+div.span8.left-content {
 	h1, h2 {
 		a {
 			font-family: inherit;
@@ -171,6 +237,58 @@ div.span4.right-content {
 			height: 54px;
 			max-width: 72px;
 			width: inherit;
+		}
+	}
+
+	div.comments-responses-list {
+		div.comment-response-row {
+			border-bottom: 1px dashed darken(@MVNerdsYellow, 35%);
+			color: #999;
+			font-size: 12px;
+			margin: 0 0 2px 0;
+			padding: 0 5px;
+
+			&:hover {
+				background-color: #444;
+
+				a {
+					color: white !important;
+				}
+
+				strong a {
+					color: @MVNerdsYellow !important;
+				}
+			}
+
+			a {
+				color: #aaa !important;
+				font-size: 12px;
+
+				&:hover {
+					text-decoration: underline;
+				}
+			}
+
+			i {
+				color: #555;
+				display: inline-block;
+				font-size: 10px;
+				margin: 0 2px 0 0;
+
+				&.icon-quote-right {
+					margin: 0 0 0 2px;
+				}
+			}
+
+			strong a {
+				color: @MVNerdsYellow !important;
+				opacity: .8;
+
+				&:hover {
+					color: @MVNerdsYellow !important;
+					text-decoration: underline;
+				}
+			}
 		}
 	}
 }

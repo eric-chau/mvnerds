@@ -1,0 +1,37 @@
+<div class="block">
+	<div class="header">
+		<h3>Ce qu'il se dit</h3>
+	</div>
+	<div class="body">
+		<div class="comments-responses-list">
+			{% for key, comment_or_response in comments_or_responses %}
+				<div class="comment-response-row">
+					<strong><a href="{{ path('summoner_profile_view', {'slug': comment_or_response.getUser().getSlug()}) }}">{{ comment_or_response.getUser().getUsername() }}</a></strong> a dit : 
+					<i class="icon-quote-left"></i> 
+					{% if key|trim('response')|length != key|length %}
+						{% set comment = comment_or_response.getComment() %}
+					{% else %}
+						{% set comment = comment_or_response %}
+					{% endif %}
+					
+					{% set link_title = 'profile_index.lastest_comments_block.view_label'|trans ~ ' ' %} 
+					{% if comment.getObjectNamespace() == 'MVNerds\\CoreBundle\\Model\\ItemBuild' %}
+						{% set link_title = link_title ~ 'profile_index.lastest_comments_block.view_label.pmri'|trans %}
+					{% elseif comment.getObjectNamespace() == 'MVNerds\\CoreBundle\\Model\\Video' %}
+						{% set link_title = link_title ~ 'profile_index.lastest_comments_block.view_label.video'|trans %}
+					{% elseif comment.getObjectNamespace() == 'MVNerds\\CoreBundle\\Model\\News' %}
+						{% set link_title = link_title ~ 'profile_index.lastest_comments_block.view_label.news'|trans %}
+					{% elseif comment.getObjectNamespace() == 'MVNerds\\CoreBundle\\Model\\Champion' %}
+						{% set link_title = link_title ~ 'profile_index.lastest_comments_block.view_label.champion'|trans %}
+					{% elseif comment.getObjectNamespace() == 'MVNerds\\CoreBundle\\Model\\User' %}
+						{% set link_title = link_title ~ 'profile_index.lastest_comments_block.view_label.user'|trans %}
+					{% endif %}
+					
+					<a href="{{ path('profile_redirect_to_related_object', {'_locale': app.request.getLocale(), 'commentId': comment.getId() * 47}) }}" title="{{ link_title }}">{{ comment_or_response.getContent() }}</a> 					
+					<i class="icon-quote-right"></i>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</div>
+	

@@ -60,7 +60,7 @@ class CommentController extends Controller
 		$commentManager = $this->get('mvnerds.comment_manager');
 		$commentManager->addComment($object, $this->getUser(), $commentMsg);
 		
-		$comments = $commentManager->getLastestComments($object, $lastCommentID / 47);
+		$comments = $commentManager->getLastestCommentsFromCommentID($object, $lastCommentID / 47);
 
 		return $this->render('MVNerdsCommentBundle:Comment:load_more_comments_list.html.twig', array(
 			'comments'		=> $comments,
@@ -255,7 +255,7 @@ class CommentController extends Controller
 			$relatedObject = $this->get('mvnerds.comment_manager')->getRelatedObjectByCommentId($commentId / 47);
 		}
 		catch (Exception $e) {
-			throw new AccessDeniedException();
+			throw new InvalidArgumentException();
 		}
 		
 		$type = get_class($relatedObject);
