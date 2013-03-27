@@ -1,0 +1,69 @@
+// Twitter Bootstraps imports
+@import "../bootstrap/mixins.less";
+
+// MVNerds imports
+@import "../mvnerds/mvnerds-variables.less";
+
+div.container.main-container {
+
+	div#team-seeker-container {
+
+		form#team-seeker-form {
+
+			margin: 0 auto;
+			padding: 0 50px;
+			text-align: right;
+			width: 600px;
+
+			div {
+				text-align: left;
+
+				&.field {
+					background-color: #ddd;
+					border: 1px solid #ccc;
+					margin: 0 0 5px 0;
+					padding: 5px 0;
+
+					&:hover {
+						background-color: #ccc; .transition(background-color .25s linear);
+					}
+
+					label {
+						display: inline-block;
+						font-weight: bold;
+						margin: 0 10px 0 0;
+						text-align: right;
+						width: 225px;
+					}
+
+					input, textarea {
+						width: 200px;
+					}
+					select {
+						width: 211px;
+					}
+				}			
+			}
+
+			button {
+				border: 0;
+				display: inline-block;
+				margin: 5px 0 0 0;
+				vertical-align: top;
+			}
+
+			i.loader {
+				color: @MVNerdsRed;
+				display: inline-block;
+				font-size: 18px;
+				margin: 10px 10px 0 0;
+
+				&.hide {
+					opacity: 0;
+				}
+			}
+		}
+	}
+}
+
+@import "../mvnerds/mvnerds-alerts.less";

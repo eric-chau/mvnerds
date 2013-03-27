@@ -1,0 +1,90 @@
+{% extends 'MVNerdsSiteBundle::layout.html.twig' %}
+
+{% block title %}Team Seeker - {{ 'champion_benckmark.title'|trans }} | MVNerds{% endblock %} 
+
+{% block css %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/team-seeker/team-seeker-index.css') }}">
+	{% else %}
+		{% stylesheets 
+			output='medias/css/compiled/team-seeker-index.css'
+			filter='yui_css'
+			filter='cssembed'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
+	{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		<script type="text/javascript" src="{{ asset('medias/js/site/alerts-ajax-handler.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/team-seeker/team-seeker-index.js') }}"></script>
+	{% else %}
+		{% javascripts
+			'medias/js/site/alerts-ajax-handler.js'
+			'medias/js/champion-benchmark/team-seeker-index.js'
+			output='medias/js/compiled/team-seeker-index.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	{% endif %}
+{% endblock %}
+
+{% block topbar %}
+		
+	{{ parent() }}
+{% endblock %}
+		
+{% block breadcrumbs %}
+	{{ parent() }}
+	
+	> <a href="{{ path('team_seeker_index') }}">Team Seeker</a>
+{% endblock %}
+
+{% block main_content %}
+	<div class="container main-container border-top">
+		<h1>Team Seeker <a href="#" class="how-it-works-toggle"><span class="label red">{{ 'champion_benckmark.how_it_work_label'|trans }}</span></a></h1>
+		
+		<div class="how-it-works hide">
+			<p>
+				{{ 'champion_benckmark.index.hiw_text'|trans }}
+			</p>
+			
+			<div class="separator"></div>
+		</div>
+		
+		{# PUBLICITÉ #}
+		{% include 'MVNerdsSiteBundle:Common:ad_728x90.html.twig' %}
+		
+		<div id="team-seeker-container">
+			
+			<form action="#"  id="team-seeker-form">
+				<div class="field">
+					<label for="team-seeker-region-selector">Région</label>
+					<select id="team-seeker-region-selector">
+						<option value="euw">Europe Ouest (EUW)</option>
+						<option value="eune">Europe Nord et Est (EUNE)</option>
+						<option value="na">Amérique du Nord (NA)</option>
+						<option value="br">Brésil (BR)</option>
+					</select>
+				</div>
+
+				<div class="field">
+					<label for="team-seeker-input">Tag ou Nom de l'équipe : </label>
+					<input type="text" id="team-seeker-input" placeholder="Ex: 'MVNerd' ou 'Most Valuable Nerds'" name="team-seeker-input"/>
+				</div>
+				<i class="icon-spin icon-spinner loader hide" id="team-seeker-spinner"></i> <button class="btn green disabled" id="team-seeker-submit">Rechercher</button>
+			</form>
+
+			{# Block chargé en AJAX #}
+			<div id="team-seeker-result"></div>
+		</div>
+	</div>
+{% endblock %}
+		
