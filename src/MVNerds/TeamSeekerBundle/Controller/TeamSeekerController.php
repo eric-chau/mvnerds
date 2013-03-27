@@ -17,6 +17,8 @@ class TeamSeekerController extends Controller
      */
     public function testAction()
     {
+		$this->get('mvnerds.team_seeker_manager')->findTeamFromTagOrName('euw', 'mvn3rd');
+		
         return $this->render('::base.html.twig');
     }
 }
