@@ -37,6 +37,7 @@ class AppKernel extends Kernel
             new MVNerds\LaunchSiteBundle\MVNerdsLaunchSiteBundle(),
             new MVNerds\ItemHandlerBundle\MVNerdsItemHandlerBundle(),
             new MVNerds\ChampionHandlerBundle\MVNerdsChampionHandlerBundle(),
+            new MVNerds\TeamSeekerBundle\MVNerdsTeamSeekerBundle(),
 		);
 
 		if (in_array($this->getEnvironment(), array('dev', 'test')))

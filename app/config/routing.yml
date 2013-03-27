@@ -1,3 +1,8 @@
+mv_nerds_team_seeker:
+    resource: "@MVNerdsTeamSeekerBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 
