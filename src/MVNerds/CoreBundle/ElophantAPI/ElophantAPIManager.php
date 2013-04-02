@@ -5,6 +5,7 @@ namespace MVNerds\CoreBundle\ElophantAPI;
 use Buzz\Browser;
 use RuntimeException;
 use Exception;
+use JMS\SecurityExtraBundle\Exception\InvalidArgumentException;
 
 use MVNerds\CoreBundle\Exception\ServiceUnavailableException;
 use MVNerds\CoreBundle\Exception\InvalidSummonerNameException;
@@ -15,6 +16,7 @@ class ElophantAPIManager
 	private $buzz;
 	private $developerAPIKey = '5nbcaguivyp0JvvttrmA';
 	private $apiBaseUrl = 'http://api.elophant.com/v2/';
+	private $multipleTry = 0;
 	public static $TIER_HIERARCHY = array(
 		'CHALLENGER' => 1,
 		'DIAMOND' => 2,
@@ -33,35 +35,19 @@ class ElophantAPIManager
 	public function getGameAccountFromRegionAndUsername($region, $summonerName)
 	{
 		// Récupération l'ID du compte
-		$url = $this->apiBaseUrl . $region . '/summoner/' . rawurlencode($summonerName) . '?key=' . $this->developerAPIKey;
+		$response = null;
 		try {
-			$response = $this->buzz->get($url);
+			$response = $this->sendRequest($region . '/summoner/' . rawurlencode($summonerName));
 		}
-		catch (RuntimeException $e) {
-			throw new ServiceUnavailableException();
-		}
-		
-		$this->updateRequestSendCount();
-		$contentObject = json_decode($response->getContent());
-		
-		if (null == $contentObject) {
-			throw new ServiceUnavailableException();
-		}
-		
-		if (!$contentObject->success) {
-			if ($contentObject->error == 'No active connection found for the given region.') {
-				throw new ServiceUnavailableException();
-			}
-			
+		catch (InvalidArgumentException $e) {
 			throw new InvalidSummonerNameException();
 		}
 		
-		$contentObject = $contentObject->data;
 		$gameAccount = new GameAccount();
 		$gameAccount->setSummonerName($summonerName);
 		$gameAccount->setRegion($region);
-		$gameAccount->setSummonerAccountId($contentObject->acctId);
-		$gameAccount->setSummonerId($contentObject->summonerId);
+		$gameAccount->setSummonerAccountId($response->acctId);
+		$gameAccount->setSummonerId($response->summonerId);
 		$gameAccount->generateActivationCode();
 				
 		return $gameAccount;
@@ -69,28 +55,10 @@ class ElophantAPIManager
 	
 	public function checkActivationCodeWithMasteriesPage(GameAccount $gameAccount)
 	{
-		$url = $this->apiBaseUrl . $gameAccount->getRegion() . '/mastery_pages/' . $gameAccount->getSummonerId() . '?key=' . $this->developerAPIKey;
-		try {
-			$response = $this->buzz->get($url);
-		}
-		catch (RuntimeException $e) {
-			throw new ServiceUnavailableException();
-		}
+		$response = $this->sendRequest($gameAccount->getRegion() . '/mastery_pages/' . $gameAccount->getSummonerId());
 		
-		$this->updateRequestSendCount();
-		$contentObject = json_decode($response->getContent());
-		
-		if (null == $contentObject) {
-			throw new ServiceUnavailableException();
-		}
-		
-		if (!$contentObject->success) {
-			throw new ServiceUnavailableException();
-		}
-		
-		$contentObject = $contentObject->data;
 		$success = false;
-		foreach ($contentObject->bookPages as $page) {
+		foreach ($response->bookPages as $page) {
 			if (strcmp($page->name, $gameAccount->getActivationCode()) == 0) {
 				$success = true;
 				$gameAccount->activate();
@@ -100,52 +68,14 @@ class ElophantAPIManager
 		}
 		
 		return $success;
-	}
-	
-	public function updateRankedStatsIfNeeded(GameAccount $gameAccount)
-	{
-		$lastUpdateTimestamp = $gameAccount->getLastUpdateTime();
-		if ( null != $lastUpdateTimestamp && ($lastUpdateTimestamp + 15 * 60 > time()) ) {
-			return;
-		}
-		
-		try {
-			$this->updateSummonerLeagues($gameAccount);
-			$this->updateRankedStats($gameAccount);
-		}
-		catch (ServiceUnavailableException $e) {
-			return;
-		}
-		
-		$gameAccount->updateTime();
-		$gameAccount->save();
-	}
+	}	
 	
 	private function updateSummonerLeagues(GameAccount $gameAccount)
 	{
-		// préparation de la route de la requête à envoyer
-		$url = $this->apiBaseUrl . 'euw/leagues/'. $gameAccount->getSummonerId() .'?key=' . $this->developerAPIKey;
-		try {
-			$response = $this->buzz->get($url);
-		}
-		catch (RuntimeException $e) {
-			throw new ServiceUnavailableException();
-		}
-		
-		$this->updateRequestSendCount();
-		$contentObject = json_decode($response->getContent());
-		
-		if (null == $contentObject) {
-			throw new ServiceUnavailableException();
-		}
-		
-		if (!$contentObject->success) {
-			throw new ServiceUnavailableException();
-		}
-		
-		$contentObject = $contentObject->data;
+		$response = $this->getSummonerLeagues($gameAccount->getRegion(), $gameAccount->getSummonerId());
+
 		$summonerRankedInfos = array();
-		foreach ($contentObject->summonerLeagues as $league) {
+		foreach ($response->summonerLeagues as $league) {
 			$queueInfos = array();
 			$queueInfos['tier'] = $league->tier;
 			$queueInfos['division'] = $league->requestorsRank;
@@ -201,28 +131,10 @@ class ElophantAPIManager
 	private function updateRankedStats(GameAccount $gameAccount)
 	{
 		// préparation de la route de la requête à envoyer
-		$url = $this->apiBaseUrl . 'euw/ranked_stats/'. $gameAccount->getSummonerAccountId() .'?key=' . $this->developerAPIKey;
-		try {
-			$response = $this->buzz->get($url);
-		}
-		catch (RuntimeException $e) {
-			throw new ServiceUnavailableException();
-		}
-		
-		$this->updateRequestSendCount();
-		$contentObject = json_decode($response->getContent());
-		
-		if (null == $contentObject) {
-			throw new ServiceUnavailableException();
-		}
-		
-		if (!$contentObject->success) {
-			throw new ServiceUnavailableException();
-		}
-		
-		$contentObject = $contentObject->data;
+		$response = $this->sendRequest($gameAccount->getRegion() . '/ranked_stats/'. $gameAccount->getSummonerAccountId());
+
 		$rankedStatsInfos = array();
-		foreach ($contentObject->lifetimeStatistics as $stat) {
+		foreach ($response->lifetimeStatistics as $stat) {
 			if (0 == $stat->championId) {
 				$rankedStatsInfos[$stat->statType] = $stat->value;
 			}
@@ -258,44 +170,43 @@ class ElophantAPIManager
 		$gameAccount->setTotalDefeat($rankedStatsInfos['TOTAL_SESSIONS_PLAYED'] - $rankedStatsInfos['TOTAL_SESSIONS_WON']);
 	}
 	
-	public function getSummonerLastTenGames($summonerAccountID, $region)
+	public function updateRankedStatsIfNeeded(GameAccount $gameAccount)
 	{
-		// Récupération des champions et leurs elophant ids
-		$url = $this->apiBaseUrl . '/champions?key=' . $this->developerAPIKey;
-		$response = null;
-
-		
-		$responseArray = json_decode($response->getContent());
-		$championsArray = array();
-		foreach ($responseArray->data as $championInfos) {
-			$championsArray[$championInfos->id] = $championInfos->name;
+		$lastUpdateTimestamp = $gameAccount->getLastUpdateTime();
+		if ( null != $lastUpdateTimestamp && ($lastUpdateTimestamp + 15 * 60 > time()) ) {
+			return;
 		}
 		
-		// Récupération des 10 dernières parties du joueur
-		$url = $this->apiBaseUrl . $region . '/recent_games/' . $summonerAccountID . '?key=' . $this->developerAPIKey;
-		$response = $this->buzz->get($url);
-		$responseArray = json_decode($response->getContent());
-		
-		foreach(array_reverse($responseArray->data->gameStatistics) as $gameInfos) {
-			var_dump('=====================================================================');
-			var_dump('=====================================================================');
-			var_dump('game\'s id: ' . $gameInfos->gameId);
-			var_dump('ro0ny played: ' . $championsArray[$gameInfos->championId]);
-			$teamId = $gameInfos->teamId;
-			var_dump('team\'s id: ' . $teamId);
-			var_dump('Opponents player :');
-			foreach($gameInfos->fellowPlayers as $player) {
-				if ($teamId != $player->teamId) {
-					var_dump($player->summonerName .'(' . $championsArray[$player->championId] . ')');
-				}
-			}
+		try {
+			$this->updateSummonerLeagues($gameAccount);
+			$this->updateRankedStats($gameAccount);
+		}
+		catch (ServiceUnavailableException $e) {
+			return;
 		}
 		
+		$gameAccount->updateTime();
+		$gameAccount->save();
+	}
+	
+	public function findTeamByTagOrName($region, $tagOrName)
+	{
+		return $this->sendRequest($region . '/find_team/' . rawurlencode($tagOrName));
+	}
+	
+	public function getSummonerLeagues($region, $summonerID)
+	{
+		return $this->sendRequest($region . '/leagues/' . $summonerID);
 	}
 	
 	public function setBuzz(Browser $buzz) 
 	{
 		$this->buzz = $buzz;
+	}
+	
+	public function enableMultipleTry($number = 3)
+	{
+		$this->multipleTry = $number;
 	}
 	
 	/**
@@ -333,5 +244,52 @@ class ElophantAPIManager
 		}
 				
 		apc_store('elophant_request_count_per_fifteen_minutes', $requestSendInfos);
+	}
+	
+	/**
+	 * 
+	 * @param type $function
+	 * @throws ServiceUnavailableException Si ELOPHANT n'est pas disponible
+	 */
+	private function sendRequest($function)
+	{
+		$url = $this->apiBaseUrl . $function .'?key=' . $this->developerAPIKey;
+		$response = null;
+		
+		do {
+			try {
+				$response = $this->buzz->get($url);
+			}
+			catch (RuntimeException $e) {
+				if ($this->multipleTry > 0) {
+					$this->multipleTry--;
+				}
+				else {
+					throw new ServiceUnavailableException();
+				}
+			}
+
+			$this->updateRequestSendCount();
+			$contentObject = json_decode($response->getContent());
+
+			if (null == $contentObject) {
+				if ($this->multipleTry > 0) {
+					$this->multipleTry--;
+				}
+				else {
+					throw new ServiceUnavailableException();
+				}
+			}
+		} while ($this->multipleTry > 0);
+		
+		if (!$contentObject->success) {
+			if ($contentObject->error == 'No active connection found for the given region.') {
+				throw new ServiceUnavailableException();
+			}
+			
+			throw new InvalidArgumentException();
+		}
+		
+		return $contentObject->data;
 	}
 }
