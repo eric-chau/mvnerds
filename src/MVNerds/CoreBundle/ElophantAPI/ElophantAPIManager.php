@@ -204,11 +204,6 @@ class ElophantAPIManager
 		$this->buzz = $buzz;
 	}
 	
-	public function enableMultipleTry($number = 3)
-	{
-		$this->multipleTry = $number;
-	}
-	
 	/**
 	 * Mise à jour du nombre de requête effectuer vers Elophant
 	 * Note : Stocké avec le cache APC
@@ -256,37 +251,32 @@ class ElophantAPIManager
 		$url = $this->apiBaseUrl . $function .'?key=' . $this->developerAPIKey;
 		$response = null;
 		
-		do {
-			try {
-				$response = $this->buzz->get($url);
-			}
-			catch (RuntimeException $e) {
-				if ($this->multipleTry > 0) {
-					$this->multipleTry--;
-				}
-				else {
-					throw new ServiceUnavailableException();
-				}
-			}
+		curl_setopt(curl_init(),CURLOPT_TIMEOUT,1000);
+		var_dump($url);
+		//try {
+			$response = $this->buzz->get('http://api.elophant.com/v2/euw/leagues/317217?key=5nbcaguivyp0JvvttrmA');//$url);
+		/*}
+		catch (RuntimeException $e) {
+			throw new ServiceUnavailableException();
+		}*/
 
-			$this->updateRequestSendCount();
-			$contentObject = json_decode($response->getContent());
+		var_dump($response); die;
+		
+		$this->updateRequestSendCount();
+		$contentObject = json_decode($response->getContent());
 
-			if (null == $contentObject) {
-				if ($this->multipleTry > 0) {
-					$this->multipleTry--;
-				}
-				else {
-					throw new ServiceUnavailableException();
-				}
-			}
-		} while ($this->multipleTry > 0);
+		if (null == $contentObject) {
+			var_dump('object_null'); die;
+			throw new ServiceUnavailableException();
+		}
 		
 		if (!$contentObject->success) {
 			if ($contentObject->error == 'No active connection found for the given region.') {
+				var_dump('no_connection'); die;
 				throw new ServiceUnavailableException();
 			}
 			
+			var_dump('invalid_argument'); die;
 			throw new InvalidArgumentException();
 		}
 		

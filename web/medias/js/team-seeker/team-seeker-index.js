@@ -11,10 +11,14 @@ function seekTeam() {
 		if (regionVal != '' && teamVal != '') {
 			$.ajax({
 				type: 'POST',
-				url:  Routing.generate('team_seeker_seek_ajax', {_locale: locale}),
-				data: data,
-				dataType: 'json'
-			}).done(function(){
+				url:  Routing.generate('team_seeker_seek_ajax', {'_locale': locale}),
+				data: {
+					'region': regionVal,
+					'team_tag_or_name': teamVal
+				},
+				dataType: 'html'
+			}).done(function(response){
+				$('div#team-seeker-container').append(response);
 				console.log('done');
 			}).fail(function(){
 				console.log('fail');
@@ -22,8 +26,6 @@ function seekTeam() {
 		} else {
 			console.log('not valid');
 		}
-	} else {
-		console.log('undefined');
 	}
 }
 
@@ -37,14 +39,14 @@ $(document).ready(function() {
 	// Event d'écoute sur le change du texte sur le champ de texte #team-seeker-input
 	$('input#team-seeker-input').on('click keyup change', function(event)
 	{
-		if (event.which == 13) {
-			$searchTeamButton.trigger('click');
-		}
-
 		if ($.trim($(this).val()) != '') {
 			$searchTeamButton.removeClass('disabled');
 		} else {
 			$searchTeamButton.addClass('disabled');
+		}
+
+		if (event.which == 13) {
+			$searchTeamButton.trigger('click');
 		}
 	});
 	
@@ -55,7 +57,7 @@ $(document).ready(function() {
 		$('#team-seeker-spinner').removeClass('hide');
 		regionVal = $('#team-seeker-region-selector').val();
 		teamVal = $('#team-seeker-input').val();
-		
+
 		seekTeam();
 	});
 	
