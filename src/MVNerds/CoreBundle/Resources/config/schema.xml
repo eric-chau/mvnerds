@@ -750,4 +750,17 @@
     </behavior>
     <behavior name="extra_properties" />
   </table>
+  <table name="team_seeker_cache">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="tag" required="true" size="6" type="VARCHAR" />
+    <column name="name" required="true" size="24" type="VARCHAR" />
+    <column name="region" required="true" size="4" type="VARCHAR" />
+    <column name="ranked_5x5_league" required="true" size="15" type="VARCHAR" />
+    <column name="ranked_3x3_league" required="true" size="15" type="VARCHAR" />
+    <column name="roster" required="true" type="LONGVARCHAR" />
+    <behavior name="timestampable">
+      <parameter name="create_column" value="create_time" />
+      <parameter name="update_column" value="update_time" />
+    </behavior>
+  </table>
 </database>

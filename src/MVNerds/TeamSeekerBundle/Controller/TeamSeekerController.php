@@ -12,13 +12,13 @@ use Symfony\Component\HttpFoundation\Response;
 class TeamSeekerController extends Controller
 {
     /**
-     * @Route("/test")
+     * @Route("/test/{teamTagOrName}")
 	 * 
 	 * "PAS TOUCHE, A MOI !" - Ro0ny
      */
-    public function testAction()
+    public function testAction($teamTagOrName)
     {
-		$this->get('mvnerds.team_seeker_manager')->findTeamFromTagOrName('euw', 'mvn3rd');
+		$this->get('mvnerds.team_seeker_manager')->findTeamByTagOrName('euw', $teamTagOrName);
 		
         return $this->render('::base.html.twig');
     }
@@ -36,6 +36,10 @@ class TeamSeekerController extends Controller
 	 */
 	public function seekAction()
 	{
+		$request = $this->getRequest();
+		
+		$this->get('mvnerds.team_seeker_manager')->findTeamByTagOrName($request->get('region'), $request->get('team_tag_or_name'));
+		
 		return new Response();
 	}
 }
