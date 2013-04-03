@@ -24,7 +24,7 @@ class SkinI18n extends BaseSkinI18n {
 	{
 		parent::setName($name);
 		
-		if ('fr' == $this->getLang()) {
+		if ('fr' == $this->getLang() || $this->getSkin() == null || $this->getSkin()->getSlug() == null || $this->getSkin()->getSlug() == '') {
 			$slug = \MVNerds\CoreBundle\Utils\MVNerdsSluggify::mvnerdsSluggify($this->getName());
 			if (( $skin = $this->getSkin())) {
 				$skin->setSlug($slug);

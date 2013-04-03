@@ -34,7 +34,7 @@ class SkillI18n extends BaseSkillI18n {
 			$this->modifiedColumns[] = SkillI18nPeer::NAME;
 		//}
 			
-		if ('fr' == $this->getLang()) {
+		if ('fr' == $this->getLang() || $this->getSkill() == null || $this->getSkill()->getSlug() == null || $this->getSkill()->getSlug() == '') {
 			$slug = \MVNerds\CoreBundle\Utils\MVNerdsSluggify::mvnerdsSluggify($this->getName());
 			if (( $skill = $this->getSkill())) {
 				$skill->setSlug($slug);
