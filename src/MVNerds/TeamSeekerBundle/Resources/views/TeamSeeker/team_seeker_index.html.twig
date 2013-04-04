@@ -5,25 +5,15 @@
 {% block css %}
 	{{ parent() }}
 
-	{% if app.environment == 'dev' %}
-		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/team-seeker/team-seeker-index.css') }}">
-	{% else %}
-		{% stylesheets 
-			output='medias/css/compiled/team-seeker-index.css'
-			filter='yui_css'
-			filter='cssembed'
-		%}
-		<link rel="stylesheet" href="{{ asset_url }}" />
-		{% endstylesheets %}
-	{% endif %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/team-seeker/team-seeker-index.css') }}">
 {% endblock %}
 
 {% block javascripts %}
 	{{ parent() }}
-
-	{% if app.environment == 'dev' %}
 		<script type="text/javascript" src="{{ asset('medias/js/site/alerts-ajax-handler.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/team-seeker/team-seeker-index.js') }}"></script>
+
+	{#{% if app.environment == 'dev' %}
 	{% else %}
 		{% javascripts
 			'medias/js/site/alerts-ajax-handler.js'
@@ -33,7 +23,7 @@
 		%}
 		<script src="{{ asset_url }}"></script>
 		{% endjavascripts %}
-	{% endif %}
+	{% endif %}#}
 {% endblock %}
 
 {% block topbar %}
@@ -64,26 +54,26 @@
 		
 		<div id="team-seeker-container">
 			
-			<form action="#"  id="team-seeker-form">
-				<div class="field">
-					<label for="team-seeker-region-selector">Région</label>
+			<form action="#" id="team-seeker-form">
 					<select id="team-seeker-region-selector">
-						<option value="euw">Europe Ouest (EUW)</option>
-						<option value="eune">Europe Nord et Est (EUNE)</option>
-						<option value="na">Amérique du Nord (NA)</option>
-						<option value="br">Brésil (BR)</option>
+						<option value="euw">EUW</option>
+						<option value="eune">EUNE</option>
+						<option value="na">NA</option>
 					</select>
-				</div>
-
-				<div class="field">
-					<label for="team-seeker-input">Tag ou Nom de l'équipe : </label>
-					<input type="text" id="team-seeker-input" placeholder="Ex: 'MVNerd' ou 'Most Valuable Nerds'" name="team-seeker-input"/>
-				</div>
-				<i class="icon-spin icon-spinner loader hide" id="team-seeker-spinner"></i> <button class="btn green disabled" id="team-seeker-submit">Rechercher</button>
+					
+					<input type="text" id="team-seeker-input" placeholder="Recherche par nom ou par tag..." name="team-seeker-input"/>
+					
+					<button class="btn red disabled" id="team-seeker-submit"><i class="icon-search"></i></button>
 			</form>
-
+			
+			<div class="loader-container hide">
+				<i class="icon-spin icon-spinner"></i> Chargement en cours, veuillez patienter.
+			</div>
+			
 			{# Block chargé en AJAX #}
-			<div id="team-seeker-result"></div>
+			<div id="team-seeker-result">
+			
+			</div>
 		</div>
 	</div>
 {% endblock %}

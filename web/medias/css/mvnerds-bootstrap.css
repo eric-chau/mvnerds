@@ -541,6 +541,10 @@ div#topbar ul.menu li a.active {
   color: #db4a38;
   font-weight: bold;
 }
+div#topbar ul.menu li a.spotlight {
+  color: #ffc203;
+  font-weight: bold;
+}
 div#topbar ul.right-container {
   position: absolute;
   right: 0;

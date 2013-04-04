@@ -1,0 +1,101 @@
+<div class="team-overview-container row-fluid">
+	<div class="span8 left-content">
+		{# Nom et Tag de l'équipe #}
+		<h2>{{ team.getName() }} ({{ team.getTag() }})</h2>
+		
+		{# Ligues en équipe classée 3vs3 et 5vs5 #}
+		<div class="row-fluid leagues-container">
+			<div class="span6">
+				<h3>{{ 'profile_index.game_account.team3x3_queue_label'|trans }}</h3>
+				<img src="{{ asset('medias/images/league-medals/' ~ team.getRanked3x3League()|lower ~ '.png' ) }}" />
+				<div class="label">{{ team.getRanked3x3League()|trans }}</div>
+			</div>
+			<div class="span6">
+				<h3>{{ 'profile_index.game_account.team5x5_queue_label'|trans }}</h3>
+				<img src="{{ asset('medias/images/league-medals/' ~ team.getRanked5x5League()|lower ~ '.png' ) }}" />
+				<div class="label">{{ team.getRanked5x5League()|trans }}</div>
+			</div>
+		</div>
+		
+		{# Liste des joueurs avec leur ligue en soloQ #}
+		<div class="players-container">
+			{# On regarde si l'on a besoin ou non de charger en AJAX les ligues en soloQ des certains joueurs #}
+			{% set need_ajax_load = false %}
+			{# On boucle sur tous les joueurs pour rendre la vue adéquat #}
+			{% for player in team.getRoster() %}
+				{# Test de savoir si c'est le capitaine ou non #}
+				{% if player.owner is defined %}
+					<div class="row-player captain">
+						<img src="{{ asset('medias/images/league-medals/' ~ player.ranked_solo_5x5_league|lower ~ '.png' ) }}" />
+						<span class="summoner-name">{{ player.summoner_name  }} (Capitaine)</span>
+						<span class="league-label">{{ player.ranked_solo_5x5_league|trans }}</span>
+					</div>
+				{% else %}
+					{# Sinon, on test aussi si l'on a déjà l'information concernant sa ligue en soloQ #}
+					{% if player.ranked_solo_5x5_league == 'UNDEFINED' %}
+						<div class="row-player" id="{{ player.summoner_id }}">
+							<i class="icon-spin icon-spinner player-loader"></i>
+							<span class="summoner-name">{{ player.summoner_name  }}</span>
+							<span class="league-label loading">Chargement en cours</span>
+						</div>
+						{% set need_ajax_load = true %}
+					{% else %}
+						{# Si on a déjà l'information on peut directement afficher le nom du joueur et sa ligue #}
+						{% include 'MVNerdsTeamSeekerBundle:TeamSeeker:team_seeker_index_player_row.html.twig' with {'player': player, 'disable_ajax_load': true} %}
+					{% endif %}
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+	
+	<div class="span4 right-content">
+		{# Affichage en sidebar de l'historique des matchs #}
+		<h2>Historique de match</h2>
+		
+		{% for match in team.getMatchHistory()|slice(0, 10) %}
+			<div class="match-history-block {% if match.is_5v5 %}summoner-rift{% else %}twisted-treeline{% endif %}">
+				<div class="row-fluid">
+					<div class="span5 team-name">
+						<span>{{ team.getName() }}</span>
+						<div class="team-kills">{{ match.kills }}</div>
+					</div>
+					<div class="span2 versus-label"><span>contre</span></div>
+					<div class="span5 team-name">
+						<span>{{ match.opposing_team }}</span>
+						<div class="team-kills">{{ match.deaths }}</div>
+					</div>
+				</div>
+				<div class="match-result">
+					{% if match.win %}
+						<span class="victory">Victoire</span>
+					{% else %}
+						<span class="defeat">Défaite</span>
+					{% endif %}
+				</div>
+			</div>
+		{% else %}
+			{{ team.getName() }} n'a pas encore joué de match au cours de cette saison.
+		{% endfor %}
+	</div>
+</div>
+
+{% if need_ajax_load %}
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$.ajax({
+				url: Routing.generate('team_seeker_get_player_solo_league', {'_locale': locale}),
+				type: 'POST',
+				data: {
+					'region': '{{ region }}',
+					'team_tag_or_name': '{{ team_tag_or_name }}'
+				},
+				dataType: 'html',
+				success: function(response) {
+					var $wrapper = $('<div>').append(response);
+					var rowPlayerID = $wrapper.find('div.row-player').attr('id');
+					$('div.row-player#' + rowPlayerID).html($wrapper.find('div.row-player').html());
+				}
+			});
+		});
+	</script>
+{% endif %}
