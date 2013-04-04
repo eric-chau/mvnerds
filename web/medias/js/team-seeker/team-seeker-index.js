@@ -8,6 +8,11 @@ function seekTeam() {
 	 * SO PLS SET LES DEUX VARS AVEC LA REGION ET LA TEAM
 	 */
 	if (typeof regionVal != 'undefined' && typeof teamVal != 'undefined') {
+		$('div#team-seeker-result').hide();
+		$('div.loader-container').slideDown('slow');
+		$('#team-seeker-region-selector').attr('disabled', 'disabled');
+		$('input#team-seeker-input').attr('disabled', 'disabled');
+		$searchTeamButton.addClass('disabled');
 		if (regionVal != '' && teamVal != '') {
 			$.ajax({
 				type: 'POST',
@@ -17,14 +22,19 @@ function seekTeam() {
 					'team_tag_or_name': teamVal
 				},
 				dataType: 'html'
-			}).done(function(response){
-				$('div#team-seeker-container').append(response);
-				console.log('done');
-			}).fail(function(){
-				console.log('fail');
+			}).done(function(response) {
+				$('div.loader-container').hide();
+				$('div#team-seeker-result').html(response);
+				$('div#team-seeker-result').fadeIn('fast');
+				$searchTeamButton.removeClass('disabled');
+				$('input#team-seeker-input').removeAttr('disabled');
+				$('#team-seeker-region-selector').removeAttr('disabled');
+			}).fail(function() {
+				$('div.loader-container').hide();
+				$searchTeamButton.removeClass('disabled');
+				$('input#team-seeker-input').removeAttr('disabled');
+				$('#team-seeker-region-selector').removeAttr('disabled');
 			})
-		} else {
-			console.log('not valid');
 		}
 	}
 }
@@ -44,16 +54,12 @@ $(document).ready(function() {
 		} else {
 			$searchTeamButton.addClass('disabled');
 		}
-
-		if (event.which == 13) {
-			$searchTeamButton.trigger('click');
-		}
 	});
 	
 	//Soumission du formulaire de recherche de team
 	$searchTeamButton.click(function(e) {
 		e.preventDefault();
-		
+				
 		$('#team-seeker-spinner').removeClass('hide');
 		regionVal = $('#team-seeker-region-selector').val();
 		teamVal = $('#team-seeker-input').val();
@@ -61,6 +67,11 @@ $(document).ready(function() {
 		seekTeam();
 	});
 	
+
+
+
+
+
 	// Vérifie si c'est la première fois ou non que l'utilisateur accède au module Team Seeker
 	var howItWorksValue = getItemFromLS('display_how_it_works_team_seeker');
 	if (howItWorksValue == undefined || howItWorksValue == 'true') {

@@ -758,6 +758,7 @@
     <column name="ranked_5x5_league" required="true" size="15" type="VARCHAR" />
     <column name="ranked_3x3_league" required="true" size="15" type="VARCHAR" />
     <column name="roster" required="true" type="LONGVARCHAR" />
+    <column name="data" type="LONGVARCHAR" />
     <behavior name="timestampable">
       <parameter name="create_column" value="create_time" />
       <parameter name="update_column" value="update_time" />

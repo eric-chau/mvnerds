@@ -1,0 +1,26 @@
+<div class="row-player" id="{{ player.summoner_id }}">
+	<img src="{{ asset('medias/images/league-medals/' ~ player.ranked_solo_5x5_league|lower ~ '.png' ) }}" />
+	<span class="summoner-name">{{ player.summoner_name  }}</span>
+	<span class="league-label">{{ player.ranked_solo_5x5_league|trans }}</span>
+</div>
+
+{% if disable_ajax_load == false %}
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$.ajax({
+				url: Routing.generate('team_seeker_get_player_solo_league', {'_locale': locale}),
+				type: 'POST',
+				data: {
+					'region': '{{ region }}',
+					'team_tag_or_name': '{{ team_tag_or_name }}'
+				},
+				dataType: 'html',
+				success: function(response) {
+					var $wrapper = $('<div>').append(response);
+					var rowPlayerID = $wrapper.find('div.row-player').attr('id');
+					$('div.row-player#' + rowPlayerID).html($wrapper.find('div.row-player').html());
+				}
+			});
+		});
+	</script>
+{% endif %}

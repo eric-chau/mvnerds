@@ -1,2 +1,214 @@
-.clearfix{*zoom:1}.clearfix:before,.clearfix:after{display:table;content:"";line-height:0}.clearfix:after{clear:both}.hide-text{font:0/0 a;color:transparent;text-shadow:none;background-color:transparent;border:0}.input-block-level{display:block;width:100%;min-height:30px;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}div.container.main-container div#team-seeker-container form#team-seeker-form{margin:0 auto;padding:0 50px;text-align:right;width:600px}div.container.main-container div#team-seeker-container form#team-seeker-form div{text-align:left}div.container.main-container div#team-seeker-container form#team-seeker-form div.field{background-color:#ddd;border:1px solid #ccc;margin:0 0 5px 0;padding:5px 0}div.container.main-container div#team-seeker-container form#team-seeker-form div.field:hover{background-color:#ccc;-webkit-transition:background-color .25s linear;-moz-transition:background-color .25s linear;-o-transition:background-color .25s linear;transition:background-color .25s linear}div.container.main-container div#team-seeker-container form#team-seeker-form div.field label{display:inline-block;font-weight:700;margin:0 10px 0 0;text-align:right;width:225px}div.container.main-container div#team-seeker-container form#team-seeker-form div.field input,div.container.main-container div#team-seeker-container form#team-seeker-form div.field textarea{width:200px}div.container.main-container div#team-seeker-container form#team-seeker-form div.field select{width:211px}div.container.main-container div#team-seeker-container form#team-seeker-form button{border:0;display:inline-block;margin:5px 0 0 0;vertical-align:top}div.container.main-container div#team-seeker-container form#team-seeker-form i.loader{color:#db4a38;display:inline-block;font-size:18px;margin:10px 10px 0 0}div.container.main-container div#team-seeker-container form#team-seeker-form i.loader.hide{opacity:0}div.alert{border:3px solid rgba(0,0,0,.5);-webkit-border-radius:0!important;-moz-border-radius:0!important;border-radius:0!important;color:#fff;opacity:.8;padding:5px;text-shadow:none}div.alert.alert-fixed{bottom:10px;position:fixed;right:10px;width:300px;z-index:1100}div.alert.alert-success{background-color:#759e1a}div.alert.alert-error{background-color:#db4a38}
-/* This beautiful CSS-File has been crafted with LESS (lesscss.org) and compiled by simpLESS (wearekiss.com/simpless) */
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+div.container.main-container div#team-seeker-container form#team-seeker-form {
+  margin: 40px 0;
+  text-align: center;
+}
+div.container.main-container div#team-seeker-container form#team-seeker-form button {
+  border: 0;
+  margin: 0;
+}
+div.container.main-container div#team-seeker-container form#team-seeker-form button i {
+  display: inline-block;
+  font-size: 18px;
+  margin: 0 15px;
+  position: relative;
+  top: -1px;
+}
+div.container.main-container div#team-seeker-container form#team-seeker-form select,
+div.container.main-container div#team-seeker-container form#team-seeker-form input {
+  font-size: 20px;
+  padding: 5px 10px;
+}
+div.container.main-container div#team-seeker-container form#team-seeker-form select,
+div.container.main-container div#team-seeker-container form#team-seeker-form button {
+  height: 40px;
+}
+div.container.main-container div#team-seeker-container form#team-seeker-form input[type="text"] {
+  display: inline-block;
+  font-weight: bold;
+  margin: 0;
+  width: 500px;
+}
+div.container.main-container div#team-seeker-container form#team-seeker-form select {
+  padding: 0;
+}
+div.container.main-container div#team-seeker-container div.loader-container {
+  color: #666;
+  font-size: 22px;
+  font-weight: bold;
+  margin: 40px 0;
+  text-align: center;
+}
+div.container.main-container div#team-seeker-container div.loader-container i {
+  color: #db4a38;
+  display: inline-block;
+  margin: 0 5px 0 0;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container h2 {
+  text-align: center;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span8.left-content div.leagues-container {
+  text-align: center;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span8.left-content div.players-container div.row-player {
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  margin: 10px 0;
+  padding: 5px 0;
+  position: relative;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span8.left-content div.players-container div.row-player.captain {
+  border: 2px solid #999;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span8.left-content div.players-container div.row-player img {
+  left: 0;
+  position: absolute;
+  top: -10px;
+  width: 50px;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span8.left-content div.players-container div.row-player span {
+  display: inline-block;
+  font-size: 16px;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span8.left-content div.players-container div.row-player span.summoner-name {
+  font-weight: bold;
+  margin: 0 0 0 70px;
+  width: 250px;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span8.left-content div.players-container div.row-player span.loading {
+  color: #999;
+  font-size: 14px;
+  font-style: italic;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span8.left-content div.players-container div.row-player i.player-loader {
+  font-size: 18px;
+  margin: 0 0 0 20px;
+  position: absolute;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span4.right-content {
+  position: relative;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span4.right-content h2 {
+  font-size: 1em;
+  margin: 0 0 5px 0;
+  position: absolute;
+  right: 0;
+  text-transform: uppercase;
+  top: -21px;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span4.right-content div.match-history-block {
+  border: 1px solid #999;
+  margin: 0 0 10px 0;
+  position: relative;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span4.right-content div.match-history-block.summoner-rift {
+  background: #e4e6e5 url('../../images/team-seeker/match-history-5v5-bg.jpg') no-repeat left top;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span4.right-content div.match-history-block.twisted-treeline {
+  background: #e4e6e5 url('../../images/team-seeker/match-history-3v3-bg.jpg') no-repeat left top;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span4.right-content div.match-history-block div.team-name,
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span4.right-content div.match-history-block div.versus-label {
+  line-height: 60px;
+  min-height: 60px;
+  text-align: center;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span4.right-content div.match-history-block div.team-name span,
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span4.right-content div.match-history-block div.versus-label span {
+  display: inline-block;
+  line-height: 1.2em;
+  position: relative;
+  vertical-align: middle;
+  z-index: 100;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span4.right-content div.match-history-block div.versus-label {
+  color: #666;
+  font-size: 10px;
+  text-transform: uppercase;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span4.right-content div.match-history-block div.team-name {
+  color: #111111;
+  font-size: 14px;
+  font-weight: bold;
+  position: relative;
+  text-transform: none;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span4.right-content div.match-history-block div.team-name div.team-kills {
+  color: #19a0df;
+  font-size: 30px;
+  font-weight: bold;
+  left: 0;
+  line-height: 1em;
+  opacity: .8;
+  position: absolute;
+  text-align: center;
+  top: -2px;
+  width: 100%;
+  z-index: 0;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span4.right-content div.match-history-block div.match-result {
+  bottom: -6px;
+  font-size: 14px;
+  font-weight: bold;
+  left: 2px;
+  line-height: 1;
+  position: absolute;
+  text-align: center;
+  text-transform: uppercase;
+  width: 100%;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span4.right-content div.match-history-block div.match-result span {
+  color: #be3322;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span4.right-content div.match-history-block div.match-result span.victory {
+  color: #759e1a;
+}
+div.alert {
+  border: 3px solid rgba(0, 0, 0, 0.5);
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  color: white;
+  opacity: 0.8;
+  padding: 5px;
+  text-shadow: none;
+}
+div.alert.alert-fixed {
+  bottom: 10px;
+  position: fixed;
+  right: 10px;
+  width: 300px;
+  z-index: 1100;
+}
+div.alert.alert-success {
+  background-color: #759e1a;
+}
+div.alert.alert-error {
+  background-color: #db4a38;
+}

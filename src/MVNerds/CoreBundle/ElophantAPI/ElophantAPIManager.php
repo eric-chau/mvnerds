@@ -251,32 +251,25 @@ class ElophantAPIManager
 		$url = $this->apiBaseUrl . $function .'?key=' . $this->developerAPIKey;
 		$response = null;
 		
-		curl_setopt(curl_init(),CURLOPT_TIMEOUT,1000);
-		var_dump($url);
-		//try {
-			$response = $this->buzz->get('http://api.elophant.com/v2/euw/leagues/317217?key=5nbcaguivyp0JvvttrmA');//$url);
-		/*}
+		try {
+			$response = $this->buzz->get($url);
+		}
 		catch (RuntimeException $e) {
 			throw new ServiceUnavailableException();
-		}*/
+		}
 
-		var_dump($response); die;
-		
 		$this->updateRequestSendCount();
 		$contentObject = json_decode($response->getContent());
 
 		if (null == $contentObject) {
-			var_dump('object_null'); die;
 			throw new ServiceUnavailableException();
 		}
 		
 		if (!$contentObject->success) {
 			if ($contentObject->error == 'No active connection found for the given region.') {
-				var_dump('no_connection'); die;
 				throw new ServiceUnavailableException();
 			}
 			
-			var_dump('invalid_argument'); die;
 			throw new InvalidArgumentException();
 		}
 		
