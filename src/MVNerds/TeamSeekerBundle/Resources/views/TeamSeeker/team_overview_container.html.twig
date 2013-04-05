@@ -1,3 +1,11 @@
+{% if app.environment == 'prod' %}
+	<script type="text/javascript">
+		$(document).ready(function() {
+			_gaq.push(['_trackPageview', location.pathname + '{{team.getTag()}}']);
+		});
+	</script>
+{% endif %}
+
 <div class="team-overview-container row-fluid">
 	<div class="span8 left-content">
 		{# Nom et Tag de l'équipe #}
@@ -27,7 +35,7 @@
 				{% if player.owner is defined %}
 					<div class="row-player captain">
 						<img src="{{ asset('medias/images/league-medals/' ~ player.ranked_solo_5x5_league|lower ~ '.png' ) }}" />
-						<span class="summoner-name">{{ player.summoner_name  }} (Capitaine)</span>
+						<span class="summoner-name">{{ player.summoner_name  }} ({{'team_seeker.captain' | trans}})</span>
 						<span class="league-label">{{ player.ranked_solo_5x5_league|trans }}</span>
 					</div>
 				{% else %}
@@ -36,7 +44,7 @@
 						<div class="row-player" id="{{ player.summoner_id }}">
 							<i class="icon-spin icon-spinner player-loader"></i>
 							<span class="summoner-name">{{ player.summoner_name  }}</span>
-							<span class="league-label loading">Chargement en cours</span>
+							<span class="league-label loading">{{'team_seeker.loading' | trans}}</span>
 						</div>
 						{% set need_ajax_load = true %}
 					{% else %}
@@ -50,7 +58,7 @@
 	
 	<div class="span4 right-content">
 		{# Affichage en sidebar de l'historique des matchs #}
-		<h2>Historique de match</h2>
+		<h2>{{'team_seeker.match_history' | trans}}</h2>
 		
 		{% for match in team.getMatchHistory()|slice(0, 10) %}
 			<div class="match-history-block {% if match.is_5v5 %}summoner-rift{% else %}twisted-treeline{% endif %}">
@@ -59,7 +67,7 @@
 						<span>{{ team.getName() }}</span>
 						<div class="team-kills">{{ match.kills }}</div>
 					</div>
-					<div class="span2 versus-label"><span>contre</span></div>
+					<div class="span2 versus-label"><span>{{'team_seeker.vs' | trans}}</span></div>
 					<div class="span5 team-name">
 						<span>{{ match.opposing_team }}</span>
 						<div class="team-kills">{{ match.deaths }}</div>
@@ -67,14 +75,14 @@
 				</div>
 				<div class="match-result">
 					{% if match.win %}
-						<span class="victory">Victoire</span>
+						<span class="victory">{{'team_seeker.victory' | trans}}</span>
 					{% else %}
-						<span class="defeat">Défaite</span>
+						<span class="defeat">{{'team_seeker.defeat' | trans}}</span>
 					{% endif %}
 				</div>
 			</div>
 		{% else %}
-			{{ team.getName() }} n'a pas encore joué de match au cours de cette saison.
+			{{ team.getName() }} {{'team_seeker.didnt_play_yet'| trans}}
 		{% endfor %}
 	</div>
 </div>

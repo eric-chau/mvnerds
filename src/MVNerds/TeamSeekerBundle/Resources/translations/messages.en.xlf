@@ -4,51 +4,51 @@
 		<body>
 			<trans-unit id="1">
 				<source>team_seeker.captain</source>
-				<target>Capitaine</target>
+				<target>Captain</target>
 			</trans-unit>
 			<trans-unit id="2">
 				<source>team_seeker.loading</source>
-				<target>Chargement en cours</target>
+				<target>Loading</target>
 			</trans-unit>
 			<trans-unit id="3">
 				<source>team_seeker.match_history</source>
-				<target>Historique de match</target>
+				<target>Match history</target>
 			</trans-unit>
 			<trans-unit id="4">
 				<source>team_seeker.vs</source>
-				<target>Contre</target>
+				<target>VS</target>
 			</trans-unit>
 			<trans-unit id="5">
 				<source>team_seeker.victory</source>
-				<target>Victoire</target>
+				<target>Victory</target>
 			</trans-unit>
 			<trans-unit id="6">
 				<source>team_seeker.defeat</source>
-				<target>Défaite</target>
+				<target>Defeat</target>
 			</trans-unit>
 			<trans-unit id="7">
 				<source>team_seeker.didnt_play_yet</source>
-				<target>n'a pas encore joué de match au cours de cette saison.</target>
+				<target>didn't play any matches yet during this season.</target>
 			</trans-unit>
 			<trans-unit id="8">
 				<source>team_seeker.placeholder</source>
-				<target>Recherche par nom ou par tag</target>
+				<target>Search by name or tag</target>
 			</trans-unit>
 			<trans-unit id="9">
 				<source>team_seeker.loading_wait</source>
-				<target>Chargement en cours, veuillez patienter.</target>
+				<target>Loading, please wait.</target>
 			</trans-unit>
 			<trans-unit id="10">
 				<source>team_seeker.hiw_text</source>
 				<target>
-					Pendant un match en équipe classée, ne vous êtes-vous jamais demandés quel était le niveau de votre adversaire en lane ?
-					Le Team Seeker va vous permettre de rechercher  une équipe en fonction de sa région et de son nom ou son tag. 
-					Ceci va vous permettre de lister tous les membres de l'équipe avec leurs ligues individuelles en File Solo/Duo.
+					During a team ranked match, haven't you ever asked yourself what was your laning opponent level ?
+					The Team Seeker will allow you to search for a team depending on its region, and its name or tag.
+					Thanks to this, all the team members will be listed, and all of theirs Solo/Duo Queue leagues will be displayed individually.
 				</target>
 			</trans-unit>
 			<trans-unit id="11">
 				<source>team_seeker.title</source>
-				<target>Recherche d'équipe classée League of Legends</target>
+				<target>League of Legends ranked team search</target>
 			</trans-unit>
 		</body>
 	</file>

@@ -1,6 +1,6 @@
 {% extends 'MVNerdsSiteBundle::layout.html.twig' %}
 
-{% block title %}Team Seeker - {{ 'champion_benckmark.title'|trans }} | MVNerds{% endblock %} 
+{% block title %}Team Seeker - {{ 'team_seeker.title'|trans }} | MVNerds{% endblock %} 
 
 {% block css %}
 	{{ parent() }}
@@ -39,15 +39,7 @@
 
 {% block main_content %}
 	<div class="container main-container border-top">
-		<h1>Team Seeker <a href="#" class="how-it-works-toggle"><span class="label red">{{ 'champion_benckmark.how_it_work_label'|trans }}</span></a></h1>
-		
-		<div class="how-it-works hide">
-			<p>
-				{{ 'champion_benckmark.index.hiw_text'|trans }}
-			</p>
-			
-			<div class="separator"></div>
-		</div>
+		<h1>Team Seeker</h1>
 		
 		{# PUBLICITÉ #}
 		{% include 'MVNerdsSiteBundle:Common:ad_728x90.html.twig' %}
@@ -61,18 +53,18 @@
 						<option value="na">NA</option>
 					</select>
 					
-					<input type="text" id="team-seeker-input" placeholder="Recherche par nom ou par tag..." name="team-seeker-input"/>
+					<input type="text" id="team-seeker-input" placeholder="{{'team_seeker.placeholder' | trans}}" name="team-seeker-input"/>
 					
 					<button class="btn red disabled" id="team-seeker-submit"><i class="icon-search"></i></button>
 			</form>
 			
 			<div class="loader-container hide">
-				<i class="icon-spin icon-spinner"></i> Chargement en cours, veuillez patienter.
+				<i class="icon-spin icon-spinner"></i> {{'team_seeker.loading_wait' |trans}}
 			</div>
 			
 			{# Block chargé en AJAX #}
 			<div id="team-seeker-result">
-			
+				{{ 'team_seeker.hiw_text'|trans }}
 			</div>
 		</div>
 	</div>

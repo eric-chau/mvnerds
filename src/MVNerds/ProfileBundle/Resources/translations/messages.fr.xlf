@@ -623,6 +623,10 @@
 				<source>CHALLENGER</source>
 				<target>Challenger</target>
 			</trans-unit>
+			<trans-unit id="426">
+				<source>CHALLENGER_I</source>
+				<target>Challenger</target>
+			</trans-unit>
 
 			<trans-unit id="430">
 				<source>profile_list.page_title</source>
