@@ -94,7 +94,7 @@ class ChampionRotationController extends Controller
 	/**
 	 * Supprimer le champion ayant pour slug $slug de la base de données;
 	 *
-	 * @Route("/{id}/delete", name="admin_champions_delete")
+	 * @Route("/{id}/delete", name="admin_champ_rotation_delete")
 	 */
 	public function deleteChampionRotationAction($id)
 	{
