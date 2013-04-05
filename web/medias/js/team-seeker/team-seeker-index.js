@@ -10,8 +10,10 @@ function seekTeam() {
 	if (typeof regionVal != 'undefined' && typeof teamVal != 'undefined') {
 		$('div#team-seeker-result').hide();
 		$('div.loader-container').slideDown('slow');
+		$searchTeamButton.addClass('disabled');
 		$('#team-seeker-region-selector').attr('disabled', 'disabled');
 		$('input#team-seeker-input').attr('disabled', 'disabled');
+		$('div.form-errors').html('');
 		$searchTeamButton.addClass('disabled');
 		if (regionVal != '' && teamVal != '') {
 			$.ajax({
@@ -26,10 +28,11 @@ function seekTeam() {
 				$('div.loader-container').hide();
 				$('div#team-seeker-result').html(response);
 				$('div#team-seeker-result').fadeIn('fast');
-				$searchTeamButton.removeClass('disabled');
+				//$searchTeamButton.removeClass('disabled');
 				$('input#team-seeker-input').removeAttr('disabled');
 				$('#team-seeker-region-selector').removeAttr('disabled');
-			}).fail(function() {
+			}).fail(function(response) {
+				$('div.form-errors').html(response.responseText);
 				$('div.loader-container').hide();
 				$searchTeamButton.removeClass('disabled');
 				$('input#team-seeker-input').removeAttr('disabled');
@@ -57,37 +60,12 @@ $(document).ready(function() {
 	});
 	
 	//Soumission du formulaire de recherche de team
-	$searchTeamButton.click(function(e) {
-		e.preventDefault();
-				
-		$('#team-seeker-spinner').removeClass('hide');
+	$('form#team-seeker-form').on('submit', function(event) {
+		event.preventDefault();
+		
 		regionVal = $('#team-seeker-region-selector').val();
 		teamVal = $('#team-seeker-input').val();
 
 		seekTeam();
-	});
-	
-
-
-
-
-
-	// Vérifie si c'est la première fois ou non que l'utilisateur accède au module Team Seeker
-	var howItWorksValue = getItemFromLS('display_how_it_works_team_seeker');
-	if (howItWorksValue == undefined || howItWorksValue == 'true') {
-		$('a.how-it-works-toggle').find('span.label').toggleClass('disabled');
-		$('div.how-it-works').slideDown();
-
-		if (howItWorksValue == undefined) {
-			saveItemInLS('display_how_it_works_team_seeker', false);
-		}
-	}
-	// Toggle du "comment ça marche ?"
-	$('a.how-it-works-toggle').on('click', function(event) {
-		event.stopPropagation();
-		$('div.how-it-works').slideToggle();
-		var $label = $(this).find('span.label');
-		$label.toggleClass('disabled');
-		saveItemInLS('display_how_it_works_team_seeker', $label.hasClass('disabled'));
 	});
 });

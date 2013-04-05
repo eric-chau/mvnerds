@@ -5,6 +5,8 @@ namespace MVNerds\TeamSeekerBundle\TeamSeeker;
 use JMS\SecurityExtraBundle\Exception\InvalidArgumentException;
 
 use MVNerds\CoreBundle\ElophantAPI\ElophantAPIManager;
+use MVNerds\TeamSeekerBundle\Exception\InvalidTeamNameOrTagException;
+use MVNerds\CoreBundle\Exception\ServiceUnavailableException;
 use MVNerds\CoreBundle\Model\TeamSeekerCache;
 use MVNerds\CoreBundle\Model\TeamSeekerCachePeer;
 use MVNerds\CoreBundle\Model\TeamSeekerCacheQuery;
@@ -23,7 +25,12 @@ class TeamSeekerManager
 		->findOne();
 		
 		if (null == $team || ($team->getUpdateTime()->getTimestamp() + 30 * 60) < time()) {
-			$team = $this->retrieveTeamByTagOrNameFromElophantAPI($region, $tagOrName, $team);
+			try {
+				$team = $this->retrieveTeamByTagOrNameFromElophantAPI($region, $tagOrName, $team);
+			}
+			catch (ServiceUnavailableException $e) {
+				// On a rien à faire, on intercepte juste l'exception
+			}
 		}
 
 		return $team;
@@ -31,21 +38,21 @@ class TeamSeekerManager
 	
 	private function retrieveTeamByTagOrNameFromElophantAPI($region, $tagOrName, TeamSeekerCache $team = null)
 	{
-		// Si $team est égal à null, on créé un nouvelle objet TeamSeekerCache
+		// Si $team est Ã©gal Ã  null, on crÃ©Ã© un nouvelle objet TeamSeekerCache
 		if (null == $team) {
 			$team = new TeamSeekerCache();
 		}
 		
-		// On essaye de récupérer les informations conernant l'équipe à partir du tag ou du nom d'équipe
+		// On essaye de rÃ©cupÃ©rer les informations conernant l'Ã©quipe Ã  partir du tag ou du nom d'Ã©quipe
 		try {
 			$rawResponse = $this->elophantAPIManager->findTeamByTagOrName($region, $tagOrName);
 		}
 		catch (InvalidArgumentException $e) {
-			// Si l'exception est de type InvalidArugmentException cela signifie que le tag ou le nom fourni n'est pas reconnu pour la région spécifiée
-			var_dump('tag ou nom d\'ÃƒÂ©quipe non reconnu !'); die;
+			// Si l'exception est de type InvalidArugmentException cela signifie que le tag ou le nom fourni n'est pas reconnu pour la rÃ©gion spÃ©cifiÃ©e
+			throw new InvalidTeamNameOrTagException();
 		}
 		
-		// On rassemble toutes les informations conernant l'équipes et ses membres dans un même tableau
+		// On rassemble toutes les informations conernant l'Ã©quipes et ses membres dans un mÃªme tableau
 		$teamInfos = array(
 			'tag'						=> $rawResponse->tag,
 			'name'						=> $rawResponse->name,
@@ -54,7 +61,7 @@ class TeamSeekerManager
 		);
 		
 		$roster = array();
-		// On commence par parcourir tous les joueurs que comportent l'équipe pour les rassembler dans un seul et même tableau
+		// On commence par parcourir tous les joueurs que comportent l'Ã©quipe pour les rassembler dans un seul et mÃªme tableau
 		foreach ($rawResponse->roster->memberList as $member) {
 			$memberInfos = array(
 				'summoner_name'				=> $member->playerName,
@@ -62,7 +69,7 @@ class TeamSeekerManager
 				'ranked_solo_5x5_league'	=> 'UNDEFINED'
 			);
 			
-			// On se base sur le propriétaire de l'équipe et ses ligues pour retrouver la ligue et la division de l'ÃƒÂ©quipe en question
+			// On se base sur le propriÃ©taire de l'Ã©quipe et ses ligues pour retrouver la ligue et la division de l'ÃƒÆ’Ã‚Â©quipe en question
 			if ($rawResponse->roster->ownerId == $member->playerId) {
 				
 				try {
@@ -78,12 +85,12 @@ class TeamSeekerManager
 					continue;
 				}
 				
-				// Si on ne trouve pas de ligue pour le capitaine cela signifie qu'il n'es pas classé en soloQ
+				// Si on ne trouve pas de ligue pour le capitaine cela signifie qu'il n'es pas classÃ© en soloQ
 				if ($memberInfos['ranked_solo_5x5_league'] == 'UNDEFINED') {
 					$memberInfos['ranked_solo_5x5_league'] = 'UNRANKED';
 				}
 				
-				// Seulement pour le capitaine de l'équipe, on en profite pour récupérer son classement en soloQ
+				// Seulement pour le capitaine de l'Ã©quipe, on en profite pour rÃ©cupÃ©rer son classement en soloQ
 				foreach ($leagues->summonerLeagues as $league) {
 					if ($league->queue == 'RANKED_SOLO_5x5') {
 						$memberInfos['ranked_solo_5x5_league'] = $league->tier . '_' . $league->requestorsRank;
@@ -91,11 +98,11 @@ class TeamSeekerManager
 					}
 				}
 				
-				// On les parcourt une ÃƒÂ  une pour connaÃƒÂ®tre la file et l'ÃƒÂ©quipe concernÃƒÂ©es
+				// On les parcourt une ÃƒÆ’Ã‚Â  une pour connaÃƒÆ’Ã‚Â®tre la file et l'ÃƒÆ’Ã‚Â©quipe concernÃƒÆ’Ã‚Â©es
 				foreach ($leagues->summonerLeagues as $league) {
-					// On test si c'est une file qui concerne l'ÃƒÂ©quipe que l'on recherche
+					// On test si c'est une file qui concerne l'ÃƒÆ’Ã‚Â©quipe que l'on recherche
 					if ($teamInfos['name'] == $league->requestorsName) {
-						// Si oui on test si c'est pour la file Equipe ClassÃƒÂ©e 5vs5
+						// Si oui on test si c'est pour la file Equipe ClassÃƒÆ’Ã‚Â©e 5vs5
 						if ('RANKED_TEAM_5x5' == $league->queue) {
 							$teamInfos['ranked_team_5x5_league'] = $league->tier . '_' . $league->requestorsRank;
 						}
@@ -114,7 +121,7 @@ class TeamSeekerManager
 		}
 		
 		$matchHistory = array();
-		// Parcours de l'historique des 20 (max) derniers matchs de l'équipe
+		// Parcours de l'historique des 20 (max) derniers matchs de l'Ã©quipe
 		foreach ($rawResponse->matchHistory as $match) {
 			$matchHistory[] = array(
 				'game_id'		=> $match->gameId,

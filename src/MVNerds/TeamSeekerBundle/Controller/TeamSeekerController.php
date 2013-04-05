@@ -6,6 +6,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
+use JMS\SecurityExtraBundle\Exception\InvalidArgumentException;
+use MVNerds\TeamSeekerBundle\Exception\InvalidTeamNameOrTagException;
 
 /**
  * @Route("/team-seeker")
@@ -30,9 +32,26 @@ class TeamSeekerController extends Controller
 			throw new HttpException(500, 'Request should be AJAXienne and POST!');
 		}
 		
-		$region = $request->get('region');
-		$teamTagOrName = $request->get('team_tag_or_name');
-		$team = $this->get('mvnerds.team_seeker_manager')->findTeamByTagOrName($region, $teamTagOrName);
+		$region = $request->get('region', null);
+		$teamTagOrName = $request->get('team_tag_or_name', null);
+		if (null == $region || null == $teamTagOrName) {
+			throw new InvalidArgumentException('Some parameters are missing!');
+		}
+		
+		$team = null;
+		try {
+			$team = $this->get('mvnerds.team_seeker_manager')->findTeamByTagOrName($region, $teamTagOrName);
+		}
+		catch (InvalidTeamNameOrTagException $e) {
+			return new Response($this->get('translator')->trans('TeamSeeker.seek.unknow_tag_or_name.%tagOrName%.%region%', array(
+				'%tagOrName%' => $teamTagOrName, 
+				'%region%' => $region
+			)), 404);
+		}
+		
+		if (null == $team) {
+			return new Response($this->get('translator')->trans('profile_index.elophant.afk'), 503);
+		}
 		
 		return $this->render('MVNerdsTeamSeekerBundle:TeamSeeker:team_overview_container.html.twig', array(
 			'team'				=> $team,

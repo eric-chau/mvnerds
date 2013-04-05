@@ -70,6 +70,11 @@ div.container.main-container div#team-seeker-container div.loader-container i {
   display: inline-block;
   margin: 0 5px 0 0;
 }
+div.container.main-container div#team-seeker-container div.form-errors {
+  color: #db4a38;
+  font-weight: bold;
+  text-align: center;
+}
 div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container h2 {
   text-align: center;
 }
@@ -144,6 +149,7 @@ div.container.main-container div#team-seeker-container div#team-seeker-result di
   display: inline-block;
   line-height: 1.2em;
   position: relative;
+  top: 8px;
   vertical-align: middle;
   z-index: 100;
 }
