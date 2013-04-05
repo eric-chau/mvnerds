@@ -195,7 +195,7 @@ class FrontController extends Controller
 	
 	public function renderLastestCommentsAndResponsesBlockAction()
 	{
-		$commentsAndResponses = $this->get('mvnerds.comment_manager')->getLastestCommentsAndResponses(11);
+		$commentsAndResponses = $this->get('mvnerds.comment_manager')->getLastestCommentsAndResponses(5);
 		$contentMaxLength = 39;
 		if ('en' == $this->get('session')->get('locale')) {
 			$contentMaxLength = 41;
