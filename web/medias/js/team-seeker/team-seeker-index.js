@@ -28,9 +28,7 @@ function seekTeam() {
 				$('div.loader-container').hide();
 				$('div#team-seeker-result').html(response);
 				$('div#team-seeker-result').fadeIn('fast');
-				//$searchTeamButton.removeClass('disabled');
-				$('input#team-seeker-input').removeAttr('disabled');
-				$('#team-seeker-region-selector').removeAttr('disabled');
+				window.scrollTo($('div#team-seeker-form').position().left, $('div#team-seeker-form').position().top);
 			}).fail(function(response) {
 				$('div.form-errors').html(response.responseText);
 				$('div.loader-container').hide();
@@ -44,7 +42,7 @@ function seekTeam() {
 
 $(document).ready(function() {
 	
-	$searchTeamButton = $('#team-seeker-submit');
+	$searchTeamButton = $('a#team-seeker-submit');
 	
 	//Recherche lancée dès l'arrivée sur la page pour le cas ou la recherche n'a pas été faite depuis la page dédiée.
 	seekTeam();
@@ -52,17 +50,26 @@ $(document).ready(function() {
 	// Event d'écoute sur le change du texte sur le champ de texte #team-seeker-input
 	$('input#team-seeker-input').on('click keyup change', function(event)
 	{
+		event.preventDefault();
+
 		if ($.trim($(this).val()) != '') {
 			$searchTeamButton.removeClass('disabled');
 		} else {
 			$searchTeamButton.addClass('disabled');
 		}
+
+		if (event.which == '13') {
+			$searchTeamButton.trigger('click');
+		}
 	});
 	
 	//Soumission du formulaire de recherche de team
-	$('form#team-seeker-form').on('submit', function(event) {
+	$searchTeamButton.on('click', function(event) {
 		event.preventDefault();
-		
+		if ($(this).hasClass('disabled')) {
+			return false;
+		}
+
 		regionVal = $('#team-seeker-region-selector').val();
 		teamVal = $('#team-seeker-input').val();
 

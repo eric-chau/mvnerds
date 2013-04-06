@@ -46,8 +46,8 @@ class LocaleListener implements EventSubscriberInterface
 				$locale = $this->session->get('locale', null);
 				$userLocale = strtolower(substr($request->server->get('HTTP_ACCEPT_LANGUAGE'), 0, 2));
 				if (null == $locale) {
-					if ('en' != $userLocale) {
-						$userLocale = $this->defaultLocale;
+					if ('fr' != $userLocale) {
+						$userLocale = 'en';
 					}
 
 					$this->session->set('locale', $userLocale);

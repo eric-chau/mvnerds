@@ -41,15 +41,11 @@
 				{% else %}
 					{# Sinon, on test aussi si l'on a déjà l'information concernant sa ligue en soloQ #}
 					{% if player.ranked_solo_5x5_league == 'UNDEFINED' %}
-						<div class="row-player" id="{{ player.summoner_id }}">
-							<i class="icon-spin icon-spinner player-loader"></i>
-							<span class="summoner-name">{{ player.summoner_name  }}</span>
-							<span class="league-label loading">{{'team_seeker.loading' | trans}}</span>
-						</div>
+						{% include 'MVNerdsTeamSeekerBundle:TeamSeeker:team_seeker_index_player_row.html.twig' with {'player': player, 'need_ajax_load': true} %}
 						{% set need_ajax_load = true %}
 					{% else %}
 						{# Si on a déjà l'information on peut directement afficher le nom du joueur et sa ligue #}
-						{% include 'MVNerdsTeamSeekerBundle:TeamSeeker:team_seeker_index_player_row.html.twig' with {'player': player, 'disable_ajax_load': true} %}
+						{% include 'MVNerdsTeamSeekerBundle:TeamSeeker:team_seeker_index_player_row.html.twig' with {'player': player} %}
 					{% endif %}
 				{% endif %}
 			{% endfor %}
@@ -82,28 +78,19 @@
 				</div>
 			</div>
 		{% else %}
-			{{ team.getName() }} {{'team_seeker.didnt_play_yet'| trans}}
+			<p class="empty-list">{{ team.getName() }} {{'team_seeker.didnt_play_yet'| trans}}</p>
 		{% endfor %}
 	</div>
 </div>
 
-{% if need_ajax_load %}
+<div class="powered-by">
+	Powered by <a href="http://elophant.com" target="_blank">elophant.com</a>
+</div>
+
+{% if need_ajax_load == false %}
 	<script type="text/javascript">
-		$(document).ready(function() {
-			$.ajax({
-				url: Routing.generate('team_seeker_get_player_solo_league', {'_locale': locale}),
-				type: 'POST',
-				data: {
-					'region': '{{ region }}',
-					'team_tag_or_name': '{{ team_tag_or_name }}'
-				},
-				dataType: 'html',
-				success: function(response) {
-					var $wrapper = $('<div>').append(response);
-					var rowPlayerID = $wrapper.find('div.row-player').attr('id');
-					$('div.row-player#' + rowPlayerID).html($wrapper.find('div.row-player').html());
-				}
-			});
-		});
+		$('a#team-seeker-submit').removeClass('disabled');
+		$('input#team-seeker-input').removeAttr('disabled');
+		$('#team-seeker-region-selector').removeAttr('disabled');
 	</script>
 {% endif %}

@@ -7,6 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use JMS\SecurityExtraBundle\Exception\InvalidArgumentException;
+
+use MVNerds\CoreBundle\Exception\ServiceUnavailableException;
 use MVNerds\TeamSeekerBundle\Exception\InvalidTeamNameOrTagException;
 
 /**
@@ -56,7 +58,7 @@ class TeamSeekerController extends Controller
 		return $this->render('MVNerdsTeamSeekerBundle:TeamSeeker:team_overview_container.html.twig', array(
 			'team'				=> $team,
 			'region'			=> $region,
-			'team_tag_or_name'	=> $teamTagOrName
+			'team_tag_or_name'	=> $team->getTag()
 		));
 	}
 	
@@ -70,19 +72,22 @@ class TeamSeekerController extends Controller
 			throw new HttpException(500, 'Request should be AJAXienne and POST!');
 		}
 		
-		$region = $request->get('region');
-		$teamTagOrName = $request->get('team_tag_or_name');
-		$player = $this->get('mvnerds.team_seeker_manager')->updatePlayerSoloQLeagueIfNeeded($region, $teamTagOrName);
+		$region = $request->get('region', null);
+		$teamTag = $request->get('team_tag', null);
+		$playerID = $request->get('player_id', null);
+		if (null == $region || null == $teamTag || null == $playerID) {
+			throw new InvalidArgumentException('Some parameters are missing!');
+		}
 		
-		if (false == $player) {
-			return new Response(json_encode(false), 500);
+		try {
+			$player = $this->get('mvnerds.team_seeker_manager')->updatePlayerSoloQLeagueIfNeeded($region, $teamTag, $playerID);
+		}
+		catch (ServiceUnavailableException $e) {
+			return new Response($this->get('translator')->trans('TeamSeeker.Player.elophant.afk'), 503);
 		}
 		
 		return $this->render('MVNerdsTeamSeekerBundle:TeamSeeker:team_seeker_index_player_row.html.twig', array(
-			'player'			=> $player,
-			'region'			=> $region,
-			'team_tag_or_name'	=> $teamTagOrName,
-			'disable_ajax_load' => false
+			'player' => $player
 		));
 	}
 }

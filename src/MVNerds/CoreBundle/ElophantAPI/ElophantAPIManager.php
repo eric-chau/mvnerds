@@ -7,6 +7,9 @@ use RuntimeException;
 use Exception;
 use JMS\SecurityExtraBundle\Exception\InvalidArgumentException;
 
+use MVNerds\CoreBundle\Model\ElophantApiResponseCache;
+use MVNerds\CoreBundle\Model\ElophantApiResponseCachePeer;
+use MVNerds\CoreBundle\Model\ElophantApiResponseCacheQuery;
 use MVNerds\CoreBundle\Exception\ServiceUnavailableException;
 use MVNerds\CoreBundle\Exception\InvalidSummonerNameException;
 use MVNerds\CoreBundle\Model\GameAccount;
@@ -16,7 +19,6 @@ class ElophantAPIManager
 	private $buzz;
 	private $developerAPIKey = '5nbcaguivyp0JvvttrmA';
 	private $apiBaseUrl = 'http://api.elophant.com/v2/';
-	private $multipleTry = 0;
 	public static $TIER_HIERARCHY = array(
 		'CHALLENGER' => 1,
 		'DIAMOND' => 2,
@@ -248,17 +250,22 @@ class ElophantAPIManager
 	 */
 	private function sendRequest($function)
 	{
-		$url = $this->apiBaseUrl . $function .'?key=' . $this->developerAPIKey;
-		$response = null;
+		$apiResponseCache = $this->findElophantAPIResponseByKey($function);
+		if (null != $apiResponseCache && $apiResponseCache->getUpdateTime()->getTimestamp() + 30 * 60 > time()) {
+			return $apiResponseCache->getResponse();
+		}
 		
+		$url = $this->apiBaseUrl . $function;
+		
+		$response = null;
 		try {
-			$response = $this->buzz->get($url);
+			$response = $this->buzz->get($url .'?key=' . $this->developerAPIKey);
 		}
 		catch (RuntimeException $e) {
 			throw new ServiceUnavailableException();
 		}
 
-		$this->updateRequestSendCount();
+		//$this->updateRequestSendCount();
 		$contentObject = json_decode($response->getContent());
 
 		if (null == $contentObject) {
@@ -266,13 +273,33 @@ class ElophantAPIManager
 		}
 		
 		if (!$contentObject->success) {
-			if ($contentObject->error == 'No active connection found for the given region.') {
+			if ($contentObject->error == 'No active connection found for the given region.' || $contentObject->error == 'The global rate limit has been exceeded.') {
 				throw new ServiceUnavailableException();
 			}
 			
 			throw new InvalidArgumentException();
 		}
 		
-		return $contentObject->data;
+		if (null == $apiResponseCache) {
+			$apiResponseCache = new ElophantApiResponseCache();
+			$apiResponseCache->setKey($function);
+		}
+		
+		$apiResponseCache->setResponse($contentObject->data);
+		try {
+			$apiResponseCache->save();
+		}
+		catch (Exception $e) {
+			$apiResponseCache = $this->findElophantAPIResponseByKey($function);
+		}
+		
+		return $apiResponseCache->getResponse();
+	}
+	
+	public function findElophantAPIResponseByKey($key)
+	{
+		return ElophantApiResponseCacheQuery::create()
+			->add(ElophantApiResponseCachePeer::KEY, $key)
+		->findOne();
 	}
 }

@@ -2,6 +2,7 @@
 
 namespace MVNerds\TeamSeekerBundle\TeamSeeker;
 
+use Exception;
 use JMS\SecurityExtraBundle\Exception\InvalidArgumentException;
 
 use MVNerds\CoreBundle\ElophantAPI\ElophantAPIManager;
@@ -16,20 +17,15 @@ class TeamSeekerManager
 	private $elophantAPIManager;
 	
 	public function findTeamByTagOrName($region, $tagOrName) 
-	{
-		$team = TeamSeekerCacheQuery::create()
-			->where(TeamSeekerCachePeer::NAME . '= ?', $tagOrName)
-			->_or()
-			->where(TeamSeekerCachePeer::TAG . '= ?', $tagOrName)
-			->add(TeamSeekerCachePeer::REGION, $region)
-		->findOne();
+	{		
+		$team = $this->findInCacheByTagOrName($region, $tagOrName);
 		
 		if (null == $team || ($team->getUpdateTime()->getTimestamp() + 30 * 60) < time()) {
 			try {
 				$team = $this->retrieveTeamByTagOrNameFromElophantAPI($region, $tagOrName, $team);
 			}
 			catch (ServiceUnavailableException $e) {
-				// On a rien à faire, on intercepte juste l'exception
+				// On a rien ÃƒÂ  faire, on intercepte juste l'exception
 			}
 		}
 
@@ -38,21 +34,23 @@ class TeamSeekerManager
 	
 	private function retrieveTeamByTagOrNameFromElophantAPI($region, $tagOrName, TeamSeekerCache $team = null)
 	{
-		// Si $team est Ã©gal Ã  null, on crÃ©Ã© un nouvelle objet TeamSeekerCache
+		// Si $team est ÃƒÆ’Ã‚Â©gal ÃƒÆ’Ã‚Â  null, on crÃƒÆ’Ã‚Â©ÃƒÆ’Ã‚Â© un nouvelle objet TeamSeekerCache
+		$lockTeamCreationKey = 'team_seeker_' . $tagOrName . '_' . $region . '_locker';
 		if (null == $team) {
+			apc_store($lockTeamCreationKey, true);
 			$team = new TeamSeekerCache();
 		}
 		
-		// On essaye de rÃ©cupÃ©rer les informations conernant l'Ã©quipe Ã  partir du tag ou du nom d'Ã©quipe
+		// On essaye de rÃƒÆ’Ã‚Â©cupÃƒÆ’Ã‚Â©rer les informations conernant l'ÃƒÆ’Ã‚Â©quipe ÃƒÆ’Ã‚Â  partir du tag ou du nom d'ÃƒÆ’Ã‚Â©quipe
 		try {
 			$rawResponse = $this->elophantAPIManager->findTeamByTagOrName($region, $tagOrName);
 		}
 		catch (InvalidArgumentException $e) {
-			// Si l'exception est de type InvalidArugmentException cela signifie que le tag ou le nom fourni n'est pas reconnu pour la rÃ©gion spÃ©cifiÃ©e
+			// Si l'exception est de type InvalidArugmentException cela signifie que le tag ou le nom fourni n'est pas reconnu pour la rÃƒÆ’Ã‚Â©gion spÃƒÆ’Ã‚Â©cifiÃƒÆ’Ã‚Â©e
 			throw new InvalidTeamNameOrTagException();
 		}
 		
-		// On rassemble toutes les informations conernant l'Ã©quipes et ses membres dans un mÃªme tableau
+		// On rassemble toutes les informations conernant l'ÃƒÆ’Ã‚Â©quipes et ses membres dans un mÃƒÆ’Ã‚Âªme tableau
 		$teamInfos = array(
 			'tag'						=> $rawResponse->tag,
 			'name'						=> $rawResponse->name,
@@ -61,7 +59,7 @@ class TeamSeekerManager
 		);
 		
 		$roster = array();
-		// On commence par parcourir tous les joueurs que comportent l'Ã©quipe pour les rassembler dans un seul et mÃªme tableau
+		// On commence par parcourir tous les joueurs que comportent l'ÃƒÆ’Ã‚Â©quipe pour les rassembler dans un seul et mÃƒÆ’Ã‚Âªme tableau
 		foreach ($rawResponse->roster->memberList as $member) {
 			$memberInfos = array(
 				'summoner_name'				=> $member->playerName,
@@ -69,7 +67,7 @@ class TeamSeekerManager
 				'ranked_solo_5x5_league'	=> 'UNDEFINED'
 			);
 			
-			// On se base sur le propriÃ©taire de l'Ã©quipe et ses ligues pour retrouver la ligue et la division de l'ÃƒÆ’Ã‚Â©quipe en question
+			// On se base sur le propriÃƒÆ’Ã‚Â©taire de l'ÃƒÆ’Ã‚Â©quipe et ses ligues pour retrouver la ligue et la division de l'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©quipe en question
 			if ($rawResponse->roster->ownerId == $member->playerId) {
 				
 				try {
@@ -85,12 +83,12 @@ class TeamSeekerManager
 					continue;
 				}
 				
-				// Si on ne trouve pas de ligue pour le capitaine cela signifie qu'il n'es pas classÃ© en soloQ
+				// Si on ne trouve pas de ligue pour le capitaine cela signifie qu'il n'es pas classÃƒÆ’Ã‚Â© en soloQ
 				if ($memberInfos['ranked_solo_5x5_league'] == 'UNDEFINED') {
 					$memberInfos['ranked_solo_5x5_league'] = 'UNRANKED';
 				}
 				
-				// Seulement pour le capitaine de l'Ã©quipe, on en profite pour rÃ©cupÃ©rer son classement en soloQ
+				// Seulement pour le capitaine de l'ÃƒÆ’Ã‚Â©quipe, on en profite pour rÃƒÆ’Ã‚Â©cupÃƒÆ’Ã‚Â©rer son classement en soloQ
 				foreach ($leagues->summonerLeagues as $league) {
 					if ($league->queue == 'RANKED_SOLO_5x5') {
 						$memberInfos['ranked_solo_5x5_league'] = $league->tier . '_' . $league->requestorsRank;
@@ -98,11 +96,11 @@ class TeamSeekerManager
 					}
 				}
 				
-				// On les parcourt une ÃƒÆ’Ã‚Â  une pour connaÃƒÆ’Ã‚Â®tre la file et l'ÃƒÆ’Ã‚Â©quipe concernÃƒÆ’Ã‚Â©es
+				// On les parcourt une à  une pour connaître la file et l'équipe concernées
 				foreach ($leagues->summonerLeagues as $league) {
-					// On test si c'est une file qui concerne l'ÃƒÆ’Ã‚Â©quipe que l'on recherche
+					// On test si c'est une file qui concerne l'ÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©quipe que l'on recherche
 					if ($teamInfos['name'] == $league->requestorsName) {
-						// Si oui on test si c'est pour la file Equipe ClassÃƒÆ’Ã‚Â©e 5vs5
+						// Si oui on test si c'est pour la file Equipe ClassÃƒÆ’Ã†â€™Ãƒâ€ Ã¢â‚¬â„¢ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â©e 5vs5
 						if ('RANKED_TEAM_5x5' == $league->queue) {
 							$teamInfos['ranked_team_5x5_league'] = $league->tier . '_' . $league->requestorsRank;
 						}
@@ -121,7 +119,7 @@ class TeamSeekerManager
 		}
 		
 		$matchHistory = array();
-		// Parcours de l'historique des 20 (max) derniers matchs de l'Ã©quipe
+		// Parcours de l'historique des 20 (max) derniers matchs de l'ÃƒÆ’Ã‚Â©quipe
 		foreach ($rawResponse->matchHistory as $match) {
 			$matchHistory[] = array(
 				'game_id'		=> $match->gameId,
@@ -142,7 +140,12 @@ class TeamSeekerManager
 		$team->setRoster($roster);
 		$team->setMatchHistory($matchHistory);
 		
-		$team->save();
+		try {
+			$team->save();
+		}
+		catch (Exception $e) {
+			$team = $this->findInCacheByTagOrName($region, $tagOrName);
+		}
 		
 		return $team;
 	}
@@ -158,22 +161,20 @@ class TeamSeekerManager
 	 * @param type $tagOrName
 	 * @return boolean|string
 	 */
-	public function updatePlayerSoloQLeagueIfNeeded($region, $tagOrName) {
-		$team = $this->findTeamByTagOrName($region, $tagOrName);
-		
-		$roster = $team->getRoster();
+	public function updatePlayerSoloQLeagueIfNeeded($region, $tag, $playerID) 
+	{		
 		$player = null;
 		$playerKey = null;
-		foreach ($roster as $key => $member) {
-			if ($member['ranked_solo_5x5_league'] == 'UNDEFINED') {
+		foreach ($this->findTeamByTagOrName($region, $tag)->getRoster() as $key => $member) {
+			if ($member['summoner_id'] == $playerID) {
 				$player = $member;
 				$playerKey = $key;
 				break;
 			}
 		}
 		
-		if (null == $player) {
-			return false;
+		if ($player['ranked_solo_5x5_league'] != 'UNDEFINED') {
+			return $player;
 		}
 		
 		try {
@@ -196,12 +197,23 @@ class TeamSeekerManager
 			}
 		}
 		
+		/*$team = $this->findTeamByTagOrName($region, $tag);
+		$roster = $team->getRoster();
 		$roster[$playerKey] = $player;
-		
 		$team->setRoster($roster);
-		$team->save();
-		
+		$team->save();*/
+				
 		return $player;
+	}
+	
+	public function findInCacheByTagOrName($region, $tagOrName)
+	{
+		return TeamSeekerCacheQuery::create()
+			->where(TeamSeekerCachePeer::NAME . '= ?', $tagOrName)
+			->_or()
+			->where(TeamSeekerCachePeer::TAG . '= ?', $tagOrName)
+			->add(TeamSeekerCachePeer::REGION, $region)
+		->findOne();
 	}
 }
 

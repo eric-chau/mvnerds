@@ -50,6 +50,15 @@
 				<source>team_seeker.title</source>
 				<target>Recherche d'équipe classée League of Legends</target>
 			</trans-unit>
+			
+			<trans-unit id="20">
+				<source>TeamSeeker.seek.unknow_tag_or_name.%tagOrName%.%region%</source>
+				<target>Le couple '%tagOrName%' / '%region%' est invalide. Vérifiez que l'équipe existe toujours ou si la région spécifiée est correcte.</target>
+			</trans-unit>
+			<trans-unit id="21">
+				<source>TeamSeeker.Player.elophant.afk</source>
+				<target>Une erreur est survenue lors du chargement de la ligue en 'File Solo/Duo' de l'un des joueurs. Veuillez relancer la recherche.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

@@ -6,30 +6,32 @@
 
 div.container.main-container {
 	div#team-seeker-container {
-		form#team-seeker-form {
+		div#team-seeker-form {
 			margin: 40px 0;
 			text-align: center;
 
-			button {
+			a {
 				border: 0;
-				margin: 0;
+				cursor: pointer;
+				height: 26px;
+				margin: 0 0 0 1px;
+
+				&.disabled {
+					cursor: not-allowed;
+				}
 
 				i {
 					display: inline-block;
 					font-size: 18px;
 					margin: 0 15px;
 					position: relative;
-					top: -1px;
+					top: 4px;
 				}
 			}
 
 			select, input {
 				font-size: 20px;
 				padding: 5px 10px;
-			}
-
-			select, button {
-				height: 40px;
 			}
 
 			input[type="text"] {
@@ -40,6 +42,7 @@ div.container.main-container {
 			}
 
 			select {
+				height: 40px;
 				padding: 0;
 			}
 		}
@@ -61,10 +64,34 @@ div.container.main-container {
 		div.form-errors {
 			color: @MVNerdsRed;
 			font-weight: bold;
+			margin: 0 0 20px 0;
 			text-align: center;
 		}
 
 		div#team-seeker-result {
+			div.introduction {
+				font-size: 16px;
+				margin: 60px 0;
+				padding: 20px;
+
+				p {	
+					font-size: 16px;
+					font-style: italic;
+
+					i {
+						color: #aaa;
+						display: inline-block;
+						margin: 0 5px 0 0;
+						position: relative;
+						top: 2px;
+
+						&.icon-quote-right {
+							margin: 0 0 0 5px;
+						}
+					}
+				}
+			}
+
 			div.team-overview-container {
 				h2 {
 					text-align: center;
@@ -73,6 +100,11 @@ div.container.main-container {
 				div.span8.left-content {
 					div.leagues-container {
 						text-align: center;
+
+						div.label {
+							font-size: 16px;
+							font-weight: bold;
+						}
 					}
 
 					div.players-container {
@@ -130,6 +162,12 @@ div.container.main-container {
 						right: 0;
 						text-transform: uppercase;
 						top: -21px;
+					}
+
+					p.empty-list {
+						font-style: italic;
+						margin: 20px 0;
+						text-align: center;
 					}
 
 					div.match-history-block {

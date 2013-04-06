@@ -50,6 +50,15 @@
 				<source>team_seeker.title</source>
 				<target>League of Legends ranked team search</target>
 			</trans-unit>
+			
+			<trans-unit id="20">
+				<source>TeamSeeker.seek.unknow_tag_or_name.%tagOrName%.%region%</source>
+				<target>The couple '%tagOrName%' / '%region%' is not valid. Please check if the team still exsits and if the region is correct.</target>
+			</trans-unit>
+			<trans-unit id="21">
+				<source>TeamSeeker.Player.elophant.afk</source>
+				<target>An error has occurred while loading the Solo/Duo Queue' league of a player. Please relaunch the search.</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

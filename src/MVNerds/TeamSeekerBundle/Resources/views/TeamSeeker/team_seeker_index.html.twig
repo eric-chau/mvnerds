@@ -10,20 +10,20 @@
 
 {% block javascripts %}
 	{{ parent() }}
+		
+	{% if app.environment == 'dev' %}
 		<script type="text/javascript" src="{{ asset('medias/js/site/alerts-ajax-handler.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/team-seeker/team-seeker-index.js') }}"></script>
-
-	{#{% if app.environment == 'dev' %}
 	{% else %}
 		{% javascripts
 			'medias/js/site/alerts-ajax-handler.js'
-			'medias/js/champion-benchmark/team-seeker-index.js'
+			'medias/js/team-seeker/team-seeker-index.js'
 			output='medias/js/compiled/team-seeker-index.js'
 			filter='yui_js'
 		%}
 		<script src="{{ asset_url }}"></script>
 		{% endjavascripts %}
-	{% endif %}#}
+	{% endif %}
 {% endblock %}
 
 {% block topbar %}
@@ -46,17 +46,17 @@
 		
 		<div id="team-seeker-container">
 			
-			<form action="#" id="team-seeker-form">
-					<select id="team-seeker-region-selector">
+			<div id="team-seeker-form">
+					<select id="team-seeker-region-selector" tabindex="1">
 						<option value="euw">EUW</option>
 						<option value="eune">EUNE</option>
 						<option value="na">NA</option>
 					</select>
 					
-					<input type="text" id="team-seeker-input" placeholder="{{'team_seeker.placeholder' | trans}}" name="team-seeker-input"/>
+					<input type="text" id="team-seeker-input" placeholder="{{'team_seeker.placeholder' | trans}}" name="team-seeker-input" tabindex="2" />
 					
-					<button class="btn red disabled" id="team-seeker-submit"><i class="icon-search"></i></button>
-			</form>
+					<a href="#" class="btn red disabled" id="team-seeker-submit" tabindex="3"><i class="icon-search"></i></a>
+			</div>
 			
 			<div class="form-errors"></div>
 			
@@ -66,7 +66,11 @@
 			
 			{# Block chargé en AJAX #}
 			<div id="team-seeker-result">
-				{{ 'team_seeker.hiw_text'|trans }}
+				<div class="introduction">
+					<p>
+						<i class="icon-quote-left"></i> {{ 'team_seeker.hiw_text'|trans }} <i class="icon-quote-right"></i>
+					</p>
+				</div>
 			</div>
 		</div>
 	</div>

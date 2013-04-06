@@ -25,37 +25,39 @@
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
-div.container.main-container div#team-seeker-container form#team-seeker-form {
+div.container.main-container div#team-seeker-container div#team-seeker-form {
   margin: 40px 0;
   text-align: center;
 }
-div.container.main-container div#team-seeker-container form#team-seeker-form button {
+div.container.main-container div#team-seeker-container div#team-seeker-form a {
   border: 0;
-  margin: 0;
+  cursor: pointer;
+  height: 26px;
+  margin: 0 0 0 1px;
 }
-div.container.main-container div#team-seeker-container form#team-seeker-form button i {
+div.container.main-container div#team-seeker-container div#team-seeker-form a.disabled {
+  cursor: not-allowed;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-form a i {
   display: inline-block;
   font-size: 18px;
   margin: 0 15px;
   position: relative;
-  top: -1px;
+  top: 4px;
 }
-div.container.main-container div#team-seeker-container form#team-seeker-form select,
-div.container.main-container div#team-seeker-container form#team-seeker-form input {
+div.container.main-container div#team-seeker-container div#team-seeker-form select,
+div.container.main-container div#team-seeker-container div#team-seeker-form input {
   font-size: 20px;
   padding: 5px 10px;
 }
-div.container.main-container div#team-seeker-container form#team-seeker-form select,
-div.container.main-container div#team-seeker-container form#team-seeker-form button {
-  height: 40px;
-}
-div.container.main-container div#team-seeker-container form#team-seeker-form input[type="text"] {
+div.container.main-container div#team-seeker-container div#team-seeker-form input[type="text"] {
   display: inline-block;
   font-weight: bold;
   margin: 0;
   width: 500px;
 }
-div.container.main-container div#team-seeker-container form#team-seeker-form select {
+div.container.main-container div#team-seeker-container div#team-seeker-form select {
+  height: 40px;
   padding: 0;
 }
 div.container.main-container div#team-seeker-container div.loader-container {
@@ -73,13 +75,37 @@ div.container.main-container div#team-seeker-container div.loader-container i {
 div.container.main-container div#team-seeker-container div.form-errors {
   color: #db4a38;
   font-weight: bold;
+  margin: 0 0 20px 0;
   text-align: center;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.introduction {
+  font-size: 16px;
+  margin: 60px 0;
+  padding: 20px;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.introduction p {
+  font-size: 16px;
+  font-style: italic;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.introduction p i {
+  color: #aaa;
+  display: inline-block;
+  margin: 0 5px 0 0;
+  position: relative;
+  top: 2px;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.introduction p i.icon-quote-right {
+  margin: 0 0 0 5px;
 }
 div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container h2 {
   text-align: center;
 }
 div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span8.left-content div.leagues-container {
   text-align: center;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span8.left-content div.leagues-container div.label {
+  font-size: 16px;
+  font-weight: bold;
 }
 div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span8.left-content div.players-container div.row-player {
   background-color: #ddd;
@@ -126,6 +152,11 @@ div.container.main-container div#team-seeker-container div#team-seeker-result di
   right: 0;
   text-transform: uppercase;
   top: -21px;
+}
+div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span4.right-content p.empty-list {
+  font-style: italic;
+  margin: 20px 0;
+  text-align: center;
 }
 div.container.main-container div#team-seeker-container div#team-seeker-result div.team-overview-container div.span4.right-content div.match-history-block {
   border: 1px solid #999;
