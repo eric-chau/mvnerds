@@ -14,7 +14,7 @@
 		<div class="preview">{{ one_news.getPreview() }}</div>
 		<div class="more-news-infos">
 			<i class="icon-comments-alt"></i> {{ one_news.getCommentCount() }} {{ 'Index.news.comment_label'|trans }}{% if one_news.getCommentCount() > 1 %}s{% endif %}
-			<a href="{{ path('news_detail', {'slug': one_news.getSlug()}) }}" class="btn green small">{{ 'Index.news.read_more'|trans }}</a>
+			<a href="{{ path('news_detail', {'slug': one_news.getSlug()}) }}" class="btn green small">{{one_news.getContent() != null and one_news.getContent() != '' ? 'Index.news.read_more'|trans : 'Index.news.comment' | trans}}</a>
 		</div>
 		<div class="clearfix"></div>
 	</div>

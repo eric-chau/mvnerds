@@ -515,6 +515,10 @@
 				<source>Topbar.more_button</source>
 				<target>plus</target>
 			</trans-unit>
+			<trans-unit id="957">
+				<source>Index.news.comment</source>
+				<target>Commenter</target>
+			</trans-unit>
 			
 			<trans-unit id="1000">
 				<source>remove-adds.message</source>

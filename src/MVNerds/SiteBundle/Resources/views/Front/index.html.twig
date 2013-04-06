@@ -51,7 +51,7 @@
 							<strong><a href="{{ path('summoner_profile_view', {'slug': main_news.getUser().getSlug()}) }}">{{ main_news.getUser().getUsername() }}</a></strong>
 						</span>  
 						<i class="icon-comments-alt"></i> {{  main_news.getCommentCount() }} {{ 'Index.news.comment_label'|trans }}{% if  main_news.getCommentCount() > 1 %}s{% endif %}
-						<a href="{{ path('news_detail', {'slug':  main_news.getSlug()}) }}" class="btn red">{{ 'Index.news.read_more'|trans }}</a>
+						<a href="{{ path('news_detail', {'slug':  main_news.getSlug()}) }}" class="btn red">{{main_news.getContent() != null and main_news.getContent() != '' ? 'Index.news.read_more'|trans : 'Index.news.comment' | trans}}</a>
 					</div>
 				</div>
 				
