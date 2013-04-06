@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use JMS\SecurityExtraBundle\Exception\InvalidArgumentException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use MVNerds\CoreBundle\Exception\ServiceUnavailableException;
 use MVNerds\TeamSeekerBundle\Exception\InvalidTeamNameOrTagException;
@@ -89,5 +90,28 @@ class TeamSeekerController extends Controller
 		return $this->render('MVNerdsTeamSeekerBundle:TeamSeeker:team_seeker_index_player_row.html.twig', array(
 			'player' => $player
 		));
+	}
+	
+	/**
+	 * @Route("/elophant-api-request-status")
+	 */
+	public function elophantAPIRequestStatusAction()
+	{
+		if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+			throw new AccessDeniedException();
+		}
+				
+		if (apc_fetch('elophant_request_count_per_fifteen_minutes') != false) {
+			$currentFifteenMinStatus = apc_fetch('elophant_request_count_per_fifteen_minutes');
+			var_dump('Durant les 15 dernières minutes : ' . $currentFifteenMinStatus['request_count'] . ' (Date de début de mesure : ' . date('d/m/Y H:i', $currentFifteenMinStatus['since_time']) . ')');
+		}
+		
+		if (apc_fetch('elophant_request_count_history') != false) {
+			foreach (apc_fetch('elophant_request_count_history') as $history) {
+				var_dump('De ' . date('d/m/Y H:i',$history['since_time']) . ' à ' . date('d/m/Y H:i',$history['since_time']) . ' : ' . $history['request_count'] . ')');
+			}
+		}
+		
+		die;
 	}
 }

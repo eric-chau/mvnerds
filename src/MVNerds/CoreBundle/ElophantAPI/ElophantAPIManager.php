@@ -265,7 +265,7 @@ class ElophantAPIManager
 			throw new ServiceUnavailableException();
 		}
 
-		//$this->updateRequestSendCount();
+		$this->updateRequestSendCount();
 		$contentObject = json_decode($response->getContent());
 
 		if (null == $contentObject) {
