@@ -8,7 +8,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use JMS\SecurityExtraBundle\Exception\InvalidArgumentException;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Exception;
 
+use MVNerds\CoreBundle\Exception\ElophantAPILimitExceedException;
 use MVNerds\CoreBundle\Exception\ServiceUnavailableException;
 use MVNerds\TeamSeekerBundle\Exception\InvalidTeamNameOrTagException;
 
@@ -51,6 +53,9 @@ class TeamSeekerController extends Controller
 				'%region%' => $region
 			)), 404);
 		}
+		catch (Exception $e) {
+			var_dump('coucou'); die;
+		}
 		
 		if (null == $team) {
 			return new Response($this->get('translator')->trans('profile_index.elophant.afk'), 503);
@@ -82,6 +87,13 @@ class TeamSeekerController extends Controller
 		
 		try {
 			$player = $this->get('mvnerds.team_seeker_manager')->updatePlayerSoloQLeagueIfNeeded($region, $teamTag, $playerID);
+		}
+		catch (ElophantAPILimitExceedException $e) {	
+			return new Response($this->renderView('MVNerdsTeamSeekerBundle:TeamSeeker:team_seeker_index_player_row_retry.html.twig', array(
+				'player_id'			=> $playerID,
+				'region'			=> $region,
+				'team_tag_or_name'	=> $teamTag
+			)), 503);
 		}
 		catch (ServiceUnavailableException $e) {
 			return new Response($this->get('translator')->trans('TeamSeeker.Player.elophant.afk'), 503);
