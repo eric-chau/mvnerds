@@ -26,11 +26,13 @@
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
 		<script type="text/javascript" src="{{ asset('medias/js/jquery.dataTables.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/item-handler/item-detail.js') }}"></script>
 	{% else %}
 		{% javascripts
 			'medias/js/bootstrap/bootstrap-tooltip.js'
 			'medias/js/bootstrap/bootstrap-popover.js'
 			'medias/js/jquery.dataTables.min.js'
+			'medias/js/item-handler/item-detail.js'
 			output='medias/js/compiled/item-detail.js'
 			filter='yui_js'
 		%}
