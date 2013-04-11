@@ -1,0 +1,22 @@
+{% if item.getItemGeneologiesRelatedByParentId() | length > 0 %}
+	<div class="block skill">
+		<div class="header">
+			<h3>Construit à partir de</h3>
+			<i class="icon-resize-small"></i>
+		</div>
+		<div class="body">
+			{% for item_geneology in item.getItemGeneologiesRelatedByParentId() %}
+				{%set child = item_geneology.getItemRelatedByChildId() %}
+				{% if not child.isObsolete() %}
+					<div class="item-child">
+
+						<a href="{{path('items_detail', {'slug': child.getSlug()})}}">
+							<img class="item-child-image" src="{{asset('medias/images/items/' ~ child.getRiotCode() ~ '.png')}}" alt="image de l'item {{child.getName()}}">
+						</a>
+						<a class="item-name" href="{{path('items_detail', {'slug': child.getSlug()})}}">{{child.getName()}}</a>
+					</div>
+				{% endif %}
+			{% endfor %}
+		</div>
+	</div>
+{% endif %}

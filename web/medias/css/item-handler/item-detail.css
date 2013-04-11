@@ -1,0 +1,527 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+div.span8.left-content div.item-image {
+  float: left;
+  margin: 0 10px 0 0;
+}
+div.span8.left-content span.item-cost {
+  float: right;
+  font-weight: bold;
+  color: #db4a38;
+}
+div.span8.left-content h1,
+div.span8.left-content h2 {
+  border-bottom: 1px solid #999;
+}
+div.span8.left-content h1 {
+  margin: 0 0 0 80px;
+}
+div.span8.left-content h2 {
+  margin: 0 0 10px 0;
+}
+div.span8.left-content div.item-tags {
+  margin-left: 80px;
+}
+div.span8.left-content div.item-tags span.tag {
+  background-color: black;
+  color: white;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  opacity: .8;
+  padding: 1px 7px;
+  text-transform: uppercase;
+  margin: 5px 4px 0 0;
+}
+div.span8.left-content div.item-primary-effects dl {
+  display: inline-block;
+  vertical-align: top;
+}
+div.span8.left-content div.item-primary-effects dl dt.primary-effect-value {
+  color: #db4a38;
+  display: inline-block;
+  text-align: right;
+  width: 200px;
+}
+div.span8.left-content div.item-primary-effects dl dd.primary-effect-label {
+  text-transform: uppercase;
+  color: #444;
+  font-weight: bold;
+  display: inline-block;
+}
+div.span8.left-content div.item-secondary-effects {
+  padding: 5px 20px;
+}
+div.span8.left-content div.item-secondary-effects div.secondary-effect span.secondary-effect-title {
+  font-weight: bold;
+}
+div.span8.left-content div.ad-container {
+  margin-top: 10px;
+}
+div.span4.right-content div.block div.header {
+  cursor: pointer;
+  position: relative;
+}
+div.span4.right-content div.block div.header:hover {
+  background-color: #ddd;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+div.span4.right-content div.block div.header i {
+  margin: -7px 0 0 0;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+}
+div.span4.right-content div.block div.header h3 {
+  padding: 0 23px 0 30px;
+}
+div.span4.right-content div.block div.body {
+  background-color: inherit !important;
+  border: 1px solid #bbb;
+  border-top: 0;
+  padding: 20px 0 10px 0 !important;
+}
+div.span4.right-content div.block div.body div.item-child {
+  position: relative;
+  height: 50px;
+}
+div.span4.right-content div.block div.body div.item-child img {
+  border: 2px solid #000;
+  -webkit-border-radius: 7px !important;
+  -moz-border-radius: 7px !important;
+  border-radius: 7px !important;
+  left: -3px;
+  position: absolute;
+  -webkit-transform: rotate(-10deg);
+  -moz-transform: rotate(-10deg);
+  -ms-transform: rotate(-10deg);
+  -o-transform: rotate(-10deg);
+  transform: rotate(-10deg);
+  top: 0px;
+  width: 36px;
+}
+div.span4.right-content div.block div.body div.item-child a.item-name {
+  margin-left: 45px;
+  color: #000;
+  font-size: 17px;
+}
+div.span4.right-content div.block div.body div.item-child a.item-name:hover {
+  color: #aaa;
+}
+div.comments-container form.leave-comment-form {
+  background-color: #92281b;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+  padding: 10px 50px;
+}
+div.comments-container form.leave-comment-form.reply-mode {
+  background-color: #557213;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+div.comments-container form.leave-comment-form div.span2 img {
+  border: 3px solid #999;
+}
+div.comments-container form.leave-comment-form div.span10 div.comment-actions {
+  margin: 4px 0 0 0;
+  text-align: right;
+}
+div.comments-container form.leave-comment-form div.span10 div.comment-actions a.btn {
+  margin: 0 !important;
+}
+div.comments-container form.leave-comment-form div.span10 textarea {
+  width: 434px;
+}
+div.comments-container form.leave-comment-form div.span10 div.anonymous-user-comment-field {
+  background-color: #e4e6e5;
+  border-color: #999;
+  height: 76px;
+  padding: 3px 5px;
+}
+div.comments-container form.leave-comment-form div.span10 div.anonymous-user-comment-field a {
+  color: #147fb1;
+}
+div.comments-container form.leave-comment-form div.span10 div.anonymous-user-comment-field a:hover,
+div.comments-container form.leave-comment-form div.span10 div.anonymous-user-comment-field a:focus {
+  text-decoration: underline;
+}
+div.comments-container form.leave-comment-form div.span10 i {
+  color: white;
+}
+div.comments-container div.comments-list {
+  margin: 0 0 30px 0;
+  padding: 0 50px;
+}
+div.comments-container div.comments-list div.no-comment {
+  border: 1px dashed #999;
+  color: #999;
+  padding: 10px 0;
+  text-align: center;
+}
+div.comments-container div.comments-list div.comment-block {
+  margin: 0 0 10px 0;
+}
+div.comments-container div.comments-list div.comment-block div.span2 {
+  border: 4px solid #ccc;
+}
+div.comments-container div.comments-list div.comment-block div.span10 {
+  border: 2px solid #ccc;
+  -webkit-box-shadow: 1px 2px 2px #cccccc;
+  -moz-box-shadow: 1px 2px 2px #cccccc;
+  box-shadow: 1px 2px 2px #cccccc;
+  padding: 10px;
+  position: relative;
+}
+div.comments-container div.comments-list div.comment-block div.span10:hover {
+  border-color: #999;
+  -webkit-transition: border-color 0.25s linear;
+  -moz-transition: border-color 0.25s linear;
+  -o-transition: border-color 0.25s linear;
+  transition: border-color 0.25s linear;
+}
+div.comments-container div.comments-list div.comment-block div.span10:hover i.icon-caret-left {
+  color: #999;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div.comments-container div.comments-list div.comment-block div.span10:hover div.comment-date {
+  color: #111111;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div.comments-container div.comments-list div.comment-block div.span10:hover div.comment-number {
+  color: #999;
+  -webkit-transition: color 0.25s linear;
+  -moz-transition: color 0.25s linear;
+  -o-transition: color 0.25s linear;
+  transition: color 0.25s linear;
+}
+div.comments-container div.comments-list div.comment-block div.span10 i.icon-caret-left {
+  color: #ccc;
+  font-size: 20px;
+  left: -9px;
+  position: absolute;
+  top: 5px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.posted-by {
+  margin: 0 0 5px 0;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.posted-by a:hover {
+  text-decoration: underline;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-date {
+  color: #999;
+  font-size: 12px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 p {
+  margin: 0 0 10px 0;
+}
+div.comments-container div.comments-list div.comment-block div.span10 p i {
+  color: #bbb;
+  display: inline-block;
+  margin-right: 3px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 p i.icon-quote-right {
+  margin: 0 0 0 3px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-edition-mode {
+  text-align: right;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-edition-mode textarea {
+  margin: 0 0 5px 0;
+  width: 410px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-edition-mode a.save-comment-edition {
+  margin-right: 0;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions {
+  color: #999;
+  position: relative;
+  text-align: right;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions a.reply-action,
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions a.more-actions {
+  border: 1px solid #e4e6e5;
+  color: #759e1a;
+  display: inline-block;
+  font-size: 12px;
+  margin: 0 10px;
+  opacity: .45;
+  padding: 2px 5px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions a.reply-action:hover,
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions a.more-actions:hover {
+  border-color: #759e1a;
+  opacity: 1;
+  -webkit-transition: opacity 0.25s linear;
+  -moz-transition: opacity 0.25s linear;
+  -o-transition: opacity 0.25s linear;
+  transition: opacity 0.25s linear;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions a.reply-action.active {
+  background-color: #759e1a;
+  border-color: #759e1a;
+  color: white;
+  cursor: not-allowed;
+  opacity: 1;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions div.last-edition-date {
+  font-size: 12px;
+  display: inline-block;
+  left: 0;
+  position: absolute;
+  top: 3px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions div.more-actions-container {
+  display: inline-block;
+  position: relative;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions div.more-actions-container.open a.more-actions {
+  border-color: #759e1a;
+  opacity: 1;
+  -webkit-transition: opacity 0.25s linear;
+  -moz-transition: opacity 0.25s linear;
+  -o-transition: opacity 0.25s linear;
+  transition: opacity 0.25s linear;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions div.more-actions-container a.more-actions {
+  margin-right: -5px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions div.more-actions-container ul.dropdown-menu.comment {
+  background-color: #e4e6e5;
+  border: 2px solid #759e1a;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  left: auto;
+  margin: 0;
+  min-width: 210px;
+  padding: 3px 0;
+  right: -5px !important;
+  text-align: left;
+  top: 24px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions div.more-actions-container ul.dropdown-menu.comment li:hover a {
+  background-color: #759e1a;
+  color: white;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions div.more-actions-container ul.dropdown-menu.comment li a {
+  font-size: 12px;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions div.more-actions-container ul.dropdown-menu.comment li a.disabled {
+  cursor: not-allowed;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions div.more-actions-container ul.dropdown-menu.comment li a i {
+  display: inline-block;
+  font-size: 14px;
+  margin: 0 0 0 3px;
+  position: relative;
+  top: 0;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-actions div.more-actions-container ul.dropdown-menu.comment li span {
+  color: #666;
+  display: inline-block;
+  font-size: 12px;
+  font-style: italic;
+  padding: 3px 20px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block {
+  background-color: #ddd;
+  border: 1px solid #ccc;
+  margin: 8px 0 0 0;
+  padding: 5px;
+  position: relative;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block a,
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div,
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block p {
+  color: #444;
+  font-size: 12px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-date {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-main-content p {
+  margin: 0;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-edition-mode {
+  text-align: right;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-edition-mode textarea {
+  margin: 0 0 5px 0;
+  width: 398px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-edition-mode a.save-response-edition {
+  margin-right: 0;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions {
+  margin: 5px 0 0 0;
+  position: relative;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.last-edition-date {
+  font-size: 12px;
+  display: inline-block;
+  left: 0;
+  position: absolute;
+  top: 3px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.more-actions-container {
+  position: relative;
+  text-align: right;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.more-actions-container.open a.more-actions {
+  border-color: #999;
+  opacity: 1;
+  -webkit-transition: opacity 0.25s linear;
+  -moz-transition: opacity 0.25s linear;
+  -o-transition: opacity 0.25s linear;
+  transition: opacity 0.25s linear;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.more-actions-container a.more-actions {
+  border: 1px solid #e4e6e5;
+  color: #999;
+  display: inline-block;
+  font-size: 12px;
+  margin: 0;
+  opacity: .65;
+  padding: 2px 5px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.more-actions-container a.more-actions:hover {
+  border-color: #999;
+  opacity: 1;
+  -webkit-transition: opacity 0.25s linear;
+  -moz-transition: opacity 0.25s linear;
+  -o-transition: opacity 0.25s linear;
+  transition: opacity 0.25s linear;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.more-actions-container ul.dropdown-menu.response {
+  background-color: #e4e6e5;
+  border: 2px solid #999;
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  left: auto;
+  margin: 0;
+  padding: 3px 0;
+  right: 0;
+  text-align: left;
+  top: 24px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.more-actions-container ul.dropdown-menu.response li:hover a {
+  background-color: #999;
+  color: white;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.more-actions-container ul.dropdown-menu.response li a {
+  font-size: 12px;
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.more-actions-container ul.dropdown-menu.response li a.disabled {
+  cursor: not-allowed;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.more-actions-container ul.dropdown-menu.response li a i {
+  display: inline-block;
+  font-size: 14px;
+  margin: 0 0 0 3px;
+  position: relative;
+  top: 0;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.responses-list div.response-block div.response-actions div.more-actions-container ul.dropdown-menu.response li span {
+  color: #666;
+  display: inline-block;
+  font-size: 12px;
+  font-style: italic;
+  padding: 3px 20px;
+}
+div.comments-container div.comments-list div.comment-block div.span10 div.comment-number {
+  color: #bbb;
+  font-weight: bold;
+  left: 451px;
+  position: absolute;
+  bottom: 0;
+}
+div.comments-container div.load-more-comments {
+  margin: -20px 0 20px 0;
+  padding: 0 50px;
+  text-align: right;
+}
+div.comments-container div.load-more-comments a.btn {
+  margin-right: 0;
+}
+div.comments-container div.load-more-comments i.loader {
+  font-size: 22px;
+  margin: 0 8px 0 0;
+}
+textarea {
+  background-color: #e4e6e5;
+  border-color: #999;
+  height: 76px;
+  padding: 3px 5px;
+  resize: none;
+}
+textarea:focus,
+textarea:hover {
+  background-color: #eee;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
+}
+i.loader {
+  color: #db4a38;
+  display: inline-block;
+  font-size: 16px;
+  margin: 0 4px 0 0;
+  position: relative;
+  top: 2px;
+}
+i.loader.hide {
+  opacity: 0;
+}
