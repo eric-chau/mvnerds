@@ -82,5 +82,11 @@
 		{% endif %}
 		
 		{% block javascripts %}{% endblock %}
+			
+		{% block beead %}
+			{% if app.environment == 'prod' and disable_beead is not defined %}
+				<script type="text/javascript" src="http://www.beead.fr/api/choixPubJS.htm?pid=4281&screenLayer=1&mode=NONE&home=http://www.mvnerds.com"></script>
+			{% endif %}
+		{% endblock %}
 	</body>
 </html>

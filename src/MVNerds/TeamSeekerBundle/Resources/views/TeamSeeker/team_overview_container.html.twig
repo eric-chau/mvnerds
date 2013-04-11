@@ -1,7 +1,7 @@
 {% if app.environment == 'prod' %}
 	<script type="text/javascript">
 		$(document).ready(function() {
-			_gaq.push(['_trackPageview', location.pathname + '{{team.getTag()}}']);
+			_gaq.push(['_trackPageview', location.pathname + '{{team.getTag()|url_encode}}']);
 		});
 	</script>
 {% endif %}
@@ -94,3 +94,5 @@
 		$('#team-seeker-region-selector').removeAttr('disabled');
 	</script>
 {% endif %}
+	
+<script type="text/javascript" src="http://www.beead.fr/api/choixPubJS.htm?pid=4281&screenLayer=1&mode=NONE&home=http://www.mvnerds.com"></script>
