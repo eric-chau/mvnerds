@@ -10,6 +10,7 @@ use JMS\SecurityExtraBundle\Exception\InvalidArgumentException;
 use MVNerds\CoreBundle\Model\ElophantApiResponseCache;
 use MVNerds\CoreBundle\Model\ElophantApiResponseCachePeer;
 use MVNerds\CoreBundle\Model\ElophantApiResponseCacheQuery;
+use MVNerds\CoreBundle\Exception\ElophantAPILimitExceedException;
 use MVNerds\CoreBundle\Exception\ServiceUnavailableException;
 use MVNerds\CoreBundle\Exception\InvalidSummonerNameException;
 use MVNerds\CoreBundle\Model\GameAccount;
@@ -265,7 +266,7 @@ class ElophantAPIManager
 			throw new ServiceUnavailableException();
 		}
 
-		//$this->updateRequestSendCount();
+		$this->updateRequestSendCount();
 		$contentObject = json_decode($response->getContent());
 
 		if (null == $contentObject) {
@@ -273,8 +274,11 @@ class ElophantAPIManager
 		}
 		
 		if (!$contentObject->success) {
-			if ($contentObject->error == 'No active connection found for the given region.' || $contentObject->error == 'The global rate limit has been exceeded.') {
+			if ($contentObject->error == 'No active connection found for the given region.') {
 				throw new ServiceUnavailableException();
+			}
+			elseif ($contentObject->error == 'The global rate limit has been exceeded.') {
+				throw new ElophantAPILimitExceedException();
 			}
 			
 			throw new InvalidArgumentException();

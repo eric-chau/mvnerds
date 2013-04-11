@@ -7,7 +7,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use JMS\SecurityExtraBundle\Exception\InvalidArgumentException;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
+use Exception;
 
+use MVNerds\CoreBundle\Exception\ElophantAPILimitExceedException;
 use MVNerds\CoreBundle\Exception\ServiceUnavailableException;
 use MVNerds\TeamSeekerBundle\Exception\InvalidTeamNameOrTagException;
 
@@ -50,6 +53,9 @@ class TeamSeekerController extends Controller
 				'%region%' => $region
 			)), 404);
 		}
+		catch (Exception $e) {
+			var_dump('coucou'); die;
+		}
 		
 		if (null == $team) {
 			return new Response($this->get('translator')->trans('profile_index.elophant.afk'), 503);
@@ -82,6 +88,13 @@ class TeamSeekerController extends Controller
 		try {
 			$player = $this->get('mvnerds.team_seeker_manager')->updatePlayerSoloQLeagueIfNeeded($region, $teamTag, $playerID);
 		}
+		catch (ElophantAPILimitExceedException $e) {	
+			return new Response($this->renderView('MVNerdsTeamSeekerBundle:TeamSeeker:team_seeker_index_player_row_retry.html.twig', array(
+				'player_id'			=> $playerID,
+				'region'			=> $region,
+				'team_tag_or_name'	=> $teamTag
+			)), 503);
+		}
 		catch (ServiceUnavailableException $e) {
 			return new Response($this->get('translator')->trans('TeamSeeker.Player.elophant.afk'), 503);
 		}
@@ -89,5 +102,28 @@ class TeamSeekerController extends Controller
 		return $this->render('MVNerdsTeamSeekerBundle:TeamSeeker:team_seeker_index_player_row.html.twig', array(
 			'player' => $player
 		));
+	}
+	
+	/**
+	 * @Route("/elophant-api-request-status")
+	 */
+	public function elophantAPIRequestStatusAction()
+	{
+		if (false === $this->get('security.context')->isGranted('ROLE_ADMIN')) {
+			throw new AccessDeniedException();
+		}
+				
+		if (apc_fetch('elophant_request_count_per_fifteen_minutes') != false) {
+			$currentFifteenMinStatus = apc_fetch('elophant_request_count_per_fifteen_minutes');
+			var_dump('Durant les 15 dernières minutes : ' . $currentFifteenMinStatus['request_count'] . ' (Date de début de mesure : ' . date('d/m/Y H:i', $currentFifteenMinStatus['since_time']) . ')');
+		}
+		
+		if (apc_fetch('elophant_request_count_history') != false) {
+			foreach (apc_fetch('elophant_request_count_history') as $history) {
+				var_dump('De ' . date('d/m/Y H:i',$history['since_time']) . ' à ' . date('d/m/Y H:i',$history['since_time']) . ' : ' . $history['request_count'] . ')');
+			}
+		}
+		
+		die;
 	}
 }
