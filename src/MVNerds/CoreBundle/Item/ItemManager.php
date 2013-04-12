@@ -130,6 +130,40 @@ class ItemManager
 		return $item;
 	}
 	
+	public function findCompleteBySlug($slug)
+	{
+		$item = ItemQuery::create()
+			->joinWith('ItemTag', \Criteria::LEFT_JOIN)
+			->joinWith('ItemTag.Tag', \Criteria::LEFT_JOIN)
+			->joinWith('Tag.TagI18n', \Criteria::LEFT_JOIN)
+			->addJoinCondition('TagI18n', 'TagI18n.Lang LIKE ?', $this->userLocale)
+			->joinWith('ItemGeneologyRelatedByParentId igrbp', \Criteria::LEFT_JOIN)
+			->joinWith('igrbp.ItemRelatedByChildId irbc', \Criteria::LEFT_JOIN)
+			->joinWith('irbc.ItemI18n irbci18n', \Criteria::LEFT_JOIN)
+			->addJoinCondition('irbci18n', 'irbci18n.Lang LIKE ?', $this->userLocale)
+			->joinWith('ItemGeneologyRelatedByChildId igrbc', \Criteria::LEFT_JOIN)
+			->joinWith('igrbc.ItemRelatedByParentId irbp', \Criteria::LEFT_JOIN)
+			->joinWith('irbp.ItemI18n irbpi18n', \Criteria::LEFT_JOIN)
+			->addJoinCondition('irbpi18n', 'irbpi18n.Lang LIKE ?', $this->userLocale)
+			->joinWithI18n($this->userLocale, \Criteria::LEFT_JOIN)
+			->joinWith('ItemPrimaryEffect ipe', \Criteria::LEFT_JOIN)
+			->joinWith('ipe.PrimaryEffect pe', \Criteria::LEFT_JOIN)
+			->joinWith('pe.PrimaryEffectI18n pei', \Criteria::LEFT_JOIN)
+			->addJoinCondition('pei', 'pei.Lang LIKE ?', $this->userLocale)
+			->joinWith('ItemSecondaryEffect ise', \Criteria::LEFT_JOIN)
+			->joinWith('ise.ItemSecondaryEffectI18n isei', \Criteria::LEFT_JOIN)
+			->addJoinCondition('isei', 'isei.Lang LIKE ?', $this->userLocale)
+			->add(ItemPeer::SLUG, $slug)
+		->find();
+
+		if (null === $item || count($item) <= 0)
+		{
+			throw new InvalidArgumentException('No item with slug:' . $slug . '!');
+		}
+
+		return $item[0];
+	}
+	
 	/**
 	 * Récupère un objet Item à partir de son slug $slug pour les popovers
 	 * 
