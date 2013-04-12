@@ -1,6 +1,6 @@
 {% extends 'MVNerdsSiteBundle::layout.html.twig' %}
 
-{% block title %}Objets de League of Legends | MVNerds{% endblock %}
+{% block title %}{{ 'item_list.title' | trans }} | MVNerds{% endblock %}
 
 {% block css %}
 	{{ parent() }}
@@ -61,7 +61,7 @@
 {% block breadcrumbs %}
 	{{ parent() }}
 	
-	> <a href="{{ path('items_list') }}">Objets de League of Legends</a>
+	> <a href="{{ path('items_list') }}">{{ 'item_list.title' | trans }}</a>
 {% endblock %}
 
 {% block main_content %}
@@ -70,14 +70,14 @@
 	{% endif %}
 	
 	<div class="container main-container border-top">
-		<h1>Objets de League of Legends</h1>
+		<h1>{{ 'item_list.title' | trans }}</h1>
 		
 		{# PUBLICITÉ #}
 		{% include 'MVNerdsSiteBundle:Common:ad_728x90.html.twig' %}
 		
 		<div class="step">
 			
-			<p class="note"><i class="icon-question-sign"></i> Cliquez sur un objet pour obtenir plus de détails !</p>
+			<p class="note"><i class="icon-question-sign"></i> {{ 'item_list.note' | trans }}</p>
 			
 			<div class="item-container">			
 				<div class="row-fluid">
