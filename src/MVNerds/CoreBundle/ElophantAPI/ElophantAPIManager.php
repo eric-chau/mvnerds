@@ -184,7 +184,7 @@ class ElophantAPIManager
 			$this->updateSummonerLeagues($gameAccount);
 			$this->updateRankedStats($gameAccount);
 		}
-		catch (ServiceUnavailableException $e) {
+		catch (Exception $e) {
 			return;
 		}
 		

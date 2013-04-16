@@ -53,9 +53,7 @@ class TeamSeekerController extends Controller
 				'%region%' => $region
 			)), 404);
 		}
-		catch (Exception $e) {
-			var_dump('coucou'); die;
-		}
+		catch (Exception $e) { }
 		
 		if (null == $team) {
 			return new Response($this->get('translator')->trans('profile_index.elophant.afk'), 503);
