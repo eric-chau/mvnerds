@@ -36,7 +36,7 @@ class ItemController extends Controller
 	{
 		try {
 			/* @var $item \MVNerds\CoreBundle\Model\Item */
-			$item = $this->get('mvnerds.item_manager')->findBySlug($slug);
+			$item = $this->get('mvnerds.item_manager')->findCompleteBySlug($slug);
 		} catch (\Exception $e) {
 			return $this->redirect($this->generateUrl('items_list'));
 		}
