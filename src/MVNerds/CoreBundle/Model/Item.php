@@ -2,6 +2,8 @@
 
 namespace MVNerds\CoreBundle\Model;
 
+use \PropelCollection;
+
 use MVNerds\CoreBundle\Model\om\BaseItem;
 
 
@@ -204,4 +206,23 @@ class Item extends BaseItem {
 		return $cost;
 	}
 	
+	public function getUniqueItemGeneologiesRelatedByChildId()
+	{
+		$uniqueItemGeneologies = new PropelCollection();
+		$itemGeneologies = $this->getItemGeneologiesRelatedByChildId();
+		
+		foreach($itemGeneologies as $itemGeneology) {
+			$exists = false;
+			foreach($uniqueItemGeneologies as $uniqueItemGeneology) {
+				if ($uniqueItemGeneology->getParentId() == $itemGeneology->getParentId() && $uniqueItemGeneology->getChildId() == $itemGeneology->getChildId()) {
+					$exists = true;
+				}
+			}
+			if(!$exists && !$itemGeneology->getItemRelatedByParentId()->getIsObsolete()) {
+				$uniqueItemGeneologies->append($itemGeneology);
+			}
+		}
+		
+		return $uniqueItemGeneologies;
+	}
 } // Item

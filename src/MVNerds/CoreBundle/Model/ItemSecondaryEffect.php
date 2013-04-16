@@ -18,29 +18,17 @@ use MVNerds\CoreBundle\Model\om\BaseItemSecondaryEffect;
  */
 class ItemSecondaryEffect extends BaseItemSecondaryEffect {
 
-//	public function removeItemSecondaryEffectI18n(ItemSecondaryEffectI18n $l)
-//	{
-//		if ($this->collItemSecondaryEffectI18ns === null) {
-//			return $this;
-//		}
-//		
-//		if (!$this->collItemSecondaryEffectI18ns->contains($l)) {
-//			$this->doRemoveItemSecondaryEffectI18n($l);
-//		}
-//
-//		return $this;
-//	}
-//	
-//	public function doRemoveItemSecondaryEffectI18n(ItemSecondaryEffectI18n $itemSecondaryEffectI18n)
-//	{
-//		
-//		foreach ($this->collItemSecondaryEffectI18ns as $key => $o) {
-//			if ($o == $itemSecondaryEffectI18n) {
-//				unset($this->collItemSecondaryEffectI18ns[$key]);
-//				break;
-//			}
-//		}
-//		$this->save();
-//		$itemSecondaryEffectI18n->delete();
-//	}
+	//Permet de récupérer la partie qui précède les ":" de la description
+	public function getDescriptionTitle() 
+	{
+		$exploded = explode(':', $this->getDescription(), 2);
+		return (($exploded != null && count($exploded) > 1) ? $exploded[0] . ' : ' : $this->getDescription());
+	}
+	
+	//Permet de ne récupérer que la partie qui suit les ":" de la description
+	public function getSimpleDescription() 
+	{
+		$exploded = explode(':', $this->getDescription(), 2);
+		return (($exploded != null && count($exploded) > 1) ? $exploded[1] : '');
+	}
 } // ItemSecondaryEffect

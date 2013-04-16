@@ -1,0 +1,137 @@
+// Twitter Bootstraps imports
+@import "../bootstrap/mixins.less";
+
+// MVNerds imports
+@import "../mvnerds/mvnerds-variables.less";
+
+div.span8.left-content { 
+	div.item-image {
+		float: left;
+		margin: 0 10px 0 0;
+	}
+
+	span.item-cost {
+		float: right;
+		font-weight: bold;
+		color: @MVNerdsRed;
+	}
+
+	h1, h2 {
+		border-bottom: 1px solid #999;//1px solid lighten(@LoLBorderBrown, 15%);
+	}
+
+	h1 {	
+		margin: 0 0 0 80px;
+	}
+
+	h2 {
+		margin: 0 0 10px 0;
+	}
+
+	div.item-tags {
+		margin-left: 80px;
+
+		span.tag {
+			background-color: black;
+			color: white;
+			display: inline-block;
+			font-size: 12px;
+			font-weight: bold;
+			opacity: .8;
+			padding: 1px 7px;
+			text-transform: uppercase;
+			margin: 5px 4px 0 0;
+		}
+	}
+
+	div.item-primary-effects {
+		dl {
+			dt.primary-effect-value {
+				color: @MVNerdsRed;
+				display: inline-block;
+				text-align: right;
+				width: 200px;
+			}
+			dd.primary-effect-label {
+				text-transform: uppercase;
+				color: #444;
+				font-weight: bold;
+				display: inline-block;
+			}
+
+			display: inline-block;
+			vertical-align: top;
+		}
+	}
+
+	div.item-secondary-effects {
+		padding: 5px 20px;
+		div.secondary-effect {
+			span.secondary-effect-title {
+				font-weight: bold;
+			}
+		}
+	}
+
+	div.ad-container {
+		margin-top: 10px;
+	}
+}
+
+div.span4.right-content {
+	div.block {
+		div.header {
+			cursor: pointer;
+			position: relative;
+
+			&:hover {
+				background-color: #ddd; .transition(background-color .25s linear);
+			}
+
+			i {
+				margin: -7px 0 0 0;
+				position: absolute;
+				right: 10px;
+				top: 50%;
+			}
+
+			h3 {
+				padding: 0 23px 0 30px;
+			}
+		}
+
+		div.body {
+			background-color: inherit !important;
+			border: 1px solid #bbb;
+			border-top: 0;
+			padding: 20px 0 10px 0 !important;
+			
+			div.item-child {
+				position: relative;
+				height: 50px;
+
+				img {
+					border: 2px solid #000;
+					.border-radius(7px);
+					left: -3px;
+					position: absolute;
+					.rotate(-10deg);
+					top: 0px;
+					width: 36px;
+				}
+
+				a.item-name {
+					margin-left: 45px;
+					color: #000;
+					font-size: 17px;
+
+					&:hover {
+						color: #aaa;
+					}
+				}
+			}
+		}
+	}
+}
+
+@import '../comment/comment.less';

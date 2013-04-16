@@ -623,6 +623,46 @@
 					Feel free to watch the video presentation!
 				</target>
 			</trans-unit>
+			
+			<!-- ITEM DETAIL -->
+			<trans-unit id="6000">
+				<source>item_detail.cost</source>
+				<target>Cost</target>
+			</trans-unit>
+			<trans-unit id="6001">
+				<source>item_detail.primary_effects</source>
+				<target>Primary Effects</target>
+			</trans-unit>
+			<trans-unit id="6002">
+				<source>item_detail.secondary_effects</source>
+				<target>Secondary Effects</target>
+			</trans-unit>
+			<trans-unit id="6003">
+				<source>item_detail.no_primary_effects</source>
+				<target>This item doesn't have any primary effect</target>
+			</trans-unit>
+			<trans-unit id="6004">
+				<source>item_detail.no_secondary_effects</source>
+				<target>This item doesn't have any secondary effect</target>
+			</trans-unit>
+			<trans-unit id="6005">
+				<source>item_detail.builds_into</source>
+				<target>Builds into</target>
+			</trans-unit>
+			<trans-unit id="6006">
+				<source>item_detail.built_from</source>
+				<target>Built from</target>
+			</trans-unit>
+
+			<!-- ITEM LIST -->
+			<trans-unit id="7000">
+				<source>item_list.title</source>
+				<target>League of Legends Items</target>
+			</trans-unit>
+			<trans-unit id="7001">
+				<source>item_list.note</source>
+				<target>Click on an item to have more details!</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

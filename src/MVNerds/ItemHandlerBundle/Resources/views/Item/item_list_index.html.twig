@@ -1,0 +1,99 @@
+{% extends 'MVNerdsSiteBundle::layout.html.twig' %}
+
+{% block title %}{{ 'item_list.title' | trans }} | MVNerds{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/item-handler/list-page.css') }}">
+	{% else %}
+		{% stylesheets 
+			'medias/css/item-handler/list-page.css'
+			output='medias/css/compiled/item-list.css'
+			filter='yui_css'
+			filter='cssembed'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
+	{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+	{% if app.environment == 'dev' %}
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-modal.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/jquery.isotope.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/site/isotope-filter.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/site/alerts-ajax-handler.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/item-handler/item-modal.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/item-handler/item-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/item-handler/list-page.js') }}"></script>
+	{% else %}
+		{% javascripts
+			'medias/js/bootstrap/bootstrap-tooltip.js'
+			'medias/js/bootstrap/bootstrap-popover.js'
+			'medias/js/bootstrap/bootstrap-modal.js'
+			'medias/js/jquery.isotope.min.js'
+			'medias/js/site/isotope-filter.js'
+			'medias/js/site/alerts-ajax-handler.js'
+			'medias/js/item-handler/item-modal.js'
+			'medias/js/item-handler/item-popover.js'
+			'medias/js/item-handler/list-page.js'
+			output='medias/js/compiled/item-list.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	{% endif %}
+{% endblock %}
+
+{% block topbar %}
+	{% set module = 'pmri' %}
+		
+	{{ parent() }}
+{% endblock %}
+		
+{% block breadcrumbs %}
+	{{ parent() }}
+	
+	> <a href="{{ path('items_list') }}">{{ 'item_list.title' | trans }}</a>
+{% endblock %}
+
+{% block main_content %}
+	{% if edition_mode is defined and edition_mode %}
+		<div class="edit-indication">{{ 'create_item_build.edition_indication'|trans }}</div>
+	{% endif %}
+	
+	<div class="container main-container border-top">
+		<h1>{{ 'item_list.title' | trans }}</h1>
+		
+		{# PUBLICITÉ #}
+		{% include 'MVNerdsSiteBundle:Common:ad_728x90.html.twig' %}
+		
+		<div class="step">
+			
+			<p class="note"><i class="icon-question-sign"></i> {{ 'item_list.note' | trans }}</p>
+			
+			<div class="item-container">			
+				<div class="row-fluid">
+					<ul id="item-topbar" class="actionbar">
+						{% include 'MVNerdsItemHandlerBundle:PMRI:pmri_create_item_filter.html.twig' %}
+						<li class="action filter-action search-action ">
+							<i class="icon-search icon-white"></i>
+							<input id="item-filter-input" type="text" class="input-mini" placeholder="{{'Actionsbar.Search.placeholder'|trans}}" data-provide="typeahead"/>
+						</li>
+					</ul>
+					<div id="item-list" class="elements-grid">
+						{% include 'MVNerdsItemHandlerBundle:PMRI:pmri_create_item_grid.html.twig' %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock %}
+	

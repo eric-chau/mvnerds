@@ -1,0 +1,20 @@
+{% if item.getItemGeneologiesRelatedByChildId() | length > 0 %}
+	<div class="block geneology">
+		<div class="header">
+			<h3>{{ 'item_detail.builds_into' | trans }}</h3>
+			<i class="icon-resize-small"></i>
+		</div>
+		<div class="body">
+			{% for item_geneology in item.getUniqueItemGeneologiesRelatedByChildId() %}
+				{%set parent = item_geneology.getItemRelatedByParentId() %}
+		
+				<div class="item-child">
+					<a href="{{path('items_detail', {'slug': parent.getSlug()})}}">
+						<img class="item-child-image" src="{{asset('medias/images/items/' ~ parent.getRiotCode() ~ '.png')}}" alt="image de l'item {{parent.getName()}}">
+					</a>
+					<a class="item-name" href="{{path('items_detail', {'slug': parent.getSlug()})}}">{{parent.getName()}}</a>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endif %}

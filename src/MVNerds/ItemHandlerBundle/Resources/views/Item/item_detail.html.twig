@@ -1,0 +1,113 @@
+{% extends 'MVNerdsSiteBundle::layout.html.twig' %}
+
+{% block title %}{{ item.getName() }} - Legends of Legends | MVNerds{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	{% if app.environment == 'dev' %}
+		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/item-handler/item-detail.css') }}">
+	{% else %}
+		{% stylesheets 
+			'medias/css/item-handler/item-detail.css'
+			output='medias/css/compiled/item-detail.css'
+			filter='yui_css'
+			filter='cssembed'
+		%}
+		<link rel="stylesheet" href="{{ asset_url }}" />
+		{% endstylesheets %}
+	{% endif %}
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	
+	{% if app.environment == 'dev' %}
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/jquery.dataTables.min.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/item-handler/item-detail.js') }}"></script>
+	{% else %}
+		{% javascripts
+			'medias/js/bootstrap/bootstrap-tooltip.js'
+			'medias/js/bootstrap/bootstrap-popover.js'
+			'medias/js/jquery.dataTables.min.js'
+			'medias/js/item-handler/item-detail.js'
+			output='medias/js/compiled/item-detail.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	{% endif %}
+{% endblock %}
+		
+{% block topbar %}
+	{% set module = 'pmri' %}
+		
+	{{ parent() }}
+{% endblock %}
+
+{% block breadcrumbs %}
+	{{ parent() }}
+	
+	> <a href="{{ path('items_list') }}">{{ 'item_list.title' | trans }}</a> > <a href="{{ path('items_detail', {'slug': item.getSlug()}) }}">{{ item.getName() }}</a>
+{% endblock %}
+
+{% block main_content %}
+	<div class="container main-container border-top">
+		<div class="row-fluid">
+			<div class="span8 left-content">
+				<div class="item-image">
+					<img draggable="false" class="item-image" src="{{asset('medias/images/items/' ~ item.getRiotCode() ~ '.png')}}" alt="image de l'item {{item.getName()}}">
+				</div>
+				<span class="item-cost">{{ 'item_detail.cost' | trans }} : {{item.getTotalCost()}} ({{item.getCost()}}) <img class="gold-logo" src="{{asset('medias/images/commons/gold_logo.png')}}" alt="gold logo" /></span>
+				<h1>{{ item.getName() }}</h1>
+				
+				<div class="item-tags">
+					{% for item_tag in item.getItemTags() %}
+						<span class="tag">{{item_tag.getTag().getLabel() }}</span>
+					{% endfor %}
+				</div>
+				
+				<div class="clearfix"></div>
+				
+				{# PUBLICITÉ #}
+				{% include 'MVNerdsSiteBundle:Common:ad_468x60.html.twig' %}
+						
+				<h2>{{ 'item_detail.primary_effects' | trans }}</h2>
+				<div class="item-primary-effects">
+					<dl>
+						{% for item_primary_effect in item.getItemPrimaryEffects() %}
+							<dt class="primary-effect-value">{{item_primary_effect.getValue()}}</dt> <dd class="primary-effect-label">{{item_primary_effect.getPrimaryEffect().Label()}}</dd> <br />
+						{% else %}
+							{{ 'item_detail.no_primary_effects' | trans }}
+						{% endfor %}
+					</dl>
+				</div>
+				
+				<h2>{{ 'item_detail.secondary_effects' | trans }}</h2>
+				<div class="item-secondary-effects">
+					{% for item_secondary_effect in item.getItemSecondaryEffects() %}
+						<div class="secondary-effect"><span class="secondary-effect-title">{{item_secondary_effect.getDescriptionTitle()}}</span> {{item_secondary_effect.getSimpleDescription()}}</div> <br/>
+					{% else %}
+						{{ 'item_detail.no_secondary_effects' | trans }}
+					{% endfor %}
+				</div>
+				
+				{{ render(controller('MVNerdsCommentBundle:Comment:renderComments', {'object': item, 'objectType': 'item'})) }}
+			</div>
+			
+			<div class="span4 right-content">
+				
+				{# Item Children #}
+				{% include 'MVNerdsItemHandlerBundle:Item:item_built_from.html.twig' %}
+				{# Item Parents #}
+				{% include 'MVNerdsItemHandlerBundle:Item:item_builds_into.html.twig' %}
+				
+				{# PUBLICITÉ #}
+				{% include 'MVNerdsSiteBundle:Common:ad_300x250.html.twig' %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
+	
