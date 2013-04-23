@@ -417,6 +417,58 @@ div.popover div.popover-content div.champion-square-list div.champion-square36 {
 .hide {
   display: none;
 }
+div.support-mvnerds-block {
+  background: url('../images/site/support-mvnerds-bg.jpg') no-repeat center center;
+  border: 3px solid #19a0df;
+  height: 60px;
+  margin: 15px auto 25px auto;
+  position: relative;
+  width: 600px;
+}
+div.support-mvnerds-block.large {
+  height: 90px;
+  margin: 15px auto 40px auto;
+  width: 800px;
+}
+div.support-mvnerds-block.large p {
+  font-size: 16px;
+  margin: 15px 0 0 0;
+}
+div.support-mvnerds-block.leona {
+  background-image: url('../images/site/support-mvnerds-bg-leona.jpg');
+}
+div.support-mvnerds-block.soraka {
+  background-image: url('../images/site/support-mvnerds-bg-soraka.jpg');
+}
+div.support-mvnerds-block.taric {
+  background-image: url('../images/site/support-mvnerds-bg-taric.jpg');
+}
+div.support-mvnerds-block p {
+  background-color: rgba(255, 255, 255, 0.6);
+  font-family: 'Trebuchet MS', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  margin: 5px 0 0 0;
+  padding: 5px;
+  text-align: center;
+}
+div.support-mvnerds-block i.note {
+  bottom: -20px;
+  display: inline-block;
+  font-size: 12px;
+  left: -2px;
+  position: absolute;
+}
+div.support-mvnerds-block a {
+  font-weight: bold;
+  bottom: -15px;
+  opacity: .9;
+  position: absolute;
+  right: 5px;
+}
+div.support-mvnerds-block a i {
+  color: #db4a38;
+}
 div#topbar {
   background-color: #333;
   border-top: 2px solid #333;
@@ -914,58 +966,6 @@ div.container.main-container div.span4.right-content div.sidebar-ad-container {
 div.powered-by {
   margin: 20px 0 0 0;
   text-align: right;
-}
-div.support-mvnerds-block {
-  background: url('mvnerds/mvnerds/../../../images/site/support-mvnerds-bg.jpg') no-repeat center center;
-  border: 3px solid #19a0df;
-  height: 60px;
-  margin: 15px auto 25px auto;
-  position: relative;
-  width: 600px;
-}
-div.support-mvnerds-block.large {
-  height: 90px;
-  margin: 15px auto 40px auto;
-  width: 800px;
-}
-div.support-mvnerds-block.large p {
-  font-size: 16px;
-  margin: 15px 0 0 0;
-}
-div.support-mvnerds-block.leona {
-  background-image: url('mvnerds/mvnerds/../../../images/site/support-mvnerds-bg-leona.jpg');
-}
-div.support-mvnerds-block.soraka {
-  background-image: url('mvnerds/mvnerds/../../../images/site/support-mvnerds-bg-soraka.jpg');
-}
-div.support-mvnerds-block.taric {
-  background-image: url('mvnerds/mvnerds/../../../images/site/support-mvnerds-bg-taric.jpg');
-}
-div.support-mvnerds-block p {
-  background-color: rgba(255, 255, 255, 0.6);
-  font-family: 'Trebuchet MS', sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  margin: 5px 0 0 0;
-  padding: 5px;
-  text-align: center;
-}
-div.support-mvnerds-block i.note {
-  bottom: -20px;
-  display: inline-block;
-  font-size: 12px;
-  left: -2px;
-  position: absolute;
-}
-div.support-mvnerds-block a {
-  font-weight: bold;
-  bottom: -15px;
-  opacity: .9;
-  position: absolute;
-  right: 5px;
-}
-div.support-mvnerds-block a i {
-  color: #db4a38;
 }
 div#footer {
   background-color: #333;
