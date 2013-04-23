@@ -83,10 +83,49 @@
 		
 		{% block javascripts %}{% endblock %}
 			
-		{% block beead %}
-			{% if app.environment == 'prod' and disable_beead is not defined %}
-				<script type="text/javascript" src="http://www.beead.fr/api/choixPubJS.htm?pid=4281&screenLayer=1&mode=NONE&home=http://www.mvnerds.com"></script>
-			{% endif %}
+		{% block teads %}
+			<script type="text/javascript">
+				var $supportMVNerdsBtn = $('a.support-mvnerds-btn');
+				var _teads = {
+					pid: 19006, 
+					mandatory: true, 
+					duration: 60, 
+					mode: 'TEST', 
+					callback: function(success){
+						$supportMVNerdsBtn.removeClass('support-mvnerds-btn');
+						$supportMVNerdsBtn.parent().find('i.note').remove();
+						if(success){
+							if(success === 'noad'){
+								//Action js en cas d'absence de pub
+								$supportMVNerdsBtn.addClass('red');
+								$supportMVNerdsBtn.html('Désolé, aucune vidéo est disponible pour le moment.');
+							} else {
+								//Action js en cas de succes
+								$supportMVNerdsBtn.addClass('green');
+								$supportMVNerdsBtn.html('Merci pour votre soutien !');
+								
+							}
+						} else {
+							//Action js si le processus ne se deroule pas correctement';
+							console.log('erreur');
+						}
+					}
+				};
+				(function(d){
+					var js = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+					js.type = 'text/javascript'; js.async = true;
+					js.src = '//cdn.teads.tv/js/jsapi.js';
+					s.parentNode.insertBefore(js, s);
+				}(document));
+				
+				$(document).ready(function() {
+					$supportMVNerdsBtn.on('click', function() {
+						teads.show();
+
+						return false;
+					});
+				});
+			</script>
 		{% endblock %}
 	</body>
 </html>

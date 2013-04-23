@@ -1,0 +1,108 @@
+{% extends 'MVNerdsSiteBundle::layout.html.twig' %}
+
+{% block css %}
+	{{ parent() }}
+
+	<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/site/front.css') }}">
+{% endblock %}
+
+{% block javascripts %}
+	{{ parent() }}
+	
+	{% if app.environment == 'dev' %}
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tab.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-tooltip.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-popover.js') }}"></script>
+		<script type="text/javascript" src="{{ asset('medias/js/site/homepage.js') }}"></script>
+	{% else %}
+		{% javascripts
+			'medias/js/bootstrap/bootstrap-tab.js'
+			'medias/js/bootstrap/bootstrap-tooltip.js'
+			'medias/js/bootstrap/bootstrap-popover.js'
+			'medias/js/site/homepage.js'
+			output='medias/js/compiled/site-index.js'
+			filter='yui_js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+	{% endif %}
+{% endblock %}
+
+{% block main_content %}
+	<div class="container main-container border-top">		
+		<div class="row-fluid">
+			<div class="span8 left-content">
+				{% if locale != 'fr' %}
+					<div class="only-french-news-indication"><i class="icon-info-sign"></i> Sorry, MVNerds' news are only available in French.</div>					
+				{% endif %}
+				
+				<div class="main-news-block">
+					<h1><a href="{{ path('news_detail', {'slug': main_news.getSlug()}) }}">{{ main_news.getTitle() }}</a> <span class="label">{{ main_news.getNewsCategory().getUniqueName()|trans }}</span></h1>
+					
+					<a href="{{ path('news_detail', {'slug':  main_news.getSlug()}) }}" class="main-news-image">
+						<img src="{{ asset('medias/images/news/' ~ main_news.getImageName() )}}" />
+					</a>
+
+					<p><strong>{{  main_news.getPreview() }}</strong></p>
+
+					<div class="more-news-infos">
+						<span class="posted-by">
+							{% include ':Extension:custom_format_date.html.twig' with {'object': main_news.getCreateTime()} %} {{ 'Index.news.publish_by'|trans }} 
+							<strong><a href="{{ path('summoner_profile_view', {'slug': main_news.getUser().getSlug()}) }}">{{ main_news.getUser().getUsername() }}</a></strong>
+						</span>  
+						<i class="icon-comments-alt"></i> {{  main_news.getCommentCount() }} {{ 'Index.news.comment_label'|trans }}{% if  main_news.getCommentCount() > 1 %}s{% endif %}
+						<a href="{{ path('news_detail', {'slug':  main_news.getSlug()}) }}" class="btn red">{{main_news.getContent() != null and main_news.getContent() != '' ? 'Index.news.read_more'|trans : 'Index.news.comment' | trans}}</a>
+					</div>
+				</div>
+				
+				{# PUBLICITÉ #}
+				<div class="support-mvnerds-block {{ random(['sona', 'taric', 'soraka', 'leona']) }}">
+					<p>MVNerds est et restera gratuit. Soutenez-nous en regardant une vidéo sponsorisée !</p>
+					<i class="note">Important : pensez à désactiver adBlock ou à ajouter le site en liste blanche</i>
+					<a href="#" class="btn support-mvnerds-btn">Soutenir MVNerds <i class="icon-heart"></i></a>
+				</div>
+				
+				{% include 'MVNerdsSiteBundle:Front:news_block.html.twig' %}
+			</div>
+
+			<div class="span4 right-content">
+				{# CE QU'IL SE DIT #}
+				{{ render(controller('MVNerdsSiteBundle:Front:renderLastestCommentsAndResponsesBlock')) }}
+				
+				{# Spotlight block #}
+				{% include 'MVNerdsSiteBundle:Front:spotlight_sidebar_block.html.twig' %}
+				
+				{# PUBLICITÉ #}
+				{% include 'MVNerdsSiteBundle:Common:ad_300x250.html.twig' %}
+				
+				{# PMRI Blocks - Nouvelles listes et listes les plus téléchargées #}
+				<div class="block">
+					<div class="header">
+						<h3>Pimp My Recommended Items</h3>
+					</div>
+					<div class="body">
+						<ul class="nav nav-tabs" id="myTab">
+							<li class="active"><a href="#lastest-pmri">{{'Sidebar.PMRI.new-lists' | trans}}</a></li>
+							<li><a href="#most-dl-pmri">{{'Sidebar.PMRI.most-dl' | trans}}</a></li>
+						</ul>
+
+						<div class="tab-content">
+							<div class="tab-pane active" id="lastest-pmri">
+								{% include 'MVNerdsSiteBundle:Front:pmri_sidebar_list.html.twig' with {'item_build_list': lastest_items_builds} %}
+							</div>
+							<div class="tab-pane" id="most-dl-pmri">
+								{% include 'MVNerdsSiteBundle:Front:pmri_sidebar_list.html.twig' with {'item_build_list': popular_items_builds} %}
+							</div>
+						</div>
+					</div>
+					<div class="footer">
+						<a href="{{ path('pmri_list') }}">{{'Sidebar.see-more' | trans}}</a>
+					</div>
+				</div>
+				
+				{# Block de présentation du module de comparateur de champions #}
+				{% include 'MVNerdsSiteBundle:Front:champion_benchmark_sidebar_block.html.twig' %}
+			</div>
+		</div>
+	</div>
+{% endblock %}
