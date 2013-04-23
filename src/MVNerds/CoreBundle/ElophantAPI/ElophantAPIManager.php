@@ -37,7 +37,7 @@ class ElophantAPIManager
 	
 	public function getGameAccountFromRegionAndUsername($region, $summonerName)
 	{
-		// Récupération l'ID du compte
+		// Recuperation l'ID du compte
 		$response = null;
 		try {
 			$response = $this->sendRequest($region . '/summoner/' . rawurlencode($summonerName));
@@ -91,19 +91,19 @@ class ElophantAPIManager
 				}
 			}
 			
-			// Test si la file que l'on veut ajouter a déjà été ajoutée ou non dans le tableau
+			// Test si la file que l'on veut ajouter a deja ete ajoutee ou non dans le tableau
 			if (isset($summonerRankedInfos[$league->queue])) {
 				$storedTier = $summonerRankedInfos[$league->queue]['tier'];
 				$newTier = $queueInfos['tier'];
-				// Test si le nouveau tier est meilleur que le tier stocké ou pas
+				// Test si le nouveau tier est meilleur que le tier stocke ou pas
 				if (self::$TIER_HIERARCHY[$storedTier] > self::$TIER_HIERARCHY[$newTier]) {
 					$summonerRankedInfos[$league->queue] = $queueInfos;
 				}
-				// Test si le nouveau et le tier stocké sont équivalents ou non
+				// Test si le nouveau et le tier stocke sont equivalents ou non
 				elseif (self::$TIER_HIERARCHY[$storedTier] == self::$TIER_HIERARCHY[$newTier]) {
 					$storedDivision = $summonerRankedInfos[$league->queue]['division'];
 					$newDivision = $queueInfos['division'];
-					// Test si la division stocké est meilleure que la nouvelle division ou non
+					// Test si la division stocke est meilleure que la nouvelle division ou non
 					if (self::$DIVISION_HIERARCHY[$storedDivision] > self::$DIVISION_HIERARCHY[$newDivision]) {
 						$summonerRankedInfos[$league->queue] = $queueInfos;
 					}
@@ -133,7 +133,7 @@ class ElophantAPIManager
 	
 	private function updateRankedStats(GameAccount $gameAccount)
 	{
-		// préparation de la route de la requête à envoyer
+		// preparation de la route de la requete a envoyer
 		$response = $this->sendRequest($gameAccount->getRegion() . '/ranked_stats/'. $gameAccount->getSummonerAccountId());
 
 		$rankedStatsInfos = array();
@@ -143,7 +143,7 @@ class ElophantAPIManager
 			}
 		}
 		
-		// Général
+		// General
 		$gameAccount->setGoldEarned($rankedStatsInfos['TOTAL_GOLD_EARNED']);
 		
 		// Relatif au PVE
@@ -208,10 +208,10 @@ class ElophantAPIManager
 	}
 	
 	/**
-	 * Mise à jour du nombre de requête effectuer vers Elophant
-	 * Note : Stocké avec le cache APC
+	 * Mise a jour du nombre de requete effectuer vers Elophant
+	 * Note : Stocke avec le cache APC
 	 * 
-	 * @param int $value le nombre de requête à incrémenter, par défaut à 1
+	 * @param int $value le nombre de requete a incrementer, par defaut a 1
 	 */
 	private function updateRequestSendCount($value = 1)
 	{
