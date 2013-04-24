@@ -44,29 +44,6 @@ class FrontController extends Controller
 			'news'					=> $news
 		));
     }
-	
-	 /**
-     * @Route("/{_locale}/teads-test", name="site_homepage_teads_test", defaults={"_locale" = "fr"})
-     */
-    public function testTeadsAction()
-    {
-		$news = null;
-		if ($this->get('security.context')->isGranted('ROLE_NEWSER'))
-		{
-			$news = $this->get('mvnerds.news_manager')->findNotPrivateHighlights();
-		} else {
-			$news = $this->get('mvnerds.news_manager')->findPublicHighlights();
-		}
-		
-        return $this->render('MVNerdsSiteBundle:Front:index_teads.html.twig', array(
-			'lastest_items_builds'	=> $this->get('mvnerds.item_build_manager')->findLatestBuilds(),
-			'popular_items_builds'	=> $this->get('mvnerds.item_build_manager')->findMostDownloadedBuilds(),
-			'newest_videos'			=> $this->get('mvnerds.video_manager')->findNewestVideos(),
-			'most_viewed_videos'	=> $this->get('mvnerds.video_manager')->findMostViewedVideos(),
-			'main_news'				=> $news->shift(),
-			'news'					=> $news
-		));
-    }
 
 	/**
 	 * Renvoi la liste des champions formater pour l'affichage dans le footer du site

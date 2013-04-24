@@ -90,6 +90,9 @@
 .btn.disabled:focus {
   background-color: #999;
 }
+.btn.inactive {
+  cursor: default;
+}
 .mvnerds-btn {
   border-bottom: 3px solid #ddd;
   padding: 10px 5px;

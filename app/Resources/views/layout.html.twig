@@ -90,20 +90,20 @@
 					pid: 19006, 
 					mandatory: true, 
 					duration: 60, 
-					mode: 'TEST', 
+					mode: 'PROD', 
 					callback: function(success){
 						$supportMVNerdsBtn.removeClass('support-mvnerds-btn');
 						$supportMVNerdsBtn.parent().find('i.note').remove();
 						if(success){
 							if(success === 'noad'){
 								//Action js en cas d'absence de pub
-								$supportMVNerdsBtn.addClass('red');
+								$supportMVNerdsBtn.addClass('red inactive');
 								$supportMVNerdsBtn.html('Désolé, aucune vidéo est disponible pour le moment.');
 							} else {
 								//Action js en cas de succes
-								$supportMVNerdsBtn.addClass('green');
+								$supportMVNerdsBtn.addClass('green inactive');
 								$supportMVNerdsBtn.html('Merci pour votre soutien !');
-								
+								saveItemInLS('last_donate_timestamp', new Date().getTime());
 							}
 						} else {
 							//Action js si le processus ne se deroule pas correctement';
@@ -119,7 +119,19 @@
 				}(document));
 				
 				$(document).ready(function() {
+					var timeBeforeAnotherSupport = 6 * 60 * 60 * 1000;
+					if (parseInt(getItemFromLS('last_donate_timestamp')) + timeBeforeAnotherSupport > new Date().getTime()) {
+						$supportMVNerdsBtn.removeClass('support-mvnerds-btn');
+						$supportMVNerdsBtn.parent().find('i.note').remove();
+						$supportMVNerdsBtn.addClass('green inactive');
+						$supportMVNerdsBtn.html('Merci pour votre soutien !');
+					}
+					
 					$supportMVNerdsBtn.on('click', function() {
+						if (!$(this).hasClass('support-mvnerds-btn')) {
+							return false;
+						}
+						
 						teads.show();
 
 						return false;
