@@ -5,7 +5,8 @@
 			{% for champion_item_build in item_build.getChampionItemBuilds() %}
 				{% set champion = champion_item_build.getChampion() %}
 				<div class="champion" id="{{champion.getSlug()}}">
-					<div class="champion-square36 {{ champion.getSlug() }} tooltip-anchor" data-placement="top" data-title="{{ champion.getName()}}"></div>
+					<img src="{{ asset('medias/images/champions/square36/' ~ champion.getSlug() ~ '.png') }}" class="champion-square36 tooltip-anchor" data-placement="top" data-title="{{ champion.getName()}}" />
+					<div ></div>
 				</div>
 			{% endfor %}
 		{% else %}

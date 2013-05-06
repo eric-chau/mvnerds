@@ -1,7 +1,7 @@
 <li class="champion {{ champion.getTagsToString() }}" id="{{ champion.getSlug() }}" data-name="{{ champion.getName() | lower }}" >
 	
 	<div class="portrait">
-		<div class="champion-square {{ champion.getSlug() }}"></div>
+		<img src="{{ asset('medias/images/champions/square100/' ~ champion.getSlug() ~ '.png') }}" class="champion-square" />
 		<div class="champion-name">{{ champion.getName() }}</div>
 	</div>
 	<div class="preview hide">

@@ -5,6 +5,8 @@
 
 <div class="free-champions">
 	{% for champion_rotation in rotation.getChampionRotations() %}
-		<a href="{{path('champion_detail', {slug: champion_rotation.getChampion().getSlug()})}}"><div class="champion-square36 {{champion_rotation.getChampion().getSlug()}}"></div></a>
+		<a href="{{path('champion_detail', {slug: champion_rotation.getChampion().getSlug()})}}">
+			<img src="{{ asset('medias/images/champions/square36/' ~ champion_rotation.getChampion().getSlug() ~ '.png') }}" class="champion-square36" />
+		</a>
 	{% endfor %}
 </div>

@@ -5,20 +5,7 @@
 {% block css %}
 	{{ parent() }}
 
-	{% if app.environment == 'dev' %}
-		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/champions/champion-detail.css') }}">
-		<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/champions/champion-square-sprite.css') }}">
-	{% else %}
-		{% stylesheets 
-			'medias/css/champions/champion-detail.css'
-			'medias/css/champions/champion-square-sprite.css'
-			output='medias/css/compiled/champion-detail.css'
-			filter='yui_css'
-			filter='cssembed'
-		%}
-		<link rel="stylesheet" href="{{ asset_url }}" />
-		{% endstylesheets %}
-	{% endif %}
+	<link rel="stylesheet" type="text/css" href="{{ asset('medias/css/champions/champion-detail.css') }}">
 {% endblock %}
 
 {% block javascripts %}
@@ -59,7 +46,7 @@
 	<div class="container main-container border-top">
 		<div class="row-fluid">
 			<div class="span8 left-content">
-				<div class="champion-square {{ champion.getSlug() }}"></div>
+				<img src="{{ asset('medias/images/champions/square100/' ~ champion.getSlug() ~ '.png') }}" class="champion-square" />
 				<h1>{{ champion.getName() }}</h1>
 				<div class="champion-title">
 					{{ champion.getTitle() }}

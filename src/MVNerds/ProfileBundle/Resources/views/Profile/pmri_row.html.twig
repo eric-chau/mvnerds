@@ -11,7 +11,7 @@
 				 data-content="
 					<div class='champion-square-list'>
 						{% for champion_item_build in item_build.getChampionItemBuilds() %}
-							<div class='champion-square36 {{ champion_item_build.getChampion().getSlug() }}' ></div>
+							<img src='{{ asset('medias/images/champions/square36/' ~ champion_item_build.getChampion().getSlug() ~ '.png') }}' class='champion-square36' />
 						{% endfor %}
 					</div>
 				"

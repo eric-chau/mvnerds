@@ -2,7 +2,7 @@
 	<div class="row-fluid champion-row" data-slug="{{ champion.getslug() }}">
 		<div class="span1 no-margin" data-sort="champion-name" data-value="{{ champion.getName() }}">
 			<p>
-				<span class="champion-square36 {{ champion.getSlug() }} img tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="<span class='tooltip-stat'>{{ champion.getName() }}</span>"></span>
+				<img src="{{ asset('medias/images/champions/square36/' ~ champion.getSlug() ~ '.png') }}" class="champion-square36 tooltip-anchor" rel="tooltip" data-placement="bottom" data-original-title="<span class='tooltip-stat'>{{ champion.getName() }}</span>" />
 			</p>
 		</div>
 			

@@ -413,7 +413,7 @@ div.popover div.popover-content {
 div.popover div.popover-content div.champion-square-list {
   text-align: center;
 }
-div.popover div.popover-content div.champion-square-list div.champion-square36 {
+div.popover div.popover-content div.champion-square-list img.champion-square36 {
   display: inline-block;
   margin: 2px;
 }
@@ -774,11 +774,11 @@ div.container.champion-rotation div.champion-rotation-content div.label {
 div.container.champion-rotation div.champion-rotation-content div.free-champions a {
   display: inline-block;
 }
-div.container.champion-rotation div.champion-rotation-content div.free-champions a div {
+div.container.champion-rotation div.champion-rotation-content div.free-champions a img {
   margin: 0 2px;
   opacity: .7;
 }
-div.container.champion-rotation div.champion-rotation-content div.free-champions a div:hover {
+div.container.champion-rotation div.champion-rotation-content div.free-champions a img:hover {
   opacity: 1;
   -webkit-transition: opacity 0.2s linear;
   -moz-transition: opacity 0.2s linear;

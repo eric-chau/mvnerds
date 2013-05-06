@@ -1,7 +1,7 @@
 <li class="champion-comparable" id="comparable-{{ champion.getSlug() }}">
 	<a class="champion-comparable-remove" href="{{ path('champion_handler_comparison_remove_from_compare', {'slug': champion.getSlug()}) }}">
 		<span class="slug hide">{{champion.getSlug()}}</span>
-		<div class="champion-square25 {{ champion.getSlug() }}"></div>
+		<img src="{{ asset('medias/images/champions/square25/' ~ champion.getSlug() ~ '.png') }}" class="champion-square" />
 		<div class="champion-comparable-name">{{champion.getName()}}</div>
 		<i class="icon-remove"></i>
 	</a>

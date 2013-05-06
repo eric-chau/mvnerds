@@ -1,7 +1,4 @@
 <li class="champion {{champion.getTagsToString()}} {% if selectedChampions is defined and champion.getSlug() in selectedChampions %} active{% endif %}" id="{{ champion.getSlug() }}" data-name="{{ champion.getName() | lower }}" data-placement="top" data-title="{{ champion.getName()}}">
-	<div class="portrait">
-		<div class="champion-square36 {{ champion.getSlug() }}">
-			<i class="icon-ok"></i>
-		</div>
-	</div>
+	<img src="{{ asset('medias/images/champions/square36/' ~ champion.getSlug() ~ '.png') }}" />
+	<i class="icon-ok"></i>
 </li>
