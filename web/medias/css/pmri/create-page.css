@@ -120,7 +120,7 @@ div.container.main-container div.step div.champion-container div#champion-list u
 }
 div.container.main-container div.step div.champion-container div#champion-list ul#champion-isotope-list li.champion.active {
   border: 2px solid #19a0df;
-  opacity: 1;
+  opacity: 1!important;
   padding: 1px;
 }
 div.container.main-container div.step div.champion-container div#champion-list ul#champion-isotope-list li.champion.active i {

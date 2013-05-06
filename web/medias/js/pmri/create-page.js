@@ -842,6 +842,10 @@ $(document).ready(function()
 		containerStyle: {
 			position: 'relative',
 			overflow: 'visible'
+		},
+		visibleStyle: {
+			opacity: .4,
+			scale: 1
 		}
 	};
 	championIsotopeFilters = {
@@ -852,7 +856,9 @@ $(document).ready(function()
 	$itemIsotopeList.imagesLoaded( function(){
 		$itemIsotopeList.isotope(itemIsotopeOptions);
 	});
-	$championIsotopeList.isotope(championIsotopeOptions);
+	$championIsotopeList.imagesLoaded( function(){
+		$championIsotopeList.isotope(championIsotopeOptions);
+	});
 	
 	//Activation des filtres
 	$itemFilterInput = $('#item-filter-input');

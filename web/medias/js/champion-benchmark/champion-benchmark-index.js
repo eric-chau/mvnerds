@@ -197,9 +197,9 @@ function deactivateCompareButton()
 var options, $isotope; 
 	
 function initIsotope($isotope){
-	//$isotope.imagesLoaded( function(){
+	$isotope.imagesLoaded( function(){
 		$isotope.isotope(options);
-	//});
+	});
 	
 	//Bloquage du drag sur les champions agrandis
 	$isotope.on('mouseover', 'li.champion-maxi', function(){

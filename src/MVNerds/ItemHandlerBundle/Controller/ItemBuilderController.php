@@ -385,13 +385,12 @@ class ItemBuilderController extends Controller
 				$user = $this->getUser();
 				$nbItemBuilds = $itemBuildManager->countNbBuildsByUserId($user->getId());
 				
-				if ($isEdition || $this->get('security.context')->isGranted('ROLE_ADMIN')) 
-				{
-					$itemBuild->save();
-				}
-				elseif ($nbItemBuilds < self::MAX_ITEM_BUILDS) 
-				{
+				if ($itemBuild->getUser() == null) {
 					$itemBuild->setUser($user);
+				}
+				
+				if ($isEdition || $this->get('security.context')->isGranted('ROLE_ADMIN') || $nbItemBuilds < self::MAX_ITEM_BUILDS) 
+				{
 					$itemBuild->save();
 				}
 			}
