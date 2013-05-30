@@ -1,0 +1,106 @@
+// Twitter Bootstraps imports
+@import "../bootstrap/mixins.less";
+
+// MVNerds imports
+@import "../mvnerds/mvnerds-variables.less";
+@import "../mvnerds/mvnerds-buttons.less";
+
+
+// Stylisation des balises élémentaires
+body {
+	background-color: @bodyMainBGColor;
+	margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	color: #666;
+	font-family: 'Cabin', sans-serif;
+	line-height: 1.4em;
+	margin: 0 0 20px 0;
+	padding: 0;
+}
+
+h1 {
+	color: @MVNerdsMainTextColor;
+	font-size: 1.9em;
+}
+
+h2 {
+	font-size: 1.7em;
+}
+
+h3 {
+	font-size: 1.6em;
+}
+
+h4 {
+	font-size: 1.4em;
+}
+
+a, p, label, ul, li, div, input[type="text"], input[type="password"], input[type="email"], textarea {
+	color: @MVNerdsMainTextColor;
+	font-family: 'Muli', sans-serif;
+	font-size: 14px;
+	line-height: 1.4em;
+}
+
+a, a:focus, a:hover, a:visited {
+	color: inherit;
+	text-decoration: none;
+	.transition(color .2s linear);
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+p {
+	margin: 0 0 1.4em 0;
+}
+
+ul {
+	list-style: square;
+	list-style-position: inside;
+	margin: 0;
+}
+
+img {
+	display: inline-block;
+	vertical-align: top;
+}
+
+input[type="text"], input[type="password"], input[type="email"], textarea, select {
+	background-color: @bodyMainBGColor;
+	border: 1px solid #999;
+	color: @MVNerdsMainTextColor;
+	padding: 2px 5px;
+
+	&:focus, &:hover {
+		color: darken(@LoLOrangeAD, 10%); .transition(color .2s linear);
+	}
+}
+
+div.feed-row {
+	margin-top: 10px;
+
+	div.span6.feed {
+		border: 1px solid #ccc;
+		.box-shadow(0 0 3px 3px #ddd);
+		padding: 5px;
+
+		&.red-post {
+			h2 {
+				color: #ca3b3b;
+			}
+		}
+
+		h2 {
+			font-size: 16px;
+			margin: 0;
+
+			i {
+				display: inline-block;
+			}
+		}
+	}
+}

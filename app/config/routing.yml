@@ -3,73 +3,73 @@ mv_nerds_skeleton:
     type:     annotation
     prefix:   /
 
-mv_nerds_team_seeker:
-    resource: "@MVNerdsTeamSeekerBundle/Controller/"
-    type:     annotation
-    prefix:   /{_locale}
-
-fos_js_routing:
-    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
-
-mv_nerd_admin:
-    resource: "@MVNerdsAdminBundle/Controller/"
-    type:     annotation
-    prefix:   /{_locale}/administration
-
-mv_nerds_comment:
-    resource: "@MVNerdsCommentBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-mv_nerds_profile:
-    resource: "@MVNerdsProfileBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-mv_nerd_main:
-    resource: "@MVNerdsMainBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-mv_nerds_site:
-    resource: "@MVNerdsSiteBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-mv_nerds_view:
-    resource: "@MVNerdsViewBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-mv_nerds_report:
-    resource: "@MVNerdsReportBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-mv_nerds_vote:
-    resource: "@MVNerdsVoteBundle/Controller/"
-    type:		annotation
-    prefix:   /{_locale}
-
-mv_nerds_video:
-    resource: "@MVNerdsVideoBundle/Controller/"
-    type:     annotation
-    prefix:   /{_locale}
-
-mv_nerds_news:
-    resource: "@MVNerdsNewsBundle/Controller/"
-    type:     annotation
-    prefix:   /{_locale}
-
-mv_nerd_item_handler:
-    resource: "@MVNerdsItemHandlerBundle/Controller/"
-    type:     annotation
-    prefix:   /{_locale}
-
-mv_nerds_champion_handler:
-    resource: "@MVNerdsChampionHandlerBundle/Controller/"
-    type:     annotation
-    prefix:   /{_locale}
+#mv_nerds_team_seeker:
+#    resource: "@MVNerdsTeamSeekerBundle/Controller/"
+#    type:     annotation
+#    prefix:   /{_locale}
+#
+#fos_js_routing:
+#    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+#
+#mv_nerd_admin:
+#    resource: "@MVNerdsAdminBundle/Controller/"
+#    type:     annotation
+#    prefix:   /{_locale}/administration
+#
+#mv_nerds_comment:
+#    resource: "@MVNerdsCommentBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+#
+#mv_nerds_profile:
+#    resource: "@MVNerdsProfileBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+#
+#mv_nerd_main:
+#    resource: "@MVNerdsMainBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+#
+#mv_nerds_site:
+#    resource: "@MVNerdsSiteBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+#
+#mv_nerds_view:
+#    resource: "@MVNerdsViewBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+#
+#mv_nerds_report:
+#    resource: "@MVNerdsReportBundle/Controller/"
+#    type:     annotation
+#    prefix:   /
+#
+#mv_nerds_vote:
+#    resource: "@MVNerdsVoteBundle/Controller/"
+#    type:		annotation
+#    prefix:   /{_locale}
+#
+#mv_nerds_video:
+#    resource: "@MVNerdsVideoBundle/Controller/"
+#    type:     annotation
+#    prefix:   /{_locale}
+#
+#mv_nerds_news:
+#    resource: "@MVNerdsNewsBundle/Controller/"
+#    type:     annotation
+#    prefix:   /{_locale}
+#
+#mv_nerd_item_handler:
+#    resource: "@MVNerdsItemHandlerBundle/Controller/"
+#    type:     annotation
+#    prefix:   /{_locale}
+#
+#mv_nerds_champion_handler:
+#    resource: "@MVNerdsChampionHandlerBundle/Controller/"
+#    type:     annotation
+#    prefix:   /{_locale}
 
 #MVNerdsLaunchSite_homepage:
 #    resource: "@MVNerdsLaunchSiteBundle/Controller/"
