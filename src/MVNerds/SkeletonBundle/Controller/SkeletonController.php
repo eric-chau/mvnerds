@@ -12,6 +12,6 @@ class SkeletonController extends Controller
      */
     public function indexAction()
     {
-        return $this->render('MVNerdsSkeletonBundle::base.html.twig');
+        return $this->render('MVNerdsSkeletonBundle::layout.html.twig');
     }
 }
