@@ -1,0 +1,148 @@
+div.main-container {
+	position: relative;
+
+	div.global-menu {
+		position: absolute;
+		right: 0;
+		top: 1px;
+
+		div.fb-like {
+			display: inline-block;
+			right: 3px;
+			position: relative;
+			top: 5px;
+		}
+
+		ul {
+			display: inline-block;
+
+			li {
+				background-color: #333;
+				color: #999;
+				display: inline-block;
+				margin-right: 3px;
+				padding: 3px 10px;
+
+				a {
+					color: #999;
+					font-size: 13px;
+
+					&:hover {
+						color: white;
+						text-decoration: none;
+
+						i.icon-globe {
+							
+						}
+					}
+
+					i.icon-globe {
+						display: inline-block;
+						font-size: 14px;
+						margin-right: 4px;
+						position: relative;
+					}
+				}
+			}
+		}
+	}
+}
+
+div.main-container div.header {
+	position: relative;
+
+	img.teemo-img {
+		left: -25px;
+		position: absolute;
+		top: -70px;
+		width: 120px;
+	}
+
+	a.back-home-link {
+		left: 90px;
+		position: absolute;
+		top: 0;
+	}
+
+	form#search-by-tag-form {
+		background: url('../../images/skeleton/form-bg.png');
+		margin: 80px 0 50px 0;
+		position: relative;
+		text-align: center;
+
+		i.icon-search {
+			color: #999;
+			display: inline-block;
+			font-size: 18px;
+			margin-right: 5px;
+			position: relative;
+			top: 2px;
+		}
+
+		input.search-by-tag-input {
+			border: none;
+			border-bottom: 1px solid #666;
+			color: @MVNerdsMainTextColor;
+			font-size: 18px;
+			margin-right: 5px;
+			outline: none;
+			padding: 2px 1px;
+			width: 295px;
+		}
+
+		button {
+			background-color: #4e759c;
+			border: none;
+			color: white;
+			font-weight: bold;
+			padding: 6px 10px;
+
+			&:hover {
+				background-color: darken(#4e759c, 10%); .transition(background-color .3s linear);
+			}
+		}
+
+		a {
+			margin-left: 10px;
+
+			&:hover {
+				text-decoration: none;
+
+				i.icon-cogs {
+					color: @MVNerdsMainTextColor; .transition(color .2s linear);
+				}
+			}
+
+			i.icon-cogs {
+				color: #aaa;
+				font-size: 18px;
+				position: relative;
+				top: 2px;
+			}
+
+			&.post-feed-btn {
+				background-color: #333;
+				border: 1px solid #333;
+				color: #eee;
+				display: inline-block;
+				font-size: 10px;
+				line-height: 1.6em;
+				padding: 1px 8px 8px 8px;
+				position: absolute;
+				right: 20px;
+				top: -6px;
+
+				&:hover {
+					border-color: #666; 
+					color: @MVNerdsYellow; .transition(all .2s linear);
+					text-decoration: none;
+				}
+
+				strong {
+					display: block;
+					font-size: 25px;
+				}
+			}
+		}
+	}
+}

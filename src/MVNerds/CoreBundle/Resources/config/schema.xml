@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <database defaultIdMethod="native" name="default" namespace="MVNerds\CoreBundle\Model">
   <table name="champion">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />

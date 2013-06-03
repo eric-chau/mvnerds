@@ -9,12 +9,13 @@
 // Stylisation des balises élémentaires
 body {
 	background-color: @bodyMainBGColor;
+	min-height: 1100px;
 	margin: 0;
 }
 
 h1, h2, h3, h4, h5, h6 {
 	color: #666;
-	font-family: 'Cabin', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	line-height: 1.4em;
 	margin: 0 0 20px 0;
 	padding: 0;
@@ -39,13 +40,14 @@ h4 {
 
 a, p, label, ul, li, div, input[type="text"], input[type="password"], input[type="email"], textarea {
 	color: @MVNerdsMainTextColor;
-	font-family: 'Muli', sans-serif;
+	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
 	line-height: 1.4em;
 }
 
 a, a:focus, a:hover, a:visited {
-	color: inherit;
+	color: #146fa4;
+	font-size: inherit;
 	text-decoration: none;
 	.transition(color .2s linear);
 }
@@ -80,26 +82,97 @@ input[type="text"], input[type="password"], input[type="email"], textarea, selec
 	}
 }
 
-div.feed-row {
-	margin-top: 10px;
+@import "skeleton-header.less";
 
-	div.span6.feed {
-		border: 1px solid #ccc;
-		.box-shadow(0 0 3px 3px #ddd);
-		padding: 5px;
+div.feeds-container {
+	position: relative;
 
-		&.red-post {
+	div.feed-row {
+		margin-top: 15px;
+
+		div.span6.feed {
+			background-color: #f4f4f4;
+			border: 1px solid #ccc;
+			.box-shadow(0 0 3px 3px #ddd);
+			padding: 5px;
+			position: relative;
+
+			&.red-post {
+				h2 {
+					color: @MVNerdsRed;
+				}
+			}
+
 			h2 {
-				color: #ca3b3b;
+				font-size: 13px;
+				margin: 0;
+				overflow: hidden;
+				padding-left: 26px;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+
+				div.rating {
+					background-color: #666;
+					color: white;
+					display: inline-block;
+					min-width: 20px;
+					padding: 5px;
+					position: absolute;
+					text-align: center;
+					top: 0;
+					left: -10px;
+				}
 			}
 		}
 
-		h2 {
-			font-size: 16px;
-			margin: 0;
+		div.span6.feed-infos {
+			p {
+				font-size: 12px;
+				line-height: 31px;
+				margin: 0;
+			}
+		}
+	}
+}
 
-			i {
-				display: inline-block;
+div.support-us-container {
+	bottom: 5px;
+	position: fixed;
+	right: 100px;
+
+	i.icon-reply {
+		bottom: 30px;
+		color: rgba(0,0,0,.2);
+		display: inline-block;
+		font-size: 60px;	
+		position: fixed;
+		right: 150px;
+		.rotate(-90deg);
+	}
+
+	a {
+		color: white;
+		font-size: 13px;
+		font-weight: bold;
+
+		&.support-us-btn {
+			background-color: darken(@MVNerdsRed, 10%);//#4e759c;
+			
+			padding: 3px 6px;
+		}
+
+		&.learn-more-btn {
+			background-color: #555;
+			font-size: 14px;
+			left: -4px;
+			line-height: 14px;
+			padding: 0 5px;
+			position: relative;
+			top: 1px;
+
+			&:hover {
+				background-color: black; .transition(background-color .25s linear);
+				text-decoration: none;
 			}
 		}
 	}
