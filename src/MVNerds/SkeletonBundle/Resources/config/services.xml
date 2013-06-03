@@ -8,6 +8,9 @@
 
         <!-- FEED MANAGER SERVICES	-->
 		<service id="mvnerds.feed_manager" class="MVNerds\SkeletonBundle\Feed\FeedManager" />
+        
+		<!-- SUPER TAG MANAGER SERVICES	-->
+		<service id="mvnerds.super_tag_manager" class="MVNerds\SkeletonBundle\SuperTag\SuperTagManager" />
 
     </services>
 </container>

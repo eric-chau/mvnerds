@@ -110,7 +110,7 @@ class FeedManager
 	}
 	
 	/**
-	 * @param array $superTags un tableau contenant des superTags sous forme de chaine de caractères
+	 * @param array $superTags un tableau contenant des superTags sous forme de chaines de caractères
 	 * 
 	 * @return \PropelCollection<MVNerds\CoreBundle\Model\Feed>
 	 */
@@ -119,7 +119,7 @@ class FeedManager
 		return FeedQuery::create()
 			->joinWith('FeedSuperTag FST')
 			->joinWith('FST.SuperTag ST')
-			->where('ST.unique_name', $superTags, Criteria::IN)
+			->add('ST.unique_name', $superTags, Criteria::IN)
 			->OrderBy(FeedPeer::CREATE_TIME, Criteria::DESC)
 		->find();
 	}
