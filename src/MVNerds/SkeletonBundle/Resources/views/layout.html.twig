@@ -11,8 +11,11 @@
 				<li><a href="#"><i class="icon-globe"></i>Français</a></li>
 			</ul>
 		</div>
-
-		<div class="header">			
+			
+		<div class="header">
+			<div class="indication learn-more"><a href="#">comment ça marche ?<i class="icon-chevron-sign-right"></i></a></div>
+			<div class="indication post-feed-indication">Toi aussi partage un contenu (vidéo, article, image, etc.) <i class="icon-chevron-sign-right"></i></div>
+			
 			<form action="#" method="post" id="search-by-tag-form">
 				<img src="{{ asset('medias/images/skeleton/teemo-img.png') }}" class="teemo-img" />
 				<a href="#" class="back-home-link"><img src="{{ asset('medias/images/site/mvnerds-logo.png') }}" /></a>
@@ -22,10 +25,14 @@
 				<button>Rechercher</button>
 				<a href="#"><i class="icon-cogs"></i></a>
 				
-				<a href="#" class="post-feed-btn">POSTER UN <strong>feed</strong></a>
+				<a href="#" class="post-feed-btn">POSTER UN <strong>contenu</strong></a>
 			</form>
 		</div>
 		
+		<div class="breadcrumb-container">
+			Vous êtes sur <a href="#">Accueil</a> > Résultat de recherche des tags <strong>Test</strong>, <strong>Test</strong> <i class="icon-caret-down"></i>
+		</div>
+			
 		<div class="feeds-container">
 			<div class="row-fluid feed-row">
 				<div class="span6 feed">

@@ -51,6 +51,56 @@ div.main-container {
 div.main-container div.header {
 	position: relative;
 
+	div.indication {
+		position: absolute;
+
+		&.learn-more {
+			bottom: -40px;
+			left: 25%;
+
+			i {
+				left: 1px;
+				.rotate(-50deg);
+				top: -16px;
+			}
+		}
+
+		&.post-feed-indication {
+			color: @MVNerdsRed;
+			font-family: 'Reenie Beanie', sans-serif;
+			font-size: 20px;
+			font-weight: bold;
+			opacity: .7;
+			right: 70px;
+			top: -45px;
+
+			i {
+				left: -10px;
+				.rotate(50deg);
+				top: 12px;
+			}
+		}
+
+		a {
+			font-family: 'Reenie Beanie', sans-serif;
+			font-size: 20px;
+			font-weight: bold;
+			opacity: .5;
+
+			&:hover {
+				opacity: 1; .transition(opacity .25s linear);
+				text-decoration: none;
+			}
+		}
+
+		i {
+			display: inline-block;
+			font-size: 14px;
+			position: relative;
+		}
+	}
+
+
 	img.teemo-img {
 		left: -25px;
 		position: absolute;
@@ -66,7 +116,7 @@ div.main-container div.header {
 
 	form#search-by-tag-form {
 		background: url('../../images/skeleton/form-bg.png');
-		margin: 80px 0 50px 0;
+		margin: 80px 0 30px 0;
 		position: relative;
 		text-align: center;
 
@@ -130,7 +180,7 @@ div.main-container div.header {
 				padding: 1px 8px 8px 8px;
 				position: absolute;
 				right: 20px;
-				top: -6px;
+				top: -7px;
 
 				&:hover {
 					border-color: #666; 
@@ -144,5 +194,15 @@ div.main-container div.header {
 				}
 			}
 		}
+	}
+}
+
+div.breadcrumb-container {
+	font-size: 12px;
+	margin-bottom: 5px;
+	text-align: right;
+
+	i {
+		margin-left: 5px;
 	}
 }
