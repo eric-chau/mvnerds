@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <database defaultIdMethod="native" name="default" namespace="MVNerds\CoreBundle\Model">
   <table name="champion">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -158,6 +159,7 @@
       <parameter name="i18n_table" value="item_i18n" />
       <parameter name="i18n_phpname" value="ItemI18n" />
     </behavior>
+    <behavior name="mvnerds_commentable" />
   </table>
   <table name="primary_effect">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -613,7 +615,7 @@
     <column name="type_unique_name" required="true" size="64" type="VARCHAR" />
     <column name="title" required="true" size="100" type="VARCHAR" />
     <column name="content" required="true" size="4294967295" type="CLOB" />
-    <column defaultValue="'fr'" name="lang" required="true" size="2" type="VARCHAR" />
+    <column defaultValue="'fr'" name="lang" required="true" size="4" type="VARCHAR" />
     <column defaultValue="0" name="is_red_post" required="true" type="BOOLEAN" />
     <column name="user_id" required="true" type="INTEGER" />
     <foreign-key foreignTable="feed_type">
@@ -660,6 +662,7 @@
   <table name="super_tag">
     <column name="unique_name" primaryKey="true" required="true" size="64" type="VARCHAR" />
     <column name="label" required="true" size="64" type="VARCHAR" />
+    <column name="alias_unique_name" size="64" type="VARCHAR" />
     <column name="linked_object_id" type="INTEGER" />
     <column name="linked_object_namespace" size="255" type="VARCHAR" />
   </table>
