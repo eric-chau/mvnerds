@@ -1,0 +1,33 @@
+<div class="row-fluid normal-line">
+	
+	<div class="span4">{{ feed_type.getUniqueName() }}</div>
+	
+	<div class="span4">{{ feed_type.getIsPrivate() ? 'Oui' : 'Non' }}</div>
+	
+	<div class="span4">
+		{# Editer le feed_type #}
+		<a href="{{ path('admin_feed_type_edit', {'uniqueName': feed_type.getUniqueName()}) }}" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Éditer">
+			<i class="icon-edit"></i>
+		</a>
+		{# Supprimer le feed_type #}
+		<a href="#" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Supprimer l'utilisateur" data-toggle="modal" data-target="#delete-tag-{{ feed_type.getUniqueName() }}-modal">
+			<i class="icon-remove"></i>
+		</a>
+	</div>
+
+	<div id="delete-tag-{{ feed_type.getUniqueName() }}-modal" class="modal hide fade">
+		<div class="modal-header">
+	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	    	<h3>Supprimer le feed type {{ feed_type.getUniqueName() }}</h3>
+	  	</div>
+	  	<div class="modal-body">
+	    	<p>Êtes-vous sûr de vouloir supprimer le feed type ayant pour label<strong>{{ feed_type.getUniqueName() }}</strong> ?</p>
+	  	</div>
+	  	<div class="modal-footer">
+	  		<img src="{{ asset('medias/images/commons/loader16.gif') }}" class="hide"/>
+	    	<a href="#" class="btn" data-dismiss="modal">Annuler</a>
+	    	<a href="{{ path('admin_feed_type_delete', {'uniqueName': feed_type.getUniqueName()}) }}" class="btn btn-danger btn-confirm-delete">Confirmer</a>
+	  	</div>
+	</div>
+</div>
+

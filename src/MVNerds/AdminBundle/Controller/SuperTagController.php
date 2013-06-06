@@ -83,6 +83,8 @@ class SuperTagController extends Controller
 			return $this->redirect($this->generateUrl('admin_super_tags_index'));
 		}
 		
+		//On conserve l'ancienne version pour pouvoir editer la primary key si besoin
+		$oldSuperTag = clone $superTag;
 		//Création du formulaire
 		$form = $this->createForm(new SuperTagType(), $superTag);
 
@@ -98,13 +100,14 @@ class SuperTagController extends Controller
 				
 				try {
 					//On essaie d'enregistrer le SuperTag
-					$superTag->save();
+					$this->get('mvnerds.super_tag_manager')->customSave($superTag, $oldSuperTag);
 				} catch (\Exception $e) {
 					//Si une Exception survient, on ajoute l'erreur au formulaire et on l'affiche
 					$form->addError(new FormError($e->getMessage()));
 					
-					return $this->render('MVNerdsAdminBundle:SuperTag:add_super_tag_form.html.twig', array(
-						'form' => $form->createView()
+					return $this->render('MVNerdsAdminBundle:SuperTag:edit_super_tag_form.html.twig', array(
+						'form' => $form->createView(),
+						'super_tag' => $superTag
 					));
 				}
 
@@ -113,8 +116,9 @@ class SuperTagController extends Controller
 			}
 		}
 
-		return $this->render('MVNerdsAdminBundle:SuperTag:add_super_tag_form.html.twig', array(
-			'form' => $form->createView()
+		return $this->render('MVNerdsAdminBundle:SuperTag:edit_super_tag_form.html.twig', array(
+			'form'		=> $form->createView(),
+			'super_tag' => $superTag
 		));
 	}
 	
@@ -126,10 +130,8 @@ class SuperTagController extends Controller
 	public function deleteAction($uniqueName)
 	{
 		try {
-			//On essaie de récupérer le SuperTag associé au uniqueName fournit en paramètre
-			$superTag = $this->get('mvnerds.super_tag_manager')->findByUniqueName($uniqueName);
-			//On le supprime
-			$superTag->delete();
+			//On essaie de supprimer le superTag associé au UniqueName fournit en param
+			$this->get('mvnerds.super_tag_manager')->deleteByUniqueName($uniqueName);
 		} catch (\Exception $e) {}
 		
 		return $this->redirect($this->generateUrl('admin_super_tags_index'));

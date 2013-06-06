@@ -115,6 +115,36 @@ class SuperTagManager
 		return $realSuperTagsUniqueNames;
 	}
 	
+	
+	/**
+	 * Permet d'éditer un super tag en changeant sa primary key 'unique_name'
+	 * 
+	 * @param \MVNerds\CoreBundle\Model\SuperTag $newSuperTag Les nouvelles données à affecter à l'ancien super tag
+	 * @param \MVNerds\CoreBundle\Model\SuperTag $oldSuperTag Le super tag que l'on veut éditer
+	 */
+	public function customSave(SuperTag $newSuperTag, SuperTag $oldSuperTag)
+	{
+		$con = \Propel::getConnection(SuperTagPeer::DATABASE_NAME);
+		
+		$sql = "UPDATE `super_tag` 
+				SET `unique_name`=:new_unique_name, 
+					`label`=:new_label,
+					`alias_unique_name`=:new_alias_unique_name,
+					`linked_object_id`=:new_linked_object_id,
+					`linked_object_namespace`=:new_linked_object_namespace
+				WHERE super_tag.unique_name=:old_unique_name";
+
+		$stmt = $con->prepare($sql);
+		$stmt->execute(array(
+			':new_unique_name' => $newSuperTag->getUniqueName(),
+			':new_label' => $newSuperTag->getLabel(),
+			':new_alias_unique_name' => $newSuperTag->getAliasUniqueName(),
+			':new_linked_object_id' => $newSuperTag->getLinkedObjectId(),
+			':new_linked_object_namespace' => $newSuperTag->getLinkedObjectNamespace(),
+			':old_unique_name' => $oldSuperTag->getUniqueName()
+		));
+	}
+	
 	/**
 	 * Permet de créer, à partir d'une chaine de tags fournie par l'utilisateur, un tableau de labels
 	 * 
