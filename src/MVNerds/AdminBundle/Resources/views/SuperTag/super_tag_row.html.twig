@@ -1,0 +1,39 @@
+<div class="row-fluid normal-line">
+	
+	<div class="span3">{{ super_tag.getUniqueName() }}</div>
+	
+	<div class="span1">{{ super_tag.getLabel() }}</div>
+	
+	<div class="span3">{{ super_tag.getAliasUniqueName() }}</div>
+	
+	<div class="span1">{{ super_tag.getLinkedObjectId() }}</div>
+	
+	<div class="span3">{{ super_tag.getLinkedObjectNamespace() }}</div>
+	
+	<div class="span1">
+		{# Editer le super_tag #}
+		<a href="{{ path('admin_super_tags_edit', {'uniqueName': super_tag.getUniqueName()}) }}" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Éditer">
+			<i class="icon-edit"></i>
+		</a>
+		{# Supprimer le super_tag #}
+		<a href="#" class="tooltip-anchor" rel="tooltip" data-placement="top" data-original-title="Supprimer l'utilisateur" data-toggle="modal" data-target="#delete-tag-{{ super_tag.getLabel() }}-modal">
+			<i class="icon-remove"></i>
+		</a>
+	</div>
+
+	<div id="delete-tag-{{ super_tag.getLabel() }}-modal" class="modal hide fade">
+		<div class="modal-header">
+	    	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	    	<h3>Supprimer le super tag {{ super_tag.getLabel() }}</h3>
+	  	</div>
+	  	<div class="modal-body">
+	    	<p>Êtes-vous sûr de vouloir supprimer le super tag ayant pour label<strong>{{ super_tag.getLabel() }}</strong> ?</p>
+	  	</div>
+	  	<div class="modal-footer">
+	  		<img src="{{ asset('medias/images/commons/loader16.gif') }}" class="hide"/>
+	    	<a href="#" class="btn" data-dismiss="modal">Annuler</a>
+	    	<a href="{{ path('admin_super_tags_delete', {'uniqueName': super_tag.getUniqueName()}) }}" class="btn btn-danger btn-confirm-delete">Confirmer</a>
+	  	</div>
+	</div>
+</div>
+

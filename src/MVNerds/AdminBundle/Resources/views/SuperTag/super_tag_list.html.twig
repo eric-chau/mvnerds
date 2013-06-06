@@ -1,0 +1,14 @@
+{# #}
+<div class="row-fluid title-line">
+	<div class="span3">Unique Name</div>
+	<div class="span1">Label</div>
+	<div class="span3">Alias</div>
+	<div class="span1">Linked Object ID</div>
+	<div class="span3">Linked Object Namespace</div>
+	<div class="span1">Actions</div>
+</div>
+{% for super_tag in super_tags %}
+	{% include 'MVNerdsAdminBundle:SuperTag:super_tag_row.html.twig' %}
+{% else %}
+	<i>Aucun super tag enregistré pour le moment.</i>
+{% endfor %}

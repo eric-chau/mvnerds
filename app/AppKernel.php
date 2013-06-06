@@ -23,7 +23,7 @@ class AppKernel extends Kernel
 			new Propel\PropelBundle\PropelBundle(),
 			new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
 			new MVNerds\CoreBundle\MVNerdsCoreBundle(),
-//			new MVNerds\AdminBundle\MVNerdsAdminBundle(),
+			new MVNerds\AdminBundle\MVNerdsAdminBundle(),
 //            new MVNerds\MainBundle\MVNerdsMainBundle(),
 //            new MVNerds\SiteBundle\MVNerdsSiteBundle(),
 //            new MVNerds\ProfileBundle\MVNerdsProfileBundle(),
