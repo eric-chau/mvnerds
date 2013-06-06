@@ -8,7 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 class SkeletonController extends Controller
 {
     /**
-     * @Route("/")
+     * @Route("/", name="site_homepage")
      */
     public function indexAction()
     {

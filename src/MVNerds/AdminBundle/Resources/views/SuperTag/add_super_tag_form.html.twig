@@ -1,0 +1,22 @@
+{% extends 'MVNerdsAdminBundle:SuperTag:layout.html.twig' %}
+
+{% block title %}Administration des super tags - MVNerds{% endblock %}
+
+{% block content %}
+	<h1>Ajouter un super tag</h1>
+
+	<div class="action-buttons">
+		<a href="{{ path('admin_super_tags_index') }}" class="btn"><i class="icon-arrow-left"></i> <strong>Retourner à la liste</strong></a>
+		<a href="#" class="btn btn-success btn-large pull-right btn-submit-form"><i class="icon-ok icon-white"></i> <strong>J'ai terminé</strong></a>
+		<a href="{{ path('admin_super_tags_index') }}" class="btn pull-right btn-danger"><strong>Annuler</strong></a>
+	</div>
+
+	<div class="content-container">
+		<form action="{{ path('admin_super_tags_create') }}" method="POST" {{ form_enctype(form) }}>		
+				
+			{{ form_widget(form) }}
+
+			<input type="submit" class="submit-form hide" />
+		</form>
+	</div>
+{% endblock %}

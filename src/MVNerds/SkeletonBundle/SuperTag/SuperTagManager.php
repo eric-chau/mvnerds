@@ -63,14 +63,22 @@ class SuperTagManager
 	}
 	
 	/**
+	 * @param boolean $onlyRealTags true si on ne veut récupérer que les super_tags qui ne sont pas des alias
+	 * false si on veut récupérer tous les super_tags confondus
+	 * 
 	 * @return \PropelCollection<MVNerds\CoreBundle\Model\SuperTag> retourne un objet PropelCollection qui contient
 	 * tous les super_tag de la base de données
 	 */
-	public function findAll()
+	public function findAll($onlyRealTags = false)
 	{
-		return SuperTagQuery::create()
-			->OrderBy(SuperTagPeer::LABEL ,Criteria::ASC)
-		->find();
+		$superTags = SuperTagQuery::create()
+			->OrderBy(SuperTagPeer::LABEL, Criteria::ASC);
+		 
+		if($onlyRealTags) {
+			$superTags->add(SuperTagPeer::ALIAS_UNIQUE_NAME, null);
+		}
+		 
+		return $superTags->find();
 	}
 	
 	/**

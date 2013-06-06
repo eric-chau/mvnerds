@@ -11,10 +11,10 @@ mv_nerds_skeleton:
 #fos_js_routing:
 #    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
 #
-#mv_nerd_admin:
-#    resource: "@MVNerdsAdminBundle/Controller/"
-#    type:     annotation
-#    prefix:   /{_locale}/administration
+mv_nerd_admin:
+    resource: "@MVNerdsAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /{_locale}/administration
 #
 #mv_nerds_comment:
 #    resource: "@MVNerdsCommentBundle/Controller/"
