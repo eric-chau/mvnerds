@@ -38,7 +38,7 @@ h4 {
 	font-size: 1.4em;
 }
 
-a, p, label, ul, li, div, input[type="text"], input[type="password"], input[type="email"], textarea {
+a, p, label, ul, li, div, input[type="text"], input[type="password"], input[type="email"], input[type="submit"], textarea {
 	color: @MVNerdsMainTextColor;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 14px;
@@ -82,11 +82,24 @@ input[type="text"], input[type="password"], input[type="email"], textarea, selec
 	}
 }
 
+input[type="text"], input[type="password"], input[type="email"] {
+	border: none;
+	border-bottom: 1px solid #666;
+	outline: none;
+}
+
+label {
+	display: inline-block;
+}
+
+div.specific-content {
+	background-color: #eee;
+	border-top: 2px dashed #999;
+}
+
 @import "skeleton-header.less";
 
 div.feeds-container {
-	background-color: #eee;
-	border-top: 2px dashed #999;
 	padding-bottom: 15px;
 	position: relative;
 

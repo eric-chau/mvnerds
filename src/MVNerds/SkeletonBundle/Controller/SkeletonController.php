@@ -17,7 +17,11 @@ class SkeletonController extends Controller
      */
     public function indexAction()
     {
-		return $this->render('MVNerdsSkeletonBundle:Front:index.html.twig');
+		$feeds = $this->get('mvnerds.feed_manager')->findAll();
+		
+		return $this->render('MVNerdsSkeletonBundle:Front:index.html.twig', array(
+			'feeds' => $feeds
+		));
     }
 	
 	/**
@@ -27,12 +31,19 @@ class SkeletonController extends Controller
 	 */
 	public function createFeedAction() 
 	{
-		$form = $this->createForm(new FeedType(), new Feed());
+		$form = $this->createForm(new FeedType($this->get('translator')), new Feed());
 		
 		$form->handleRequest($this->getRequest());
 		
 		if ($form->isValid()) {
-			var_dump($form->getData()); die;
+			//var_dump($form->get('feed_tags')->getData());
+			$feed = $form->getData();
+			$feed->setUser($this->getUser());
+			$feedType = $feed->getTypeUniqueName();
+			$feed->setTypeUniqueName($feedType->getUniqueName());
+			$feed->save();
+			
+			return $this->redirect($this->generateUrl('site_homepage'));
 		}
 		
 		return $this->render('MVNerdsSkeletonBundle:Feed:add_new_feed_index.html.twig', array(

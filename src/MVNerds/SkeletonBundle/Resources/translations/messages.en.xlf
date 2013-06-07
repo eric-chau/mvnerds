@@ -5,29 +5,29 @@
 			<!-- LANGUE -->
 			 <trans-unit id="1">
                 <source>FRENCH</source>
-                <target>Français</target>
+                <target>French</target>
             </trans-unit>
 			<trans-unit id="2">
                 <source>ENGLISH</source>
-                <target>Anglais</target>
+                <target>English</target>
             </trans-unit>
 			<trans-unit id="3">
                 <source>DEUTSCH</source>
-                <target>Allemand</target>
+                <target>Deutsch</target>
             </trans-unit>
 			<trans-unit id="4">
                 <source>SPANISH</source>
-                <target>Espagnol</target>
+                <target>Spanish</target>
             </trans-unit>
 			<trans-unit id="5">
                 <source>RUSSIAN</source>
-                <target>Russe</target>
+                <target>Russian</target>
             </trans-unit>
 			
 			<!-- TYPES DE FEED -->
 			<trans-unit id="51">
                 <source>VIDEO</source>
-                <target>Vidéo</target>
+                <target>Video</target>
             </trans-unit>
 			<trans-unit id="52">
                 <source>QUESTION</source>
@@ -35,7 +35,7 @@
             </trans-unit>
 			<trans-unit id="53">
                 <source>SKILL</source>
-                <target>Compétence</target>
+                <target>Skill</target>
             </trans-unit>
 			<trans-unit id="54">
                 <source>SKIN</source>
@@ -43,7 +43,7 @@
             </trans-unit>
 			<trans-unit id="55">
                 <source>ITEM</source>
-                <target>Objet</target>
+                <target>Item</target>
             </trans-unit>
 			<trans-unit id="56">
                 <source>CHAMPION</source>
@@ -53,19 +53,19 @@
 			<!-- PAGE DE CREATION D'UN FEED -->
             <trans-unit id="101">
                 <source>feed.create.form.language</source>
-                <target>Langue</target>
+                <target>Language</target>
             </trans-unit>
 			<trans-unit id="102">
                 <source>feed.create.form.type</source>
-                <target>Type de contenu</target>
+                <target>Content's type</target>
             </trans-unit>
 			<trans-unit id="103">
                 <source>feed.create.form.title</source>
-                <target>Titre</target>
+                <target>Title</target>
             </trans-unit>
 			<trans-unit id="104">
                 <source>feed.create.form.content</source>
-                <target>Contenu</target>
+                <target>Content</target>
             </trans-unit>
         </body>
     </file>

@@ -26,10 +26,10 @@ mv_nerd_admin:
 #    type:     annotation
 #    prefix:   /
 #
-#mv_nerd_main:
-#    resource: "@MVNerdsMainBundle/Controller/"
-#    type:     annotation
-#    prefix:   /
+mv_nerd_main:
+    resource: "@MVNerdsMainBundle/Controller/"
+    type:     annotation
+    prefix:   /
 #
 #mv_nerds_site:
 #    resource: "@MVNerdsSiteBundle/Controller/"

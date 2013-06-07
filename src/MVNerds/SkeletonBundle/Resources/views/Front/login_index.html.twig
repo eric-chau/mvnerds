@@ -1,0 +1,24 @@
+{% extends 'MVNerdsSkeletonBundle::layout.html.twig' %}
+
+{% block main_content %}
+	<div class="login-form-container specific-content">
+		<form action="{{ path('security_summoner_login_check') }}" method="post">
+			<div class="field">
+				<label for="username_main">{{ 'Login.form.username'|trans }}</label>
+				<input type="text" id="username_main" name="_username" value="{{ last_username }}" />
+			</div>
+
+			<div class="field">
+				<label for="password_main">{{ 'Login.form.password'|trans }}</label>
+				<input type="password" id="password_main" name="_password" />
+			</div>
+
+			<div class="field remember-me">
+				<label for="remember_me_main">{{ 'Login.form.remember_me'|trans }}</label>
+				<input type="checkbox" id="remember_me_main" name="_remember_me" checked />
+			</div>
+
+			<a href="#" class="forgot-pwd">{{ 'Login.form.forgot_password'|trans }}</a> <button>{{ 'Login.form.signin.button'|trans }}</button>
+		</form>
+	</div>
+{% endblock %}

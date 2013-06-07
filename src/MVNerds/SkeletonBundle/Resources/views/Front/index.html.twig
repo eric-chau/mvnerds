@@ -2,18 +2,23 @@
 
 {% block main_content %}
 	<div class="feeds-container">
-		<div class="row-fluid feed-row">
-			<div class="span6 feed">
-				<h2><div class="rating">0</div> Ajouter le bouton d'ajout de feed</h2>
+		{% for feed in feeds %}
+			<div class="row-fluid feed-row">
+				<div class="span6 feed">
+					<h2><div class="rating">0</div> {{ feed.getTitle() }}</h2>
+				</div>
+				<div class="span6 feed-infos">
+					<p>
+						<strong>{{ feed.getTypeUniqueName()|trans }}</strong> [{{ feed.getLang()|upper }}] postée par <a href="#">{{ feed.getUser().getUsername() }}</a> il y a <em>46 minutes</em> - 105 vues, 1 réponse.
+					</p>
+				</div>
 			</div>
-			<div class="span6 feed-infos">
-				<p>
-					<strong>Question</strong> [FR] postée par <a href="#">DyRusse</a> il y a <em>46 minutes</em> - 105 vues, 1 réponse.
-				</p>
-			</div>
-		</div>
+		{% else %}
+			<i>Désolé, aucun contenu disponible pour le moment.</i>
+		{% endfor %}
+		
 
-		<div class="row-fluid feed-row">
+		{#<div class="row-fluid feed-row">
 			<div class="span6 feed">
 				<h2><div class="rating">0</div> Créer la page d'ajout de feed</h2>
 			</div>
@@ -66,6 +71,6 @@
 					<strong>Vidéo</strong> [FR] postée par <a href="#">Ro0ny</a> <em>hier à 22h09</em> - 301 vues, 18 réponses. 
 				</p>
 			</div>
-		</div>
+		</div>#}
 	</div>
 {% endblock %}

@@ -1,0 +1,106 @@
+// Twitter Bootstraps imports
+@import "../bootstrap/mixins.less";
+
+// MVNerds imports
+@import "../mvnerds/mvnerds-variables.less";
+@import "../mvnerds/mvnerds-buttons.less";
+
+div.new-content-container {
+	padding: 10px;
+
+	h1 {
+		font-family: 'Reenie Beanie', sans-serif;
+		font-size: 40px;
+	}
+
+	form {
+		margin: auto;
+		width: 80%;
+
+		div.form-row {
+			margin-bottom: 20px;
+			position: relative;
+
+			label {
+				margin-right: 10px;
+				text-align: right;
+				width: 200px;
+			}
+
+			input[type="text"], input[type="password"], input[type="email"], textarea, select {
+				background-color: #eee;
+				outline: none;
+
+				&:hover, &:focus {
+					color: #4e759c;
+				}
+			}
+
+			input[type="text"] {
+				font-weight: bold;
+				width: 400px;
+			}
+
+			div.custom-selectbox-wrapper {
+				display: inline-block;
+				position: relative;
+
+				&:after {
+					color: #666;
+				    content:'▼';
+				    font-size: 12px;
+				    pointer-events:none;
+				    position: absolute;
+				    right: 0; 
+				    top: 2px;
+				}
+
+				select {
+					background: inherit;
+					border: none;
+					border-bottom: 1px solid #666;
+				    cursor: pointer;
+				    display: inline-block;
+				    margin: 0;
+				    padding: 3px;
+				    outline: none;
+				    width: 200px;
+				    
+				    -webkit-appearance: none;
+				    -moz-appearance: none;
+				    appearance: none;
+				}
+
+				/* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
+				@media screen and (-webkit-min-device-pixel-ratio:0) {
+				    select { 
+				    	padding-right: 18px; 
+				    }
+				}
+			}
+
+			textarea {
+				padding: 5px;
+				resize: none;
+				width: 510px;
+			}
+		}
+
+		div.align-right {
+			text-align: right;
+
+			input[type="submit"] {
+				background-color: darken(@MVNerdsRed, 5%);
+				border: none;
+				color: white;
+				font-size: 16px;
+				font-weight: bold;
+				padding: 5px 10px;
+
+				&:hover {
+					background-color: @MVNerdsRed; .transition(background-color .25s linear);
+				}
+			}
+		}
+	}
+}

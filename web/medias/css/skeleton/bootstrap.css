@@ -151,6 +151,7 @@ div,
 input[type="text"],
 input[type="password"],
 input[type="email"],
+input[type="submit"],
 textarea {
   color: #111111;
   font-family: 'Open Sans', sans-serif;
@@ -209,6 +210,20 @@ select:hover {
   -moz-transition: color 0.2s linear;
   -o-transition: color 0.2s linear;
   transition: color 0.2s linear;
+}
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  border: none;
+  border-bottom: 1px solid #666;
+  outline: none;
+}
+label {
+  display: inline-block;
+}
+div.specific-content {
+  background-color: #eee;
+  border-top: 2px dashed #999;
 }
 div.main-container {
   position: relative;
@@ -406,8 +421,6 @@ div.breadcrumb-container i {
   margin-left: 5px;
 }
 div.feeds-container {
-  background-color: #eee;
-  border-top: 2px dashed #999;
   padding-bottom: 15px;
   position: relative;
 }

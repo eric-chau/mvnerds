@@ -105,6 +105,7 @@ class FeedManager
 	public function findAll()
 	{
 		return FeedQuery::create()
+			->joinWith('User')
 			->OrderBy(FeedPeer::CREATE_TIME, Criteria::DESC)
 		->find();
 	}
