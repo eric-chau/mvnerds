@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
+<?xml version="1.0" encoding="UTF-8"?>
 <database defaultIdMethod="native" name="default" namespace="MVNerds\CoreBundle\Model">
   <table name="champion">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -678,6 +677,6 @@
   </table>
   <table name="feed_type">
     <column name="unique_name" primaryKey="true" required="true" size="64" type="VARCHAR" />
-    <column name="label" required="true" size="64" type="VARCHAR" />
+    <column defaultValue="0" name="is_private" required="true" type="BOOLEAN" />
   </table>
 </database>

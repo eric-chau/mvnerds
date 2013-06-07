@@ -1,0 +1,35 @@
+{% extends 'MVNerdsAdminBundle:FeedType:layout.html.twig' %}
+
+{% block title %}Administration des feed types - MVNerds{% endblock %}
+	
+{% block javascripts %}
+	{{ parent() }}
+
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-alert.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-modal.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-tooltip.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('js/bootstrap/bootstrap-popover.js') }}"></script>
+	
+{% endblock %}
+
+{% block css %}
+	{{ parent() }}
+
+	<style>
+		div.content-container div.normal-line {
+			font-size: 13px!important;
+		}
+	</style>
+{% endblock %}
+	
+{% block content %}	
+	<h1>Les feed types</h1>
+
+	<div class="action-buttons right">
+		<a href="{{path('admin_feed_type_create')}}" class="btn btn-success btn-large"><i class="icon-plus-sign icon-white"></i> <strong>Ajouter un feed type</strong></a>
+	</div>
+
+	<div class="content-container">
+		{% include 'MVNerdsAdminBundle:FeedType:feed_type_list.html.twig' %}
+	</div>
+{% endblock %}

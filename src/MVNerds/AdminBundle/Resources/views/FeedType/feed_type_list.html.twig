@@ -1,0 +1,11 @@
+{# #}
+<div class="row-fluid title-line">
+	<div class="span4">Unique Name</div>
+	<div class="span4">Privé</div>
+	<div class="span4">Actions</div>
+</div>
+{% for feed_type in feed_types %}
+	{% include 'MVNerdsAdminBundle:FeedType:feed_type_row.html.twig' %}
+{% else %}
+	<i>Aucun feed type enregistré pour le moment.</i>
+{% endfor %}

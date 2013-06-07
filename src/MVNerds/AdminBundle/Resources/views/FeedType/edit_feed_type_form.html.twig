@@ -1,9 +1,9 @@
-{% extends 'MVNerdsAdminBundle:SuperTag:layout.html.twig' %}
+{% extends 'MVNerdsAdminBundle:Feedtype:layout.html.twig' %}
 
-{% block title %}Administration des super tags - MVNerds{% endblock %}
+{% block title %}Administration des feed types - MVNerds{% endblock %}
 
 {% block content %}
-	<h1>Editer un super tag</h1>
+	<h1>Editer un feed type</h1>
 
 	<div class="action-buttons">
 		<a href="{{ path('admin_super_tags_index') }}" class="btn"><i class="icon-arrow-left"></i> <strong>Retourner à la liste</strong></a>
@@ -12,7 +12,7 @@
 	</div>
 
 	<div class="content-container">
-		<form action="{{ path('admin_super_tags_edit', {'uniqueName': super_tag.getUniqueName()}) }}" method="POST" {{ form_enctype(form) }}>		
+		<form action="{{ path('admin_feed_type_edit', {'uniqueName': feed_type.getUniqueName()}) }}" method="POST" {{ form_enctype(form) }}>		
 				
 			{{ form_widget(form) }}
 
