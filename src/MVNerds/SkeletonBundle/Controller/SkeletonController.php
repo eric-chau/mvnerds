@@ -4,6 +4,7 @@ namespace MVNerds\SkeletonBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Response;
 
 use MVNerds\CoreBundle\Model\Feed;
 use MVNerds\SkeletonBundle\Form\Type\FeedType;
@@ -49,5 +50,24 @@ class SkeletonController extends Controller
 		return $this->render('MVNerdsSkeletonBundle:Feed:add_new_feed_index.html.twig', array(
 			'form' => $form->createView(),
 		));
+	}
+	
+	/**
+	 * Permet de récupérer, à partir d'une chaine de caractères de SuperTags fournie par l'utilisateur,
+	 * tous les objets Feed associés
+	 * 
+	 * @param string $stringTags une chaine de caractères, saisie par l'utilisateur, composée de SuperTags
+	 * 
+	 * @Route("/{_locale}/get-feeds/{stringTags}", name="get_feeds", options={"expose"=true})
+	 */
+	public function getFeedsAction($stringTags)
+	{
+		//On convertit la chaine de tags en tableau de "véritables" SuperTags
+		$arrayTags = $this->get('mvnerds.super_tag_manager')->getUniqueNamesFromString($stringTags);
+		
+		//On récupère tous les feeds associés aux SuperTags présents dans le tableau $arrayTags
+		$feeds = $this->get('mvnerds.feed_manager')->findBySuperTags($arrayTags);
+		
+		return new Response(json_encode($feeds->toArray()));
 	}
 }

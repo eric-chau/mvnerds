@@ -3,6 +3,7 @@
 namespace MVNerds\SkeletonBundle\Feed;
 
 use \Criteria;
+use \PropelObjectCollection;
 
 use MVNerds\CoreBundle\Exception\ObjectNotFoundException;
 use MVNerds\CoreBundle\Model\Feed;
@@ -99,7 +100,7 @@ class FeedManager
 	}
 
 	/**
-	 * @return \PropelCollection<MVNerds\CoreBundle\Model\Feed> retourne un objet PropelCollection qui contient
+	 * @return PropelObjectCollection|Feed[] retourne un objet PropelObjectCollection qui contient
 	 * tous les feed de la base de données
 	 */
 	public function findAll()
@@ -113,7 +114,8 @@ class FeedManager
 	/**
 	 * @param array $superTags un tableau contenant des superTags sous forme de chaines de caractères
 	 * 
-	 * @return \PropelCollection<MVNerds\CoreBundle\Model\Feed>
+	 * @return PropelObjectCollection|Feed[] Une collection Propel de feeds 
+	 * associés aux SuperTags passés en paramètre
 	 */
 	public function findBySuperTags(array $superTags) 
 	{
