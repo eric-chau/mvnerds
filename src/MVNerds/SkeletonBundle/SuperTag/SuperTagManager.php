@@ -2,6 +2,7 @@
 
 namespace MVNerds\SkeletonBundle\SuperTag;
 
+use \Propel;
 use \PropelObjectCollection;
 use \Criteria;
 
@@ -9,6 +10,8 @@ use MVNerds\CoreBundle\Exception\ObjectNotFoundException;
 use MVNerds\CoreBundle\Model\SuperTag;
 use MVNerds\CoreBundle\Model\SuperTagQuery;
 use MVNerds\CoreBundle\Model\SuperTagPeer;
+use MVNerds\CoreBundle\Model\FeedSuperTagQuery;
+use MVNerds\CoreBundle\Model\FeedSuperTagPeer;
 
 class SuperTagManager
 {
@@ -120,30 +123,32 @@ class SuperTagManager
 	/**
 	 * Permet d'éditer un super tag en changeant sa primary key 'unique_name'
 	 * 
-	 * @param \MVNerds\CoreBundle\Model\SuperTag $newSuperTag Les nouvelles données à affecter à l'ancien super tag
-	 * @param \MVNerds\CoreBundle\Model\SuperTag $oldSuperTag Le super tag que l'on veut éditer
+	 * @param SuperTag $newSuperTag Les nouvelles données à affecter à l'ancien super tag
+	 * @param SuperTag $oldSuperTag Le super tag que l'on veut éditer
 	 */
-	public function customSave(SuperTag $newSuperTag, SuperTag $oldSuperTag)
+	public function update(SuperTag $newSuperTag, SuperTag $oldSuperTag)
 	{
-		$con = \Propel::getConnection(SuperTagPeer::DATABASE_NAME);
-		
-		$sql = "UPDATE `super_tag` 
-				SET `unique_name`=:new_unique_name, 
-					`label`=:new_label,
-					`alias_unique_name`=:new_alias_unique_name,
-					`linked_object_id`=:new_linked_object_id,
-					`linked_object_namespace`=:new_linked_object_namespace
-				WHERE super_tag.unique_name=:old_unique_name";
-
-		$stmt = $con->prepare($sql);
-		$stmt->execute(array(
-			':new_unique_name' => $newSuperTag->getUniqueName(),
-			':new_label' => $newSuperTag->getLabel(),
-			':new_alias_unique_name' => $newSuperTag->getAliasUniqueName(),
-			':new_linked_object_id' => $newSuperTag->getLinkedObjectId(),
-			':new_linked_object_namespace' => $newSuperTag->getLinkedObjectNamespace(),
-			':old_unique_name' => $oldSuperTag->getUniqueName()
-		));
+		//Si le unique_name a été modifié
+		if ($newSuperTag->getUniqueName() != $oldSuperTag->getUniqueName()) {	
+			//On met à jour manuellement le SuperTag
+			SuperTagQuery::create()
+				->add(SuperTagPeer::UNIQUE_NAME, $oldSuperTag->getUniqueName())
+			->update(array(
+				'UniqueName' => $newSuperTag->getUniqueName(),
+				'Label' => $newSuperTag->getLabel(),
+				'AliasUniqueName' => $newSuperTag->getAliasUniqueName(),
+				'LinkedObjectId' => $newSuperTag->getLinkedObjectId(),
+				'LinkedObjectNamespace' => $newSuperTag->getLinkedObjectNamespace()
+			));
+			
+			//Et on met à jour les objets feed_super_tag reliés à ce super_tag
+			FeedSuperTagQuery::create()
+				->add(FeedSuperTagPeer::SUPER_TAG_UNIQUE_NAME, $oldSuperTag->getUniqueName())
+			->update(array('SuperTagUniqueName' => $newSuperTag->getUniqueName()));
+		} else {
+			//Sinon on fait un simple Save
+			$newSuperTag->save();
+		}
 	}
 	
 	/**

@@ -100,7 +100,7 @@ class SuperTagController extends Controller
 				
 				try {
 					//On essaie d'enregistrer le SuperTag
-					$this->get('mvnerds.super_tag_manager')->customSave($superTag, $oldSuperTag);
+					$this->get('mvnerds.super_tag_manager')->update($superTag, $oldSuperTag);
 				} catch (\Exception $e) {
 					//Si une Exception survient, on ajoute l'erreur au formulaire et on l'affiche
 					$form->addError(new FormError($e->getMessage()));

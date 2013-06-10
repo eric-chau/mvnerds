@@ -8,6 +8,8 @@ use MVNerds\CoreBundle\Exception\ObjectNotFoundException;
 use MVNerds\CoreBundle\Model\FeedType;
 use MVNerds\CoreBundle\Model\FeedTypeQuery;
 use MVNerds\CoreBundle\Model\FeedTypePeer;
+use MVNerds\CoreBundle\Model\FeedQuery;
+use MVNerds\CoreBundle\Model\FeedPeer;
 
 class FeedTypeManager
 {
@@ -60,20 +62,25 @@ class FeedTypeManager
 	 * @param \MVNerds\CoreBundle\Model\FeedType $newFeedType Les nouvelles données à affecter à l'ancien feed type
 	 * @param \MVNerds\CoreBundle\Model\FeedType $oldFeedType Le feed type que l'on veut éditer
 	 */
-	public function customSave(FeedType $newFeedType, FeedType $oldFeedType)
-	{
-		$con = \Propel::getConnection(FeedTypePeer::DATABASE_NAME);
-		
-		$sql = "UPDATE `feed_type` 
-				SET `unique_name`=:new_unique_name, 
-					`is_private`=:new_is_private
-				WHERE feed_type.unique_name=:old_unique_name";
-
-		$stmt = $con->prepare($sql);
-		$stmt->execute(array(
-			':new_unique_name' => $newFeedType->getUniqueName(),
-			':new_is_private' => $newFeedType->getIsPrivate(),
-			':old_unique_name' => $oldFeedType->getUniqueName()
-		));
+	public function update(FeedType $newFeedType, FeedType $oldFeedType)
+	{		
+		//Si le unique_name a été modifié
+		if ($newFeedType->getUniqueName() != $oldFeedType->getUniqueName()) {
+			//On met à jour manuellement le feed_type
+			FeedTypeQuery::create()
+				->add(FeedTypePeer::UNIQUE_NAME, $oldFeedType->getUniqueName())
+			->update(array(
+				'UniqueName' => $newFeedType->getUniqueName(),
+				'IsPrivate' => $newFeedType->getIsPrivate()
+			));
+			
+			//Et on met à jour les objets feed reliés à ce feed_type
+			FeedQuery::create()
+				->add(FeedPeer::TYPE_UNIQUE_NAME, $oldFeedType->getUniqueName())
+			->update(array('TypeUniqueName' => $newFeedType->getUniqueName()));
+		} else {
+			//Sinon on fait un simple save
+			$newFeedType->save();
+		}
 	}
 }
