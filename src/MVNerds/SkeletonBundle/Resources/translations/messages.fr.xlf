@@ -67,6 +67,10 @@
                 <source>feed.create.form.content</source>
                 <target>Contenu</target>
             </trans-unit>
+			<trans-unit id="105">
+                <source>feed.create.form.submit_button</source>
+                <target>Poster</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
