@@ -2,6 +2,7 @@
 
 namespace MVNerds\SkeletonBundle\SuperTag;
 
+use \PropelObjectCollection;
 use \Criteria;
 
 use MVNerds\CoreBundle\Exception\ObjectNotFoundException;
@@ -66,7 +67,7 @@ class SuperTagManager
 	 * @param boolean $onlyRealTags true si on ne veut récupérer que les super_tags qui ne sont pas des alias
 	 * false si on veut récupérer tous les super_tags confondus
 	 * 
-	 * @return \PropelCollection<MVNerds\CoreBundle\Model\SuperTag> retourne un objet PropelCollection qui contient
+	 * @return PropelObjectCollection|SuperTag[] retourne un objet PropelObjectCollection qui contient
 	 * tous les super_tag de la base de données
 	 */
 	public function findAll($onlyRealTags = false)
@@ -83,7 +84,7 @@ class SuperTagManager
 	
 	/**
 	 * @param array $labels un tableau de labels correspondants à des super_tags ou à des alias
-	 * @return \PropelCollection<MVNerds\CoreBundle\Model\SuperTag> retourne un objet PropelCollection qui contient
+	 * @return PropelObjectCollection|SuperTag[] retourne un objet PropelObjectCollection qui contient
 	 * tous les super_tag de la base de données ayants pour label un des labels fournit en paramètre
 	 */
 	public function findAllByLabels(array $labels)
@@ -166,7 +167,7 @@ class SuperTagManager
 	 * Permet de ne conserver que les vrais super tags parmi une collection de super_tags en remplaçant
 	 * les Alias par leur tag associé.
 	 * 
-	 * @param \PropelCollection<MVNerds\CoreBundle\Model\SuperTag> $mixedSuperTags un objet PropelCollection qui
+	 * @param PropelObjectCollection|SuperTag[] $mixedSuperTags un objet PropelObjectCollection qui
 	 * contient des objets SuperTag "véritables" ainsi que des alias de SuperTag
 	 * 
 	 * @return array un tableau de chaines de caractères qui ne contient plus
