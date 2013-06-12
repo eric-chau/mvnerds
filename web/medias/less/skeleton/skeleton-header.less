@@ -21,19 +21,21 @@ div.main-container {
 				color: #999;
 				display: inline-block;
 				margin-right: 3px;
-				padding: 3px 10px;
+				
+
+				&:hover {
+					background-color: @MVNerdsRed; .transition(background-color .25s linear);					
+				}
 
 				a {
-					color: #999;
+					color: #c0c0be;
+					display: block;
 					font-size: 13px;
+					padding: 3px 10px;
 
 					&:hover {
 						color: white;
 						text-decoration: none;
-
-						i.icon-globe {
-							
-						}
 					}
 
 					i.icon-globe {
@@ -194,6 +196,26 @@ div.main-container div.header {
 				}
 			}
 		}
+	}
+}
+
+div.header.alt {
+	a {
+		display: block;
+		margin: 50px 0 20px 0;
+		text-align: center;
+
+		img.logo {
+			height: 90px;	
+		}
+	}
+
+	h1 {
+		border-bottom: 1px solid #aaa;
+		color: #4e759c;
+		font-family: "Cabin", sans-serif;
+		font-size: 32px;
+		text-align: center;
 	}
 }
 

@@ -24,6 +24,16 @@
                 <target>Russe</target>
             </trans-unit>
 			
+			<!-- CUSTOM DATE FORMAT -->
+			<trans-unit id="30">
+                <source>CustomFormatDate.today</source>
+                <target>Aujourd'hui</target>
+            </trans-unit>
+			<trans-unit id="31">
+                <source>CustomFormatDate.yesterday</source>
+                <target>Hier</target>
+            </trans-unit>
+			
 			<!-- TYPES DE FEED -->
 			<trans-unit id="51">
                 <source>VIDEO</source>
@@ -70,6 +80,16 @@
 			<trans-unit id="105">
                 <source>feed.create.form.submit_button</source>
                 <target>Poster</target>
+            </trans-unit>
+			
+			<!-- PAGE D'ACCUEIL - LISTE DE FEED -->
+			<trans-unit id="300">
+                <source>feed.list.view_count.%count%</source>
+                <target>[0,1] %count% vue|[2,Inf] %count% vues</target>
+            </trans-unit>
+			<trans-unit id="301">
+                <source>feed.list.response_count.%count%</source>
+                <target>[0,1] %count% réponse|[2,Inf] %count% réponses</target>
             </trans-unit>
         </body>
     </file>

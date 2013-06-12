@@ -247,11 +247,19 @@ div.main-container div.global-menu ul li {
   color: #999;
   display: inline-block;
   margin-right: 3px;
-  padding: 3px 10px;
+}
+div.main-container div.global-menu ul li:hover {
+  background-color: #db4a38;
+  -webkit-transition: background-color 0.25s linear;
+  -moz-transition: background-color 0.25s linear;
+  -o-transition: background-color 0.25s linear;
+  transition: background-color 0.25s linear;
 }
 div.main-container div.global-menu ul li a {
-  color: #999;
+  color: #c0c0be;
+  display: block;
   font-size: 13px;
+  padding: 3px 10px;
 }
 div.main-container div.global-menu ul li a:hover {
   color: white;
@@ -411,6 +419,21 @@ div.main-container div.header form#search-by-tag-form a.post-feed-btn:hover {
 div.main-container div.header form#search-by-tag-form a.post-feed-btn strong {
   display: block;
   font-size: 25px;
+}
+div.header.alt a {
+  display: block;
+  margin: 50px 0 20px 0;
+  text-align: center;
+}
+div.header.alt a img.logo {
+  height: 90px;
+}
+div.header.alt h1 {
+  border-bottom: 1px solid #aaa;
+  color: #4e759c;
+  font-family: "Cabin", sans-serif;
+  font-size: 32px;
+  text-align: center;
 }
 div.breadcrumb-container {
   font-size: 12px;

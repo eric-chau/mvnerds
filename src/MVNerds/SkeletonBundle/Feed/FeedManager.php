@@ -9,9 +9,14 @@ use MVNerds\CoreBundle\Exception\ObjectNotFoundException;
 use MVNerds\CoreBundle\Model\Feed;
 use MVNerds\CoreBundle\Model\FeedQuery;
 use MVNerds\CoreBundle\Model\FeedPeer;
+use MVNerds\CoreBundle\Model\FeedSuperTag;
+use MVNerds\CoreBundle\Model\User;
+use MVNerds\SkeletonBundle\SuperTag\SuperTagManager;
 
 class FeedManager
 {
+	private $superTagManager;
+	
 	/**
 	 * @param integer $id l'id du feed à récupérer
 	 * @throws ObjectNotFoundException si aucun feed n'est associé à l'id $id
@@ -125,5 +130,30 @@ class FeedManager
 			->add('ST.unique_name', $superTags, Criteria::IN)
 			->OrderBy(FeedPeer::CREATE_TIME, Criteria::DESC)
 		->find();
+	}
+	
+	public function createFeed(Feed $feed, User $user, $superTagsStr)
+	{
+		$feed->setUser($user);
+		$feedType = $feed->getTypeUniqueName();
+		$feed->setTypeUniqueName($feedType->getUniqueName());
+		
+		$superTags = explode(',', $superTagsStr);
+		
+		foreach($this->superTagManager->findAllByLabels($superTags) as $superTag) {
+			$feedSuperTag = new FeedSuperTag();
+			$feedSuperTag->setSuperTag($superTag);
+			$feedSuperTag->setFeed($feed);
+			
+			$feed->addFeedSuperTag($feedSuperTag);
+		}
+		
+		// Finally
+		$feed->save();
+	}
+	
+	public function setSuperTagManager(SuperTagManager $superTagManager)
+	{
+		$this->superTagManager = $superTagManager;
 	}
 }

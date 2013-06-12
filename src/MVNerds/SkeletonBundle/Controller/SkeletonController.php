@@ -21,7 +21,7 @@ class SkeletonController extends Controller
 		$feeds = $this->get('mvnerds.feed_manager')->findAll();
 		
 		return $this->render('MVNerdsSkeletonBundle:Front:index.html.twig', array(
-			'feeds' => $feeds
+			'feeds' => $feeds,
 		));
     }
 	
@@ -37,18 +37,19 @@ class SkeletonController extends Controller
 		$form->handleRequest($this->getRequest());
 		
 		if ($form->isValid()) {
-			//var_dump($form->get('feed_tags')->getData());
-			$feed = $form->getData();
-			$feed->setUser($this->getUser());
-			$feedType = $feed->getTypeUniqueName();
-			$feed->setTypeUniqueName($feedType->getUniqueName());
-			$feed->save();
+			$this->get('mvnerds.feed_manager')->createFeed($form->getData(), $this->getUser(), $form->get('feed_tags')->getData());
 			
 			return $this->redirect($this->generateUrl('site_homepage'));
 		}
 		
+		$superTags = array();
+		foreach ($this->get('mvnerds.super_tag_manager')->findAll(true) as $superTag) {
+			$superTags[] = $superTag->getLabel();
+		}
+		
 		return $this->render('MVNerdsSkeletonBundle:Feed:add_new_feed_index.html.twig', array(
 			'form' => $form->createView(),
+			'super_tags' => $superTags,
 		));
 	}
 	

@@ -1,9 +1,9 @@
 {% set date = '' %}
 {% if object.format('d/m/Y') == date().format('d/m/Y') %}
-	{% set date = 'Comments.today'|trans %}
+	{% set date = 'CustomFormatDate.today'|trans %}
 {% else %}
 	{% if object.format('d/m/Y') == date('-1day').format('d/m/Y') %}
-		{% set date = 'Comments.yesterday'|trans %}
+		{% set date = 'CustomFormatDate.yesterday'|trans %}
 	{%else %}
 		{% set date = object.format('d/m/Y') %}
 	{%endif %}

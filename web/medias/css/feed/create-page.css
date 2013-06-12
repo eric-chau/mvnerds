@@ -112,104 +112,161 @@
 .mvnerds-btn.red.active {
   border-bottom-color: #db4a38;
 }
-div.new-content-container {
-  padding: 10px 10px 20px 10px;
-  /*h1 {
-		font-family: 'Reenie Beanie', sans-serif;
-		font-size: 40px;
-	}*/
-
-}
 div.new-content-container form {
-  margin: auto;
+  margin: 30px auto 0 auto;
   width: 80%;
 }
 div.new-content-container form div.form-row {
   margin-bottom: 20px;
-  position: relative;
 }
 div.new-content-container form div.form-row label {
+  font-weight: bold;
+  line-height: 32px;
   margin-right: 10px;
   text-align: right;
+  vertical-align: top;
   width: 200px;
-}
-div.new-content-container form div.form-row input[type="text"],
-div.new-content-container form div.form-row input[type="password"],
-div.new-content-container form div.form-row input[type="email"],
-div.new-content-container form div.form-row textarea,
-div.new-content-container form div.form-row select {
-  background-color: #eee;
-  outline: none;
-}
-div.new-content-container form div.form-row input[type="text"]:hover,
-div.new-content-container form div.form-row input[type="password"]:hover,
-div.new-content-container form div.form-row input[type="email"]:hover,
-div.new-content-container form div.form-row textarea:hover,
-div.new-content-container form div.form-row select:hover,
-div.new-content-container form div.form-row input[type="text"]:focus,
-div.new-content-container form div.form-row input[type="password"]:focus,
-div.new-content-container form div.form-row input[type="email"]:focus,
-div.new-content-container form div.form-row textarea:focus,
-div.new-content-container form div.form-row select:focus {
-  color: #4e759c;
-}
-div.new-content-container form div.form-row input[type="text"] {
-  font-weight: bold;
-  width: 400px;
 }
 div.new-content-container form div.form-row div.custom-selectbox-wrapper {
   display: inline-block;
   position: relative;
-  /* Targetting Webkit browsers only. FF will show the dropdown arrow with so much padding. */
-
 }
-div.new-content-container form div.form-row div.custom-selectbox-wrapper:after {
-  color: #666;
-  content: '▼';
-  font-size: 12px;
-  pointer-events: none;
-  position: absolute;
-  right: 0;
-  top: 2px;
+div.new-content-container form div.form-row div.custom-selectbox-wrapper:hover div.selectbox-widget {
+  background-color: white;
 }
 div.new-content-container form div.form-row div.custom-selectbox-wrapper select {
-  background: inherit;
-  border: none;
-  border-bottom: 1px solid #666;
-  cursor: pointer;
-  display: inline-block;
-  margin: 0;
-  padding: 3px;
+  border: 1px solid #999;
+  font-size: 16px;
+  opacity: 0;
   outline: none;
-  width: 200px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
+  padding: 5px 0;
+  position: relative;
+  width: 400px;
+  z-index: 3;
 }
-@media screen and (-webkit-min-device-pixel-ratio: 0) {
-  div.new-content-container form div.form-row div.custom-selectbox-wrapper select {
-    padding-right: 18px;
-  }
-}
-div.new-content-container form div.form-row textarea {
-  border-color: #666;
+div.new-content-container form div.form-row div.custom-selectbox-wrapper div.selectbox-widget {
+  background-color: #eee;
+  border: 1px solid #999;
+  font-size: 16px;
+  left: 0;
   padding: 5px;
+  position: absolute;
+  top: 0;
+  width: 388px;
+}
+div.new-content-container form div.form-row div.custom-selectbox-wrapper div.selectbox-widget i {
+  font-size: 16px;
+  position: absolute;
+  right: 8px;
+  top: 7px;
+}
+div.new-content-container form div.form-row select,
+div.new-content-container form div.form-row input[type="text"],
+div.new-content-container form div.form-row textarea {
+  background-color: #eee;
+  outline: none;
   resize: none;
-  width: 510px;
+  width: 388px;
 }
-div.new-content-container form div.align-right {
-  text-align: right;
+div.new-content-container form div.form-row select:hover,
+div.new-content-container form div.form-row input[type="text"]:hover,
+div.new-content-container form div.form-row textarea:hover,
+div.new-content-container form div.form-row select:focus,
+div.new-content-container form div.form-row input[type="text"]:focus,
+div.new-content-container form div.form-row textarea:focus {
+  color: #444;
 }
-div.new-content-container form div.align-right input[type="submit"] {
-  background-color: #d33926;
+div.new-content-container form div.form-row select:focus,
+div.new-content-container form div.form-row input[type="text"]:focus,
+div.new-content-container form div.form-row textarea:focus {
+  background-color: white;
+}
+div.new-content-container form div.form-row input[type="text"] {
+  border: 1px solid #999;
+  font-size: 16px;
+  padding: 5px;
+}
+div.new-content-container form div.form-row input[type="text"]:hover {
+  background-color: white;
+}
+div.new-content-container form div.form-row div.tags-widget {
+  display: inline-block;
+  position: relative;
+}
+div.new-content-container form div.form-row div.tags-widget ul.tags-container {
+  background-color: #eee;
+  border: 1px solid #999;
+  display: inline-block;
+  padding: 5px;
+  width: 388px;
+}
+div.new-content-container form div.form-row div.tags-widget ul.tags-container:hover {
+  background-color: white;
+}
+div.new-content-container form div.form-row div.tags-widget ul.tags-container li {
+  display: inline-block;
+}
+div.new-content-container form div.form-row div.tags-widget ul.tags-container li.tag {
+  background-color: white;
+  border: 1px solid #999;
+  font-size: 12px;
+  margin: 0 3px 3px 0;
+  padding: 3px 15px 3px 8px;
+  position: relative;
+}
+div.new-content-container form div.form-row div.tags-widget ul.tags-container li.tag a {
+  color: #999;
+  font-weight: bold;
+  position: absolute;
+  right: 4px;
+  top: -2px;
+}
+div.new-content-container form div.form-row div.tags-widget ul.tags-container li.tag a:hover {
+  color: black;
+  text-decoration: none;
+}
+div.new-content-container form div.form-row div.tags-widget ul.tags-container li.tag em {
+  font-style: normal;
+}
+div.new-content-container form div.form-row div.tags-widget ul.tags-container li.search-field input[type="text"] {
+  background-color: inherit;
+  border: 0;
+  padding: 0;
+  width: 210px;
+}
+div.new-content-container form div.form-row div.tags-widget ul.tags-container li.search-field input[type="text"]:hover {
+  background-color: inherit;
+}
+div.new-content-container form div.form-row div.tags-widget ul.typeahead {
+  -webkit-border-radius: 0 !important;
+  -moz-border-radius: 0 !important;
+  border-radius: 0 !important;
+  position: absolute;
+  left: -1px !important;
+  width: 400px;
+}
+div.new-content-container form div.form-row div.tags-widget ul.typeahead li {
+  display: block;
+}
+div.new-content-container form div.form-row div.tags-widget ul.typeahead li a:hover,
+div.new-content-container form div.form-row div.tags-widget ul.typeahead li a:focus {
+  background-color: #999 !important;
+}
+div.new-content-container form div.form-row input[type="submit"] {
+  background-color: #4e759c;
+  -webkit-border-radius: 2px !important;
+  -moz-border-radius: 2px !important;
+  border-radius: 2px !important;
   border: none;
   color: white;
-  font-size: 16px;
-  font-weight: bold;
-  padding: 5px 10px;
+  font-family: 'Cabin', sans-serif;
+  font-size: 18px;
+  margin-left: 215px;
+  padding: 5px 0;
+  width: 400px;
 }
-div.new-content-container form div.align-right input[type="submit"]:hover {
-  background-color: #db4a38;
+div.new-content-container form div.form-row input[type="submit"]:hover {
+  background-color: #698eb4;
   -webkit-transition: background-color 0.25s linear;
   -moz-transition: background-color 0.25s linear;
   -o-transition: background-color 0.25s linear;

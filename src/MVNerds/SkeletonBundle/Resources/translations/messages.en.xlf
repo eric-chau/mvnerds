@@ -24,6 +24,16 @@
                 <target>Russian</target>
             </trans-unit>
 			
+			<!-- CUSTOM DATE FORMAT -->
+			<trans-unit id="30">
+                <source>CustomFormatDate.today</source>
+                <target>Today</target>
+            </trans-unit>
+			<trans-unit id="31">
+                <source>CustomFormatDate.yesterday</source>
+                <target>Yesterday</target>
+            </trans-unit>
+			
 			<!-- TYPES DE FEED -->
 			<trans-unit id="51">
                 <source>VIDEO</source>

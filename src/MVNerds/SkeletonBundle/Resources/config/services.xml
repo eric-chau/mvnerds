@@ -5,9 +5,12 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
-
         <!-- FEED MANAGER SERVICES	-->
-		<service id="mvnerds.feed_manager" class="MVNerds\SkeletonBundle\Feed\FeedManager" />
+		<service id="mvnerds.feed_manager" class="MVNerds\SkeletonBundle\Feed\FeedManager">
+			<call method="setSuperTagManager">
+				<argument type="service" id="mvnerds.super_tag_manager" />
+			</call>
+		</service>
         
 		<!-- SUPER TAG MANAGER SERVICES	-->
 		<service id="mvnerds.super_tag_manager" class="MVNerds\SkeletonBundle\SuperTag\SuperTagManager" />

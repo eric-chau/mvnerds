@@ -1,7 +1,7 @@
-{% extends 'MVNerdsSkeletonBundle::layout.html.twig' %}
+{% extends 'MVNerdsSkeletonBundle:Common:layout.html.twig' %}
 
 {% block main_content %}
-	<div class="feeds-container">
+	<div class="feeds-container specific-content">
 		{% for feed in feeds %}
 			<div class="row-fluid feed-row">
 				<div class="span6 feed">
@@ -9,7 +9,10 @@
 				</div>
 				<div class="span6 feed-infos">
 					<p>
-						<strong>{{ feed.getTypeUniqueName()|trans }}</strong> [{{ feed.getLang()|upper }}] postée par <a href="#">{{ feed.getUser().getUsername() }}</a> il y a <em>46 minutes</em> - 105 vues, 1 réponse.
+						<strong>{{ feed.getTypeUniqueName()|trans }}</strong> 
+						[{{ feed.getLang()|upper }}] postée par <a href="#">{{ feed.getUser().getUsername() }}</a> -
+						{% include ':Extension:custom_format_date.html.twig' with {'object': feed.getCreateTime(), 'lowercase': true} %} -
+						{{ 'feed.list.view_count.%count%'|transchoice(feed.getView()) }}, {{ 'feed.list.response_count.%count%'|transchoice(feed.getCommentsCount()) }}.
 					</p>
 				</div>
 			</div>
