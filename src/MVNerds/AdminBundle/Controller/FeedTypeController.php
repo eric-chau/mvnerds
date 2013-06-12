@@ -92,14 +92,14 @@ class FeedTypeController extends Controller
 		$request = $this->getRequest();
 		if ($request->isMethod('POST'))
 		{
-			$form->bindRequest($request);
+			$form->bind($request);
 			//Si le formulaire est valide
 			if ($form->isValid())
 			{
 				
 				try {
 					//On essaie d'enregistrer le FeedType
-					$this->get('mvnerds.feed_type_manager')->customSave($feedType, $oldFeedType);
+					$this->get('mvnerds.feed_type_manager')->update($feedType, $oldFeedType);
 				} catch (\Exception $e) {
 					//Si une Exception survient, on ajoute l'erreur au formulaire et on l'affiche
 					$form->addError(new FormError($e->getMessage()));

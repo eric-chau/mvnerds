@@ -617,10 +617,10 @@
     <column defaultValue="'fr'" name="lang" required="true" size="4" type="VARCHAR" />
     <column defaultValue="0" name="is_red_post" required="true" type="BOOLEAN" />
     <column name="user_id" required="true" type="INTEGER" />
-    <foreign-key foreignTable="feed_type">
+    <foreign-key foreignTable="feed_type" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="unique_name" local="type_unique_name" />
     </foreign-key>
-    <foreign-key foreignTable="user">
+    <foreign-key foreignTable="user" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="user_id" />
     </foreign-key>
     <behavior name="aggregate_column">
@@ -647,10 +647,10 @@
     <column name="content" required="true" type="LONGVARCHAR" />
     <column name="feed_id" required="true" type="INTEGER" />
     <column name="reply_to_comment_id" type="INTEGER" />
-    <foreign-key foreignTable="feed">
+    <foreign-key foreignTable="feed" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="feed_id" />
     </foreign-key>
-    <foreign-key foreignTable="feed_comment">
+    <foreign-key foreignTable="feed_comment" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="reply_to_comment_id" />
     </foreign-key>
     <behavior name="timestampable">
@@ -668,10 +668,10 @@
   <table name="feed_super_tag">
     <column name="feed_id" primaryKey="true" required="true" type="INTEGER" />
     <column name="super_tag_unique_name" primaryKey="true" required="true" size="64" type="VARCHAR" />
-    <foreign-key foreignTable="feed">
+    <foreign-key foreignTable="feed" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="id" local="feed_id" />
     </foreign-key>
-    <foreign-key foreignTable="super_tag">
+    <foreign-key foreignTable="super_tag" onDelete="CASCADE" onUpdate="CASCADE">
       <reference foreign="unique_name" local="super_tag_unique_name" />
     </foreign-key>
   </table>
