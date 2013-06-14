@@ -5,6 +5,7 @@ namespace MVNerds\SkeletonBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 use MVNerds\CoreBundle\Model\Feed;
 use MVNerds\SkeletonBundle\Form\Type\FeedType;
@@ -18,7 +19,7 @@ class SkeletonController extends Controller
      */
     public function indexAction()
     {
-		$feeds = $this->get('mvnerds.feed_manager')->findAll();
+		$feeds = $this->get('mvnerds.feed_manager')->findLatest();
 		
 		return $this->render('MVNerdsSkeletonBundle:Front:index.html.twig', array(
 			'feeds' => $feeds,
@@ -57,17 +58,29 @@ class SkeletonController extends Controller
 	 * Permet de récupérer, à partir d'une chaine de caractères de SuperTags fournie par l'utilisateur,
 	 * tous les objets Feed associés
 	 * 
-	 * @param string $stringTags une chaine de caractères, saisie par l'utilisateur, composée de SuperTags
-	 * 
-	 * @Route("/{_locale}/get-feeds/{stringTags}", name="get_feeds", options={"expose"=true})
+	 * @Route("/{_locale}/get-feeds", name="get_feeds", options={"expose"=true})
 	 */
-	public function getFeedsAction($stringTags)
+	public function getFeedsAction()
 	{
+		$request = $this->getRequest();
+		
+		if  (!$request->isXmlHttpRequest() || !$request->isMethod('POST')) {
+			throw new HttpException(500, 'La requête doit être effectuée en AJAX et en method POST !');
+		}
+		
+		// Une chaine de caractères, saisie par l'utilisateur, composée de SuperTags
+		$stringTags = $request->get('stringTags');
+		// La page des Feeds que l'on souhaite obtenir
+		$page = $request->get('page', 1);
+		
 		//On convertit la chaine de tags en tableau de "véritables" SuperTags
 		$arrayTags = $this->get('mvnerds.super_tag_manager')->getUniqueNamesFromString($stringTags);
 		
+		/* @var $feedManager \MVNerds\SkeletonBundle\Feed\FeedManager */
+		$feedManager = $this->get('mvnerds.feed_manager');
+		
 		//On récupère tous les feeds associés aux SuperTags présents dans le tableau $arrayTags
-		$feeds = $this->get('mvnerds.feed_manager')->findBySuperTags($arrayTags);
+		$feeds = $feedManager->findBySuperTags($arrayTags, $page);
 		
 		return new Response(json_encode($feeds->toArray()));
 	}

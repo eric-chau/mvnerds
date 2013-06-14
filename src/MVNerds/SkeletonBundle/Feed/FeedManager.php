@@ -4,18 +4,35 @@ namespace MVNerds\SkeletonBundle\Feed;
 
 use \Criteria;
 use \PropelObjectCollection;
+use \PropelModelPager;
 
 use MVNerds\CoreBundle\Exception\ObjectNotFoundException;
 use MVNerds\CoreBundle\Model\Feed;
 use MVNerds\CoreBundle\Model\FeedQuery;
 use MVNerds\CoreBundle\Model\FeedPeer;
 use MVNerds\CoreBundle\Model\FeedSuperTag;
+use MVNerds\CoreBundle\Model\FeedSuperTagQuery;
 use MVNerds\CoreBundle\Model\User;
 use MVNerds\SkeletonBundle\SuperTag\SuperTagManager;
 
 class FeedManager
 {
+	/**
+	 * Le nombre maximum de Feeds à récupérer avec une requête.
+	 */
+	const MAX_FEEDS_PER_PAGE = 3;
+	
+	/**
+	 * La valeur valide minimum du champ rating d'un feed afin qu'il soit affiché
+	 */
+	const MIN_VALID_RATING = -10;
+	
+	/**
+	 * @var SuperTagManager
+	 */
 	private $superTagManager;
+	
+	
 	
 	/**
 	 * @param integer $id l'id du feed à récupérer
@@ -117,19 +134,37 @@ class FeedManager
 	}
 	
 	/**
+	 * @return PropelObjectCollection|Feed[] retourne un objet PropelObjectCollection qui contient les
+	 * MAX_FEEDS_PER_PAGE derniers Feeds (Les feeds ayant un rating trop faible sont ignorés)
+	 */
+	public function findLatest()
+	{
+		return FeedQuery::create()
+			->joinWith('User')
+			->add(FeedPeer::RATING, self::MIN_VALID_RATING, Criteria::GREATER_EQUAL)
+			->limit(self::MAX_FEEDS_PER_PAGE)
+			->OrderBy(FeedPeer::CREATE_TIME, Criteria::DESC)
+		->find();
+	}
+	
+	/**
 	 * @param array $superTags un tableau contenant des superTags sous forme de chaines de caractères
 	 * 
 	 * @return PropelObjectCollection|Feed[] Une collection Propel de feeds 
 	 * associés aux SuperTags passés en paramètre
 	 */
-	public function findBySuperTags(array $superTags) 
+	public function findBySuperTags(array $superTags, $page = 1, $maxPerPage = self::MAX_FEEDS_PER_PAGE) 
 	{
 		return FeedQuery::create()
-			->joinWith('FeedSuperTag FST')
-			->joinWith('FST.SuperTag ST')
-			->add('ST.unique_name', $superTags, Criteria::IN)
+			->joinWith('User')
+			->joinFeedSuperTag()
+			->useFeedSuperTagQuery()
+				->joinSuperTag()
+			->endUse()
+			->add('super_tag.unique_name', $superTags, Criteria::IN)
+			->add(FeedPeer::RATING, self::MIN_VALID_RATING, Criteria::GREATER_EQUAL)
 			->OrderBy(FeedPeer::CREATE_TIME, Criteria::DESC)
-		->find();
+		->paginate($page, $maxPerPage)->getResults();
 	}
 	
 	public function createFeed(Feed $feed, User $user, $superTagsStr)
