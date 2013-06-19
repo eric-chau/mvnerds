@@ -141,16 +141,19 @@ class FeedManager
 	 */
 	public function findLatest()
 	{
-		return FeedQuery::create()
+		$feeds = FeedQuery::create()
 			->joinWith('User')
-			->joinFeedSuperTag()
-			->useFeedSuperTagQuery()
-				->joinSuperTag()
-			->endUse()
 			->add(FeedPeer::RATING, self::MIN_VALID_RATING, Criteria::GREATER_EQUAL)
 			->limit(self::MAX_FEEDS_PER_PAGE)
 			->OrderBy(FeedPeer::CREATE_TIME, Criteria::DESC)
 		->find();
+		
+		$feedSuperTagsCriteria = \MVNerds\CoreBundle\Model\FeedSuperTagQuery::create()
+				->joinWith('SuperTag');
+		
+		$feeds->populateRelation('FeedSuperTag', $feedSuperTagsCriteria);
+		
+		return $feeds;
 	}
 	
 	/**
@@ -161,7 +164,7 @@ class FeedManager
 	 */
 	public function findBySuperTags(array $superTags, $page = 1, $maxPerPage = self::MAX_FEEDS_PER_PAGE) 
 	{
-		return FeedQuery::create()
+		$feeds = FeedQuery::create()
 			->joinWith('User')
 			->joinFeedSuperTag()
 			->useFeedSuperTagQuery()
@@ -171,6 +174,13 @@ class FeedManager
 			->add(FeedPeer::RATING, self::MIN_VALID_RATING, Criteria::GREATER_EQUAL)
 			->OrderBy(FeedPeer::CREATE_TIME, Criteria::DESC)
 		->paginate($page, $maxPerPage)->getResults();
+		
+		$feedSuperTagsCriteria = \MVNerds\CoreBundle\Model\FeedSuperTagQuery::create()
+				->joinWith('SuperTag');
+		
+		$feeds->populateRelation('FeedSuperTag', $feedSuperTagsCriteria);
+		
+		return $feeds;
 	}
 	
 	public function createFeed(Feed $feed, User $user, $superTagsStr)
