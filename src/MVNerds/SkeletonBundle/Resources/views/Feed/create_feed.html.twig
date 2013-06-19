@@ -75,7 +75,7 @@
 			<div class="form-row">
 				{{ form_label(form.title, 'feed.create.form.title'|trans) }}
 				{{ form_errors(form.title) }}
-				{{ form_widget(form.title) }}
+				{{ form_widget(form.title, {'attr':{'autocomplete':'off'} }) }}
 			</div>
 			
 			{# LE CONTENU #}

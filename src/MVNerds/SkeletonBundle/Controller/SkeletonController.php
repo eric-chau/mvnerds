@@ -48,7 +48,7 @@ class SkeletonController extends Controller
 			$superTags[] = $superTag->getLabel();
 		}
 		
-		return $this->render('MVNerdsSkeletonBundle:Feed:add_new_feed_index.html.twig', array(
+		return $this->render('MVNerdsSkeletonBundle:Feed:create_feed.html.twig', array(
 			'form' => $form->createView(),
 			'super_tags' => $superTags,
 		));
