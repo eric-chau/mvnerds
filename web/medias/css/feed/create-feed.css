@@ -112,6 +112,14 @@
 .mvnerds-btn.red.active {
   border-bottom-color: #db4a38;
 }
+div.new-content-container {
+  padding: 10px;
+}
+div.new-content-container h1 {
+  color: #4e759c;
+  font-size: 32px;
+  text-align: center;
+}
 div.new-content-container form {
   margin: 30px auto 0 auto;
   width: 80%;
@@ -254,9 +262,9 @@ div.new-content-container form div.form-row div.tags-widget ul.typeahead li a:fo
 }
 div.new-content-container form div.form-row input[type="submit"] {
   background-color: #4e759c;
-  -webkit-border-radius: 2px !important;
-  -moz-border-radius: 2px !important;
-  border-radius: 2px !important;
+  -webkit-border-radius: 1px !important;
+  -moz-border-radius: 1px !important;
+  border-radius: 1px !important;
   border: none;
   color: white;
   font-family: 'Cabin', sans-serif;
@@ -265,7 +273,8 @@ div.new-content-container form div.form-row input[type="submit"] {
   padding: 5px 0;
   width: 400px;
 }
-div.new-content-container form div.form-row input[type="submit"]:hover {
+div.new-content-container form div.form-row input[type="submit"]:hover,
+div.new-content-container form div.form-row input[type="submit"]:focus {
   background-color: #698eb4;
   -webkit-transition: background-color 0.25s linear;
   -moz-transition: background-color 0.25s linear;

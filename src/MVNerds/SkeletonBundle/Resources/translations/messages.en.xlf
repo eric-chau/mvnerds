@@ -33,29 +33,109 @@
                 <source>CustomFormatDate.yesterday</source>
                 <target>Yesterday</target>
             </trans-unit>
+			<trans-unit id="32">
+                <source>Monday</source>
+                <target>Monday</target>
+            </trans-unit>
+			<trans-unit id="33">
+                <source>Monday</source>
+                <target>Monday</target>
+            </trans-unit>
+			<trans-unit id="34">
+                <source>Tuesday</source>
+                <target>Mardi</target>
+            </trans-unit>
+			<trans-unit id="35">
+                <source>Wednesday</source>
+                <target>Wednesday</target>
+            </trans-unit>
+			<trans-unit id="36">
+                <source>Thursday</source>
+                <target>Thursday</target>
+            </trans-unit>
+			<trans-unit id="37">
+                <source>Friday</source>
+                <target>Friday</target>
+            </trans-unit>
+			<trans-unit id="38">
+                <source>Saturday</source>
+                <target>Saturday</target>
+            </trans-unit>
+			<trans-unit id="39">
+                <source>Sunday</source>
+                <target>Sunday</target>
+            </trans-unit>
+			<trans-unit id="40">
+                <source>Junuary</source>
+                <target>Junuary</target>
+            </trans-unit>
+			<trans-unit id="41">
+                <source>Fabruary</source>
+                <target>Fabruary</target>
+            </trans-unit>
+			<trans-unit id="42">
+                <source>March</source>
+                <target>March</target>
+            </trans-unit>
+			<trans-unit id="43">
+                <source>April</source>
+                <target>April</target>
+            </trans-unit>
+			<trans-unit id="44">
+                <source>May</source>
+                <target>May</target>
+            </trans-unit>
+			<trans-unit id="45">
+                <source>June</source>
+                <target>June</target>
+            </trans-unit>
+			<trans-unit id="46">
+                <source>July</source>
+                <target>July</target>
+            </trans-unit>
+			<trans-unit id="47">
+                <source>August</source>
+                <target>August</target>
+            </trans-unit>
+			<trans-unit id="48">
+                <source>September</source>
+                <target>September</target>
+            </trans-unit>
+			<trans-unit id="49">
+                <source>October</source>
+                <target>October</target>
+            </trans-unit>
+			<trans-unit id="50">
+                <source>November</source>
+                <target>November</target>
+            </trans-unit>
+			<trans-unit id="51">
+                <source>December</source>
+                <target>December</target>
+            </trans-unit>
 			
 			<!-- TYPES DE FEED -->
-			<trans-unit id="51">
+			<trans-unit id="61">
                 <source>VIDEO</source>
                 <target>Video</target>
             </trans-unit>
-			<trans-unit id="52">
+			<trans-unit id="62">
                 <source>QUESTION</source>
                 <target>Question</target>
             </trans-unit>
-			<trans-unit id="53">
+			<trans-unit id="63">
                 <source>SKILL</source>
                 <target>Skill</target>
             </trans-unit>
-			<trans-unit id="54">
+			<trans-unit id="64">
                 <source>SKIN</source>
                 <target>Skin</target>
             </trans-unit>
-			<trans-unit id="55">
+			<trans-unit id="65">
                 <source>ITEM</source>
                 <target>Item</target>
             </trans-unit>
-			<trans-unit id="56">
+			<trans-unit id="66">
                 <source>CHAMPION</source>
                 <target>Champion</target>
             </trans-unit>

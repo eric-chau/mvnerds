@@ -1,79 +1,13 @@
 {% extends 'MVNerdsSkeletonBundle:Common:layout.html.twig' %}
 
+{% block css %}
+	{{ parent() }}
+
+	<link rel="stylesheet" href="{{ asset('medias/css/feed/feed-list.css') }}">
+{% endblock %}
+	
 {% block main_content %}
-	<div class="feeds-container specific-content">
-		{% for feed in feeds %}
-			<div class="row-fluid feed-row">
-				<div class="span6 feed">
-					<h2><div class="rating">0</div> {{ feed.getTitle() }}</h2>
-				</div>
-				<div class="span6 feed-infos">
-					<p>
-						<strong>{{ feed.getTypeUniqueName()|trans }}</strong> 
-						[{{ feed.getLang()|upper }}] postée par <a href="#">{{ feed.getUser().getUsername() }}</a> -
-						{% include ':Extension:custom_format_date.html.twig' with {'object': feed.getCreateTime(), 'lowercase': true} %} -
-						{{ 'feed.list.view_count.%count%'|transchoice(feed.getView()) }}, {{ 'feed.list.response_count.%count%'|transchoice(feed.getCommentsCount()) }}.
-					</p>
-				</div>
-			</div>
-		{% else %}
-			<i>Désolé, aucun contenu disponible pour le moment.</i>
-		{% endfor %}
-		
-
-		{#<div class="row-fluid feed-row">
-			<div class="span6 feed">
-				<h2><div class="rating">0</div> Créer la page d'ajout de feed</h2>
-			</div>
-			<div class="span6 feed-infos">
-				<p>
-					<strong>Question</strong> [FR] postée par <a href="#">DyRusse</a> il y a <em>46 minutes</em> - 105 vues, 1 réponse. 
-				</p>
-			</div>
-		</div>
-
-		<div class="row-fluid feed-row">
-			<div class="span6 feed red-post">
-				<h2><div class="rating">11</div> Concevoir le système de notation d'un feed et d'un commentaire</h2>
-			</div>
-			<div class="span6 feed-infos">
-				<p>
-					<strong>Vidéo</strong> [FR] postée par <a href="#">Ro0ny</a> <em>hier à 22h09</em> - 301 vues, 18 réponses. 
-				</p>
-			</div>
-		</div>
-
-		<div class="row-fluid feed-row">
-			<div class="span6 feed red-post">
-				<h2><div class="rating">11</div> Créer le détail d'un feed</h2>
-			</div>
-			<div class="span6 feed-infos">
-				<p>
-					<strong>Vidéo</strong> [FR] postée par <a href="#">Ro0ny</a> <em>hier à 22h09</em> - 301 vues, 18 réponses. 
-				</p>
-			</div>
-		</div>
-
-		<div class="row-fluid feed-row">
-			<div class="span6 feed red-post">
-				<h2><div class="rating">11</div> Système de réputation à développer</h2>
-			</div>
-			<div class="span6 feed-infos">
-				<p>
-					<strong>Vidéo</strong> [FR] postée par <a href="#">Ro0ny</a> <em>hier à 22h09</em> - 301 vues, 18 réponses. 
-				</p>
-			</div>
-		</div>
-
-		<div class="row-fluid feed-row">
-			<div class="span6 feed red-post">
-				<h2><div class="rating">11</div> Mettre en place le système de filtrage</h2>
-			</div>
-			<div class="span6 feed-infos">
-				<p>
-					<strong>Vidéo</strong> [FR] postée par <a href="#">Ro0ny</a> <em>hier à 22h09</em> - 301 vues, 18 réponses. 
-				</p>
-			</div>
-		</div>#}
+	<div class="feeds-container">
+		{% include 'MVNerdsSkeletonBundle:Feed:feed_list.html.twig' with {'feeds': feeds} %}
 	</div>
 {% endblock %}

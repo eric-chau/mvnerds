@@ -1,0 +1,188 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.btn,
+.mvnerds-btn {
+  display: inline-block;
+  margin: 0 2px;
+}
+.btn:hover,
+.mvnerds-btn:hover,
+.btn:focus,
+.mvnerds-btn:focus {
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.btn {
+  background-color: #147fb1;
+  color: #ffffff !important;
+  padding: 7px 10px;
+  vertical-align: middle;
+}
+.btn.small {
+  font-size: 12px;
+  padding: 2px 5px;
+}
+.btn.large {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+.btn:hover,
+.btn:focus {
+  background-color: #19a0df;
+}
+.btn.green {
+  background-color: #658816;
+}
+.btn.green:hover,
+.btn.green:focus {
+  background-color: #759e1a;
+}
+.btn.red {
+  background-color: #be3322;
+}
+.btn.red:hover,
+.btn.red:focus {
+  background-color: #db4a38;
+}
+.btn.no-color,
+.btn.disabled {
+  background-color: #999;
+}
+.btn.no-color:hover,
+.btn.disabled:hover,
+.btn.no-color:focus,
+.btn.disabled:focus {
+  background-color: #444;
+}
+.btn.disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+.btn.disabled:hover,
+.btn.disabled:focus {
+  background-color: #999;
+}
+.btn.inactive {
+  cursor: default;
+}
+.mvnerds-btn {
+  border-bottom: 3px solid #ddd;
+  padding: 10px 5px;
+}
+.mvnerds-btn:hover,
+.mvnerds-btn:focus,
+.mvnerds-btn.active {
+  border-bottom-color: #19a0df;
+}
+.mvnerds-btn.green:hover,
+.mvnerds-btn.green:focus,
+.mvnerds-btn.green.active {
+  border-bottom-color: #759e1a;
+}
+.mvnerds-btn.red:hover,
+.mvnerds-btn.red:focus,
+.mvnerds-btn.red.active {
+  border-bottom-color: #db4a38;
+}
+div.feeds-container {
+  padding: 0 10px;
+}
+div.feeds-container div.date-mark {
+  border-top: 1px dotted #aaa;
+  color: #888;
+  line-height: 1.4em;
+  font-size: 11px;
+  margin: 0 10px 15px 0;
+  position: relative;
+}
+div.feeds-container div.date-mark strong {
+  color: #db4a38;
+  opacity: .8;
+}
+div.feeds-container div.date-mark i {
+  color: #4e759c;
+  font-size: 22px;
+  opacity: .7;
+  position: absolute;
+  right: -10px;
+  top: -5px;
+}
+div.feeds-container div.feed-row {
+  margin-bottom: 15px;
+}
+div.feeds-container div.feed-row div.span6.feed {
+  background-color: #f4f4f4;
+  border: 1px solid #ccc;
+  position: relative;
+}
+div.feeds-container div.feed-row div.span6.feed a {
+  color: #666;
+  display: block;
+  padding: 5px;
+}
+div.feeds-container div.feed-row div.span6.feed a h2 {
+  font-size: 13px;
+  font-weight: normal;
+  margin: 0;
+  overflow: hidden;
+  padding-left: 26px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+div.feeds-container div.feed-row div.span6.feed a h2 div.rating {
+  background-color: #666;
+  color: white;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: normal;
+  left: -5px;
+  min-width: 20px;
+  padding: 6px;
+  position: absolute;
+  text-align: center;
+  top: 0;
+}
+div.feeds-container div.feed-row div.span6.feed-infos {
+  margin-left: 15px;
+}
+div.feeds-container div.feed-row div.span6.feed-infos p {
+  font-size: 12px;
+  line-height: 31px;
+  margin: 0;
+}
+div.feeds-container div.feed-row div.span6.feed-infos p i {
+  color: #777;
+  cursor: default;
+  display: inline-block;
+}
+div.feeds-container div.feed-row div.span6.feed-infos p i:hover {
+  color: #333;
+}

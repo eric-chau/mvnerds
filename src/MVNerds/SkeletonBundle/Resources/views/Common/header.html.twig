@@ -1,0 +1,22 @@
+<div class="header">
+	<div class="indication learn-more"><a href="#">comment ça marche ?<i class="icon-chevron-sign-right"></i></a></div>
+	{% if roll_back_route is not defined %}
+		<div class="indication post-feed-indication">Toi aussi partage un contenu (vidéo, article, image, etc.) <i class="icon-chevron-sign-right"></i></div>
+	{% endif %}
+
+	<form action="#" method="post" id="search-by-tag-form">
+		<img src="{{ asset('medias/images/skeleton/teemo-img.png') }}" class="teemo-img" />
+		<a href="{{ path('site_homepage') }}" class="back-home-link"><img src="{{ asset('medias/images/site/mvnerds-logo.png') }}" /></a>
+
+		<i class="icon-search"></i>
+		<input type="text" class="search-by-tag-input" id="" placeholder="Rechercher par tag" />
+		<button>Rechercher</button>
+		<a href="#"><i class="icon-cogs"></i></a>
+		
+		{% if roll_back_route is defined %}
+			<a href="{{ roll_back_route }}" class="post-feed-btn">RETOUR EN <strong>arrière</strong></a>
+		{% else %}
+			<a href="{{ path('new_feed', {'_locale': locale}) }}" class="post-feed-btn">POSTER UN <strong>contenu</strong></a>
+		{% endif %}
+	</form>
+</div>

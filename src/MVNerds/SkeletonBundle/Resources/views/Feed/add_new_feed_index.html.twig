@@ -1,62 +1,39 @@
-{% extends 'MVNerdsSkeletonBundle:Common:layout_alt.html.twig' %}
+{% extends 'MVNerdsSkeletonBundle:Common:layout.html.twig' %}
 
 {% block css %}
 	{{ parent() }}
 
-	<link rel="stylesheet" href="{{ asset('medias/css/feed/create-page.css') }}">
+	<link rel="stylesheet" href="{{ asset('medias/css/feed/create-feed.css') }}">
 {% endblock %}
 	
 {% block javascripts %}
+	{{ parent() }}
+	
 	<script type="text/javascript" src="{{ asset('medias/js/bootstrap/bootstrap-typeahead.js') }}"></script>
 	<script type="text/javascript">
-		$(document).ready(function() {
-			superTags = $('input#tags-input').data('source');
-			$hiddenSuperTagsInput = $('input#{{ form.feed_tags.vars.id }}');
-			$('ul.tags-container').on('click', 'li.tag a', function(event) {
-				event.preventDefault();
-				superTag = $(this).parent().find('em').html();
-				superTags.push(superTag);
-				$(this).parent().remove();
-				$hiddenSuperTagsInput.val($hiddenSuperTagsInput.val().replace(superTag + ',', ''));
-			});
-			
-			$('input#tags-input').on('keypress', function(event) {
-				if (event.which == 13) {
-					event.preventDefault();
-					
-					userValue = $(this).val();
-					valuePosition = $.inArray(userValue, superTags);
-					if (valuePosition !== -1) {
-						if ($('li.tag').length > 0) {
-							$('<li class="tag"><em>'+ userValue +'</em><a href="#">x</a></li>').insertAfter('li.tag:last');
-						}
-						else {
-							$('<li class="tag"><em>'+ userValue +'</em><a href="#">x</a></li>').prependTo('ul.tags-container');
-						}
-					}
-					
-					superTags.splice(valuePosition, 1);
-					$(this).val('');
-					
-					$hiddenSuperTagsInput.val($hiddenSuperTagsInput.val() + userValue + ',');
-				}
-			});
-			
-			$('select').on('change', function() {
-				$(this).parent().find('div.selectbox-widget span.option-value').html($(this).find(":selected").text());
-			});
-		});
+		hiddenSuperTagsInputID = '{{ form.feed_tags.vars.id }}';
 	</script>
+	<script type="text/javascript" src="{{ asset('medias/js/feed/create-feed.js') }}"></script>
 {% endblock %}
 
+{% block body %}
+	{% set roll_back_route = path('site_homepage') %}
+
+	{{ parent() }}
+{% endblock %}
+	
 {% block main_content %}
 	<div class="new-content-container">
+		<h1>Partager un contenu</h1>
+		
 		<p>
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque tristique odio sed justo bibendum, in faucibus turpis tempus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nam erat orci, accumsan nec imperdiet nec, tincidunt sed risus. Maecenas mollis pretium nibh id suscipit. Vestibulum suscipit consectetur leo, eu rutrum augue egestas dignissim. Morbi purus nibh, pellentesque at augue eget, egestas interdum urna. Nam suscipit, urna vitae luctus rutrum, metus ipsum placerat turpis, quis commodo felis ipsum ac dolor. Nunc congue ornare semper. Duis in leo a ipsum lobortis consequat at a diam. Pellentesque sed nisl sollicitudin, pretium velit a, accumsan dui. Maecenas feugiat vitae nunc at dapibus.
 		</p>
+		
 		{{ form_start(form) }}
 			{{ form_errors(form) }}
 			
+			{# CHOIX DE LA LANGUE #}
 			<div class="form-row">
 				{{ form_label(form.lang, 'feed.create.form.language'|trans) }}
 				{{ form_errors(form.lang) }}
@@ -69,6 +46,7 @@
 				</div>
 			</div>
 			
+			{# CHOIX DU TYPE DE CONTENU #}
 			<div class="form-row">
 				{{ form_label(form.type_unique_name.unique_name, 'feed.create.form.type'|trans) }}
 				{{ form_errors(form.type_unique_name.unique_name) }}
@@ -81,6 +59,7 @@
 				</div>
 			</div>
 		
+			{# ASSOCIATION DES TAGS #}
 			<div class="form-row">
 				<label for="tags-input">Tags</label>
 				<div class="tags-widget">
@@ -92,18 +71,21 @@
 				</div>
 			</div>
 			
+			{# TITRE DU CONTENU #}
 			<div class="form-row">
 				{{ form_label(form.title, 'feed.create.form.title'|trans) }}
 				{{ form_errors(form.title) }}
 				{{ form_widget(form.title) }}
 			</div>
 			
+			{# LE CONTENU #}
 			<div class="form-row">
 				{{ form_label(form.content, 'feed.create.form.content'|trans) }}
 				{{ form_errors(form.content) }}
 				{{ form_widget(form.content, { 'attr': {'rows': 15} }) }}
 			</div>
 			
+			{# BOUTTON DE SOUMISSION #}
 			<div class="form-row">
 				<input type="submit" value="{{ 'feed.create.form.submit_button'|trans }}" />
 			</div>

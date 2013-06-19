@@ -114,8 +114,10 @@
 }
 body {
   background-color: #e4e6e5;
-  min-height: 1100px;
+  background: #e4e6e5 url('../../images/skeleton/main-bg.jpg') no-repeat center top fixed;
   margin: 0;
+  min-height: 999px;
+  padding: 10px 0;
 }
 h1,
 h2,
@@ -123,8 +125,8 @@ h3,
 h4,
 h5,
 h6 {
-  color: #666;
-  font-family: 'Open Sans', sans-serif;
+  color: #4e759c;
+  font-family: 'Cabin', sans-serif;
   line-height: 1.4em;
   margin: 0 0 20px 0;
   padding: 0;
@@ -221,11 +223,13 @@ input[type="email"] {
 label {
   display: inline-block;
 }
-div.specific-content {
-  background-color: #eee;
-  border-top: 2px dashed #999;
-}
 div.main-container {
+  background-color: rgba(228, 229, 230, 0.85);
+  border: 1px solid #444;
+  border-bottom: 0;
+  -webkit-border-radius: 1px !important;
+  -moz-border-radius: 1px !important;
+  border-radius: 1px !important;
   position: relative;
 }
 div.main-container div.global-menu {
@@ -268,13 +272,22 @@ div.main-container div.global-menu ul li a:hover {
 div.main-container div.global-menu ul li a i.icon-globe {
   display: inline-block;
   font-size: 14px;
-  margin-right: 4px;
+  margin-right: 6px;
+}
+div.main-container div.global-menu ul li a i.icon-chevron-down {
+  display: inline-block;
+  font-size: 12px;
+  margin-left: 10px;
   position: relative;
+  top: -1px;
 }
 div.main-container div.header {
   position: relative;
 }
 div.main-container div.header div.indication {
+  font-family: 'Reenie Beanie', sans-serif;
+  font-size: 20px;
+  font-weight: bold;
   position: absolute;
 }
 div.main-container div.header div.indication.learn-more {
@@ -292,9 +305,6 @@ div.main-container div.header div.indication.learn-more i {
 }
 div.main-container div.header div.indication.post-feed-indication {
   color: #db4a38;
-  font-family: 'Reenie Beanie', sans-serif;
-  font-size: 20px;
-  font-weight: bold;
   opacity: .7;
   right: 70px;
   top: -45px;
@@ -310,8 +320,9 @@ div.main-container div.header div.indication.post-feed-indication i {
 }
 div.main-container div.header div.indication a {
   font-family: 'Reenie Beanie', sans-serif;
-  font-size: 20px;
-  font-weight: bold;
+  /*font-size: 20px;
+				font-weight: bold;*/
+
   opacity: .5;
 }
 div.main-container div.header div.indication a:hover {
@@ -328,13 +339,13 @@ div.main-container div.header div.indication i {
   position: relative;
 }
 div.main-container div.header img.teemo-img {
-  left: -25px;
+  left: 10px;
   position: absolute;
   top: -70px;
   width: 120px;
 }
 div.main-container div.header a.back-home-link {
-  left: 90px;
+  left: 125px;
   position: absolute;
   top: 0;
 }
@@ -353,6 +364,7 @@ div.main-container div.header form#search-by-tag-form i.icon-search {
   top: 2px;
 }
 div.main-container div.header form#search-by-tag-form input.search-by-tag-input {
+  background-color: inherit;
   border: none;
   border-bottom: 1px solid #666;
   color: #111111;
@@ -420,86 +432,33 @@ div.main-container div.header form#search-by-tag-form a.post-feed-btn strong {
   display: block;
   font-size: 25px;
 }
-div.header.alt a {
-  display: block;
-  margin: 50px 0 20px 0;
-  text-align: center;
-}
-div.header.alt a img.logo {
-  height: 90px;
-}
-div.header.alt h1 {
-  border-bottom: 1px solid #aaa;
-  color: #4e759c;
-  font-family: "Cabin", sans-serif;
-  font-size: 32px;
-  text-align: center;
-}
-div.breadcrumb-container {
+div.main-container div.breadcrumb-container {
   font-size: 12px;
   margin-bottom: 5px;
+  padding: 5px 10px;
   text-align: right;
 }
-div.breadcrumb-container i {
+div.main-container div.breadcrumb-container i {
   margin-left: 5px;
 }
-div.feeds-container {
-  padding-bottom: 15px;
-  position: relative;
-}
-div.feeds-container div.feed-row {
-  margin-top: 15px;
-}
-div.feeds-container div.feed-row div.span6.feed {
-  background-color: #f4f4f4;
-  border: 1px solid #ccc;
-  -webkit-box-shadow: 0 0 3px 3px #dddddd;
-  -moz-box-shadow: 0 0 3px 3px #dddddd;
-  box-shadow: 0 0 3px 3px #dddddd;
-  padding: 5px;
-  position: relative;
-}
-div.feeds-container div.feed-row div.span6.feed.red-post h2 {
-  color: #db4a38;
-}
-div.feeds-container div.feed-row div.span6.feed h2 {
-  font-size: 13px;
-  margin: 0;
-  overflow: hidden;
-  padding-left: 26px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-div.feeds-container div.feed-row div.span6.feed h2 div.rating {
-  background-color: #666;
-  color: white;
-  display: inline-block;
-  font-size: 12px;
-  font-weight: normal;
-  min-width: 20px;
-  padding: 6px;
-  position: absolute;
-  text-align: center;
-  top: 0;
-  left: -5px;
-}
-div.feeds-container div.feed-row div.span6.feed-infos p {
-  font-size: 12px;
-  line-height: 31px;
-  margin: 0;
+div.footer {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid #444;
+  border-top: 1px dashed #999;
+  min-height: 50px;
 }
 div.support-us-container {
   bottom: 5px;
   position: fixed;
-  right: 100px;
+  right: 5%;
 }
 div.support-us-container i.icon-reply {
-  bottom: 30px;
-  color: rgba(0, 0, 0, 0.2);
+  bottom: 32px;
+  color: rgba(255, 255, 255, 0.4);
   display: inline-block;
-  font-size: 60px;
+  font-size: 70px;
   position: fixed;
-  right: 150px;
+  right: 8%;
   -webkit-transform: rotate(-90deg);
   -moz-transform: rotate(-90deg);
   -ms-transform: rotate(-90deg);

@@ -54,6 +54,18 @@ class SkeletonController extends Controller
 	}
 	
 	/**
+	 * 
+	 * @param type $slug
+	 * @Route("/{_locale]/feed/{slug}", name="feed_detail")
+	 */
+	public function feedDetailAction($slug)
+	{
+		return $this->render('MVNerdsSkeletonBundle:Feed:feed_detail.html.twig', array(
+			'feed' => $this->get('mvnerds.feed_manager')->findBySlug($slug),
+		));
+	}
+	
+	/**
 	 * Permet de récupérer, à partir d'une chaine de caractères de SuperTags fournie par l'utilisateur,
 	 * tous les objets Feed associés
 	 * 

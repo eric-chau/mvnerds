@@ -1,0 +1,201 @@
+.clearfix {
+  *zoom: 1;
+}
+.clearfix:before,
+.clearfix:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.clearfix:after {
+  clear: both;
+}
+.hide-text {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+.input-block-level {
+  display: block;
+  width: 100%;
+  min-height: 30px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+.btn,
+.mvnerds-btn {
+  display: inline-block;
+  margin: 0 2px;
+}
+.btn:hover,
+.mvnerds-btn:hover,
+.btn:focus,
+.mvnerds-btn:focus {
+  -webkit-transition: all 0.3s linear;
+  -moz-transition: all 0.3s linear;
+  -o-transition: all 0.3s linear;
+  transition: all 0.3s linear;
+}
+.btn {
+  background-color: #147fb1;
+  color: #ffffff !important;
+  padding: 7px 10px;
+  vertical-align: middle;
+}
+.btn.small {
+  font-size: 12px;
+  padding: 2px 5px;
+}
+.btn.large {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 5px 10px;
+}
+.btn:hover,
+.btn:focus {
+  background-color: #19a0df;
+}
+.btn.green {
+  background-color: #658816;
+}
+.btn.green:hover,
+.btn.green:focus {
+  background-color: #759e1a;
+}
+.btn.red {
+  background-color: #be3322;
+}
+.btn.red:hover,
+.btn.red:focus {
+  background-color: #db4a38;
+}
+.btn.no-color,
+.btn.disabled {
+  background-color: #999;
+}
+.btn.no-color:hover,
+.btn.disabled:hover,
+.btn.no-color:focus,
+.btn.disabled:focus {
+  background-color: #444;
+}
+.btn.disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+.btn.disabled:hover,
+.btn.disabled:focus {
+  background-color: #999;
+}
+.btn.inactive {
+  cursor: default;
+}
+.mvnerds-btn {
+  border-bottom: 3px solid #ddd;
+  padding: 10px 5px;
+}
+.mvnerds-btn:hover,
+.mvnerds-btn:focus,
+.mvnerds-btn.active {
+  border-bottom-color: #19a0df;
+}
+.mvnerds-btn.green:hover,
+.mvnerds-btn.green:focus,
+.mvnerds-btn.green.active {
+  border-bottom-color: #759e1a;
+}
+.mvnerds-btn.red:hover,
+.mvnerds-btn.red:focus,
+.mvnerds-btn.red.active {
+  border-bottom-color: #db4a38;
+}
+div.feed-detail-container div.feed-actions {
+  border-bottom: 2px solid #999;
+  padding: 0 5px 2px 10px;
+  position: relative;
+  text-align: right;
+}
+div.feed-detail-container div.feed-actions.hwrmo img {
+  opacity: 1;
+  -webkit-transition: opacity 1s cubic-bezier(1, 0, 1, 1);
+  -moz-transition: opacity 1s cubic-bezier(1, 0, 1, 1);
+  -o-transition: opacity 1s cubic-bezier(1, 0, 1, 1);
+  transition: opacity 1s cubic-bezier(1, 0, 1, 1);
+}
+div.feed-detail-container div.feed-actions img {
+  height: 17px;
+  left: 5px;
+  opacity: 0;
+  position: absolute;
+  top: 2px;
+}
+div.feed-detail-container div.feed-actions a {
+  color: #666;
+  display: inline-block;
+  font-size: 12px;
+}
+div.feed-detail-container div.feed-actions a:hover i {
+  text-decoration: none;
+}
+div.feed-detail-container div.feed-actions a.toggle-read-mode {
+  margin-right: 10px;
+}
+div.feed-detail-container div.feed-actions a i {
+  color: #666;
+  margin-right: 5px;
+}
+div.feed-detail-container div.feed-content,
+div.feed-detail-container div.feed-comments {
+  border-bottom: 0;
+  border-left: 0;
+  display: inline-block;
+  height: 974px;
+  margin: 0;
+  vertical-align: top;
+}
+div.feed-detail-container div.feed-content div.mCSB_container,
+div.feed-detail-container div.feed-comments div.mCSB_container {
+  margin-right: 15px;
+}
+div.feed-detail-container div.feed-content div.mCSB_scrollTools,
+div.feed-detail-container div.feed-comments div.mCSB_scrollTools {
+  width: 10px;
+}
+div.feed-detail-container div.feed-content {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-right: 1px solid #999;
+  padding-left: 10px;
+  width: 600px;
+}
+div.feed-detail-container div.feed-content h1 {
+  color: #be3322;
+  font-size: 1.6em;
+  margin: 5px 0 10px 0;
+}
+div.feed-detail-container div.feed-comments {
+  border-right: 0;
+  width: 325px;
+}
+div.feed-detail-container div.feed-comments h2 {
+  font-size: 16px;
+  margin: 5px 0 20px 0;
+  text-align: right;
+}
+div.feed-detail-container div.feed-comments div.comment-row {
+  margin-bottom: 15px;
+}
+div.feed-detail-container div.feed-comments div.comment-row p {
+  font-size: 12px;
+  margin: 0;
+}
+div.feed-detail-container div.feed-comments div.comment-row div.content {
+  border-bottom: 1px solid #999;
+  margin-bottom: 2px;
+  padding-bottom: 3px;
+}
+div.feed-detail-container div.feed-comments div.comment-row div.comment-infos p {
+  text-align: right;
+}

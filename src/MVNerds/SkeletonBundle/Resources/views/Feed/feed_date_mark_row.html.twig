@@ -1,0 +1,11 @@
+<div class="date-mark">
+	{% if date.format('d-m-Y') == date().format('d-m-Y') %}
+		<strong>{{'CustomFormatDate.today'|trans }}</strong> <i class="icon-long-arrow-down"></i>
+	{% else %}
+		{% if date.format('d-m-Y') == date('-1day').format('d/m/Y') %}
+			<strong>{{ 'CustomFormatDate.yesterday'|trans }}</strong> <i class="icon-long-arrow-down"></i>
+		{% else %}
+			<span>{{ date.format('l')|trans }} <strong>{{ date.format('j') }} {{ date.format('F')|trans }}</strong> {{ date.format('Y') }}</span> <i class="icon-long-arrow-down"></i>
+		{% endif %}
+	{% endif %}
+</div>

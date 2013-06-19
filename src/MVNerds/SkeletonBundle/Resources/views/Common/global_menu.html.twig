@@ -1,0 +1,14 @@
+<div class="global-menu">
+	<div class="fb-like" data-href="https://www.facebook.com/mvnerds" data-send="false" data-layout="button_count" data-width="450" data-show-faces="true"></div>
+
+	<ul>
+		{% if app.user is not null and is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+			<li><a href="#">Mon compte ({{ app.user.getUsername() }})</a></li>
+			<li><a href="{{ path('security_summoner_logout') }}">Me déconnecter</a></li>
+		{% else %}
+			<li><a href="{{ path('security_summoner_login') }}">Se connecter</a></li>
+			<li><a href="#">S'enregistrer</a></li>
+		{% endif %}
+		<li><a href="#"><i class="icon-globe"></i>Français <i class="icon-chevron-down"></i></a></li>
+	</ul>
+</div>

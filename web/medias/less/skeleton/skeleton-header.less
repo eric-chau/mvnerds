@@ -24,7 +24,7 @@ div.main-container {
 				
 
 				&:hover {
-					background-color: @MVNerdsRed; .transition(background-color .25s linear);					
+					background-color: @MVNerdsRed; .transition(background-color .25s linear);
 				}
 
 				a {
@@ -41,8 +41,15 @@ div.main-container {
 					i.icon-globe {
 						display: inline-block;
 						font-size: 14px;
-						margin-right: 4px;
+						margin-right: 6px;
+					}
+
+					i.icon-chevron-down {
+						display: inline-block;
+						font-size: 12px;
+						margin-left: 10px;
 						position: relative;
+						top: -1px;
 					}
 				}
 			}
@@ -104,14 +111,14 @@ div.main-container div.header {
 
 
 	img.teemo-img {
-		left: -25px;
+		left: 10px;
 		position: absolute;
 		top: -70px;
 		width: 120px;
 	}
 
 	a.back-home-link {
-		left: 90px;
+		left: 125px;
 		position: absolute;
 		top: 0;
 	}
@@ -132,6 +139,7 @@ div.main-container div.header {
 		}
 
 		input.search-by-tag-input {
+			background-color: inherit;
 			border: none;
 			border-bottom: 1px solid #666;
 			color: @MVNerdsMainTextColor;
@@ -199,29 +207,11 @@ div.main-container div.header {
 	}
 }
 
-div.header.alt {
-	a {
-		display: block;
-		margin: 50px 0 20px 0;
-		text-align: center;
-
-		img.logo {
-			height: 90px;	
-		}
-	}
-
-	h1 {
-		border-bottom: 1px solid #aaa;
-		color: #4e759c;
-		font-family: "Cabin", sans-serif;
-		font-size: 32px;
-		text-align: center;
-	}
-}
-
 div.breadcrumb-container {
+	border-bottom: 1px dashed #999;
 	font-size: 12px;
 	margin-bottom: 5px;
+	padding: 5px 10px;
 	text-align: right;
 
 	i {

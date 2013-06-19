@@ -1,0 +1,93 @@
+// Twitter Bootstraps imports
+@import "../bootstrap/mixins.less";
+
+// MVNerds imports
+@import "../mvnerds/mvnerds-variables.less";
+@import "../mvnerds/mvnerds-buttons.less";
+
+div.feeds-container {
+	padding: 0 10px;
+
+	div.date-mark {
+		border-top: 1px dotted #aaa;
+		color: #888;
+		line-height: 1.4em;
+		font-size: 11px;
+		margin: 0 10px 15px 0;
+		position: relative;
+
+		strong {
+			color: @MVNerdsRed;
+			opacity: .8;
+		}
+
+		i {
+			color: @MVNerdsAltBlue;
+			font-size: 22px;
+			opacity: .7;
+			position: absolute;
+			right: -10px;
+			top: -5px;
+		}
+	}
+
+	div.feed-row {
+		margin-bottom: 15px;
+
+		div.span6.feed {
+			background-color: #f4f4f4;
+			border: 1px solid #ccc;
+			position: relative;
+
+			a {
+				color: #666;
+				display: block;
+				padding: 5px;
+
+				h2 {
+					font-size: 13px;
+					font-weight: normal;
+					margin: 0;
+					overflow: hidden;
+					padding-left: 26px;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+
+					div.rating {
+						background-color: #666;
+						color: white;
+						display: inline-block;
+						font-size: 12px;
+						font-weight: normal;
+						left: -5px;
+						min-width: 20px;
+						padding: 6px;
+						position: absolute;
+						text-align: center;
+						top: 0;
+					}
+				}
+			} // Fin <a>
+		} // Fin <div.feed>
+
+		div.span6.feed-infos {
+			margin-left: 15px;
+
+			p {
+				font-size: 12px;
+				line-height: 31px;
+				margin: 0;
+
+				i {
+					color: #777;
+					cursor: default;
+					display: inline-block;
+
+					&:hover {
+						color: #333;
+					}
+				}
+			}
+		} // Fin <div.feed-infos>
+	} // Fin <div.feed-row>
+} // Fin <div.feeds-container>

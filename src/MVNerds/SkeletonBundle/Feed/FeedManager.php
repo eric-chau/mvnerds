@@ -112,6 +112,8 @@ class FeedManager
 	{
 		return FeedQuery::create()
 			->joinWith('User')
+			->joinWith('FeedSuperTag')
+			->joinWith('FeedSuperTag.SuperTag')
 			->OrderBy(FeedPeer::CREATE_TIME, Criteria::DESC)
 		->find();
 	}

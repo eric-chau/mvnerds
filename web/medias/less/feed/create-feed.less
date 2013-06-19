@@ -6,6 +6,14 @@
 @import "../mvnerds/mvnerds-buttons.less";
 
 div.new-content-container {
+	padding: 10px;
+
+	h1 {
+		color: @MVNerdsAltBlue;
+		font-size: 32px;
+		text-align: center;
+	}
+
 	form {
 		margin: 30px auto 0 auto;
 		width: 80%;
@@ -160,8 +168,8 @@ div.new-content-container {
 			} // Fin de <div.tags-widget>
 
 			input[type="submit"] {
-				background-color: #4e759c;
-				.border-radius(2px);
+				background-color: @MVNerdsAltBlue;
+				.border-radius(1px);
 				border: none;
 				color: white;
 				font-family: 'Cabin', sans-serif;
@@ -170,8 +178,8 @@ div.new-content-container {
 				padding: 5px 0;
 				width: 400px;
 
-				&:hover {
-					background-color: lighten(#4e759c, 10%); .transition(background-color .25s linear);
+				&:hover, &:focus {
+					background-color: lighten(@MVNerdsAltBlue, 10%); .transition(background-color .25s linear);
 				}
 			}
 		} // Fin de <div.form-row>

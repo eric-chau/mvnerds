@@ -1,0 +1,11 @@
+{% set date_mark = '' %}
+{% for feed in feeds %}
+	{% if date_mark != feed.getUpdateTime().format('d-m-Y') %}
+		{% include 'MVNerdsSkeletonBundle:Feed:feed_date_mark_row.html.twig' with {'date': feed.getUpdateTime()} %}
+		{% set date_mark = feed.getUpdateTime().format('d-m-Y') %}
+	{% endif %}
+
+	{% include 'MVNerdsSkeletonBundle:Feed:feed_row.html.twig' with {'feed': feed} %}
+{% else %}
+	<i>Désolé, aucun contenu disponible pour le moment.</i>
+{% endfor %}

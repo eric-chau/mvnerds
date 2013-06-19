@@ -1,0 +1,6 @@
+{% set time = object.format('H:i') %}
+{% if app.session.get('locale') == 'fr' %}
+	{% set time = time|replace(':', 'h') %}
+{% endif %}
+
+{{ time }}
