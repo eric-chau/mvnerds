@@ -143,6 +143,10 @@ class FeedManager
 	{
 		return FeedQuery::create()
 			->joinWith('User')
+			->joinFeedSuperTag()
+			->useFeedSuperTagQuery()
+				->joinSuperTag()
+			->endUse()
 			->add(FeedPeer::RATING, self::MIN_VALID_RATING, Criteria::GREATER_EQUAL)
 			->limit(self::MAX_FEEDS_PER_PAGE)
 			->OrderBy(FeedPeer::CREATE_TIME, Criteria::DESC)
