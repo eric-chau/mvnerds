@@ -50,6 +50,7 @@
     <column defaultValue="0" name="is_active" required="true" type="BOOLEAN" />
     <column name="profile_id" type="INTEGER" />
     <column name="activation_code" required="true" size="32" type="VARCHAR" />
+    <column defaultValue="0" name="reputation" required="true" type="INTEGER" />
     <foreign-key foreignTable="profile">
       <reference foreign="id" local="profile_id" />
     </foreign-key>
@@ -641,6 +642,9 @@
       <parameter name="permanent" value="false" />
     </behavior>
     <behavior name="mvnerds_viewable" />
+    <behavior name="mvnerds_ratable">
+      <parameter name="rating_column" value="rating" />
+    </behavior>
   </table>
   <table name="feed_comment">
     <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
@@ -656,6 +660,9 @@
     <behavior name="timestampable">
       <parameter name="create_column" value="create_time" />
       <parameter name="update_column" value="update_time" />
+    </behavior>
+    <behavior name="mvnerds_ratable">
+      <parameter name="rating_column" value="rating" />
     </behavior>
   </table>
   <table name="super_tag">
@@ -678,5 +685,19 @@
   <table name="feed_type">
     <column name="unique_name" primaryKey="true" required="true" size="64" type="VARCHAR" />
     <column defaultValue="0" name="is_private" required="true" type="BOOLEAN" />
+  </table>
+  <table name="reputation_log">
+    <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+    <column name="user_id" required="true" type="INTEGER" />
+    <column name="motive" required="true" size="255" type="VARCHAR" />
+    <column name="object_id" type="INTEGER" />
+    <column name="object_namespace" size="255" type="VARCHAR" />
+    <foreign-key foreignTable="user">
+      <reference foreign="id" local="user_id" />
+    </foreign-key>
+    <behavior name="timestampable">
+      <parameter name="create_column" value="create_time" />
+      <parameter name="update_column" value="update_time" />
+    </behavior>
   </table>
 </database>
