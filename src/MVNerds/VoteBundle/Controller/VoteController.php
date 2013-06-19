@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 use MVNerds\CoreBundle\Vote\IVote;
+
 /**
  * @Route("/vote")
  */
@@ -100,6 +101,52 @@ class VoteController extends Controller
 			'dislikeCount'	 => $object->getDislikeCount(),
 			'canLike'		=> $canLike,
 			'canDislike'		=> $canDislike
+		)));
+	}
+	
+	/**
+	 * @Route("/rate", name="vote_rate", options={"expose"=true})
+	 */
+	public function rateAction()
+	{
+		//Récupération de la requete
+		$request = $this->getRequest();
+		if (!$request->isXmlHttpRequest() || !$request->isMethod('POST')) {
+			throw new HttpException(500, 'Request must be AJAX and POST method');
+		}
+		
+		//Récupération de paramètres
+		$objectId = $request->get('object_id', null);
+		$objectType = $request->get('object_type', null);
+		$like = $request->get('like', null);
+		
+		if ($objectId == null || $objectType == null || $like == null) {
+			throw new HttpException(500, 'Paramètres manquants !');
+		}
+		
+		//Récupération de l'utilisateur votant et envoi d'un message d'erreur s'il n'est pas authentifié
+		if (!($user = $this->getUser())) {
+			return new Response('Vous devez être authentifié afin de pouvoir voter.', 400);
+		}
+		
+		try {
+			$object = $this->get('mvnerds.' . $objectType . '_manager')->findById($objectId);
+		} catch(Exception $e) {
+			throw new HttpException(500, 'L\'objet ayant pour ID :`'. $objectId .'` est introuvable');
+		}
+		
+		/* @var $voteManager \MVNerds\CoreBundle\Vote\VoteManager */
+		$voteManager = $this->get('mvnerds.vote_manager');
+		//On effectue le vote
+		$vote = $voteManager->rate($object, $user, $like);
+		//Si le vote n'a pas été correctement réalisé
+		if (!$vote) {
+			return new Response('Vous avez déjà voté pour cet élément.', 400);
+		}
+		
+		return new Response(json_encode(array(
+			'message' => 'Votre vote a bien été pris en compte',
+			'rating'  => $object->getRating()
 		)));
 	}
 }

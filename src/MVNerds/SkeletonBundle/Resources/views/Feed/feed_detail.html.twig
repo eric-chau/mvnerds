@@ -10,6 +10,8 @@
 {% block javascripts %}
 	{{ parent() }}
 	
+	<script type="text/javascript" src="{{ asset('medias/js/site/alerts-ajax-handler.js') }}"></script>
+	<script type="text/javascript" src="{{ asset('medias/js/feed/rate.js') }}"></script>
 	<script type="text/javascript" src="{{ asset('medias/js/jquery.mCustomScrollbar.concat.min.js') }}"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
@@ -38,7 +40,7 @@
 		<div class="feed-actions">
 			<a href="{{ path('site_homepage') }}" title="Retourner Ã  la page d'accueil"><img src="{{ asset('medias/images/site/mvnerds-logo.png') }}" /></a>
 			<a href="#" class="toggle-read-mode"><i class="icon-resize-full icon-light"></i>Basculer en mode lecture</a>
-			<a href="#"><i class="icon-refresh"></i>Charger les nouvelles rÃ©ponses</a>
+			<a href="#"><i class="icon-refresh"></i>Charger les nouvelles réponses</a>
 		</div>
 		<div class="feed-content">
 			<div class="feed-infos">
@@ -46,7 +48,7 @@
 				[{{ feed.getLang()|upper }}] postée par <a href="#">{{ feed.getUser().getUsername() }}</a> {% include ':Extension:custom_format_date.html.twig' with {'object': feed.getUpdateTime(), 'lowercase': true} %} -
 				{{ 'feed.list.view_count.%count%'|transchoice(feed.getView()) }}.
 				
-				{% include 'MVNerdsSkeletonBundle:Common:render_ratable.html.twig' with {'object': feed} %}
+				{% include 'MVNerdsSkeletonBundle:Common:render_ratable.html.twig' with {'object': feed, 'objectType': 'feed'} %}
 			</div>
 			<h1>{{ feed.getTitle() }}</h1>
 			
@@ -89,7 +91,7 @@
 			</p>
 		</div>
 		<div class="feed-comments">
-			<h2>88 RÃ©ponses</h2>
+			<h2>88 Réponses</h2>
 			
 			<div class="comments-list">
 				{% for i in 1..5 %}
@@ -100,9 +102,9 @@
 							</p>
 						</div>
 						<div class="comment-infos">
-							{% include 'MVNerdsSkeletonBundle:Common:render_ratable.html.twig' with {'object': feed} %}
+							{% include 'MVNerdsSkeletonBundle:Common:render_ratable.html.twig' with {'object': feed, 'objectType': 'feed_comment'} %}
 							<p>
-								PostÃ© par <a href="#">{{ feed.getUser().getUsername() }}</a> - {% include ':Extension:custom_format_date.html.twig' with {'object': feed.getUpdateTime(), 'lowercase': true} %}
+								Posté par <a href="#">{{ feed.getUser().getUsername() }}</a> - {% include ':Extension:custom_format_date.html.twig' with {'object': feed.getUpdateTime(), 'lowercase': true} %}
 							</p>
 						</div>
 					</div>

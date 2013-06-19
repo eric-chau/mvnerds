@@ -29,7 +29,7 @@ class AppKernel extends Kernel
 //            new MVNerds\ProfileBundle\MVNerdsProfileBundle(),
 //            new MVNerds\CommentBundle\MVNerdsCommentBundle(),
 //			new MVNerds\PropelBundle\MVNerdsPropelBundle(),
-//            new MVNerds\VoteBundle\MVNerdsVoteBundle(),
+            new MVNerds\VoteBundle\MVNerdsVoteBundle(),
 //            new MVNerds\ViewBundle\MVNerdsViewBundle(),
 //            new MVNerds\ReportBundle\MVNerdsReportBundle(),
 //            new MVNerds\VideoBundle\MVNerdsVideoBundle(),

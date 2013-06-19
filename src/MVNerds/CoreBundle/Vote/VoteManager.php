@@ -100,23 +100,23 @@ class VoteManager
 	}
 	
 	/**
-	 * Contrairement à la méthode vote, uniqueVote ne permet pas à un utilisateur de voter pour un objet pour lequel 
+	 * Contrairement à la méthode vote, rate ne permet pas à un utilisateur de voter pour un objet pour lequel 
 	 * il a déjà voté au paravant même si c'est un vote différent.
 	 * 
 	 * @param \MVNerds\CoreBundle\Vote\IVote $object L'objet pour lequel l'utilisateur souhaite voter
 	 * @param User $user L'utilisateur qui souhaite voter pour l'objet
 	 * @param string $like "true" si l'utilisateur apprécie l'objet, et n'importe quelle autre chaine sinon
 	 * 
-	 * @return Vote L'objet correspondant au vote qui vient d'être effectué
+	 * @return boolean true si le vote a bien été effectué et false si l'utilisateur avait déjà voté pour cet objet
 	 */
-	public function uniqueVote(IRate $object ,User $user, $like)
+	public function rate(IRate $object ,User $user, $like)
 	{
 		$like = $like == 'true' ? true : false;
 		try {
 			//On essaie de récupérer un vote pour cet utilisateur et cet objet
 			$vote = $this->findByObjectAndUser($object, $user);
-			//Si le vote est trouvé on ne permet pas de voter à nouveau et retourne directement l'objet Vote
-			return $vote;
+			//Si le vote est trouvé on ne permet pas de voter à nouveau et retourne false
+			return false;
 		} catch (\Exception $e) {
 			//Si une exception est levée celà signifie qu'aucun vote n'a été trouvé pour cet utilisateur et cet objet
 			//On crée alors un nouvel objet Vote
@@ -130,7 +130,7 @@ class VoteManager
 			$this->updateObjectRating($object, $like);
 		}
 		
-		return $vote;
+		return true;
 	}
 	
 	private function incrementObjectLikeCount(IVote $object)

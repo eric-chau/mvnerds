@@ -20,6 +20,7 @@ function getAlertMessage(type)
 //Permet d afficher les messages d erreur et de succes
 function displayMessage(message, type)
 {
+	console.log('display');
 	var alert = '<div class="fade in hide alert alert-fixed alert-'+type+'"><button type="button" class="close" data-dismiss="alert">×</button>'+message+'</div>';
 	//On crée le nouveau message
 	$('body').append(alert);

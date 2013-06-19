@@ -46,10 +46,10 @@ mv_nerd_main:
 #    type:     annotation
 #    prefix:   /
 #
-#mv_nerds_vote:
-#    resource: "@MVNerdsVoteBundle/Controller/"
-#    type:		annotation
-#    prefix:   /{_locale}
+mv_nerds_vote:
+    resource: "@MVNerdsVoteBundle/Controller/"
+    type:		annotation
+    prefix:   /{_locale}
 #
 #mv_nerds_video:
 #    resource: "@MVNerdsVideoBundle/Controller/"

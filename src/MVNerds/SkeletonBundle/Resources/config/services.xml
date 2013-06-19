@@ -15,8 +15,11 @@
 		<!-- SUPER TAG MANAGER SERVICES	-->
 		<service id="mvnerds.super_tag_manager" class="MVNerds\SkeletonBundle\SuperTag\SuperTagManager" />
 		
-		<!-- Feed Type MANAGER SERVICES	-->
+		<!-- FEED TYPE MANAGER SERVICES	-->
 		<service id="mvnerds.feed_type_manager" class="MVNerds\SkeletonBundle\FeedType\FeedTypeManager" />
+		
+		<!-- FEED COMMENT MANAGER SERVICES	-->
+		<service id="mvnerds.feed_comment_manager" class="MVNerds\SkeletonBundle\FeedComment\FeedCommentManager" />
 
     </services>
 </container>
