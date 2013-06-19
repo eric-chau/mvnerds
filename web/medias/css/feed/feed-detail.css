@@ -170,10 +170,30 @@ div.feed-detail-container div.feed-content {
   padding-left: 10px;
   width: 600px;
 }
+div.feed-detail-container div.feed-content div.feed-infos {
+  border-bottom: 1px dotted #999;
+  color: #999;
+  font-size: 12px;
+  margin-top: 5px;
+  position: relative;
+}
+div.feed-detail-container div.feed-content div.feed-infos div.vote-actions {
+  font-size: 12px;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+div.feed-detail-container div.feed-content div.feed-infos div.vote-actions a:hover {
+  text-decoration: none;
+}
+div.feed-detail-container div.feed-content div.feed-infos div.vote-actions span.rating {
+  display: inline-block;
+  margin: 0 3px;
+}
 div.feed-detail-container div.feed-content h1 {
   color: #be3322;
   font-size: 1.6em;
-  margin: 5px 0 10px 0;
+  margin-bottom: 10px;
 }
 div.feed-detail-container div.feed-comments {
   border-right: 0;
@@ -193,9 +213,24 @@ div.feed-detail-container div.feed-comments div.comment-row p {
 }
 div.feed-detail-container div.feed-comments div.comment-row div.content {
   border-bottom: 1px solid #999;
-  margin-bottom: 2px;
   padding-bottom: 3px;
 }
-div.feed-detail-container div.feed-comments div.comment-row div.comment-infos p {
+div.feed-detail-container div.feed-comments div.comment-row div.comment-infos {
+  position: relative;
   text-align: right;
+}
+div.feed-detail-container div.feed-comments div.comment-row div.comment-infos div.vote-actions {
+  display: inline-block;
+  font-size: 12px;
+  left: 0;
+  position: absolute;
+  top: 2px;
+}
+div.feed-detail-container div.feed-comments div.comment-row div.comment-infos div.vote-actions span.rating {
+  display: inline-block;
+  margin: 0 2px;
+}
+div.feed-detail-container div.feed-comments div.comment-row div.comment-infos p {
+  display: inline-block;
+  font-size: 12px;
 }

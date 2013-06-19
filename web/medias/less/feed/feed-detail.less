@@ -65,13 +65,37 @@ div.feed-detail-container {
 		&.feed-content {
 			background-color: rgba(255,255,255,.5);
 			border-right: 1px solid #999;
-			padding-left:10px;
+			padding-left: 10px;
 			width: 600px;
+
+			div.feed-infos {
+				border-bottom: 1px dotted #999;
+				color: #999;
+				font-size: 12px;
+				margin-top: 5px;
+				position: relative;
+
+				div.vote-actions {
+					font-size: 12px;
+					position: absolute;
+					right: 0;
+					top: 0;
+
+					a:hover {
+						text-decoration: none;
+					}
+
+					span.rating {
+						display: inline-block;
+						margin: 0 3px;
+					}
+				}
+			}
 
 			h1 {
 				color: darken(@MVNerdsRed, 10%);
 				font-size: 1.6em;
-				margin: 5px 0 10px 0;
+				margin-bottom: 10px;
 			}
 		}
 
@@ -95,13 +119,29 @@ div.feed-detail-container {
 
 				div.content {
 					border-bottom: 1px solid #999;
-					margin-bottom: 2px;
 					padding-bottom: 3px;
 				}
 
 				div.comment-infos {
+					position: relative;
+					text-align: right;
+
+					div.vote-actions {
+						display: inline-block;
+						font-size: 12px;
+						left: 0;
+						position: absolute;
+						top: 2px;
+
+						span.rating {
+							display: inline-block;
+							margin: 0 2px;
+						}
+					}
+
 					p {
-						text-align: right;
+						display: inline-block;
+						font-size: 12px;
 					}
 				}
 			}
